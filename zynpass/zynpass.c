@@ -65,7 +65,7 @@ int main (int argc, char* argv[]) {
 
         b = ror(b,d);
         password = b ^ e;
-        printf("\nATEN 1,%X\n", password);
+        printf("\nATEN 1 %X\n", password);
 
         return 0;
 }
