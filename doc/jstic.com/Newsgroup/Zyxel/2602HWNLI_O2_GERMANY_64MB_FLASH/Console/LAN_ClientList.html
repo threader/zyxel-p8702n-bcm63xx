@@ -1,0 +1,153 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_LAN_ClientList.html";
+function doCopyIPValue(value, obj1){
+	document.getElementsByName(obj1)[0].value = value;
+}
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/LAN_ClientList_1" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="LAN_IP.html" target="main" class="sub"><b><FONT class=NaviText> 
+IP</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="LAN_DHCPSetup.html" target="main" class="sub"><b><FONT class=NaviText> 
+DHCP Setup</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b> 
+Client List</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="LAN_IPAlias.html" target="main" class="sub"><b><FONT class=NaviText> 
+IP Alias</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle"> 
+DHCP Client Table</td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellpadding="0" cellspacing="0">
+<tr> 
+<td><div><table width="100%" border="0" align=center cellpadding="0" cellspacing="0" >
+<tr align=center> 
+<td width="35%" ><div align=left> 
+IP Address<input type="text" name="LANClist_IPAddrAdd" size="15" maxlength="15" value="0.0.0.0" onblur="checkIPFormat(this); " /></div></td><td width="35%"><div align=left> 
+MAC Address<input type="text" name="LANClist_MACAdd" size="18" maxlength="17" value="00:00:00:00:00:00" onblur="doMACcheck(this); " /></div></td><td width="34%" > 
+<input type="submit" name="sysAddBtn" value="Add" /></div></td></tr></table></div></td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr> 
+<td><div><table width="100%" border="1" align=center cellpadding="1" cellspacing="0" bordercolor="#FFFFFF" >
+<tr align=center> 
+<td width="15" class="tableTitle"><b> # </b></td><td width="41" class="tableTitle"><b> 
+Status</b></td><td width="173" class="tableTitle"><b> 
+Host Name</b></td><td width="214" class="tableTitle"><b> 
+IP Address</b></td><td width="235" class="tableTitle"><b> 
+MAC Address</b></td><td width="67" class="tableTitle"><b> 
+Reserve</b></td><td width="63" class="tableTitle"><b> 
+Modify</b></td></tr><TR align='center' class='tabcolor2'><td><b> 
+<b>1</b> </td><td width="41"> 
+<img src="Images/i_active_on.gif" width="16" height="14"></td><td>kkoenig8</td><td><input type="hidden" name="LANClist_IPAddrHidden?1" value="192.168.5.35" onblur="checkIPFormat(this);" /><font id=IP1> 
+192.168.5.35</font> </td><td><input type="hidden" name="LANClist_MACHidden?1" value="00:12:BF:51:6E:69" onblur="doMACcheck(this); " /><font id=MAC1> 
+00:12:BF:51:6E:69</font> 
+<input type="hidden" name="StDHCP_Index?1" value="2" /></td><td><input type="checkbox" name="LANClist_Reserve?1" value="?1" checked /></td><td width="63"> 
+</td></tr><TR align='center' class='tabcolor1'><td><b> 
+<b>2</b> </td><td width="41"> 
+<img src="Images/i_active_on.gif" width="16" height="14"></td><td>ckoenig2</td><td><input type="hidden" name="LANClist_IPAddrHidden?2" value="192.168.5.36" onblur="checkIPFormat(this);" /><font id=IP2> 
+192.168.5.36</font> </td><td><input type="hidden" name="LANClist_MACHidden?2" value="00:0C:F1:03:2F:CB" onblur="doMACcheck(this); " /><font id=MAC2> 
+00:0C:F1:03:2F:CB</font> 
+<input type="hidden" name="StDHCP_Index?2" value="3" /></td><td><input type="checkbox" name="LANClist_Reserve?2" value="?2" checked /></td><td width="63"> 
+</td></tr><TR align='center' class='tabcolor2'><td><b> 
+<b>3</b> </td><td width="41"> 
+<img src="Images/i_active_off.gif" width="16" height="14"></td><td></td><td><input type="hidden" name="LANClist_IPAddrHidden?3" value="192.168.5.33" onblur="checkIPFormat(this);" /><font id=IP3> 
+192.168.5.33</font> </td><td><input type="hidden" name="LANClist_MACHidden?3" value="00:11:D8:39:6E:E8" onblur="doMACcheck(this); " /><font id=MAC3> 
+00:11:D8:39:6E:E8</font> 
+<input type="hidden" name="StDHCP_Index?3" value="0" /></td><td><input type="checkbox" name="LANClist_Reserve?3" value="?3" checked /></td><td width="63"> 
+<a onClick="doDHCPEdit('LANClist_IPAddrHidden?3',IP3,3);" ><img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image262','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image262" width="19" height="14" border="0"></a></td></tr><TR align='center' class='tabcolor1'><td><b> 
+<b>4</b> </td><td width="41"> 
+<img src="Images/i_active_off.gif" width="16" height="14"></td><td></td><td><input type="hidden" name="LANClist_IPAddrHidden?4" value="192.168.5.34" onblur="checkIPFormat(this);" /><font id=IP4> 
+192.168.5.34</font> </td><td><input type="hidden" name="LANClist_MACHidden?4" value="00:30:65:47:0C:5C" onblur="doMACcheck(this); " /><font id=MAC4> 
+00:30:65:47:0C:5C</font> 
+<input type="hidden" name="StDHCP_Index?4" value="1" /></td><td><input type="checkbox" name="LANClist_Reserve?4" value="?4" checked /></td><td width="63"> 
+<a onClick="doDHCPEdit('LANClist_IPAddrHidden?4',IP4,4);" ><img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image263','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image263" width="19" height="14" border="0"></a></td></tr><TR align='center' class='tabcolor2'><td><b> 
+<b>5</b> </td><td width="41"> 
+<img src="Images/i_active_off.gif" width="16" height="14"></td><td></td><td><input type="hidden" name="LANClist_IPAddrHidden?5" value="192.168.5.37" onblur="checkIPFormat(this);" /><font id=IP5> 
+192.168.5.37</font> </td><td><input type="hidden" name="LANClist_MACHidden?5" value="00:0E:35:67:32:30" onblur="doMACcheck(this); " /><font id=MAC5> 
+00:0E:35:67:32:30</font> 
+<input type="hidden" name="StDHCP_Index?5" value="4" /></td><td><input type="checkbox" name="LANClist_Reserve?5" value="?5" checked /></td><td width="63"> 
+<a onClick="doDHCPEdit('LANClist_IPAddrHidden?5',IP5,5);" ><img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image264','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image264" width="19" height="14" border="0"></a></td></tr><TR align='center' class='tabcolor1'><td><b> 
+<b>6</b> </td><td width="41"> 
+<img src="Images/i_active_off.gif" width="16" height="14"></td><td></td><td><input type="hidden" name="LANClist_IPAddrHidden?6" value="192.168.5.38" onblur="checkIPFormat(this);" /><font id=IP6> 
+192.168.5.38</font> </td><td><input type="hidden" name="LANClist_MACHidden?6" value="00:A0:C5:92:8D:CF" onblur="doMACcheck(this); " /><font id=MAC6> 
+00:A0:C5:92:8D:CF</font> 
+<input type="hidden" name="StDHCP_Index?6" value="5" /></td><td><input type="checkbox" name="LANClist_Reserve?6" value="?6" checked /></td><td width="63"> 
+<a onClick="doDHCPEdit('LANClist_IPAddrHidden?6',IP6,6);" ><img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image265','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image265" width="19" height="14" border="0"></a></td></tr></table></div></td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr> 
+<td align=center> 
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+<input type="submit" name="sysRefeshBtn" value="Refresh" /><input type="hidden" name="NumOfItems" value="6" /></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">    
+<!--
+var numOfItem=document.forms[0].NumOfItems.value;
+var statusChk= new Array(numOfItem);
+function statusInitial(){
+	var i;
+	for(i=0;i<numOfItem;i++)
+	{
+		statusChk[i] = false;
+	}
+}
+
+function doDHCPEdit(obj1,id1,itemIndex)
+{
+	if (statusChk[itemIndex-1] == false){
+		id1.innerHTML= '<INPUT name="'+obj1+'" TYPE="text" size="15" VALUE="' + document.getElementsByName(obj1)[0].value + '" onChange="if (checkIPFormat(this) !=false) {doCopyIPValue(this.value,'+ '\'' +obj1 +'\''+ ');}">';
+		statusChk[itemIndex-1] = true;
+	}
+	else{
+		id1.innerHTML = document.getElementsByName(obj1)[0].value;
+		statusChk[itemIndex-1] = false;
+	}
+	
+}
+statusInitial();
+showFullPath('Network > LAN > Client List');
+//-->
+</script>
+</html>

@@ -1,0 +1,28 @@
+Bootbase Version: V1.06 | 04/01/2004 11:22:33
+RAM: Size = 32768 Kbytes
+DRAM POST: Testing: 32768K
+OK
+FLASH: AMD 32M *1
+
+ZyNOS Version: V3.40(UI.2) | 12/15/2005 11:07:50
+
+------------------------
+
+ZyNOS Version          : V3.40(UI.2) | 12/15/2005 11:07:50
+Bootbase Version       : V1.06 | 04/01/2004 11:22:33
+Vendor Name            : ZyXEL Communications Corp.
+Product Model          : Prestige 662HW-63/67
+ZyNOS ROM address      : b0020000
+System Type            : 7
+MAC Address            : 00A0C5F92E29
+Default Country Code   : E1
+Boot Module Debug Flag : 00
+RomFile Version        : 4F
+RomFile Checksum       : e792
+ZyNOS Checksum         : cd80
+Core Checksum          : 14fe
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+          92 58 00 00 00 00 00 00-00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00-01 41 13 00 00 00

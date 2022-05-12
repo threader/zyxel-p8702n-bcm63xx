@@ -1,0 +1,19 @@
+atsh
+ZyNOS Version          : V3.40(ADV.1) | 8/17/2006 19:26:47
+Bootbase Version       : V1.05 | 6/30/2006 13:57:00
+Vendor Name            : ZyXEL Communications Corp.
+Product Model          : P-2602HWNLI-D7A
+ZyNOS ROM address      : b0020000
+System Type            : 7
+MAC Address            : 00xxxxxxxxxx
+Default Country Code   : E1
+Boot Module Debug Flag : 00
+RomFile Version        : EA
+RomFile Checksum       : c147
+ZyNOS Checksum         : 252e
+Core Checksum          : 2b01
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+          9D 1A 00 00 00 00 00 00-00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00-03 41 13 00 00 00

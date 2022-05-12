@@ -1,0 +1,105 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="Generaljs.js" ></script>
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_WLAN_AutoSec.html";
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+ var ns, ie;
+    var Vmajor = parseInt(navigator.appVersion);
+	if(navigator.appName == "Netscape") {
+		ns = true; ie = false;
+	} else if(navigator.appName == "Microsoft Internet Explorer") {
+		ie = true; ns = false;
+	} else {
+		 ns = false; ie = false;
+	}
+	
+	function chkChar(event) {
+		if(ns)
+			val = event.which;
+		else
+			val = event.keyCode;
+		if(val == 0 || val == 8)
+			return true;
+
+	  	if((val > 47 && val < 58) || (val > 64 && val < 91) || (val > 96 && val < 123))
+		    return true;
+	  	else
+    		return false;
+	}
+
+	
+	function doSubmit()
+	{
+		document.WLANAutoSecForm.AutoPSKFlag.value = 1;
+		document.WLANAutoSecForm.target = "buttom";
+  		document.WLANAutoSecForm.submit();
+  		return;		
+	}
+
+// -->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/WLAN_AutoSec_1" target="buttom" name="WLANAutoSecForm">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" ><div align=center><a href="WLAN_General.html" target="main" class="sub"><b><FONT class=NaviText> 
+General</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"><div align=center><b> 
+OTIST</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" ><div align=center><a href="WLAN_Filter.html" target="main" class="sub"><b><FONT class=NaviText> 
+MAC Filter</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="WLAN_QoS.html" target="main" class="sub"><b><FONT class=NaviText> 
+QoS</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td colspan="2">&nbsp;</td></tr><tr> 
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle"> 
+OTIST</td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellpadding="0" cellspacing="0">
+<tr> 
+<td width="14%"> 
+Setup Key</td><td width="86%"> 
+<input type="text" name="WLAN_AS_Key" size="8" maxlength="8" value="01234567" onKeyPress="return chkChar(event);" /></td></tr><tr> 
+<td colspan="2"> 
+<input type="checkbox" name="WLAN_AS_KeyGen" checked />Yes! Please enhance the Wireless Security Level to WPA-PSK automatically if no WLAN security has been set.  This will generate a random PSK key for your convenience.</td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+<tr> 
+<td colspan="2">&nbsp;</td></tr><tr align=center> 
+<td colspan="2" background="Images/wg_dotline.gif">&nbsp;</td></tr><tr> 
+<td colspan="2" align=center> 
+<input type="hidden" name="ASMode" value="" /><input type="hidden" name="AutoPSKFlag" value="0" /><input type="submit" name="ASStart" value="Start" onClick="doSubmit();" /></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">    
+<!--
+showFullPath('Network > Wireless LAN > OTIST');
+//-->
+</script>
+</html>

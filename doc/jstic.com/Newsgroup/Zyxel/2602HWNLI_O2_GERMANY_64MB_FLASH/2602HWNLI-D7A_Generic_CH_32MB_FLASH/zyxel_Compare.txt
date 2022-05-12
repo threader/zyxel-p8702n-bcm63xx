@@ -1,0 +1,34 @@
+
+P-2602HWNLI-D7A (same hardware as on P2602HWN-D7A)
+---------------
+Bootbase Version: V1.05 | 6/30/2006 13:57:00
+RAM: Size = 32768 Kbytes
+DRAM POST: Testing: 32768K
+OK
+FLASH: AMD 32M *1
+
+ZyNOS Version: V3.40(ADV.1) | 8/17/2006 19:26:47
+
+
+--------------------
+
+P2602HWN-D7A (same hardware as on P-2602HWNLI-D7A)
+------------
+Bootbase Version: V1.07 | 7/31/2006 18:30:00
+RAM: Size = 32768 Kbytes
+FLASH: AMD 64M *1
+
+ZyNOS Version: V3.40(AOF.2)D0 | 18.01.2008 17:32:30
+
+
+---------------------
+
+P2602HWL-D1A
+------------
+Bootbase Version: V1.13 | 02/16/2006 14:05:00
+RAM: Size = 32768 Kbytes
+DRAM POST: Testing: 32768K
+OK
+FLASH: AMD 32M *1
+
+ZyNOS Version: V3.40(AUY.2)  | 01/31/2008 13:33:15

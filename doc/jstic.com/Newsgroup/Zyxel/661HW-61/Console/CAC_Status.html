@@ -1,0 +1,124 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language=JavaScript>
+top.title.h_Page="h_CAC_Status.html";
+function increase(text1, text2, index)
+{
+var sec_dgt, min_dgt;
+sec_dgt = Number(document.getElementById(text2).innerHTML);
+min_dgt = Number(document.getElementById(text1).innerHTML);
+sec_dgt = sec_dgt + 15;
+if (sec_dgt >59){
+sec_dgt = sec_dgt - 60;
+min_dgt ++;
+if (min_dgt<10)
+document.getElementById(text1).innerHTML = "0" + min_dgt;
+else
+document.getElementById(text1).innerHTML = min_dgt;
+}
+if (sec_dgt<10)
+document.getElementById(text2).innerHTML= "0" + sec_dgt;
+else
+document.getElementById(text2).innerHTML= sec_dgt;
+index *= 3;
+document.forms[0].elements[index].value = Number(document.getElementById(text1).innerHTML);
+document.forms[0].elements[index+1].value = Number(document.getElementById(text2).innerHTML);
+}
+function decrease(text1, text2, index)
+{
+var sec_dgt, min_dgt;
+sec_dgt = Number(document.getElementById(text2).innerHTML);
+min_dgt = Number(document.getElementById(text1).innerHTML);
+if (sec_dgt<15) {
+if (min_dgt > 0){
+min_dgt = min_dgt - 1;
+sec_dgt = sec_dgt + 60 - 15;
+}
+else
+sec_dgt = 0;
+}
+else
+sec_dgt = sec_dgt - 15;
+if (min_dgt<10)
+document.getElementById(text1).innerHTML = "0" + min_dgt;
+else
+document.getElementById(text1).innerHTML = min_dgt;
+if (sec_dgt<10)
+document.getElementById(text2).innerHTML= "0" + sec_dgt;
+else
+document.getElementById(text2).innerHTML= sec_dgt;
+index *= 3;
+document.forms[0].elements[index].value = Number(document.getElementById(text1).innerHTML);
+document.forms[0].elements[index+1].value = Number(document.getElementById(text2).innerHTML);
+}
+  </script>
+<body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpCAC.html" name="CAC_UsrProf" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan="3">
+<div align=left class="NaviText"> <font class="NaviText">Content Access Control&nbsp;- Category</font></div></td></tr><tr>
+<td colspan="3">
+<hr></td></tr><tr>
+<td colspan="3">&nbsp;</td></tr><tr>
+<td colspan="3">
+<table border="1" cellspacing="0" cellpadding="0" align=center width="98%">
+<tr height="30" bgcolor="#C4D3FD" align=center>
+<td bgcolor="#C4D3FD" class="header2" width="8%"> Index</font></td><td class="header2" width="34%"> Username</font></td><td class="header2" width="18%"> Category</font>
+</td><td class="header2" width="26%"> Time Left</font></td><td class="header2" width="14%"> On-Line</font></td></tr> <tr align=center>
+<td width="8%">&nbsp;1</td><td width="34%">Klaus</td><td class="smallip" width="18%">Administration </td><td class="smallip" width="26%"><font id="min0">00</font>:<font id="sec0">00</font> <a nohref onClick="increase('min0','sec0',0);">
+<img src="Images/add_btn.gif" alt="Increase" width="17" height="17" ></a><a nohref onClick="decrease('min0','sec0',0,-1802994620);"><img src="Images/neg_btn.gif" alt="Decrease" width="17" height="17"></a> <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">No<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;2</td><td width="34%">Bastian</td><td class="smallip" width="18%">Kinder </td><td class="smallip" width="26%"><font id="min1">00</font>:<font id="sec1">00</font> <a nohref onClick="increase('min1','sec1',1);">
+<img src="Images/add_btn.gif" alt="Increase" width="17" height="17" ></a><a nohref onClick="decrease('min1','sec1',1,-1802994620);"><img src="Images/neg_btn.gif" alt="Decrease" width="17" height="17"></a> <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">No<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;3</td><td width="34%">Mueller</td><td class="smallip" width="18%">Nachbarn </td><td class="smallip" width="26%"><font id="min2">00</font>:<font id="sec2">00</font> <a nohref onClick="increase('min2','sec2',2);">
+<img src="Images/add_btn.gif" alt="Increase" width="17" height="17" ></a><a nohref onClick="decrease('min2','sec2',2,-1802994620);"><img src="Images/neg_btn.gif" alt="Decrease" width="17" height="17"></a> <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">No<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;4</td><td width="34%">Reinhard</td><td class="smallip" width="18%">Erwachsene </td><td class="smallip" width="26%"><font id="min3">00</font>:<font id="sec3">00</font> <a nohref onClick="increase('min3','sec3',3);">
+<img src="Images/add_btn.gif" alt="Increase" width="17" height="17" ></a><a nohref onClick="decrease('min3','sec3',3,-1802994620);"><img src="Images/neg_btn.gif" alt="Decrease" width="17" height="17"></a> <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">No<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;5</td><td width="34%">Claudia</td><td class="smallip" width="18%">Erwachsene </td><td class="smallip" width="26%"><font id="min4">00</font>:<font id="sec4">00</font> <a nohref onClick="increase('min4','sec4',4);">
+<img src="Images/add_btn.gif" alt="Increase" width="17" height="17" ></a><a nohref onClick="decrease('min4','sec4',4,-1802994620);"><img src="Images/neg_btn.gif" alt="Decrease" width="17" height="17"></a> <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">No<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;6</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;7</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;8</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;9</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;10</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;11</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;12</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;13</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;14</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;15</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;16</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;17</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;18</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;19</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;20</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;21</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;22</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;23</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;24</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;25</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;26</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;27</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;28</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;29</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;30</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;31</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> <tr align=center>
+<td width="8%">&nbsp;32</td><td width="34%">&nbsp;</td><td class="smallip" width="18%">&nbsp; </td><td class="smallip" width="26%">&nbsp; &nbsp; <INPUT TYPE="HIDDEN" NAME="CAC_LeftHour" VALUE="0" style="border: 0px;width:24"><INPUT TYPE="HIDDEN" NAME="CAC_LeftMin" VALUE="0" style="border: 0px;width:24"></td><td class="smallip" width="14%">&nbsp;<INPUT TYPE="HIDDEN" NAME="CACTempIndex" VALUE="0"></td></tr> </table></td></tr><tr>
+<td width="181"></td><td colspan="2">&nbsp;</td></tr><tr align=center valign=middle>
+<td colspan="3" height="36">
+<hr></td></tr><tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="CAC_BackBtn" VALUE="Back" onClick="window.location.href='rpCAC.html';"> &nbsp;&nbsp;
+<INPUT TYPE="SUBMIT" NAME="CAC_ApplyBtn" VALUE="Apply"> &nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></div></td>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	 </table></td></tr></table></form><script language="JavaScript">
+</script>
+
+</body></html>

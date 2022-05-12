@@ -1,0 +1,1311 @@
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"><title>viewlogs.html</title>
+
+<link rel="stylesheet" href="control.css" type="text/css">
+<link rel="stylesheet" href="zw.css" type="text/css">
+<script type="text/javascript" src="javascript.js"></script>
+<script type="text/javascript" src="javascriptCLI.js"></script>
+<script type="text/javascript" src="javascriptm.js"></script><!--script type="text/javascript" src="I18N.js"></script--><!--script>getLangFile()</script-->
+
+
+<script language="JavaScript">
+<!--
+        var PageTotal=0;
+	var gl=top.frames[1];		
+	var theDataPtr = gl.vlogList; // get data pointer		
+	var theDispPtr = gl.LogDispList;
+	var clist = new Array();
+	var listTemp = new Array();
+	var tdata = new Array();
+	var service_Ary = new Array();
+	/*split page*/
+	var LS = gl.Lists;
+	var logPage;
+/*======= Help ===========*/
+	gl.Topic= '350000';
+/*======= Help ===========*/	
+	/*if(gl.zyshdcnt == 0) {
+		var cmd = "";
+		if(gl.serFlag == 2) {
+			cmd = Get_CLI("viewlogs",1);
+			send_CLI(gl.selectIdx, 1, cmd);
+		}else {
+			cmd = compose_CLI(Get_CLI("viewlogs",1), gl.LogTmpAry[6]);
+			cmd = compose_CLI(cmd, Get_CLI("service",1));
+			// write flag is 0
+			gl.nowriteflag = true;
+			txcli(cmd,'viewlogs.html',3, 'viewlogs.html');
+			gl.retbufno = 1;
+		}
+	}else if(gl.zyshdcnt == 1) {
+		Category_fetch(gl.retbufno-1);
+		ViewLog_fetch(gl.retbufno);
+		Sevice_fetch(gl.retbufno+1);
+
+		if(gl.hasSort) 
+			SortThis(gl.sortID);
+		else 
+			gl.gifLogID = 0;
+
+		gl.zyshdcnt = 0;
+		gl.retbufno = 0;
+	}*/
+var cmd = "";
+		cmd = compose_CLI(cmd, "show logging _category ");
+		cmd = compose_CLI(cmd, "show logging entries");
+		cmd = compose_CLI(cmd, "show service-object");
+		// write flag is 0
+		//gl.nowriteflag = true;
+		txcli(cmd, "viewlogs.html", 3, "viewlogs.html");
+
+	function Category_fetch(idx) {
+			var sourcePtr = top.frames[4]['result_'+idx];
+			theDispPtr.dataSet.splice(0,theDispPtr.dataCount());
+			gl.LogListTmp.splice(0, gl.LogListTmp.length);
+			for ( var fi = 0 ; fi < sourcePtr.length ; fi++ ) {
+					gl.LogList[fi] = sourcePtr[fi];
+					if(sourcePtr[fi] != "traffic-log" && sourcePtr[fi] != "interface-statistics")
+						gl.LogListTmp.push(sourcePtr[fi]);
+					clist[fi] = transUpper(sourcePtr[fi]);
+			}
+      			theDispPtr.addNewRecord("All Logs");
+			for(var i = 0; i < clist.length; i++) {
+					theDispPtr.addNewRecord(clist[i]);		
+			}
+	}
+
+	function Sevice_fetch(idx) {
+			var sourcePtr = top.frames[4]['result_'+idx];
+			service_Ary.splice(0, service_Ary.length);
+			for ( var fi = 0 ; fi < sourcePtr.length ; fi++ ) {
+					service_Ary[fi] = sourcePtr[fi]._Object_name;
+			}
+	}
+
+	function getLogNumber(i, dataptr) {
+		if(dataptr.pri == "emerg" || dataptr.pri == "alert" || dataptr.pri == "crit"){
+			return '<font COLOR=#FF0000>'+(i+1)+'<\/FONT>';
+		}else {
+			return	(i+1);
+		}
+	}
+
+	function getDTime(i, dataptr) {	
+		if(dataptr.pri == "emerg" || dataptr.pri == "alert" || dataptr.pri == "crit"){
+			return '<font COLOR=#FF0000>'+dataptr.daytime+'<\/FONT>';
+		}else {
+			return	dataptr.daytime;
+		}
+	}
+	function getPri(i, dataptr) {			
+		if(dataptr.pri == "emerg" || dataptr.pri == "alert" || dataptr.pri == "crit"){
+			return '<font COLOR=#FF0000>'+dataptr.pri+'<\/FONT>';
+		}else {
+			return	dataptr.pri;
+		}
+	}
+	function getCategory(i, dataptr) {			
+		if(dataptr.pri == "emerg" || dataptr.pri == "alert" || dataptr.pri == "crit"){
+			return '<font COLOR=#FF0000>'+transUpper(dataptr.cat)+'<\/FONT>';
+		}else {
+			return	transUpper(dataptr.cat);
+		}
+	}
+	function getMsg(i, dataptr) {	
+		var str =  dataptr.message;
+		if(transUpper(dataptr.cat) == "IDP"){
+			var idx = str.search(/type=Sig/g);
+			if(idx) {
+				var result = str.slice(idx, str.length).match(/\d+/g);
+				if(result) {
+					if(result[0] <9000000){
+						str = "<a href='https://mysecurity.zyxel.com/mysecurity/jsp/policy/policy_detail.jsp?TYPEID="+
+							result[0] +"' target='Test'>"+dataptr.message+"</a>";
+					}
+				}
+			}
+		}
+		if(transUpper(dataptr.cat) == "ADP"){
+			var idx = str.search(/type=/g);
+			if(idx) {
+				var result = str.slice(idx, str.length).match(/\d+/g);
+				if(result) {
+					if(result[0] <9000000){
+						str = "<a href='https://mysecurity.zyxel.com/mysecurity/jsp/policy/policy_detail.jsp?TYPEID="+
+							result[0] +"' target='Test'>"+dataptr.message+"</a>";
+					}
+				}
+			}
+		}
+		if(transUpper(dataptr.cat) == "PKI") {
+			var result2 = str.match(/Due/g); //error occurred
+			if(result2) {
+				var result = str.match(/\d+/g);
+				var idx = str.search(/\)/i);
+				if(result) {
+					// Hard coding
+					str = str.slice(0,18)+"<a href='errCode.html' target='"+ result[0]+"'>"+result[0]+"</a>"+
+								str.slice(idx, str.length);
+				}
+			}
+		}
+		
+		if(dataptr.pri == "emerg" || dataptr.pri == "alert" || dataptr.pri == "crit"){
+			return '<font COLOR=#FF0000>'+str+'<\/FONT>';
+		}else {
+			return	str;
+		}
+	}
+	function getSource(i, dataptr) {
+		if(dataptr.pri == "emerg" || dataptr.pri == "alert" || dataptr.pri == "crit"){
+			return '<font COLOR=#FF0000>'+dataptr.source+'<\/FONT>';
+		}else {
+			return	dataptr.source;
+		}
+	}	
+	function getDestination(i, dataptr) {
+		if(dataptr.pri == "emerg" || dataptr.pri == "alert" || dataptr.pri == "crit"){
+			return '<font COLOR=#FF0000>'+dataptr.destination+'<\/FONT>';
+		}else {
+			return	dataptr.destination;
+		}
+	}
+	function getNote(i, dataptr) {
+		if(dataptr.pri == "emerg" || dataptr.pri == "alert" || dataptr.pri == "crit"){
+			return '<font COLOR=#FF0000>'+dataptr.note+'<\/FONT>';
+		}else {
+			return	dataptr.note.toString();
+		}
+	}			
+	function showVLogEntry() {		
+		var i,pages=0;
+		var dpr = gl.gifLogPtr[gl.gifLogID];
+		var dcnt = theDataPtr.dataCount();
+		gl.StartPt = LS*(gl.PageIdx - 1);			
+		gl.EndPt = ((gl.StartPt+LS) > dcnt) ? dcnt : (gl.StartPt+LS);
+
+		if(dpr == 0) {
+			for(var k = gl.StartPt; k < gl.EndPt; k++) {	
+				if(gl.logAryFlag == true){
+					i = gl.TempLogAry[k];// sorted index
+				}else{
+					i = k;
+				}
+
+				if((i%2)==0){
+					var color = 'tabcolor2';//even
+				}else{
+					var color = 'tabcolor1';//odd
+				}
+				var data = theDataPtr.getRecord(i);
+				document.write('<tr class="'+color+'">');
+				document.write('<td nowrap id="VL0'+i+'" align="center">'  + getLogNumber(i, data) +'<\/td>');				
+				document.write('<td nowrap id="VL1'+i+'" align="left" >'   + getDTime(i, data) +'<\/td> ');
+				document.write('<td nowrap id="VL6'+i+'" align="left" >' + getPri(i, data) +'<\/td> ');
+				document.write('<td nowrap id="VL7'+i+'" align="left" >' + getCategory(i, data) +'<\/td> ');
+				document.write('<td nowrap id="VL2'+i+'" align="left" >'   + getMsg(i, data) +'<\/td>');
+				document.write('<td nowrap id="VL3'+i+'" align="left" >' + getSource(i, data) +'<\/td>');
+				document.write('<td nowrap id="VL4'+i+'" align="left" >' + getDestination(i, data) +'<\/td>');
+				document.write('<td nowrap id="VL5'+i+'" align="left" >' + getNote(i, data) +'<\/td>');
+				document.write('<\/tr>');
+			}
+		}else {
+			var dcnt = theDataPtr.dataCount();
+			for(var k = (dcnt - gl.StartPt - 1); (dcnt - gl.EndPt - 1) < k; k--) {	
+				if(gl.logAryFlag == true){
+					i = gl.TempLogAry[k];// sorted index
+				}else{
+					i = k;	
+				}
+
+				if((i%2)==0){
+					var color = 'tabcolor2';//even
+				}else{
+					var color = 'tabcolor1';//odd
+				}
+				var data = theDataPtr.getRecord(i);
+				document.write('<tr class="'+color+'">');
+				document.write('<td nowrap id="VL0'+i+'" align="center">'  + getLogNumber(i, data) +'<\/td>');				
+				document.write('<td nowrap id="VL1'+i+'" align="left" >'   + getDTime(i, data) +'<\/td> ');
+				document.write('<td nowrap id="VL6'+i+'" align="left" >' + getPri(i, data) +'<\/td> ');
+				document.write('<td nowrap id="VL7'+i+'" align="left" >' + getCategory(i, data) +'<\/td> ');
+				document.write('<td nowrap id="VL2'+i+'" align="left" >'   + getMsg(i, data) +'<\/td>');
+				document.write('<td nowrap id="VL3'+i+'" align="left" >' + getSource(i, data) +'<\/td>');
+				document.write('<td nowrap id="VL4'+i+'" align="left" >' + getDestination(i, data) +'<\/td>');
+				document.write('<td nowrap id="VL5'+i+'" align="left" >' + getNote(i, data) +'<\/td>');
+				document.write('<\/tr>');
+			}
+		}
+		gl.logAryFlag = false;
+	}	
+	function numOrder(a,b) {
+		return a-b;
+	}
+function SortThis(ID){
+	gl.sortID = ID;
+	gl.hasSort = true;
+	gl.TempLogAry.splice(0, gl.TempLogAry.length);
+	tdata.splice(0, tdata.length);
+
+	switch(ID){
+		case 'tf0'://#
+			for(var i = 0; i < theDataPtr.dataCount(); i++) {				
+				gl.TempLogAry[i] = i+1;
+				tdata[i] = i+1;
+			}
+			gl.TempLogAry.sort(numOrder);
+			rplNum(gl.TempLogAry);	
+			break;
+		case 'tf1':
+			for(var i = 0; i < theDataPtr.dataCount(); i++) {
+				var dptr = theDataPtr.getRecord(i);	
+				gl.TempLogAry[i] = dptr.daytime;
+				tdata[i] = dptr.daytime;
+			}
+			gl.TempLogAry.sort();			
+			rplNum(gl.TempLogAry);		
+			break;
+		case 'tf2':		
+			for(var i=0; i<(theDataPtr.dataCount()); i++){
+				var dptr = theDataPtr.getRecord(i);	
+				gl.TempLogAry[i] = dptr.message;
+				tdata[i] = dptr.message;
+			}
+			gl.TempLogAry.sort();	
+			rplNum(gl.TempLogAry);
+			break;
+		case 'tf3':
+			for(var i=0; i<(theDataPtr.dataCount()); i++){
+				var dptr = theDataPtr.getRecord(i);	
+				gl.TempLogAry[i] = dptr.source;
+				tdata[i] = dptr.source;
+			}
+			gl.TempLogAry.sort();	
+			rplNum(gl.TempLogAry);
+			break;
+		case 'tf4':
+			for(var i=0; i<(theDataPtr.dataCount()); i++){
+				var dptr = theDataPtr.getRecord(i);	
+				gl.TempLogAry[i] = dptr.destination;
+				tdata[i] = dptr.destination;
+			}
+			gl.TempLogAry.sort();	
+			rplNum(gl.TempLogAry);
+			break;
+		case 'tf5':
+			for(var i=0; i<(theDataPtr.dataCount()); i++){
+				var dptr = theDataPtr.getRecord(i);	
+				gl.TempLogAry[i] = dptr.note;
+				tdata[i] = dptr.note;
+			}
+			gl.TempLogAry.sort();	
+			rplNum(gl.TempLogAry);
+			break;	
+		case 'tf6':		
+			for(var i=0; i<(theDataPtr.dataCount()); i++){
+				var dptr = theDataPtr.getRecord(i);	
+				gl.TempLogAry[i] = dptr.pri;
+				tdata[i] = dptr.pri;
+			}
+			gl.TempLogAry.sort();	
+			rplNum(gl.TempLogAry);
+			break;
+		case 'tf7':		
+			for(var i=0; i<(theDataPtr.dataCount()); i++){
+				var dptr = theDataPtr.getRecord(i);	
+				gl.TempLogAry[i] = dptr.cat;
+				tdata[i] = dptr.cat;
+			}
+			gl.TempLogAry.sort();
+			rplNum(gl.TempLogAry);
+			break;	
+		default:
+			for(var i=0; i<(theDataPtr.dataCount()); i++){				
+				gl.TempLogAry[i] = i;
+				tdata[i] = i;
+			}		
+			gl.logAryFlag = true;
+			break;
+	}	
+}
+function rplNum(tary){
+	for(var i = 0; i < tary.length; i++) {
+		var str = tary[i].toString();
+		for(var j = 0; j < tary.length; j++){
+			if(str != tdata[j]) {
+				continue;
+			}else{
+				tary[i] = j;
+				tdata[j]= null;
+				break;				
+			}
+		}
+	}		
+	gl.logAryFlag = true;
+}
+
+function ShowDisplay(DataList){
+	var k = 1;
+	var er = document.getElementById('dLog');	
+	var eLog = document.getElementById('LogList');
+	var dcnt = DataList.dataCount();	
+	er.options[0] = new Option("Debug Log",0,false,false);
+	eLog.options[0] = new Option("Debug Log",0,false,false);
+	for ( var i = 0 ; i < dcnt ; i++ ) {
+		if(DataList.getRecord(i).item != "Traffic Log" && DataList.getRecord(i).item != "Interface Statistics") {
+			var dptr = DataList.getRecord(i);	
+			var outFileName = dptr.item;
+			er.options[k] = new Option(outFileName, k, false, false);
+			eLog.options[k] = new Option(outFileName, k, false, false);
+			k++;
+		}
+	}
+	er.selectedIndex = gl.selectIdx;
+	eLog.selectedIndex = gl.LogTmpAry[0];
+	var pri_1 = document.getElementById('Pri_1');
+	var pri_2 = document.getElementById('Pri_2');
+
+	pri_1.style.display = (eLog.selectedIndex == 0) ? "none" : "";
+	pri_2.style.display = (eLog.selectedIndex == 0) ? "" : "none";
+}
+function EmailNow(){
+	gl.hasSort = false;
+	cmd = compose_CLI(Get_CLI("viewlogs",5),Get_CLI("viewlogs",1));
+	send_CLI(gl.selectIdx,2,cmd);
+}
+function ClearLog(){
+	//gl.hasSort = false;
+	//gl.PageIdx = 1;
+	//cmd = compose_CLI(Get_CLI("viewlogs",6),Get_CLI("viewlogs",1));
+	//send_CLI(gl.selectIdx,3,cmd);
+        var er1 = document.getElementById('VL00');
+        var er2 = document.getElementById('VL011');
+        var er3 = document.getElementById('VL02');
+        var er4 = document.getElementById('VL03');
+        var er5 = document.getElementById('VL04');
+        var er6 = document.getElementById('VL05');
+        var er7 = document.getElementById('VL06');
+        var er8 = document.getElementById('VL07');
+        var er9 = document.getElementById('VL08');
+        var er10 = document.getElementById('VL09');
+        
+        var er11 = document.getElementById('DE00');
+        var er12 = document.getElementById('DE01');
+        var er13 = document.getElementById('DE02');
+        var er14 = document.getElementById('DE03');
+        var er15 = document.getElementById('DE04');
+        
+        var er16 = document.getElementById('US00');
+        var er17 = document.getElementById('US01');
+        var er18 = document.getElementById('US02');
+        var er19 = document.getElementById('US03');
+        var er20 = document.getElementById('US04');
+        var er21 = document.getElementById('US05');
+        
+        var er22 = document.getElementById('IDP00');
+        
+        var er23 = document.getElementById('APP00');
+        
+        var er24 = document.getElementById('FW00');
+        var er25 = document.getElementById('FW01');
+        
+        var er26 = document.getElementById('PAGE1');
+        var er27 = document.getElementById('PAGE2');
+        var er28 = document.getElementById('PAGE3');
+        var er29 = document.getElementById('PAGE4');
+        var er30 = document.getElementById('PAGE5');
+        var er31 = document.getElementById('PAGE6');
+        var er32 = document.getElementById('PAGE7');
+        
+                 er26.style.display = "none";
+                 er27.style.display = "none";
+                 er28.style.display = "none";
+                 er29.style.display = "none";
+                 er30.style.display = "none";
+                 er31.style.display = "none";
+                 er32.style.display = "";
+	        
+                 er1.style.display = "none";
+                 er2.style.display = "none";
+                 er3.style.display = "none";
+                 er4.style.display = "none";
+                 er5.style.display = "none";
+                 er6.style.display = "none";
+                 er7.style.display = "none";
+                 er8.style.display = "none";
+                 er9.style.display = "none";
+                 er10.style.display = "none";
+                 er11.style.display = "none";
+                 er12.style.display = "none";
+                 er13.style.display = "none";
+                 er14.style.display = "none";
+                 er15.style.display = "none";
+                 er16.style.display = "none";
+                 er17.style.display = "none";
+                 er18.style.display = "none";
+                 er19.style.display = "none";
+                 er20.style.display = "none";
+                 er21.style.display = "none";
+                 er22.style.display = "none";
+                 er23.style.display = "none";
+                 er24.style.display = "none";
+                 er25.style.display = "none";
+}
+function refreshLog(){
+	gl.hasSort = false;
+	cmd = Get_CLI("viewlogs",1);
+	send_CLI(gl.selectIdx,1,cmd);
+}
+
+function send_CLI(idx,count,cmd) {
+	if(idx == 0) {
+		cmd = compose_CLI(cmd, Get_CLI("viewlogs",4));
+	}else if(idx == 1) {
+		cmd = compose_CLI(cmd, Get_CLI("viewlogs",2));
+	}else {
+		var arg = new Array();
+		arg[0] = gl.LogListTmp[idx-2];
+		cmd = compose_CLI(cmd, Get_CLI("viewlogs",3,arg));
+	}
+	cmd = compose_CLI(cmd, Get_CLI("service",1));
+	// write flag is 0
+	gl.nowriteflag = true;
+	txcli(cmd, 'viewlogs.html',count+2);
+	gl.retbufno = count;
+}
+
+function displayX(idx){
+	//gl.StartPt = 0;
+	//gl.EndPt = gl.Lists;
+	//gl.PageIdx = 1;
+	//show_PerPage();
+	//gl.gifLogID = 0;
+	//var er = document.getElementById('dLog');
+	//var arg = new Array();
+	//cmd = Get_CLI("viewlogs",1);
+	//send_CLI(idx,1,cmd);
+	//gl.selectIdx = idx;
+	var er = document.getElementById('dLog');
+	
+        var er1 = document.getElementById('VL00');
+        var er2 = document.getElementById('VL011');
+        var er3 = document.getElementById('VL02');
+        var er4 = document.getElementById('VL03');
+        var er5 = document.getElementById('VL04');
+        var er6 = document.getElementById('VL05');
+        var er7 = document.getElementById('VL06');
+        var er8 = document.getElementById('VL07');
+        var er9 = document.getElementById('VL08');
+        var er10 = document.getElementById('VL09');
+        
+        var er11 = document.getElementById('DE00');
+        var er12 = document.getElementById('DE01');
+        var er13 = document.getElementById('DE02');
+        var er14 = document.getElementById('DE03');
+        var er15 = document.getElementById('DE04');
+        
+        var er16 = document.getElementById('US00');
+        var er17 = document.getElementById('US01');
+        var er18 = document.getElementById('US02');
+        var er19 = document.getElementById('US03');
+        var er20 = document.getElementById('US04');
+        var er21 = document.getElementById('US05');
+        
+        var er22 = document.getElementById('IDP00');
+        
+        var er23 = document.getElementById('APP00');
+        
+        var er24 = document.getElementById('FW00');
+        var er25 = document.getElementById('FW01');
+        
+        var er26 = document.getElementById('PAGE1');
+        var er27 = document.getElementById('PAGE2');
+        var er28 = document.getElementById('PAGE3');
+        var er29 = document.getElementById('PAGE4');
+        var er30 = document.getElementById('PAGE5');
+        var er31 = document.getElementById('PAGE6');
+        var er32 = document.getElementById('PAGE7');
+	//gl.sViewIdx = er.selectedIndex;
+	//getEthReloadEntry();
+	if(er.selectedIndex==0){
+	 //       PageTotal=5;
+                 er26.style.display = "";
+                 er27.style.display = "none";
+                 er28.style.display = "none";
+                 er29.style.display = "none";
+                 er30.style.display = "none";
+                 er31.style.display = "none";
+                 er32.style.display = "none";
+	 
+                 er1.style.display = "none";
+                 er2.style.display = "none";
+                 er3.style.display = "none";
+                 er4.style.display = "none";
+                 er5.style.display = "none";
+                 er6.style.display = "none";
+                 er7.style.display = "none";
+                 er8.style.display = "none";
+                 er9.style.display = "none";
+                 er10.style.display = "none";
+                 er11.style.display = "";
+                 er12.style.display = "";
+                 er13.style.display = "";
+                 er14.style.display = "";
+                 er15.style.display = "";
+                 er16.style.display = "none";
+                 er17.style.display = "none";
+                 er18.style.display = "none";
+                 er19.style.display = "none";
+                 er20.style.display = "none";
+                 er21.style.display = "none";
+                 er22.style.display = "none";
+                 er23.style.display = "none";
+                 er24.style.display = "none";
+                 er25.style.display = "none";
+	}
+	else if(er.selectedIndex==1){
+	     //    PageTotal=10;
+                 er26.style.display = "none";
+                 er27.style.display = "";
+                 er28.style.display = "none";
+                 er29.style.display = "none";
+                 er30.style.display = "none";
+                 er31.style.display = "none";
+                 er32.style.display = "none";
+	     
+                 er1.style.display = "";
+                 er2.style.display = "";
+                 er3.style.display = "";
+                 er4.style.display = "";
+                 er5.style.display = "";
+                 er6.style.display = "";
+                 er7.style.display = "";
+                 er8.style.display = "";
+                 er9.style.display = "";
+                 er10.style.display = "";
+                 er11.style.display = "none";
+                 er12.style.display = "none";
+                 er13.style.display = "none";
+                 er14.style.display = "none";
+                 er15.style.display = "none";
+                 er16.style.display = "none";
+                 er17.style.display = "none";
+                 er18.style.display = "none";
+                 er19.style.display = "none";
+                 er20.style.display = "none";
+                 er21.style.display = "none";
+                 er22.style.display = "none";
+                 er23.style.display = "none";
+                 er24.style.display = "none";
+                 er25.style.display = "none";
+	}
+	else if(er.selectedIndex==5){
+	        // PageTotal=6;
+                 er26.style.display = "none";
+                 er27.style.display = "none";
+                 er28.style.display = "";
+                 er29.style.display = "none";
+                 er30.style.display = "none";
+                 er31.style.display = "none";
+                 er32.style.display = "none";
+	        
+                 er1.style.display = "none";
+                 er2.style.display = "none";
+                 er3.style.display = "none";
+                 er4.style.display = "none";
+                 er5.style.display = "none";
+                 er6.style.display = "none";
+                 er7.style.display = "none";
+                 er8.style.display = "none";
+                 er9.style.display = "none";
+                 er10.style.display = "none";
+                 er11.style.display = "none";
+                 er12.style.display = "none";
+                 er13.style.display = "none";
+                 er14.style.display = "none";
+                 er15.style.display = "none";
+                 er16.style.display = "";
+                 er17.style.display = "";
+                 er18.style.display = "";
+                 er19.style.display = "";
+                 er20.style.display = "";
+                 er21.style.display = "";
+                 er22.style.display = "none";
+                 er23.style.display = "none";
+                 er24.style.display = "none";
+                 er25.style.display = "none";
+	}
+	else if(er.selectedIndex==8){
+	        // PageTotal=1;
+                 er26.style.display = "none";
+                 er27.style.display = "none";
+                 er28.style.display = "none";
+                 er29.style.display = "";
+                 er30.style.display = "none";
+                 er31.style.display = "none";
+                 er32.style.display = "none";
+	        
+                 er1.style.display = "none";
+                 er2.style.display = "none";
+                 er3.style.display = "none";
+                 er4.style.display = "none";
+                 er5.style.display = "none";
+                 er6.style.display = "none";
+                 er7.style.display = "none";
+                 er8.style.display = "none";
+                 er9.style.display = "none";
+                 er10.style.display = "none";
+                 er11.style.display = "none";
+                 er12.style.display = "none";
+                 er13.style.display = "none";
+                 er14.style.display = "none";
+                 er15.style.display = "none";
+                 er16.style.display = "none";
+                 er17.style.display = "none";
+                 er18.style.display = "none";
+                 er19.style.display = "none";
+                 er20.style.display = "none";
+                 er21.style.display = "none";
+                 er22.style.display = "";
+                 er23.style.display = "none";
+                 er24.style.display = "none";
+                 er25.style.display = "none";
+	}
+	else if(er.selectedIndex==9){
+	        // PageTotal=1;
+                 er26.style.display = "none";
+                 er27.style.display = "none";
+                 er28.style.display = "none";
+                 er29.style.display = "none";
+                 er30.style.display = "";
+                 er31.style.display = "none";
+                 er32.style.display = "none";
+	        
+                 er1.style.display = "none";
+                 er2.style.display = "none";
+                 er3.style.display = "none";
+                 er4.style.display = "none";
+                 er5.style.display = "none";
+                 er6.style.display = "none";
+                 er7.style.display = "none";
+                 er8.style.display = "none";
+                 er9.style.display = "none";
+                 er10.style.display = "none";
+                 er11.style.display = "none";
+                 er12.style.display = "none";
+                 er13.style.display = "none";
+                 er14.style.display = "none";
+                 er15.style.display = "none";
+                 er16.style.display = "none";
+                 er17.style.display = "none";
+                 er18.style.display = "none";
+                 er19.style.display = "none";
+                 er20.style.display = "none";
+                 er21.style.display = "none";
+                 er22.style.display = "none";
+                 er23.style.display = "";
+                 er24.style.display = "none";
+                 er25.style.display = "none";
+	}
+	else if(er.selectedIndex==12){
+	       //  PageTotal=2;
+                 er26.style.display = "none";
+                 er27.style.display = "none";
+                 er28.style.display = "none";
+                 er29.style.display = "none";
+                 er30.style.display = "none";
+                 er31.style.display = "";
+                 er32.style.display = "none";
+	       
+                 er1.style.display = "none";
+                 er2.style.display = "none";
+                 er3.style.display = "none";
+                 er4.style.display = "none";
+                 er5.style.display = "none";
+                 er6.style.display = "none";
+                 er7.style.display = "none";
+                 er8.style.display = "none";
+                 er9.style.display = "none";
+                 er10.style.display = "none";
+                 er11.style.display = "none";
+                 er12.style.display = "none";
+                 er13.style.display = "none";
+                 er14.style.display = "none";
+                 er15.style.display = "none";
+                 er16.style.display = "none";
+                 er17.style.display = "none";
+                 er18.style.display = "none";
+                 er19.style.display = "none";
+                 er20.style.display = "none";
+                 er21.style.display = "none";
+                 er22.style.display = "none";
+                 er23.style.display = "none";
+                 er24.style.display = "";
+                 er25.style.display = "";
+	}
+	else {
+	        // PageTotal=0;
+                 er26.style.display = "none";
+                 er27.style.display = "none";
+                 er28.style.display = "none";
+                 er29.style.display = "none";
+                 er30.style.display = "none";
+                 er31.style.display = "none";
+                 er32.style.display = "";
+	        
+                 er1.style.display = "none";
+                 er2.style.display = "none";
+                 er3.style.display = "none";
+                 er4.style.display = "none";
+                 er5.style.display = "none";
+                 er6.style.display = "none";
+                 er7.style.display = "none";
+                 er8.style.display = "none";
+                 er9.style.display = "none";
+                 er10.style.display = "none";
+                 er11.style.display = "none";
+                 er12.style.display = "none";
+                 er13.style.display = "none";
+                 er14.style.display = "none";
+                 er15.style.display = "none";
+                 er16.style.display = "none";
+                 er17.style.display = "none";
+                 er18.style.display = "none";
+                 er19.style.display = "none";
+                 er20.style.display = "none";
+                 er21.style.display = "none";
+                 er22.style.display = "none";
+                 er23.style.display = "none";
+                 er24.style.display = "none";
+                 er25.style.display = "none";
+	}
+	}
+	function ChgSort(i){			
+		var dpr = gl.gifLogPtr[i];
+		if(dpr == 1) {
+			gl.gifLogPtr[i] = 0;
+		}else {
+			gl.gifLogPtr[i] = 1;
+		}
+		gl.gifLogID = i;
+	}
+	function dispSort(i){			
+		var dpr = gl.gifLogPtr[i];
+		var nm= "VL"+i;
+		var nk = "VL"+i+1;
+
+		var er = document.getElementById(nm);
+		var el = document.getElementById(nk);			
+		if(dpr  == 0) {			
+			er.style.display = "none";	
+			el.style.display = "";	
+		}else {			
+			er.style.display = "";	
+			el.style.display = "none";	
+		}
+	}
+	function checkKey(evt ){
+		var getc;
+		if(ns){
+			getc = evt.which;	
+		}
+		if(ie){
+			getc = event.keyCode;
+		}
+		if(getc == 13){//Press 'Enter' Key 
+			GotoPage(document.viewlogs.Num_Page.value)
+		}else if((getc == 27)||(getc ==0) ){//Press 'ESC' Key 		
+			return;
+		}
+	}
+	function FirstPage(){
+		InitPage(1);//the first page index
+	}
+	function LastPage(){
+		InitPage(logPage);//the last page index
+	}
+	function GotoPage(value){
+		if(!isNaN(value)){
+			if(value<=0 || value>logPage){
+				if(logPage>1){
+					alert("Page range is 1 to "+logPage+".");
+				}else{
+					alert("Only one Page.");
+				}
+				document.viewlogs.Num_Page.value = gl.PageIdx;
+				return ;
+			}
+		}else{
+			alert("Page index is not a number");
+			document.viewlogs.Num_Page.value = gl.PageIdx;
+			return ;
+		}
+		InitPage(value);//the page index
+	}
+	function InitPage(idx){
+		var dcnt = theDataPtr.dataCount();	
+		gl.PageIdx = logPage = idx;
+		SP=LS*(gl.sevPageIdx - 1);			
+		EP = ((SP+LS) > dcnt ? dcnt : (SP+LS));
+		gl.StartPt = SP;  
+		gl.EndPt = EP;
+		gl.zyshdcnt = 3;
+		gl.logAryFlag = (gl.hasSort == true) ? true : false;
+		getEthReloadEntry();
+	}
+	
+	function PageTotal1(){
+		document.write(PageTotal);
+	}
+	function showDcnt(){
+		var dcnt = theDataPtr.dataCount();
+		logPage = Math.ceil(dcnt/LS);
+		if(logPage == 0) logPage = 1;	
+		document.write(dcnt);
+	}
+	function chgViewNum(idx){
+		if(idx == 0){//30
+			 gl.Lists = 30;
+		}else if(idx == 1) {//50
+			 gl.Lists = 50;
+		}else if(idx == 2) {//80
+			gl.Lists = 80;
+		}
+		gl.StartPt = 0;
+		gl.EndPt = gl.Lists;
+		gl.PageIdx =1;
+		getEthReloadEntry();
+	}
+	function NextPage(){
+		//var dcnt = theDataPtr.dataCount();
+		//gl.PageIdx++;
+		//if(gl.PageIdx > logPage) {
+			alert("Reaching last page.");
+		//	gl.PageIdx = logPage;
+//		//gl.zyshdcnt = 0;
+			return;
+		//}else {
+		//	gl.StartPt = LS*(gl.PageIdx - 1);			
+		//	gl.EndPt = ((gl.StartPt+LS) > dcnt) ? dcnt : (gl.StartPt+LS);
+		//	gl.zyshdcnt = 3;
+		//	gl.logAryFlag = (gl.hasSort == true) ? true : false;
+		//	getEthReloadEntry();
+		//}
+		
+	}
+	function PrevPage(){
+		var dcnt = theDataPtr.dataCount();
+		gl.PageIdx--;
+		if(gl.PageIdx < 1) {
+			alert("Arriving at the first page.");
+			gl.PageIdx = 1;
+//		gl.zyshdcnt = 0;
+			return;
+		}else {
+			gl.StartPt = LS*(gl.PageIdx - 1);		
+			gl.EndPt = ((gl.StartPt+LS) > dcnt) ? dcnt : (gl.StartPt+LS);
+			gl.zyshdcnt = 3;
+			gl.logAryFlag = (gl.hasSort == true) ? true : false;
+			getEthReloadEntry();
+		}
+	}
+	function show_PerPage() {
+		var er = document.getElementById('NM');	
+		if(LS == 30) {//30
+			er.selectedIndex = 0;
+		}else if(LS == 50) {//50
+			er.selectedIndex = 1;
+		}else if(LS == 80) {//80
+			er.selectedIndex = 2;
+		}
+	}
+	function showPageInfo(){
+		if(gl.PageIdx == logPage+1) {
+			gl.PageIdx = logPage;
+		}
+		document.viewlogs.Num_Page.value = gl.PageIdx;
+		document.write(" of "+ logPage);
+	}
+	function show(idx) {
+		var e1 = document.getElementById("LOG1");
+		var e2 = document.getElementById("LOG2");
+		var e3 = document.getElementById("LOG3");
+		var eDisplay = document.getElementById("DISPLAY");
+		var eSearch = document.getElementById("SEARCH");
+		gl.serFlag = idx;
+
+		if(idx == 1){
+			e1.style.display = "none";
+			e2.style.display = "";
+			e3.style.display = "";
+			eDisplay.style.display = "none";
+			eSearch.style.display  = "";
+
+			if(gl.LogTmpAry[0] != 0) {
+				document.getElementById('LogPri').selectedIndex = gl.LogTmpAry[1];
+			}
+			document.viewlogs.log_src.value = gl.LogTmpAry[2];
+			document.viewlogs.log_dest.value = gl.LogTmpAry[3];
+			document.getElementById('SRVList').selectedIndex = gl.LogTmpAry[4];
+			document.viewlogs.log_keyw.value = gl.LogTmpAry[5];
+		}else{
+			e1.style.display = "";
+			e2.style.display = "none";
+			e3.style.display = "none";
+			eDisplay.style.display = "";
+			eSearch.style.display  = "none";
+		} 
+	}
+	function srvOpt() {
+		var er = document.getElementById("SRVList");
+		er.options[0] = new Option('Any', 0, false, false);
+		for ( var i = 0 ; i < service_Ary.length ; i++ ) {
+			k = i+1;
+			er.options[k] = new Option(service_Ary[i], k, false, false);
+		}
+	}
+
+	
+	function LogSearch() {
+		var arg = new Array();
+		var el = document.getElementById('LogList');
+		var elIdx = el.selectedIndex;
+		var er = document.getElementById('LogPri');
+		var erIdx = er.selectedIndex;
+		var src = document.viewlogs.log_src.value;
+		var dst = document.viewlogs.log_dest.value;
+		var es = document.getElementById('SRVList');
+		var esIdx = es.selectedIndex;
+		var keyS = document.viewlogs.log_keyw.value;
+
+		elIdx == 0 ? arg[0] = "show logging debug entries" : arg[0] = "show logging entries"; 
+		/*--- proority ---*/
+		elIdx == 0 ? "" : arg[0] += link_arg("priority"+link_arg(er.options[erIdx].text.toString()));
+
+		/*--- category ---*/
+		(elIdx == 0 || elIdx == 1)? arg[0]+= "" :arg[0] += link_arg("category"+link_arg(gl.LogListTmp[elIdx-2]));	
+
+		/*--- Source IP ---*/
+		var srcTmp = (src == "") ? true : false;
+		if(!srcTmp) {
+			if(!chkIP(src, "Source")) return;
+			arg[0] += link_arg("srcip"+link_arg(src));
+		}
+
+		/*--- Destination IP ---*/
+		var dstTmp = (dst == "") ? true : false;
+		if(!dstTmp) {
+			if(!chkIP(dst, "Destination")) return;
+			arg[0] += link_arg("dstip"+link_arg(dst));
+		}
+
+		/*--- Service ---*/
+		arg[0] += (esIdx == 0 ? "" : link_arg("service"+link_arg(es.options[esIdx].text.toString())));
+
+		/*-- Keyword ---*/
+		arg[0] += (keyS == "" ? "" : link_arg("keyword"+link_arg(keyS)));
+
+		gl.LogTmpAry[0] = elIdx;
+		gl.LogTmpAry[1] = erIdx;
+		gl.LogTmpAry[2] = src;
+		gl.LogTmpAry[3] = dst;
+		gl.LogTmpAry[4] = esIdx;
+		gl.LogTmpAry[5] = keyS;
+		gl.LogTmpAry[6]	= arg[0];
+
+		var cmd = compose_CLI(Get_CLI("viewlogs",1),arg[0]);
+		cmd = compose_CLI(cmd, Get_CLI("service",1));
+		txcli(cmd,'viewlogs.html',3, 'viewlogs.html');
+		gl.retbufno = 1;
+		gl.PageIdx = 1;
+		gl.StartPt = 0;
+		gl.EndPt = gl.Lists;
+		gl.hasSort = false;
+	}
+
+	function changePri(idx) {
+		var pri_1 = document.getElementById('Pri_1');
+		var pri_2 = document.getElementById('Pri_2');
+
+		pri_1.style.display = (idx == 0 ? "none" : "");
+		pri_2.style.display = (idx == 0 ? "" : "none");
+	}
+	function multi_lingual(wording, filename){
+		//document.write(top.frames[1].getLang(wording, filename));
+	}
+// -->
+
+</script></head><body leftmargin="0" topmargin="0" onunload="page_init();" onload="ScrollTo(); showFullPath('Maintenance  > Log > View Log'); displayStr('Ready.');" background="images/config_bg.gif" marginheight="0" marginwidth="0">	
+<form method="post" name="viewlogs">
+<script></script>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td width="2%">&nbsp;</td>
+			<td width="98%">&nbsp;</td>
+		</tr>
+	</tbody></table>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+		<tbody><tr>
+			<td height="18" width="2%">&nbsp;</td>
+			<td height="18">
+				<!-- 3D -->
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td width="14"><img src="images/sub_on_1.gif" height="24" width="14"></td>
+						<td class="sub" background="images/sub_on_2.gif" nowrap="nowrap"><script>multi_lingual("_View_Log", "_globalTag")</script>View Log</td>
+
+						<td width="14"><img src="images/sub_on_3.gif" height="24" width="14"></td>
+						
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_logsetting.html" target="main" class="sub"><script>multi_lingual("_Log_Setting", "_globalTag")</script>Log Setting</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+					</tr>
+				</tbody></table>
+				<!-- 3D -->
+			</td>
+
+		</tr>
+		<tr>
+			<td width="2%">&nbsp;</td>
+			<td class="BG4">
+				<!-- 3D -->
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tbody><tr>
+						<td rowspan="3" background="images/config_bo_l.gif" width="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+						<td background="images/config_bo_t.gif" height="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+
+						<td rowspan="3" background="images/config_bo_r.gif" width="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+					</tr>
+					<tr>
+						<td>
+							<!-- 3D -->
+							<div align="center">&nbsp;<br>
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="BG3" width="2%">&nbsp;</td>
+
+										<td class="BG3" width="98%"><script>multi_lingual("_Logs", "_viewlogs")</script>Logs</td>
+									</tr>
+								</tbody></table>
+								<table border="0" cellpadding="0" cellspacing="0" width="96%">
+									<tbody><tr><td>&nbsp;</td></tr>
+									<tr>
+										<td>
+											<input id="LOG1" name="Show_Filter" onclick="show(1)" value="Show Filter" type="button">
+
+											<input id="LOG2" style="display: none;" name="Hide_Filter" onclick="show(2)" value="Hide Filter" type="button">
+										</td>
+									</tr>
+								</tbody></table>
+								<table id="DISPLAY" border="0" cellpadding="0" cellspacing="0" width="96%">
+									<tbody><tr><td>&nbsp;</td></tr>
+									<tr>
+										<td height="7" width="40%"><script>multi_lingual("_Display", "_viewlogs")</script>Display
+											<select id="dLog" size="1" name="ViewLog_List" onchange="displayX(this.selectedIndex);"><option value="0">Debug Log</option><option value="1">All Logs</option><option value="2">Account</option><option value="3">ADP</option><option value="4">Anti-Spam</option><option value="5">Anti-Virus</option><option value="6">Application Patrol</option><option value="7">Blocked web sites</option><option value="8">Built-in Service</option><option value="9">cellular</option><option value="10">Connectivity Check</option><option value="11">Content Filter</option><option value="12">daily-report</option><option value="13">Default</option><option value="14">Device HA</option><option value="15">Dial-in Mgmt.</option><option value="16">File Manager</option><option value="17">Firewall</option><option value="18">Force Authentication</option><option value="19">Forward web sites</option><option value="20">IDP</option><option value="21">IKE</option><option value="22">Interface</option><option value="23">IPSec</option><option value="24">L2TP Over IPSec</option><option value="25">myZyXEL.com</option><option value="26">NAT</option><option value="27">PKI</option><option value="28">Policy Route</option><option value="29">Port Grouping</option><option value="30">Routing Protocol</option><option value="31">Sessions Limit</option><option value="32">SSL VPN</option><option value="33">System</option><option value="34">User</option><option value="35">Vantage CNM</option><option value="36">wlan</option><option value="37">ZySH</option></select>
+
+										
+										</td>
+										<td height="7" width="60%">
+											<input onclick="EmailNow();" value="Email Log Now" name="ViewLog_EmailLogNow" type="button">
+											<input onclick="refreshLog();" value="Refresh" name="ViewLog_Refresh" type="button">
+											<input onclick="ClearLog();" value="Clear Log" name="ViewLog_ClearLog" type="button">
+										</td>
+									</tr>
+								</tbody></table>
+								<table id="LOG3" style="display: none;" border="0" cellpadding="0" cellspacing="0" width="96%">
+
+									<tbody><tr><td>&nbsp;</td></tr>
+									<tr>
+										<td width="15%"><script>multi_lingual("_Display", "_viewlogs")</script>Display</td>
+										<td width="30%">
+											<select id="LogList" size="1" name="Log_List" onchange="changePri(this.selectedIndex);"><option value="0">Debug Log</option><option value="1">All Logs</option><option value="2">Account</option><option value="3">ADP</option><option value="4">Anti-Spam</option><option value="5">Anti-Virus</option><option value="6">Application Patrol</option><option value="7">Blocked web sites</option><option value="8">Built-in Service</option><option value="9">cellular</option><option value="10">Connectivity Check</option><option value="11">Content Filter</option><option value="12">daily-report</option><option value="13">Default</option><option value="14">Device HA</option><option value="15">Dial-in Mgmt.</option><option value="16">File Manager</option><option value="17">Firewall</option><option value="18">Force Authentication</option><option value="19">Forward web sites</option><option value="20">IDP</option><option value="21">IKE</option><option value="22">Interface</option><option value="23">IPSec</option><option value="24">L2TP Over IPSec</option><option value="25">myZyXEL.com</option><option value="26">NAT</option><option value="27">PKI</option><option value="28">Policy Route</option><option value="29">Port Grouping</option><option value="30">Routing Protocol</option><option value="31">Sessions Limit</option><option value="32">SSL VPN</option><option value="33">System</option><option value="34">User</option><option value="35">Vantage CNM</option><option value="36">wlan</option><option value="37">ZySH</option></select>
+
+										
+										</td>
+										<td width="18%"><script>multi_lingual("_Priority", "_viewlogs")</script>Priority</td>
+										<td id="Pri_1" width="37%">
+											<select id="LogPri" size="1" name="Priority">
+												<option value="0">any</option>
+												<option value="1">emerg</option>
+												<option value="2">alert</option>
+
+												<option value="3">crit</option>
+												<option value="4">error</option>
+												<option value="5">warn</option>
+												<option value="6">notice</option>
+												<option value="7">info</option>
+												<!--option value=7>debug</option-->
+											</select>
+										</td>
+
+										<td id="Pri_2" style="display: none;" width="37%">debug</td>
+									</tr>
+									<tr>
+										<td width="15%"><script>multi_lingual("_Source_Address", "_viewlogs")</script>Source Address</td>
+										<td width="30%"><input name="log_src" size="15" maxlength="15" type="text"></td>
+										<td width="18%"><script>multi_lingual("_Destination_Address", "_viewlogs")</script>Destination Address</td>
+
+										<td width="37%"><input name="log_dest" size="15" maxlength="15" type="text"></td>
+									</tr>
+									<tr>
+										<td width="15%"><script>multi_lingual("_Service", "_viewlogs")</script>Service</td>
+										<td width="30%">
+											<select id="SRVList" size="1" name="Service_List">
+												<script>srvOpt();</script><option value="0">Any</option><option value="1">Any_UDP</option><option value="2">Any_TCP</option><option value="3">AH</option><option value="4">AIM</option><option value="5">NEW_ICQ</option><option value="6">AUTH</option><option value="7">BGP</option><option value="8">BOOTP_CLIENT</option><option value="9">BOOTP_SERVER</option><option value="10">CU_SEEME_TCP1</option><option value="11">CU_SEEME_TCP2</option><option value="12">CU_SEEME_UDP1</option><option value="13">CU_SEEME_UDP2</option><option value="14">DNS_TCP</option><option value="15">DNS_UDP</option><option value="16">ESP</option><option value="17">FINGER</option><option value="18">FTP</option><option value="19">H323</option><option value="20">HTTP</option><option value="21">HTTPS</option><option value="22">ICQ</option><option value="23">IKE</option><option value="24">IMAP4</option><option value="25">IMAP4S</option><option value="26">IRC_TCP</option><option value="27">IRC_UDP</option><option value="28">MSN</option><option value="29">MULTICAST</option><option value="30">NEWS</option><option value="31">NetBIOS_TCP1</option><option value="32">NetBIOS_TCP2</option><option value="33">NetBIOS_UDP1</option><option value="34">NetBIOS_UDP2</option><option value="35">NFS</option><option value="36">NNTP</option><option value="37">PING</option><option value="38">POP3</option><option value="39">POP3S</option><option value="40">PPTP</option><option value="41">PPTP_TUNNEL</option><option value="42">RCMD</option><option value="43">REAL-AUDIO</option><option value="44">REXEC</option><option value="45">RLOGIN</option><option value="46">ROADRUNNER_TCP</option><option value="47">ROADRUNNER_UDP</option><option value="48">RTELNET</option><option value="49">RTSP_TCP</option><option value="50">RTSP_UDP</option><option value="51">SFTP</option><option value="52">SMTP</option><option value="53">SMTPS</option><option value="54">SNMP_TCP</option><option value="55">SNMP_UDP</option><option value="56">SNMP-TRAPS_TCP</option><option value="57">SNMP-TRAPS_UDP</option><option value="58">SQL-NET</option><option value="59">SSDP</option><option value="60">SSH_TCP</option><option value="61">SSH_UDP</option><option value="62">STRMWORKS</option><option value="63">SYSLOG</option><option value="64">TACACS</option><option value="65">TELNET</option><option value="66">TFTP</option><option value="67">VDOLIVE</option><option value="68">VRRP</option><option value="69">NATT</option><option value="70">RIP</option><option value="71">OSPF</option><option value="72">RPC</option>
+
+											
+											</select>
+										</td>
+										<td width="18%"><script>multi_lingual("_Keyword", "_viewlogs")</script>Keyword</td>
+										<td width="37%"><input name="log_keyw" size="32" maxlength="63" type="text"></td>
+									</tr>
+								</tbody></table>
+								<table id="SEARCH" style="display: none;" border="0" cellpadding="0" cellspacing="0" width="96%">
+									<tbody><tr>
+
+										<td width="40%">&nbsp;</td>
+										<td width="60%"><input onclick="LogSearch();" value="Search" name="Search" type="button"></td>
+									</tr>
+								</tbody></table>
+								<script></script>
+								<table border="0" cellpadding="0" cellspacing="0" width="96%">
+									<tbody><tr><td>&nbsp;</td></tr>
+									<tr>
+
+										<td id="PAGE1" style="display: none;" width="43%"><script>multi_lingual("_Total_logging_entries", "_viewlogs")</script>Total logging entries:<script></script>5</td>
+										<td id="PAGE2" style="" width="43%"><script>multi_lingual("_Total_logging_entries", "_viewlogs")</script>Total logging entries:<script></script>10</td>
+										<td id="PAGE3" style="display: none;" width="43%"><script>multi_lingual("_Total_logging_entries", "_viewlogs")</script>Total logging entries:<script></script>6</td>
+										<td id="PAGE4" style="display: none;" width="43%"><script>multi_lingual("_Total_logging_entries", "_viewlogs")</script>Total logging entries:<script></script>1</td>
+										<td id="PAGE5" style="display: none;" width="43%"><script>multi_lingual("_Total_logging_entries", "_viewlogs")</script>Total logging entries:<script></script>1</td>
+										<td id="PAGE6" style="display: none;" width="43%"><script>multi_lingual("_Total_logging_entries", "_viewlogs")</script>Total logging entries:<script></script>2</td>
+										<td id="PAGE7" style="display: none;" width="43%"><script>multi_lingual("_Total_logging_entries", "_viewlogs")</script>Total logging entries:<script></script>0</td>
+
+
+									
+										<td width="23%">
+											<select id="NM" name="show_num" size="1" onchange="chgViewNum(this.selectedIndex);">
+												<option value="0">30</option>
+												<option value="1">50</option>
+												<option value="2">80</option>
+
+											</select>
+											&nbsp;<script>multi_lingual("_entries_per_page", "_viewlogs")</script>entries per page
+										</td>
+										<td width="34%">
+										  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+					                                        <tbody><tr>
+					                                          <td align="right" width="100%"><script>multi_lingual("_Page", "_viewlogs")</script>Page:&nbsp; 
+					                                         	  <img onclick="FirstPage();" src="images/button_first.gif" title="First Page" name="se_first" type="button" class="color_WithHandPtr">
+
+					                                            <img onclick="PrevPage();" src="images/button_back.gif" title="Prev Page" name="se_prev" type="button" class="color_WithHandPtr">&nbsp;
+					                                            <input name="Num_Page" size="2" maxlength="6" onkeypress="checkKey(event)" type="text" value="1">
+					                                            <script></script> of 1&nbsp;
+					                                            <img onclick="NextPage();" src="images/button_fw.gif" title="Next Page" name="se_next" type="button" class="color_WithHandPtr">
+					                                            <img onclick="LastPage();" src="images/button_last.gif" title="Last Page" name="se_last" type="button" class="color_WithHandPtr">
+					                                            </td>
+					                                        </tr>
+
+					                                      </tbody></table>
+					                                      </td>
+									</tr>
+								</tbody></table>
+								<table border="0" bordercolor="#ffffff" cellpadding="2" cellspacing="2" width="96%">
+									<tbody><tr>
+										<td id="tf0" class="tableTitle_1" title="Click to sort" onclick="SortThis(this.id); ChgSort(0); getEthReloadEntry()" align="center" width="30">#
+											<img src="images/up0.gif" id="VL0" style="display: none;" border="0">
+											<img src="images/down0.gif" id="VL01" style="" border="0">
+
+										</td>
+										<td id="tf1" class="tableTitle_1" title="Click to sort" onclick="SortThis(this.id); ChgSort(1); getEthReloadEntry()" align="center" width="70"><script>multi_lingual("_Time", "_viewlogs")</script>Time
+											<img src="images/up0.gif" id="VL1" style="display: none;" border="0">
+											<img src="images/down0.gif" id="VL11" style="display: none;" border="0">
+										</td>
+										<td id="tf6" class="tableTitle_1" title="Click to sort" onclick="SortThis(this.id); ChgSort(6); getEthReloadEntry()" align="center" width="50"><script>multi_lingual("_Priority", "_viewlogs")</script>Priority
+											<img src="images/up0.gif" id="VL6" style="display: none;" border="0">
+											<img src="images/down0.gif" id="VL61" style="display: none;" border="0">
+										</td>
+
+										<td id="tf7" class="tableTitle_1" title="Click to sort" onclick="SortThis(this.id); ChgSort(7); getEthReloadEntry()" align="center" width="80"><script>multi_lingual("_Category", "_viewlogs")</script>Category
+											<img src="images/up0.gif" id="VL7" style="display: none;" border="0">
+											<img src="images/down0.gif" id="VL71" style="display: none;" border="0">
+										</td>
+										<td id="tf2" class="tableTitle_1" title="Click to sort" onclick="SortThis(this.id); ChgSort(2);getEthReloadEntry()" align="center" width="180"><script>multi_lingual("_Message", "_viewlogs")</script>Message
+											<img src="images/up0.gif" id="VL2" style="display: none;" border="0">
+											<img src="images/down0.gif" id="VL21" style="display: none;" border="0">
+										</td>
+										<td id="tf3" class="tableTitle_1" title="Click to sort" onclick="SortThis(this.id); ChgSort(3); getEthReloadEntry()" align="center" width="90"><script>multi_lingual("_Source", "_viewlogs")</script>Source
+											<img src="images/up0.gif" id="VL3" style="display: none;" border="0">
+
+											<img src="images/down0.gif" id="VL31" style="display: none;" border="0">
+										</td>
+										<td id="tf4" class="tableTitle_1" title="Click to sort" onclick="SortThis(this.id); ChgSort(4); getEthReloadEntry()" align="center" width="90"><script>multi_lingual("_Destination", "_viewlogs")</script>Destination
+											<img src="images/up0.gif" id="VL4" style="display: none;" border="0">
+											<img src="images/down0.gif" id="VL41" style="display: none;" border="0">
+										</td>
+										<td id="tf5" class="tableTitle_1" title="Click to sort" onclick="SortThis(this.id); ChgSort(5); getEthReloadEntry()" align="center" width="80"><script>multi_lingual("_Note", "_viewlogs")</script>Note
+											<img src="images/up0.gif" id="VL5" style="display: none;" border="0">
+											<img src="images/down0.gif" id="VL51" style="display: none;" border="0">
+
+										</td>
+									</tr>
+									<script></script>
+<tr id="VL00" style="" class="tabcolor2"><td align="center" nowrap="nowrap">1</td><td id="VL10" align="left" nowrap="nowrap">2007-06-12 13:23:33</td> <td id="VL60" align="left" nowrap="nowrap">info</td> <td id="VL70" align="left" nowrap="nowrap">Connectivity Check</td> <td id="VL20" align="left" nowrap="nowrap">The link status of ge4 interface is inactive.</td><td id="VL30" align="left" nowrap="nowrap">&nbsp;</td><td id="VL40" align="left" nowrap="nowrap">&nbsp;</td><td id="VL50" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="VL011" style="" class="tabcolor1"><td align="center" nowrap="nowrap">2</td><td id="VL11" align="left" nowrap="nowrap">2007-06-12 13:23:18</td> <td id="VL61" align="left" nowrap="nowrap">info</td> <td id="VL71" align="left" nowrap="nowrap">Connectivity Check</td> <td id="VL21" align="left" nowrap="nowrap">The link status of ge4 interface is inactive.</td><td id="VL31" align="left" nowrap="nowrap">&nbsp;</td><td id="VL41" align="left" nowrap="nowrap">&nbsp;</td><td id="VL51" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="VL02" style="" class="tabcolor2"><td align="center" nowrap="nowrap">3</td><td id="VL12" align="left" nowrap="nowrap">2007-06-12 13:23:03</td> <td id="VL62" align="left" nowrap="nowrap">info</td> <td id="VL72" align="left" nowrap="nowrap">Connectivity Check</td> <td id="VL22" align="left" nowrap="nowrap">The link status of ge4 interface is inactive.</td><td id="VL32" align="left" nowrap="nowrap">&nbsp;</td><td id="VL42" align="left" nowrap="nowrap">&nbsp;</td><td id="VL52" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="VL03" style="" class="tabcolor1"><td align="center" nowrap="nowrap">4</td><td id="VL13" align="left" nowrap="nowrap">2007-06-12 13:22:48</td> <td id="VL63" align="left" nowrap="nowrap">info</td> <td id="VL73" align="left" nowrap="nowrap">Connectivity Check</td> <td id="VL23" align="left" nowrap="nowrap">The link status of ge4 interface is inactive.</td><td id="VL33" align="left" nowrap="nowrap">&nbsp;</td><td id="VL43" align="left" nowrap="nowrap">&nbsp;</td><td id="VL53" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="VL04" style="" class="tabcolor2"><td align="center" nowrap="nowrap">5</td><td id="VL14" align="left" nowrap="nowrap">2007-06-12 13:22:33</td> <td id="VL64" align="left" nowrap="nowrap">notice</td> <td id="VL74" align="left" nowrap="nowrap">User</td> <td id="VL24" align="left" nowrap="nowrap">Administrator admin has logged in from http/https</td><td id="VL34" align="left" nowrap="nowrap">172.25.21.129</td><td id="VL44" align="left" nowrap="nowrap">172.25.21.9</td><td id="VL54" align="left" nowrap="nowrap">User: admin</td></tr>
+<tr id="VL05" style="" class="tabcolor1"><td align="center" nowrap="nowrap">6</td><td id="VL15" align="left" nowrap="nowrap">2007-06-12 13:22:33</td> <td id="VL65" align="left" nowrap="nowrap">info</td> <td id="VL75" align="left" nowrap="nowrap">Connectivity Check</td> <td id="VL25" align="left" nowrap="nowrap">The link status of ge4 interface is inactive.</td><td id="VL35" align="left" nowrap="nowrap">&nbsp;</td><td id="VL45" align="left" nowrap="nowrap">&nbsp;</td><td id="VL55" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="VL06" style="" class="tabcolor2"><td align="center" nowrap="nowrap">7</td><td id="VL16" align="left" nowrap="nowrap">2007-06-12 13:22:18</td> <td id="VL66" align="left" nowrap="nowrap">info</td> <td id="VL76" align="left" nowrap="nowrap">Connectivity Check</td> <td id="VL26" align="left" nowrap="nowrap">The link status of ge4 interface is inactive.</td><td id="VL36" align="left" nowrap="nowrap">&nbsp;</td><td id="VL46" align="left" nowrap="nowrap">&nbsp;</td><td id="VL56" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="VL07" style="" class="tabcolor1"><td align="center" nowrap="nowrap">8</td><td id="VL17" align="left" nowrap="nowrap">2007-06-12 13:22:03</td> <td id="VL67" align="left" nowrap="nowrap">info</td> <td id="VL77" align="left" nowrap="nowrap">Connectivity Check</td> <td id="VL27" align="left" nowrap="nowrap">The link status of ge4 interface is inactive.</td><td id="VL37" align="left" nowrap="nowrap">&nbsp;</td><td id="VL47" align="left" nowrap="nowrap">&nbsp;</td><td id="VL57" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="VL08" style="" class="tabcolor2"><td align="center" nowrap="nowrap">9</td><td id="VL18" align="left" nowrap="nowrap">2007-06-12 13:21:58</td> <td id="VL68" align="left" nowrap="nowrap">notice</td> <td id="VL78" align="left" nowrap="nowrap">User</td> <td id="VL28" align="left" nowrap="nowrap">Administrator admin has logged in from console</td><td id="VL38" align="left" nowrap="nowrap">&nbsp;</td><td id="VL48" align="left" nowrap="nowrap">&nbsp;</td><td id="VL58" align="left" nowrap="nowrap">User: admin</td></tr>
+<tr id="VL09" style="" class="tabcolor1"><td align="center" nowrap="nowrap"><font color="#ff0000">10</font></td><td id="VL19" align="left" nowrap="nowrap"><font color="#ff0000">2007-06-12 13:21:51</font></td> <td id="VL69" align="left" nowrap="nowrap"><font color="#ff0000">alert</font></td> <td id="VL79" align="left" nowrap="nowrap"><font color="#ff0000">User</font></td> <td id="VL29" align="left" nowrap="nowrap"><font color="#ff0000">Failed console login attempt (incorrect password or inexistent username)</font></td><td id="VL39" align="left" nowrap="nowrap"><font color="#ff0000">&nbsp;</font></td><td id="VL49" align="left" nowrap="nowrap"><font color="#ff0000">&nbsp;</font></td><td id="VL59" align="left" nowrap="nowrap"><font color="#ff0000">&nbsp;</font></td></tr>
+
+<tr id="DE00" style="display: none;" class="tabcolor2"><td align="center" nowrap="nowrap">1</td><td id="DE10" align="left" nowrap="nowrap">2007-06-12 13:25:00</td> <td id="DE60" align="left" nowrap="nowrap">debug</td> <td id="DE70" align="left" nowrap="nowrap">Default</td> <td id="DE20" align="left" nowrap="nowrap">CRON: (root) CMD (/usr/sbin/logrotate -s /var/logrotate.status /etc/logrotate.d/httpd)</td><td id="DE30" align="left" nowrap="nowrap">&nbsp;</td><td id="DE40" align="left" nowrap="nowrap">&nbsp;</td><td id="DE50" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="DE01" style="display: none;" class="tabcolor1"><td align="center" nowrap="nowrap">2</td><td id="DE11" align="left" nowrap="nowrap">2007-06-12 13:21:58</td> <td id="DE61" align="left" nowrap="nowrap">debug</td> <td id="DE71" align="left" nowrap="nowrap">Default</td> <td id="DE21" align="left" nowrap="nowrap">login: LOGIN ON console BY admin</td><td id="DE31" align="left" nowrap="nowrap">&nbsp;</td><td id="DE41" align="left" nowrap="nowrap">&nbsp;</td><td id="DE51" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="DE02" style="display: none;" class="tabcolor2"><td align="center" nowrap="nowrap">3</td><td id="DE12" align="left" nowrap="nowrap">2007-06-12 13:21:51</td> <td id="DE62" align="left" nowrap="nowrap">debug</td> <td id="DE72" align="left" nowrap="nowrap">Default</td> <td id="DE22" align="left" nowrap="nowrap">login: FAILED LOGIN 2 FROM (null) FOR admin	, Authentication service cannot retrieve authentication info.</td><td id="DE32" align="left" nowrap="nowrap">&nbsp;</td><td id="DE42" align="left" nowrap="nowrap">&nbsp;</td><td id="DE52" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="DE03" style="display: none;" class="tabcolor1"><td align="center" nowrap="nowrap">4</td><td id="DE13" align="left" nowrap="nowrap">2007-06-12 13:21:40</td> <td id="DE63" align="left" nowrap="nowrap">debug</td> <td id="DE73" align="left" nowrap="nowrap">Default</td> <td id="DE23" align="left" nowrap="nowrap">login: FAILED LOGIN 1 FROM (null) FOR successfully, Authentication service cannot retrieve authentication info.</td><td id="DE33" align="left" nowrap="nowrap">&nbsp;</td><td id="DE43" align="left" nowrap="nowrap">&nbsp;</td><td id="DE53" align="left" nowrap="nowrap">&nbsp;</td></tr>
+<tr id="DE04" style="display: none;" class="tabcolor2"><td align="center" nowrap="nowrap">5</td><td id="DE14" align="left" nowrap="nowrap">2007-06-12 13:21:33</td> <td id="DE64" align="left" nowrap="nowrap">debug</td> <td id="DE74" align="left" nowrap="nowrap">Default</td> <td id="DE24" align="left" nowrap="nowrap">dhcpd: binding lpf on interface eth0 index 7.</td><td id="DE34" align="left" nowrap="nowrap">&nbsp;</td><td id="DE44" align="left" nowrap="nowrap">&nbsp;</td><td id="DE54" align="left" nowrap="nowrap">&nbsp;</td></tr>
+
+<tr id="US00" style="display: none;" class="tabcolor2"><td align="center" nowrap="nowrap">1</td><td id="US10" align="left" nowrap="nowrap">2007-06-12 13:38:37</td> <td id="US60" align="left" nowrap="nowrap">notice</td> <td id="US70" align="left" nowrap="nowrap">User</td> <td id="US20" align="left" nowrap="nowrap">Administrator admin has logged in from http/https</td><td id="US30" align="left" nowrap="nowrap">172.25.21.129</td><td id="US40" align="left" nowrap="nowrap">172.25.21.9</td><td id="US50" align="left" nowrap="nowrap">User: admin</td></tr>
+<tr id="US01" style="display: none;" class="tabcolor1"><td align="center" nowrap="nowrap">2</td><td id="US11" align="left" nowrap="nowrap">2007-06-12 13:33:11</td> <td id="US61" align="left" nowrap="nowrap">notice</td> <td id="US71" align="left" nowrap="nowrap">User</td> <td id="US21" align="left" nowrap="nowrap">Administrator admin from http/https has been logged out (lease timeout)</td><td id="US31" align="left" nowrap="nowrap">172.25.21.129</td><td id="US41" align="left" nowrap="nowrap">172.25.21.9</td><td id="US51" align="left" nowrap="nowrap">User: admin</td></tr>
+<tr id="US02" style="display: none;" class="tabcolor2"><td align="center" nowrap="nowrap">3</td><td id="US12" align="left" nowrap="nowrap">2007-06-12 13:26:57</td> <td id="US62" align="left" nowrap="nowrap">notice</td> <td id="US72" align="left" nowrap="nowrap">User</td> <td id="US22" align="left" nowrap="nowrap">Administrator admin from console has been logged out (lease timeout)</td><td id="US32" align="left" nowrap="nowrap">&nbsp;</td><td id="US42" align="left" nowrap="nowrap">&nbsp;</td><td id="US52" align="left" nowrap="nowrap">User: admin</td></tr>
+<tr id="US03" style="display: none;" class="tabcolor1"><td align="center" nowrap="nowrap">4</td><td id="US13" align="left" nowrap="nowrap">2007-06-12 13:22:33</td> <td id="US63" align="left" nowrap="nowrap">notice</td> <td id="US73" align="left" nowrap="nowrap">User</td> <td id="US23" align="left" nowrap="nowrap">Administrator admin has logged in from http/https</td><td id="US33" align="left" nowrap="nowrap">172.25.21.129</td><td id="US43" align="left" nowrap="nowrap">172.25.21.9</td><td id="US53" align="left" nowrap="nowrap">User: admin</td></tr>
+<tr id="US04" style="display: none;" class="tabcolor2"><td align="center" nowrap="nowrap">5</td><td id="US14" align="left" nowrap="nowrap">2007-06-12 13:21:58</td> <td id="US64" align="left" nowrap="nowrap">notice</td> <td id="US74" align="left" nowrap="nowrap">User</td> <td id="US24" align="left" nowrap="nowrap">Administrator admin has logged in from console</td><td id="US34" align="left" nowrap="nowrap">&nbsp;</td><td id="US44" align="left" nowrap="nowrap">&nbsp;</td><td id="US54" align="left" nowrap="nowrap">User: admin</td></tr>
+<tr id="US05" style="display: none;" class="tabcolor1"><td align="center" nowrap="nowrap"><font color="#ff0000">6</font></td><td id="US15" align="left" nowrap="nowrap"><font color="#ff0000">2007-06-12 13:21:51</font></td> <td id="US65" align="left" nowrap="nowrap"><font color="#ff0000">alert</font></td> <td id="US75" align="left" nowrap="nowrap"><font color="#ff0000">User</font></td> <td id="US25" align="left" nowrap="nowrap"><font color="#ff0000">Failed console login attempt (incorrect password or inexistent username)</font></td><td id="US35" align="left" nowrap="nowrap"><font color="#ff0000">&nbsp;</font></td><td id="US45" align="left" nowrap="nowrap"><font color="#ff0000">&nbsp;</font></td><td id="US55" align="left" nowrap="nowrap"><font color="#ff0000">&nbsp;</font></td></tr>
+
+<tr id="IDP00" style="display: none;" class="tabcolor2"><td align="center" nowrap="nowrap">1</td><td id="IDP10" align="left" nowrap="nowrap">2007-06-12 13:19:55</td> <td id="IDP60" align="left" nowrap="nowrap">info</td> <td id="IDP70" align="left" nowrap="nowrap">IDP</td> <td id="IDP20" align="left" nowrap="nowrap">Enable IDP engine succeeded.</td><td id="IDP30" align="left" nowrap="nowrap">&nbsp;</td><td id="IDP40" align="left" nowrap="nowrap">&nbsp;</td><td id="IDP50" align="left" nowrap="nowrap">IDP</td></tr>
+
+<tr id="APP00" style="display: none;" class="tabcolor2"><td align="center" nowrap="nowrap">1</td><td id="APP10" align="left" nowrap="nowrap">2007-06-12 13:19:55</td> <td id="APP60" align="left" nowrap="nowrap">info</td> <td id="APP70" align="left" nowrap="nowrap">Application Patrol</td> <td id="APP20" align="left" nowrap="nowrap">Initialize App. Patrol has succeeded.</td><td id="APP30" align="left" nowrap="nowrap">&nbsp;</td><td id="APP40" align="left" nowrap="nowrap">&nbsp;</td><td id="APP50" align="left" nowrap="nowrap">&nbsp;</td></tr>
+
+<tr id="FW00" style="display: none;" class="tabcolor2"><td align="center" nowrap="nowrap">1</td><td id="FW10" align="left" nowrap="nowrap">2007-06-12 13:20:21</td> <td id="FW60" align="left" nowrap="nowrap">notice</td> <td id="FW70" align="left" nowrap="nowrap">Firewall</td> <td id="FW20" align="left" nowrap="nowrap">Firewall rule 1 was modified.</td><td id="FW30" align="left" nowrap="nowrap">&nbsp;</td><td id="FW40" align="left" nowrap="nowrap">&nbsp;</td><td id="FW50" align="left" nowrap="nowrap">CONFIG CHANGE</td></tr>
+<tr id="FW01" style="display: none;" class="tabcolor1"><td align="center" nowrap="nowrap">2</td><td id="FW11" align="left" nowrap="nowrap">2007-06-12 13:19:55</td> <td id="FW61" align="left" nowrap="nowrap">notice</td> <td id="FW71" align="left" nowrap="nowrap">Firewall</td> <td id="FW21" align="left" nowrap="nowrap">Firewall rules have been flushed.</td><td id="FW31" align="left" nowrap="nowrap">&nbsp;</td><td id="FW41" align="left" nowrap="nowrap">&nbsp;</td><td id="FW51" align="left" nowrap="nowrap">CONFIG CHANGE</td></tr>
+
+								<table border="0" cellpadding="0" cellspacing="0" width="300">
+									<tbody><tr><td>&nbsp;</td></tr>
+									<tr><td>&nbsp;</td></tr>
+								</tbody></table>
+							<div align="center"></div>
+							</div><!-- 3D -->
+						</td>
+					</tr>
+
+					<tr>
+						<td background="images/config_bo_b.gif" height="2"><img src="images/dotspacer.gif" height="1" width="1"></td>
+					</tr>
+				</tbody></table>
+				<!-- 3D -->
+			</td>
+		</tr>
+	</tbody></table>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+		<tbody><tr><td>&nbsp;</td></tr>
+		<tr><td>&nbsp;</td></tr>
+	</tbody></table>
+	<script language="JavaScript">
+	</script>
+</form>
+</body></html>

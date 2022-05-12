@@ -1,0 +1,122 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+
+<script language="JavaScript">
+top.title.h_Page="h_BW_Summary.html";
+var ns, ie;
+if(parseInt(navigator.appVersion) >= 4) {
+if(navigator.appName == "Netscape") {
+ns = true; ie = false;
+} else {
+ie = true; ns = false;
+}
+}
+function chk_num1(numstr)
+{
+var num
+num = parseInt(numstr.value)
+if ((num > 100000) ||(num < 2))
+{
+alert("The valid value is between 2 and 100000.");
+numstr.value="";
+}
+}
+function doSubmit()
+{
+document.BWSummaryform.submit();
+}
+function OnInterafceChange()
+{
+for(i=0;i<document.forms[0].elements.length-3;i++) {
+if(document.forms[0].elements[i].name.search("BW_Active")!=-1) {
+if(document.forms[0].elements[i].checked){
+document.forms[0].elements[i+1].disabled = false;
+document.forms[0].elements[i+2].disabled = false;
+document.forms[0].elements[i+3].disabled = false;
+}else{
+document.forms[0].elements[i+1].disabled = true;
+document.forms[0].elements[i+2].disabled = true;
+document.forms[0].elements[i+3].disabled = true;
+}
+i+=4;
+}
+}
+return;
+}
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpBW.html" name="BWSummaryform" target="_self">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan="3">
+<div align=left class="NaviText">
+Media Bandwidth Management -
+Summary </div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">
+BW Manager manages the bandwidth of traffic flowing out of router on the specific interface. BW Manager can be switched on/off independently for each interface. </td></tr><tr>
+<td colspan="3">&nbsp;</td><tr>
+<td colspan="3">
+<table width="90%" border="1" cellspacing="0" cellpadding="1" align=center>
+<tr align=center>
+<td width="18%" height="30" class="TableTilte">
+Interface </td><td width="10%" class="TableTilte">
+Active</td><td width="20%" class="TableTilte">
+Speed (kbps) </td><td width="27%" class="TableTilte">
+Scheduler </td><td width="30%" class="TableTilte">
+Max Bandwidth Usage </td></tr>	
+<tr align=center>
+<td class="TableItem"> LAN
+</td><td> 
+<INPUT TYPE="CHECKBOX" NAME="BW_Active" onClick="OnInterafceChange();" value="ON"></td><td> <INPUT TYPE="TEXT" NAME="BW_Speed" SIZE="6" MAXLENGTH="6" VALUE="0" onBlur="chk_num1(this)" onkeypress="chk_num(event)">
+</td><td> <SELECT NAME="BW_Schedule" SIZE="1"><OPTION VALUE=00000000 SELECTED>Priority-Based
+<OPTION VALUE=00000001>Fairness-Based
+</SELECT>
+</td><td> 
+<INPUT TYPE="CHECKBOX" NAME="BW_WorkCon" onkeypress="chk_num(event)" value="ON"> Yes <INPUT TYPE="HIDDEN" NAME="x" VALUE="0"> 
+</td></tr>		
+<tr align=center>
+<td class="TableItem"> WLAN
+</td><td> 
+<INPUT TYPE="CHECKBOX" NAME="BW_Active" onClick="OnInterafceChange();" value="ON"></td><td> <INPUT TYPE="TEXT" NAME="BW_Speed" SIZE="6" MAXLENGTH="6" VALUE="0" onBlur="chk_num1(this)" onkeypress="chk_num(event)">
+</td><td> <SELECT NAME="BW_Schedule" SIZE="1"><OPTION VALUE=00000000 SELECTED>Priority-Based
+<OPTION VALUE=00000001>Fairness-Based
+</SELECT>
+</td><td> 
+<INPUT TYPE="CHECKBOX" NAME="BW_WorkCon" onkeypress="chk_num(event)" value="ON"> Yes <INPUT TYPE="HIDDEN" NAME="x" VALUE="0"> 
+</td></tr>		
+<tr align=center>
+<td class="TableItem"> WAN
+</td><td> 
+<INPUT TYPE="CHECKBOX" NAME="BW_Active" onClick="OnInterafceChange();" value="ON"></td><td> <INPUT TYPE="TEXT" NAME="BW_Speed" SIZE="6" MAXLENGTH="6" VALUE="0" onBlur="chk_num1(this)" onkeypress="chk_num(event)">
+</td><td> <SELECT NAME="BW_Schedule" SIZE="1"><OPTION VALUE=00000000 SELECTED>Priority-Based
+<OPTION VALUE=00000001>Fairness-Based
+</SELECT>
+</td><td> 
+<INPUT TYPE="CHECKBOX" NAME="BW_WorkCon" onkeypress="chk_num(event)" value="ON"> Yes <INPUT TYPE="HIDDEN" NAME="x" VALUE="0"> 
+</td></tr>	 </table></td></tr><tr>
+<td>&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="BW_BackBtn" VALUE="Back" onclick="window.location='rpBW.html';"> &nbsp;&nbsp;<INPUT TYPE="SUBMIT" NAME="BW_Summary_Apply" VALUE="Apply" onClick="doSubmit();">&nbsp;&nbsp;<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >
+</div></td></table> </td></tr></table></form><script language="JavaScript">
+OnInterafceChange();
+</script>
+
+</body></html>

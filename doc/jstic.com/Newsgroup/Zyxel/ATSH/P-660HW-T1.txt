@@ -1,0 +1,20 @@
+P660HW-T1> sys atsh
+ 
+RAS version            : V3.40(ANL.2) | 11/02/2006
+Ram Size               : 16384 Kbytes
+Flash Type and Size    : AMD 16Mbits*1
+romRasSize             : 1831962
+bootbase version       : V1.06 | 01/11/2006
+Product Model          : Prestige 660HW-T1
+MAC Address            : XXXXXXXXXXXX
+Default Country Code   : FF
+Boot Module Debug Flag : 00
+RomFile Version        : B1
+RomFile Checksum       : f57d
+RAS F/W Checksum       : 1b43
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+9A 0E 00 00 01 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 02 41 13 00 00 00
+P660HW-T1>

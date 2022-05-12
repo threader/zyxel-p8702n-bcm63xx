@@ -1,0 +1,156 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--//
+
+top.header.szHelp="h_wanRemoteNode.html";
+
+function doFindCurrentRule(CurrentIndex)
+{
+	var num
+	num = parseInt(CurrentIndex);
+	document.forms[0].RN_CurrentIndex.value = num;	
+}
+
+function doEditRule()
+{
+	document.forms[0].RN_Flag.value = 1;
+
+}
+function doDeleteRule()
+{
+	document.forms[0].RN_Flag.value = 2;
+}
+
+function doSave()
+{
+	document.forms[0].RN_Flag.value = 3;
+}
+function doLoad()
+{
+	top.buttom.location="buttom.html";
+}
+
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/wanRemoteNode_1" name="theform" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0"> 
+<tr> 
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="WAN.html" target="main" class="sub"> 
+<b>
+Internet Access Setup</b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub" align=center> <b> 
+More Connections</b></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="wanBackup.html" target="main" class="sub"> 
+<b>
+WAN Backup Setup</b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="90%"  border="1" align=center cellpadding="0" cellspacing="0" bordercolor="#FFFFFF"> 
+<tr bgcolor="#003399"> 
+<td  class="tableTitle" width="5%" align=center>#</td><td  class="tableTitle" width="5%" align=center> Active</td><td class="tableTitle" width="30%" align=center> Name</td><td class="tableTitle" width="15%" align=center> VPI/VCI</td><td class="tableTitle" width="25%" align=center>Encapsulation</td><td class="tableTitle" align=center> Modify</td></tr><tr class="tabcolor2"> 
+<td align=center><strong> 
+1</strong></td><td align=center> </td><td align=center> Internet Connection<input type="hidden" name="RN_Index" value="0" /></td><td align=center> 
+1/32</td><td align=center> PPPoE</td><td align=center>
+</td></tr><tr class="tabcolor1"> 
+<td align=center><strong> 
+2</strong></td><td align=center> -
+</td><td align=center> --<input type="hidden" name="RN_Index" value="0" /></td><td align=center> 
+--</td><td align=center> --</td><td align=center>
+<font style= "cursor:hand;cursor:pointer;"> 
+<a onClick="doFindCurrentRule(this.id); doEditRule();document.forms[0].target='main'; document.forms[0].submit();" id=2> 
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image261','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image261" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=2> 
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image291','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image291" width="17" height="14" border="0"></a></font> 
+</td></tr><tr class="tabcolor2"> 
+<td align=center><strong> 
+3</strong></td><td align=center> -
+</td><td align=center> --<input type="hidden" name="RN_Index" value="0" /></td><td align=center> 
+--</td><td align=center> --</td><td align=center>
+<font style= "cursor:hand;cursor:pointer;"> 
+<a onClick="doFindCurrentRule(this.id); doEditRule();document.forms[0].target='main'; document.forms[0].submit();" id=3> 
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image262','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image262" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=3> 
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image292','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image292" width="17" height="14" border="0"></a></font> 
+</td></tr><tr class="tabcolor1"> 
+<td align=center><strong> 
+4</strong></td><td align=center> -
+</td><td align=center> --<input type="hidden" name="RN_Index" value="0" /></td><td align=center> 
+--</td><td align=center> --</td><td align=center>
+<font style= "cursor:hand;cursor:pointer;"> 
+<a onClick="doFindCurrentRule(this.id); doEditRule();document.forms[0].target='main'; document.forms[0].submit();" id=4> 
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image263','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image263" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=4> 
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image293','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image293" width="17" height="14" border="0"></a></font> 
+</td></tr><tr class="tabcolor2"> 
+<td align=center><strong> 
+5</strong></td><td align=center> -
+</td><td align=center> --<input type="hidden" name="RN_Index" value="0" /></td><td align=center> 
+--</td><td align=center> --</td><td align=center>
+<font style= "cursor:hand;cursor:pointer;"> 
+<a onClick="doFindCurrentRule(this.id); doEditRule();document.forms[0].target='main'; document.forms[0].submit();" id=5> 
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image264','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image264" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=5> 
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image294','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image294" width="17" height="14" border="0"></a></font> 
+</td></tr><tr class="tabcolor1"> 
+<td align=center><strong> 
+6</strong></td><td align=center> -
+</td><td align=center> --<input type="hidden" name="RN_Index" value="0" /></td><td align=center> 
+--</td><td align=center> --</td><td align=center>
+<font style= "cursor:hand;cursor:pointer;"> 
+<a onClick="doFindCurrentRule(this.id); doEditRule();document.forms[0].target='main'; document.forms[0].submit();" id=6> 
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image265','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image265" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=6> 
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image295','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image295" width="17" height="14" border="0"></a></font> 
+</td></tr><tr class="tabcolor2"> 
+<td align=center><strong> 
+7</strong></td><td align=center> -
+</td><td align=center> --<input type="hidden" name="RN_Index" value="0" /></td><td align=center> 
+--</td><td align=center> --</td><td align=center>
+<font style= "cursor:hand;cursor:pointer;"> 
+<a onClick="doFindCurrentRule(this.id); doEditRule();document.forms[0].target='main'; document.forms[0].submit();" id=7> 
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image266','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image266" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=7> 
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image296','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image296" width="17" height="14" border="0"></a></font> 
+</td></tr><tr class="tabcolor1"> 
+<td align=center><strong> 
+8</strong></td><td align=center> -
+</td><td align=center> --<input type="hidden" name="RN_Index" value="0" /></td><td align=center> 
+--</td><td align=center> --</td><td align=center>
+<font style= "cursor:hand;cursor:pointer;"> 
+<a onClick="doFindCurrentRule(this.id); doEditRule();document.forms[0].target='main'; document.forms[0].submit();" id=8> 
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image267','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image267" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=8> 
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image297','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image297" width="17" height="14" border="0"></a></font> 
+</td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" onClick="doSave();" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ><input type="hidden" name="RN_CurrentIndex" value="0" /><input type="hidden" name="RN_Flag" value="0" /></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p> 
+</body><script language="JavaScript">    
+<!--//
+showFullPath('Network > WAN >More Connections');
+//-->
+</script>
+</html>

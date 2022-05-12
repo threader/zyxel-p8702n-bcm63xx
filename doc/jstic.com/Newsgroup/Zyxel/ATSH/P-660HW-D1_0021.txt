@@ -1,0 +1,17 @@
+RAS version : V3.40(ANW.0) | 08/04/2006
+Ram Size : 32768 Kbytes
+Flash Type and Size : AMD 32Mbits*1
+romRasSize : 2084248
+bootbase version : V1.06 | 1/20/2006
+Product Model : P-660HW-D1
+MAC Address :
+Default Country Code : F6
+Boot Module Debug Flag : 00
+RomFile Version : AA
+RomFile Checksum : d4fb
+RAS F/W Checksum : 9dbb
+SNMP MIB level & OID : 060102030405060708091011121314151617181920
+Main Feature Bits : C0
+Other Feature Bits :
+00 21 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 01 41 13 00 00 00

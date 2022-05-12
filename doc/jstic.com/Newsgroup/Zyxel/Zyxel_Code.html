@@ -1,0 +1,671 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0055)http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm -->
+<HTML><HEAD><TITLE>Actualización Router ZyXEL Prestige 650HW-31(E) y 660HW-61</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2712.300" name=GENERATOR>
+<META content=TonyCool name=Author>
+<META 
+content=" Zyxel Prestige Firmware 660 650 660HW61 650HW31 650HW31E 660HW-61 650HW-31 650HW-31E" 
+name=keywords><LINK 
+href="http://www.telefonica.net/web2/cooltony/zyxel/zyxelicon.png" 
+type=image/png rel=icon><LINK 
+href="http://www.telefonica.net/web2/cooltony/zyxel/zyxelicon.png" 
+rel="shortcut icon">
+<SCRIPT type=text/javascript>
+   <!--
+    /*
+    ----------------------------------------------------------
+     Se permite la reproducción total o parcial de los 
+     contenidos de ésta página, así como el código fuente 
+     del programa en JavaScript, siempre y cuando se mencione 
+     la fuente y se notifique al autor. 
+     Tony Cool: tonycool (arroba) gmail (punto) com
+    ----------------------------------------------------------
+     */
+    
+    function calcularPass()
+    {
+      sem=document.conv.semilla.value
+      if (sem.length!=12)
+          {
+          alert("La semilla debe ser de 12 dígitos")
+          document.conv.semilla.focus()
+          }
+      else
+      {
+        var error=false
+        for (cuenta=0;cuenta<12;cuenta++)
+        {
+                  
+	if (sem.substr(cuenta,1)!="0" &&
+            sem.substr(cuenta,1)!="1" &&
+            sem.substr(cuenta,1)!="2" &&
+            sem.substr(cuenta,1)!="3" &&
+            sem.substr(cuenta,1)!="4" &&
+            sem.substr(cuenta,1)!="5" &&
+            sem.substr(cuenta,1)!="6" &&
+            sem.substr(cuenta,1)!="7" &&
+            sem.substr(cuenta,1)!="8" &&
+            sem.substr(cuenta,1)!="9" &&
+            sem.substr(cuenta,1).toUpperCase()!="A" &&
+            sem.substr(cuenta,1).toUpperCase()!="B" &&
+            sem.substr(cuenta,1).toUpperCase()!="C" &&
+            sem.substr(cuenta,1).toUpperCase()!="D" &&
+            sem.substr(cuenta,1).toUpperCase()!="E" &&
+            sem.substr(cuenta,1).toUpperCase()!="F" )
+	    {
+            error= true
+            cuenta=12
+            }
+        }
+      if (error)
+      {
+       alert ("Error, solo números 0-9 y letras hex A-F")
+      
+       document.conv.semilla.focus()
+       document.conv.semilla.select()
+      } 
+      else
+       {
+      
+      /* Algoritmo de Password para el método Parmenide
+               a = primeros 3 bytes de la semilla
+               b = a + 0x10F0A563 (0x significa hexadecimal)
+               c = (último byte de la semilla) AND 7 
+               password = (b ROR c) XOR a
+            
+      */
+      a=parseInt(sem.substr(0,6),16)
+      b= a + 0x10F0A563      
+      c=parseInt(sem.substr(10,2),16) & 7
+      bChar= b.toString(2)
+      while (bChar.length<32) bChar="0"+bChar
+      bChar2=bChar.substr(bChar.length-c,c)+bChar.substr(0,bChar.length-c)
+      b=parseInt(bChar2,2)
+           
+      document.conv.resultado.value = parseInt(XorBin(b.toString(2),a.toString(2)),2).toString(16).toUpperCase()
+      }
+    }
+    }
+    
+    function XorBin(a,b)
+    {
+     var resul=""
+    while (a.length<32) a="0"+a
+           
+    while (b.length<32) b="0"+b
+     
+    for (cuen=0;cuen<32;cuen++)
+         { 
+          if (a.substr(cuen,1)==b.substr(cuen,1))
+           resul=resul + "0"
+          else
+           resul=resul + "1"
+          }
+     return resul   
+    
+    }
+   
+   
+ 
+ function popUp(URL) {
+ day = new Date();
+ id = day.getTime();
+ eval("page" + id + " = window.open(URL, '" + id + "', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,width=700,height=400,left = 412,top = 284');");
+}
+function popUpnoBars(URL) {
+ day = new Date();
+ id = day.getTime();
+ eval("page" + id + " = window.open(URL, '" + id + "', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=700,height=400,left = 412,top = 284');");
+}
+ 
+  //-->
+  </SCRIPT>
+</HEAD>
+<BODY background=Zyxel_Code_files/BackZyxel.gif>
+<DIV align=center>
+<TABLE cellSpacing=0 cellPadding=0 width=800 
+background=Zyxel_Code_files/FondoCuadroMedio.png border=0><!-- MSTableType="layout" -->
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=800><IMG height=225 src="Zyxel_Code_files/ZyXEL3.png" 
+      width=800 border=0></TD></TR>
+  <TR>
+    <TD vAlign=top width=800><IMG height=41 
+      src="Zyxel_Code_files/FondoCuadroArriba.png" width=800 border=0>
+      <BLOCKQUOTE>
+        <P align=justify><FONT face=Tahoma size=4><B>¡Bienvenidos!</B> Aquí 
+        podréis encontrar todo lo necesario para actualizar el firmware, 
+        programas, manuales y enlaces, así como fotos del interior del router. 
+        Espero que sea de mucha utilidad y de vuestro agrado. Cualquier duda, no 
+        vaciléis en consultarme.</FONT></P></BLOCKQUOTE></TD></TR>
+  <TR>
+    <TD width=800>
+      <TABLE id=table9 cellSpacing=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width="33%">
+            <BLOCKQUOTE>
+              <P align=center><IMG height=62 src="Zyxel_Code_files/psp.gif" 
+              width=100 align=left border=0></P></BLOCKQUOTE></TD>
+          <TD>
+            <P align=center><FONT face=Tahoma size=4><A 
+            href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel_en.htm">This 
+            page in english</FONT></P>
+            <P align=center><FONT face=Tahoma size=4><A 
+            href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel_en.htm"><IMG 
+            height=40 src="Zyxel_Code_files/uk_flag.gif" width=60 
+            border=0></A></FONT></P></TD>
+          <TD width="33%">
+            <P align=center><FONT face=Tahoma><IMG height=99 
+            src="Zyxel_Code_files/WiFilogoCompatible.gif" width=100 align=right 
+            border=0></FONT></P></TD></TR></TBODY></TABLE><IMG height=36 
+      src="Zyxel_Code_files/FondoCuadroAbajo.png" width=800 border=0>
+      <TABLE id=table1 cellSpacing=0 cellPadding=0 width=800 bgColor=#6699cc 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width=170>
+            <TABLE id=table3 cellSpacing=0 cellPadding=0 
+            background=Zyxel_Code_files/FondoCuadroPequenoMedio.png border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top width=170><IMG height=42 
+                  src="Zyxel_Code_files/FondoCuadroPequenoArriba.png" width=170 
+                  border=0>
+                  <P><B><FONT face=Tahoma>&nbsp; Enlaces 
+Directos:</FONT></B></P>
+                  <P><FONT face=Tahoma size=2>&nbsp; <A 
+                  href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm#650">Prestige 
+                  650HW-31(E)</A></FONT></P>
+                  <P><FONT face=Tahoma size=2>&nbsp; <A 
+                  href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm#660">Prestige 
+                  660HW-61</A></FONT></P>
+                  <P><FONT face=Tahoma size=2>&nbsp; <A 
+                  href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm#zynpass">ZynPassJS 
+                  0.1.4a</A></FONT></P>
+                  <P><FONT face=Tahoma size=2>&nbsp; <A 
+                  href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm#documentos">Documentos 
+                  y Tutoriales</A></FONT></P>
+                  <P><FONT face=Tahoma size=2>&nbsp; <A 
+                  href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm#enlaces">Enlaces 
+                  a sitios amigos</A></FONT></P>
+                  <P><IMG height=41 
+                  src="Zyxel_Code_files/FondoCuadroPequenoAbajo.png" width=170 
+                  border=0><IMG height=42 
+                  src="Zyxel_Code_files/FondoCuadroPequenoArriba.png" width=170 
+                  border=0></P>
+                  <P align=center>
+                  <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-3266531203610852";
+google_ad_width = 155;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "FFFFFF";
+//--></SCRIPT>
+
+                  <SCRIPT src="Zyxel_Code_files/show_ads.js" 
+                  type=text/javascript>
+</SCRIPT>
+                  </P>
+                  <P><IMG height=41 
+                  src="Zyxel_Code_files/FondoCuadroPequenoAbajo.png" width=170 
+                  border=0></P></TD></TR></TBODY></TABLE>
+            <P>&nbsp;</P></TD>
+          <TD vAlign=top>
+            <TABLE id=table2 cellSpacing=0 cellPadding=0 width="100%" 
+            background=Zyxel_Code_files/FondoCuadroMedianoMedio.png border=0><!-- MSTableType="layout" -->
+              <TBODY>
+              <TR>
+                <TD vAlign=top><IMG height=41 
+                  src="Zyxel_Code_files/FondoCuadroMedianoArriba.png" width=630 
+                  border=0>
+                  <BLOCKQUOTE>
+                    <P align=justify><B><FONT face=Tahoma><IMG height=37 
+                    alt=¡Nuevo! src="Zyxel_Code_files/nuevo.gif" width=37 
+                    border=0>09-Feb-2007: <IMG height=37 alt=¡Nuevo! 
+                    src="Zyxel_Code_files/nuevo.gif" width=37 
+                    border=0></FONT></B></P>
+                    <P align=justify><FONT face=Tahoma size=2>Actualizo la 
+                    página poco, pero la actualizo. Le gente que me escribe sabe 
+                    que sigo dando soporte a todos los que me escriben correos. 
+                    Así que si tenéis alguna duda, sólo escribidme.</FONT></P>
+                    <P align=justify><FONT face=Tahoma size=2>En esta 
+                    actualización he añadido algo por lo que mucha gente me ha 
+                    preguntado, el esquema del cable de consola del <A 
+                    href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm#650">Prestige 
+                    650HW-31(E)</A>. Dicho esquema lo podéis encontrar el su 
+                    sección respectiva o pinchando directamente <A 
+                    href="http://www.telefonica.net/web2/cooltony/zyxel/Cable-serie-650.png" 
+                    target=_blank>aquí</A>. Añado un enlace al esquema del cable 
+                    del <A 
+                    href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm#660">Prestige 
+                    660HW-61</A> también.</FONT></P>
+                    <P align=justify><FONT face=Tahoma size=2>También me he 
+                    enterado, gracias a MISTICO de ADSLAyuda.com, que la versión 
+                    final del firmware <B>3.40(PE.11)C0</B> para el <A 
+                    href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm#660">Prestige 
+                    660HW-61</A> ya anda dando vueltas desde hace días por la 
+                    red. Personalmente la he probado, y en mi caso no me va muy 
+                    bien (con el adaptador Intel PROSet/Wireless 2200BG&nbsp; 
+                    pierde conexión aleatoriamente). Probarlo en vuestro caso y 
+                    me decís qué tal os va. Como siempre, ¡no me hago 
+                    responsable! El enlace está en la zona 
+                    correspondiente.</FONT></P>
+                    <P align=justify><FONT face=Tahoma size=2>Por último, 
+                    actualizo la web y un enlace a las noticias 
+                    antiguas.</FONT></P></BLOCKQUOTE>
+                  <P><FONT size=2><IMG height=34 
+                  src="Zyxel_Code_files/FondoCuadroMedianoAbajo.png" width=630 
+                  border=0></FONT></P></TD></TR>
+              <TR>
+                <TD vAlign=top>
+                  <P><IMG height=41 
+                  src="Zyxel_Code_files/FondoCuadroMedianoArriba.png" width=630 
+                  border=0></P>
+                  <BLOCKQUOTE>
+                    <P><B><FONT face=Tahoma>23-Nov-2006:</FONT></B></P>
+                    <P align=justify><FONT face=Tahoma size=2>¡La página no está 
+                    muerta! ¡Solo estaba de parranda!... Ahora en serio. Tiempo 
+                    sin poder actualizarla. Entre compromisos laborales y 
+                    personales no pude, y además, tampoco es que había mucha 
+                    información nueva.</FONT></P>
+                    <P align=justify><FONT face=Tahoma size=2>Poco actualizado 
+                    esta vez. Solo un manual para el cambio de Bootbase de los 
+                    660HW-61, el bootbase original 1.10t por petición de un 
+                    visitante y la confirmación de que el Firmware KW5D0 del 
+                    650HW-31 NO es compatible con ADSL2/2+</FONT></P>
+                    <P align=justify><FONT face=Tahoma size=2>Hoy justo se 
+                    cumple un año la página en inglés, la cual aún no he 
+                    actualizado desde entonces. En unos días me pondré con ello 
+                    y añadiré enlaces a los firmwares más recientes del 
+                    660</FONT></P>
+                    <P>&nbsp;</P></BLOCKQUOTE>
+                  <P><FONT size=2><IMG height=34 
+                  src="Zyxel_Code_files/FondoCuadroMedianoAbajo.png" width=630 
+                  border=0></FONT></P></TD></TR>
+              <TR>
+                <TD vAlign=top><IMG height=41 
+                  src="Zyxel_Code_files/FondoCuadroMedianoArriba.png" width=630 
+                  border=0>
+                  <BLOCKQUOTE>
+                    <P><B><FONT face=Tahoma>11-Mar-2006:</FONT></B></P>
+                    <P align=justify><FONT face=Tahoma size=2>Actualización 
+                    menor. Añadido el <A 
+                    href="http://www.telefonica.net/web2/cooltony/zyxel/340kw5d0.zip">firmware 
+                    3.40KW5d0</A> para el <B>Prestige 650HW-31(e)</B>. Para 
+                    actualizar a esta versión es necesario llevar a cabo todos 
+                    los pasos para la actualización al KW4b1, a excepción del 
+                    cambio de bootbase. Para hacer una actualización desde el 
+                    firmware original de Telefónica, hay que seguir todos los 
+                    pasos y sustituir el fichero del firmware KW4b1 por éste. Lo 
+                    podéis conseguir pinchando arriba o en su respectiva sección 
+                    <A 
+                    href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm#650">Prestige 
+                    650HW-31(E)</A></FONT></P>
+                    <P align=justify><FONT face=Tahoma size=2>Actualizadas las 
+                    noticias viejas y algunos textos de las actuales.</FONT></P>
+                    <P align=justify><FONT face=Tahoma size=2>Por último, pero 
+                    no menos importante, quiero recordar un momento a todas las 
+                    víctimas del atentado terrorista de Madrid del 11 de Marzo 
+                    de 2004, al cumplirse hoy 2 años de ello.</FONT></P>
+                    <P align=center><IMG height=51 
+                    src="Zyxel_Code_files/lazo_negro.gif" width=34 
+                  border=0></P></BLOCKQUOTE>
+                  <P><FONT size=2><IMG height=34 
+                  src="Zyxel_Code_files/FondoCuadroMedianoAbajo.png" width=630 
+                  border=0></FONT></P></TD></TR>
+              <TR>
+                <TD vAlign=top><IMG height=41 
+                  src="Zyxel_Code_files/FondoCuadroMedianoArriba.png" width=630 
+                  border=0>
+                  <BLOCKQUOTE>
+                    <P><FONT face=Tahoma>Para las noticias antiguas, pincha 
+                    aquí: </FONT></P>
+                    <UL>
+                      <LI><FONT face=Tahoma><A 
+                      href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel2005.htm" 
+                      target=_blank>Noticias 2005</A></FONT> 
+                      <LI><FONT face=Tahoma><A 
+                      href="http://www.telefonica.net/web2/cooltony/zyxel/zyxel2004.htm" 
+                      target=_blank>Noticias 2004</A></FONT> </LI></UL></BLOCKQUOTE>
+                  <P><FONT size=2><IMG height=34 
+                  src="Zyxel_Code_files/FondoCuadroMedianoAbajo.png" width=630 
+                  border=0></FONT></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><B><FONT 
+      face=Tahoma size=5><A name=650></A></FONT></B><IMG height=41 
+      src="Zyxel_Code_files/FondoCuadroArriba.png" width=800 border=0>&nbsp;
+      <P></P>
+      <P align=center><B><FONT face=Tahoma size=5>Actualización del Firmware del 
+      Prestige 650HW-31(E)</FONT></B>
+      <P align=center><IMG height=118 src="Zyxel_Code_files/zyxel_650hw.gif" 
+      width=150 border=0></P>
+      <BLOCKQUOTE>
+        <P><FONT face=Tahoma><B><EM>Archivos Necesarios:</EM></B></FONT></P>
+        <UL>
+          <LI><FONT face=Tahoma><A 
+          href="http://www.telefonica.net/web2/cooltony/zyxel/KM2.zip">Firmware 
+          Original Telefónica 3.40KM2</A> Con el que vienen los routers de 
+          Telefónica.</FONT>
+          <LI><FONT face=Tahoma><A 
+          href="http://www.telefonica.net/web2/cooltony/zyxel/340kw4b1.zip">Firmware 
+          Nuevo ZyXEL 3.40KW4b1</A> </FONT>
+          <UL>
+            <LI><FONT face=Tahoma><B>Configuración Web:</B> 
+            <EM>http://10.0.0.1<B>:2033</B></EM> Login:<I>admin</I> 
+            Password:<I>1234</I> </FONT></LI></UL>
+          <LI><FONT face=Tahoma><B>Bootbase 1.11 necesario para actualizar el 
+          firmware</B> </FONT>
+          <UL>
+            <LI><FONT face=Tahoma><A 
+            href="http://www.telefonica.net/web2/cooltony/zyxel/full76600.zip">Descargar 
+            archivo ZIP</A> - <STRIKE>Descargar archivo sin comprimir 
+            </STRIKE></FONT></LI></UL>
+          <LI><FONT face=Tahoma><A 
+          href="http://www.telefonica.net/web2/cooltony/zyxel/P650HW31-KW4B1.rom">Configuración 
+          Firmware KW4b1 lista para funcionar con Telefónica</A>&nbsp;</FONT>
+          <UL>
+            <LI><FONT face=Tahoma>Multipuesto con IP dinámico </FONT>
+            <LI><FONT face=Tahoma>Dirección IP: <I>192.168.1.1 </I></FONT>
+            <LI><FONT face=Tahoma><B>Configuración Web:</B> Login: 
+            <I>adslppp@telefonicanetpa</I> Password: <I>adslppp</I> </FONT>
+            <LI><FONT face=Tahoma><B>Configuración Telnet:</B> Password: 
+            <I>adslppp</I> </FONT>
+            <LI><FONT face=Tahoma>Wireless habilitado, sin encriptación WEP ni 
+            filtrado de MAC </FONT>
+            <LI><FONT face=Tahoma>Administración sólo posible desde LAN </FONT>
+            <LI><FONT face=Tahoma>DHCP deshabilitado </FONT>
+            <LI><FONT face=Tahoma>Filtros y tabla NAT por defecto </FONT>
+            <LI><FONT face=Tahoma><A href="javascript:popUp('info.txt')">Datos 
+            completos de configuración</A></FONT></LI></UL>
+          <LI><FONT face=Tahoma><A 
+          href="http://www.adslayuda.com/descargas/routers/zyxel650/firmwares/P650HW-31_V3.40(IS.2)C0_Standard.zip">Firmware 
+          ZyXEL V3.40(IS.2)C0</A> <B>&nbsp;</B>-&nbsp; Compatible con ADSL2+ y 
+          ADSL2 pero deshabilita la función Wireless</FONT> 
+          <LI><FONT face=Tahoma><A 
+          href="http://www.telefonica.net/web2/cooltony/zyxel/340kw5d0.zip">Firmware 
+          ZyXEL v3.40 KW5d0</A> - Versión mejorada del firmware. Soporta WiFi, 
+          pero <B>no soporta ADSL2/2+</B>. <I>Actualización recomendada</I>. 
+          (Gracias Marco por la confirmación</FONT><FONT face=Tahoma>)</FONT> 
+          </LI></UL>
+        <P><B><FONT face=Tahoma><EM>Misceláneos </EM></FONT></B></P>
+        <UL>
+          <LI><B><FONT face=Tahoma><IMG height=37 alt=¡Nuevo! 
+          src="Zyxel_Code_files/nuevo.gif" width=37 border=0></FONT></B><FONT 
+          face=Tahoma><A 
+          href="http://www.telefonica.net/web2/cooltony/zyxel/Cable-serie-650.png" 
+          target=_blank>Esquema cable consola</A>. Para quienes perdísteis el 
+          cable o no lo tengáis disponible, aquí está el mapa para construirlo 
+          vosotros mismos. Muy sencillo.</FONT> </LI></UL></BLOCKQUOTE>
+      <P><FONT size=2><IMG height=36 src="Zyxel_Code_files/FondoCuadroAbajo.png" 
+      width=800 border=0></FONT><B><FONT face=Tahoma size=5><A 
+      name=660></A></FONT></B><IMG height=41 
+      src="Zyxel_Code_files/FondoCuadroArriba.png" width=800 border=0></P>
+      <P align=center><B><FONT face=Tahoma size=5>Actualización del Firmware del 
+      Prestige 660HW-61</FONT></B>
+      <P align=center><IMG height=156 src="Zyxel_Code_files/zyxel_660hw.gif" 
+      width=150 border=0></P>
+      <BLOCKQUOTE>
+        <P align=left><B><FONT face=Tahoma><EM>Archivos Necesarios: 
+        </EM></FONT></B></P>
+        <UL>
+          <LI>
+          <P align=left><FONT face=Tahoma><EM style="FONT-STYLE: normal"><A 
+          href="http://www.telefonica.net/web2/cooltony/zyxel/340PT0b46.zip">Firmware 
+          Nuevo Telefónica 3.40PT0b46</A> - Última versión del firmware 
+          </EM><EM>de Telefónica</EM></FONT> </P>
+          <LI>
+          <P align=left><EM style="FONT-STYLE: normal"><FONT face=Tahoma><A 
+          href="http://www.telefonica.net/web2/cooltony/zyxel/P660HW-61_V3.40(PE.9)C0_Standard.zip">Firmware 
+          Nuevo ZyXEL 3.40PE.9C0</A> - Firmware original ZyXEL 
+          <B>estable</B></FONT></EM> </P>
+          <LI>
+          <P align=left><EM style="FONT-STYLE: normal"><FONT face=Tahoma><A 
+          href="http://www.telefonica.net/web2/cooltony/zyxel/P660HW-61_V3.40(PE.10)C0_Standard.zip">Firmware 
+          Nuevo ZyXEL 3.40PE.10C0</A> - Firmware original ZyXEL <B>INESTABLE</B> 
+          - Presenta problemas de estabilidad WiFi</FONT></EM> </P>
+          <LI>
+          <P align=left><B><FONT face=Tahoma><IMG height=37 alt=¡Nuevo! 
+          src="Zyxel_Code_files/nuevo.gif" width=37 border=0></FONT></B><EM 
+          style="FONT-STYLE: normal"><FONT face=Tahoma><A 
+          href="http://www.zyxel.com/web/download_us.php?FileName=200501211330362005011711085820041105154230_20061110_3.40(PE.11)C0-P-660HW-61_V3.40(PE.11)C0.zip">Firmware 
+          Nuevo ZyXEL 3.40PE.11C0</A> - Firmware original ZyXEL. Según algunas 
+          fuentes el WiFi es más estable. Particularmente lo veo tan inestable 
+          como la anterior. Descarga externa directa de ZyXEL</FONT></EM> 
+          </P></LI></UL></BLOCKQUOTE>
+      <BLOCKQUOTE>
+        <P align=left><B><FONT face=Tahoma><EM>Misceláneos </EM></FONT></B></P>
+        <UL>
+          <LI>
+          <P align=left><FONT face=Tahoma><EM style="FONT-STYLE: normal"><A 
+          href="http://www.telefonica.net/web2/cooltony/zyxel/Bootbase1.10t">Bootbase 
+          1.10t</A> - Bootbase con la que vienen los routers de 
+          </EM><EM>Telefónica</EM></FONT>
+          <UL>
+            <LI><FONT face=Tahoma><B>ADVERTENCIA</B>: En el Bootbase se guarda 
+            la dirección MAC del router. Esta Bootbase fue extraída de un ZyXEL 
+            de Telefónica y la MAC fue modificada a FF FF FF en la posición de 
+            3FF0. Por lo tanto, tenéis que buscar un <A 
+            href="http://www.memecode.com/ihex.php">editor hexadecimal</A> y 
+            editarlo con la vuestra. Si no lo hacéis correctamente <B>PODEIS 
+            CREAR CONFLICTOS DE MAC</B></FONT></LI></UL>
+          <LI><FONT face=Tahoma>Bootbase 1.06 - No disponible por los momentos. 
+          Si alguien la tiene, por favor que me la facilite.</FONT> 
+          <LI><B><FONT face=Tahoma><IMG height=37 alt=¡Nuevo! 
+          src="Zyxel_Code_files/nuevo.gif" width=37 border=0></FONT></B><FONT 
+          face=Tahoma><A 
+          href="http://img443.imageshack.us/img443/6193/ttltors2320kf.jpg" 
+          target=_blank>Esquema cable consola</A>. Este cable es mucho más 
+          complicado de hacer, pero es necesario para actualizar.</FONT> 
+      </LI></UL></BLOCKQUOTE>
+      <P align=left>&nbsp;</P>
+      <P align=left><FONT size=2><IMG height=36 
+      src="Zyxel_Code_files/FondoCuadroAbajo.png" width=800 border=0></FONT><A 
+      name=zynpass></A><IMG height=41 
+      src="Zyxel_Code_files/FondoCuadroArriba.png" width=800 border=0></P>
+      <FORM name=conv>
+      <BLOCKQUOTE>
+        <BLOCKQUOTE>
+          <BLOCKQUOTE><FONT face=Tahoma><BIG><B><FONT 
+            size=5>ZynPass</FONT><FONT size=5> JS v.0.1.4a</FONT><FONT size=6> 
+            </FONT></B></BIG><SMALL>(<A 
+            href="javascript:popUpnoBars('zynpass.htm?popUpWindow')">abrir en 
+            una nueva ventana</A>)</SMALL><BR>Algoritmo para Cálculo de Password 
+            para actualizar el firmware de los <B>Router Zyxel Prestige 
+            650HW-31(E) </B>y<B> Prestige 660HW-61</B> según el <I>Método 
+            Parmenide</I> y <I>Ceporro/civilis72</I><BR><BR>Versión JavaScript 
+            por TonyCool</FONT>
+            <P><FONT face=Tahoma>Introduce la semilla y presiona el botón para 
+            calcular</FONT></P>
+            <TABLE id=table7 cellSpacing=0 cellPadding=0 width=300 align=left 
+            border=0>
+              <TBODY>
+              <TR vAlign=center align=left>
+                <TD><FONT face=Tahoma>Semilla:</FONT></TD>
+                <TD><FONT face=Tahoma><INPUT maxLength=12 size=13 
+                  name=semilla> <INPUT onclick=calcularPass() type=button value=Calcular></FONT></TD>
+              <TR vAlign=center align=left>
+                <TD><FONT face=Tahoma>Password: </FONT></TD>
+                <TD><FONT face=Tahoma><INPUT readOnly size=13 name=resultado> 
+                  </FONT></TD></TR></TBODY></TABLE><FONT 
+            face=Tahoma><BR><BR><BR><STRIKE>Descargar fichero ZIP</STRIKE><FONT 
+            size=1> (descarga 
+      eliminada)</FONT><BR></FONT></BLOCKQUOTE></BLOCKQUOTE></BLOCKQUOTE></FORM>
+      <CENTER>
+      <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-3266531203610852";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></SCRIPT>
+
+      <SCRIPT src="Zyxel_Code_files/show_ads.js" type=text/javascript>
+</SCRIPT>
+      </CENTER>
+      <P><FONT size=2><IMG height=36 src="Zyxel_Code_files/FondoCuadroAbajo.png" 
+      width=800 border=0></FONT><FONT size=5><B><FONT face=Tahoma><A 
+      name=documentos></A></FONT></B></FONT><FONT face=Tahoma><IMG height=41 
+      src="Zyxel_Code_files/FondoCuadroArriba.png" width=800 border=0></FONT>
+      <BLOCKQUOTE>
+        <P><FONT face=Tahoma><BR><FONT size=5><B>Documentos</B></FONT><B><FONT 
+        size=5> y tutoriales</FONT></B></FONT>
+        <P><FONT face=Tahoma><B><A 
+        href="http://www.telefonica.net/web2/cooltony/zyxel/ManualBootbase1.06.pdf">Pequeño 
+        manual para el cambio de Bootbase Prestige 660HW-61</A></B> Para 
+        aquellos que os gusta <I>trastear</I> con las distintas configuraciones, 
+        aquí tenéis un manual para cambiar el bootbase en los 660</FONT>
+        <P><B><FONT face=Tahoma><A 
+        href="http://www.adslayuda.com/Zyxel650-18.html">Tutorial actualización 
+        Prestige 660HW-61 (método tradicional)</A></FONT></B><FONT face=Tahoma> 
+        </FONT><FONT face=Tahoma>De ADSLAyuda.com vemos un muy sencillo tutorial 
+        para actualizar el firmware de la manera tradicional.</FONT></P>
+        <P><FONT face=Tahoma><B><BIG><A 
+        href="http://www.telefonica.net/web2/cooltony/zyxel/fotos660.htm">Fotos 
+        interior Prestige 660HW-61</A></BIG></B> Unas pocas fotos del interior 
+        del router y todos sus componentes.</FONT></P>
+        <P><FONT face=Tahoma><B><A href="http://usuarios.lycos.es/infinitodev/" 
+        target=_blank>Video tutoriales de Actualización</A></B>&nbsp; 
+        <I>infinito</I> nos hace un tutorial en formato Flash con la 
+        actualización paso a paso.</FONT></P>
+        <P><FONT face=Tahoma><B><A 
+        href="http://www.telefonica.net/web/infinitodev/ManualRouter.pdf" 
+        target=_blank>Manual PDF de actualización del router</A></B> Otra vez 
+        <I>infinito</I> nos aporta material, esta vez un manual, en formato PDF, 
+        donde compila&nbsp; lo más importante de los manuales de Parmenide y 
+        Telcontar, así como otros detalles conseguidos en los foros. Está muy 
+        sencillo y fácil de entender, aunque por ahora no tiene 
+        imágenes.</FONT></P>
+        <P><FONT face=Tahoma><B><A 
+        href="http://personal.telefonica.terra.es/web/infinitodev/zyxel/zyxel_conf.html" 
+        target=_blank>Capturas de pantalla configuración por telnet</A></B> 
+        Configuración que trae por defecto los routers que distribuye 
+        Telefónica. <I>(cortesía de anxia/infinito)</I> </FONT></P>
+        <P><FONT face=Tahoma><A 
+        href="http://www.telefonica.net/web2/cooltony/zyxel/fotos.htm"><B><BIG>Fotos 
+        interior Prestige 650HW-31E</BIG></B></A> Fotos de calidad y a color del 
+        interior del router y todos sus componentes. Son 20 en total (<I>gracias 
+        a sness54 por las fotos)</I> </FONT></P>
+        <P><FONT face=Tahoma><B><A 
+        href="http://personal.telefonica.terra.es/web/imode/ruter/manual.htm" 
+        target=_blank>Tutorial gráfico paso a paso para actualizar el Firmware, 
+        versión 2, por Telcontar</A></B> Tutorial gráfico, paso por paso y en 
+        castellano, para actualizar el firmware de nuestro router.</P>
+        <P><B><A href="http://www.adslayuda.com/Zyxel650-9.html" 
+        target=_blank>Método Parmenide para actualizar el Firmware</A></B> 
+        <I>Post</I> original, del método Parmenide <B>¡NOTA!</B> Está basado en 
+        el firmware IS2, con el cual se pierde la funcionalidad Wireless. 
+        &nbsp;</P></BLOCKQUOTE>
+      <P><FONT size=2><IMG height=36 src="Zyxel_Code_files/FondoCuadroAbajo.png" 
+      width=800 border=0></FONT><FONT size=5><B><A 
+      name=enlaces></A></B></FONT><IMG height=41 
+      src="Zyxel_Code_files/FondoCuadroArriba.png" width=800 
+border=0></P></FONT>
+      <BLOCKQUOTE><FONT face=Tahoma><FONT size=5><B>Sitios Amigos</B></FONT>
+        <P></P>
+        <P><B><A href="http://www.adsltodo.com/" 
+        target=_blank>http://www.adsltodo.com/</A> </B>Portal de ayuda para 
+        ADSL2+, ADSL2 y ADSL con videotutoriales</P>
+        <P><B><A href="http://www.adslzone.net/" 
+        target=_blank>http://www.adslzone.net/</A> </B>Otra web colaboradora con 
+        la causa. ADSL Zone también ofrece archivos, documentos, manuales y 
+        foros donde puedes participar y resolver todas tus dudas que puedas 
+        tener sobre&nbsp; ADSL</P>
+        <P><B><A href="http://www.adslayuda.com/" 
+        target=_blank>http://www.adslayuda.com/</A></B> ADSL Ayuda: La mejor 
+        página en castellano sobre ADSL. Foros y documentos... ¡muy buena!.</P>
+        <P><B><A href="http://www.bandaancha.st/" 
+        target=_blank>http://www.bandaancha.st/</A></B> Todo lo referente a 
+        conexiones de Banda Ancha, ADSL, Cable, PLC, Wi-Fi, etc. ¡También muy 
+        completo!</P></BLOCKQUOTE>
+      <P><FONT size=2><IMG height=36 src="Zyxel_Code_files/FondoCuadroAbajo.png" 
+      width=800 border=0></FONT><IMG height=41 
+      src="Zyxel_Code_files/FondoCuadroArriba.png" width=800 
+      border=0>&nbsp;</FONT>
+      <BLOCKQUOTE><FONT face=Tahoma>
+        <P>No encuentras aquí lo que buscas? Búscalo en Google directamente de 
+        aquí:</P></BLOCKQUOTE>
+      <P><BR>
+      <P><!-- Search Google -->
+      <CENTER>
+      <FORM name=Google action=http://www.google.es/custom method=get 
+      target=google_window>
+      <TABLE id=table8 bgColor=#ffffff>
+        <TBODY>
+        <TR>
+          <TD vAlign=top noWrap align=left height=32><A 
+            href="http://www.google.com/"><IMG alt=Google 
+            src="Zyxel_Code_files/Logo_25wht.gif" align=middle 
+            border=0></IMG></A> <INPUT maxLength=255 size=31 name=q></INPUT> <INPUT type=submit value=Búsqueda name=sa></INPUT> <INPUT 
+            type=hidden value=pub-3266531203610852 name=client></INPUT> <INPUT 
+            type=hidden value=1 name=forid></INPUT> <INPUT type=hidden 
+            value=ISO-8859-1 name=ie></INPUT> <INPUT type=hidden 
+            value=ISO-8859-1 name=oe></INPUT> <INPUT type=hidden 
+            value=GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1; 
+            name=cof></INPUT> <INPUT type=hidden value=es name=hl></INPUT> 
+        </TD></TR></TBODY></TABLE></FORM></CENTER><!-- Search Google --><BR><B>
+      <BLOCKQUOTE>
+        <P align=justify><SMALL>Gracias a <I>sness54</I> de los foros de 
+        ADSLAyuda.com por el reporte de bug y por las fotos del interior del 
+        router. Gracias también a todos los de <A 
+        href="http://www.adslayuda.com/" target=_blank>ADSLAyuda.com</A> sin 
+        cuya colaboración esta página no sería posible.<BR>Se permite la 
+        reproducción total o parcial de los contenidos de esta página, así como 
+        el código fuente del programa en JavaScript, siempre y cuando se 
+        mencione la fuente y se notifique al autor.</SMALL></P>
+        <P align=justify><FONT size=2>Todos los nombres e imágenes son propiedad 
+        de sus respectivos propietarios. <FONT color=#ff0000>A pesar de que la 
+        actualización del firmware es segura, algunos de los procesos son 
+        delicados y un uso erróneo puede derivar en un daño irreversible a tu 
+        router. El autor de esta página no se hace responsable por daños que 
+        puedan ocurrir a tu router durante la actualización, ni ningún otro daño 
+        derivado de ello. </FONT></FONT></P>
+        <P align=center><FONT color=#ff0000 size=2>-- Todas las actualizaciones 
+        son bajo tu propio riesgo --</FONT></P></B></FONT>
+        <P align=center><I><B><FONT face=Tahoma size=4>Tony Cool 
+        <BR></FONT></B></I><IMG src="Zyxel_Code_files/tonygmail.png"></SMALL> 
+        <BR><BR><BR></P></BLOCKQUOTE>
+      <CENTER><A href="http://www.zcounter.com/"><IMG 
+      src="Zyxel_Code_files/counter.png" border=0></A><BR><FONT 
+      face=Tahoma><SMALL>visitas desde Jueves Septiembre 16, 2004, <BR>19:50 
+      (GMT+001, Hora de España)</SMALL> </FONT>
+      <P><FONT face=Tahoma size=1>Optimizado para resoluciones de 800x600 y 
+      superiores.</FONT></P>
+      <P>
+      <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-3266531203610852";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as_rimg";
+google_cpa_choice = "CAAQ4d7zzwEaCKo4ELHtkpUkKP-393M";
+//--></SCRIPT>
+
+      <SCRIPT src="Zyxel_Code_files/show_ads.js" type=text/javascript>
+</SCRIPT>
+       </P><!-- Begin Nedstat Basic code --><!-- Title: Actualización Router Prestige 650HW31(E) --><!-- URL: http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm -->
+      <SCRIPT language=JavaScript src="Zyxel_Code_files/basic.js" 
+      type=text/javascript>
+</SCRIPT>
+
+      <SCRIPT language=JavaScript type=text/javascript>
+<!--
+  nedstatbasic("ADJIEQrAiZ5uojH678is1EJWjUvw", 0);
+// -->
+</SCRIPT>
+      <NOSCRIPT><A 
+      href="http://www.nedstatbasic.net/stats?ADJIEQrAiZ5uojH678is1EJWjUvw" 
+      target=_blank><IMG height=18 
+      alt="Nedstat Basic - Web site estadísticas gratuito&#13;&#10;El contador para sitios web particulares" 
+      src="Zyxel_Code_files/n.gif" width=18 border=0></A><BR><A 
+      href="http://www.nedstatbasic.net/" target=_blank>Contador gratuito</A> 
+      </NOSCRIPT><!-- End Nedstat Basic code --></CENTER>
+      <P></P>
+      <P><FONT size=2><IMG height=36 src="Zyxel_Code_files/FondoCuadroAbajo.png" 
+      width=800 border=0></FONT></P></TD></TR></TBODY></TABLE></DIV></BODY></HTML>

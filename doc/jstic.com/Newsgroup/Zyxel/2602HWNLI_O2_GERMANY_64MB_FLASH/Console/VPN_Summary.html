@@ -1,0 +1,347 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="Microsoft FrontPage 5.0">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_VPN_Summary.html";
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+
+function doFindCurrentRule(CurrentIndex)
+{
+var num
+num = parseInt(CurrentIndex);
+document.forms[0].returnCurrentVPNIndex.value = num;
+doEditRule();
+}
+function doDeleteCurrentRule(CurrentIndex)
+{
+var num
+num = parseInt(CurrentIndex);
+document.forms[0].returnCurrentVPNIndex.value = num;
+doDelRule();
+}
+function doEditRule()
+{
+document.forms[0].returnVPNFlag.value = 1;
+}
+function doDelRule()
+{
+document.forms[0].returnVPNFlag.value = 2;
+}
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/VPN_Summary_1" name="VPNSumform" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+Setup</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="VPN_Monitor.html" target="main" class="sub"><b><FONT class=NaviText>
+Monitor</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="VPN_GlobalSetting.html" target="main" class="sub"><b><FONT class=NaviText>
+VPN Global Setting</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<br /><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr height="19" class ="cTitle">
+<td width="3%"> <div align=left class="NaviText"> </div></td><td class="cTitle">
+Summary</td></tr><tr>
+<td colspan="2">&nbsp; </td></tr><tr>
+<td colspan="2"> <table width="90%" border="1" align=center cellpadding="1" cellspacing="0" bordercolor="#FFFFFF">
+<tr align=center class="tableTitle" height="30">
+<td width="5%" class="tableTitle">
+No.</td><td width="5%" class="tableTitle">
+Active</td><td width="5%" class="tableTitle">
+Name </td><td width="18%" class="tableTitle">
+Local Address</td><td width="18%" class="tableTitle">
+Remote Address</td><td width="6%" class="tableTitle">
+Encap.</td><td width="10%" class="tableTitle">
+IPSec Algorithm</td><td width="18%" class="tableTitle">
+Secure Gateway IP</td><td width="15%" class="tableTitle"><b>
+Modify</b></td></tr><tr align=center class="tabcolor2">
+<td width="5%"><strong>
+1</strong></td><td width="5%">
+<input type="checkbox" name="VPN_Active" checked value="ON" /></td><td width="5%">
+comsacom_LAN</td><td width="18%">
+192.168.5.0 - 255.255.255.0</td><td width="18%">
+192.168.0.0 - 255.255.255.0</td><td width="6%">
+Tunnel</td><td width="10%">
+ESP 3DES SHA1</td><td width="18%">
+comsacom.dyndns.org</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=1>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image260','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image260" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=1>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image290','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image290" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="5%"><strong>
+2</strong></td><td width="5%">
+<input type="checkbox" name="VPN_Active" checked value="ON" /></td><td width="5%">
+comsacom_WLAN</td><td width="18%">
+192.168.5.0 - 255.255.255.0</td><td width="18%">
+192.168.88.0 - 255.255.255.0</td><td width="6%">
+Tunnel</td><td width="10%">
+ESP 3DES SHA1</td><td width="18%">
+comsacom.dyndns.org</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=2>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image261','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image261" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=2>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image291','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image291" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="5%"><strong>
+3</strong></td><td width="5%">
+<input type="checkbox" name="VPN_Active" checked value="ON" /></td><td width="5%">
+zyxel.de</td><td width="18%">
+192.168.5.0 - 255.255.255.0</td><td width="18%">
+192.168.111.0 - 255.255.255.0</td><td width="6%">
+Tunnel</td><td width="10%">
+ESP 3DES SHA1</td><td width="18%">
+213.68.67.168</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=3>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image262','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image262" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=3>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image292','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image292" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="5%"><strong>
+4</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=4>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image263','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image263" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=4>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image293','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image293" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="5%"><strong>
+5</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=5>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image264','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image264" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=5>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image294','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image294" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="5%"><strong>
+6</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=6>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image265','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image265" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=6>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image295','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image295" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="5%"><strong>
+7</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=7>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image266','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image266" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=7>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image296','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image296" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="5%"><strong>
+8</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=8>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image267','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image267" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=8>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image297','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image297" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="5%"><strong>
+9</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=9>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image268','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image268" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=9>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image298','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image298" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="5%"><strong>
+10</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=10>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image269','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image269" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=10>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image299','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image299" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="5%"><strong>
+11</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=11>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2610','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image2610" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=11>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2910','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image2910" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="5%"><strong>
+12</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=12>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2611','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image2611" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=12>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2911','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image2911" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="5%"><strong>
+13</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=13>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2612','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image2612" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=13>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2912','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image2912" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="5%"><strong>
+14</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=14>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2613','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image2613" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=14>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2913','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image2913" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="5%"><strong>
+15</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=15>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2614','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image2614" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=15>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2914','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image2914" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="5%"><strong>
+16</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=16>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2615','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image2615" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=16>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2915','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image2915" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="5%"><strong>
+17</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=17>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2616','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image2616" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=17>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2916','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image2916" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="5%"><strong>
+18</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=18>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2617','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image2617" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=18>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2917','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image2917" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="5%"><strong>
+19</strong></td><td width="5%">-</td><td width="5%">
+-</td><td width="18%">
+ . . . </td><td width="18%">
+. . .</td><td width="6%">
+-</td><td width="10%">
+-</td><td width="18%">
+. . .</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=19>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2618','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image2618" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=19>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2918','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image2918" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="5%"><strong>
+20</strong></td><td width="5%">
+<input type="checkbox" name="VPN_Active" checked value="ON" /></td><td width="5%">
+<a target="_self" href="VPN_IKE.html">Dynamic</a></td><td width="18%">
+192.168.5.0 - 255.255.255.0</td><td width="18%">
+N/A</td><td width="6%">
+Tunnel</td><td width="10%">
+ESP DES SHA1</td><td width="18%">
+0.0.0.0</td><td width="15%"><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=20>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2619','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image2619" width="19" height="14" border="0"></a><a onClick="doDeleteCurrentRule(this.id); doDelRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=20>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2919','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image2919" width="17" height="14" border="0"></a></font>
+<input type="hidden" name="VPNIndex" value="0" /></td></tr><input type="hidden" name="returnCurrentVPNIndex" value="0" /><input type="hidden" name="returnVPNFlag" value="0" /></table></td></tr><tr>
+<td colspan="2">&nbsp; </td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+<tr>
+<td>&nbsp;</td></tr><tr align=center>
+<td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+<td align=center>
+<input type="submit" name="VPNSummary_SaveBtn" value="Apply" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></td></tr><tr>
+<td height="35">&nbsp;</td></tr></table></td></tr><tr>
+<td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table><!-- 3D -->
+</td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--
+showFullPath('Security > VPN > Summary');
+//-->
+</script>
+</html>

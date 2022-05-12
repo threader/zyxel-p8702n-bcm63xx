@@ -1,0 +1,150 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+<script language="JavaScript">
+top.title.h_Page='h_RManage.html';
+var	IP="0.0.0.0"
+var TelnetPort=23;
+var TelnetIP="0.0.0.0"
+var FTPPort=21;
+var FTPIP="0.0.0.0"
+var WWWPort=80;
+var WWWIP="0.0.0.0"
+function doTelnetMode(Index)
+{
+if (document.RMCform.elements[1].value != "N/A")
+TelnetPort = document.RMCform.elements[1].value;
+if (document.RMCform.elements[2].value != "N/A")
+TelnetIP = document.RMCform.elements[2].value;
+if (Index == 1) // Disable
+{
+document.RMCform.elements[1].value = "N/A";
+document.RMCform.elements[2].value = "N/A";
+}
+else
+{
+document.RMCform.elements[1].value = TelnetPort;
+document.RMCform.elements[2].value = TelnetIP;
+}
+}
+function doFTPMode(Index)
+{
+if (document.RMCform.elements[4].value != "N/A")
+FTPPort = document.RMCform.elements[4].value;
+if (document.RMCform.elements[5].value != "N/A")
+FTPIP = document.RMCform.elements[5].value;
+if (Index == 1) // Disable
+{
+document.RMCform.elements[4].value = "N/A";
+document.RMCform.elements[5].value = "N/A";
+}
+else
+{
+document.RMCform.elements[4].value = FTPPort;
+document.RMCform.elements[5].value = FTPIP;
+}
+}
+function doWWWMode(Index)
+{
+if (document.RMCform.elements[7].value != "N/A")
+WWWPort = document.RMCform.elements[7].value;
+if (document.RMCform.elements[8].value != "N/A")
+WWWIP = document.RMCform.elements[8].value;
+if (Index == 1) // Disable
+{
+document.RMCform.elements[7].value = "N/A";
+document.RMCform.elements[8].value = "N/A";
+}
+else
+{
+document.RMCform.elements[7].value = WWWPort;
+document.RMCform.elements[8].value = WWWIP;
+}
+}
+function chkTelnetMode(Index, i)
+{
+if ( Index != 1 )
+document.RMCform.elements[i].select();
+else
+document.RMCform.elements[0].focus();
+}
+function chkFTPMode(Index, i)
+{
+if ( Index != 1 )
+document.RMCform.elements[i].select();
+else
+document.RMCform.elements[3].focus();
+}
+function chkWWWMode(Index, i)
+{
+if ( Index != 1 )
+document.RMCform.elements[i].select();
+else
+document.RMCform.elements[6].focus();
+}
+function ConfirmReset()
+{	if (confirm('Need to reboot system for the new configuration?'))
+{
+document.RMCform.elements[0].value = "rebooting... please close this session then reconnect later.";
+document.RMCform.submit();
+}
+}
+function doAlert()
+{
+alert("Need to reboot system for new configuration. Please close this window and reconnect after a few seconds.");}
+function chkPortRange(port,index)
+{
+if (port > 65535 || port < 0)
+{	alert("The Port value must position between 0 to 65535");		document.RMCform.elements[index].value = 0;
+document.RMCform.elements[index].focus();
+}
+}
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="/Forms/rpRManage_1" name="RMCform">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan="3">
+<div align=left class="NaviText"> Remote Management Control </div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">
+<table width="100%" border="1" cellspacing="0" cellpadding="1" align=center>
+<tr align=center>
+<td class="TableTilte" width="30%" height="30"> Server Type</td> <td class="TableTilte" width="25%"> Access Status</td><td class="TableTilte" width="15%"> Port</td><td class="TableTilte" width="30%"> Secured Client IP </td></tr><tr align=center>
+<td class="TableItem" width="30%"> Telnet</td> <td width="25%"> <SELECT NAME="serverTelnetAccess" SIZE="1"><OPTION VALUE=00000000 SELECTED>All
+<OPTION VALUE=00000001>Disable
+<OPTION VALUE=00000002>LAN Only
+<OPTION VALUE=00000003>WAN Only
+</SELECT></td><td width="15%"> <INPUT TYPE="TEXT" NAME="serverTelnetPort" SIZE="5" MAXLENGTH="5" VALUE="23" onBlur="chkPortRange(this.value,1)" onkeypress="chk_num(event)"></td><td width="30%"> <INPUT TYPE="TEXT" NAME="serverTelnetClientIP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)"></td></tr><tr align=center>
+<td class="TableItem" width="30%"> FTP</td> <td width="25%"> <SELECT NAME="serverFtpAccess" SIZE="1"><OPTION VALUE=00000000 SELECTED>All
+<OPTION VALUE=00000001>Disable
+<OPTION VALUE=00000002>LAN Only
+<OPTION VALUE=00000003>WAN Only
+</SELECT></td><td width="15%"> <INPUT TYPE="TEXT" NAME="serverFtpPort" SIZE="5" MAXLENGTH="5" VALUE="21" onBlur="chkPortRange(this.value,4)" onkeypress="chk_num(event)"></td><td width="30%"> <INPUT TYPE="TEXT" NAME="serverFtpClientIP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)"></td></tr>  <tr align=center>
+<td class="TableItem" width="30%"> Web</td> <td width="25%"> <SELECT NAME="serverWebAccess" SIZE="1"><OPTION VALUE=00000000 SELECTED>All
+<OPTION VALUE=00000001>Disable
+<OPTION VALUE=00000002>LAN Only
+<OPTION VALUE=00000003>WAN Only
+</SELECT></td><td width="15%"> <INPUT TYPE="TEXT" NAME="serverWebPort" SIZE="5" MAXLENGTH="5" VALUE="80" onBlur="chkPortRange(this.value,7)" onkeypress="chk_num(event)"></td><td width="30%"> <INPUT TYPE="TEXT" NAME="serverWebClientIP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)"></td></tr> </table></td></tr><tr>
+<td colspan="2">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="SUBMIT" NAME="RManagesubmit1" VALUE="Apply">&nbsp; &nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" > </div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	 </table> </td></tr></table></form>
+</body></html>

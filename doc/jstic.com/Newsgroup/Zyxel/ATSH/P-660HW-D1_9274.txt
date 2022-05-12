@@ -1,0 +1,18 @@
+ZyNOS Version : V3.40(AHF.0)b5 | 3/31/2006 9:25:29
+Bootbase Version : V1.05 | 10/17/2005 11:08:11
+Vendor Name : ZyXEL Communications Corp.
+Product Model : P-660HW-D1
+ZyNOS ROM address : b0010000
+System Type : 7
+MAC Address : 0002CF581395
+Default Country Code : D5
+Boot Module Debug Flag : 00
+RomFile Version : 90
+RomFile Checksum : e762
+ZyNOS Checksum : d0f3
+Core Checksum : e1ff
+SNMP MIB level & OID : 060102030405060708091011121314151617181920
+Main Feature Bits : C0
+Other Feature Bits :
+92 74 00 00 00 00 00 00-00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00-02 41 13 00 00 00 

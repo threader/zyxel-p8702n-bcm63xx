@@ -1,0 +1,167 @@
+ROMIO image start at b0040000
+code version:
+code start: 94014000
+code length: 361556
+memMapTab: 19 entries, start = b0067000, checksum = 7D54
+$RAM Section:
+  0: BootExt(RAMBOOT), start=94014000, len=18000
+  1: HTPCode(RAMCODE), start=9402c000, len=D4001
+  2: RasCode(RAMCODE), start=9402c000, len=FD4000
+$ROM Section:
+  3: BootBas(ROMIMG), start=b0000000, len=10000
+  4: DbgArea(ROMIMG), start=b0010000, len=10000
+  5: RomDir2(ROMDIR), start=b0020000, len=20000
+  6: BootExt(ROMIMG), start=b0040030, len=17FD0
+  7: HTPCode(ROMBIN), start=b0058000, len=F000
+          (Compressed)
+          Version: HTP V1.05, start: b0058030
+          Length: 29B5C, Checksum: B313
+          Compressed Length: D9E8, Checksum: 671B
+  8: MemMapT(ROMMAP), start=b0067000, len=C00
+  9: termcap(ROMIMG), start=b0067c00, len=400
+ 10: tiadsl(ROMBIN), start=b0068000, len=35000
+          (Compressed)
+          Version: ADSL ATU-R, start: b0068030
+          Length: 5B802, Checksum: 89E9
+          Compressed Length: 34C7A, Checksum: A6BA
+ 11: tiwlan(ROMBIN), start=b009d000, len=14C00
+          (Compressed)
+          Version: WLAN, start: b009d030
+          Length: 14B50, Checksum: 4661
+          Compressed Length: E1A2, Checksum: ED5C
+ 12: DSPCode(ROMBIN), start=b00b1c00, len=30000
+          (Compressed)
+          Version: DSP IMAGE, start: b00b1c30
+          Length: 3FD38, Checksum: D8BD
+          Compressed Length: 2A336, Checksum: FB1D
+ 13: RomDefa(ROMIMG), start=b00e1c00, len=20000
+ 14: TR69Cert(ROMBIN), start=b0101c00, len=2000
+          (Compressed)
+          Version: TR69Cert, start: b0101c30
+          Length: 5A2, Checksum: 9797
+          Compressed Length: 418, Checksum: CB80
+ 15: ivrsys(ROMBIN), start=b0103c00, len=10000
+        signature error!
+ 16: RasCode(ROMBIN), start=b0113c00, len=2DC400
+          (Compressed)
+          Version: DSL Surf & Phon, start: b0113c30
+          Length: C31F0C, Checksum: 39C0
+          Compressed Length: 28D955, Checksum: 37CA
+ 17: EeProm(ROMIMG), start=b03f0000, len=10000
+ 18: Reserved(ROMIMG), start=b0400000, len=10000
+$USER Section:
+Msecs   128
+Heap0   16   4096 320
+Heap1   32   4096 320
+Heap2   64   1024 320
+Heap3   128  640 160
+Heap4   192  64 160
+Heap5   256  96 64
+Heap6   320  48 32
+Heap7   384  80  32
+Heap8   448  32  32
+Heap9   512  48  32
+Heap10  576  16  16
+Heap11  1024 256  32
+Heap12  2560 256  32
+Heap13  4096 48  32
+Heap14  4608 28 8
+Heap15  6656 28 4
+Heap16  8192 20 4
+Heap17  20992 32 4
+Heap18  32000 20 4
+Heap19  0 0
+MbufInt 20 20 20
+MbufIO  200 160 800 200 0
+Queue   120
+Cbuf    320
+FuncId  45
+Proc  70
+Timer   192
+NS     128
+Model 1 30464
+FilterSet 12
+IpRoute 16
+IpxRoute 4
+IpMaxRt     128
+IpxMaxRt    128
+IpxMaxSap   128
+FwTos   300 16 16 16
+CommonTos 2560 10 10 10 10 10 10 10 10 10
+AclType0   20480 9  100         #Firewall
+AclType1   2048  8  100         #IPSEC
+AclType2   2048  8  20          #NAT
+AclType3   2048  8  128         #MISC Firewall
+AclType4   2048  8  128         #AVE
+AclType5   4096  8  128         #CYBER PATROL
+AclType6   2048  8  128         #PARENT_CONTROL
+AppleTalkRoute  0
+Bridge          4
+RemoteNode      8
+Profile         32
+Endpoint        4
+NATServerSet    10
+DHCPEntry       254
+DHCPMacNum              10
+PoeSvrCnt       4
+ScheduleSet     12
+AclBuffer       1
+IPSecManualSA   20
+IPSecIkePeer    20
+IPSecIkeSA              20
+IPSecSPD                20
+IPSecAclBuffer  1
+IPSecExtendNum  10
+NatAclBuffer    1
+CustomPort      10
+NatSessions     1024
+IpPolicySet     12
+CoeFixedPart    0
+CpeFixedPart    1
+MiscFirewallBuffer      1
+CyberPatrolBuffer       1
+CyberPatrolListBuffer   1
+TrustedIPNum    0
+AccessSecHost   0
+NatRulePerSet   24
+UPNPNum         1
+IPBUFixpart     1
+AveBuffer       1
+IEEE8021X       1
+Vendor          1 10
+HwVerRange      2 0 0
+WanBackup      1
+ZyCNM 1
+Logs 1
+BmCbqIfNum      10
+BmCbqClassNum   30
+BmCbqFilterNum  30
+VCHuntSet       10
+VCHuntMang      1
+parentCtrlMgnt  1
+parentCtrlUser  6
+parentAge               4
+omTos                  1
+VoiceSignal 10
+VoiceRTP 1
+VoiceFXS 2
+VoicePSTN 10
+VoicePHBOOK 10
+VoiceCommon 1
+VoiceAutoPro 1
+VoiceFXO  1
+VoiceISDNNT  1
+VoiceISDNTE  1
+VoiceForceISDNTE 10
+WlanExt 1
+ZyDaylight      1
+DDNS 1
+AutoSec 1
+VoiceCallFwd 2
+VoiceFXSPhoneBook 2
+DslForumCfg 1
+sptFSCert 128 1024
+CertBuffer 1
+VoiceProfile 1
+
+OK

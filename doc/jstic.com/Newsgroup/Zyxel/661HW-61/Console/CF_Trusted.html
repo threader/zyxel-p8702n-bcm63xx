@@ -1,0 +1,49 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_CF_Trusted.html';
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpCFilter.html" name="CFTrusted" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	
+<tr>
+<td colspan="3" class="NaviText">
+<div>Content Filter - Trusted</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3"><b>Trusted User IP Range</b></td></tr><tr>
+<td width="20"></td><td width="200">
+From :</td><td width="430">
+<INPUT TYPE="TEXT" NAME="cfTrusted_FromIPAddress" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.33" onBlur="checkIPFormat(this)">
+(IP address)
+</td></tr><tr>
+<td width="20"></td><td width="200">
+To :</td><td width="430">
+<INPUT TYPE="TEXT" NAME="cfTrusted_ToIPAddress" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.36" onBlur="checkIPFormat(this)"> (IP address)
+</td></tr><tr>
+<td colspan="3">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="cfTrusted_BackBtn" VALUE="Back" onclick="window.location='rpCFilter.html';"> &nbsp;&nbsp;&nbsp;
+<INPUT TYPE="SUBMIT" NAME="cfTrusted_SaveBtn" VALUE="Apply">&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	 </table></td></tr></table></form>
+</body></html>

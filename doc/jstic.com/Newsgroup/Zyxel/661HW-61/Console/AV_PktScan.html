@@ -1,0 +1,54 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_AV_PktScan.html';
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpAntiVirus.html" name="AVScanform" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan="3" class="NaviText"> Anti Virus - Packet Scan </td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3" class="header2"> Packet Scan Configuration:</td></tr><tr>
+<td width="24"></td><td colspan="2">
+<INPUT TYPE="CHECKBOX" NAME="AVScan_Active" value="ON">Active </td></tr><tr>
+<td width="24" height="20"></td><td width="237" height="20">&nbsp;</td><td width="299" height="20">&nbsp;</td></tr><tr>
+<td width="24"></td><td colspan="2">Choose which application will need to be scanned</td></tr><tr>
+<td width="24"></td><td width="237">
+<INPUT TYPE="CHECKBOX" NAME="AVScan_Email" value="ON">E-Mail </td><td width="299">E-Mail receive and send </td></tr><tr>
+<td width="24"></td><td width="237">
+<INPUT TYPE="CHECKBOX" NAME="AVScan_FTP" value="ON">FTP </td><td width="299">File Transfer </td></tr><tr>
+<td width="24"></td><td width="237"> 
+<INPUT TYPE="CHECKBOX" NAME="AVScan_HTTP" value="ON">HTTP</td><td width="299"> Web browse</td></tr><tr>
+<td colspan="3" class="header2">&nbsp; </td></tr><tr>
+<td width="24"></td><td width="237"> Default action when session overflow</td><td width="299"> <SELECT NAME="AVDef_Session" SIZE="1"><OPTION VALUE=00000000 SELECTED>Forward Packet
+<OPTION VALUE=00000001>Block Packet
+</SELECT></td></tr><tr>
+<td colspan="3" class="header2">&nbsp; </td></tr><tr>
+<td colspan="3" class="header2">Packet Scan Information:</td></tr><tr>
+<td width="24"></td><td width="237">Packet Scan Engine version:</td><td width="299">0.18</td></tr><tr>
+<td width="24"></td><td width="237">Virus Pattern version:</td><td width="299">200411301836</td></tr><tr>
+<td colspan="3" class="header2">&nbsp; </td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="AVScan_BackBtn" VALUE="Back" onclick="window.location='rpAntiVirus.html';"> &nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="AVScan_SaveBtn" VALUE="Apply">&nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	 </table></td></tr></table></form>
+</body></html>

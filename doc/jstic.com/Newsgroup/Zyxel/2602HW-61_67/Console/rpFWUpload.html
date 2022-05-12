@@ -1,0 +1,84 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+<script language=JavaScript>
+top.title.h_Page='h_FirmUp.html';
+function ConfirmDefault()
+{	if (
+confirm("Wollen Sie die Werkseinstellungen wirklich wiederherstellen?  Dadurch wird Ihre persönliche Konfiguration gelöscht.")	)
+{
+document.FW.submit();
+}
+}
+ function popFwNotify() {
+fwnotify=window.open("FWNotify.html" ,"fwnotify"," width=300,height=150,top=200,left=300,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbar=no,resizable=no,cannelmode=no,fullscreen=no");
+}
+function changfwnotify() {
+document.FW.submit();
+}
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM ENCTYPE="multipart/form-data" METHOD="POST" ACTION="/Forms/rpFWUpload_1" name="FW">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan="3">
+<div align=left class="NaviText">FIRMWARE</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr><tr>
+<td colspan="3"><div align=left class="NaviText">Benachrichtigung f&uumlr neue Firmwareupdates</div></td></tr><tr>
+<td >&nbsp;</td><td colspan="2">&nbsp;</td></tr><tr>
+<td >&nbsp;</td><td colspan="2">
+<INPUT TYPE="CHECKBOX" NAME="fwnotify_enable" CHECKED>PopUP Meldung f&uuml;r Firmwareupdate zulassen<INPUT TYPE="SUBMIT" NAME="PopFwnotifyBtn" VALUE="Anwenden"></td></tr><tr>
+<td colspan="3" class="header2">&nbsp;</td></tr><tr>
+<td colspan="3" class="header2"><hr></td></tr> <tr>
+<td colspan="3"><div align=left class="NaviText">Firmware aktualisieren</div></td></tr><tr>
+<td >&nbsp;</td><td colspan="2">&nbsp;</td></tr> <tr>
+<td >&nbsp; </td><td colspan="2">Um die interne Firmware des Routers zu aktualisieren, machen Sie die bin&auml;re Aktualisierungsdatei (.BIN) ausfindig und klicken auf Hochladen.</td></tr><tr>
+<td colspan="3">&nbsp; </td></tr><tr>
+<td width="2%">&nbsp;</td><td width="21%"> Dateiordner:  </td><td><INPUT TYPE="FILE" NAME="mtenFWUpload" SIZE="20" MAXLENGTH="128">&nbsp; &nbsp; &nbsp;<INPUT TYPE="SUBMIT" NAME="UploadBtn" VALUE="Hochladen"></td></tr><tr>
+<td colspan=3>&nbsp;</td></tr>
+<tr>
+<td >&nbsp;</td><td colspan="2">&nbsp;</td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>
+<tr>
+<td colspan="3">
+<div align=left class="NaviText">Werkseinstellungen</div></td></tr><tr>
+<td colspan="3">&nbsp;
+</td></tr><tr>
+<td >&nbsp;</td><td colspan="2" class="header2"> Klicken Sie auf Zur&uuml;cksetzen, um alle benutzerdefinierten Einstellungen zu l&ouml;schen und zu den Werksseitigen zur&uuml;ckzukehren.</td></tr><tr>
+<td width="10">&nbsp;</td><td colspan="2">&nbsp;</td></tr><tr>
+<td colspan="3">
+<div align=center> <INPUT TYPE="BUTTON" NAME="ResetDefault" VALUE="Zur&uuml;cksetzen" onClick="ConfirmDefault()"></div></td></tr><tr>
+<td colspan="3">&nbsp; </td></tr> 
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">&nbsp;</td></tr></table></td></tr></table></form><script language="JavaScript">
+</script>
+
+</body></html>

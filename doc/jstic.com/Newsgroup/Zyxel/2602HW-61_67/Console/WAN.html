@@ -1,0 +1,204 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_WAN.html';
+	function SubnetCheck(I,F)
+	{	
+		if ( !((document.WANform.wan_SubnetMask.value == "0.0.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "128.0.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "192.0.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "224.0.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "240.0.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "248.0.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "252.0.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "254.0.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.0.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.128.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.192.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.224.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.240.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.248.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.252.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.254.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.0.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.128.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.192.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.224.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.240.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.252.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.254.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.255.0")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.255.128")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.255.192")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.255.224")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.255.240")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.255.248")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.255.252")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.255.254")||
+	     	(document.WANform.wan_SubnetMask.value == "255.255.255.255")) )
+		{
+	     		alert("Ungültige Subnetz-Maske ");	    	 	document.WANform.wan_SubnetMask.value = "0.0.0.0";
+		}    
+	}
+
+	function doModeChange(encap){
+		document.WANform.wanModeFlag.value = 1;
+		document.WANform.submit();
+		return;
+	}
+
+	function doEncapChange(encap){
+		document.WANform.wanEncapFlag.value = 1;
+		document.WANform.submit();
+		return;
+	}
+
+	function chkName(){
+	if (WANform.wan_RemoteName.value == "")
+	{
+		alert("Bitte Namen eingeben.");		WANform.wan_RemoteName.value = "ISP_Node";
+	}	
+	}
+
+function chkITimeOut(){
+if((document.forms[0].wan_Encapsulation.selectedIndex != 0) && (document.forms[0].wan_Encapsulation.selectedIndex != 3))
+	return;
+	
+if (document.forms[0].wan_ConnectSel[1].checked)
+	if (document.WANform.wan_IdleTime.value != 0)
+	alert("Enabling Idle Timeout will stop your VOIP service when your PPP/PPPoE connection times out.");
+}	
+
+	function doWANIPAddr(form){
+	
+	if (form.wan_DynIP[0].checked)
+	{
+		form.wan_StaticIP.disabled = true;
+	}
+	else
+	{
+		form.wan_StaticIP.disabled = false;
+		
+	}
+	}
+	function WANChkIdleTime(form) 
+	{
+	if (form.wan_ConnectSel[0].checked)
+	{
+		form.wan_IdleTime.disabled = true;
+	}
+	else
+	{
+		form.wan_IdleTime.disabled = false;
+	}
+	}
+	
+function ReloginCheck(time)
+{
+	if ((time<1) || (time>59)){
+		alert("Die Zeit f&uuml;r die erneute Anmeldung muss zwischen 1 und 59 liegen.");		document.WANform.WAN_TeliaReloginPeriod.value = 1;
+	}
+}
+
+
+function AOLWordCheck(Word)
+{
+	}
+
+// -->
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="/Forms/WAN_1" name="WANform">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="2" class="NaviText" > 
+              <div><b> WAN - WAN Einrichtung</b></div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td width="230" class="header2"><b> Name: </b></td><td width="330"> <INPUT TYPE="TEXT" NAME="wan_RemoteName" SIZE="8" MAXLENGTH="8" VALUE="MyISP" onkeypress="chk_chtNum(event)" onchange="chkName();"></td></tr><tr> 
+            <td width="230" class="header2"><b> Betrieb</b></td><td width="330"> <SELECT NAME="wan_Mode" SIZE="1" onchange="doModeChange(this.selectedIndex)"><OPTION VALUE=00000000 SELECTED>Routing
+<OPTION VALUE=00000001>Bridge
+</SELECT><INPUT TYPE="HIDDEN" NAME="wanModeFlag" VALUE="0"></td></tr><tr> 
+            <td width="230" class="header2"><b> Encapsulation</b></td><td width="330"> <SELECT NAME="wan_Encapsulation" SIZE="1" onchange="doEncapChange(this.selectedIndex)"><OPTION>PPPoA
+<OPTION>RFC 1483
+<OPTION>ENET ENCAP
+<OPTION SELECTED>PPPoE
+</SELECT><INPUT TYPE="HIDDEN" NAME="wanEncapFlag" VALUE="0"></td></tr><tr> 
+            <td width="230" class="header2"><b> Multiplex</b></td><td width="330"> <SELECT NAME="wan_Multiplex" SIZE="1"><OPTION>VC
+<OPTION SELECTED>LLC
+</SELECT></td></tr><tr> 
+            <td colspan="2" class="header2"><b> Virtual-Circuit-ID</b></td></tr><tr> 
+            <td width="230"> &nbsp;&nbsp;&nbsp;VPI</td><td width="330"> <INPUT TYPE="TEXT" NAME="wan_VPI" SIZE="5" MAXLENGTH="5" VALUE="1" onkeypress="chk_num(event)"></td></tr><tr> 
+            <td width="230"> &nbsp;&nbsp;&nbsp;VCI   </td><td width="330"> <INPUT TYPE="TEXT" NAME="wan_VCI" SIZE="5" MAXLENGTH="5" VALUE="32" onkeypress="chk_num(event)"></td></tr><tr> 
+            <td width="230" class="header2"><b>Typ ATM QoS</b></td><td width="330"><SELECT NAME="wan_QoS" SIZE="1"><OPTION>CBR
+<OPTION SELECTED>UBR
+<OPTION>VBR
+</SELECT></td></tr><tr> 
+            <td class="header2" colspan="2"><b>Zellfrequenz</b></td></tr><tr> 
+            <td width="230">&nbsp;&nbsp;&nbsp;
+              Maximale Zellfrequenz            </td><td width="330"><INPUT TYPE="TEXT" NAME="wan_PeakRate" SIZE="4" MAXLENGTH="4" VALUE="0" onkeypress="chk_num(event)">Zellen/s</td></tr><tr> 
+            <td width="230">&nbsp;&nbsp;&nbsp;
+            Dauerhafte Zellfrequenz</td><td width="330"><INPUT TYPE="TEXT" NAME="wan_SustainRate" SIZE="4" MAXLENGTH="4" VALUE="0" onkeypress="chk_num(event)">Zellen/s</td></tr><tr> 
+            <td width="230">&nbsp;&nbsp;&nbsp;
+            Maximale Burst-Gr&ouml;&szlig;e</td><td width="330"><INPUT TYPE="TEXT" NAME="wan_BurstSize" SIZE="5" MAXLENGTH="5" VALUE="0" onkeypress="chk_num(event)"></td></tr>          <tr> 
+            <td colspan="2" class="header2"><b>Anmeldeinformationen</b></td></tr>                              <tr> 
+	    <td width="230">&nbsp;&nbsp;&nbsp;
+            Dienstname    </td><td width="330"> <INPUT TYPE="TEXT" NAME="wan_ServiceName" SIZE="30" MAXLENGTH="31" VALUE=""></td></tr>                              <tr> 
+	    <td width="230">&nbsp;&nbsp;&nbsp;
+            Benutzername     </td><td width="330">             <INPUT TYPE="TEXT" NAME="wan_UserName" SIZE="30" MAXLENGTH="70" VALUE="kaiblume@de.aol.com" onkeypress="chk_chtNumUserName(event)"></td></tr><tr> 
+	    <td width="230">&nbsp;&nbsp;&nbsp; 
+            Kennwort       </td><td width="330"> <INPUT TYPE="PASSWORD" NAME="wan_Password" SIZE="30" MAXLENGTH="70" VALUE="123456" onBlur="AOLWordCheck(this.value)" onkeypress="chk_chtNumUserName(event)"></td></tr>          
+          
+                    <tr> 
+            <td colspan="2" class="header2"><b> IP-Adresse   </b></td></tr>                    <tr> 
+            <td colspan="2"> <INPUT TYPE="RADIO" NAME="wan_DynIP" VALUE="DynamicIP" CHECKED onClick="doWANIPAddr(this.form);">IP-Adresse automatisch beziehen</td></tr><tr> 
+            <td colspan="2"> <INPUT TYPE="RADIO" NAME="wan_DynIP" VALUE="StaticIP" onClick="doWANIPAddr(this.form);">Feste IP-Adresse</td></tr>                    <tr> 
+            <td width="230">&nbsp;&nbsp;&nbsp; 
+            IP-Adresse   </td><td width="330"> <INPUT TYPE="TEXT" NAME="wan_StaticIP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)"></td></tr>                              <tr> 
+            <td colspan="2" class="header2"><b> Verbindung</b></td></tr><tr> 
+            <td colspan="2">            <INPUT TYPE="RADIO" NAME="wan_ConnectSel" VALUE="Conn_Keep_Alive" onClick="WANChkIdleTime(this.form);">Dauerverbindung</td></tr><tr> 
+            <td colspan="2">
+              <INPUT TYPE="RADIO" NAME="wan_ConnectSel" VALUE="Conn_on_Demand" CHECKED onClick="WANChkIdleTime(this.form);">Verbindung trennen nach</td></tr><tr> 
+            <td width="230">&nbsp;&nbsp;&nbsp;
+            Max Leerlaufzeit             </td><td width="330"><INPUT TYPE="TEXT" NAME="wan_IdleTime" SIZE="5" MAXLENGTH="5" VALUE="300" onkeypress="chk_num(event)">Sekunden</td></tr>          	<tr> <td>&nbsp; </td></tr><td width="220"><b> 
+            PPPoE Pass-Through</b></td><td width="330"><SELECT NAME="wan_PPPoE_Pass" SIZE="1" RpPutType="Function" RpPutPtr="WanPPPoEPass"><OPTION VALUE=00000000 SELECTED>Nein
+<OPTION VALUE=00000001>Ja
+</SELECT></td></tr>               <tr>
+  	 <td colspan="2" height="10">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="2"> 
+              <div align=center> 
+                                <INPUT TYPE="BUTTON" NAME="Wan_BackBtn" VALUE="Zur&uuml;ck" onclick="window.location='rpWAN.html';">                                &nbsp;&nbsp;&nbsp;
+                <INPUT TYPE="SUBMIT" NAME="wan_Save_AOL" VALUE="Anwenden">                &nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" ></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form><script language="JavaScript">
+doWANIPAddr(document.forms[0]);WANChkIdleTime(document.forms[0]);</script>
+
+</body></html>

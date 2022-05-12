@@ -1,0 +1,221 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_CF_Schedule.html";
+function doLoad()
+{
+top.buttom.location="buttom.html";
+}
+function chkCustom(form){
+if(form.elements[0].checked == true){
+form.elements[1].checked = false;
+for(i=2; i<44; i=i+6){
+form.elements[i].checked = true;
+form.elements[i].disabled = true;
+form.elements[i+1].disabled = true;
+form.elements[i+2].disabled = true;
+form.elements[i+3].disabled = true;
+form.elements[i+4].disabled = true;
+}
+}
+}
+function chkCustom_1(form){
+if(form.elements[0].checked == true){
+form.elements[1].checked = false;
+for(i=2; i<44; i=i+6){
+form.elements[i].checked = true;
+form.elements[i].disabled = true;
+form.elements[i+1].disabled = true;
+form.elements[i+2].disabled = true;
+form.elements[i+3].disabled = true;
+form.elements[i+4].disabled = true;
+}
+}else{
+form.elements[1].checked = true;
+for(i=2; i<44; i=i+6){
+form.elements[i].checked = false;
+form.elements[i].disabled = false;
+form.elements[i+1].disabled = false;
+form.elements[i+2].disabled = false;
+form.elements[i+3].disabled = false;
+form.elements[i+4].disabled = false;
+}
+}
+}
+function chkCustom_2(form){
+if(form.elements[1].checked == true){
+form.elements[0].checked = false;
+for(i=2; i<44; i=i+6){
+form.elements[i].checked = false;
+form.elements[i].disabled = false;
+form.elements[i+1].disabled = false;
+form.elements[i+2].disabled = false;
+form.elements[i+3].disabled = false;
+form.elements[i+4].disabled = false;
+}
+}else{
+form.elements[0].checked = true;
+for(i=2; i<44; i=i+6){
+form.elements[i].checked = true;
+form.elements[i].disabled = true;
+form.elements[i+1].disabled = true;
+form.elements[i+2].disabled = true;
+form.elements[i+3].disabled = true;
+form.elements[i+4].disabled = true;
+}
+}
+}
+function chkActive(form) {
+for (i=2; i<44; i=i+6){
+if(form.elements[i].checked) {
+form.cfSche_EditDaily.checked = true;
+form.elements[i+1].disabled = false;
+form.elements[i+2].disabled = false;
+form.elements[i+3].disabled = false;
+form.elements[i+4].disabled = false;
+}
+else{
+form.elements[i+1].disabled = true;
+form.elements[i+2].disabled = true;
+form.elements[i+3].disabled = true;
+form.elements[i+4].disabled = true;
+}
+}
+}
+function ChgToCustom(form){
+form.cfSche_Everyday.checked = false;
+form.cfSche_EditDaily.checked = true;
+for(i=2; i<44; i=i+6){
+form.elements[i+1].disabled = false;
+form.elements[i+2].disabled = false;
+form.elements[i+3].disabled = false;
+form.elements[i+4].disabled = false;
+}
+}
+function CheckTimeRange(form){
+var porterror = 0;
+for (i=2; i<44; i=i+6){
+if(form.elements[i].checked == true) {
+startHour = parseInt(form.elements[i+1].value);
+endHour = parseInt(form.elements[i+3].value);
+if (startHour > endHour){
+alert("Start Time can not be greater than End Time");	porterror = 1;
+return;
+}
+startTime = parseInt(form.elements[i+1].value+form.elements[i+2].value);
+endTime = parseInt(form.elements[i+3].value+form.elements[i+4].value);
+if(startTime > endTime){
+alert("Start Time can not be greater than End Time");	porterror = 1;
+return;
+}
+}
+}
+if (porterror == 0)
+document.forms[0].submit();
+}
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/CF_Schedule_1" name="DHCPform" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="CF_Keyword.html" target="main" class="sub"><b><FONT class=NaviText>
+Keyword</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+Schedule</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="CF_Trusted.html" target="main" class="sub"><b><FONT class=NaviText>
+Trusted</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<br /><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr class="cTitle" height="19">
+<td width="3%" class="cTitle"></td><td colspan="2" class="cTitle">
+Schedule</td></tr><tr>
+<td colspan="3">&nbsp; </td></tr></table><table width="90%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td colspan="3">
+<input type="checkbox" name="cfSche_Everyday" checked onClick="chkCustom_1(this.form)" />Block Everyday</td></tr><tr>
+<td colspan="3">
+<input type="checkbox" name="cfSche_EditDaily" onClick="chkCustom_2(this.form)" />Edit Daily to Block</td></tr><tr>
+<td colspan="3" class="header2">&nbsp;</td></tr><tr>
+<td colspan="3" class="header2"> <table width="90%" border="1" align=center cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">
+<tr align=center class="tableTitle">
+<td width="15%" height="23">&nbsp;</td><td width="15%" height="23" class="tableTitle">
+Active</td><td width="26%" height="23" class="tableTitle">
+Start Time</td><td width="22%" height="23" class="tableTitle">
+End Time</td></tr><tr align=center class="tabcolor2">
+<td width="15%">
+Monday</td><td width="15%">
+<input type="checkbox" name="Cf_Activebox" onFocus="ChgToCustom(this.form);" nClick="chkActive(this.form);" /></td><td width="26%">
+<input type="text" name="Cf_hrStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min</td><td width="22%">
+<input type="text" name="Cf_hrEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min<input type="hidden" name="Cf_ProfileIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="15%">
+Tuesday</td><td width="15%">
+<input type="checkbox" name="Cf_Activebox" onFocus="ChgToCustom(this.form);" nClick="chkActive(this.form);" /></td><td width="26%">
+<input type="text" name="Cf_hrStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min</td><td width="22%">
+<input type="text" name="Cf_hrEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min<input type="hidden" name="Cf_ProfileIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="15%">
+Wednesday</td><td width="15%">
+<input type="checkbox" name="Cf_Activebox" onFocus="ChgToCustom(this.form);" nClick="chkActive(this.form);" /></td><td width="26%">
+<input type="text" name="Cf_hrStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min</td><td width="22%">
+<input type="text" name="Cf_hrEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min<input type="hidden" name="Cf_ProfileIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="15%">
+Thursday</td><td width="15%">
+<input type="checkbox" name="Cf_Activebox" onFocus="ChgToCustom(this.form);" nClick="chkActive(this.form);" /></td><td width="26%">
+<input type="text" name="Cf_hrStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min</td><td width="22%">
+<input type="text" name="Cf_hrEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min<input type="hidden" name="Cf_ProfileIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="15%">
+Friday</td><td width="15%">
+<input type="checkbox" name="Cf_Activebox" onFocus="ChgToCustom(this.form);" nClick="chkActive(this.form);" /></td><td width="26%">
+<input type="text" name="Cf_hrStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min</td><td width="22%">
+<input type="text" name="Cf_hrEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min<input type="hidden" name="Cf_ProfileIndex" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td width="15%">
+<font color="red">Saturday</font></td><td width="15%">
+<input type="checkbox" name="Cf_Activebox" onFocus="ChgToCustom(this.form);" nClick="chkActive(this.form);" /></td><td width="26%">
+<input type="text" name="Cf_hrStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min</td><td width="22%">
+<input type="text" name="Cf_hrEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min<input type="hidden" name="Cf_ProfileIndex" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td width="15%">
+<font color="red">Sunday</font></td><td width="15%">
+<input type="checkbox" name="Cf_Activebox" onFocus="ChgToCustom(this.form);" nClick="chkActive(this.form);" /></td><td width="26%">
+<input type="text" name="Cf_hrStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minStart" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min</td><td width="22%">
+<input type="text" name="Cf_hrEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="HourCheck(this)" />hr<input type="text" name="Cf_minEnd" size="20" maxlength="2" value="0" style="width:22" onkeypress="chk_num(event)" onFocus="ChgToCustom(this.form);" onBlur="MinCheck(this)" />min<input type="hidden" name="Cf_ProfileIndex" value="0" /></td></tr></table></td></tr><tr>
+<td colspan="3">&nbsp;</td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" onClick="CheckTimeRange(this.form);" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table></td></tr><tr>
+<td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table><!-- 3D -->
+</td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--
+chkCustom(document.forms[0]);
+showFullPath('Security > Content Filter > Schedule');
+//-->
+</script>
+</html>

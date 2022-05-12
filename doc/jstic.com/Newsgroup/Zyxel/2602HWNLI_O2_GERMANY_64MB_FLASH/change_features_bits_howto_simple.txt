@@ -1,0 +1,13 @@
+ich habe die Feature Bits fr die folgende Firmware P-2602HWNLI-D7A_3.40(ADV.2)C0 fr Register 0 und 1 ausgelesen
+
+Register 0: 9D
+Register 1: 1A
+
+Zum „ndern dieser Bits w„ren es also die bekannten Befehle
+
+ATCB
+ATFE0,9D
+ATFE1,1A
+ATBT1
+ATSB 
+

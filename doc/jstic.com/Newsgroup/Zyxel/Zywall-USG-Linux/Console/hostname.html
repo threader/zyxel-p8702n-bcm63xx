@@ -1,0 +1,195 @@
+<html><head>
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"><title>hostname.html</title><!--script type="text/javascript" src="I18N.js"></script--><!--script>getLangFile()</script-->
+
+
+
+<link rel="stylesheet" href="control.css" type="text/css">
+<link rel="stylesheet" href="zw.css" type="text/css">
+<script type="text/javascript" src="javascript.js"></script>
+<script type="text/javascript" src="javascriptCLI.js"></script>
+<script language="JavaScript">
+<!--
+	var gl = top.frames[1];
+	var rxdata = top.frames[4];
+	var theDataPtr = gl.HnameList;
+	var address = document.URL;
+	var temp = address.split("/");
+	var sessionUrl = temp[2];
+/*======= Help ===========*/
+	gl.Topic= '260000';
+/*======= Help ===========*/	
+	var cmd = "";
+		cmd = compose_CLI(cmd, "show fqdn");
+		cmd = compose_CLI(cmd, "show version");
+		// write flag is 0
+		//gl.nowriteflag = true;
+		txcli(cmd, "hostname.html", 2, "hostname.html");	
+	function getData(){
+		document.hostname.hn_systemname.value = "zywall-usg-200";
+		document.hostname.hn_domainname.value = "";
+		top.document.title= ".:: Welcome to "+"ZyWALL USG 200"+" ::.";
+		displayStr('Ready.');
+	}
+	function setData(){
+		var arg= new Array();
+		var arg_domain = new Array();
+		var clicnt=0;
+		
+		var cmd = Get_CLI( "hostname", 1);
+		 clicnt++;
+		
+		/* set host name */
+		if(document.hostname.hn_systemname.value != ""){
+			if(!chkSysDom(document.hostname.hn_systemname.value, "System Name")) {
+				return;
+			}
+			arg[0] = document.hostname.hn_systemname.value;
+			cmd = compose_CLI(Get_CLI("hostname", 2,arg), cmd);
+			clicnt++;
+		}else {
+			var cmd = compose_CLI(Get_CLI("hostname", 4,arg), cmd);
+			clicnt++;
+		}
+		
+		/* set domain name */	
+		if(document.hostname.hn_domainname.value != "") {
+			if(!chkSysDom(document.hostname.hn_domainname.value, "Domain Name")) {
+				return;
+			}
+			arg_domain[0] = document.hostname.hn_domainname.value;
+			cmd = compose_CLI(Get_CLI("hostname", 3, arg_domain), cmd);	
+			clicnt++;
+		}
+		else{		
+			var cmd = compose_CLI(Get_CLI("hostname", 5, arg_domain), cmd);
+			clicnt++;	
+		}	
+		/* get model type */
+		cmd = compose_CLI(cmd, 'show version');
+		clicnt++;
+		
+		txcli(cmd, "hostname.html", clicnt, "hostname.html");	
+		gl.retbufno = clicnt-2;
+	}
+	
+	function preChk(category, val) {
+		switch(category) {
+			case 'hn_systemname' :
+				if(val != ""){
+					if(!chkSysDom(val, "System Name")) return;
+				}
+				break;
+			case 'hn_domainname' :
+				if(val != "") {
+					if(!chkSysDom(val, "Domain Name")) return;
+				}
+				break;
+		}
+	}
+
+	function chkSysDom(str, msg) {
+		var result = str.match(/^[a-zA-Z0-9-]+[\.a-zA-Z0-9_-]*$/);
+		var ret = true;
+		if(!str) {
+			alert(msg+" is empty.");
+			ret = false;
+		}else if(!result) {
+			alert(msg+" is invalid.");
+			ret = false;
+		}
+		 return ret;
+	}
+	
+	function multi_lingual(wording, filename){
+		//document.write(top.frames[1].getLang(wording, filename));
+	}
+// -->
+</script></head><body leftmargin="0" topmargin="0" onunload="page_init()" ;="" onload=" getData(); showFullPath('System > Host Name');" background="images/config_bg.gif" marginheight="0" marginwidth="0">
+<form name="hostname" method="post">	
+
+<script></script>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td width="2%">&nbsp;</td>
+			<td width="98%">&nbsp;</td>
+		</tr>
+	</tbody></table>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+
+			<td height="18" width="2%">&nbsp;</td>
+			<td height="18">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="2%"></td>
+			<td class="BG4">
+				<!-- 3D -->
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tbody><tr>
+
+						<td rowspan="3" background="images/config_bo_l.gif" width="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+						<td background="images/config_bo_t.gif" height="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+						<td rowspan="3" background="images/config_bo_r.gif" width="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+					</tr>
+					<tr>
+						<td>
+							<!-- 3D -->
+							<div align="center">&nbsp;<br>
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+									<tbody><tr>
+										<td class="BG3" width="2%">&nbsp; </td>
+										<td class="BG3" width="98%"><script>multi_lingual("_General_Setup", "_globalTag")</script>General Settings</td>
+									</tr>
+								</tbody></table><br>
+								<table border="0" cellpadding="0" cellspacing="0" width="96%">
+									<tbody><tr>
+
+										<td width="41%"><script>multi_lingual("_System_Name", "_hostname")</script>System Name</td>
+										<td width="59%">
+											<input name="hn_systemname" size="32" maxlength="64" value="" onchange="preChk('hn_systemname', this.value);" type="text">&nbsp;<script>multi_lingual("_Optional", "_hostname")</script>(Optional)
+										</td>
+									</tr>
+									<tr>
+										<td width="41%"><script>multi_lingual("_Domain_Name", "_hostname")</script>Domain Name</td>
+
+										<td width="59%">
+											<input name="hn_domainname" size="32" maxlength="255" value="" onchange="preChk('hn_domainname', this.value);" type="text">&nbsp;<script>multi_lingual("_Optional", "_hostname")</script>(Optional)
+										</td>
+									</tr>
+								</tbody></table>
+								<table border="0" cellpadding="0" cellspacing="0" width="300">
+									<tbody><tr><td>&nbsp;</td></tr>
+									<tr align="center">
+										<td background="images/wg_dotline.gif">&nbsp;</td>
+
+									</tr>
+									<tr>
+										<td align="center">
+											<input name="Submit" value="Apply" onclick="setData()" type="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<input name="Reset" value="Reset" onclick="getEthReloadEntry();" type="reset">
+										</td>
+									</tr>
+									<tr><td height="35">&nbsp;</td></tr>
+								</tbody></table>
+
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td background="images/config_bo_b.gif" height="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+					</tr>
+				</tbody></table>
+				<!-- 3D -->
+			</td>
+
+		</tr>
+	</tbody></table>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr><td>&nbsp;</td></tr>
+		<tr><td>&nbsp;</td></tr>
+	</tbody></table>
+</form>
+</body></html>

@@ -1,0 +1,66 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_WANBackup.html';
+// -->
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="/Forms/wanBackup_1" name="WanBackupForm">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="3" class="NaviText"> 
+              WAN-Backup-Einrichtung            </td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="2"> Backup-Typ </td><td width="354"> <SELECT NAME="WanBK_Type" SIZE="1" RpPutType="Function" RpPutPtr="WanBK_TypePut"><OPTION SELECTED>DSL Link
+<OPTION>ICMP
+</SELECT></td></tr><tr> 
+            <td colspan="2"> Folgende WAN-IP-Adresse pr&uuml;fen1</td><td width="354"><INPUT TYPE="TEXT" NAME="WanBK_ChkIP1" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)"></td></tr><tr> 
+            <td colspan="2"> Folgende WAN-IP-Adresse pr&uuml;fen2</td><td width="354"><INPUT TYPE="TEXT" NAME="WanBK_ChkIP2" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)"></td></tr><tr> 
+            <td colspan="2"> Folgende WAN-IP-Adresse pr&uuml;fen3</td><td width="354"><INPUT TYPE="TEXT" NAME="WanBK_ChkIP3" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)"></td></tr><tr> 
+            <td colspan="2"> Max. Wiederholungen</td><td width="354"><INPUT TYPE="TEXT" NAME="WanBK_FailTol" SIZE="6" MAXLENGTH="1" VALUE="0" onkeypress="chk_num(event)"></td></tr><tr> 
+            <td colspan="2"> Wiederherstellungsintervall</td><td width="354"> <INPUT TYPE="TEXT" NAME="WanBK_Recovery" SIZE="6" MAXLENGTH="6" VALUE="0" onkeypress="chk_num(event)">Sekunden</td></tr><tr> 
+            <td colspan="2"> Zeit&uuml;berlauf</td><td width="354"> <INPUT TYPE="TEXT" NAME="WanBK_Timeout" SIZE="6" MAXLENGTH="1" VALUE="0" onkeypress="chk_num(event)">Sekunden</td></tr><tr> 
+            <td colspan="3">&nbsp;</td></tr><tr> 
+            <td colspan="3"> 
+              <table width="100%" border="0">                <tr valign=top> 
+                  <td><table width="98%" border="0">
+                      <tr> 
+                        <td colspan="3"><b>Traffic-Re-Direct</b></td></tr><tr> 
+                        <td width="1">&nbsp;</td><td colspan="2"><INPUT TYPE="CHECKBOX" NAME="WanBK_TrafficActive">Aktiviert</td></tr><tr> 
+                        <td width="1">&nbsp;</td><td width="103">Metric</td><td width="173"><INPUT TYPE="TEXT" NAME="WanBK_Metric" SIZE="2" MAXLENGTH="2" VALUE="15" onkeypress="chk_num(event)"></td></tr><tr> 
+                        <td width="1">&nbsp;</td><td width="103">Backup-Gateway </td><td width="173"><INPUT TYPE="TEXT" NAME="WanBK_Gateway" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)"></td></tr></table></td>                                  </tr></table></td></tr><tr> 
+            <td colspan="3">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <div align=center> 
+                <INPUT TYPE="BUTTON" NAME="WanBK_BackBtn" VALUE="Zur&uuml;ck" onclick="window.location='rpWAN.html';">                &nbsp;&nbsp;&nbsp;<b> <INPUT TYPE="SUBMIT" NAME="WanBK_SaveBtn" VALUE="Anwenden">&nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" ></b></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form>
+</body></html>

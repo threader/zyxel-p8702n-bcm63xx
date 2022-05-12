@@ -1,0 +1,88 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+
+<SCRIPT language="JavaScript">
+<!--
+top.title.h_Page='h_PhoneBook.html';
+function MydoSubmit() {
+document.forms[0].submit();
+}
+function ProxyCheck(){
+if(document.VoIP_SpeedDial.SpeedDial_Proxy[0].checked==true){
+document.VoIP_SpeedDial.Proxy_Name.value="";
+document.VoIP_SpeedDial.Proxy_Name.disabled=1;
+}
+else {
+document.VoIP_SpeedDial.Proxy_Name.disabled=0;
+}
+}
+function NonProxyCheck(){
+if(document.VoIP_SpeedDial.SpeedDial_Proxy[1].checked==true)
+document.VoIP_SpeedDial.Proxy_Name.disabled=0;
+else
+document.VoIP_SpeedDial.Proxy_Name.disabled=1;
+}
+function SelectButton(index)
+{
+document.VoIP_SpeedDial.SpeedDial_RuleIndex.value = index;
+}
+// -->
+  </SCRIPT>
+<link rel="stylesheet" href="control.css" type="text/css">
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="VoIP_SpeedDial.html" name="VoIP_SpeedDial" target="main"><table cellspacing=0 cellpadding=0 width="100%" bgColor=#ffffff border=0>
+<TBODY>
+<tr>
+<TD width="10%">&nbsp;</td><td colspan=3 bgcolor=white height="16"><font class="NaviText"><b>
+Sprache - Kurzwahl</b></font>
+</td><td>&nbsp;</td></tr><tr>
+<TD width="10%">&nbsp;</td><TD bgColor=#ffffff>
+<div align=center></div><div align=center>
+<hr><table cellspacing=0 cellpadding=0 width="80%" border=0>
+<TBODY>
+<tr>
+<td><b>Neuen Eintrag erstellen</b></td></tr></TBODY></table><hr><table width="86%" border="1" cellpadding="3" cellspacing="1">
+<tr bgcolor="#FFFFCC">
+<td width="15%"><div align=center>Kurzwahl</td><td width="22%"><div align=center>SIP Nummer</td><td width="17%"><div align=center>Name</td><td width="36%"><div align=center>Typ</td><td width="10%">&nbsp;</td></tr><tr>
+<td width="15%" rowspan="2" align=center>
+<SELECT NAME="SpeedDial_Number" SIZE="1"><OPTION VALUE=0 SELECTED>#01
+<OPTION VALUE=1>#02
+<OPTION VALUE=2>#03
+<OPTION VALUE=3>#04
+<OPTION VALUE=4>#05
+<OPTION VALUE=5>#06
+<OPTION VALUE=6>#07
+<OPTION VALUE=7>#08
+<OPTION VALUE=8>#09
+<OPTION VALUE=9>#10
+</SELECT></td><td width="22%" rowspan="2">
+<INPUT TYPE="TEXT" NAME="SpeedDial_SIPNumber" SIZE="20" MAXLENGTH="95" VALUE=""></td><td width="17%" rowspan="2">
+<INPUT TYPE="TEXT" NAME="SpeedDial_Name" SIZE="15" MAXLENGTH="95" VALUE=""> </td><td width="36%">
+<INPUT TYPE="RADIO" NAME="SpeedDial_Proxy" VALUE="0" CHECKED onClick="ProxyCheck()">	&Uuml;ber Server w&auml;hlen</td><td rowspan="2" width="10%">
+<div align=center>
+<INPUT TYPE="SUBMIT" NAME="SpeedDial_Add" VALUE="Hinzuf&uuml;gen"> </div></td></tr><tr valign=top>
+<td width="36%">
+<INPUT TYPE="RADIO" NAME="SpeedDial_Proxy" VALUE="1" onClick="ProxyCheck()">	Direkt (IP Adresse oder URL nutzen)<br><INPUT TYPE="TEXT" NAME="Proxy_Name" SIZE="35" MAXLENGTH="127" VALUE="" onFocus="NonProxyCheck()"> </td></tr></table><br><hr><table cellspacing=0 cellpadding=0 width="80%" border=0>
+<tbody>
+<tr>
+<td><b>Kurzwahl Telefonbuch</b></td></tr></tbody>
+</table><hr><table width="82%" border="1" cellpadding="3" cellspacing="1">
+<tr bgcolor="#FFFFCC">
+<td width="14%"><div align=center>Kurzwahl</td><td width="24%"><div align=center>SIP Nummer</td><td width="17%"><div align=center>Name</td><td width="24%"><div align=center>Ziel</td><td width="21%">&nbsp;</td></tr> <tr>	<td width= 14%><div align="center">	#01	</td>	<td width=24%><div align="center">	Voip-Nr.	</td>	<td width= 17%><div align="center">	SIP_FWD	</td>	<td width=24%><div align="center">	fwd.pulver.com	</td>	<td width=21%> <div align=center> 	<input type="button" name=SpeedDial_Delect value=L&ouml;schen onClick="SelectButton(3) ; MydoSubmit();" >	<input type="button" name=SpeedDial_Edit value=&Auml;ndern onClick="SelectButton(13) ; MydoSubmit();" >	</div> </td> 	</tr> <tr>	<td width= 14%><div align="center">	#02	</td>	<td width=24%><div align="center">	Voip-Nr.	</td>	<td width= 17%><div align="center">	SIP_KK	</td>	<td width=24%><div align="center">	sipgate.de	</td>	<td width=21%> <div align=center> 	<input type="button" name=SpeedDial_Delect value=L&ouml;schen onClick="SelectButton(4) ; MydoSubmit();" >	<input type="button" name=SpeedDial_Edit value=&Auml;ndern onClick="SelectButton(14) ; MydoSubmit();" >	</div> </td> 	</tr> <tr>	<td width= 14%><div align="center">	#03	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width= 17%><div align="center">	&nbsp;	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width=21%> <div align=center> 	<input type="button" name=SpeedDial_Delect value=L&ouml;schen onClick="SelectButton(5) ; MydoSubmit();" >	<input type="button" name=SpeedDial_Edit value=&Auml;ndern onClick="SelectButton(15) ; MydoSubmit();" >	</div> </td> 	</tr> <tr>	<td width= 14%><div align="center">	#04	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width= 17%><div align="center">	&nbsp;	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width=21%> <div align=center> 	<input type="button" name=SpeedDial_Delect value=L&ouml;schen onClick="SelectButton(6) ; MydoSubmit();" >	<input type="button" name=SpeedDial_Edit value=&Auml;ndern onClick="SelectButton(16) ; MydoSubmit();" >	</div> </td> 	</tr> <tr>	<td width= 14%><div align="center">	#05	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width= 17%><div align="center">	&nbsp;	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width=21%> <div align=center> 	<input type="button" name=SpeedDial_Delect value=L&ouml;schen onClick="SelectButton(7) ; MydoSubmit();" >	<input type="button" name=SpeedDial_Edit value=&Auml;ndern onClick="SelectButton(17) ; MydoSubmit();" >	</div> </td> 	</tr> <tr>	<td width= 14%><div align="center">	#06	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width= 17%><div align="center">	&nbsp;	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width=21%> <div align=center> 	<input type="button" name=SpeedDial_Delect value=L&ouml;schen onClick="SelectButton(8) ; MydoSubmit();" >	<input type="button" name=SpeedDial_Edit value=&Auml;ndern onClick="SelectButton(18) ; MydoSubmit();" >	</div> </td> 	</tr> <tr>	<td width= 14%><div align="center">	#07	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width= 17%><div align="center">	&nbsp;	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width=21%> <div align=center> 	<input type="button" name=SpeedDial_Delect value=L&ouml;schen onClick="SelectButton(9) ; MydoSubmit();" >	<input type="button" name=SpeedDial_Edit value=&Auml;ndern onClick="SelectButton(19) ; MydoSubmit();" >	</div> </td> 	</tr> <tr>	<td width= 14%><div align="center">	#08	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width= 17%><div align="center">	&nbsp;	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width=21%> <div align=center> 	<input type="button" name=SpeedDial_Delect value=L&ouml;schen onClick="SelectButton(10) ; MydoSubmit();" >	<input type="button" name=SpeedDial_Edit value=&Auml;ndern onClick="SelectButton(20) ; MydoSubmit();" >	</div> </td> 	</tr> <tr>	<td width= 14%><div align="center">	#09	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width= 17%><div align="center">	&nbsp;	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width=21%> <div align=center> 	<input type="button" name=SpeedDial_Delect value=L&ouml;schen onClick="SelectButton(11) ; MydoSubmit();" >	<input type="button" name=SpeedDial_Edit value=&Auml;ndern onClick="SelectButton(21) ; MydoSubmit();" >	</div> </td> 	</tr> <tr>	<td width= 14%><div align="center">	#10	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width= 17%><div align="center">	&nbsp;	</td>	<td width=24%><div align="center">	&nbsp;	</td>	<td width=21%> <div align=center> 	<input type="button" name=SpeedDial_Delect value=L&ouml;schen onClick="SelectButton(12) ; MydoSubmit();" >	<input type="button" name=SpeedDial_Edit value=&Auml;ndern onClick="SelectButton(22) ; MydoSubmit();" >	</div> </td> 	</tr> </table><INPUT TYPE="HIDDEN" NAME="SpeedDial_RuleIndex" VALUE="2"> <p>Telefonbuch l&ouml;schen	<br><INPUT TYPE="SUBMIT" NAME="SpeedDial_Clear" VALUE="L&ouml;schen"> </p><hr><div align=center></div></div></td><TD width="9%">&nbsp;</td></tr></TBODY></table></form>
+</body></html>

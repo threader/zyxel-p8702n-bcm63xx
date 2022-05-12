@@ -1,0 +1,391 @@
+<html><head>
+<meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="Microsoft FrontPage 5.0">
+<link rel="stylesheet" href="control.css" type="text/css">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var interval = 60
+
+top.header.szHelp="h_home.html";
+function dosubmit()
+{
+	document.Home.submit();
+}
+function setDefaultInterval()
+{
+	clearInterval(intervalId);
+	if(document.Home.Sys_Refrash.value == 1) {
+		intervalId = setInterval("dosubmit()", 5000);
+	}
+	else if(document.Home.Sys_Refrash.value == 2) {
+		intervalId = setInterval("dosubmit()", 10000);
+	}
+	else if(document.Home.Sys_Refrash.value == 3) {
+		intervalId = setInterval("dosubmit()", 15000);
+	}
+	else if(document.Home.Sys_Refrash.value == 4) {
+		intervalId = setInterval("dosubmit()", 20000);
+	}
+	else if(document.Home.Sys_Refrash.value == 5) {
+		intervalId = setInterval("dosubmit()", 25000);
+	}
+	else if(document.Home.Sys_Refrash.value == 6) {
+		intervalId = setInterval("dosubmit()", 30000);
+	}
+clearInterval(intervalId2);
+}
+
+function doLoad(){
+
+}
+function doOpenWindow(id){
+	switch (id)
+	{
+	case 1:
+	window.open('VPN_Monitor1.html', '', 'width=650,height=460,status=yes,scrollbars=yes,resizable=yes');
+	break;
+	case 2:
+	window.open('rpDHCP.html', '', 'width=650,height=460,status=yes,scrollbars=yes,resizable=yes');
+	break;
+	case 3:
+	window.open('rpAnyIP.html', '', 'width=650,height=460,status=yes,scrollbars=yes,resizable=yes');
+	break;
+	case 4:
+	window.open('WMten_AList.html', '', 'width=650,height=460,status=yes,scrollbars=yes,resizable=yes');
+	break;
+	case 5:
+	window.open('BW_StatusFrame.html', '', 'width=760,height=550,status=yes,scrollbars=yes,resizable=yes');
+	break;
+	case 6:
+	window.open('VPN_Monitor1.html', '', 'width=650,height=460,status=yes,scrollbars=yes,resizable=yes');
+	break;
+	case 7:
+	window.open('SystStatusFrame.html', '', 'width=650,height=460,status=yes,scrollbars=yes,resizable=yes');
+	break;
+	case 8:
+	window.open('VoIP_SysStatusFrame.html', '', 'width=760,height=460,status=yes,scrollbars=yes,resizable=yes');
+	break;
+	}
+}
+
+var whichDayNum;
+var BigMon=new Array('1','3','5','7','8','10','12');
+var SmallMon=new Array('4','6','9','11');
+var Hour, Min, Sec;
+var Year, Mon, Day;
+function IncreaseSec()
+{
+        Sec = parseInt(document.Home.HomeCurrent_Sec.value);
+        Sec = Sec + 1;
+        if ( Sec < 60 )
+        {
+            document.Home.HomeCurrent_Time.value = DateAndTimeFormat(Hour) + ":"+ DateAndTimeFormat(Min) +":" + DateAndTimeFormat(Sec);
+            document.Home.HomeCurrent_Sec.value = Sec;
+            setTimeout('IncreaseSec()', 1000);
+            return ;
+        }
+        
+        document.Home.HomeCurrent_Sec.value = 0;Sec=0;
+        Min = parseInt(document.Home.HomeCurrent_Min.value);
+        Min = Min + 1;
+        if ( Min < 60 )
+        {
+            document.Home.HomeCurrent_Time.value = DateAndTimeFormat(Hour) + ":"+ DateAndTimeFormat(Min) +":" + DateAndTimeFormat(Sec);
+            document.Home.HomeCurrent_Min.value = Min;
+            setTimeout('IncreaseSec()', 1000);
+            return;
+        }
+	
+        document.Home.HomeCurrent_Min.value = 0;Min=0;
+        Hour = parseInt(document.Home.HomeCurrent_Hour.value);
+        Hour = Hour + 1;
+        if ( Hour < 24 )
+        {
+            document.Home.HomeCurrent_Time.value = DateAndTimeFormat(Hour) + ":"+ DateAndTimeFormat(Min) +":" + DateAndTimeFormat(Sec);
+            document.Home.HomeCurrent_Hour.value = Hour;
+            setTimeout('IncreaseSec()', 1000);
+            return;
+        }
+        document.Home.HomeCurrent_Time.value = "00 : 00 : 00";
+        document.Home.HomeCurrent_Hour.value = 0;Hour=0;
+        Day = parseInt(document.Home.HomeCurrent_Day.value);
+        Day = Day + 1;        
+        Mon = parseInt(document.Home.HomeCurrent_Mon.value);
+        Year = parseInt(document.Home.HomeCurrent_Year.value);
+		
+		for(var i=0;i<BigMon.length;i++)
+			if(Mon.value==BigMon[i]) whichDayNum=31;
+		for(var i=0;i<SmallMon.length;i++)
+			if(Mon.value==SmallMon[i]) whichDayNum=30;
+		if((Year.value%4)==0)
+			whichDayNum=29;
+		else
+			whichDayNum=28;
+		
+        if ( Day <= whichDayNum )
+        {
+	    document.Home.HomeCurrent_Date.value = DateAndTimeFormat(Mon) +"/" + DateAndTimeFormat(Day)+ "/" + Year;
+            document.Home.HomeCurrent_Day.value = Day;
+            setTimeout('IncreaseSec()', 1000);
+            return;
+	}
+		
+        document.Home.HomeCurrent_Day.value = 1;Day=1;
+        Mon = parseInt(document.Home.HomeCurrent_Mon.value);
+        Mon = Mon + 1;
+
+        if ( Mon <= 12 )
+        {
+	    document.Home.HomeCurrent_Date.value = DateAndTimeFormat(Mon) +"/" + DateAndTimeFormat(Day) + "/" + Year;
+            document.Home.HomeCurrent_Mon.value = Mon;
+            setTimeout('IncreaseSec()', 1000);
+            return;
+	}
+
+        document.Home.HomeCurrent_Mon.value = 1;Mon=1;
+        Year = parseInt(document.Home.HomeCurrent_Year.value);
+        Year = Year + 1;
+
+        if ( Year < 10000)
+        {
+	    document.Home.HomeCurrent_Date.value = DateAndTimeFormat(Mon) +"/" + DateAndTimeFormat(Day) + "/" + Year;
+            document.Home.HomeCurrent_Year.value = Year;
+            setTimeout('IncreaseSec()', 1000);
+            return;
+	}
+
+        document.Home.HomeCurrent_Year.value = 1900;Year=1900;
+
+        this.location = "home.html";
+        return;
+}
+function initDateAndTime()
+{
+	Hour=parseInt(document.Home.HomeCurrent_Hour.value);
+	Min=parseInt(document.Home.HomeCurrent_Min.value);
+	Sec=parseInt(document.Home.HomeCurrent_Sec.value);
+	Year=parseInt(document.Home.HomeCurrent_Year.value);
+	Mon=parseInt(document.Home.HomeCurrent_Mon.value);
+	Day=parseInt(document.Home.HomeCurrent_Day.value);
+        document.Home.HomeCurrent_Time.value = DateAndTimeFormat(Hour) + ":"+ DateAndTimeFormat(Min) +":" + DateAndTimeFormat(Sec);
+        document.Home.HomeCurrent_Date.value = DateAndTimeFormat(Mon) +"/" + DateAndTimeFormat(Day) + "/" + Year;
+}
+function DateAndTimeFormat(num)
+{
+	if(String(parseInt(num)).length==1)
+		return "0"+num;
+	else 
+		return num;
+}
+
+
+function showStatusPath(str){
+	fr =2;
+	parent.frames[fr].document.open();
+	parent.frames[fr].document.writeln(' <html><head><meta http-equiv=\"Content-Type\" content=\"text\/html; charset=iso-8859-1\">\r\n<style type=\"text\/css\">\r\n');
+	parent.frames[fr].document.writeln(' body {\r\n\tfont-family: Verdana, Arial, Helvetica, sans-serif;\tcolor: #FFFFFF;\tmargin: 0px;\tfont-weight: bold;}');
+	parent.frames[fr].document.writeln(' .path {\tfont-family: Verdana, Arial, Helvetica, sans-serif;\tfont-size: 11px;\tfont-weight: bold;\tcolor: #FFFFFF;}\r\n</style>');	
+	parent.frames[fr].document.writeln(' <\/head><body background=\"Images\/full_path_bg.gif\"><table width=\"100%\"  border=\"0\" cellspacing=\"0\" cellpadding=\"0\"><tr><td height=\"19\" class=\"path\">&nbsp;<img src=\"Images\/dot_2.gif\" width=\"12\" height=\"12\"  align=\"absmiddle\">&nbsp;'+str+'<\/td><\/tr><\/table><\/body><\/html>');	
+	parent.frames[fr].document.close();
+}
+
+function SelectSIPToReg(index)
+{
+	document.forms[0].SIPIndex.value = index;
+	document.forms[0].submit();
+}
+// -->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/home_1" name="Home"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td height="1" colspan="2" bgcolor="#A7A7A7"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr> 
+<td width="42" align=center>&nbsp;</td><td><table width="99%"  border="0" cellspacing="0" cellpadding="0">
+<tr align=right> 
+<td colspan="2"><table width="380"  border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="65%" height="26" background="Images/refresh_bg.gif">&nbsp;&nbsp;<font color="#58586F"> 
+Refresh Interval: 
+<select name="Sys_Refrash" size="1" RpPutType="Function" RpPutPtr="Sys_Refrash">
+<option value=00000000 selected>None
+<option value=00000001>5 seconds
+<option value=00000002>10 seconds
+<option value=00000003>15 seconds
+<option value=00000004>20 seconds
+<option value=00000005>25 seconds
+<option value=00000006>30 seconds
+</select></font></td><td align=center background="Images/refresh_bg.gif"> 
+<input type="submit" name="sysSubmit" value="Apply" /></td></tr></table></td></tr><tr> 
+<td height="18" colspan="2">&nbsp;</td></tr><tr> 
+<td width="50%"><table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> 
+Device Information</td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table></td><td><table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> 
+System Status</td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table></td></tr><tr> 
+<td valign=top><table width="94%"  border="0" cellspacing="0" cellpadding="2">
+<tr> 
+<td bgcolor="#FFFFFF"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<tr class="ds_tab_bg1"> 
+<td>&nbsp;</td><td>&nbsp;</td><td width="53%">&nbsp;</td></tr><tr class="ds_tab_bg2"> 
+<td width="3%" height="17">&nbsp;</td><td width="44%"> 
+Host Name:</td><td><a href="rpSysAdmin.html"> 
+P-2602HWNLI-D7A</a></td></tr><tr class="ds_tab_bg2"> 
+<td height="17">&nbsp;</td><td>Model Number: </td><td class="ds_text"> 
+P-2602HWNLI-D7A</td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>MAC Address:</td><td class="ds_text"> 
+00:13:49:49:63:31</td></tr><tr class="ds_tab_bg2"> 
+<td height="17">&nbsp;</td><td>ZyNOS Firmware Version: </td><td class="ds_text"><a href="rpFWUpload.html"> 
+V3.40(ADV.1)b1 | 7/19/2006</a></td></tr><tr class="ds_tab_bg1"> 
+<td>&nbsp;</td><td>DSL Firmware Version: </td><td class="ds_text"> 
+TI AR7 06.00.04.00</td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>WAN Information</td><td class="ds_text">&nbsp; </td></tr><tr class="ds_tab_bg2"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+DSL Mode: </td><td class="ds_text"> 
+ADSL_G.dmt</td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+IP Address: </td><td class="ds_text"><a href="WAN.html"> 
+172.158.16.222</a></td></tr><tr class="ds_tab_bg2"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+IP Subnet Mask:</td><td class="ds_text"> 
+255.255.255.255</td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+Default Gateway:</td><td class="ds_text"> 
+N/A</td></tr><tr class="ds_tab_bg2"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+VPI/VCI:</td><td class="ds_text"> 
+1/32</td></tr><tr class="ds_tab_bg1"> 
+<td>&nbsp;</td><td>LAN Information</td><td class="ds_text">&nbsp;</td></tr><tr class="ds_tab_bg2"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+IP Address:</td><td class="ds_text"><a href="LAN_IP.html"> 
+192.168.5.1</a></td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+IP Subnet Mask:</td><td class="ds_text"> 
+255.255.255.0</td></tr><tr class="ds_tab_bg2"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+DHCP:</td><td class="ds_text"><a href="LAN_DHCPSetup.html"> 
+Server</a></td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>WLAN Information</td><td>&nbsp;</td></tr><tr class="ds_tab_bg2"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+SSID:</td><td class="ds_text"><a href="WLAN.html"> 
+P-2602HWNLI-D7A-kk</a></td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+Channel:</td><td class="ds_text"> 
+1</td></tr><tr class="ds_tab_bg2"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+Security:</td><td class="ds_text"> 
+WPA2-PSK</td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>Security</td><td>&nbsp;</td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+Firewall:</td><td class="ds_text"> <a href="Firewall_DefPolicy.html"> 
+Enabled</a></td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;- 
+Content Filter:</td><td class="ds_text"> <a href="CF_Keyword.html"> 
+Enabled</a></td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></table></td></tr></table></td><td valign=top><table width="94%"  border="0" cellspacing="0" cellpadding="2">
+<tr> 
+<td bgcolor="#FFFFFF"> <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<tr class="ds_tab_bg1"> 
+<td>&nbsp;</td><td>&nbsp;</td><td colspan="2">&nbsp;</td></tr><tr class="ds_tab_bg1"> 
+<td width="1%" height="17">&nbsp;</td><td width="39%"> 
+System Uptime:</td><td colspan="2" class="ds_text"> 
+   60:36:03</td></tr><tr class="ds_tab_bg2"> 
+<td >&nbsp;</td><td>Current Date/Time:</td><td colspan="2" > 
+<input type="text" name="HomeCurrent_Date" size="10" maxlength="15" value="" readOnly class="dispDate" /><input type="hidden" name="HomeCurrent_Mon" value="8" class="dispDate" /><input type="hidden" name="HomeCurrent_Day" value="27" class="dispDate" /><input type="hidden" name="HomeCurrent_Year" value="2006" class="dispDate" /><input type="text" name="HomeCurrent_Time" size="8" maxlength="12" value="" readOnly class="dispDate" /><input type="hidden" name="HomeCurrent_Hour" value="11" /><input type="hidden" name="HomeCurrent_Min" value="28" /><input type="hidden" name="HomeCurrent_Sec" value="3" /></td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>System Mode:</td><td colspan="2" class="ds_text"> 
+Routing / <font color="#9A9A9A">Bridging</font></td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td class="ds_tab_bg2"> 
+CPU Usage:</td><td width="30%" class="ds_tab_bg2"><table width="100%"  border="0" cellspacing="0" cellpadding="1">
+<tr> 
+<td bgcolor="#000000"> <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td background="Images/percent_bg.gif"><img src="Images/percent_bar.gif" width="17" height="13"></td></tr></table></td></tr></table></td><td width="30%" class="ds_tab_bg2">&nbsp; 
+ 16.82%</td></tr><tr class="ds_tab_bg2"> 
+<td height="17">&nbsp;</td><td class="ds_tab_bg1"> 
+Memory Usage:</td><td class="ds_tab_bg1"><table width="100%"  border="0" cellspacing="0" cellpadding="1">
+<tr> 
+<td bgcolor="#000000"> <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td background="Images/percent_bg.gif"><img src="Images/percent_bar.gif" width=" 37" height="13"></td></tr></table></td></tr></table></td><td class="ds_tab_bg1">&nbsp; 
+ 37%</td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td class="ds_tab_bg2">&nbsp;</td><td colspan="2" class="ds_tab_bg2">&nbsp;</td></tr></table></td></tr></table><br /><table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td ><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> 
+Interface Status</td><td ><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table><table width="97%"  border="0" cellspacing="0" cellpadding="2">
+<tr> 
+<td bgcolor="#FFFFFF"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<tr class="ds_tab_bg1"> 
+<td width="3%">&nbsp;</td><td>&nbsp;</td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td><table width="95%"  border="1" align=center cellpadding="5" cellspacing="0" bordercolor="#FFFFFF">
+<tr align=center class="tableTitle_1"> 
+<td width="10%" height="23" class = tableTitle> 
+Interface</td><td width="17%" class = tableTitle> 
+Status</td><td width="18%" class = tableTitle> 
+Rate</td></tr><tr align=center class = tabcolor2 bgcolor="#FFFFFF"> 
+<td>DSL</td><td>Up			 </td><td> 6656 kbps /   640 kbps</td></tr><tr align=center class = tabcolor1> 
+<td>LAN</td><td>Up</td><td>100M/Full Duplex</td></tr><tr align=center class = tabcolor2> 
+<td>WLAN</td><td>Active</td><td>G+</td></tr></table></td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>&nbsp;</td></tr></table></td></tr></table><br /><table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> 
+Summary</td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table><table width="97%"  border="0" cellspacing="0" cellpadding="2">
+<tr> 
+<td bgcolor="#FFFFFF"> <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<tr class="ds_tab_bg1"> 
+<td height="19">&nbsp;</td><td colspan="3">&nbsp;</td></tr><tr class="ds_tab_bg2"> 
+<td width="3%" height="17">&nbsp;</td><td width="47%"> 
+<a href="LAN_ClientList.html">Client List</a></td><td width="3%">&nbsp;</td><td width="47%"> 
+<a href="javascript: doOpenWindow(3);">AnyIP Table</a></td></tr><tr class="ds_tab_bg1"> 
+<td width="3%" height="17">&nbsp;</td><td width="47%"> 
+<a href="javascript: doOpenWindow(4);">WLAN Status</a></td><td width="3%">&nbsp;</td><td width="47%"> 
+<a href = "BW_monitor.html">Bandwidth Status</a></td></tr><tr class="ds_tab_bg2"> 
+<td width="3%" height="17">&nbsp;</td><td width="47%"> 
+<a href = "VPN_Monitor.html">VPN Status</a></td><td width="3%">&nbsp;</td><td width="47%"> 
+<a href = "javascript: doOpenWindow(7);">Packet Statistics</a></td></tr><tr class="ds_tab_bg1"> 
+<td width="3%" height="17">&nbsp;</td><td width="47%"> 
+<a href = "javascript: doOpenWindow(8);">VoIP Statistics</a></td><td width="3%">&nbsp;</td><td width="47%"> 
+</td></tr><tr class="ds_tab_bg1"> 
+<td height="17">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></table></td></tr></table></td></tr><tr>
+  <td colspan="2">
+    <table border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td ><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> 
+		  VoIP Status        </td><td ><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table><table width="97%"  border="0" cellspacing="0" cellpadding="2">
+    <tr> 
+      <td bgcolor="#FFFFFF">
+	    <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+          <tr class="ds_tab_bg1"> 
+            <td width="3%">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr class="ds_tab_bg1"> 
+            <td height="17">&nbsp;</td><td><table width="100%"  border="1" align=center cellpadding="5" cellspacing="0" bordercolor="#FFFFFF">
+                <tr align=center class="tableTitle_1"> 
+                  <td height="23" class="tableTitle"> 
+                    Account					</td><td colspan="2" class="tableTitle"> 
+				    Registration			      </td><td class = tableTitle> 
+                    URI				  </td></tr>              
+				<tr align=center class="tabcolor2" bgcolor="#FFFFFF">
+                  <td><strong> 
+				    SIP 1				  </strong></td><td><input type="button" value="UnRegister" onClick="SelectSIPToReg(0)">				  </td><td>On Register				  </td><td>
+                  ****@voip.zyxel.de				  </td></tr>              
+				<tr align=center class="tabcolor1" bgcolor="#FFFFFF">
+                  <td><strong> 
+				    SIP 2				  </strong></td><td><input type="button" value="UnRegister" onClick="SelectSIPToReg(1)">				  </td><td>On Register				  </td><td>
+                  0322********@tel.t-online.de				  </td></tr>		      </table><input type="hidden" name="SIPIndex" value="255" />			</td><td width="3%">&nbsp;
+			
+			</td></tr><tr class="ds_tab_bg1"> 
+            <td height="17">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></table></td></tr></table></td></tr>
+<tr> 
+<td colspan="2" valign=top>&nbsp;</td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr></table></td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">    
+<!--
+showStatusPath('Status');
+intervalId = setInterval("dosubmit()", interval * 1000);
+intervalId2 = setInterval("setDefaultInterval()", 20);
+setTimeout('IncreaseSec()', 1000);
+initDateAndTime();
+//-->
+  </script>
+</html>

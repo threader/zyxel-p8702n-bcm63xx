@@ -1,0 +1,86 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_LAN_StaticDHCP.html';
+// -->
+  </script>
+
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpLan.html" name="StDHCP" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr>
+           <td colspan="3" class="NaviText">
+              <div align=left>LAN&nbsp;- Static DHCP            </td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <table width="74%" border="1" cellspacing="0" cellpadding="1" align=center>
+                <tr>
+                  <td width="8%" class="TableTilte"> &nbsp;&nbsp;#&nbsp;&nbsp; 
+                  </td><td width="49%" class="TableTilte"> 
+                    <div align=center> MAC Address</div></td><td width="43%" class="TableTilte"> 
+                    <div align=center> IP Address</div></td></tr>                <tr> 
+                  <td width="8%" class="TableTilte"> 
+                    <div align=center>1</div></td><td width="49%"> 
+                    <div align=center>                       <INPUT TYPE="TEXT" NAME="StDHCP_MAC" SIZE="17" MAXLENGTH="17" VALUE="00:30:65:47:0c:5c" onChange="doMACcheck(this)">                    </div></td><td width="43%"> 
+                    <div align=center> <INPUT TYPE="TEXT" NAME="StDHCP_IP" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.37" onBlur="checkIPFormat(this)">                    </div></td></tr>                <tr> 
+                  <td width="8%" class="TableTilte"> 
+                    <div align=center>2</div></td><td width="49%"> 
+                    <div align=center>                       <INPUT TYPE="TEXT" NAME="StDHCP_MAC" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">                    </div></td><td width="43%"> 
+                    <div align=center> <INPUT TYPE="TEXT" NAME="StDHCP_IP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">                    </div></td></tr>                <tr> 
+                  <td width="8%" class="TableTilte"> 
+                    <div align=center>3</div></td><td width="49%"> 
+                    <div align=center>                       <INPUT TYPE="TEXT" NAME="StDHCP_MAC" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">                    </div></td><td width="43%"> 
+                    <div align=center> <INPUT TYPE="TEXT" NAME="StDHCP_IP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">                    </div></td></tr>                <tr> 
+                  <td width="8%" class="TableTilte"> 
+                    <div align=center>4</div></td><td width="49%"> 
+                    <div align=center>                       <INPUT TYPE="TEXT" NAME="StDHCP_MAC" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">                    </div></td><td width="43%"> 
+                    <div align=center> <INPUT TYPE="TEXT" NAME="StDHCP_IP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">                    </div></td></tr>                <tr> 
+                  <td width="8%" class="TableTilte"> 
+                    <div align=center>5</div></td><td width="49%"> 
+                    <div align=center>                       <INPUT TYPE="TEXT" NAME="StDHCP_MAC" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">                    </div></td><td width="43%"> 
+                    <div align=center> <INPUT TYPE="TEXT" NAME="StDHCP_IP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">                    </div></td></tr>                <tr> 
+                  <td width="8%" class="TableTilte"> 
+                    <div align=center>6</div></td><td width="49%"> 
+                    <div align=center>                       <INPUT TYPE="TEXT" NAME="StDHCP_MAC" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">                    </div></td><td width="43%"> 
+                    <div align=center> <INPUT TYPE="TEXT" NAME="StDHCP_IP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">                    </div></td></tr>                <tr> 
+                  <td width="8%" class="TableTilte"> 
+                    <div align=center>7</div></td><td width="49%"> 
+                    <div align=center>                       <INPUT TYPE="TEXT" NAME="StDHCP_MAC" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">                    </div></td><td width="43%"> 
+                    <div align=center> <INPUT TYPE="TEXT" NAME="StDHCP_IP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">                    </div></td></tr>                <tr> 
+                  <td width="8%" class="TableTilte"> 
+                    <div align=center>8</div></td><td width="49%"> 
+                    <div align=center>                       <INPUT TYPE="TEXT" NAME="StDHCP_MAC" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">                    </div></td><td width="43%"> 
+                    <div align=center> <INPUT TYPE="TEXT" NAME="StDHCP_IP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">                    </div></td></tr>                <tr> 
+                  <td width="8%" class="TableTilte"> 
+                    <div align=center>9</div></td><td width="49%"> 
+                    <div align=center>                       <INPUT TYPE="TEXT" NAME="StDHCP_MAC" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">                    </div></td><td width="43%"> 
+                    <div align=center> <INPUT TYPE="TEXT" NAME="StDHCP_IP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">                    </div></td></tr>                <tr> 
+                  <td width="8%" class="TableTilte"> 
+                    <div align=center>10</div></td><td width="49%"> 
+                    <div align=center>                       <INPUT TYPE="TEXT" NAME="StDHCP_MAC" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">                    </div></td><td width="43%"> 
+                    <div align=center> <INPUT TYPE="TEXT" NAME="StDHCP_IP" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">                    </div></td></tr>              </table></td></tr><tr>
+  	     <td colspan="3">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <div align=center>
+		<INPUT TYPE="BUTTON" NAME="StDHCP_Back" VALUE="Back" onclick="window.location='rpLan.html';">                &nbsp;&nbsp;&nbsp; 
+		<INPUT TYPE="SUBMIT" NAME="StDHCP_Save" VALUE="Apply">                &nbsp;&nbsp;&nbsp; 
+                <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >              </div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form>
+</body></html>

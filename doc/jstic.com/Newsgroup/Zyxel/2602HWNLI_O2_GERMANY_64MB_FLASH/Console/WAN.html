@@ -1,0 +1,311 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="Microsoft FrontPage 5.0">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_WAN.html";
+
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+function doWANIPAddr(form)
+{
+	if (form.wan_DynIP[0].checked){
+		form.wan_StaticIP.disabled = true;
+		if (form.wan_SubnetMask){
+			form.wan_SubnetMask.disabled = true;
+			form.wan_Gateway.disabled = true;									
+		}
+	}else{
+		form.wan_StaticIP.disabled = false;
+		if (form.wan_SubnetMask){
+			form.wan_SubnetMask.disabled = false;
+			form.wan_Gateway.disabled = false;									
+		}		
+	}
+	doHideISP(this.form);
+}
+function WANChkIdleTime(form)
+{
+	if (form.wan_ConnectSel[0].checked){
+		form.wan_IdleTime.disabled = true;
+	}else{
+		form.wan_IdleTime.disabled = false;
+	}
+}
+function CheckVPI_VCI()
+{
+	if(document.forms[0].wan_VPI.value == "")
+		document.forms[0].wan_VPI.value = 0;
+	else if (document.forms[0].wan_VCI.value == "")
+		document.forms[0].wan_VCI.value = 0;
+}
+
+
+  function getDefaultNetmask(sourceIP, netmask) {
+    if(sourceIP.value == "0.0.0.0"){
+    	netmask.value = "0.0.0.0"
+    	return;
+    }  
+    var IP = sourceIP.value;
+    IP = IP.replace(/ /g, "");
+    sourceIP.value = IP;
+    IPsplit = IP.split(".");
+    if(IPsplit.length != 4)
+      return;
+
+    for(i = 0; i < 4; i++)
+      if((isNaN(IPsplit[i])) || (IPsplit[i] == 'undefined') || (IPsplit[i] == ""))
+        return;
+      else
+        if((parseInt(IPsplit[i], 10) > 255) || (parseInt(IPsplit[i], 10) < 0))
+          return;
+
+    if(parseInt(IPsplit[0], 10) >= 192)
+      netmask.value = "255.255.255.0";
+    else if(parseInt(IPsplit[0], 10) >= 128)
+      netmask.value = "255.255.0.0";
+    else if(parseInt(IPsplit[0], 10) >= 0)
+      netmask.value = "255.0.0.0";
+  }
+
+function doModeChange(encap)
+{
+	document.forms[0].wanModeFlag.value = 1;
+	document.forms[0].submit();
+	return;
+}
+
+function doEncapChange(encap)
+{
+	document.forms[0].wanEncapFlag.value = 1;
+	document.forms[0].submit();
+	return;
+}
+function doAdvSetup()
+{
+	document.forms[0].wanAdvFlag.value = 1;
+	document.forms[0].submit();
+	return;
+}
+function doFirDNSType( form)
+{	var newIndex = document.forms[0].WAN_sysFirstDNS.selectedIndex;
+	if (document.forms[0].wan_DynIP){
+	if ((document.forms[0].wan_Encapsulation.selectedIndex == 1)  || (document.forms[0].wan_DynIP[1].checked))// for RFC 1483 mode, From ISP mapping to User defined
+		newIndex += 1;
+	}
+	else{
+	if (document.forms[0].wan_Encapsulation.selectedIndex == 1)
+		newIndex += 1;
+	}
+	
+	switch(newIndex){
+	case 0:
+	case 2:
+	case 3:
+		form.sysFirDNSAddr.disabled = true;			
+		break;
+	case 1:
+		form.sysFirDNSAddr.disabled = false;
+		break;
+	default:
+		break;
+	}			
+}
+function doSecDNSType( form )
+{	var newIndex = document.forms[0].WAN_sysSecondDNS.selectedIndex;
+	if (document.forms[0].wan_DynIP){
+	if ((document.forms[0].wan_Encapsulation.selectedIndex == 1)  || (document.forms[0].wan_DynIP[1].checked))// for RFC 1483 mode
+		newIndex += 1;
+	}
+	else{
+	if (document.forms[0].wan_Encapsulation.selectedIndex == 1)
+		newIndex += 1;
+	}
+	
+	switch(newIndex){
+	case 0:
+	case 2:
+	case 3:
+		form.sysSecIDNSAddr.disabled = true;			
+		break;
+	case 1:
+		form.sysSecIDNSAddr.disabled = false;
+		break;
+	default:
+		break;
+	}			
+}
+function doThirdDNSType( form )
+{	var newIndex = document.forms[0].WAN_sysThirdDNS.selectedIndex;
+	if (document.forms[0].wan_DynIP){
+	if ((document.forms[0].wan_Encapsulation.selectedIndex == 1)  || (document.forms[0].wan_DynIP[1].checked))// for RFC 1483 mode
+		newIndex += 1;
+	}
+	else{
+	if (document.forms[0].wan_Encapsulation.selectedIndex == 1)
+		newIndex += 1;
+	}
+	switch(newIndex){
+	case 0:
+	case 2:
+	case 3:
+		form.sysThirdDNSAddr.disabled = true;			
+		break;
+	case 1:
+		form.sysThirdDNSAddr.disabled = false;
+		break;
+	default:
+		break;
+	}			
+}
+
+function doHideISP(form) /*When chage IP mode, if change to static IP, then filter DNS form ISP.*/
+{
+	if (document.forms[0].wan_DynIP[0].defaultChecked != document.forms[0].wan_DynIP[0].checked){
+	document.forms[0].wanIPModeFlag.value=1;
+	document.forms[0].submit();
+	return;
+	}
+}
+
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="POST" action="WAN_Adv.html" name="WANform" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center>
+Internet Access Setup</div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="wanRemoteNode.html" target="main" class="sub"> 
+<b>
+More Connections</b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="wanBackup.html" target="main" class="sub"> 
+<b>
+WAN Backup Setup</b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr> 
+<td width="3%" height="19" class="cTitle"><b><FONT class=NaviText> </font></b> </td><td height="19" class="cTitle"><b><FONT class=NaviText> 
+General </font></b></td><td height="19" class="cTitle">&nbsp;</td></tr></table><table width="90%"  border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td class="header2">&nbsp;</td><td>&nbsp;</td></tr><tr> 
+<td width="38%" class="header2"> 
+Mode</td><td width="304"> 
+<select name="wan_Mode" size="1" onchange="doModeChange(this.selectedIndex)"><option value=00000000 selected>Routing
+<option value=00000001>Bridge
+</select><input type="hidden" name="wanModeFlag" value="0" /></td></tr><tr> 
+<td width="38%" class="header2"> 
+Encapsulation</td><td width="304"> 
+<select name="wan_Encapsulation" size="1" onchange="doEncapChange(this.selectedIndex)"><option>PPPoA
+<option>RFC 1483
+<option>ENET ENCAP
+<option selected>PPPoE
+</select><input type="hidden" name="wanEncapFlag" value="0" /></td></tr><tr> 
+<td>&nbsp;&nbsp;&nbsp; 
+User Name      </td><td>
+<input type="text" name="wan_UserName" size="30" maxlength="70" value="Benutzername@de.aol.com" onkeypress="chk_chtNumUserName(event)" /></td></tr><tr> 
+<td>&nbsp;&nbsp;&nbsp; 
+Password       </td><td>
+<input type="password" name="wan_Password" size="30" maxlength="70" value="123456" onkeypress="chk_chtNumUserName(event)" /></td></tr><tr> 
+<td>&nbsp;&nbsp;&nbsp; 
+Service Name </td><td><input type="text" name="wan_ServiceName" size="30" maxlength="31" value="" /></td></tr><tr> 
+<td width="38%" class="header2"> 
+Multiplexing</td><td width="304"> 
+<select name="wan_Multiplex" size="1"><option>VC
+<option selected>LLC
+</select></td></tr><tr> 
+<td width="38%" height="19"> 
+Virtual Circuit ID   </td><td height="19">&nbsp;</td></tr><tr> 
+<td width="38%"> &nbsp;&nbsp;&nbsp; 
+VPI</td><td width="304"> 
+<input type="text" name="wan_VPI" size="5" maxlength="5" value="1" onkeypress="chk_num(event)" OnBlur="CheckVPI_VCI();" /></td></tr><tr> 
+<td width="38%"> &nbsp;&nbsp;&nbsp; 
+VCI   </td><td width="304"> 
+<input type="text" name="wan_VCI" size="5" maxlength="5" value="32" onkeypress="chk_num(event)" OnBlur="CheckVPI_VCI();" /></td></tr><td class="header2">&nbsp;</td><td>&nbsp;</td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr> 
+<td width="3%" height="19" class="cTitle"><b><FONT class=NaviText> </font></b> </td><td height="19" class="cTitle"><b><FONT class=NaviText> 
+IP Address</font></b></td><td height="19" class="cTitle">&nbsp;</td></tr></table><table width="90%"  border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td colspan="2" class="header2">&nbsp;</td></tr><input type="hidden" name="wanIPModeFlag" value="0" /><td colspan="2" class="header2"> 
+<input type="radio" name="wan_DynIP" value="DynamicIP" checked onClick="doWANIPAddr(this.form);" />Obtain an IP Address Automatically </td></tr><tr> 
+<td colspan="2"> 
+<input type="radio" name="wan_DynIP" value="StaticIP" onClick="doWANIPAddr(this.form);" />Static IP Address </td></tr><tr> 
+<td width="38%">&nbsp;&nbsp;&nbsp; &nbsp; 
+IP Address   </td><td><input type="text" name="wan_StaticIP" size="15" maxlength="15" value="0.0.0.0" onFocus="if (this.form.wan_DynIP){if (this.form.wan_DynIP[0].checked) this.form.wan_DynIP[0].focus();}" onblur="if (this.form.wan_DynIP){if (this.form.wan_DynIP[1].checked) { if (this.form.wan_SubnetMask){getDefaultNetmask(wan_StaticIP,wan_SubnetMask);} checkIPFormat(this);}}" /></td></tr><tr> 
+<td class="header2">&nbsp;</td><td>&nbsp;</td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr> 
+<td width="3%" height="19" class="cTitle"><b><FONT class=NaviText> </font></b> </td><td height="19" class="cTitle"><b><FONT class=NaviText> 
+DNS server</font></b></td><td height="19" class="cTitle">&nbsp;</td></tr></table><table width="90%%">
+<tr> 
+<td>&nbsp;</td><td>&nbsp;</td></tr><tr> 
+<td width="38%"> 
+First DNS Server</td><td><select name="WAN_sysFirstDNS" size="1" RpPutType="Function" onchange="doFirDNSType(this.form);"><option value=00000000 selected>Obtained From ISP
+<option value=00000001>UserDefined
+<option value=00000002>None
+</select><input type="text" name="sysFirDNSAddr" size="15" maxlength="15" value="0.0.0.0" onBlur="checkIPFormat(this)" /></td></tr><tr> 
+<td width="246"> 
+Second DNS Server</td><td colspan="2"> 
+<select name="WAN_sysSecondDNS" size="1" RpPutType="Function" onchange="doSecDNSType(this.form);"><option value=00000000>Obtained From ISP
+<option value=00000001 selected>UserDefined
+<option value=00000002>None
+</select><input type="text" name="sysSecIDNSAddr" size="15" maxlength="15" value="194.25.2.129" onBlur="checkIPFormat(this)" /></tr><tr> 
+<td>Third DNS Server</td><td><select name="WAN_sysThirdDNS" size="1" RpPutType="Function" onchange="doThirdDNSType(this.form);"><option value=00000000>Obtained From ISP
+<option value=00000001 selected>UserDefined
+<option value=00000002>None
+</select><input type="text" name="sysThirdDNSAddr" size="15" maxlength="15" value="193.101.111.20" onBlur="checkIPFormat(this)" /></td></tr><tr> 
+<td>&nbsp;</td><td>&nbsp;</td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr> 
+<td width="3%" height="19" class="cTitle"><b><FONT class=NaviText> </font></b> </td><td height="19" class="cTitle"><b><FONT class=NaviText> </font> 
+Connection</b></td><td height="19" class="cTitle">&nbsp;</td></tr></table><table width="90%%">
+<tr> 
+<td>&nbsp;</td><td>&nbsp;</td></tr><tr> 
+<td width="38%"> 
+<input type="radio" name="wan_ConnectSel" value="Conn_Keep_Alive" checked onClick="WANChkIdleTime(this.form);" />Nailed-Up Connection</td><td>&nbsp;</td></tr><tr> 
+<td width="38%"> 
+<input type="radio" name="wan_ConnectSel" value="Conn_on_Demand" onClick="WANChkIdleTime(this.form);" />Connect on Demand</td><td colspan="2"> 
+Max Idle Timeout <input type="text" name="wan_IdleTime" size="5" maxlength="5" value="0" onkeypress="chk_num(event)" />sec</tr><tr> 
+<td>&nbsp;</td><td colspan="2">&nbsp;</tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="WANApply" value="Apply" type="button" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<input type="submit" name="WANAdvBtn" value="Advanced Setup" type="button" onClick="doAdvSetup();" /><input type="hidden" name="wanAdvFlag" value="0" />
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table></td></tr><tr> 
+<td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table><!-- 3D -->
+</td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">    
+<!--
+showFullPath('Network > WAN > Internet Connection');
+doWANIPAddr(document.forms[0]);WANChkIdleTime(document.forms[0]);	doFirDNSType(document.forms[0]);
+	doSecDNSType(document.forms[0]);
+	doThirdDNSType(document.forms[0]);
+//-->
+</script>
+</html>

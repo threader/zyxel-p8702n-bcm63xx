@@ -1,0 +1,79 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+<SCRIPT language="JavaScript">
+<!-- 
+top.title.h_Page='h_DiagDSL.html';
+
+		function doADSLReset()
+		{
+			document.DiagADSL.elements[0].value = "Start to reset ADSL\nLoading ADSL modem F/W...";			
+		}
+		function doSubmit()
+		{
+			document.DiagADSL.elements[0].value = ""		
+		}
+		
+// -->
+</SCRIPT>
+	</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="/Forms/DiagADSL_1" name="DiagADSL">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td width="52%" class="NaviText">
+              Diagnose - Allgemein               </td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr align=center> 
+            <td colspan="2"> 
+              <TEXTAREA NAME="LineInfoDisplay" ROWS="15" COLS="65" READONLY> - Info -
+</TEXTAREA>            </td></tr>          <tr> 
+            <td width="52%" height="39"> 
+              <div align=right>
+                <INPUT TYPE="SUBMIT" NAME="DiagDSLConnect" VALUE="PPPoE Verbindung" onClick="doSubmit();">				&nbsp;&nbsp;&nbsp;
+              </div></td><td width="48%" height="39"> 
+              <INPUT TYPE="SUBMIT" NAME="DiagDSLDisconnect" VALUE="PPPoE Trennung" onClick="doSubmit();">            </td></tr>          <tr> 
+            <td width="52%" height="39"> 
+              <div align=right>
+                <INPUT TYPE="SUBMIT" NAME="DiagResetADSL" VALUE="ADSL Leitung zur&uuml;cksetzen" onClick="doADSLReset();">				&nbsp;&nbsp;&nbsp;
+              </div></td><td width="48%" height="39"> 
+              <INPUT TYPE="SUBMIT" NAME="DiagUpstreamNoise" VALUE="Rauschwert beim Senden" onClick="doSubmit();">            </td></tr><tr> 
+            <td height="39"> 
+              <div align=right>
+                <INPUT TYPE="SUBMIT" NAME="DiagATMStatus" VALUE="ATM-Status" onClick="doSubmit();">				&nbsp;&nbsp;&nbsp;			
+              </div></td><td width="48%" height="39"> 
+              <INPUT TYPE="SUBMIT" NAME="DiagDownstreamNoise" VALUE="Rauschwert beim Empfang" onClick="doSubmit();">            </td></tr>          <tr> 
+            <td height="39"> 
+              <div align=right>
+                <INPUT TYPE="SUBMIT" NAME="DiagATMLoopback" VALUE="ATM Schleifentest" onClick="doSubmit();">				&nbsp;&nbsp;&nbsp;				
+              </div></td><td>&nbsp;</td></tr><tr>
+  	     <td colspan="2">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>	  <tr>
+	    <td colspan="3" align=center>
+              <INPUT TYPE="BUTTON" NAME="apply" VALUE="Zur&uuml;ck" onClick="window.location='rpDiagnostic.html';">            </td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form>
+</body></html>

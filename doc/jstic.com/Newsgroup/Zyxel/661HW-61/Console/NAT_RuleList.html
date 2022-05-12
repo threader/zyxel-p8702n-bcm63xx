@@ -1,0 +1,66 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language=JavaScript>
+<!--
+top.title.h_Page='h_NAT_RuleList.html';
+
+function SelectRule(index)
+{
+	document.NAT_Rule.RuleIndex.value = index;
+	document.NAT_Rule.submit();
+}
+function doSubmit()
+{
+	document.NAT_Rule.submit();
+}
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpNATmode.html" name="NAT_Rule" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="3"> 
+              <div align=left class="NaviText">               
+              NAT - Address Mapping Rules</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <table width="98%" border="1" cellspacing="0" cellpadding="1" align=center>
+                <tr> 
+                  <td width="12%" height="30" class="TableTilte"> 
+                    <div align=center> &nbsp;</div></td><td width="20%" height="30" class="TableTilte"> 
+                    <div align=center> 
+                    Local Start IP</div></td><td width="20%" height="30" class="TableTilte"> 
+                    <div align=center> 
+                    Local End IP</div></td><td width="20%" height="30" class="TableTilte"> 
+                    <div align=center> Global Start IP</div></td><td width="20%" height="30" class="TableTilte"> 
+                    <div align=center>Global End IP</div></td><td width="8%" height="30" class="TableTilte"> 
+                    <div align=center> Type</div></td></tr><tr align=center><td class=header2><div align=center>                       
+                <a target="_self" href="NAT_RuleEdit1.html">Rule 1 </a> </div>                  </td>                  <td>   
+                192.168.1.0                       </td>                  <td>   
+                255.255.255.0                       </td>                  <td>   . . 
+                .                       </td>                  <td>   .   .   .                       </td>                  <td>                  
+                M-1</td>                </tr><tr align=center><td class=header2><div align=center>                       
+                  <a target="_self" href="NAT_RuleEdit2.html">Rule 2 </a> </div>                  </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>                  
+                  Server</td>                </tr><tr align=center><td class=header2><div align=center>                       <a href=javascript:SelectRule(3);>Rule 3                      </a> </div>                  </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>                  -                    </td>                </tr><tr align=center><td class=header2><div align=center>                       <a href=javascript:SelectRule(4);>Rule 4                      </a> </div>                  </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>                  -                    </td>                </tr><tr align=center><td class=header2><div align=center>                       <a href=javascript:SelectRule(5);>Rule 5                      </a> </div>                  </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>                  -                    </td>                </tr><tr align=center><td class=header2><div align=center>                       <a href=javascript:SelectRule(6);>Rule 6                      </a> </div>                  </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>                  -                    </td>                </tr><tr align=center><td class=header2><div align=center>                       <a href=javascript:SelectRule(7);>Rule 7                      </a> </div>                  </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>                  -                    </td>                </tr><tr align=center><td class=header2><div align=center>                       <a href=javascript:SelectRule(8);>Rule 8                      </a> </div>                  </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>                  -                    </td>                </tr><tr align=center><td class=header2><div align=center>                       <a href=javascript:SelectRule(9);>Rule 9                      </a> </div>                  </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>                  -                    </td>                </tr><tr align=center><td class=header2><div align=center>                       <a href=javascript:SelectRule(10);>Rule 10                      </a> </div>                  </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>   .   .   .                       </td>                  <td>                  -                    </td>                </tr>              </table></td></tr><tr>
+		    <td><INPUT TYPE="HIDDEN" NAME="RuleIndex" VALUE="0">            </td></tr><tr>
+  	     <td colspan="3">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <div align=center> 
+<INPUT TYPE="SUBMIT" NAME="backbtn" VALUE="Back" onClick="doSubmit();">              </div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form>
+</body></html>

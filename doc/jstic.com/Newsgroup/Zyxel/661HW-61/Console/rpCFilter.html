@@ -1,0 +1,62 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language=JavaScript>
+<!--
+top.title.h_Page='h_CF_Main.html';
+function mode(index)
+{	if (index == 1 && document.NAT_mode.NATsel[index].checked)
+{	document.NAT_mode.SUAfromMode.value = 1;
+document.NAT_mode.submit();
+} else if (index == 2 && document.NAT_mode.NATsel[index].checked)
+{	document.NAT_mode.SUAfromMode.value = 2;
+document.NAT_mode.submit();	}
+}
+// -->
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="/Forms/rpCFilter_1" name="NAT_mode">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan="4">
+<div align=left class="NaviText">
+Content Filter - Functions</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="1" align=center height="100%">
+<tr>
+<td colspan="2" class=header2>
+<a href="CF_Keyword.html">
+Keyword</a></td></tr><tr>
+<td class="descript" width="4%">&nbsp;</td><td class="descript" width="96%">
+Configure keywords to block web site access. </td></tr><tr>
+<td style="line-height:5pt">&nbsp;</td></tr><tr>
+<td colspan="2" class=header2>
+<a href="CF_Schedule.html">
+Schedule</a></td></tr><tr>
+<td class="descript" width="4%">&nbsp;</td><td class="descript" width="96%">
+Set up the schedule for blocking.</td></tr><tr>
+<td style="line-height:5pt">&nbsp;</td></tr><tr>
+<td colspan="2" class=header2>
+<a href="CF_Trusted.html">
+Trusted</a></td></tr><tr>
+<td class="descript" width="4%">&nbsp;</td><td class="descript" width="96%">
+Set up a trusted user for web access.</td></tr><tr>
+<td style="line-height:5pt">&nbsp;</td></tr> <tr>
+<td style="line-height:5pt">&nbsp;</td></tr></table></td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="4">
+<div align=center></div></td></table></td></tr></table></form>
+</body></html>

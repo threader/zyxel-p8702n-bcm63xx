@@ -1,0 +1,120 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language=JavaScript>
+<!--
+top.title.h_Page="h_CAC_User.html";
+function doChangeMode()
+{
+document.forms[0].CAC_ProfileChgMode.value = 1;
+document.forms[0].submit();
+}
+function doSubmit()
+{
+var i = 0;
+var j = 0;
+while(document.forms[0].UsrPf[i]){
+if (document.forms[0].UsrPf[i].value != "" || document.forms[0].PfPswd[i].value != ""){
+if (document.forms[0].UsrPf[i].value == "" || document.forms[0].PfPswd[i].value == "") {
+alert("Both UserName and Password can not be empty.");	return;
+}
+j =0;
+while(document.forms[0].UsrPf[j]){
+if (i != j){
+if (document.forms[0].UsrPf[i].value == document.forms[0].UsrPf[j].value){
+alert("User Name duplicate.");	return;
+}
+}
+j++;
+}
+}
+i++;
+}
+document.forms[0].submit();
+}
+// -->
+  </script>
+<body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpCAC.html" name="CAC_UsrProf" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan="3">
+<div align=left class="NaviText"> <font class="NaviText">Content Access Control&nbsp;- User Profile</font></div></td></tr><tr>
+<td colspan="3">
+<hr></td></tr><tr>
+<td colspan="3">&nbsp;</td></tr><tr>
+<td colspan="3">
+<table border="1" cellspacing="0" cellpadding="0" align=center width="98%">
+<tr height="30" bgcolor="#C4D3FD" align=center>
+<td bgcolor="#C4D3FD" class="header2" width="8%"> Index</td><td class="header2" width="34%"> Username</td><td class="header2" width="18%"> Password</td><td class="header2" width="26%"> Category</td></tr> <tr align=center>
+<td width="8%"> &nbsp;1</td><td width="34%"> <INPUT TYPE="TEXT" NAME="UsrPf" SIZE="20" MAXLENGTH="31" VALUE="Klaus" onkeypress="chk_chtNum(event)"></td><td class="smallip" width="18%"> <INPUT TYPE="PASSWORD" NAME="PfPswd" SIZE="20" MAXLENGTH="31" VALUE="12345"></td><td class="smallip" width="26%"> <SELECT NAME="PfCate" SIZE="1"><OPTION VALUE=00000000 SELECTED>Administration
+<OPTION VALUE=00000001>Kinder
+<OPTION VALUE=00000002>Erwachsene
+<OPTION VALUE=00000003>Nachbarn
+</SELECT></td></tr> <tr align=center>
+<td width="8%"> &nbsp;2</td><td width="34%"> <INPUT TYPE="TEXT" NAME="UsrPf" SIZE="20" MAXLENGTH="31" VALUE="Bastian" onkeypress="chk_chtNum(event)"></td><td class="smallip" width="18%"> <INPUT TYPE="PASSWORD" NAME="PfPswd" SIZE="20" MAXLENGTH="31" VALUE="12345"></td><td class="smallip" width="26%"> <SELECT NAME="PfCate" SIZE="1"><OPTION VALUE=00000000>Administration
+<OPTION VALUE=00000001 SELECTED>Kinder
+<OPTION VALUE=00000002>Erwachsene
+<OPTION VALUE=00000003>Nachbarn
+</SELECT></td></tr> <tr align=center>
+<td width="8%"> &nbsp;3</td><td width="34%"> <INPUT TYPE="TEXT" NAME="UsrPf" SIZE="20" MAXLENGTH="31" VALUE="Mueller" onkeypress="chk_chtNum(event)"></td><td class="smallip" width="18%"> <INPUT TYPE="PASSWORD" NAME="PfPswd" SIZE="20" MAXLENGTH="31" VALUE="12345"></td><td class="smallip" width="26%"> <SELECT NAME="PfCate" SIZE="1"><OPTION VALUE=00000000>Administration
+<OPTION VALUE=00000001>Kinder
+<OPTION VALUE=00000002>Erwachsene
+<OPTION VALUE=00000003 SELECTED>Nachbarn
+</SELECT></td></tr> <tr align=center>
+<td width="8%"> &nbsp;4</td><td width="34%"> <INPUT TYPE="TEXT" NAME="UsrPf" SIZE="20" MAXLENGTH="31" VALUE="Reinhard" onkeypress="chk_chtNum(event)"></td><td class="smallip" width="18%"> <INPUT TYPE="PASSWORD" NAME="PfPswd" SIZE="20" MAXLENGTH="31" VALUE="12345"></td><td class="smallip" width="26%"> <SELECT NAME="PfCate" SIZE="1"><OPTION VALUE=00000000>Administration
+<OPTION VALUE=00000001>Kinder
+<OPTION VALUE=00000002 SELECTED>Erwachsene
+<OPTION VALUE=00000003>Nachbarn
+</SELECT></td></tr> <tr align=center>
+<td width="8%"> &nbsp;5</td><td width="34%"> <INPUT TYPE="TEXT" NAME="UsrPf" SIZE="20" MAXLENGTH="31" VALUE="Claudia" onkeypress="chk_chtNum(event)"></td><td class="smallip" width="18%"> <INPUT TYPE="PASSWORD" NAME="PfPswd" SIZE="20" MAXLENGTH="31" VALUE="12345"></td><td class="smallip" width="26%"> <SELECT NAME="PfCate" SIZE="1"><OPTION VALUE=00000000>Administration
+<OPTION VALUE=00000001>Kinder
+<OPTION VALUE=00000002 SELECTED>Erwachsene
+<OPTION VALUE=00000003>Nachbarn
+</SELECT></td></tr> <tr align=center>
+<td width="8%"> &nbsp;6</td><td width="34%"> <INPUT TYPE="TEXT" NAME="UsrPf" SIZE="20" MAXLENGTH="31" VALUE="" onkeypress="chk_chtNum(event)"></td><td class="smallip" width="18%"> <INPUT TYPE="PASSWORD" NAME="PfPswd" SIZE="20" MAXLENGTH="31" VALUE=""></td><td class="smallip" width="26%"> <SELECT NAME="PfCate" SIZE="1"><OPTION VALUE=00000000 SELECTED>Administration
+<OPTION VALUE=00000001>Kinder
+<OPTION VALUE=00000002>Erwachsene
+<OPTION VALUE=00000003>Nachbarn
+</SELECT></td></tr> <tr align=center>
+<td width="8%"> &nbsp;7</td><td width="34%"> <INPUT TYPE="TEXT" NAME="UsrPf" SIZE="20" MAXLENGTH="31" VALUE="" onkeypress="chk_chtNum(event)"></td><td class="smallip" width="18%"> <INPUT TYPE="PASSWORD" NAME="PfPswd" SIZE="20" MAXLENGTH="31" VALUE=""></td><td class="smallip" width="26%"> <SELECT NAME="PfCate" SIZE="1"><OPTION VALUE=00000000 SELECTED>Administration
+<OPTION VALUE=00000001>Kinder
+<OPTION VALUE=00000002>Erwachsene
+<OPTION VALUE=00000003>Nachbarn
+</SELECT></td></tr> <tr align=center>
+<td width="8%"> &nbsp;8</td><td width="34%"> <INPUT TYPE="TEXT" NAME="UsrPf" SIZE="20" MAXLENGTH="31" VALUE="" onkeypress="chk_chtNum(event)"></td><td class="smallip" width="18%"> <INPUT TYPE="PASSWORD" NAME="PfPswd" SIZE="20" MAXLENGTH="31" VALUE=""></td><td class="smallip" width="26%"> <SELECT NAME="PfCate" SIZE="1"><OPTION VALUE=00000000 SELECTED>Administration
+<OPTION VALUE=00000001>Kinder
+<OPTION VALUE=00000002>Erwachsene
+<OPTION VALUE=00000003>Nachbarn
+</SELECT></td></tr> <tr align=center>
+<td width="8%"> &nbsp;9</td><td width="34%"> <INPUT TYPE="TEXT" NAME="UsrPf" SIZE="20" MAXLENGTH="31" VALUE="" onkeypress="chk_chtNum(event)"></td><td class="smallip" width="18%"> <INPUT TYPE="PASSWORD" NAME="PfPswd" SIZE="20" MAXLENGTH="31" VALUE=""></td><td class="smallip" width="26%"> <SELECT NAME="PfCate" SIZE="1"><OPTION VALUE=00000000 SELECTED>Administration
+<OPTION VALUE=00000001>Kinder
+<OPTION VALUE=00000002>Erwachsene
+<OPTION VALUE=00000003>Nachbarn
+</SELECT></td></tr> <tr align=center>
+<td width="8%"> &nbsp;10</td><td width="34%"> <INPUT TYPE="TEXT" NAME="UsrPf" SIZE="20" MAXLENGTH="31" VALUE="" onkeypress="chk_chtNum(event)"></td><td class="smallip" width="18%"> <INPUT TYPE="PASSWORD" NAME="PfPswd" SIZE="20" MAXLENGTH="31" VALUE=""></td><td class="smallip" width="26%"> <SELECT NAME="PfCate" SIZE="1"><OPTION VALUE=00000000 SELECTED>Administration
+<OPTION VALUE=00000001>Kinder
+<OPTION VALUE=00000002>Erwachsene
+<OPTION VALUE=00000003>Nachbarn
+</SELECT></td></tr> </table></td></tr><tr>
+<td width="181"></td><td colspan="2">&nbsp;</td></tr><tr>
+<td colspan="3">If you want to add more user profiles, please click
+<a onclick="doChangeMode();" target="_self" href="CAC_UserProfile2.html">here</a>.</td></tr><tr>
+<td width="181"></td><td colspan="2">&nbsp;</td></tr><tr align=center valign=middle>
+<td colspan="3" height="36">
+<hr></td></tr><tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="CAC_BackBtn" VALUE="Back" onClick="window.location.href='rpCAC.html';"> &nbsp;&nbsp;
+<INPUT TYPE="BUTTON" NAME="CAC_ApplyBtn" VALUE="Apply" onclick="doSubmit();"> &nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ><INPUT TYPE="HIDDEN" NAME="CAC_ProfileChgMode" VALUE="0"></div></td>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	 </table></td></tr></table></form><script language="JavaScript">
+</script>
+
+</body></html>

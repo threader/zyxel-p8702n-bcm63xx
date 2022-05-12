@@ -1,0 +1,45 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_WMten_Main.html';
+// -->
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+  <table width="100%" border="0" cellspacing="1" >
+    <tr>
+      <td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="93%" > 
+        <table border="0" cellspacing="0" cellpadding="0" width="560" >
+          <tr> 
+            <td colspan="4"> 
+              <div align=left class="NaviText">
+                Wireless LAN              </div></td></tr><tr> 
+            <td colspan="4"> 
+              <hr></td></tr><tr> 
+                  <td colspan="2" class=header2>
+                  <a href="WMten_AList.html">
+				Zuordnungsliste		  </a></td></tr><tr> 
+                  <td class="descript" width="4%">&nbsp;</td><td class="descript" width="96%">
+				Dieser Bildschirm zeigt die MAC-Adressen aller Clients im wireless Netzwerk an, die gegenw&auml;rtig angemeldet sind.		  </td></tr><tr> 
+                  <td style="line-height:5pt" colspan="2">&nbsp;</td></tr>          <tr align=center valign=middle> 
+            <td colspan="4" height="36"> 
+              <hr></td></tr><tr> 
+            <td colspan="4"> 
+              <div align=center>&nbsp;</div></td></table></td></tr></table>
+</body></html>

@@ -1,0 +1,58 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_VoIP_Common.html';
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="rpVoIP.html" name="VoIP_Common"><table width="100%" border="0" cellspacing="1" bgcolor="#ffffff">
+<tr>
+<TD width="2%">&nbsp;</td><TD width="5%">&nbsp;</td><td><table border=0 width=500>
+<tr>
+<td colspan=3 bgcolor=white height="16"><font class="NaviText"><b>
+Sprache - Allgemein Einstellungen</b></font></td></tr><tr>
+<td colspan=3>
+<hr></td></tr>
+	<tr>
+<td colspan=3 class="header2">Rufsignal Einstellungen</td></tr><tr>
+<td width="5%">&nbsp;</td><td width="48%"> SIP 1	</td><td width="50%"> Rufsignal:<SELECT NAME="Phone_SelRingType1" SIZE="1"><OPTION VALUE=0>1
+<OPTION VALUE=1 SELECTED>2
+<OPTION VALUE=2>3
+</SELECT>	</td></tr><tr>
+<td width="5%">&nbsp;</td><td width="48%"> SIP 2	</td><td width="50%"> Rufsignal:<SELECT NAME="Phone_SelRingType2" SIZE="1"><OPTION VALUE=0>1
+<OPTION VALUE=1 SELECTED>2
+<OPTION VALUE=2>3
+</SELECT>	</td></tr><tr>
+<td width="5%">&nbsp;</td><td width="48%"> Festnetz	</td><td width="50%"> Rufsignal:<SELECT NAME="Phone_SelRingType3" SIZE="1"><OPTION VALUE=0 SELECTED>1
+<OPTION VALUE=1>2
+<OPTION VALUE=2>3
+</SELECT>	</td></tr><tr>
+<td bgcolor=white colspan=4>&nbsp;</td></tr><tr>
+<td width="5%">&nbsp;</td><td width="48%"> Rufsignal Test	</td><td width="50%"> Rufsignal:<SELECT NAME="Phone_SelRingType4" SIZE="1"><OPTION VALUE=0 SELECTED>1
+<OPTION VALUE=1>2
+<OPTION VALUE=2>3
+</SELECT>	</td><td width="27%"><INPUT TYPE="SUBMIT" NAME="VoIP_RingTest" VALUE="Start/Stop"></td></tr>
+<tr>
+<td bgcolor=white colspan=4>&nbsp;</td></tr><td colspan=4 bgcolor=white height="16">
+<hr></td></tr><tr>
+<td bgcolor=white colspan=4>
+<div align=center> <INPUT TYPE="SUBMIT" NAME="VoIP_CommonBackBtn" VALUE="Zur&uuml;ck">&nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="VoIP_CommonApply" VALUE="Anwenden">&nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" ></div></td></tr></table></td></tr></table></form>
+</body></html>

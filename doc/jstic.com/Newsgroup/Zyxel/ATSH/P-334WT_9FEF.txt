@@ -1,0 +1,19 @@
+atsh
+ZyNOS Version          : V3.60(JN.10) | 03/03/2006 14:25:00
+Bootbase Version       : V1.05 | 04/20/2004 10:36:26
+Vendor Name            : ZyXEL
+Product Model          : P-334WT
+ZyNOS ROM address      : bfc08000
+System Type            : 8
+MAC Address            : 001122334455
+Default Country Code   : E6
+Boot Module Debug Flag : 00
+RomFile Version        : 8D
+RomFile Checksum       : aa95
+ZyNOS Checksum         : 4eaa
+Core Checksum          : d157
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+          9F EF 00 00 00 00 00 00-00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00-00 00 13 00 00 00

@@ -1,0 +1,128 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+top.title.h_Page='h_CF_Keyword.html';
+ns = (document.layers) ? true : false;
+ie = (document.all) ? true : false;
+function SortD(box)
+{
+var temp_opts = new Array();
+var temp = new Object();
+for(var i=0; i < box.options.length; i++)
+{
+temp_opts[i] = box.options[i];
+}
+for(var x = 0; x < temp_opts.length - 1; x++)
+{
+for(var y = (x + 1); y < temp_opts.length; y++)
+{
+if(temp_opts[x].text > temp_opts[y].text)
+{
+temp = temp_opts[x].text;
+temp_opts[x].text = temp_opts[y].text;
+temp_opts[y].text = temp;
+}
+}
+}
+for(var i = 0; i < box.options.length; i++)
+{
+box.options[i].value = temp_opts[i].value;
+box.options[i].text = temp_opts[i].text;
+}
+}
+function addKeyword(keyword, list)
+{
+if(keyword.value == "") return;
+var listlen = list.length;
+for(i = 0; i < parseInt(listlen, 10); i++)
+{
+if(list.options[i].text == keyword.value)
+{
+return;
+}
+}
+var newKeyword = new Option(keyword.value, keyword.value, false, false);
+list.options[list.options.length] = newKeyword;
+SortD(list);
+keyword.value = "";
+}
+function deleteKeyword(keyword, list)
+{
+var listlen = list.length;
+for(i = 0; i < parseInt(listlen, 10); i++)
+{
+if(list.options[i].text == keyword.value)
+{
+list.options[i] = null;
+keyword.value = "";
+return;
+}
+}
+}
+function clearKeyword(list)
+{
+var listlen = list.length;
+for(i = 0; i < parseInt(listlen, 10); i++)
+{
+list.options[0] = null;
+}
+return;
+}
+// -->
+  </SCRIPT>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpCFilter.html" name="DHCPform" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	
+<tr>
+<td colspan="3" class="NaviText">
+<div>Content Filter - Keyword</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">
+<INPUT TYPE="CHECKBOX" NAME="Drop_DTR_Enable" CHECKED value="ON"> Enable Keyword Blocking</td></tr><tr>
+<td colspan="3" class="header2">&nbsp;</td></tr><tr>
+<td colspan="3" class="header2">
+Block Websites that contain these keywords in the URL :</td></tr><tr>
+<td width="20">&nbsp;</td><td colspan="2">
+<SELECT NAME="cfKeyWord_DomainList" SIZE="6" OnChange="this.form.cfKeyWord_Domain.value = this.options[this.selectedIndex].text;"><OPTION VALUE=948865bc>banner
+<OPTION VALUE=948865bc>doubleclick
+<OPTION VALUE=948865bc>hardcore
+<OPTION VALUE=948865bc>lolita
+<OPTION VALUE=948865bc>pervers
+<OPTION VALUE=948865bc>porno
+<OPTION VALUE=948865bc>rotten
+<OPTION VALUE=948865bc>sex
+<OPTION VALUE=948865bc>werbung
+<OPTION VALUE=00000000>xxx
+<OPTION VALUE=00000000>penis
+</SELECT> </td></tr><tr>
+<td></td><td colspan="2">
+<INPUT TYPE="SUBMIT" NAME="cfKeyWord_DelKeywordBtn" VALUE="Delete">&nbsp; &nbsp;
+<INPUT TYPE="SUBMIT" NAME="cfKeyWord_ClearListBtn" VALUE="Clear All"></td></tr><tr>
+<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr>
+<td></td><td>Keyword</td><td><INPUT TYPE="TEXT" NAME="cfKeyWord_Domain" SIZE="48" MAXLENGTH="127" VALUE=""> <INPUT TYPE="SUBMIT" NAME="cf_AddKeywordBtn" VALUE="Add Keyword"> </td></tr><tr>
+<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp; </td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="cfKeyWord_BackBtn" VALUE="Back" onclick="window.location='rpCFilter.html';"> &nbsp;&nbsp;&nbsp;
+<INPUT TYPE="SUBMIT" NAME="cfKeyWord_SaveBtn" VALUE="Apply">&nbsp;&nbsp;&nbsp;
+<INPUT TYPE="SUBMIT" NAME="cfKeyWord_ResetBtn" VALUE="Cancel"></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	 </table> </td></tr></table></form>
+</body></html>

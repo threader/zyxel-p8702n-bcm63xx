@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>status.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="zw.css" rel="stylesheet" type="text/css">
+<link href="control.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="javascript.js" ></script>
+<script language="JavaScript">
+
+function showReadyStr(str){	
+	var er_new = document.getElementById("FK");
+	if(str=="Ready."){
+		er_new.className = "status_ready";		
+	}else{
+		er_new.className = "status_fault";
+	}
+	document.ST.RdStr.value = str;	
+}
+
+</script>
+</head>
+<body background="images/bottom_bg.gif">
+<form name="ST">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td width="1%" height="34"><img src="images/bottom_1.gif" width="8" height="34"></td>
+	<td width="85%" align="right">
+	<table width="98%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td width="95" nowrap><img src="images/i_mesg.gif" width="27" height="26" align="absmiddle"><strong><font color="#FFFFFF">Message</font></strong></td>
+	<td>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td width="15" height="21" background="images/status_2.gif">
+	<img src="images/status_1.gif" width="15" height="21"></td>
+	<td height="21" background="images/status_2.gif"><strong>
+	<input readonly name="RdStr" type="text" value="Ready." style="width:100%" class="status_ready"  id=FK>
+	</strong></td>
+	<td width="20" height="21" background="images/status_2.gif">
+	<a href="javascript:top.frames[1].openWarningMessage()" onMouseOver="MM_swapImage('Image6','','images/status_3btn_on.gif',1)" onMouseOut="MM_swapImgRestore()">
+	<img src="images/status_3btn.gif" alt="Open Message Window" title="Open Message Window" name="Image6" width="20" height="21" border="0"></a></td>
+	</tr>
+	</table>
+	</td>
+	</tr>
+	</table>
+	</td>
+	<td align="center">
+	<a href="javascript:top.frames[1].openTXMessage()" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','images/btn_CLI_2.gif',1)">
+	<img src="images/btn_CLI_1.gif" name="Image5" width="50" height="29" border="0" alt="Open CLI List" title="CLI list"></a></td>
+	</tr>
+	</table>
+</form>	
+</body>
+</html>

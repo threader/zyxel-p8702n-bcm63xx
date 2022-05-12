@@ -1,0 +1,1008 @@
+<html><head>
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"><title>regist.html</title><!--script type="text/javascript" src="I18N.js"></script--><!--script>getLangFile()</script-->
+
+
+
+<link rel="stylesheet" href="control.css" type="text/css">
+<link rel="stylesheet" href="zw.css" type="text/css">
+<script type="text/javascript" src="javascript.js"></script>
+<script type="text/javascript" src="javascriptCLI.js"></script>
+<script type="text/javascript" src="javascriptm.js"></script>
+<script language="JavaScript">
+<!--
+
+var gl = top.frames[1];
+var rxdata = top.frames[4];
+var theDataPtr = gl.regList;
+var serviceA = new Array(0,0,0,0); // for service, dynamic 
+/*======= Help ===========*/
+	gl.Topic= '020000';
+/*======= Help ===========*/
+/*if(gl.zyshdcnt == 0) {
+	var cmd = compose_CLI(Get_CLI("regist", 1, ''), 'show version');
+	// write flag is 0
+	gl.nowriteflag = true;
+	txcli(cmd, "regist.html", 4, "regist.html");	
+	gl.retbufno = 1;
+}else if(gl.zyshdcnt == 1) {
+	if(gl.retbufno == 0) {
+		chkUSER_fetch(gl.retbufno);
+	}else{
+		REGIST_fetch(gl.retbufno-1);
+		gl.ModelType = rxdata['result_'+(gl.retbufno+2)][0]._model;
+	}
+	gl.zyshdcnt = 0;
+	gl.retbufno = 0;
+}*/
+
+var cmd = "";
+		cmd = compose_CLI(cmd, "show device-register status");
+		cmd = compose_CLI(cmd, "show service-register status all");
+		cmd = compose_CLI(cmd, "show service-register status _remaining-day");
+		cmd = compose_CLI(cmd, "show version");
+
+		// write flag is 0
+		//gl.nowriteflag = true;
+		txcli(cmd, "regist.html", 2, "regist.html");
+
+
+function chkUSER_fetch(idx) {
+	var sourcePtr = top.frames[4]['result_'+idx]; 		
+	theDataPtr.getRecord(0).exist = sourcePtr[0]._user_exist;
+	if(sourcePtr[0]._user_exist == "no") {
+		displayStr('The username does not exist.');
+	}else if(sourcePtr[0]._user_exist == "error") {
+		displayStr('Check Fail! Please to view log to get detail information.');
+	}else  {
+		displayStr('The username is already existed! Please try again.');
+	}
+}	
+
+function getData(){
+	var theRegPtr = theDataPtr.getRecord(0);
+	/*if(theRegPtr.enable == "yes") {
+		document.regist.T12.value = theRegPtr.name;
+		document.regist.T22.value = theRegPtr.passwd;	
+	//doDeviceRegist(theRegPtr);	
+	}else { //initial setting 
+		*/
+		RegisAccount(gl.regBuff[0]);
+		document.regist.T11.value = gl.regBuff[1];
+		document.regist.T12.value = gl.regBuff[6];
+		document.regist.T21.value = gl.regBuff[2];
+		document.regist.T22.value = gl.regBuff[7];
+		document.regist.T23.value = gl.regBuff[3];
+		document.regist.T3.value  = gl.regBuff[4];
+		document.regist.T4.value  = gl.regBuff[5];
+	//}
+	//doDeviceRegist(theRegPtr);
+	gl.regChkFlag = false;
+}	
+
+function setData(){
+	var theRegPtr = theDataPtr.getRecord(0);
+	var cmd = "";
+	var idp = document.regist.IDP.checked;
+	var av  = document.regist.AV.checked;
+//	var as	= document.regist.AS.checked;
+	var cf 	= document.regist.CF.checked;
+	
+	if(document.regist['R1'][0].checked) { // new account
+		var arg = new Array();
+		var count = 0;
+
+		if(!chkName(document.regist.T11.value, "Username")) {
+			return;
+		}			
+		arg[0] = document.regist.T11.value;
+		
+		if(!chkPasswd(document.regist.T21.value, "Password")) {
+			return;
+		}
+		if(document.regist.T23.value == "") {
+			alert("Confirm Password is empty.");
+			return;
+		}				
+		if(document.regist.T23.value == document.regist.T21.value) {					
+			arg[1] = document.regist.T21.value;		
+		}else {
+			alert('The passwords do not match.');
+			return;
+		}
+ 		
+		if(!chkRegMail(document.regist.T3.value, "E-Mail")) {
+			return;
+		}			
+		arg[2] = document.regist.T3.value;
+		if(document.regist.T4.value == 000) {
+			alert('Please select one country.');
+			return;
+		}
+		arg[3] = document.regist.T4.value;
+
+		cmd = Get_CLI("regist", 3, arg);
+		count++;
+		
+//		if(idp && av && as && cf) {
+		if(idp && av && cf) {
+			if (document.regist['_av'][0].checked)
+				cmd = compose_CLI(cmd, "service-register service-type trial service all zav");
+			else if (document.regist['_av'][1].checked)
+				cmd = compose_CLI(cmd, "service-register service-type trial service all kav");
+			else {
+				alert('Please choose Anti-Virus engine.');
+				return;
+			}
+			count++;
+		}else {
+			if(idp) {
+				arg[0] = "idp"
+				cmd = compose_CLI(cmd, Get_CLI("regist", 4, arg));
+				count++;	
+			}
+			
+			if(av) {
+				if (document.regist['_av'][0].checked)
+					cmd = compose_CLI(cmd, "service-register service-type trial service av zav");
+				else if (document.regist['_av'][1].checked)
+					cmd = compose_CLI(cmd, "service-register service-type trial service av kav");
+				else {
+					alert('Please choose Anti-Virus engine.');
+					return;
+				}
+				count++;
+			}
+/*
+		  if(as) {
+				arg[0] = "as"
+				cmd = compose_CLI(cmd, Get_CLI("regist", 4, arg));
+				count++;
+			}
+*/
+			if(cf) {
+				arg[0] = "content-filter";
+				cmd = compose_CLI(cmd, Get_CLI("regist", 4, arg));
+				count++;
+			}
+		}	
+	}else if(document.regist['R1'][1].checked) { // exist account
+		var arg = new Array();
+		var count = 0;
+		
+		if(theRegPtr.enable == "no") {
+			if(!chkName(document.regist.T12.value, "Username"))
+				return;
+			if(!chkPasswd(document.regist.T22.value, "Password"))
+				return;
+			arg[0] = document.regist.T12.value;
+			arg[1] = document.regist.T22.value;
+			cmd = compose_CLI(cmd, Get_CLI("regist", 5, arg));
+			count++;
+		}
+		
+//		if(idp && as && av && cf && serviceA[0] == 0 && serviceA[1] == 0 && serviceA[2] == 0 && serviceA[3] == 0) {
+		if(idp && av && cf && serviceA[0] == 0 && serviceA[1] == 0 && serviceA[2] == 0) {
+			if (document.regist['_av'][0].checked)
+				cmd = compose_CLI(cmd, "service-register service-type trial service all zav");
+			else  if (document.regist['_av'][1].checked)
+				cmd = compose_CLI(cmd, "service-register service-type trial service all kav");
+			else {
+				alert('Please choose Anti-Virus engine.');
+				return;
+			}
+			count++;
+		}else {
+			if(idp && serviceA[0] == 0) {
+				arg[0] = "idp"
+				cmd = compose_CLI(cmd, Get_CLI("regist", 4, arg));
+				count++;	
+			}
+			
+/*			
+			if(as && serviceA[1] == 0) {
+				arg[0] = "as";
+				cmd = compose_CLI(cmd, Get_CLI("regist", 4, arg));
+				count++;
+			} 
+*/
+			if (!av && (document.regist['_av'][0].checked || document.regist['_av'][1].checked)) {
+				alert('Please activate Anti-Virus trial service.');
+				return;
+			}
+
+			if(av && serviceA[1] == 0) {
+				if (document.regist['_av'][0].checked)
+					cmd = compose_CLI(cmd, "service-register service-type trial service av zav");
+				else if (document.regist['_av'][1].checked)
+					cmd = compose_CLI(cmd, "service-register service-type trial service av kav");
+				else {
+					alert('Please choose Anti-Virus engine.');
+					return;
+				}
+				count++;
+			} else if (av && serviceA[1] == 1) {
+				/* change av engine */
+				if (document.regist['_av'][0].checked && (serviceA[3] == 0 || serviceA[3] == 'kav')) {
+					if (!confirm("ZyWALL will start to update ZyXEL ICSA Anti-Virus latest signatures. ZyXEL ICSA Anti-Virus will be available after signature update is successful")) return;
+					cmd = compose_CLI(cmd, "service-register service-type trial av-engine zav");
+					count++;
+				} else if (document.regist['_av'][1].checked && (serviceA[3] == 0 || serviceA[3] == 'zav')) {
+					if (!confirm("ZyWALL will start to update Kaspersky Anti-Virus latest signatures. Kaspersky Anti-Virus will be available after signature update is successful")) return;
+					cmd = compose_CLI(cmd, "service-register service-type trial av-engine kav");
+					count++;
+				}
+			}
+			
+			if(cf && serviceA[2] == 0) {
+				arg[0] = "content-filter";
+				cmd = compose_CLI(cmd, Get_CLI("regist", 4, arg));
+				count++;
+			}	
+		}	
+	}
+	var cmd = compose_CLI(cmd, Get_CLI("regist",1));
+	count+=3;
+	/* get model type */
+	cmd = compose_CLI(cmd, 'show version');
+	count++;
+	
+	txcli(cmd, 'regist.html', count, 'regist.html');
+	gl.retbufno = count-3;
+}
+
+function chkData(){
+	if(gl.isLimitAdmin) {
+		alert("This action is not allowed for Limited-Admin accounts.");
+		return;
+	}
+	var arg = new Array();
+	if(!chkName(document.regist.T11.value, "Username")) {
+		return;
+	}
+	arg[0] = document.regist.T11.value;
+	var cmd = Get_CLI("regist", 2, arg);	
+	txcli(cmd, 'regist.html', 1);
+	gl.retbufno = 0;
+	gl.regChkFlag = true;
+}
+
+function doDeviceRegist(dataPtr) {
+	if(dataPtr.enable == "yes") {
+		document.regist.T12.disabled  = true;
+		document.regist.T22.disabled  = true;
+	}	
+
+	if(dataPtr.regserv.getRecord(0).type == "None") {
+		document.regist.IDP.checked  = false;
+	}else{
+		serviceA[0] = 1;
+		document.regist.IDP.checked  = true;
+		document.regist.IDP.disabled = true;
+	}
+/*
+	if(dataPtr.regserv.getRecord(1).type == "None") { 
+		document.regist.AS.checked  = false;	
+	}else {
+		serviceA[1] = 1;
+		document.regist.AS.checked  = true;
+		document.regist.AS.disabled = true;
+	}
+*/
+	if(dataPtr.regserv.getRecord(1).type == "None") {
+		document.regist.AV.checked  = false;	
+	}else {
+		var _type = dataPtr.regserv.getRecord(1).type.split(",");
+		if (_type[1] == 'Kaspersky') {
+			document.regist['_av'][1].checked = true;
+			serviceA[3] = 'kav';
+		} else { 
+			document.regist['_av'][0].checked = true;
+			serviceA[3] = 'zav';
+		}
+			
+		document.regist.AV.checked  = true;
+		document.regist.AV.disabled = true;
+		if (_type[0] == "Standard") {
+			document.regist['_av'][0].disabled = true;
+			document.regist['_av'][1].disabled = true;
+		}
+		serviceA[1] = 1;
+	}
+	
+	if(dataPtr.regserv.getRecord(3).type == "None") {
+		document.regist.CF.checked  = false;	
+	}else {
+		serviceA[2] = 1;
+		document.regist.CF.checked  = true;
+		document.regist.CF.disabled = true;
+	}
+}	
+function RegisType(dataPtr){
+	if(dataPtr.getRecord(0).enable == "yes") {
+		var attr = 1;
+	}else {
+		var attr = 0;
+	}
+	document.regist['R1'][attr].checked = true;
+	var un0 = document.getElementById('UN0');
+	var un1 = document.getElementById('UN1');
+	var pw0 = document.getElementById('PW0');
+	var pw1 = document.getElementById('PW1'); 
+	var cl 	= document.getElementById('CL');
+	var cp 	= document.getElementById('CP');
+	var ea 	= document.getElementById('EA');
+	var cc 	= document.getElementById('CC');
+	
+	if( attr == 0){
+		un0.style.display = "";
+		un1.style.display = "none";
+		pw0.style.display = "";
+		pw1.style.display = "none";
+		cl.style.display  = "";			
+		cp.style.display  = "";
+		ea.style.display  = "";
+		cc.style.display  = "";		
+		gl.registype  =1;	
+	}else {
+	
+		un0.style.display = "none";
+		un1.style.display = "";
+		pw0.style.display = "none";
+		pw1.style.display = "";
+		cl.style.display  = "none";			
+		cp.style.display  = "none";
+		ea.style.display  = "none";
+		cc.style.display  = "none";
+		gl.registype  =0;
+	}
+}
+
+function RegisAccount(attr){
+	document.regist['R1'][attr].checked = true;
+	var un0 = document.getElementById('UN0');
+	var un1 = document.getElementById('UN1');
+	var pw0 = document.getElementById('PW0');
+	var pw1 = document.getElementById('PW1'); 
+	var cl 	= document.getElementById('CL');
+	var cp 	= document.getElementById('CP');
+	var ea 	= document.getElementById('EA');
+	var cc 	= document.getElementById('CC');
+	
+	if( attr == 0){
+		un0.style.display = "";
+		un1.style.display = "none";
+		pw0.style.display = "";
+		pw1.style.display = "none";
+		cl.style.display  = "";			
+		cp.style.display  = "";
+		ea.style.display  = "";
+		cc.style.display  = "";		
+		gl.registype  =1;	
+	}else {
+		un0.style.display = "none";
+		un1.style.display = "";
+		pw0.style.display = "none";
+		pw1.style.display = "";
+		cl.style.display  = "none";			
+		cp.style.display  = "none";
+		ea.style.display  = "none";
+		cc.style.display  = "none";
+		gl.registype  =0;
+	}
+	gl.regBuff[0] = attr;
+}
+
+function apply(){
+        document.getElementById('R10').style.display="none" ;
+        document.getElementById('REGTEXT').style.display="none" ;
+	var un0 = document.getElementById('UN0');
+	var un1 = document.getElementById('UN1');
+	var pw0 = document.getElementById('PW0');
+	var pw1 = document.getElementById('PW1'); 
+	var cl 	= document.getElementById('CL');
+	var cp 	= document.getElementById('CP');
+	var ea 	= document.getElementById('EA');
+	var cc 	= document.getElementById('CC');
+	
+
+		un0.style.display = "none";
+		un1.style.display = "";
+		un1.disabled = "disabled";
+		pw0.style.display = "none";
+		pw1.style.display = "";
+		pw1.disabled = "disabled";
+		cl.style.display  = "none";			
+		cp.style.display  = "none";
+		ea.style.display  = "none";
+		cc.style.display  = "none";
+		gl.registype  =0;
+}
+
+function chkName(str, msg) {
+	var ret = true;
+	var result = str.match(/^[\.@\w\-]{6,20}$/);
+	if(!str) {
+		alert(msg+" is empty.");
+		ret = false
+	}else if(str.length < 6 || str.length > 20) {
+		alert("The length of user name is between 6 and 20.");
+		ret = false;
+	}else if(!result) {
+		alert(msg+" is invalid.");
+		ret = false;
+	}
+	
+	return ret;
+}
+
+function chkRegMail(str, msg) {
+	var ret = true;
+	var result = str.match(/^[[\.\w@-]{1,80}$/);
+	if(!str) {
+		alert(msg+" is empty.");
+		ret = false
+	}else if(!result) {
+		alert(msg+" is invalid.");
+		ret = false;
+	}
+	return ret;
+}
+
+function showRegText(dataPtr, type) {
+	if(dataPtr.getRecord(0).enable == "yes") {
+		if(type == "TEXT") {
+			var regtext =  document.getElementById('REGTEXT');
+			regtext.className = "hidden";
+			regtext.style.display = "none";
+		}else if(type == "POINTER") {
+			var r10 = document.getElementById('R10');
+			r10.className = "hidden";
+			r10.style.display = "none";
+		}
+	}	
+}
+
+function showRegApplyButton(dataPtr) {
+	var count = 0;
+	var regbutton1 =  document.getElementById('REGButton1');
+	var regbutton2 =  document.getElementById('REGButton2');
+	var count_2 = serviceA.length;
+	
+	for(var j = 0; j < count_2; j++) {
+		if(serviceA[j] == 1) {
+			count++;
+		}
+	}
+	
+	if(dataPtr.getRecord(0).enable == "yes" && count == count_2) {
+		regbutton1.style.display = "none";
+		regbutton2.style.display = "";
+	}else {
+		regbutton1.style.display = "";
+		regbutton2.style.display = "none";
+	}	
+}
+
+function preChk(category, val) {
+		switch(category){
+			case 'T11' :
+				if(!chkName(val, "Username")) return;
+				gl.regBuff[1] = val;
+				break;
+			case 'T12' :			
+				if(!chkName(val, "Username")) return;
+				gl.regBuff[6] = val;
+				break;
+			case 'T21' :
+				if(val.length < 6) {
+					alert('The minimum password length is 6.');
+					return;
+				}
+				if(!chkPasswd(val, "Password")) return;
+				gl.regBuff[2] = val;
+				break;
+			case 'T22' :
+				if(val.length < 6) {
+					alert('The minimum password length is 6.');
+					return;
+				}
+				if(!chkPasswd(val, "Password")) return;
+				gl.regBuff[7] = val;
+				break;
+			case 'T23' :
+				if(val.length < 6) {
+					alert('The minimum confirm password length is 6.');
+					return;
+				}
+				if(!chkPasswd(val, "Password")) return;
+				gl.regBuff[3] = val;
+				break;
+			case 'T3' :
+				if(!chkRegMail(val, "E-Mail")) return;
+				gl.regBuff[4] = val;
+				break;
+			case 'T4' :
+				gl.regBuff[5] = val;
+				break;
+		}
+}
+
+function multi_lingual(wording, filename){
+//document.write(top.frames[1].getLang(wording, filename));
+}
+// -->
+
+</script></head><body leftmargin="0" topmargin="0" onunload="page_init();" onload="getData();  showFullPath('Licensing > Registration'); displayStr('Ready.'); " background="images/config_bg.gif" marginheight="0" marginwidth="0">
+<form name="regist" method="post">	
+<script>//ShowWins()</script>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td width="2%">&nbsp;</td>
+			<td width="98%">&nbsp;</td>
+		</tr>
+	</tbody></table>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+		<tbody><tr>
+			<td width="2%">&nbsp;</td>
+			<td><!-- 3D -->
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td width="14"><img src="images/sub_on_1.gif" height="24" width="14"></td>
+						<td class="sub" background="images/sub_on_2.gif" nowrap="nowrap"><script>multi_lingual("_Registration", "_globalTag")</script>Registration</td>
+						<td width="14"><img src="images/sub_on_3.gif" height="24" width="14"></td>
+
+						
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"> <a href="m_registmgn.html" target="main" class="sub"><script>multi_lingual("_Service", "_globalTag")</script>Service</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+					</tr>
+				</tbody></table>
+				<!-- 3D -->
+			</td>
+
+		</tr>
+		<tr>
+			<td width="2%"></td>
+			<td class="BG4">
+				<!-- 3D -->
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tbody><tr>
+						<td rowspan="3" background="images/config_bo_l.gif" width="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+						<td background="images/config_bo_t.gif" height="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+
+						<td rowspan="3" background="images/config_bo_r.gif" width="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+					</tr>
+					<tr>
+						<td>
+							<!-- 3D -->
+							<div align="center">&nbsp;<br>
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="BG3" width="2%">&nbsp;</td>
+
+										<td class="BG3"><script>multi_lingual("_General_Setup", "_globalTag")</script>General Settings</td>
+									</tr>
+								</tbody></table><br>
+								<table border="0" cellpadding="0" cellspacing="0" width="96%">
+									<tbody><tr id="REGTEXT">
+										<td colspan="4">
+											<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left">&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ff0000"><script>multi_lingual("_regtext1", "_regist")</script>This device is not registered to myZyXEL.com.&nbsp; Please enter information below to <b>register</b> your device.</font></p>
+
+											<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;<script>multi_lingual("_regtext2", "_regist")</script>"If you don't have myZyXEL.com account, please select "new myZyXEL.com account" below. If you have"</font></p>
+											<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;<script>multi_lingual("_regtext3", "_regist")</script>"a myZyXEL.com account, but you forget your User Name or Password, please go to "</font><script>multi_lingual("_regtext4", "_regist")</script>"<a href="" http:="" www.myzyxel.com=""><font #ff0000="" color=""><i><u>www.myZyXEL.com</u></i></font></a>"<font color="#000000">&nbsp;</font></p>
+											<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;<script>multi_lingual("_regtext5", "_regist")</script>for help.</font></p>
+										</td>
+
+									</tr>
+									<script>//showRegText(theDataPtr, "TEXT");</script>
+									<tr id="R10">
+										<td colspan="2" height="32">
+											<input checked="checked" value="0" name="R1" onclick="RegisAccount(this.value);" type="radio">
+											<script>multi_lingual("_new_myZyXEL_com_account", "_regist")</script>new myZyXEL.com account
+										</td>
+										<td colspan="2" height="32">
+
+											<input value="1" name="R1" onclick="RegisAccount(this.value);" type="radio">
+											<script>multi_lingual("_existing_myZyXEL_com_account", "_regist")</script>existing myZyXEL.com account
+										</td>
+									</tr>
+									<script>//showRegText(theDataPtr, "POINTER");</script>
+									<tr>
+										<td width="3%">&nbsp;</td>
+										<td width="31%"><script>multi_lingual("_User_Name", "_regist")</script>User Name</td>
+
+										<td width="19%">
+											<input id="UN0" name="T11" size="20" maxlength="20" value="" onchange="preChk('T11', this.value)" type="text">
+											<input style="display: none;" id="UN1" name="T12" size="20" maxlength="20" value="" onchange="preChk('T12', this.value)" type="text">
+										</td>
+										<td id="CL" width="47%">
+											<input value="Check" name="Check" onclick="chkData();" type="button">
+											<script>multi_lingual("_you_can_click", "_regist")</script>you can click to check if username exists
+										</td>
+									</tr>
+
+									<tr>
+										<td width="3%">&nbsp;</td>
+										<td width="31%"><script>multi_lingual("_Password", "_regist")</script>Password</td>
+										<td>
+											<input id="PW0" name="T21" size="20" maxlength="20" onchange="preChk('T21', this.value)" type="password">
+											<input style="display: none;" id="PW1" name="T22" size="20" maxlength="20" onchange="preChk('T22', this.value)" type="password">
+										</td>
+										<td>&nbsp;</td>
+
+									</tr>
+									<tr id="CP">
+										<td width="3%">&nbsp;</td>
+										<td width="31%"><script>multi_lingual("_Confirm_Password", "_regist")</script>Confirm Password</td>
+										<td colspan="2"><input name="T23" maxlength="20" size="20" onchange="preChk('T23', this.value)" type="password"></td>
+									</tr>
+									<tr id="EA">
+										<td width="3%">&nbsp;</td>
+
+										<td width="31%"><script>multi_lingual("_E_Mail_Address", "_regist")</script>E-Mail Address</td>
+										<td colspan="2"><input name="T3" size="32" maxlength="80" value="" onchange="preChk('T3', this.value)" type="text"></td>
+									</tr>
+									<tr id="CC">
+										<td width="3%">&nbsp;</td>
+										<td width="31%"><script>multi_lingual("_Country_Code", "_regist")</script>Country Code</td>
+										<td colspan="2">
+
+											<select name="T4" size="1" onchange="preChk('T4', this.value)">
+												<option value="0" selected="selected">---------- Select ----------</option>
+												<option value="001">Afghanistan</option>
+												<option value="002">Albania</option>
+												<option value="003">Algeria</option>
+												<option value="004">American</option>
+
+												<option value="005">Andorra</option>
+												<option value="006">Angola</option>
+												<option value="007">Anguilla</option>
+												<option value="008">Antartica</option>
+												<option value="009">Antigua &amp; Barbuda</option>
+
+												<option value="010">Argentina</option>
+												<option value="011">Armenia</option>
+												<option value="012">Aruba</option>
+												<option value="013">Ascension Island</option>
+												<option value="014">Australia</option>
+												<option value="015">Austria</option>
+
+												<option value="016">Azerbaijan</option>
+												<option value="017">Bahamas</option>
+												<option value="018">Bahrain</option>
+												<option value="019">Bangladesh</option>
+												<option value="020">Barbados</option>
+												<option value="021">Belarus</option>
+
+												<option value="022">Belgium</option>
+												<option value="023">Belize</option>
+												<option value="024">Benin</option>
+												<option value="025">Bermuda</option>
+												<option value="026">Bhutan</option>
+												<option value="027">Bolivia</option>
+
+												<option value="028">Bosnia and Herzegovina</option>
+												<option value="029">Botswana</option>
+												<option value="030">Bouvet Island</option>
+												<option value="031">Brazil</option>
+												<option value="032">British Indian Ocean Territory</option>
+												<option value="033">Brunei Darussalam</option>
+
+												<option value="034">Bulgaria</option>
+												<option value="035">Burkina Faso</option>
+												<option value="036">Burundi</option>
+												<option value="037">Cambodia</option>
+												<option value="038">Cameroon</option>
+												<option value="039">Canada</option>
+
+												<option value="040">Cape Verde</option>
+												<option value="041">Cayman Islands</option>
+												<option value="042">Central African Republic</option>
+												<option value="043">Chad</option>
+												<option value="044">Chile</option>
+												<option value="045">China</option>
+
+												<option value="046">Christmas Island</option>
+												<option value="047">Cocos (Keeling) Islands</option>
+												<option value="048">Colombia</option>
+												<option value="049">Comoros</option>
+												<option value="050">Congo, Democratic Republic of the</option>
+												<option value="051">Congo, Republic of</option>
+
+												<option value="052">Cook Islands</option>
+												<option value="053">Costa Rica</option>
+												<option value="054">Cote d!</option>
+												<option value="055">Croatia/Hrvatska</option>
+												<option value="056">Cyprus</option>
+												<option value="057">Czech Republic</option>
+
+												<option value="058">Denmark</option>
+												<option value="059">Djibouti</option>
+												<option value="060">Dominica</option>
+												<option value="061">Dominican Republic</option>
+												<option value="062">East Timor</option>
+												<option value="063">Ecuador</option>
+
+												<option value="064">Egypt</option>
+												<option value="065">El Salvador</option>
+												<option value="066">Equatorial Guinea</option>
+												<option value="067">Eritrea</option>
+												<option value="068">Estonia</option>
+												<option value="069">Ethiopia</option>
+
+												<option value="070">Falkland Islands (Malvina)</option>
+												<option value="071">Faroe Islands</option>
+												<option value="072">Fiji</option>
+												<option value="073">Finland</option>
+												<option value="074">France</option>
+												<option value="075">France (Metropolitan)</option>
+
+												<option value="076">French Guiana</option>
+												<option value="077">French Polynesia</option>
+												<option value="078">French Southern Territories</option>
+												<option value="079">Gabon</option>
+												<option value="080">Gambia</option>
+												<option value="081">Georgia</option>
+
+												<option value="082">Germany</option>
+												<option value="083">Ghana</option>
+												<option value="084">Gibraltar</option>
+												<option value="085">Great Britain</option>
+												<option value="086">Greece</option>
+												<option value="087">Greenland</option>
+
+												<option value="088">Grenada</option>
+												<option value="089">Guadeloupe</option>
+												<option value="090">Guam</option>
+												<option value="091">Guatemala</option>
+												<option value="092">Guernsey</option>
+												<option value="093">Guinea</option>
+
+												<option value="094">Guinea-Bissau</option>
+												<option value="095">Guyana</option>
+												<option value="096">Haiti</option>
+												<option value="097">Heard and McDonald Islands</option>
+												<option value="098">Holy See (City Vatican State)</option>
+												<option value="099">Honduras</option>
+
+												<option value="100">Hong Kong</option>
+												<option value="101">Hungary</option>
+												<option value="102">Iceland</option>
+												<option value="103">India</option>
+												<option value="104">Indonesia</option>
+												<option value="105">Ireland</option>
+
+												<option value="106">Isle of Man</option>
+												<option value="107">Italy</option>
+												<option value="108">Jamaica</option>
+												<option value="109">Japan</option>
+												<option value="110">Jersey</option>
+												<option value="111">Jordan</option>
+
+												<option value="112">Kazakhstan</option>
+												<option value="113">Kenya</option>
+												<option value="114">Kiribati</option>
+												<option value="115">Korea, Republic of</option>
+												<option value="116">Kuwait</option>
+												<option value="117">Kyrgyzstan</option>
+
+												<option value="118">Lao People! Democratic Republic</option>
+												<option value="119">Latvia</option>
+												<option value="120">Lebanon</option>
+												<option value="121">Lesotho</option>
+												<option value="122">Liberia</option>
+												<option value="123">Liechtenstein</option>
+
+												<option value="124">Lithuania</option>
+												<option value="125">Luxembourg</option>
+												<option value="126">Macau</option>
+												<option value="127">Macedonia, Former Yugoslav Republic</option>
+												<option value="128">Madagascar</option>
+												<option value="129">Malawi</option>
+
+												<option value="130">Malaysia</option>
+												<option value="131">Maldives</option>
+												<option value="132">Mali</option>
+												<option value="133">Malta</option>
+												<option value="134">Marshall Islands</option>
+												<option value="135">Martinique</option>
+
+												<option value="136">Mauritania</option>
+												<option value="137">Mauritius</option>
+												<option value="138">Mayotte</option>
+												<option value="139">Mexico</option>
+												<option value="140">Micronesia, Federal State of</option>
+												<option value="141">Moldova, Republic of</option>
+
+												<option value="142">Monaco</option>
+												<option value="143">Mongolia</option>
+												<option value="144">Montserrat</option>
+												<option value="145">Morocco</option>
+												<option value="146">Mozambique</option>
+												<option value="147">Namibia</option>
+
+												<option value="148">Nauru</option>
+												<option value="149">Nepal</option>
+												<option value="150">Netherlands</option>
+												<option value="151">Netherlands Antilles</option>
+												<option value="152">New Caledonia</option>
+												<option value="153">New Zealand</option>
+
+												<option value="154">Nicaragua</option>
+												<option value="155">Niger</option>
+												<option value="156">Nigeria</option>
+												<option value="157">Niue</option>
+												<option value="158">Norfolk Island</option>
+												<option value="159">Northern Mariana Islands</option>
+
+												<option value="160">Norway</option>
+												<option value="161">Not Determined</option>
+												<option value="162">Oman</option>
+												<option value="163">Pakistan</option>
+												<option value="164">Palau</option>
+												<option value="165">Panama</option>
+
+												<option value="166">Papua New Guinea</option>
+												<option value="167">Paraguay</option>
+												<option value="168">Peru</option>
+												<option value="169">Philippines</option>
+												<option value="170">Pitcairn Island</option>
+												<option value="171">Poland</option>
+
+												<option value="172">Portugal</option>
+												<option value="173">Puerto Rico</option>
+												<option value="174">Qatar</option>
+												<option value="175">Reunion Island</option>
+												<option value="176">Romania</option>
+												<option value="177">Russian Federation</option>
+
+												<option value="178">Rwanda</option>
+												<option value="179">Saint Kitts and Nevis</option>
+												<option value="180">Saint Lucia</option>
+												<option value="181">Saint Vincent and the Grenadines</option>
+												<option value="182">San Marino</option>
+												<option value="183">Sao Tome and Principe</option>
+
+												<option value="184">Saudi Arabia</option>
+												<option value="185">Senegal</option>
+												<option value="186">Seychelles</option>
+												<option value="187">Sierra Leone</option>
+												<option value="188">Singapore</option>
+												<option value="189">Slovak Republic</option>
+
+												<option value="190">Slovenia</option>
+												<option value="191">Solomon Islands</option>
+												<option value="192">Somalia</option>
+												<option value="193">South Africa</option>
+												<option value="194">South Georgia and the South Sandwich Islands</option>
+												<option value="195">Spain</option>
+
+												<option value="196">Sri Lanka</option>
+												<option value="197">St Pierre and Miquelon</option>
+												<option value="198">St. Helena</option>
+												<option value="199">Suriname</option>
+												<option value="200">Svalbard and Jan Mayen Islands</option>
+												<option value="201">Swaziland</option>
+
+												<option value="202">Sweden</option>
+												<option value="203">Switzerland</option>
+												<option value="204">Taiwan</option>
+												<option value="205">Tajikistan</option>
+												<option value="206">Tanzania</option>
+												<option value="207">Thailand</option>
+
+												<option value="208">Togo</option>
+												<option value="209">Tokelau</option>
+												<option value="210">Tonga</option>
+												<option value="211">Trinidad and Tobago</option>
+												<option value="212">Tunisia</option>
+												<option value="213">Turkey</option>
+
+												<option value="214">Turkmenistan</option>
+												<option value="215">Turks and Caicos Islands</option>
+												<option value="216">Tuvalu</option>
+												<option value="217">US Minor Outlying Islands</option>
+												<option value="218">Uganda</option>
+												<option value="219">Ukraine</option>
+
+												<option value="220">United Arab Emirates</option>
+												<option value="221">United Kingdom</option>
+												<option value="222">United States</option>
+												<option value="223">Uruguay</option>
+												<option value="224">Uzbekistan</option>
+												<option value="225">Vanuatu</option>
+
+												<option value="226">Venezuela</option>
+												<option value="227">Vietnam</option>
+												<option value="228">Virgin Island (British)</option>
+												<option value="229">Virgin Islands (USA)</option>
+												<option value="230">Wallis And Futuna Islands</option>
+												<option value="231">Western Sahara</option>
+
+												<option value="232">Western Samoa</option>
+												<option value="233">Yemen</option>
+												<option value="234">Yugoslavia</option>
+												<option value="235">Zambia</option>
+												<option value="236">Zimbabwe</option>
+											</select>
+
+										</td>
+									</tr>
+									<script>//RegisType(theDataPtr);</script>
+								</tbody></table><br>
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="BG3" width="2%">&nbsp;</td>
+										<td class="BG3"> <strong><script>multi_lingual("_Trial_Service_Activation", "_regist")</script>Trial Service Activation</strong></td>
+
+									</tr>
+								</tbody></table><br>
+								<table border="0" cellpadding="0" cellspacing="0" width="96%">
+									<tbody><tr>
+										<td width="3%"><input name="AV" type="checkbox"></td>
+										<td width="31%"><script>multi_lingual("_Anti_Virus", "_regist")</script>Anti-Virus Signature Service</td>
+										<td width="66%">&nbsp;</td>
+									</tr>
+
+									<tr>
+										<td width="3%">&nbsp;</td>
+										<td colspan="2"><input name="_av" value="0" type="radio"><script>multi_lingual("_ZAV", "_regist")</script>ZyXEL ICSA Anti-Virus Engine</td>
+									</tr>
+									<tr>
+										<td width="3%">&nbsp;</td>
+										<td colspan="2"><input name="_av" value="1" type="radio"><script>multi_lingual("_KAV", "_regist")</script>Kaspersky Anti-Virus Engine</td>
+
+									</tr>
+									<tr>
+										<td width="3%"><input name="IDP" type="checkbox"></td>
+										<td width="31%"><script>multi_lingual("_IDP", "_regist")</script>IDP/AppPatrol Signature Service</td>
+										<td width="66%">&nbsp;</td>
+									</tr>									
+									<!--tr>
+									<td width="3%"><input type="checkbox" name="AS"></td>
+										<td width="31%">Anti Spam </td>
+										<td width="66%">&nbsp;</td>
+									</tr -->
+									<tr>
+
+										<td><input name="CF" type="checkbox"></td>
+										<td><script>multi_lingual("_Content_Filter", "_regist")</script>Content Filter Category Service</td>
+										<td>&nbsp;</td>
+									</tr>
+								</tbody></table>
+								<table id="REGButton1" border="0" cellpadding="0" cellspacing="0" width="300">
+									<tbody><tr><td>&nbsp;</td></tr>
+									<tr align="center">
+
+										<td background="images/wg_dotline.gif">&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="center"><input name="Submit" value="Apply" onclick="apply();" type="button"></td>
+									</tr>
+									<tr><td height="35">&nbsp;</td></tr>
+								</tbody></table>
+								<table style="display: none;" id="REGButton2" border="0" cellpadding="0" cellspacing="0" width="300">
+									<tbody><tr><td>&nbsp;</td></tr>
+
+									<tr><td>&nbsp;</td></tr>
+								</tbody></table>
+								<script>//showRegApplyButton(theDataPtr);</script>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td background="images/config_bo_b.gif" height="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+
+					</tr>
+				</tbody></table>
+				<!-- 3D -->
+			</td>
+		</tr>
+	</tbody></table>
+	<script language="JavaScript">
+	</script>
+</form>
+</body></html>

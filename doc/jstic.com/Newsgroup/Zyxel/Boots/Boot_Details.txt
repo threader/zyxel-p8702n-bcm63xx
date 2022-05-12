@@ -1,0 +1,18 @@
+00003F90 VVVV VVVV VVVV VVVV VVVV VVVV VVVV VVVV ZyXEL Communicat
+00003FA0 VVVV VVVV VVVV VVVV VVVV VVVV VVVV VVVV ions Corp.......
+00003FB0 PPPP PPPP PPPP PPPP PPPP PPPP PPPP PPPP Prestige 660HW-X
+00003FC0 PPPP PPPP PPPP PPPP PPPP PPPP PPPP PPPP X...............
+00003FD0 ZZZZ ZZZZ ???? TT?? FFFF FFFF FFFF FFFF ................
+00003FE0 FFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFF ................
+00003FF0 FFFF FFFF FFFF BB?? MMMM MMMM MMMM CCDD ................
+
+S = SNMP MIB level & OID
+V = Vendor Name
+P = Product Model
+Z = ZyNOS Rom Adress
+T = System Type
+F = Other Feature Bits
+B = Main Feature Bits
+M = MAC Address
+C = Default Country Code
+D = Boot Module Debug Flag (00 disable, 01 enable)

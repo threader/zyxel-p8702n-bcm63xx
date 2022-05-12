@@ -1,0 +1,318 @@
+CFE version 1.13.0-102.9 for BCM96368 (32bit,SP,BE)
+Build Date: 04/01/2010 (eason@bcs)
+Copyright (C) 2000-2009 Broadcom Corporation.
+
+Parallel flash device: name MX29GL128EH, id 0x2221, size 16384KB
+ethsw: found bcm53115!
+CPU type 0x2A031: 400MHz, Bus: 160MHz, Ref: 64MHz
+CPU running TP0
+Total memory: 67108864 bytes (64MB)
+Boot Address 0xb8000000
+
+
+Board IP address                  : 192.168.1.1:ffffff00
+Host IP address                   : 192.168.1.100
+Gateway IP address                :
+Run from flash/host (f/h)         : f
+Default host run file name        : vmlinux
+Default host flash file name      : bcm963xx_fs_kernel
+Boot delay (0-9 seconds)          : 3
+Board Id (0-4)                    : 96368MVWG
+Number of MAC Addresses (1-32)    : 10
+Base MAC Address                  : 40:4a:03:c6:fb:4c
+PSI Size (1-64) KBytes            : 128
+Main Thread Number [0|1]          : 0
+
+*** Press any key to stop auto run (3 seconds) ***
+Auto run second count down: 1
+web info: Waiting for connection on socket 0.
+CFE>  atsh
+
+ZLD      Version       : V1.02(BLL.1)
+Bootbase Version       : V1.13 | 04/01/2010
+Vendor Name            : ZyXEL Communications Corp.
+Product Model          : P-2812HNU-51c
+First MAC Address      : 404A03C6FB4C
+Last MAC Address       : 404A03C6FB55
+MAC Address Quantity   : 10
+Default Country Code   : E1
+Boot Module Debug Flag : 00
+RootFS      Checksum   : b74a6a7c
+Kernel      Checksum   : dca10607
+Main Feature Bits      : C0
+Other Feature Bits     :
+                5a 59 60 01 00 00 00 00-00 00 00 00 00 00 00 00
+                00 00 00 00 00 00 00 00-03 41 13 00 00 00
+
+*** command status = 0
+CFE> athe
+Available commands:
+ATSE                show the seed of password generator
+ATEN                set BootExtension Debug Flag
+ATCR                Clear console screen
+ATSH                dump manufacturer related data in ROM
+ATUR                xmodem upload router firmware to flash ROM
+ATUW                xmodem upload flash image to flash ROM
+ATBL                Print boot line and board parameter info
+ATDU                Dump memory or registers.
+ATBR                Reset to default Romfile
+ATGO                boot router
+ATSR                system reboot
+ATMB                Use for multiboot.
+ATHE                print help
+
+For more information about a command, enter 'help command-name'
+*** command status = 0
+
+
+
+*** Press any key to stop auto run (3 seconds) ***
+Auto run second count down: 0
+Checking Reset button on GPIO 34
+Wait for Multiboot Service Packet...  0
+Booting from only image (0xb8020000) ...
+Code Address: 0x80020000, Entry Address: 0x802c5000
+Decompression OK!
+Entry at 0x802c5000
+Closing network.
+Disabling Switch ports.
+Flushing Receive Buffers...
+0 buffers found.
+Closing DMA Channels.
+Starting program at 0x802c5000
+Linux version 2.6.21.5 (jason@msgsw3-i7) (gcc version 4.2.3) #14 Wed Dec 
+22 20:32:43 CST 2010
+Parallel flash device: name MX29GL128EH, id 0x2221, size 16384KB
+96368MVWG prom init
+CPU revision is: 0002a031
+Determined physical RAM map:
+memory: 03f00000 @ 00000000 (usable)
+On node 0 totalpages: 16128
+  DMA zone: 32 pages used for memmap
+  DMA zone: 0 pages reserved
+  DMA zone: 4064 pages, LIFO batch:0
+  Normal zone: 94 pages used for memmap
+  Normal zone: 11938 pages, LIFO batch:1
+Built 1 zonelists.  Total pages: 16002
+Kernel command line: root=31:0 ro noinitrd console=ttyS0,115200
+brcm mips: enabling icache and dcache...
+Primary instruction cache 64kB, physically tagged, 4-way, linesize 16 
+bytes.
+Primary data cache 32kB, 2-way, linesize 16 bytes.
+Synthesized TLB refill handler (21 instructions).
+Synthesized TLB load handler fastpath (33 instructions).
+Synthesized TLB store handler fastpath (33 instructions).
+Synthesized TLB modify handler fastpath (32 instructions).
+PID hash table entries: 256 (order: 8, 1024 bytes)
+Using 200.000 MHz high precision timer.
+Dentry cache hash table entries: 8192 (order: 3, 32768 bytes)
+Inode-cache hash table entries: 4096 (order: 2, 16384 bytes)
+Allocating memory for DSP module core and initialization code
+Allocated DSP module memory - CORE=0x8108c700 SIZE=1573552, INIT=0x0 
+SIZE=0
+Memory: 59304k/64512k available (2323k kernel code, 5192k reserved, 381k 
+data, 100k init, 0k highmem)
+KLOB Pool 1 Initialized: 1048576 bytes <0x80c00000 ... 0x80d00000>
+Calibrating delay loop... 398.33 BogoMIPS (lpj=199168)
+Mount-cache hash table entries: 512
+NET: Registered protocol family 16
+Total Flash size: 16384K with 128 sectors
+Address is too big.
+File system address: 0xb8020100
+kerSysFlashInit zyxel_ivr usedBlkSize 524288
+kerSysFlashInit userdefcfg usedBlkSize 131072
+registering PCI controller with io_map_base unset
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+BLOG v1.0 Initialized
+NET: Registered protocol family 8
+NET: Registered protocol family 20
+Time: MIPS clocksource has been installed.
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 2048 (order: 2, 16384 bytes)
+TCP bind hash table entries: 2048 (order: 1, 8192 bytes)
+TCP: Hash tables configured (established 2048 bind 2048)
+TCP reno registered
+squashfs: version 3.2-r2 (2007/01/15) Phillip Lougher
+squashfs: LZMA suppport for slax.org by jro
+fuse init (API version 7.8)
+io scheduler noop registered (default)
+PPP generic driver version 2.4.2
+NET: Registered protocol family 24
+bcm963xx_mtd driver v1.0
+PCI: Enabling device 0000:00:0a.0 (0000 -> 0002)
+PCI: Setting latency timer of device 0000:00:0a.0 to 64
+ehci_hcd 0000:00:0a.0: EHCI Host Controller
+ehci_hcd 0000:00:0a.0: new USB bus registered, assigned bus number 1
+ehci_hcd 0000:00:0a.0: irq 15, io mem 0x10001500
+ehci_hcd 0000:00:0a.0: USB f.f started, EHCI 1.00, driver 10 Dec 2004
+usb usb1: configuration #1 chosen from 1 choice
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 2 ports detected
+ohci_hcd: 2006 August 04 USB 1.1 'Open' Host Controller (OHCI) Driver
+hub 1-0:1.0: over-current change on port 1
+PCI: Enabling device 0000:00:09.0 (0000 -> 0002)
+PCI: Setting latency timer of device 0000:00:09.0 to 64
+ohci_hcd 0000:00:09.0: OHCI Host Controller
+ohci_hcd 0000:00:09.0: new USB bus registered, assigned bus number 2
+ohci_hcd 0000:00:09.0: irq 13, io mem 0x10001600
+usb usb2: configuration #1 chosen from 1 choice
+hub 2-0:1.0: USB hub found
+hub 2-0:1.0: 2 ports detected
+usbcore: registered new interface driver usblp
+drivers/usb/class/usblp.c: v0.13: USB Printer Device Class driver
+Initializing USB Mass Storage driver...
+usbcore: registered new interface driver usb-storage
+USB Mass Storage support registered.
+usbcore: registered new interface driver usbserial
+drivers/usb/serial/usb-serial.c: USB Serial Driver core
+drivers/usb/serial/usb-serial.c: USB Serial support registered for GSM 
+modem (1-port)
+usbcore: registered new interface driver option
+drivers/usb/serial/option.c: USB Driver for GSM modems: v0.7.1
+brcmboard: brcm_board_init entry
+kerSysScreenPciDevices: 0x14e4:0xa8d6:(slot 1) detected
+kerSysScreenPciDevices: 0x14e4:0x6300:(slot 9) detected
+kerSysScreenPciDevices: 0x14e4:0x6300:(slot 10) detected
+SES: Button Interrupt 0x1 is enabled
+SES: LED GPIO 0x8018 is enabled
+Serial: BCM63XX driver $Revision: 3.00 $
+ttyS0 at MMIO 0xb0000100 (irq = 10) is a BCM63XX
+ttyS1 at MMIO 0xb0000120 (irq = 11) is a BCM63XX
+bcmxtmrt: Broadcom BCM6368B2 ATM/PTM Network Device v0.1 Dec 20 2010 
+14:11:00
+Mirror/redirect action on
+u32 classifier
+    input device check on
+    Actions configured
+TCP cubic registered
+Initializing XFRM netlink socket
+NET: Registered protocol family 1
+NET: Registered protocol family 10
+6WIND/LSIIT IPv6 multicast forwarding 0.1 plus PIM-SM/SSM with *BSD API
+IPv6 over IPv4 tunneling driver
+NET: Registered protocol family 17
+NET: Registered protocol family 15
+Ebtables v2.0 registered
+802.1Q VLAN Support v1.8 Ben Greear <greearb@candelatech.com>
+All bugs added by David S. Miller <davem@redhat.com>
+VFS: Mounted root (squashfs filesystem) readonly.
+Freeing unused kernel memory: 100k freed
+init started:  BusyBox v1.00 (2010.12.20-06:14+0000) multi-call binary
+mkdir: Cannot create directory `/tmp': File exists
+cp: /etc/ppp/chat/*: No such file or directory
+
+
+BusyBox v1.00 (2010.12.20-06:14+0000) Built-in shell (msh)
+Enter 'help' for a list of built-in commands.
+
+
+Loading drivers and kernel modules...
+
+pktflow: module license 'Proprietary' taints kernel.
+Broadcom Packet Flow Cache learning via BLOG enabled.
+Created Proc FS /procfs/fcache
+Constructed Broadcom Packet Flow Cache v0.1 Aug 17 2009 11:57:43
+Broadcom Packet CMF (Experimental) Char Driver v0.1 Jun 30 2009 11:30:40 
+Registered<232>
+Broadcom Packet CMF (Experimental) [6368-B2] v0.1 Jun 30 2009 11:30:40 
+Loaded
+bcmxtmcfg: bcmxtmcfg_init entry
+adsl: adsl_init entry
+IPv6: add_dev failed for dsl0
+Broadcom BCMPROCFS v1.0 initialized
+Broadcom BCM6368B2 Ethernet Network Device v0.1 Dec 20 2010 14:10:29
+KLOB extended to 2 pools
+KLOB extended to 3 pools
+KLOB extended to 4 pools
+KLOB extended to 5 pools
+Config Switch Through SPI Slave Select 0
+ethsw: found bcm53115!
+dgasp: kerSysRegisterDyingGaspHandler: bcmsw registered
+
+Ethernet WAN selected
+Broadcom Packet CMF (Experimental) SWC RESET.
+Broadcom Packet CMF (Experimental) SWC INITIALIZED.
+KLOB extended to 6 pools
+KLOB extended to 7 pools
+KLOB extended to 8 pools
+IPv6: add_dev failed for pktcmf_sw_sar
+Broadcom Packet CMF (Experimental) Forwarder Net Device 0 v0.1 Jun 30 2009 
+11:30:40 Registered
+IPv6: add_dev failed for pktcmf_sar_sw
+Broadcom Packet CMF (Experimental) Forwarder Net Device 1 v0.1 Jun 30 2009 
+11:30:40 Registered
+Broadcom Packet CMF (Experimental) ENABLED.
+eth3: MAC Address: 40:4A:03:C6:FB:4C
+eth2: MAC Address: 40:4A:03:C6:FB:4C
+eth1: MAC Address: 40:4A:03:C6:FB:4C
+eth0: MAC Address: 40:4A:03:C6:FB:4C
+create_vport, eth4 ifindex = 13
+eth4: MAC Address: 40:4A:03:C6:FB:4D
+PCI: Enabling device 0000:00:01.0 (0000 -> 0002)
+PCI: Setting latency timer of device 0000:00:01.0 to 64
+wl: srom not detected, using main memory mapped srom info (wombo board)
+wl0: wlc_attach: MAC addr from system pool. id:0x776c0000
+wl0: MAC Address: 40:4A:03:C6:FB:4E
+wl0: Broadcom BCMa8d6 802.11 Wireless Controller 5.10.85.0.cpe4.402.8
+dgasp: kerSysRegisterDyingGaspHandler: wl0 registered
+DSP Driver: DSP init stub
+Endpoint: endpoint_init entry
+Endpoint: endpoint_init COMPLETED
+p8021ag: p8021ag_init entry
+193
+main, getpid = 196
+BOS: Enter bosInit
+bosTimerInit
+Enter bosAppInit
+Exit bosAppInit
+BOS: Exit bosInit
+AppRegisterSignal, mm pid = 199
+srtpInit....ret = 0
+Enter TaskCreate rtp
+TaskCreate - spawn new task rtp
+Exit TaskCreate
+Enter TaskCreate rtcp
+TaskCreate - spawn new task rtcp
+Exit TaskCreate
+202
+
+===== Release Version 4.02L.03 (build timestamp 101222_2032) =====
+
+
+[ENTERED]:ICF_ES
+
+INFO: AUTO_SCALE: 1
+
+INFO: MODE_OF_OPERATION: 0
+
+INFO: SIP_COMPACT_HDRS: NO
+
+INFO: NW_TRACE_ENABLED: YES
+INFO: ICF_DEF_SIP_SERVER_PORT: 6062
+INFO: ICF_DEF_SIP_PROXY_PORT: 6061
+INFO: TRANSPORT_MODE: 0
+INFO: ICF_SYS_RESOURCE_LIMIT: 1
+
+[ENTERING]:icf_es_init
+[ICF_ES]:PORT initalized succesfully
+icf_port_open_ipc_channel path = /var/iptk_es.chanl
+the open channel succeded
+exit from the es init
+ssk:error:18.822:lck_checkBeforeEntry:175:lock required during 
+cmsObj_getNextInSubTreeFlags
+
+Got User defined 
+contentssk:error:19.405:oal_readConfigUserDefFlashToBuf:1409:The 
+configuration in Rom-D is invalid
+
+ssk:error:19.405:addDefaultTwoTierLoginObject:1814:Read configuration from 
+ROM-D failed.
+ssk:error:19.418:ssk_init:755:cmsMdm_init failed, ret=9852
+ssk:error:19.418:main:205:initialization failed (9852), exit.
+smd:error:19.460:oal_processEvents:856:ssk has died.  smd must exit now!
+smd:error:19.460:oalShm_cleanup:326:shmctl IPC_STAT failed
+

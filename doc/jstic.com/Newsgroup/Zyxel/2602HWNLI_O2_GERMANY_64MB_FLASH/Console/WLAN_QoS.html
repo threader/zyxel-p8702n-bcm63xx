@@ -1,0 +1,127 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--//
+top.header.szHelp="h_WLAN_QoS.html";
+
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+function doWMMPolicy(nIndex)
+	{
+  		document.WLANQosForm.WMMFlag.value = 1;
+  		document.WLANQosForm.target = "main";
+  		document.WLANQosForm.submit();
+  		return;
+	}
+	function doSubmit(){
+		document.WLANQosForm.target = "main";
+  		document.WLANQosForm.submit();
+  		return;	
+	}
+	
+	function doFindCurrentRule(CurrentIndex)
+	{
+		num = parseInt(CurrentIndex);
+		document.forms[0].WLANQoS_rtnCurIndex.value = num;
+	}
+
+	function doEditRule()
+	{
+		document.forms[0].WLANQoS_rtnFlag.value = 1;
+	}
+
+	function doDeleteRule(CurrentIndex)
+	{
+		num = parseInt(CurrentIndex);
+		document.forms[0].WLANQoS_rtnFlag.value = 2;
+	}
+	function doChangeQoSActive()
+	{
+		var obj = document.getElementById("QoSTbl");
+		var i = 0;
+		var objTblIcon;
+		var tempString;
+		
+		if (document.forms[0].WLANQoSActive.checked){
+			document.forms[0].WLAN_QoSWMMPolicy.disabled = false;
+			obj.disabled = false;
+		}else{
+			document.forms[0].WLAN_QoSWMMPolicy.disabled = true;
+			obj.disabled = true;
+		}
+	}
+// -->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/WLAN_QoS_1" target="buttom" name="WLANQosForm">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="WLAN.html" target="main" class="sub"><b><FONT class=NaviText> 
+General</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="WLAN_AutoSec.html" target="main" class="sub"><b><FONT class=NaviText> 
+OTIST</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="WLAN_Filter.html" target="main" class="sub"><b><FONT class=NaviText> 
+MAC Filter</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b> 
+QoS</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td colspan="2">&nbsp;</td></tr><tr> 
+<td width="3%" height="19" class="cTitle">&nbsp;</td><td class="cTitle"> 
+QoS</td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr> 
+<td colspan="2"> 
+<input type="checkbox" name="WLANQoSActive" checked onClick="doChangeQoSActive()" />Enable WMM QoS</td></tr><tr> 
+<td width="38%"> 
+WMM QoS Policy</td><td><select name="WLAN_QoSWMMPolicy" size="1" onChange="doWMMPolicy(this.selectedIndex);"><option value=00000000 selected>Default
+<option value=00000001>Application Priority
+</select><input type="hidden" name="WMMFlag" value="0" /></td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr><tr> 
+<td colspan="2"><div id="QoSTbl"> 
+</div></td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp;&nbsp; 
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">    
+<!--
+showFullPath('Network > Wireless LAN > QoS');
+	doChangeQoSActive();
+// -->
+</script>
+</html>

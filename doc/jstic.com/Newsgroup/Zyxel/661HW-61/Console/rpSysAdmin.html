@@ -1,0 +1,47 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_SysAdmin.html';
+// -->
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="/Forms/rpSysAdmin" name="PWform">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="3"> 
+              <div align=left class="NaviText"> 
+                Password               </div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td width="20"></td><td width="195"> 
+              Old Password              </td><td width="435"> 
+              <INPUT TYPE="PASSWORD" NAME="sysAdminOldPasswd" SIZE="30" MAXLENGTH="30" VALUE="" onkeypress="chk_chtNumUserName(event)">            </td></tr><tr> 
+            <td></td><td>New Password             </td><td><INPUT TYPE="PASSWORD" NAME="sysAdminNewPasswd" SIZE="30" MAXLENGTH="30" VALUE="" onkeypress="chk_chtNumUserName(event)">            </td></tr><tr> 
+            <td></td><td>Retype to confirm             </td><td><INPUT TYPE="PASSWORD" NAME="sysAdminConfirmPasswd" SIZE="30" MAXLENGTH="30" VALUE="" onkeypress="chk_chtNumUserName(event)">            </td></tr><tr> 
+            <td colspan="3">&nbsp;</td></tr><tr> 
+            <td colspan="3"> 
+			<b><font color="#FF3333">
+              Please record your new password whenever you change it. The system will lock you out if you have forgotten your password. 			  </font></b>
+            </td></tr><tr> 
+            <td colspan="3">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <div align=center> 
+                              <INPUT TYPE="SUBMIT" NAME="Admin_SaveBtn" VALUE="Apply">                &nbsp;&nbsp;&nbsp; 
+                <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >                              </div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table>      </td></tr></table></form>
+</body></html>

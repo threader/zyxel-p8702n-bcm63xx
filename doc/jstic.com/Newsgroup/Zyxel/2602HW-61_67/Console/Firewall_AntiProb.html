@@ -1,0 +1,49 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_Fire_AntiProbing.html';
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="rpFirewall.html" name="form"> <table width="100%" border="0" cellspacing="1">
+<tr>
+<td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="93%">
+<table border="0" cellspacing="0" cellpadding="0" width="560">
+<tr>
+<td colspan="3">
+<div><b><font class="NaviText"> Firewall - Anti PortScanning</font> </b></div></td></tr><tr>
+<td colspan="3">
+<hr></td></tr><tr>
+<td colspan="3" class="header2">&nbsp; </td></tr><tr>
+<td colspan="2"> Auf Ping antworten von</td><td><SELECT NAME="FWRespondType" SIZE="1"><OPTION VALUE=00000000 SELECTED>LAN & WAN
+<OPTION VALUE=00000001>Disable
+<OPTION VALUE=00000002>LAN
+<OPTION VALUE=00000003>WAN
+</SELECT></td></tr><tr>
+<td colspan="3">
+<INPUT TYPE="CHECKBOX" NAME="FWUnauth_Services" CHECKED value="ON">Anfragen auf nicht autorisierte Dienste nicht beantworten </td></tr><tr align=center valign=middle>
+<td colspan="3" height="36">
+<hr></td></tr><tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="FW_BackBtn" VALUE="Zur&uuml;ck" onclick="window.location='rpFirewall.html';"> &nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="FWAntiProb_SaveBtn" VALUE="Anwenden">&nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" >&nbsp;</div></td></tr></table></td></tr></table></form>
+</body></html>

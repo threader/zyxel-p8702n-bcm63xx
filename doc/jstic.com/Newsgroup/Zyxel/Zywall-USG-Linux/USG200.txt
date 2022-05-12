@@ -1,0 +1,17 @@
+
+BootModule Version      :V1.08 | 12/04/2007 15:36:17
+Vendor  Name            :ZyXEL Communications Corp.
+Product Model           :USG 200
+System  Type            :10
+MAC Address             :00xxxxxxxxxx
+Default Country Code    :e1
+Boot Module Debug Flag  :0
+Hardware Version        :ZyXEL USG 200 MPC8343e
+Serial  Number          :S080Z19034558
+SNMP MIB level  & OID   :060102030405060708091011121314151617181920
+Main Feature Bit        :0
+Other Feature Bits      :
+00 16 00 00 00 00 00 00-00 00 00 00 00 04 00 00
+00 00 00 00 00 00 00 00-00 00 00 00 00 00
+
+OK

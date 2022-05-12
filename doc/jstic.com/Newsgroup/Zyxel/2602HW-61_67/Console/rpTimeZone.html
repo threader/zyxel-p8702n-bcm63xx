@@ -1,0 +1,231 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+<script language="JavaScript">
+top.title.h_Page='h_TimeZone.html';
+ns = (document.layers) ? true : false;
+ie = (document.all) ? true : false;
+savingArea = new Array(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1);
+function GMT(index)
+{	if(savingArea[index])
+{	if(ie) {
+document.TimeZoneform.elements[3].disabled = false;
+}
+} else {
+document.TimeZoneform.elements[3].checked = false;
+if(ie) {
+document.TimeZoneform.elements[3].disabled = true;
+}
+}
+}
+function Dlight()
+{	if(!savingArea[document.TimeZoneform.elements[0].selectedIndex]) {
+document.TimeZoneform.elements[1].checked = false;
+document.TimeZoneform.elements[1].focus();
+}
+ForceDate();
+}
+function ForceDate()
+{	if (document.TimeZoneform.SysDaylight.checked == true)
+{	if(ie) {
+document.TimeZoneform.elements[4].disabled = false;
+document.TimeZoneform.elements[5].disabled = false;
+document.TimeZoneform.elements[6].disabled = false;
+document.TimeZoneform.elements[7].disabled = false;
+}
+} else
+{	if(ie) {
+document.TimeZoneform.elements[4].disabled = true;
+document.TimeZoneform.elements[5].disabled = true;
+document.TimeZoneform.elements[6].disabled = true;
+document.TimeZoneform.elements[7].disabled = true;
+}
+}
+}
+function date_check(year, month, day)
+{
+switch ( month ) {
+case 2:
+if ( year % 4 )
+{	if ( day > 28 )
+return false;}
+else
+{	if ( day > 29 )
+return false;}
+break;
+case 4: case 6: case 9: case 11:
+if ( day > 30 )
+return false;
+break;
+default:
+if ( day > 31 )
+return false;
+break;
+}
+return true;
+}
+function CheckDate()
+{
+m1=parseInt(document.TimeZoneform.elements[4].value, 10);
+d1=parseInt(document.TimeZoneform.elements[5].value, 10);
+m2=parseInt(document.TimeZoneform.elements[6].value, 10);
+d2=parseInt(document.TimeZoneform.elements[7].value, 10);
+if (date_check(2000, m1, d1) != true){
+alert("Die zul&auml;ssige Anzahl Tage des Monats wurde &uuml;berschritten.");
+return false;
+}
+if (date_check(2000, m2, d2) != true){
+alert("Die zul&auml;ssige Anzahl Tage des Monats wurde &uuml;berschritten.");
+return false;
+}
+if (document.TimeZoneform.SysDaylight.checked != true)
+return true;
+if (!(m1>0 && m1<13))
+{
+alert('Startwert f&uuml;r Monat fehlerhaft!');
+document.TimeZoneform.elements[4].focus();
+return false;
+}
+else if (!(m2>0 && m2<13))
+{
+alert('Endwert f&uuml;r Monat fehlerhaft!');
+document.TimeZoneform.elements[6].focus();
+return false;
+}
+else if (!(d1>0 && d1<32))
+{
+alert('Startwert f&uuml;r Tag fehlerhaft!');
+document.TimeZoneform.elements[5].focus();
+return false;
+}
+else if (!(d2>0 && d2<32))
+{
+alert('Endwert f&uuml;r Tag fehlerhaft!');
+document.TimeZoneform.elements[7].focus();
+return false;
+}
+else if (m1 == m2)
+{	if (d1 > d2)
+{
+alert('Der Starttag muss kleiner als der Endtag sein!');
+document.TimeZoneform.elements[5].focus();
+return false;
+}
+}
+return true;
+}
+function go()
+{	result=CheckDate();
+if (result)
+document.TimeZoneform.submit();
+}
+var timeServer = "0.0.0.0";
+function changeTserver(Index)
+{
+if (document.TimeZoneform.elements[1].value != "N/A")
+timeServer = document.TimeZoneform.elements[1].value;
+if (Index == 3)
+document.TimeZoneform.elements[1].value = "N/A";
+else
+document.TimeZoneform.elements[1].value = timeServer;
+}
+function chkTimeServer()
+{	if (document.TimeZoneform.elements[0].selectedIndex == 3)
+document.TimeZoneform.elements[0].focus();
+else
+document.TimeZoneform.elements[1].select();
+}
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="/Forms/rpTimeZone_1" name="TimeZoneform">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan="3">
+<div align=left class="NaviText">
+Zeitzone </div></td></tr><tr>
+<td colspan="3">
+<hr class="hrColor">
+</td></tr><tr>
+<td colspan="3"><b> Uhrzeit-Server</b></td></tr><tr>
+<td>&nbsp;</td><td nowrap> Uhrzeit-Server bei Neustart verwenden</td><td><SELECT NAME="sysTimeServer" SIZE="1" onChange="changeTserver(this.selectedIndex)"><OPTION>Daytime (RFC-867)
+<OPTION>Time (RFC-868)
+<OPTION SELECTED>NTP (RFC-1305)
+<OPTION>Ohne
+</SELECT></td></tr><tr>
+<td>&nbsp;</td><td>IP-Adresse Uhrzeit-Server</td><td><INPUT TYPE="TEXT" NAME="sysTimeServerIP" SIZE="31" MAXLENGTH="31" VALUE="ntp.ccs.aol.de" onFocus="chkTimeServer()"></td></tr><tr>
+<td>&nbsp;</td><td>Zeitzone</td><td><SELECT NAME="systimezoneSelect" SIZE="1" style="width:325pt;" onChange="GMT(this.selectedIndex)"><OPTION VALUE=0>(GMT-12:00) Eniwetok, Kwajalein
+<OPTION VALUE=1>(GMT-11:00) Midway Island, Samoa
+<OPTION VALUE=2>(GMT-10:00) Hawaii
+<OPTION VALUE=3>(GMT-09:00) Alaska
+<OPTION VALUE=4>(GMT-08:00) Pacific Time (US & Canada), Tijuana
+<OPTION VALUE=5>(GMT-07:00) Mountain Time (US & Canada)
+<OPTION VALUE=6>(GMT-06:00) Central Time (US & Canada), Maxico City, Saskatchewan
+<OPTION VALUE=7>(GMT-05:00) Eastern Time (US & Canada), Indiana(East)
+<OPTION VALUE=8>(GMT-04:00) Altlantic Time (Canada), Caracas, La Poz
+<OPTION VALUE=9>(GMT-03:00) Newfoundland, Brasilia, Buenos Aires, Georgetown
+<OPTION VALUE=10>(GMT-02:00) Mid-Atlantic
+<OPTION VALUE=11>(GMT-01:00) Azores, Cape Verde Is.
+<OPTION VALUE=12>(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London
+<OPTION VALUE=13 SELECTED>(GMT+01:00) Berlin, Stockholm, Rome, Bern, Brussels, Vienna
+<OPTION VALUE=14>(GMT+02:00) Athens, Helsinki, Istanbul, Cairo, Eastern Europe, Israel
+<OPTION VALUE=15>(GMT+03:00) Baghdad, Kuwait, Nairobi, Riyadh, Moscow
+<OPTION VALUE=16>(GMT+04:00) Abu Dhabi, Muscat, Tbilisi, Kazan, Volgograd
+<OPTION VALUE=17>(GMT+05:00) Islamabad, Karachi, Ekaterinburg, Tashkent
+<OPTION VALUE=18>(GMT+06:00) Almaty, Dhaka
+<OPTION VALUE=19>(GMT+07:00) Bangkok, Jakarta, Hanoi
+<OPTION VALUE=20>(GMT+08:00) Beijing, Hong Kong, Perth, Singapore, Taipei
+<OPTION VALUE=21>(GMT+09:00) Tokyo, Osaka, Sapporo, Seoul, Yakutsk
+<OPTION VALUE=22>(GMT+10:00) Brisbane, Canberra, Melbourne, Sydney, Hobart
+<OPTION VALUE=23>(GMT+11:00) Magadan, Solomon Is., New Caledonia
+<OPTION VALUE=24>(GMT+12:00) Fiji, Kamchatka, Marshall Is., Wellington, Auckland
+</SELECT></td></tr><tr>
+<td></td><td colspan="2"> <INPUT TYPE="CHECKBOX" NAME="SysDaylight" CHECKED onClick="Dlight()">Sommerzeit</td></tr><tr>
+<td></td><td>Start</td><td><INPUT TYPE="TEXT" NAME="SysStartDate_month" SIZE="3" MAXLENGTH="3" VALUE="3" onkeypress="chk_num(event)">Monat<INPUT TYPE="TEXT" NAME="SysStartDate_day" SIZE="3" MAXLENGTH="3" VALUE="27" onkeypress="chk_num(event)">Tag</td></tr><tr>
+<td></td><td>Ende</td><td><INPUT TYPE="TEXT" NAME="SysEndDate_month" SIZE="3" MAXLENGTH="3" VALUE="10" onkeypress="chk_num(event)">Monat<INPUT TYPE="TEXT" NAME="SysEndDate_day" SIZE="3" MAXLENGTH="3" VALUE="31" onkeypress="chk_num(event)">Tag</td></tr><tr>
+<td>&nbsp;</td><td colspan="2">
+<p><INPUT TYPE="CHECKBOX" NAME="SysSyncTime">Systemzeit jetzt mit Uhrzeit-Server abstimmen. </p></td></tr><tr>
+<td>&nbsp;</td><td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; (Achtung! Dieser Vorgang kann bis zu 60 Sekunden dauern, wenn der Uhrzeit-Server nicht erreichbar ist).</td></tr>
+<tr>
+<td colspan="3">&nbsp;</td></tr><tr>
+<td colspan="3"><b>Datum</b></td></tr><tr>
+<td>&nbsp;</td><td>Aktuelles Datum</td><td><INPUT TYPE="TEXT" NAME="sysCurDateYr" SIZE="5" MAXLENGTH="5" VALUE="2000" DISABLED onFocus="document.DATEform.elements[0].focus()" onkeypress="chk_num(event)">-<INPUT TYPE="TEXT" NAME="sysCurDateMon" SIZE="2" MAXLENGTH="2" VALUE="01" DISABLED onFocus="document.DATEform.elements[0].focus()" onkeypress="chk_num(event)">-<INPUT TYPE="TEXT" NAME="sysCurDateDay" SIZE="2" MAXLENGTH="2" VALUE="01" DISABLED onFocus="document.DATEform.elements[0].focus()" onkeypress="chk_num(event)"></td></tr><tr>
+<td>&nbsp;</td><td nowrap> Neues Datum (jjjj-mm-tt)</td><td><INPUT TYPE="TEXT" NAME="sysNewDateYr" SIZE="5" MAXLENGTH="5" VALUE="2000" onkeypress="chk_num(event)">-<INPUT TYPE="TEXT" NAME="sysNewDateMon" SIZE="2" MAXLENGTH="2" VALUE="01" onkeypress="chk_num(event)">-<INPUT TYPE="TEXT" NAME="sysNewDateDay" SIZE="2" MAXLENGTH="2" VALUE="01" onkeypress="chk_num(event)"></td></tr><tr>
+<td colspan="3">&nbsp;</td></tr><tr>
+<td colspan="3"><b> Uhrzeit</b></td></tr><tr>
+<td>&nbsp;</td><td>Aktuelle Uhrzeit</td><td><INPUT TYPE="TEXT" NAME="sysCurTimeHr" SIZE="2" MAXLENGTH="2" VALUE="00" DISABLED onFocus="document.DATEform.elements[0].focus()">: <INPUT TYPE="TEXT" NAME="sysCurTimeMin" SIZE="2" MAXLENGTH="2" VALUE="57" DISABLED onFocus="document.DATEform.elements[0].focus()">: <INPUT TYPE="TEXT" NAME="sysCurTimeSec" SIZE="2" MAXLENGTH="2" VALUE="25" DISABLED onFocus="document.DATEform.elements[0].focus()"></td></tr><tr>
+<td>&nbsp;</td><td>Neue Uhrzeit</td><td><INPUT TYPE="TEXT" NAME="sysNewTimeHr" SIZE="2" MAXLENGTH="2" VALUE="00" onkeypress="chk_num(event)">: <INPUT TYPE="TEXT" NAME="sysNewTimeMin" SIZE="2" MAXLENGTH="2" VALUE="57" onkeypress="chk_num(event)">: <INPUT TYPE="TEXT" NAME="sysNewTimeSec" SIZE="2" MAXLENGTH="2" VALUE="25" onkeypress="chk_num(event)"></td></tr><tr>
+<td colspan="3" height="10">&nbsp;</td></tr><tr align=center valign=middle>
+<td colspan="3" height="36">
+<hr class="hrColor">
+</td></tr><tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="Zone_SaveBtn" VALUE="Anwenden" onClick="go()">	&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" > </div></td></tr><tr>
+<td colspan="3" height="10">&nbsp;</td></tr></table></td></tr></table></form><script language="JavaScript">
+<!--
+GMT(document.TimeZoneform.elements[2].selectedIndex);
+ForceDate();
+// -->
+</script>
+
+</body></html>

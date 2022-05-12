@@ -1,0 +1,143 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_Firewall_Threshold.html";
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+
+function OnBlockingTimeChange(form)
+{
+if(form.Radio_Delete_Old_Session[0].checked)
+{
+form.fwBlockTime.disabled = true;
+}
+else
+{
+form.fwBlockTime.disabled = false;
+}
+return;
+}
+function chkRange(value,i)
+{
+if (i != 7) {
+if (value > 256 || value < 1)
+{	alert("The value must position between 1 to 256.");	form.elements[i].value = 1;
+form.elements[i].focus();
+}
+} else {
+if (value > 255 || value < 1)
+{	alert("The value must position between 1 to 255.");	form.elements[i].value = 1;
+form.elements[i].focus();
+}
+}
+}
+function ChkLowHigh(form)
+{
+temp_low=parseInt(form.fwMinuteLow.value, 10);
+temp_high=parseInt(form.fwMinuteHigh.value, 10);
+if (temp_high < temp_low)
+{	alert("The One Minute Low value must be less than the One Minute High value.");	form.fwMinuteLow.value = 1;
+form.fwMinuteLow.focus();
+} else {
+temp_low=parseInt(form.fwIncompleteLow.value, 10);
+temp_high=parseInt(form.fwIncompleteHigh.value, 10);
+if (temp_high < temp_low)
+{	alert("The Maximum Incomplete Low value must be less than the Maximum Incomplete High value.");	form.fwIncompleteLow.value = 1;
+form.fwIncompleteLow.focus();
+} else {
+this.form.submit();
+}
+}
+}
+// -->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/Firewall_Threshold_1" name="form" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" class="sub"> <div align=center><a href="Firewall_DefPolicy.html" target="main" class="sub">
+<b><FONT class=NaviText>
+General</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="Firewall_RuleSum.html" target="main" class="sub">
+<b><FONT class=NaviText>
+Rules</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+Threshold</b> </div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle">
+Denial of Service Thresholds</td></tr><tr>
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellpadding="0" cellspacing="0">
+<tr>
+<td width="38%">
+One Minute Low</td><td><input type="text" name="fwMinuteLow" size="3" maxlength="3" value="80" onBlur="chkRange(this.value,0);" /><font class="descript">(
+Sessions per Minute</font>) </td></tr><tr>
+<td>One Minute High</td><td><input type="text" name="fwMinuteHigh" size="3" maxlength="3" value="100" onBlur="chkRange(this.value,1);" /><font class="descript">(
+Sessions per Minute</font>) </td></tr><tr>
+<td>Maximum Incomplete Low</td><td><input type="text" name="fwIncompleteLow" size="3" maxlength="3" value="80" onBlur="chkRange(this.value,2);" /><font class="descript">(
+Sessions</font>)</td></tr><tr>
+<td>Maximum Incomplete High</td><td><input type="text" name="fwIncompleteHigh" size="3" maxlength="3" value="100" onBlur="chkRange(this.value,3);" /><font class="descript">(
+Sessions)</font> </td></tr><tr>
+<td>TCP Maximum Incomplete</td><td><input type="text" name="fwTCPIncomplete" size="3" maxlength="3" value="10" onBlur="chkRange(this.value,4);" /><font class="descript">(
+Sessions</font>) </td></tr><tr>
+<td colspan="3" class="header2">&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle">
+Action taken when TCP Maximum Incomplete reached threshold</td></tr><tr>
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellpadding="0" cellspacing="0">
+<tr>
+<td width="5%">
+<input type="radio" name="Radio_Delete_Old_Session" value="1" checked onClick="OnBlockingTimeChange(this.form);" /></td><td>Delete the Oldest Half Open Session when New Connection Request Comes.</td></tr><tr>
+<td width="5%">
+<input type="radio" name="Radio_Delete_Old_Session" value="0" onClick="OnBlockingTimeChange(this.form);" /></td><td>Deny New Connection Request for&nbsp;
+<input type="text" name="fwBlockTime" size="3" maxlength="3" value="10" onBlur="chkRange(this.value,7);" /><font class="descript">
+Minutes(1~255)</font></td></tr><tr>
+<td colspan="3" class="header2">&nbsp;</td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--//
+showFullPath('Security > Firewall > Threshold');
+OnBlockingTimeChange(document.forms[0]);
+//-->
+</script>
+</html>

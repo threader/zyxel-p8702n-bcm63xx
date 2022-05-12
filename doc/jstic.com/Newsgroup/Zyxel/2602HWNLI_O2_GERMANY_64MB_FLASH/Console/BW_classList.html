@@ -1,0 +1,168 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--//
+top.header.szHelp="h_BW_classList.html";
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+function chkBudget()
+{
+Budget = parseInt(document.forms[0].BWClassList_Budget.value);
+if (Budget > 100000 || Budget < 2 || (document.forms[0].BWClassList_Budget.value == ""))
+{	alert("The valid value is between 2 and 100000.");	document.forms[0].BWClassList_Budget.focus();
+}
+}
+function doFindCurrentRule(CurrentIndex, Interface)
+{
+num = parseInt(CurrentIndex);
+document.forms[0].BW_rtnCurIndexNum.value = num;
+}
+function doEditRule()
+{
+document.forms[0].BW_returnFlag.value = 1;
+}
+function doDeleteRule(CurrentIndex)
+{
+document.forms[0].BW_returnFlag.value = 2;
+}
+function doChangeIFace(CurrentIndex)
+{
+document.forms[0].BW_returnFlag.value = 4;
+document.forms[0].submit();
+return;
+}
+function doUserDefine(CurrentIndex)
+{
+var i=0;
+while(document.forms[0].BWClassList_SelectService.options[i])
+i++;
+if (document.forms[0].BWClassList_SelectService.options[i-1].selected == true)//last entry msut be "user define"
+{
+document.forms[0].BW_returnFlag.value = 3;
+document.forms[0].submit();
+return;
+}
+}
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/BW_classList_1" name="BWCSetupform" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="BW_Summary.html" target="main" class="sub"><b><FONT class=NaviText>
+Summary</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+Rule Setup</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="BW_monitor.html" target="main" class="sub"><b><FONT class=NaviText>
+Monitor</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle">
+Rule Setup</td></tr><tr>
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr>
+<td><div><table width="100%" border="0" align=center cellpadding="1" cellspacing="0" bordercolor="#FFFFFF" >
+<tr align=center>
+<td width="25%" ><div align=left>
+Direction<select name="BWClassList_SelectDirection" size="1" onchange="doChangeIFace(this.selectedIndex);"><option value=00000000 selected>LAN
+<option value=00000001>WLAN
+<option value=00000002>WAN
+</select></div></td><td width="30%" ><div align=left>
+Service<select name="BWClassList_SelectService" size="1" onChange="doUserDefine(this.selectedIndex)"><option value=00000000 selected>WWW
+<option value=00000001>FTP
+<option value=00000002>E-Mail
+<option value=00000003>Telnet
+<option value=00000004>NetMeeting (H.323)
+<option value=00000005>VoIP (SIP)
+<option value=00000006>VoIP (H.323)
+<option value=00000007>TFTP
+<option value=00000008>User Defined
+</select></div></td><td width="20%" ><div align=left>
+Priority<select name="BWClassList_SelectPriority" size="1"><option value=00000000 selected>High
+<option value=00000001>Mid
+<option value=00000002>Low
+</select></div></td><td width="29%" ><div align=left>
+Bandwidth<strong> </strong>
+<input type="text" name="BWClassList_Budget" size="6" maxlength="6" value="10" onBlur="chkBudget()" onkeypress="chk_num(event)" /><font class="strNote">
+(kbps)</font></div></td><td width="10%"><div align=left>
+<input type="submit" name="sysAddBtn" value="Add" /></div></div></td></tr></table></div></td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td colspan="2">&nbsp;</td></tr><tr>
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle">
+To LAN Interface</td></tr><tr>
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr>
+<td><div><table width="100%" border="1" align=center cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" >
+<tr align=center>
+<td width="5%" class="tableTitle"><b>#</b></td><td width="20%" class="tableTitle"><b>
+Rule Name</b></td><td width="20%" class="tableTitle"><b>
+Destination Port</b></td><td width="10%" class="tableTitle"><b>
+Priority</b></td><td width="30%" class="tableTitle"><b>
+Bandwidth(kbps)</b></td><td width="10%" class="tableTitle"><b>
+Modify</b></td></tr><tr align=center class="tabcolor2">
+<td><b>
+<b>1</b> </td><td>WWW</td><td>0</td><td>Low</td><td>10</td><td width="63"> <font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=1>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image260','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image260" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=1>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image290','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image290" width="17" height="14" border="0"></a></font></td></tr><tr align=center class="tabcolor1">
+<td><b>
+<b>2</b> </td><td>FTP</td><td>0</td><td>Mid</td><td>10</td><td width="63"> <font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=2>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image261','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image261" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=2>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image291','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image291" width="17" height="14" border="0"></a></font></td></tr><tr align=center class="tabcolor2">
+<td><b>
+<b>3</b> </td><td>E-Mail</td><td>0</td><td>Mid</td><td>10</td><td width="63"> <font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=3>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image262','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image262" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=3>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image292','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image292" width="17" height="14" border="0"></a></font></td></tr><tr align=center class="tabcolor1">
+<td><b>
+<b>4</b> </td><td>VoIP (SIP)</td><td>0</td><td>High</td><td>10</td><td width="63"> <font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=4>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image263','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image263" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); document.forms[0].target='main'; document.forms[0].submit(); " id=4>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image293','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image293" width="17" height="14" border="0"></a></font></td></tr></table></div></td></tr></table><input type="hidden" name="BW_rtnCurIndexNum" value="0" /><input type="hidden" name="BW_returnFlag" value="0" />
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--
+showFullPath('Advanced > Bandwidth MGMT > Rule Setup');
+//-->
+</script>
+</html>

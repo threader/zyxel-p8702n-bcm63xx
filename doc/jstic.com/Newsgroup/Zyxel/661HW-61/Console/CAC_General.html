@@ -1,0 +1,94 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language=JavaScript>
+<!--
+top.title.h_Page="h_CAC_General.html";
+function chkIdleTimeout(obj)
+{
+if (document.forms[0].CAC_Timeout.value == 0){
+alert("Idle Timeout value must greater than 0.");	obj.select();
+}
+}
+function EditPage(index,pageindex)
+{
+document.forms[0].CAC_GroupIndex.value = index;
+document.forms[0].CAC_PageIndex.value = pageindex;
+if (document.forms[0].CAC_GroupIndex.value == 0 && document.forms[0].CAC_PageIndex.value == 0){
+for (i = 0 ; i < 4; i++){
+if (document.forms[0].CAC_GroupName[i].value == ""){
+alert("Group Name can not be empty.");	return;
+}
+for ( j = i+1 ;j < 4 ;j++){
+if (document.forms[0].CAC_GroupName[i].value == document.forms[0].CAC_GroupName[j].value){
+alert("Group Name duplicate.");	return;
+}
+}
+}
+}
+document.forms[0].submit();
+}
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpCAC.html" name="FWRuleSum" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr >
+<td colspan="3">
+<div align=left class="NaviText"> <b><font class="NaviText">Content Access Control - General</div></td></tr><tr >
+<td colspan="3">
+<hr></td></tr><tr>
+<td colspan="2">
+<INPUT TYPE="CHECKBOX" NAME="CAC_Active" value="ON"> Enable Content Access Control</td><td width="27">&nbsp; </td></tr><tr>
+<td width="181">Idle Timeout</td><td width="352"> <INPUT TYPE="TEXT" NAME="CAC_Timeout" SIZE="2" MAXLENGTH="2" VALUE="10" onkeypress="chk_num(event)" onBlur="chkIdleTimeout(this)">min</td><td width="27">&nbsp;</td></tr><tr>
+<td colspan="3">&nbsp;</td></tr><tr>
+<td colspan="3"><b>Group List</b></td></tr><tr>
+<td colspan="3">
+<table border="1" cellspacing="0" cellpadding="0" align=center width="95%">
+<tr height="30" bgcolor="#C4D3FD" align=center>
+<td bgcolor="#C4D3FD" class="header2" width="4%" rowspan="2">&nbsp;</td><td class="header2" width="45%" rowspan="2"> Group Name</td><td class="header2" colspan="3"> Restrictions</td></tr><tr height="30" bgcolor="#C4D3FD" align=center>
+<td class="header2" width="12%">Time</td><td class="header2" width="17%">Service</td><td class="header2" width="22%">Web Browsing</td></tr> <tr align=center>
+<td width="4%">
+1</td><td width="45%"> <INPUT TYPE="TEXT" NAME="CAC_GroupName" SIZE="31" MAXLENGTH="31" VALUE="Administration" onkeypress="chk_chtNum(event);"></td><td width="12%">
+<a target="_self" href="CAC_TimeSche1.html">Edit</a></td><td width="17%">
+<a target="_self" href="CAC_Service1.html">Edit</a></td><td width="22%">
+<a target="_self" href="CAC_GroupCfg.html">Edit</a> &nbsp;<a target="_self" href="CAC_GroupTest.html"> Diagnose</a></td></tr> <tr align=center>
+<td width="4%">
+2</td><td width="45%"> <INPUT TYPE="TEXT" NAME="CAC_GroupName" SIZE="31" MAXLENGTH="31" VALUE="Kinder" onkeypress="chk_chtNum(event);"></td><td width="12%">
+<a target="_self" href="CAC_TimeSche2.html">Edit</a></td><td width="17%">
+<a target="_self" href="CAC_Service2.html">Edit</a></td><td width="22%">
+<a target="_self" href="CAC_GroupCfg.html">Edit</a> &nbsp;<a target="_self" href="CAC_GroupTest.html"> Diagnose</a></td></tr> <tr align=center>
+<td width="4%">
+3</td><td width="45%"> <INPUT TYPE="TEXT" NAME="CAC_GroupName" SIZE="31" MAXLENGTH="31" VALUE="Erwachsene" onkeypress="chk_chtNum(event);"></td><td width="12%">
+<a target="_self" href="CAC_TimeSche3.html">Edit</a></td><td width="17%">
+<a target="_self" href="CAC_Service3.html">Edit</a></td><td width="22%">
+<a target="_self" href="CAC_GroupCfg.html">Edit</a> &nbsp;<a target="_self" href="CAC_GroupTest.html"> Diagnose</a></td></tr> <tr align=center>
+<td width="4%">
+4</td><td width="45%"> <INPUT TYPE="TEXT" NAME="CAC_GroupName" SIZE="31" MAXLENGTH="31" VALUE="Nachbarn" onkeypress="chk_chtNum(event);"></td><td width="12%">
+<a target="_self" href="CAC_TimeSche4.html">Edit</a></td><td width="17%">
+<a target="_self" href="CAC_Service4.html">Edit</a></td><td width="22%">
+<a target="_self" href="CAC_GroupCfg.html">Edit</a> &nbsp;<a target="_self" href="CAC_GroupTest.html"> Diagnose</a></td></tr>
+</table></td></tr><tr>
+<td width="181"></td><td colspan="2">&nbsp;</td></tr><tr>
+<td colspan="3">
+<p style="margin-top: 5; margin-bottom: 0"><span style="font-weight: 400"><p style="margin-top:5; margin-bottom:0">Click the "Register" button to register and subscribe this unit for content filtering service.</p><p style="margin-top:5; margin-bottom:0">Click the "Activate" button to activate a previously active subscription.</p></p></td></tr><tr>
+<td width="181">Content Filtering Service</td><td colspan="2">
+<INPUT TYPE="BUTTON" NAME="CAC_RegBtn" VALUE="Register" onClick="window.open('CAC_ZSSWlink.html', '', 'width=800,height=600,status=yes,scrollbars=yes,resizable=yes');">	<INPUT TYPE="BUTTON" NAME="CAC_ActBtn" VALUE="Activate" onClick="window.location.href='CAC_ActStatusFrame.html';"> </td></tr><tr>
+<td width="181">&nbsp;</td><td colspan="2">&nbsp;</td></tr><tr align=center valign=middle>
+<td colspan="3" height="36">
+<hr></td></tr><tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="CAC_BackBtn" VALUE="Back" onClick="window.location.href='rpCAC.html';"> &nbsp;&nbsp;&nbsp;
+<INPUT TYPE="BUTTON" NAME="CAC_ApplyBtn" VALUE="Apply" onclick="EditPage(0,0)"> &nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ><INPUT TYPE="HIDDEN" NAME="CAC_GroupIndex" VALUE="0"><INPUT TYPE="HIDDEN" NAME="CAC_PageIndex" VALUE="0"></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	 </table> </td></tr></table></form><SCRIPT language="JavaScript">
+</SCRIPT>
+
+</body></html>

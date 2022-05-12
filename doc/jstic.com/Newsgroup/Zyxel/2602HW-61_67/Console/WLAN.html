@@ -1,0 +1,153 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+
+<script language="JavaScript">
+top.title.h_Page='h_WLAN_Setup.html';
+function WEPKeyCheck(key,len)
+{
+  if (document.WLAN.WEP_Selection.selectedIndex != 0){
+  
+	switch (document.WLAN.WEP_Selection.selectedIndex) {
+	case 1: if ((len != 5)&&(len != 10)&&(len != 12)){
+		alert("Bitte geben Sie 5 Zeichen oder 10 Hezadezimale Zahlen f&uuml;r den Schl&uuml;ssel ein.");
+		key.value = "";		
+		return;
+		}
+		break;
+	case 2: if ((len != 13)&&(len != 26)&&(len != 28)){
+		alert("Bitte geben Sie 13 Zeichen oder 26 Hezadezimale Zahlen f&uumlr den Schl&uuml;ssel ein.");
+		key.value = "";												
+		return;			
+		}
+		break;
+	case 3:	if ((len != 29)&&(len != 58)&&(len != 60)){	
+		alert("Bitte geben Sie 29 Zeichen oder 58 Hezadezimale Zahlen f&uumlr den Schl&uuml;ssel ein.");	
+		key.value = "";														
+		return;
+		}
+		break;
+  	}  
+	switch (len) {
+	case 12:
+	case 28:
+	case 60:
+   		if (key.value.substr(0,1) !="0" || (key.value.substr(1,1) !="x" && key.value.substr(1,1) !="X")){
+       	    	alert("Hezadezimale Zahlen m&uuml;ssen mit '0x' beginnen.");
+       	    	key.focus();
+		return;
+		}	       	    	
+	}
+  }
+}
+
+    function doWEPChange()
+    {
+
+	if ( document.WLAN.WEP_Selection.selectedIndex == 0 
+){            document.WLAN.WEP_Key1.disabled = true;
+            document.WLAN.WEP_Key2.disabled = true;
+            document.WLAN.WEP_Key3.disabled = true;
+            document.WLAN.WEP_Key4.disabled = true;            
+        }
+        else
+        {                       
+            document.WLAN.WEP_Key1.disabled = false;
+            document.WLAN.WEP_Key2.disabled = false;
+            document.WLAN.WEP_Key3.disabled = false;
+            document.WLAN.WEP_Key4.disabled = false;
+	    for (i = 0; i < 4 ;i++)            
+            document.WLAN.DefWEPKey[i].disabled = false;  
+        }
+    }
+     
+    function doRTSThreshold()
+    {
+        if ( document.WLAN.RTSCTSEnable.checked )
+        {
+            document.WLAN.RTSThreshold.disabled = false;
+        }
+        else
+        {
+            document.WLAN.RTSThreshold.disabled = true;
+            document.WLAN.RTSThreshold.value = "2432";
+        }
+    }
+
+    function doFragmentThreshold()
+    {
+        if ( document.WLAN.FragmentEnable.checked )
+        {
+            document.WLAN.FragmentThreshold.disabled = false;
+        }
+        else
+        {
+            document.WLAN.FragmentThreshold.disabled = true;
+            document.WLAN.FragmentThreshold.value = "2432";
+        }
+    }
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="rpWLan.html" name="WLAN">  <table width="100%" border="0" cellspacing="1">
+    <tr>
+      <td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="98%"> 
+        <table border="0" cellspacing="0" cellpadding="0" width="580">
+          <tr> 
+            <td colspan="3"> 
+              <div align=left class="NaviText"> Wireless LAN- Wireless</div></td></tr><tr> 
+            <td colspan="3"> 
+              <hr></td></tr>          <tr> 
+              <td width="16"></td><td colspan="2">
+<INPUT TYPE="CHECKBOX" NAME="EnableWLAN" CHECKED value="ON">           	Wireless LAN aktivieren              </td></tr>          <tr> 
+            <td width="16"></td><td width="186">ESSID</td><td width="358"><INPUT TYPE="TEXT" NAME="ESSID" SIZE="32" MAXLENGTH="32" VALUE="Wireless"></td></tr><tr> 
+            <td width="16"></td><td width="186">ESSID verstecken</td><td width="358">
+            <SELECT NAME="ESSID_HIDE_Selection" SIZE="1"><OPTION VALUE=00000000 SELECTED>Nein
+<OPTION VALUE=00000001>Ja
+</SELECT>           </td></tr><tr> 
+            <td width="16"></td><td width="186"> Kanal</td><td width="358">
+            <SELECT NAME="Channel_ID" SIZE="1"><OPTION VALUE=00000000>Kanal01 2412MHz
+<OPTION VALUE=00000001>Kanal02 2417MHz
+<OPTION VALUE=00000002>Kanal03 2422MHz
+<OPTION VALUE=00000003>Kanal04 2427MHz
+<OPTION VALUE=00000004>Kanal05 2432MHz
+<OPTION VALUE=00000005 SELECTED>Kanal06 2437MHz
+<OPTION VALUE=00000006>Kanal07 2442MHz
+<OPTION VALUE=00000007>Kanal08 2448MHz
+<OPTION VALUE=00000008>Kanal09 2452MHz
+<OPTION VALUE=00000009>Kanal10 2457MHz
+<OPTION VALUE=0000000a>Kanal11 2462MHz
+<OPTION VALUE=0000000b>Kanal12 2467MHz
+<OPTION VALUE=0000000c>Kanal13 2472MHz
+</SELECT></td></tr><tr> 
+            <td width="16"></td><td width="186">
+            <INPUT TYPE="CHECKBOX" NAME="RTSCTSEnable" onClick="doRTSThreshold();" value="ON">Grenzwert RTS/CTS</td><td width="358"> <INPUT TYPE="TEXT" NAME="RTSThreshold" SIZE="5" MAXLENGTH="5" VALUE="2432" onkeypress="chk_num(event)">&nbsp;<font class="descript">(0 ~ 2432)</font></td></tr><tr> 
+            <td width="16"></td><td width="186">
+            <INPUT TYPE="CHECKBOX" NAME="FragmentEnable" onClick="doFragmentThreshold();" value="ON">Grenzwert Fragmentierung</td><td width="358"><INPUT TYPE="TEXT" NAME="FragmentThreshold" SIZE="5" MAXLENGTH="5" VALUE="2432" onkeypress="chk_num(event)">&nbsp;<font class="descript">(256 ~ 2432)</font></td></tr><tr> 
+            <td colspan="3">&nbsp;</td></tr>          <tr align=center valign=middle> 
+            <td colspan="3" height="36"> 
+              <hr></td></tr><tr> 
+            <td colspan="3"> 
+              <div align=center> 
+           	<INPUT TYPE="SUBMIT" NAME="WLAN_BackBtn" VALUE="Zur&uuml;ck" VALUE="Back" onClick="window.location='rpWLan.html';">                	&nbsp;&nbsp;&nbsp;
+                <INPUT TYPE="SUBMIT" NAME="WLAN_SaveBtn" VALUE="Anwenden">                	&nbsp;&nbsp;&nbsp; 
+                <INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" ></div></td></table></td></tr></table></form><script language="JavaScript">
+doRTSThreshold();
+doFragmentThreshold();
+</script>
+
+</body></html>

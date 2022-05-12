@@ -1,0 +1,19 @@
+atsh
+NOS Version            : V3.40(AOF.2)D0 | 18.01.2008 17:32:30
+Bootbase Version       : V1.07 | 7/31/2006 18:30:00
+Vendor Name            : O2
+Product Model          : DSL Surf & Phone
+NOS ROM address        : b0040000
+System Type            : 7
+MAC Address            : 001349D25C9C
+Default Country Code   : ED
+Boot Module Debug Flag : 00
+RomFile Version        : E7
+RomFile Checksum       : 9a13
+NOS Checksum           : ed12
+Core Checksum          : 37ca
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+          00 77 00 00 00 00 00 00-00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00-04 41 13 00 00 00

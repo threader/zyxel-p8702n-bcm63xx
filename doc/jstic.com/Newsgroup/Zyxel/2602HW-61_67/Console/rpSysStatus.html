@@ -1,0 +1,141 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+<script language=JavaScript>
+<!--
+top.title.h_Page='h_Status.html';
+
+function SelectSIPToReg(index)
+{
+	document.forms[0].SIPIndex.value = index;
+	document.forms[0].submit();
+}
+// -->
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="/Forms/rpSysStatus_1">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="2">
+              <div align=left class="NaviText"> Systemstatus</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="2"> 
+              <table border="1" align=center width="430">
+                <tr> 
+                  <td colspan="2" height="30" class="TableTilte"> 
+                    <div align=center> 
+                      Systemstatus                    </div></td></tr><tr> 
+                  <td><table border="0" align=center>
+                      <tr> 
+                        <td>&nbsp; </td></tr><tr> 
+                        <td>Systemname:                                                  </td></tr><tr> 
+                        <td>ZyNOS Firmware-Version:                          V3.40(MI.0)b14 | 03/31/2005                        </td></tr>
+                      <tr> 
+                        <td>DSL Firmware-Version:TI AR7 01.01.08.00</td></tr>
+                      <tr> 
+                        <td>Standard:NORMAL</td></tr>                      <tr> 
+                        <td>&nbsp; </td></tr></table></td></tr></table></td></tr><tr> 
+            <td colspan="2">&nbsp;</td></tr><tr> 
+            <td colspan="2"> 
+              <table border="1" align=center width="430">
+                <tr> 
+                  <td colspan="2" height="30" class="TableTilte"> 
+                    <div align=center> 
+                      WAN-Informationen                    </div></td></tr><tr> 
+                  <td><table border="0" align=center>
+                      <tr> 
+                        <td>&nbsp; </td></tr><tr> 
+                        <td>IP-Adresse:0.0.0.0</td></tr><tr> 
+                        <td>IP-Subnet-Maske:0.0.0.0</td></tr><tr> 
+                        <td>Standard-Gateway:0.0.0.0</td></tr>                      <tr> 
+                        <td>Prim&auml;rer DNS:194.25.2.129</td></tr><tr> 
+                        <td>Sekund&auml;rer DNS:193.101.111.20</td></tr>                      <tr> 
+                        <td>VPI/VCI:1/ 32</td></tr>                      <tr>
+                        <td>&nbsp;</td></tr>                    </table></td></tr></table></td></tr><tr> 
+            <td colspan="2">&nbsp;</td></tr><tr> 
+            <td colspan="2"> 
+              <table border="1" align=center width="430">
+                <tr> 
+                  <td colspan="2" height="30" class="TableTilte"> 
+                    <div align=center> 
+                      LAN-Informationen                    </div></td></tr><tr> 
+                  <td><table border="0" align=center>
+                      <tr> 
+                        <td>&nbsp; </td></tr><tr> 
+                        <td>MAC-Adresse:00:a0:c5:99:8a:73</td></tr><tr> 
+                        <td>IP-Adresse:                          192.168.1.1                        </td></tr><tr> 
+                        <td>IP-Subnet-Maske:                          255.255.255.0                        </td></tr><tr> 
+                        <td>DHCP:                          Server                        </td></tr><tr> 
+                        <td>DHCP-Startadresse:                          192.168.1.33                        </td></tr><tr> 
+                        <td>Gr&ouml;&szlig;e IP-Folge f&uuml;r DHCP:                          32                        </td></tr><tr> 
+                        <td>&nbsp; </td></tr></table></tr></table></td></tr><tr> 
+            <td colspan="2">&nbsp;</td></tr>          <tr> 
+            <td colspan="2"> 
+              <table border="1" align=center width="430">
+                <tr> 
+                  <td colspan="2" height="30" class="TableTilte"> 
+                    <div align=center> 
+                      WLAN Informationen                    </div></td></tr><tr> 
+                  <td><table border="0" align=center>
+                      <tr> 
+                        <td>&nbsp; </td></tr><tr> 
+                        <td>ESSID:Wireless</td></tr><tr> 
+                        <td>Kanal:                          6                        </td></tr><tr> 
+                        <td>WEP:                          Disable                        </td></tr><tr> 
+                        <td>&nbsp; </td></tr></table></tr></table></td></tr><tr> 
+            <td colspan="2">&nbsp;</td></tr>          <tr> 
+           <td colspan="2">
+              <table border="1" align=center width="430">
+                <tr> 
+                  <td colspan="2" height="30" class="TableTilte">
+                    <div align=center> Sprach Informationen</div></td></tr>                <tr> 
+                  <td><table border="0" align=center width="371">
+        				<tr> 
+                    		<td colspan="2">
+       					 </td></tr><tr> 
+                        <td colspan="2"> SIP1 URI:BitteÄndern@aolphone.aol.de                        </td></tr><tr> 
+                        <td>SIP1 Registrierungsstatus:Verbindung fehlgeschlagen</td><td><input type="button" value="Verbinden" onClick="SelectSIPToReg(0)"></td></tr><tr> 
+                        <td colspan="2"> Used Port:<span class="type03">5060/UDP</span></td></tr><tr>
+                        <td colspan="2">&nbsp;</td></tr></table></tr>                <tr> 
+                  <td><table border="0" align=center width="371">
+        				<tr> 
+                    		<td colspan="2">
+       					 </td></tr><tr> 
+                        <td colspan="2"> SIP2 URI:Bitte&Auml;ndern@aolphone.aol.de                        </td></tr><tr> 
+                        <td>SIP2 Registrierungsstatus:getrennt</td><td><input type="button" value="Verbinden" onClick="SelectSIPToReg(1)"></td></tr><tr> 
+                        <td colspan="2"> Used Port:<span class="type03">5060/UDP</span></td></tr><tr>
+                        <td colspan="2">&nbsp;</td></tr></table></tr>			</table><INPUT TYPE="HIDDEN" NAME="SIPIndex" VALUE="0">           </td></tr>          
+
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="2"> 
+              <div align=center> 
+                <INPUT TYPE=BUTTON VALUE="Statistik anzeigen" onClick="window.open('SystStatusFrame.html', '', 'width=500,height=430,status=yes,scrollbars=yes,resizable=yes');">              </div></td></tr><tr> 
+            <td width="136">&nbsp;</td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form>
+</body></html>

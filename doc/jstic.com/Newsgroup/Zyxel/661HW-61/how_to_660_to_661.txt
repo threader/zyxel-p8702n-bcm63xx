@@ -1,0 +1,14 @@
+How to upgrade your Zyxel 660HW-61 (No VPN) into a 661HW-61 with 2 VPN
+----------------------------------------------------------------------
+
+- Go in Debug mode
+- Download/backup the bootrom
+- Modify the Feature bits from (or check)
+
+P_660HW_61          92-4B
+to
+P_661HW_61          92-4B
+
+- Save the bootrom back to the Zyxel
+
+- Upload the 661HW-61 firmware

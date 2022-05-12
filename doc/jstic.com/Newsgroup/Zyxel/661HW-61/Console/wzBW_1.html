@@ -1,0 +1,80 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<SCRIPT language="JavaScript">
+<!--
+top.title.h_Page="h_BWMWiz1.html";
+ns = (document.layers) ? true : false;
+ie = (document.all) ? true : false;
+function BWActiveClick(form) {
+var i;
+var state;
+if(ie) {
+if(form.wzBW1_Active.checked)
+state=false;
+else
+state=true;
+for (i=1;i<=6; i++){
+form.elements[i].disabled = state;
+}
+}
+}
+function checkClass	(form) {
+var i;
+var count = 0;
+if(form.wzBW1_Active.checked) {
+for (i=1;i<=6; i++){
+if (form.elements[i].checked )
+count ++;
+}
+if (count == 0){
+alert("Please select at least one service !");	return;
+}
+}
+document.wzBWCfgform.submit();
+}
+// -->
+</SCRIPT>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="/Forms/wzBW_1_1" name="wzBWCfgform">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan="4" class="NaviText">
+<div align=left><b> Media Bandwidth Management</b></div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="2">&nbsp;</td><td width="548">&nbsp;</td></tr><tr>
+<td colspan="2">&nbsp;</td><td width="548"><INPUT TYPE="CHECKBOX" NAME="wzBW1_Active" onClick="BWActiveClick(this.form);">Active</td></tr><tr>
+<td colspan="2">&nbsp;</td><td width="548">&nbsp;</td></tr><tr>
+<td colspan="2">&nbsp;</td><td width="548">
+<p class="wzDesc">Select the service to apply bandwidth management.</p></td></tr><tr>
+<td colspan="2">&nbsp;</td><td width="548">&nbsp;</td></tr> <tr>
+<td colspan="2">&nbsp;</td><td width="548"><INPUT TYPE="CHECKBOX" NAME="wzBWService_Chk?1" VALUE="?1">XBox Live</td></tr> <tr>
+<td colspan="2">&nbsp;</td><td width="548"><INPUT TYPE="CHECKBOX" NAME="wzBWService_Chk?2" VALUE="?2">VoIP (SIP)</td></tr> <tr>
+<td colspan="2">&nbsp;</td><td width="548"><INPUT TYPE="CHECKBOX" NAME="wzBWService_Chk?3" VALUE="?3">FTP</td></tr> <tr>
+<td colspan="2">&nbsp;</td><td width="548"><INPUT TYPE="CHECKBOX" NAME="wzBWService_Chk?4" VALUE="?4">E-Mail</td></tr> <tr>
+<td colspan="2">&nbsp;</td><td width="548"><INPUT TYPE="CHECKBOX" NAME="wzBWService_Chk?5" VALUE="?5">eMule</td></tr> <tr>
+<td colspan="2">&nbsp;</td><td width="548"><INPUT TYPE="CHECKBOX" NAME="wzBWService_Chk?6" VALUE="?6">WWW</td></tr> <tr>
+<td colspan="2">&nbsp;</td><td width="548">&nbsp;</td></tr><tr>
+<td colspan="3"> </td></tr><tr>
+<td colspan="3"></td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">
+<div align=center><INPUT TYPE="HIDDEN" NAME="wzBW1_temp" VALUE=""> <INPUT TYPE="BUTTON" NAME="wzBW1Next" VALUE="Next" onClick="checkClass(document.forms[0]);"> </div></td>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	 </table></td></tr></table></form><script language="JavaScript">
+BWActiveClick( document.forms[0] );
+</script>
+
+</body></html>

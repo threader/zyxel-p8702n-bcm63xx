@@ -1,0 +1,22 @@
+
+
+BootModule Version      :V1.08 | 12/04/2007 15:36:17
+Vendor  Name            :ZyXEL Communications Corp.
+Product Model           :USG 100
+System  Type            :10
+MAC Address             :00xxxxxxxxxx
+Default Country Code    :e1
+Boot Module Debug Flag  :0
+Hardware Version        :ZyXEL USG 100 MPC8343e
+Serial  Number          :S080Z18010192
+SNMP MIB level  & OID   :060102030405060708091011121314151617181920
+Main Feature Bit        :0
+Other Feature Bits      :
+00 15 00 00 00 00 00 00-00 00 00 00 00 04 00 00
+00 00 00 00 00 00 00 00-00 00 00 00 00 00
+
+OK
+
+
+Kernel Version: V2.4.27-AQQ-2008-03-24 | 2008-03-24 19:09:31
+ZLD Version: V2.10(AQQ.0) | 2008-04-02 13:53:43

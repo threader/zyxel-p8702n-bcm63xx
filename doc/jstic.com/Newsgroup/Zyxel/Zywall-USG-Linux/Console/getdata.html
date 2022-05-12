@@ -1,0 +1,109 @@
+<html>
+<head>
+<meta http-equiv="Pragma" content="no-cache">
+<script type="text/javascript" src="javascript.js" ></script>
+<script type="text/javascript" src="javascriptm.js" ></script>
+<script type="text/javascript" src="javascriptCLI.js" ></script>
+<script language="JavaScript">
+<!--
+
+var warnHappen = new Array();
+var WarnPtr = top.frames[1].WarnObj;
+//var clrinterval = setInterval("detectServer();", 97);
+setTimeout("detectServer();", 10);
+
+function detectServer(){
+	top.frames[1].zyshdcnt = 1; 
+	if((parent.txdata.data_ready != undefined)&&(parent.txdata.data_ready == 1)){	 
+		//clearInterval(clrinterval);/*stop interval */
+		if(parent.txdata.usr_type == 5)  {/* limited-admin follow configuration cli command */
+			WarnPtr.insertRecord(0, "", "Current login user type is limited-admin. Configuration will not work.");
+			top.frames[1].isLimitAdmin = true;
+		}else if(parent.txdata.usr_type == 4) {/* limited-admin follow show cli command */
+			top.frames[1].isLimitAdmin = true;
+		}else {
+			top.frames[1].isLimitAdmin = false;
+		}
+		chkData();
+		//top.frames[1].zyshdcnt = 1; 
+	}else if((parent.txdata.data_ready != undefined)&&(parent.txdata.data_ready == -1)){//zyshd dead 
+		//clearInterval(clrinterval);/*stop interval */
+		alert("The system is busy. Please wait.(zysh daemon)");
+		top.frames[1].zyshErrorNo[0] = "-1";
+		top.frames[1].zyshErrorMsg[0] = "The system is busy. Please wait.(zysh daemon)"
+		top.frames[1].zyshdcnt = 1; 
+	}else{
+		setTimeout("detectServer();", 10);
+	}
+}	
+function chkData() {	/* run in frame 4 */
+	var j_result = false;
+	var ccnt = top.frames[1].cmdcount;
+	warnHappen.splice(0, warnHappen.length);
+	
+	if(ccnt == 0){
+		//window.status = "get command count.";
+		setTimeout("detectServer();", 10);
+	}
+	for ( var i = 0 ; i < ccnt; i++ ) {
+		if (eval("parent.txdata.errno" + i) == 0)  {				
+			j_result  = true;			
+		}else if ( eval("parent.txdata.errno" + i) > 0){//warning message	
+			//alert("Warning Message ! \n\n["+eval("parent.txdata.errno" + i)+']\n'+eval("parent.txdata.errmsg" + i));
+			/*insert warning message at top */
+			WarnPtr.insertRecord(0, eval("parent.txdata.errno" + i), ": "+eval("parent.txdata.errmsg" + i));
+			j_result  = true;
+			warnHappen.push(i);
+		} else {		
+			//alert("ELSE");
+			top.frames[1].zyshErrorNo[i] = eval("parent.txdata.errno" + i);
+			top.frames[1].zyshErrorMsg[i] = eval("parent.txdata.errmsg" + i);
+			j_result  = false;
+			top.frames[1].zyshdcnt = 1; 
+			break;
+		}
+ 	}	
+ 	if(j_result){
+		//top.frames[1].zyshdcnt = 1; 
+ 		FetchData(warnHappen);
+ 	}
+
+}
+function FetchData(ptr){
+	document.open("text\/html");
+	document.write('<html><head>\n');
+	//document.write('<script type="text\/javascript" src="javascriptCLI.js" ><\/script>\n');
+	document.write('<script language="JavaScript">\n');
+	for(var i=0; i<top.frames[1].cmdcount; i++){
+		document.write('var zyshdata' + i + ' = parent.txdata.zyshdata' + i + ';\n');
+		document.write('var result_' + i + ' = parent.txdata.zyshdata' + i + ';\n');
+		document.write('var errno' + i + ' = parent.txdata.errno' + i + ';\n');
+		document.write('var errmsg' + i + ' = parent.txdata.errmsg' + i + ';\n');
+		for ( var j = 1 ; j < 128 ; j++ ) {
+			if(parent.txdata['zyshdata' + i + "_" + j] != undefined){
+				document.write('var zyshdata' + i + "_" + j + ' = parent.txdata.zyshdata' + i + "_" + j+ ';\n');
+				document.write('var result_' + i + "_" + j + ' = parent.txdata.zyshdata' + i + "_" + j + ';\n');
+			}else{
+				break;
+			}
+		}
+	}
+	//document.write('if((top.frames[1].saction !=\'\')&&(top.frames[1].saction != undefined)){');
+	//document.write(top.frames[1].saction);//fetch data for Bonnie code
+	//document.write('}');
+	document.write('top.frames[1].zyshdcnt = 1;\n');
+	document.write('<\/script><\/head><body>FetchData<\/body><\/html>\n');
+	document.close();
+	for(var k = 0; k < ptr.length; k++) {
+		alert("Warning Message ! \n\n["+eval("parent.txdata.errno" + ptr[k])+']\n'+eval("parent.txdata.errmsg" + ptr[k]));
+	}
+
+	if(parent.txdata.usr_type == 5) /* limited-admin follow configuration cli command */
+		alert("Warning Message ! \n\nCurrent login user type is limited-admin. Configuration will not work.");
+
+}
+ // -->
+</script>
+</head>
+<body></body>
+</html>

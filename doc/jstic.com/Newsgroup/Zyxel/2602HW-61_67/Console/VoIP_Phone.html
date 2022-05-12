@@ -1,0 +1,78 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_VoIP_Phone.html';
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="rpVoIP.html" name="VoIP_Phone"><table width="100%" height="23" border="0" cellspacing="1" bgcolor="#ffffff">
+<tr>
+<TD width="2%">&nbsp;</td><TD width="5%">&nbsp;</td><td><table border=0 width=500>
+<tr>
+<td bgcolor=white height="16" colspan=2><font class="NaviText"><b>
+Sprache - Telefon</b></font></td><td bgcolor=white height="16" class="header2" ><b>
+<div align=right>Telefoneinstellungen: <SELECT NAME="Phone_Settings" SIZE="1" RpPutType="Function" RpPutPtr="VoIP_SIPAccount" OnChange="document.forms[0].submit();"><OPTION VALUE=00000000 SELECTED>Telefon1
+<OPTION VALUE=00000001>Telefon2
+</SELECT></div></b> </td></tr><tr>
+<td colspan=3>
+<hr></td></tr><tr>
+<td colspan=3 class="header2"><b>
+<div align=right></div></b></td></tr><tr>
+<td class="header2" colspan="2">Lautst&auml;rkenkontrolle</td><td width="50%">&nbsp;</td></tr><tr>
+<td width="5%">&nbsp;</td><td width="45%">Wiedergabelautst&auml;rke</td><td width="50%" > <SELECT NAME="VoIP_SelTPhone" SIZE="1"><OPTION VALUE=00000000>-1(Min.)
+<OPTION VALUE=00000001 SELECTED>0
+<OPTION VALUE=00000002>1(Max.)
+</SELECT></td></tr><tr>
+<td width="5%">&nbsp;</td><td width="45%">Aufnahmelautst&auml;rke</td><td width="50%"> <SELECT NAME="VoIP_SelHPhone" SIZE="1"><OPTION VALUE=00000000>-1(Min.)
+<OPTION VALUE=00000001 SELECTED>0
+<OPTION VALUE=00000002>1(Max.)
+</SELECT></td></tr><tr>
+<td colspan="2">&nbsp;</td><td>&nbsp;</td></tr><tr>
+<td colspan="2"><b>Ausgehende Telefonate nutzen</b></td><td width="50%">&nbsp;</td></tr> <tr>
+<td><b> </b></td><td><b>
+<INPUT TYPE="RADIO" NAME="VoIP_OutcallSIP" VALUE="0" CHECKED> SIP1 </b></td><td><b>
+<INPUT TYPE="RADIO" NAME="VoIP_OutcallSIP" VALUE="1"> SIP2</b></td></tr>
+<tr>
+<td colspan="2">&nbsp;</td><td>&nbsp;</td></tr><tr>
+<td colspan="2"><b> Echo Unterdr&uuml;ckung</b></td><td width="50%">&nbsp;</td></tr><tr>
+<td width="5%">&nbsp;</td><td width="45%">
+<INPUT TYPE="CHECKBOX" NAME="VoIP_SelEcho" CHECKED value="ON">G.168 Aktiv</td><td width="50%">&nbsp;</td></tr><tr>
+<td bgcolor=white colspan=4>&nbsp;</td></tr><tr>
+<td colspan="2"><b>
+Spracherkennung</b></td><td width="50%">&nbsp;</td></tr><tr>
+<td width="5%">&nbsp;</td><td width="45%">
+<INPUT TYPE="CHECKBOX" NAME="Phone_VADSupport" value="ON">	Spracherkennung aktiv</td><td width="50%">&nbsp;</td></tr><tr>
+<td bgcolor=white colspan=4>&nbsp;</td></tr><tr>
+<td colspan="2"><b>
+Wahlverz&ouml;gerung </b></td><td><SELECT NAME="Phone_dialinterval" SIZE="1"><OPTION VALUE=1>1
+<OPTION VALUE=2>2
+<OPTION VALUE=3 SELECTED>3
+<OPTION VALUE=4>4
+<OPTION VALUE=5>5
+<OPTION VALUE=6>6
+<OPTION VALUE=7>7
+<OPTION VALUE=8>8
+<OPTION VALUE=9>9
+<OPTION VALUE=10>10
+</SELECT>	</td></tr><tr>
+<td bgcolor=white colspan=4>&nbsp;</td></tr><tr>
+<td bgcolor=white colspan=4>
+<div align=center> <INPUT TYPE="SUBMIT" NAME="VoIP_PhoneBackBtn" VALUE="Zur&uuml;ck">&nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="Phone_Apply" VALUE="Anwenden">&nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" ></div></td></tr></table></td></tr></table></form>
+</body></html>

@@ -1,0 +1,140 @@
+atsh
+ZyNOS Version          : V3.60(JN.10) | 03/03/2006 14:25:00
+Bootbase Version       : V1.05 | 04/20/2004 10:36:26
+Vendor Name            : ZyXEL
+Product Model          : P-334WT
+ZyNOS ROM address      : bfc08000
+System Type            : 8
+MAC Address            : 001122334455
+Default Country Code   : E1
+Boot Module Debug Flag : 00
+RomFile Version        : 59
+RomFile Checksum       : 3448
+ZyNOS Checksum         : 4eaa
+Core Checksum          : d157
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+          9F 02 00 00 00 00 00 00-00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00-00 00 13 00 00 00
+
+OK
+atmp
+ROMIO image start at bfc08000
+code version:
+code start: 80008000
+code length: 1FA4E8
+memMapTab: 16 entries, start = bfc30000, checksum = 4468
+$RAM Section:
+  0: BootExt(RAMBOOT), start=80008000, len=18000
+  1: BootData(RAM), start=80020000, len=8000
+  2: HTPCode(RAMCODE), start=80020000, len=18000
+  3: HTPData(RAM), start=8003c000, len=14000
+  4: RasCode(RAMCODE), start=80020000, len=6F0000
+  5: RasData(RAM), start=80710000, len=8F0000
+$ROM Section:
+  6: BootBas(ROMIMG), start=bfc00000, len=4000
+  7: DbgArea(ROMIMG), start=bfc04000, len=2000
+  8: RomDir2(ROMDIR), start=bfc06000, len=2000
+  9: BootExt(ROMIMG), start=bfc08030, len=17FD0
+ 10: HTPCode(ROMBIN), start=bfc20000, len=10000
+     (Compressed)
+     Version: HTP_P334WT V1.0, start: bfc20030
+     Length: AE14, Checksum: 79E4
+     Compressed Length: 2CD6, Checksum: 9D61
+ 11: MemMapT(ROMMAP), start=bfc30000, len=C00
+ 12: termcap(ROMIMG), start=bfc30c00, len=400
+ 13: RomDefa(ROMIMG), start=bfc31000, len=2000
+ 14: tiwlan(ROMIMG), start=bfc33000, len=1F000
+ 15: RasCode(ROMBIN), start=bfc52000, len=1FE000
+     (Compressed)
+     Version: RAS P334WT, start: bfc52030
+     Length: 518868, Checksum: 137B
+     Compressed Length: 1B04E8, Checksum: D157
+$USER Section:
+Msecs 72
+Heap0 16 400 128
+Heap1 32 480 128
+Heap2 64 600 128
+Heap3 128 160 64
+Heap4   192  96 16
+Heap5   256  64 16
+Heap6   320  32 8
+Heap7   384  48 8
+Heap8   448  48 8
+Heap9 512 16 8
+Heap10 576 12 8
+Heap11 1024 24 4
+Heap12  2560 260 16
+Heap13 4096 16 4
+Heap14 0 0
+Heap15 0 0
+MbufInt 20 20 20
+MbufIO  120 40 400 400 0
+Queue   100
+Cbuf    360
+FuncId  40
+Proc    128
+Timer   128
+DNS     128
+FilterSet 12
+IpRoute 8
+IpxRoute 4
+IpMaxRt 128
+IpxMaxRt 128
+IpxMaxSap 128
+FwTos 2048 16 16 16
+CommonTos 2048 16 16 16 16 16 16 16 16 16
+AclType0   2048  10  128
+AclType1   2048  10  100
+AclType2   2048  10  20
+AclType3   2048  10  128
+AclType4   2048  10  128
+AclType5   32768 10  128
+AppleTalkRoute 0
+Bridge 4
+RemoteNode 1
+Profile 32
+Endpoint 1
+NATServerSet 1
+DHCPEntry   254
+PoeSvrCnt 4
+ScheduleSet 12
+AclBuffer 1
+IPSecManualSA   2
+IPSecIkePeer    2
+IPSecIkeSA      2
+IPSecAclBuffer 1
+IPSecSPD        2
+NatAclBuffer 1
+CustomPort 10
+NatSessions 2048
+IpPolicySet 12
+MiscFirewallBuffer 1
+CyberPatrolBuffer 1
+CyberPatrolListBuffer 1
+TrustedIPNum 0
+Logs 1
+IPBUFixpart 1
+NatRulePerSet 36
+UPNPNum 1
+IPSecExtendNum 2
+HwVerRange 2 0 0
+DDNS 1
+Model 1 61343           #Model ID, "MODEL_P334WT" (0xEF9F) in sys_mod.h
+VPNPort 2
+DHCPMacNum 8
+WlanExt 1
+IEEE8021X 1
+IAPP 1
+ComTos 1
+BmCbqIfNum      3
+BmCbqClassNum   40
+BmCbqFilterNum  40
+tm_enforcer 1
+BackupRadiusExtend      1
+AutoSec 1
+ZyDaylight 1
+PortIsolation 1
+
+OK

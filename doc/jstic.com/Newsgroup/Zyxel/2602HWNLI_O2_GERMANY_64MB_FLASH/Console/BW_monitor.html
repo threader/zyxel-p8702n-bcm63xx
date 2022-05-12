@@ -1,0 +1,120 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--//
+top.header.szHelp="h_BW_monitor.html";
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+ var interval = 10 ; //sec
+setInterval("window.location.reload();", interval * 1000);
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/BW_monitor_1" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="BW_Summary.html" target="main" class="sub"><b><FONT class=NaviText>
+Summary</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="BW_classList.html" target="main" class="sub"><b><FONT class=NaviText>
+Rule Setup</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+Monitor</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle">
+Monitor</td></tr><tr>
+<td colspan="2">&nbsp;</td></tr><tr>
+<td colspan="2"><table width="90%" border="0" align=center cellspacing="0">
+<tr>
+<td width="197%" colspan="3">
+<select name="BWMonitor_SelectDirection" size="1" onchange="document.forms[0].submit();"><option value=00000000>LAN
+<option value=00000001>WLAN
+<option value=00000002 selected>WAN
+</select></td></tr><tr>
+<td colspan="3">&nbsp;</td></tr></table></td></tr><tr>
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle">
+To WAN Interface</td></tr><tr>
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr>
+<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="30%" align=center>
+WWW</td><td height="20" width="30%" bgcolor="#000000"> <table width="100%" border=0 cellpadding=0 cellspacing=1>
+<tr>
+<td height="20" background="Images/percent_bg_1.gif">
+<table border="0" cellspacing="0" cellpadding="0" width=0%><tr><td background="Images/percent_bar_1.gif"  height="20"></td></tr></table></td></tr></table></td><td width="30%" align=center>
+0&nbsp;kbps </td></tr><tr>
+<td width="30%" align=right></td><td align=center> <div class="post">
+</div></td><td></td></tr></table></td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr>
+<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="30%" align=center>
+FTP</td><td height="20" width="30%" bgcolor="#000000"> <table width="100%" border=0 cellpadding=0 cellspacing=1>
+<tr>
+<td height="20" background="Images/percent_bg_1.gif">
+<table border="0" cellspacing="0" cellpadding="0" width=0%><tr><td background="Images/percent_bar_1.gif"  height="20"></td></tr></table></td></tr></table></td><td width="30%" align=center>
+0&nbsp;kbps </td></tr><tr>
+<td width="30%" align=right></td><td align=center> <div class="post">
+</div></td><td></td></tr></table></td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr>
+<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="30%" align=center>
+E-Mail</td><td height="20" width="30%" bgcolor="#000000"> <table width="100%" border=0 cellpadding=0 cellspacing=1>
+<tr>
+<td height="20" background="Images/percent_bg_1.gif">
+<table border="0" cellspacing="0" cellpadding="0" width=0%><tr><td background="Images/percent_bar_1.gif"  height="20"></td></tr></table></td></tr></table></td><td width="30%" align=center>
+0&nbsp;kbps </td></tr><tr>
+<td width="30%" align=right></td><td align=center> <div class="post">
+</div></td><td></td></tr></table></td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr>
+<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="30%" align=center>
+VoIP (SIP)</td><td height="20" width="30%" bgcolor="#000000"> <table width="100%" border=0 cellpadding=0 cellspacing=1>
+<tr>
+<td height="20" background="Images/percent_bg_1.gif">
+<table border="0" cellspacing="0" cellpadding="0" width=0%><tr><td background="Images/percent_bar_1.gif"  height="20"></td></tr></table></td></tr></table></td><td width="30%" align=center>
+0&nbsp;kbps </td></tr><tr>
+<td width="30%" align=right></td><td align=center> <div class="post">
+</div></td><td></td></tr></table></td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+<tr>
+<td>&nbsp;</td></tr><tr>
+<td>&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--
+showFullPath('Management > Bandwidth MGMT > Monitor');
+//-->
+</script>
+</html>

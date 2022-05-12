@@ -1,0 +1,166 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+
+
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_CF_Keyword.html";
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+
+ns = (document.layers) ? true : false;
+ie = (document.all) ? true : false;
+function SortD(box)
+{
+var temp_opts = new Array();
+var temp = new Object();
+for(var i=0; i < box.options.length; i++)
+{
+temp_opts[i] = box.options[i];
+}
+for(var x = 0; x < temp_opts.length - 1; x++)
+{
+for(var y = (x + 1); y < temp_opts.length; y++)
+{
+if(temp_opts[x].text > temp_opts[y].text)
+{
+temp = temp_opts[x].text;
+temp_opts[x].text = temp_opts[y].text;
+temp_opts[y].text = temp;
+}
+}
+}
+for(var i = 0; i < box.options.length; i++)
+{
+box.options[i].value = temp_opts[i].value;
+box.options[i].text = temp_opts[i].text;
+}
+}
+function addKeyword(keyword, list)
+{
+if(keyword.value == "") return;
+var listlen = list.length;
+for(i = 0; i < parseInt(listlen, 10); i++)
+{
+if(list.options[i].text == keyword.value)
+{
+return;
+}
+}
+var newKeyword = new Option(keyword.value, keyword.value, false, false);
+list.options[list.options.length] = newKeyword;
+SortD(list);
+keyword.value = "";
+}
+function deleteKeyword(keyword, list)
+{
+var listlen = list.length;
+for(i = 0; i < parseInt(listlen, 10); i++)
+{
+if(list.options[i].text == keyword.value)
+{
+list.options[i] = null;
+keyword.value = "";
+return;
+}
+}
+}
+function clearKeyword(list)
+{
+var listlen = list.length;
+for(i = 0; i < parseInt(listlen, 10); i++)
+{
+list.options[0] = null;
+}
+return;
+}
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/CF_Keyword_1" name="DHCPform" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+Keyword</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="CF_Schedule.html" target="main" class="sub"><b><FONT class=NaviText>
+Schedule</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="CF_Trusted.html" target="main" class="sub"><b><FONT class=NaviText>
+Trusted</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<br /><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr class="cTitle" height="19">
+<td width="3%" class="cTitle"></td><td colspan="2" class="cTitle">
+Keyword</td></tr><tr>
+<td colspan="3">&nbsp; </td></tr></table><table width="90%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td colspan="3">
+<input type="checkbox" name="Drop_DTR_Enable" checked />Active Keyword Blocking</td></tr><tr>
+<td colspan="3" class="header2">&nbsp;</td></tr><tr>
+<td colspan="3" class="header2">
+Block Websites that contain these keywords in the URL :</td></tr><tr>
+<td colspan="3">
+<select name="cfKeyWord_DomainList" size="6" OnChange="this.form.cfKeyWord_Domain.value = this.options[this.selectedIndex].text;"><option value=00000000>banner
+<option value=00000000>doubleclick
+<option value=00000000>hardcore
+<option value=00000000>lolita
+<option value=00000000>pervers
+<option value=00000000>porno
+<option value=00000000>rotten
+<option value=00000000>sex
+<option value=00000000>werbung
+<option value=00000000>xxx
+<option value=00000000>penis
+</select></td></tr><tr>
+<td width="5%"></td><td colspan="2">&nbsp;</td></tr><tr>
+<td colspan="3">
+<input type="submit" name="cfKeyWord_DelKeywordBtn" value="Delete" /><input type="submit" name="cfKeyWord_ClearListBtn" value="Clear All" /></td></tr><tr>
+<td colspan="3">&nbsp;</td></tr><tr>
+<td colspan="3">
+Keyword&nbsp;&nbsp;
+<input type="text" name="cfKeyWord_Domain" size="48" maxlength="127" value="" /><input type="submit" name="cf_AddKeywordBtn" value="Add Keyword" /></td></tr><tr>
+<td colspan="3">&nbsp; </td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table></td></tr><tr>
+<td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table><!-- 3D -->
+</td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--
+showFullPath('Security > Content Filter > Keyword');
+//-->
+</script>
+</html>

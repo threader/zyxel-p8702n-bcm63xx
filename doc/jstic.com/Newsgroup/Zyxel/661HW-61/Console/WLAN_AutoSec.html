@@ -1,0 +1,67 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_WLAN_OTIST.html';
+    var ns, ie;
+    var Vmajor = parseInt(navigator.appVersion);
+	if(navigator.appName == "Netscape") {
+		ns = true; ie = false;
+	} else if(navigator.appName == "Microsoft Internet Explorer") {
+		ie = true; ns = false;
+	} else {
+		 ns = false; ie = false;
+	}
+
+	function chkChar(event) {
+		if(ns)
+			val = event.which;
+		else
+			val = event.keyCode;
+		if(val == 0 || val == 8)
+			return true;
+
+	  	if((val > 47 && val < 58) || (val > 64 && val < 91) || (val > 96 && val < 123))
+		    return true;
+	  	else
+    		return false;
+	}
+
+	
+	function doSubmit()
+	{
+		document.forms[0].AutoPSKFlag.value = 1;
+  		document.forms[0].submit();
+  		return;		
+	}
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpWLan.html" name="WLAN_Roaming" target="_self">  <table width="100%" border="0" cellspacing="1">
+    <tr>
+      <td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="93%"> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+          <tr> 
+            <td colspan="4"> <div align=left class="NaviText"> 
+                Wireless LAN                - 
+                OTIST              </div></td></tr><tr> 
+            <td colspan="4"> <hr></td></tr><tr> 
+            <td colspan="4" class="header2"> 
+              OTIST            </td></tr><tr> 
+            <td width="11"></td><td width="200"> 
+              Key            </td><td width="407"> 
+              <INPUT TYPE="TEXT" NAME="WLAN_AS_Key" SIZE="8" MAXLENGTH="8" VALUE="01234567" onKeyPress="return chkChar(event);">            </td></tr><tr> 
+            <td></td><td colspan="2">
+              <INPUT TYPE="CHECKBOX" NAME="WLAN_AS_KeyGen" CHECKED value="ON">              Yes! Please enhance the Wireless Security Level to WPA-PSK automatically if no any WLAN security has been set.  This will generate a random PSK key later for your convenience.            </td></tr><tr> 
+            <td colspan="4">&nbsp;</td></tr><tr align=center valign=middle> 
+            <td colspan="4" height="36"> <hr></td></tr><tr> 
+            <td colspan="4"> <div align=center>
+                <INPUT TYPE="HIDDEN" NAME="ASMode" VALUE="">                <INPUT TYPE="HIDDEN" NAME="AutoPSKFlag" VALUE="0">                <INPUT TYPE="BUTTON" NAME="WLAN_BackBtn" VALUE="Back" onClick="window.location='rpWLan.html';">                &nbsp;&nbsp;&nbsp; 
+                <INPUT TYPE="SUBMIT" NAME="ASStart" VALUE="Start" onClick="doSubmit();">                &nbsp;&nbsp;&nbsp; 
+                <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >              </div></td></table></td></tr></table></form><script language="JavaScript">
+</script>
+
+</body></html>

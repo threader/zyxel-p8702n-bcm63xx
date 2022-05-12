@@ -1,0 +1,132 @@
+ZyNOS Version          : V3.40(ACP.0) | 08/12/2005  16:47:30
+Bootbase Version       : V1.03 | 04/26/2005 15:20:30
+Vendor Name            : ZyXEL Communications Corp.
+Product Model          : Prestige 660ME-T1
+ZyNOS ROM address      : bfc10000
+System Type            : 7
+MAC Address            : 001122334455
+Default Country Code   : FF
+Boot Module Debug Flag : 00
+RomFile Version        : D6
+RomFile Checksum       : 6d42
+ZyNOS Checksum         : dd65
+Core Checksum          : cd80
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+          9A 0C 00 00 00 00 00 00-00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00-02 41 13 00 00 00
+
+
+atmp
+ROMIO image start at bfc10000
+code version:
+code start: 80008000
+code length: 1467C6
+memMapTab: 12 entries, start = bfc37000, checksum = 4A90
+$RAM Section:
+  0: BootExt(RAMBOOT), start=80008000, len=18000
+  1: HTPCode(RAMCODE), start=80020000, len=E0000
+  2: RasCode(RAMCODE), start=80020000, len=FE0000
+$ROM Section:
+  3: BootBas(ROMIMG), start=bfc00000, len=4000
+  4: DbgArea(ROMIMG), start=bfc04000, len=2000
+  5: RomDir2(ROMDIR), start=bfc06000, len=A000
+  6: BootExt(ROMIMG), start=bfc10030, len=17FD0
+  7: HTPCode(ROMBIN), start=bfc28000, len=F000
+          (Compressed)
+          Version: HTP_P660 V 0.04, start: bfc28030
+          Length: 154E4, Checksum: 02A2
+          Compressed Length: 75D4, Checksum: 1E25
+  8: MemMapT(ROMMAP), start=bfc37000, len=C00
+  9: termcap(ROMIMG), start=bfc37c00, len=400
+ 10: RomDefa(ROMIMG), start=bfc38000, len=A000
+ 11: RasCode(ROMBIN), start=bfc42000, len=1BE000
+          (Compressed)
+          Version: P660ME-T1 ATU-R, start: bfc42030
+          Length: 34FCFC, Checksum: 2B96
+          Compressed Length: 1147C6, Checksum: 80CD
+$USER Section:
+Msecs   96
+Heap0   16   400 64
+Heap1   32   140 64
+Heap2   64   120 64
+Heap3   128  250 64
+Heap4   192  100 16
+Heap5   256  60 16
+Heap6   320  30  6
+Heap7   384  16 6
+Heap8   448  25 6
+Heap9   512  40  8
+Heap10  576  10  8
+Heap11  1024 65  8
+Heap12  2560 40  2
+Heap13  4096 5  2
+Heap14  0 0
+Heap15  0 0
+MbufInt 20 20 20
+MbufIO  100 160 600 0 0
+Queue   128
+Cbuf    200
+FuncId  35
+Proc    35
+Timer   128
+DNS     128
+Model 1 3226
+FilterSet 12
+IpRoute 16
+IpxRoute 4
+IpMaxRt     128
+IpxMaxRt    128
+IpxMaxSap   128
+FwTos   300 16 16 16
+AclType0   2048  8  30          #Firewall
+AclType1   2048  8  100         #IPSEC
+AclType2   2048  8  20          #NAT
+AclType3   2048  8  128         #MISC Firewall
+AclType4   2048  8  128         #AVE
+AclType5   32768 8  128         #CYBER PATROL
+AppleTalkRoute  0
+Bridge          4
+RemoteNode      8
+Profile         32
+Endpoint        4
+NATServerSet    10
+DHCPEntry       254
+PoeSvrCnt       4
+ScheduleSet     12
+AclBuffer       1
+IPSecManualSA   10
+IPSecIkePeer    10
+IPSecIkeSA      10
+IPSecAclBuffer  1
+IPSecSPD        10
+IPSecExtendNum  10
+NatAclBuffer    1
+CustomPort      10
+NatSessions     1024
+IpPolicySet     12
+CoeFixedPart    0
+CpeFixedPart    1
+MiscFirewallBuffer      1
+CyberPatrolBuffer       1
+CyberPatrolListBuffer   1
+TrustedIPNum    0
+AccessSecHost   0
+NatRulePerSet   24
+UPNPNum         1
+IPBUFixpart     1
+AveBuffer       1
+IEEE8021X       1
+Vendor          1 0
+HwVerRange      2 0 0
+WanBackup      1
+ZyCNM 1
+Logs 1
+BmCbqIfNum      10
+BmCbqClassNum   30
+BmCbqFilterNum  30
+ComTos 1
+VCHuntSet       10
+VCHuntMang      1
+TCDMT           32

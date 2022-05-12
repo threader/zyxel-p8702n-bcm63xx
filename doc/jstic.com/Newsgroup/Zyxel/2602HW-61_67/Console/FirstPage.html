@@ -1,0 +1,77 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+<script language="JavaScript">
+    top.title.h_Page='h_FirstPage.html';
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  		<FORM METHOD="POST" ACTION="/Forms/FirstPage_1" name="FirstP_MLSwitch" target="_top">          <tr> 
+            <td > 
+              <div align=left class="NaviText"> 
+              &Uuml;bersicht             </div></td><td colspan="2">&nbsp;</td>		
+          <tr> 
+            <td colspan="3">
+              <hr class="hrColor">
+            </td></tr>		
+<tr>
+            <td colspan="2"><font class="MapTd">&nbsp;Einrichtungsassistent&nbsp;</td></tr><tr>
+            <td colspan="2" class="sitemap"> 
+                    <a href="Frames_AOL_Phone.html" onClick='javascript:top.panel.location="Panel_Wizard.html"'>AOL Wizard Setup</a><br><a href="wzOthers.html" onClick='javascript:top.panel.location="Panel_Wizard.html"'>Andere ISP</a></td></tr>	
+	  <tr>
+            <td colspan="3">&nbsp;</td></tr><tr> 
+            <td colspan="3" height="20"> 
+              <table cellspacing="0" cellpadding="0" width="560" border="0">
+                <tr> 
+               
+       
+<td width="199">			
+				
+  
+				  				   <font class="MapTd">&nbsp; 
+Erweiterte Einrichtung					&nbsp;</font> </td><td width="150">                  
+                   <font class="MapTd">&nbsp; 
+   Verwaltung					&nbsp;</font> </td><td width="211">                  
+                  
+                  
+                  
+                  <font class="MapTd">&nbsp; 
+                    Status&nbsp;</font> </td></tr><tr> 
+                  <td class="sitemap" rowspan="8" valign=top> 
+<a href="rpSysAdmin.html" onclick='javascript:top.panel.location="Panel_Adv_PW.html"'>Kennwort</a><br><a href="rpLan.html" onclick='javascript:top.panel.location="Panel_Adv_LAN.html"'>LAN </a><br><a href="rpWLan.html" onclick='javascript:top.panel.location="Panel_Adv_WLan.html"'>Wireless LAN</a><br><a href="rpWAN.html" onClick='javascript:top.panel.location="Panel_Adv_WAN.html"'>WAN</a><br><a href="rpNATmode.html" onclick='javascript:top.panel.location="Panel_Adv_SUA.html"'>NAT </a><a href=rpVoIP.html onclick='javascript:top.panel.location="Panel_Adv_VoIP.html"'><br>VoIP</a><br><a href="rpDyDNS.html" onclick='javascript:top.panel.location="Panel_Adv_DyDNS.html"'>Dynamisches DNS </a><br><a href="rpTimeZone.html" onclick='javascript:top.panel.location="Panel_Adv_TZone.html"'>Zeitzone</a><br><a href="rpFirewall.html" onclick='javascript:top.panel.location="Panel_Adv_Firewall.html"'>Firewall</a><a href=rpCFilter.html onclick='javascript:top.panel.location="Panel_Adv_CFilter.html"'><br>Content-Filter</a>					<a href=rpUPNP.html onclick='javascript:top.panel.location="Panel_Adv_UPNP.html"'><br>UPnP</a>			
+			 
+                  </td><td class="sitemap" rowspan="8" valign=top>
+<a href="rpFWUpload.html" onclick='javascript:top.panel.location="Panel_AOL_FW.html"'>
+                    Firmware </a><br><a href=rpLogs.html onclick='javascript:top.panel.location="Panel_AOL_Logs.html"'>Protokolle</a><br><a href="rpRManage.html" onClick='javascript:top.panel.location="Panel_AOL_RManage.html"'> Fernverwaltung</a>               </td><td class="sitemap" bordercolor="#9FE6A8" rowspan="8" valign=top>
+                  <a href="rpSysStatus.html" onclick='javascript:top.panel.location="Panel_Mten_Status.html"'> 
+                    Systemstatus</a><a href="rpDHCP.html" onclick='javascript:top.panel.location="Panel_Mten_DHCP.html"'><br>DHCP-Tabelle </a>
+                   	          <a href="rpWMten.html" onclick='javascript:top.panel.location="Panel_Mten_Wireless.html"'> <br>Wireless LAN</a>                  <a href="rpDiagnostic.html" onclick='javascript:top.panel.location="Panel_Mten_Diagnostic.html"'><br>Diagnosefunktionen</a>	                            </td></tr></table></td></tr><tr> 
+            <td colspan="3" class="HiddenMessage" > Falls Sie diese Nachricht sehen, ben&ouml;tigen Sie einen mehr CSS-kompatiblen Browser, wie z.B. MS Internet Explorer 4.0 oder h&ouml;her.</td></tr>          <tr> 
+            <td colspan="3">&nbsp;</td></tr>	
+          <tr> 
+            <td colspan="3">
+              <hr class="hrColor">
+            </td></tr>		  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></div></td></tr></table>
+</body></html>

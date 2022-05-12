@@ -1,0 +1,353 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_Ethernet.html';
+//-->
+<!--
+<!-- RpNamedDisplayText RpName="text_DefaultPoolSize" RpGetType=Complex RpTextType="ASCIIExtended" Size="20" -->
+var PoolSize=32;
+var	IP="0.0.0.0"
+var PriDNS="0.0.0.0"
+var SecDNS="0.0.0.0"
+var FirstDNS="0.0.0.0"
+var SecondDNS="0.0.0.0"
+var ThirdDNS="0.0.0.0"
+var FirstDNSSel=0;
+var SecondDNSSel=0;
+var ThirdDNSSel=0;
+
+var RemoteDHCP="0.0.0.0"
+
+	function doDHCPmode(Index)
+	{	
+		if (document.DHCPform.sysPoolStartingAddr.value != "N/A")
+			IP = document.DHCPform.sysPoolStartingAddr.value;
+		if (document.DHCPform.sysPoolCount.value != "N/A")
+			PoolSize = document.DHCPform.sysPoolCount.value;
+		if (document.DHCPform.sysPriDNSAddr.value != "N/A")
+			PriDNS = document.DHCPform.sysPriDNSAddr.value;
+		if (document.DHCPform.sysSecDNSAddr.value != "N/A")
+			SecDNS = document.DHCPform.sysSecDNSAddr.value;
+		if (document.DHCPform.remoteDHCPAddr.value != "N/A")
+			RemoteDHCP = document.DHCPform.remoteDHCPAddr.value;
+
+
+		if (Index == 0){//Server
+			document.DHCPform.sysPoolStartingAddr.value = IP;
+			document.DHCPform.sysPoolCount.value = PoolSize;
+			document.DHCPform.sysPriDNSAddr.value = PriDNS;
+			document.DHCPform.sysSecDNSAddr.value = SecDNS;
+			document.DHCPform.remoteDHCPAddr.value = "N/A";}
+		else if (Index == 1){//None
+		    document.DHCPform.sysPoolStartingAddr.value = "N/A";
+			document.DHCPform.sysPoolCount.value = "N/A";
+			document.DHCPform.sysPriDNSAddr.value = PriDNS;
+			document.DHCPform.sysSecDNSAddr.value = SecDNS;
+			document.DHCPform.remoteDHCPAddr.value = "N/A";}
+	    else if (Index == 2){//Relay
+			document.DHCPform.sysPoolStartingAddr.value = "N/A";
+			document.DHCPform.sysPoolCount.value = "N/A";
+			document.DHCPform.sysPriDNSAddr.value = "N/A";
+			document.DHCPform.sysSecDNSAddr.value = "N/A";
+		    document.DHCPform.remoteDHCPAddr.value = RemoteDHCP;}
+			
+	}
+
+
+	function doIDNSDHCPmode(Index)
+	{
+		if (document.DHCPform.sysPoolStartingAddr.value != "N/A")
+			IP = document.DHCPform.sysPoolStartingAddr.value;
+		if (document.DHCPform.sysPoolCount.value != "N/A")
+			PoolSize = document.DHCPform.sysPoolCount.value;		
+		if (document.DHCPform.sysFirDNSAddr .value != "N/A")
+		{
+			FirstDNSSel=document.DHCPform.LAN_FirstDNS.selectedIndex;
+			FirstDNS = document.DHCPform.sysFirDNSAddr .value;
+		}
+		if (document.DHCPform.sysSecIDNSAddr.value != "N/A")
+		{
+			SecondDNSSel = document.DHCPform.LAN_SecondDNS.selectedIndex;
+			SecondDNS = document.DHCPform.sysSecIDNSAddr.value;
+		}
+		if (document.DHCPform.sysThirdDNSAddr.value != "N/A")
+		{
+			ThirdDNSSel = document.DHCPform.LAN_ThirdDNS.selectedIndex;
+			ThirdDNS = document.DHCPform.sysThirdDNSAddr.value;
+		}
+		if (document.DHCPform.remoteDHCPAddr.value != "N/A")
+			RemoteDHCP = document.DHCPform.remoteDHCPAddr.value;
+
+
+		if (Index == 0){//Server
+			
+			document.DHCPform.sysPoolStartingAddr.value = IP;			
+			document.DHCPform.sysPoolCount.value = PoolSize;			
+			document.DHCPform.sysFirDNSAddr .value = FirstDNS;			
+			document.DHCPform.sysSecIDNSAddr.value = SecondDNS;			
+			document.DHCPform.sysThirdDNSAddr.value = ThirdDNS;
+			document.DHCPform.LAN_FirstDNS.selectedIndex = FirstDNSSel;
+			document.DHCPform.LAN_SecondDNS.selectedIndex = SecondDNSSel;
+			document.DHCPform.LAN_ThirdDNS.selectedIndex = ThirdDNSSel;
+			document.DHCPform.remoteDHCPAddr.value = "N/A";
+			document.DHCPform.LAN_FirstDNS.disabled = false;	
+			document.DHCPform.LAN_SecondDNS.disabled = false;		
+			document.DHCPform.LAN_ThirdDNS.disabled = false;
+			document.DHCPform.sysFirDNSAddr.disabled = false;
+			document.DHCPform.sysSecIDNSAddr.disabled = false;
+			document.DHCPform.sysThirdDNSAddr.disabled = false;
+  			doFDNSType( document.DHCPform );
+  			doSDNSType( document.DHCPform );
+  			doTDNSType( document.DHCPform );
+		
+			}
+		else// None or Relay
+		{	document.DHCPform.sysPoolStartingAddr.value = "N/A";
+			document.DHCPform.sysPoolCount.value = "N/A";
+			document.DHCPform.LAN_FirstDNS.selectedIndex = 3;
+			document.DHCPform.LAN_FirstDNS.disabled = true;
+			document.DHCPform.sysFirDNSAddr.value = "N/A";
+			document.DHCPform.sysFirDNSAddr.disabled = true;
+			document.DHCPform.LAN_SecondDNS.selectedIndex = 3;
+			document.DHCPform.LAN_SecondDNS.disabled = true;
+			document.DHCPform.sysSecIDNSAddr.value = "N/A";
+			document.DHCPform.sysSecIDNSAddr.disabled = true;
+			document.DHCPform.LAN_ThirdDNS.selectedIndex = 3;
+			document.DHCPform.LAN_ThirdDNS.disabled = true;
+			document.DHCPform.sysThirdDNSAddr.value = "N/A";
+			document.DHCPform.sysThirdDNSAddr.disabled = true;
+			if (Index == 2)//Relay
+				document.DHCPform.remoteDHCPAddr.value = RemoteDHCP;
+			else
+				document.DHCPform.remoteDHCPAddr.value = "N/A";
+			
+		}
+	}
+	function chkDHCPmode(Index, i, j )
+	{	if (j == 1)
+		{	if (Index == 2)
+				document.DHCPform.remoteDHCPAddr.select();
+			else
+				document.DHCPform.elements[0].focus();
+		}
+		else
+		{	if (Index == 0)
+			{
+				document.DHCPform.elements[i].select();
+			}
+			else if(Index == 1)
+			{
+				if( i == 3)
+					document.DHCPform.elements[i].select();
+				else if(i == 4)
+				document.DHCPform.elements[i].select();
+			else
+				document.DHCPform.elements[0].focus();
+		}
+			else
+				document.DHCPform.elements[0].focus();
+		}
+	}
+
+	function forceRIPver(Index)
+	{	if	(Index == 0)//RIP direction is "NONE"
+			document.DHCPform.sysRIPVersion.selectedIndex = 3;//force RIP ver to "N/A"
+	}
+	
+	function chkRIPdir()
+	{	if (document.DHCPform.sysRIPDirection.selectedIndex == 0)
+			document.DHCPform.sysRIPVersion.selectedIndex = 3;
+		else//RIP dir is not "NONE"
+			if (document.DHCPform.sysRIPVersion.selectedIndex == 3)
+				document.DHCPform.sysRIPVersion.selectedIndex = 0;//force RIP ver NOT to "N/A"
+	}
+
+	function doAlert()
+	{
+		alert("If the IP address in TCP/IP is changed, please close the window.");	}
+	
+	function chkIP(address, i)
+		{
+		var IP = address.value;
+		IP = IP.replace(/ /g, "");
+		address.value = IP;
+		IPsplit = IP.split(".");
+		
+			if ( i < 6){
+			if (document.DHCPform.elements[0].selectedIndex == 0 )
+			{
+				if (i==5)
+				return;
+			}
+			if (document.DHCPform.elements[0].selectedIndex == 1 )
+				return;
+			if (document.DHCPform.elements[0].selectedIndex == 2 )
+			{
+				if (i!=5)
+				return;
+			}
+			}
+		if(IPsplit.length != 4 ) {
+			if(is_ie) {
+					alert("IP Format Error!!!");				
+				address.focus();
+				address.value="0.0.0.0";
+			}	
+			return (false);
+		}
+
+		for(i = 0; i < 4; i++)
+			if((isNaN(IPsplit[i])) || (IPsplit[i] == 'undefined') || (IPsplit[i] == "")) {
+					if(is_ie) {
+					alert("IP Format Error!!!");
+					address.focus();
+					address.value="0.0.0.0";
+				}
+				return (false);
+			} else
+				if((parseInt(IPsplit[i], 10) > 255) || (parseInt(IPsplit[i], 10) < 0)) {
+					if(is_ie) {
+						alert("IP Format Error!!!");
+						address.focus();
+						address.value="0.0.0.0";
+					}	
+					return (false);
+				}	
+		}
+	function changeFocus(i)
+		{
+			if(i=0)
+				document.DHCPform.elements[i].focus();
+			else
+				document.DHCPform.sysLANIPAddr.focus();
+			return;
+		}
+	function doSubmit()
+        {
+	    }
+		 
+ function doFDNSType( form )
+    {
+   	var newIndex = form.LAN_FirstDNS.selectedIndex;	   	
+		switch(newIndex)
+		{
+		case 0:
+		case 2:
+		case 3:
+				form.sysFirDNSAddr.disabled = true;			
+				break;
+		case 1:
+				form.sysFirDNSAddr.disabled = false;
+				break;
+		default:
+			break;
+		}		
+    }
+
+function doSDNSType( form )
+    {    
+	var newIndex = form.LAN_SecondDNS.selectedIndex;
+		switch(newIndex)
+		{
+		case 0:
+		case 2:
+		case 3:
+				form.sysSecIDNSAddr.disabled = true;						
+				break;
+		case 1:
+				form.sysSecIDNSAddr.disabled = false;
+				break;
+		default:
+			break;
+		} 
+    }
+    
+function doTDNSType( form )
+    {
+    
+	var newIndex = form.LAN_ThirdDNS.selectedIndex;
+		switch(newIndex)
+		{
+		case 0:
+		case 2:
+		case 3:
+				form.sysThirdDNSAddr.disabled = true;			
+				break;
+		case 1:
+				form.sysThirdDNSAddr.disabled = false;
+				break;
+		default:
+			break;
+		} 
+    }
+	
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpLan.html" name="DHCPform" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="4" class="NaviText"> 
+              LAN - LAN Setup            </td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="4" class="header2"> 
+              DHCP            </td></tr>   		<tr> 
+            <td width="16"></td><td width="246"> DHCP</td><td width="143"> <SELECT NAME="Lan_DHCP" SIZE="1" RpPutType="Function" RpPutPtr="sysDHCPPut" onChange="doDHCPmode(this.selectedIndex)"><OPTION VALUE=00000000 SELECTED>Server
+<OPTION VALUE=00000001>None
+<OPTION VALUE=00000002>Relay
+</SELECT></td><td width="155"></td></tr>          <tr> 
+            <td width="16"></td><td width="246"> Client IP Pool Starting Address</td><td width="143"> 
+              <INPUT TYPE="TEXT" NAME="sysPoolStartingAddr" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.33" onBlur="checkIPFormat(this)" onFocus="chkDHCPmode(DHCPform.Lan_DHCP.selectedIndex, 1, 0 )">              </td><td width="155"></td></tr><tr> 
+            <td width="16"></td><td width="246"> Size of Client IP Pool</td><td width="143">               <INPUT TYPE="TEXT" NAME="sysPoolCount" SIZE="3" MAXLENGTH="3" VALUE="32" onFocus="chkDHCPmode(DHCPform.Lan_DHCP.selectedIndex, 2, 0)" onkeypress="chk_num(event)">                            </td><td width="155"></td></tr>          <tr> 
+            <td width="16"></td><td width="246"> Primary DNS Server</td><td width="143"><INPUT TYPE="TEXT" NAME="sysPriDNSAddr" SIZE="15" MAXLENGTH="15" VALUE="193.101.111.20" onFocus="chkDHCPmode(DHCPform.Lan_DHCP.selectedIndex, 3, 0)" onBlur="checkIPFormat(this)"></td><td width="155"></td></tr><tr> 
+            <td width="16"></td><td width="246"> Secondary DNS Server</td><td width="143"><INPUT TYPE="TEXT" NAME="sysSecDNSAddr" SIZE="15" MAXLENGTH="15" VALUE="194.25.2.129" onBlur="checkIPFormat(this)" onFocus="chkDHCPmode(DHCPform.Lan_DHCP.selectedIndex, 4, 0 )"></td><td width="155"></td></tr>          <tr> 
+            <td width="16"></td><td width="246"> Remote DHCP Server</td><td width="143"><INPUT TYPE="TEXT" NAME="remoteDHCPAddr" SIZE="15" MAXLENGTH="15" VALUE="N/A" onBlur="checkIPFormat(this)" onFocus="chkDHCPmode(DHCPform.Lan_DHCP.selectedIndex, 5, 1)">            </td><td width="155"></td></tr><tr>  
+            <td colspan="4">&nbsp;</td></tr><tr> 
+            <td colspan="4" class="header2"> 
+              TCP/IP             </td></tr><tr> 
+            <td width="16"></td><td width="246"> IP Address </td><td width="143"><INPUT TYPE="TEXT" NAME="sysLANIPAddr" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.1" onBlur="checkIPFormat(this)"></td><td width="155"></td></tr><tr> 
+            <td width="16"></td><td width="246"> IP Subnet Mask </td><td width="143">               <INPUT TYPE="TEXT" NAME="sysLANSubnetMask" SIZE="15" MAXLENGTH="15" VALUE="255.255.255.0" onBlur="SubnetCheck(this)">                            </td><td width="155"></td></tr>          <tr> 
+            <td width="16"></td><td width="246"> RIP Direction </td><td width="143"> <SELECT NAME="sysRIPDirection" SIZE="1" RpPutType="Function" RpPutPtr="sysRIPDirectionPut" onChange="forceRIPver(this.selectedIndex)"><OPTION VALUE=00000000>None
+<OPTION VALUE=00000001 SELECTED>Both
+<OPTION VALUE=00000002>In Only
+<OPTION VALUE=00000003>Out Only
+</SELECT></td><td width="155"></td></tr><tr> 
+            <td width="16"></td><td width="246"> RIP Version </td><td width="143"><SELECT NAME="sysRIPVersion" SIZE="1" RpPutType="Function" RpPutPtr="sysRIPVersionPut" onBlur="chkRIPdir()"><OPTION VALUE=00000000>RIP-1
+<OPTION VALUE=00000001>RIP-2B
+<OPTION VALUE=00000002 SELECTED>RIP-2M
+<OPTION VALUE=00000003>N/A
+</SELECT></td><td width="155"></td></tr><tr> 
+            <td width="16"></td><td width="246"> Multicast</td><td width="143"><SELECT NAME="sysMulticast" SIZE="1" RpPutType="Function" RpPutPtr="sysMulticastPut"><OPTION VALUE=00000000>IGMP-v1
+<OPTION VALUE=00000001 SELECTED>IGMP-v2
+<OPTION VALUE=00000002>None
+</SELECT></td><td width="155"></td></tr><tr>  
+            <td colspan="4">&nbsp;</td></tr>             <tr> 
+            <td colspan="4" class="header2"> 
+              Any IP Setup            </td></tr><tr>
+            <td width="16"></td><td width="246"> 
+            <INPUT TYPE="CHECKBOX" NAME="sysAnyIp_Enable" value="ON">              Active</td></tr><tr>  
+            <td colspan="4">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="4"> 
+              <div align=center>
+<INPUT TYPE="SUBMIT" NAME="EthernetBack" VALUE="Back">&nbsp;&nbsp;&nbsp;                      
+<INPUT TYPE="SUBMIT" NAME="Ethernetsubmit1" VALUE="Apply" onClick="doSubmit(); doAlert(); ">		&nbsp;&nbsp;&nbsp; 
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form>
+</body></html>

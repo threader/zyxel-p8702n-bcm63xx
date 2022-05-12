@@ -1,0 +1,202 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_Log_Settings.html';
+	ns = (document.layers) ? true : false;
+	ie = (document.all) ? true : false;
+        
+	function checkweekly() {
+	if(document.forms[0].LogSettings_ScheduleSelect.selectedIndex != 3) {
+			if(ie) {
+				document.forms[0].LogSettings_DaySelect.disabled = true;
+				document.forms[0].LogSettings_Hour.disabled = true;
+				document.forms[0].LogSettings_Minute.disabled = true;
+				}
+				
+		}
+	}
+
+	function OnAlertChange(form) {
+		if(form.LogSettings_ScheduleSelect.selectedIndex == 0) {
+			form.LogSettings_DaySelect.selectedIndex = 0;
+			form.LogSettings_Hour.value = 0;
+			form.LogSettings_Minute.value = 0;
+
+			if(ie) {
+				form.LogSettings_DaySelect.disabled = true;
+				form.LogSettings_Hour.disabled = true;
+				form.LogSettings_Minute.disabled = true;
+			}
+		} else if(form.LogSettings_ScheduleSelect.selectedIndex == 1) {
+			form.LogSettings_DaySelect.selectedIndex = 0;
+			form.LogSettings_Hour.value = 0;
+			form.LogSettings_Minute.value = 0;
+
+			if(ie) {
+				form.LogSettings_DaySelect.disabled = true;
+				form.LogSettings_Hour.disabled = true;
+				form.LogSettings_Minute.disabled = true;
+			}
+		} else if(form.LogSettings_ScheduleSelect.selectedIndex == 2) {
+			form.LogSettings_DaySelect.selectedIndex = 0;
+
+			if(ie) {
+				form.LogSettings_DaySelect.disabled = true;
+				form.LogSettings_Hour.disabled = false;
+				form.LogSettings_Minute.disabled = false;
+			}
+		} else if(form.LogSettings_ScheduleSelect.selectedIndex == 3) {
+			if(ie) {
+				form.LogSettings_DaySelect.disabled = false;
+				form.LogSettings_Hour.disabled = false;
+				form.LogSettings_Minute.disabled = false;
+			}
+		} else if(form.LogSettings_ScheduleSelect.selectedIndex == 4) {
+			form.LogSettings_DaySelect.selectedIndex = 0;
+			form.LogSettings_Hour.value = 0;
+			form.LogSettings_Minute.value = 0;
+
+			if(ie) {
+				form.LogSettings_DaySelect.disabled = true;
+				form.LogSettings_Hour.disabled = true;
+				form.LogSettings_Minute.disabled = true;
+			}
+		}
+
+		return;
+	}
+
+	function AlertTimeFocus(form) {
+		var warnString;
+	
+	if(form.LogSettings_ScheduleSelect.selectedIndex != 3) {
+			if(ie) {
+				form.LogSettings_DaySelect.disabled = true;
+				form.LogSettings_Hour.disabled = true;
+				form.LogSettings_Minute.disabled = true;
+			}
+			warnString = form.LogSettings_ScheduleSelect.options[form.LogSettings_ScheduleSelect.selectedIndex].text;
+			form.LogSettings_ScheduleSelect.focus();
+			form.LogSettings_ScheduleSelect.focus();
+		}
+	}
+
+	function HourMinuteFocus(form) {
+		var warnString;
+
+		if(		(form.LogSettings_ScheduleSelect.selectedIndex == 0)
+			||	(form.LogSettings_ScheduleSelect.selectedIndex == 1)
+			||	(form.LogSettings_ScheduleSelect.selectedIndex == 4)) {
+			warnString = form.LogSettings_ScheduleSelect.options[form.LogSettings_ScheduleSelect.selectedIndex].text;
+			form.LogSettings_ScheduleSelect.focus();
+		}
+	}
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpLogs.html" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="4" class="NaviText"> 
+              Logs - Log Settings            </td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="4"><b> Address Info: </b></td></tr><tr> 
+            <td width="20">&nbsp;</td><td width="220"> Mail Server: </td><td width="120"> <INPUT TYPE="TEXT" NAME="LogSettings_mailServer" SIZE="30" MAXLENGTH="127" VALUE="192.168.0.4"></td><td width="200" class="descript"> (Outgoing SMTP Server Name or IP Address)</td></tr><tr> 
+              <td width="20">&nbsp;</td><td width="220"> Mail Subject:</td><td width="120"> <INPUT TYPE="TEXT" NAME="LogSettings_mailSubject" SIZE="30" MAXLENGTH="127" VALUE=""></td></tr><tr> 
+            <td width="20"></td><td width="220"> Send Log to: </td><td width="120"> <INPUT TYPE="TEXT" NAME="LogSettings_sendLogTo" SIZE="30" MAXLENGTH="127" VALUE="kkoenig@zyxeltech.de"></td><td width="200" class="descript">(E-Mail Address)</td></tr><tr> 
+            <td width="20"></td><td width="220"> Send Alerts to: </td><td width="120"> <INPUT TYPE="TEXT" NAME="LogSettings_sendAlertsTo" SIZE="30" MAXLENGTH="127" VALUE="kkoenig@zyxeltech.de"></td><td width="200" class="descript">(E-Mail Address)</td></tr><tr> 
+            <td colspan="4">&nbsp;</td></tr>	          <tr> 
+            <td colspan="4"><b> UNIX Syslog: </b></td></tr><tr> 
+            <td width="20">&nbsp;</td><td width="220"> 
+            <INPUT TYPE="CHECKBOX" NAME="LogSettings_syslogCheck" CHECKED value="ON">Active</td></tr><tr> 
+            <td width="20">&nbsp;</td><td width="220"> Syslog IP Address: </td><td width="120"> <INPUT TYPE="TEXT" NAME="LogSettings_syslogServer" SIZE="30" MAXLENGTH="127" VALUE="192.168.1.255"></td><td width="200" class="descript">(Server Name or IP Address)</td></tr><tr> 
+            <td width="20">&nbsp;</td><td width="220"> Log Facility: </td><td width="120"> <SELECT NAME="LogSettings_syslogFacility" SIZE="1"><OPTION SELECTED>Local 1
+<OPTION>Local 2
+<OPTION>Local 3
+<OPTION>Local 4
+<OPTION>Local 5
+<OPTION>Local 6
+<OPTION>Local 7
+</SELECT></td></tr><tr> 
+            <td colspan="4">&nbsp;</td></tr><tr> 
+            <td colspan="4"><b> Send Log: </b></td></tr><tr> 
+            <td width="20">&nbsp;</td><td width="220"> Log Schedule: </td><td width="120"> <SELECT NAME="LogSettings_ScheduleSelect" SIZE="1" onChange="OnAlertChange(this.form);"><OPTION VALUE=00000000>When Log is Full
+<OPTION VALUE=00000001>Hourly
+<OPTION VALUE=00000002>Daily
+<OPTION VALUE=00000003>Weekly
+<OPTION VALUE=00000004 SELECTED>None
+</SELECT>             
+              
+              </td></tr><tr> 
+            <td width="20">&nbsp;</td><td width="220"> Day for Sending Log: </td><td width="120"> <SELECT NAME="LogSettings_DaySelect" SIZE="1" OnFocus="AlertTimeFocus(this.form);" OnMouseDown="AlertTimeFocus(this.form);" OnDblClick="AlertTimeFocus(this.form);"><OPTION SELECTED>Sunday
+<OPTION>Monday
+<OPTION>Tuesday
+<OPTION>Wednesday
+<OPTION>Thursday
+<OPTION>Friday
+<OPTION>Saturday
+</SELECT></td></tr><tr> 
+            <td width="20">&nbsp;</td><td width="220"> Time for Sending Log: </td><td colspan="2"> <INPUT TYPE="TEXT" NAME="LogSettings_Hour" SIZE="2" MAXLENGTH="2" VALUE="0" OnFocus="HourMinuteFocus(this.form);" onkeypress="chk_num(event)">(hour): <INPUT TYPE="TEXT" NAME="LogSettings_Minute" SIZE="2" MAXLENGTH="2" VALUE="0" OnFocus="HourMinuteFocus(this.form);" onkeypress="chk_num(event)">(minute)</td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>        </table><table border="0" cellspacing="0" cellpadding="0" width="560">
+          <tr> 
+            <td width="40"> 
+              <div align=center></div></td><td width="240"><b> Log</b></td><td width="40"> 
+              <div align=center></div></td><td width="240"><b> Send Immediate Alert</b></td></tr><tr> 
+            <td colspan="2" align=center valign=top> 
+             <table width="95%" border="0">
+	                <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?1" VALUE="?1" CHECKED>	      System Maintenance</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?2" VALUE="?2" CHECKED>	      System Errors</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?3" VALUE="?3" CHECKED>	      Access Control</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?4" VALUE="?4" CHECKED>	      UPnP</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?5" VALUE="?5" CHECKED>	      Forward Web Sites</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?6" VALUE="?6" CHECKED>	      Blocked Web Sites</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?7" VALUE="?7" CHECKED>	      Attacks</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?8" VALUE="?8" CHECKED>	      IPSec</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?9" VALUE="?9" CHECKED>	      IKE</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?10" VALUE="?10" CHECKED>	      Content Access Control</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?11" VALUE="?11" CHECKED>	      Any IP</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?12" VALUE="?12" CHECKED>	      PKI</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?13" VALUE="?13" CHECKED>	      802.1x</td></tr>          <tr>
+            <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_logCheck?14" VALUE="?14" CHECKED>	      AntiVirus</td></tr>             </table></td><td colspan="2" align=center valign=top> 
+             <table width="95%" border="0">
+	      	  <tr>
+	    <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_alertCheck?1" VALUE="?1">	      System Errors	    </td></tr>	  <tr>
+	    <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_alertCheck?2" VALUE="?2">	      Access Control	    </td></tr>	  <tr>
+	    <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_alertCheck?3" VALUE="?3">	      Blocked Web Sites	    </td></tr>	  <tr>
+	    <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_alertCheck?4" VALUE="?4">	      Attacks	    </td></tr>	  <tr>
+	    <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_alertCheck?5" VALUE="?5">	      IPSec	    </td></tr>	  <tr>
+	    <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_alertCheck?6" VALUE="?6">	      IKE	    </td></tr>	  <tr>
+	    <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_alertCheck?7" VALUE="?7">	      PKI	    </td></tr>	  <tr>
+	    <td><INPUT TYPE="CHECKBOX" NAME="LogSettings_alertCheck?8" VALUE="?8">	      AntiVirus	    </td></tr>             </table></td></tr><tr> 
+  	     <td colspan="4">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>         <tr> 
+          <td colspan="4"> 
+           <div align=center> 
+<script language="JavaScript">
+checkweekly();
+</script>
+            <INPUT TYPE="BUTTON" NAME="Logs_BackBtn" VALUE="Back" onclick="window.location='rpLogs.html';">             &nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="LogSettings_SaveBtn" VALUE="Apply">&nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	
+        </table></table></form>
+</body></html>

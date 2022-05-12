@@ -1,0 +1,87 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_Fire_Default.html';
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpFirewall.html" name="FW_DefPolicyform" target="_self">
+<table width="100%" border="0" cellspacing="1">
+<tr>
+<td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="93%">
+<table border="0" cellspacing="0" cellpadding="0" width="560">
+<tr>
+<td colspan="3">
+<div align=left class="NaviText">
+Firewall - Default Policy </div></td></tr><tr>
+<td colspan="3">
+<hr></td></tr><tr>
+<td colspan="2">
+<INPUT TYPE="CHECKBOX" NAME="FW_FWEnable" CHECKED value="ON"></td><td>Enable Firewall   </td></tr><tr>
+<td colspan="2">
+<INPUT TYPE="CHECKBOX" NAME="FW_BypassTri" value="ON"></td><td>Allow Asymmetrical Route</td></tr><tr>
+<td colspan="2">
+</td><td><font color="#FF0000">
+CAUTION: When Allow Asymmetrical Route is checked, all LAN to LAN, WAN to WAN and DMZ to DMZ packets will bypass the Firewall check.</font></td></tr><tr>
+<td colspan="3">&nbsp;</td><tr>
+<td colspan="3">
+<table width="90%" border="1" cellspacing="0" cellpadding="1" align=center>
+<tr align=center bgcolor="#C4D3FD">
+<td width="37%" height="50"><b>
+Packet Direction </b>
+</td><td width="39%"><b>
+Default Action </b>
+</td><td width="24%"><b>
+Log</b> </td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%">
+LAN to LAN / Router  </td><td width="39%">
+<INPUT TYPE="RADIO" NAME="FW_LtoL_DefAction" VALUE="0"> Block	<INPUT TYPE="RADIO" NAME="FW_LtoL_DefAction" VALUE="1" CHECKED> Forward </td><td width="24%">
+<INPUT TYPE="CHECKBOX" NAME="FW_LtoL_DefLog" value="ON"> </td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%">
+LAN to WAN </td><td width="39%">
+<INPUT TYPE="RADIO" NAME="FW_LtoW_DefAction" VALUE="0"> Block	<INPUT TYPE="RADIO" NAME="FW_LtoW_DefAction" VALUE="1" CHECKED> Forward </td><td width="24%">
+<INPUT TYPE="CHECKBOX" NAME="FW_LtoW_DefLog" CHECKED value="ON">	</td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%">
+LAN to DMZ  </td><td width="39%">
+<INPUT TYPE="RADIO" NAME="FW_LtoD_DefAction" VALUE="0"> Block	<INPUT TYPE="RADIO" NAME="FW_LtoD_DefAction" VALUE="1" CHECKED> Forward </td><td width="24%">
+<INPUT TYPE="CHECKBOX" NAME="FW_LtoD_DefLog" CHECKED value="ON"> </td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%">
+WAN to LAN </td><td width="39%">
+<INPUT TYPE="RADIO" NAME="FW_WtoL_DefAction" VALUE="0" CHECKED> Block	<INPUT TYPE="RADIO" NAME="FW_WtoL_DefAction" VALUE="1"> Forward </td><td width="24%">
+<INPUT TYPE="CHECKBOX" NAME="FW_WtoL_DefLog" CHECKED value="ON"> </td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%">
+WAN to WAN / Router  </td><td width="39%">
+<INPUT TYPE="RADIO" NAME="FW_WtoW_DefAction" VALUE="0" CHECKED> Block	<INPUT TYPE="RADIO" NAME="FW_WtoW_DefAction" VALUE="1"> Forward </td><td width="24%">
+<INPUT TYPE="CHECKBOX" NAME="FW_WtoW_DefLog" value="ON"> </td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%">
+WAN to DMZ  </td><td width="39%">
+<INPUT TYPE="RADIO" NAME="FW_WtoD_DefAction" VALUE="0" CHECKED> Block	<INPUT TYPE="RADIO" NAME="FW_WtoD_DefAction" VALUE="1"> Forward </td><td width="24%">
+<INPUT TYPE="CHECKBOX" NAME="FW_WtoD_DefLog" CHECKED value="ON"> </td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%">
+DMZ to LAN  </td><td width="39%">
+<INPUT TYPE="RADIO" NAME="FW_DtoL_DefAction" VALUE="0"> Block	<INPUT TYPE="RADIO" NAME="FW_DtoL_DefAction" VALUE="1" CHECKED> Forward </td><td width="24%">
+<INPUT TYPE="CHECKBOX" NAME="FW_DtoL_DefLog" CHECKED value="ON"> </td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%">
+DMZ to WAN  </td><td width="39%">
+<INPUT TYPE="RADIO" NAME="FW_DtoW_DefAction" VALUE="0"> Block	<INPUT TYPE="RADIO" NAME="FW_DtoW_DefAction" VALUE="1" CHECKED> Forward </td><td width="24%">
+<INPUT TYPE="CHECKBOX" NAME="FW_DtoW_DefLog" CHECKED value="ON"> </td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%">
+DMZ to DMZ / Router </td><td width="39%">
+<INPUT TYPE="RADIO" NAME="FW_DtoD_DefAction" VALUE="0"> Block	<INPUT TYPE="RADIO" NAME="FW_DtoD_DefAction" VALUE="1" CHECKED> Forward </td><td width="24%">
+<INPUT TYPE="CHECKBOX" NAME="FW_DtoD_DefLog" value="ON"> </td></tr></table></td></tr><tr align=center valign=middle>
+<td colspan="3" height="36">
+<hr></td></tr><tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="FW_DefPBack" VALUE="Back" onclick="window.location='rpFirewall.html';"> &nbsp;&nbsp;
+<INPUT TYPE="SUBMIT" NAME="FW_DefPSaveBtn" VALUE="Apply">&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></div></td></table></td></tr></table></form><SCRIPT language=JavaScript>
+</SCRIPT>
+
+</body></html>

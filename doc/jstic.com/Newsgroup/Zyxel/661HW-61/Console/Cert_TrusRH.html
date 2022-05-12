@@ -1,0 +1,88 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<!--
+/*
+* $Id: Cert_TrusRH.html 1.2 2004/09/07 08:09:52 jchang Exp $
+*/
+/******************************************************************************/
+/*
+*	Copyright (C) 2004 ZyXEL Communications, Inc.
+*	All Rights Reserved.
+*
+* ZyXEL Confidential; Need to Know only.
+* Protected as an unpublished work.
+*
+* The computer program listings, specifications and documentation
+* herein are the property of ZyXEL Communications, Inc. and
+* shall not be reproduced, copied, disclosed, or used in whole or
+* in part for any reason without the prior express written permission of
+* ZyXEL Communications, Inc.
+*/
+/******************************************************************************/
+/*
+$Log: Cert_TrusRH.html $
+Revision 1.2 2004/09/07 08:09:52 jchang
+Revision 1.1 2004/08/16 10:24:29 vliao
+Initial revision
+*/
+-->
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<SCRIPT language=JavaScript>
+<!--
+top.title.h_Page="h_Cert_TrustedRemote.html";
+function doDeleteTRH()
+{
+document.forms[0].Cert_TRH_Flag.value = 2;
+//	document.forms[0].submit();
+}
+function doEditTRH()
+{
+document.forms[0].Cert_TRH_Flag.value = 1;
+//	document.forms[0].submit();
+}
+// -->
+  </SCRIPT>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpCert.html" name="Cert_MyCert" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan=4>
+<div><b><font class="NaviText"> Certificates - Trusted Remote Hosts</font> </b></div></td></tr><tr>
+<td colspan=4>
+<hr></td></tr><tr>
+<td colspan=4>&nbsp;</td></tr><tr>
+<td colspan=4>PKI Storage Space in Use&nbsp;(3%)</td></tr><tr>
+<td width="3%" align=right height="30"></td><td width="3%" align=right>0%</td><td height="10">
+<table border="1" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+<td height="20"> <table border='0' cellspacing='0' cellpadding='0' width='3%'><tr><td bgcolor="#008000" height='20'></td></tr></tr></table></td></tr></table></td><td width="9%" align=left>100%</td></tr><TR align=middle vAlign=center>
+<td colspan=4 height=36>
+<div align=center></div></td></tr><TR >
+<td colspan=4>Trusted Remote Host Certificates</font></b></td></tr><TR >
+<td colspan=4><b>&nbsp;&nbsp;&nbsp; Issuer (My Default Self-signed Certificate):</font>CN=Prestige 662HW-63 Factory Default Certificate</font></b></td></tr><tr>
+<td colspan=4>
+<table border="1" cellspacing="0" cellpadding="0">
+<tr>
+<td class="header2" align=center bgcolor="#C4D3FD" width="3%" >&nbsp;
+</td><td class="header2" align=center bgcolor="#C4D3FD" width="3%" >
+<b>#</b></td><td class="header2" align=center bgcolor="#C4D3FD" width="20%">
+Name</td><td class="header2" align=center bgcolor="#C4D3FD" width="20%">
+Subject</td><td class="header2" align=center bgcolor="#C4D3FD" width="15%">
+Vaild From</td><td class="header2" align=center bgcolor="#C4D3FD" width="15%">
+Vaild To</td></tr> </table><div align=center></div></td></tr><TR vAlign=center>
+<td colspan=4><INPUT TYPE="HIDDEN" NAME="Cert_TRH_CurrentIndex" VALUE="0"><INPUT TYPE="HIDDEN" NAME="Cert_TRH_Flag" VALUE="0"></td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan=4>
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="Cert_BackBtn" VALUE="Back" onClick="window.location='rpCert.html';"> &nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="TRHDetail" VALUE="Details" onClick="doEditTRH();">&nbsp;&nbsp;&nbsp; &nbsp; <INPUT TYPE="SUBMIT" NAME="TRHImport" VALUE="Import" onClick=" this.form.Cert_TRH_Flag.value = 0; ">&nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="TRHDelete" VALUE="Delete" onClick="doDeleteTRH();">&nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="certRefresh" VALUE="Refresh" onClick=" this.form.Cert_TRH_Flag.value = 0; "></div></td></tr></table></td></tr></table></form>
+</body></html>

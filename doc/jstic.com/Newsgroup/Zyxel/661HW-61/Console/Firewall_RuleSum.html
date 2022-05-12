@@ -1,0 +1,141 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language=JavaScript>
+<!--
+top.title.h_Page='h_Fire_Rule.html';
+function doFindCurrentRule(CurrentIndex)
+{
+var num
+num = parseInt(CurrentIndex);
+document.forms[0].FWRule_Index.value = num;
+doEditRule();
+document.forms[0].submit();
+}
+function doEditRule()
+{
+document.forms[0].FWRule_Flag.value = 1;
+}
+function SelectRulePage(index)
+{
+document.forms[0].RulePage.value = index;
+document.forms[0].submit();
+}
+function CheckRuleNum(RuleNum, Index)
+{
+var AlertStr;
+if( document.forms[0].MaxRuleNum.value != 0 ){
+if( (parseInt(RuleNum, 10) > parseInt(document.forms[0].MaxRuleNum.value, 10)) || ( parseInt(RuleNum, 10) < 1 ) ){
+AlertStr = "The value of rule number should be between 1 and " + document.forms[0].MaxRuleNum.value;
+alert(AlertStr);
+if(Index == 1){
+document.forms[0].Fw_RuleMoveFrom.value	= 0;
+}
+else{
+document.forms[0].Fw_RuleMoveTo.value	= 0;
+}
+}
+}
+return;
+}
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpFirewall.html" name="FWRuleSum" target="_self"> <table width="100%" border="0" cellspacing="1">
+<tr>
+<td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="93%">
+<table border="0" cellspacing="0" cellpadding="0" width="560">
+<tr>
+<td colspan="4">
+<div><b><font class="NaviText">
+Firewall - Rule Summary </font> </b></div></td></tr><tr>
+<td colspan="4">
+<hr></td></tr><tr>
+<td colspan="4" class="header2">&nbsp; </td></tr><tr>
+<td colspan=4 height="25">
+Firewall Rules Storage Space in Use &nbsp;(3%)</td></tr><tr>
+<td width="3%" align=right></td><td height="10">
+<table width=560 cellspacing="0" cellpadding="0" >
+<tr>
+<td width="3%" align=right height="30"></td><td width="3%" align=right>0%</td><td height="10">
+<table border="1" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+<td height="20"> <table border=0 cellspacing=0 cellpadding=0 width=3%><tr><td bgcolor="#0061C2" height=20></td></tr></table></td></tr></table></td><td width="9%" align=left>100%</td></tr></table></td></tr><tr>
+<td colspan="4" class="header2">&nbsp; </td></tr><tr>
+<td colspan="4" height="25">Packet Direction &nbsp;
+<SELECT NAME="FwRule_PkDir" SIZE="1" onchange="document.forms[0].FWRule_Flag.value=0;document.forms[0].submit();"><OPTION VALUE=00000007>LAN to LAN / Router
+<OPTION VALUE=00000001>LAN to WAN
+<OPTION VALUE=00000006>LAN to DMZ
+<OPTION VALUE=00000002>WAN to LAN
+<OPTION VALUE=00000008 SELECTED>WAN to WAN / Router
+<OPTION VALUE=00000005>WAN to DMZ
+<OPTION VALUE=00000003>DMZ to LAN
+<OPTION VALUE=00000004>DMZ to WAN
+<OPTION VALUE=00000009>DMZ to DMZ / Router
+</SELECT></td></tr><tr>
+<td colspan="4" height="25">Default Policy: Block, None Log</td></tr> <tr>
+<td colspan="4" class="header2">&nbsp; </td></tr><tr>
+<td colspan="4">
+<table width="100%" border="1" cellspacing="0" cellpadding="0">
+<tr>
+<td class="header2" align=center bgcolor="#C4D3FD" width="5%">
+Rule</td><td class="header2" align=center bgcolor="#C4D3FD" width="5%">
+Active</td><td class="header2" align=center bgcolor="#C4D3FD" width="22%">
+Source IP</td><td class="header2" align=center bgcolor="#C4D3FD" width="22%">
+Destination IP</td><td class="header2" align=center bgcolor="#C4D3FD" width="14%">
+Service</td><td class="header2" align=center bgcolor="#C4D3FD" width="8%">
+Action</td><td class="header2" align=center bgcolor="#C4D3FD" width="8%">
+Schedule</td><td class="header2" align=center bgcolor="#C4D3FD" width="8%">
+Log</td><td class="header2" align=center bgcolor="#C4D3FD" width="8%">
+Alert</td></tr> <tr>
+<td class="header2" align=center width="5%">
+<u><a target="_self" href="Firewall_RuleEdit.html"><font color="#0066FF">
+  1</font></a></u></td><td class="smallip" align=center width="5%">
+Y</td><td class="smallip" width="22%">
+<SELECT NAME="FwRule_SourceIP" SIZE="1"><OPTION VALUE=948865bc>Any
+</SELECT></td><td class="smallip" width="22%">
+<SELECT NAME="FwRule_DestIP" SIZE="1"><OPTION VALUE=948865bc>Any
+</SELECT></td><td align=center class="smallip" width="14%">
+<SELECT NAME="FwRule_Service" SIZE="1"><OPTION VALUE=948865bc>BOOTP_CLIENT(UDP:68)
+<OPTION VALUE=948865bc>IKE(UDP:500)
+</SELECT></td><td align=center class="smallip" width="8%"> Forward</td><td align=center class="smallip" width="8%"> No</td><td align=center class="smallip" width="8%"> Enable</td><td align=center class="smallip" width="8%"> No </td></tr> <tr>
+<td class="header2" align=center width="5%">
+<u><font color="#0066FF">
+  2</font></u></td><td class="smallip" align=center width="5%">
+Y</td><td class="smallip" width="22%">
+<SELECT NAME="FwRule_SourceIP" SIZE="1"><OPTION VALUE=948865bc>Any
+</SELECT></td><td class="smallip" width="22%">
+<SELECT NAME="FwRule_DestIP" SIZE="1"><OPTION VALUE=948865bc>Any
+</SELECT></td><td align=center class="smallip" width="14%">
+<SELECT NAME="FwRule_Service" SIZE="1"><OPTION VALUE=948865bc>PING(ICMP:0)
+</SELECT></td><td align=center class="smallip" width="8%"> Forward</td><td align=center class="smallip" width="8%"> No</td><td align=center class="smallip" width="8%"> Enable</td><td align=center class="smallip" width="8%"> No </td></tr> <tr>
+<td class="header2" align=center width="5%">
+<u><font color="#0066FF">
+  3</font></u></td><td class="smallip" align=center width="5%">
+Y</td><td class="smallip" width="22%">
+<SELECT NAME="FwRule_SourceIP" SIZE="1"><OPTION VALUE=948865bc>212.16.42.32 / 255.255.255.0
+<OPTION VALUE=948865bc>213.68.67.168
+</SELECT></td><td class="smallip" width="22%">
+<SELECT NAME="FwRule_DestIP" SIZE="1"><OPTION VALUE=00000000>Any
+</SELECT></td><td align=center class="smallip" width="14%">
+<SELECT NAME="FwRule_Service" SIZE="1"><OPTION VALUE=00000000>HTTP(TCP:80)
+<OPTION VALUE=00000000>TELNET(TCP:23)
+</SELECT></td><td align=center class="smallip" width="8%"> Forward</td><td align=center class="smallip" width="8%"> No</td><td align=center class="smallip" width="8%"> Disable</td><td align=center class="smallip" width="8%"> No </td></tr>
+</table></td></tr> 	 <tr>
+<td colspan="4" class="header2">&nbsp;</td></tr><tr>
+<td colspan="4">Create Rule: Insert new rule before rule number  <SELECT NAME="FWRule_SInsert" SIZE="1"><OPTION VALUE=00000000>  1
+<OPTION VALUE=00000001>  2
+<OPTION VALUE=00000002>  3
+</SELECT>	<INPUT TYPE="SUBMIT" NAME="FwRule_BInsert" VALUE="Insert"> <INPUT TYPE="SUBMIT" NAME="FwRule_BAppend" VALUE="Append"></td></tr><tr>
+<td colspan="4">Rules Reorder: Move rule number	<INPUT TYPE="TEXT" NAME="Fw_RuleMoveFrom" SIZE="2" MAXLENGTH="2" VALUE="0" onblur="CheckRuleNum(this.form.Fw_RuleMoveFrom.value,1);">	to rule number 	<INPUT TYPE="TEXT" NAME="Fw_RuleMoveTo" SIZE="2" MAXLENGTH="2" VALUE="0" onblur="CheckRuleNum(this.form.Fw_RuleMoveTo.value,2);">	<INPUT TYPE="SUBMIT" NAME="Fw_WRuleMoveBtn" VALUE="Move"></td></tr><tr>
+<td colspan="4" class="header2">&nbsp; </td></tr><tr align=center>
+<td colspan="4" height="36" valign=middle>
+<hr></td></tr><tr>
+<td colspan="4">
+<div align=center> <INPUT TYPE="SUBMIT" NAME="FWRule_Back" VALUE="Back">&nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="FWRule_SaveBtn" VALUE="Apply">&nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >	<INPUT TYPE="HIDDEN" NAME="FWRule_Index" VALUE="0">	<INPUT TYPE="HIDDEN" NAME="FWRule_Flag" VALUE="0">	<INPUT TYPE="HIDDEN" NAME="RulePage" VALUE="0">	<INPUT TYPE="HIDDEN" NAME="MaxRuleNum" VALUE="3"> </div></td></table></td></tr></table></form><SCRIPT language="JavaScript">
+document.forms[0].RulePage.value = 0;
+</SCRIPT>
+
+</body></html>

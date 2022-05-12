@@ -1,0 +1,66 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_wzOthers.html';
+// -->
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="/Forms/wzOthers_1" name="ISPform">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="4" class="NaviText"> 
+              <div align=left>Setup-Assistent Router  - Parameter des Internet-Providers</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="2" class="header2"><b> Betrieb</b> </td><td colspan="2"> <SELECT NAME="wzOthers_Mode" SIZE="1" onchange="document.ISPform.submit();"><OPTION VALUE=00000000 SELECTED>Routing
+<OPTION VALUE=00000001>Bridge
+</SELECT></td></tr><tr> 
+            <td colspan="4">&nbsp;</td></tr>          <tr> 
+            <td colspan="2" class="header2"><b> Encapsulation</b> 
+            </td><td colspan="2"> <SELECT NAME="wzOthers_Encap" SIZE="1"><OPTION>PPPoA
+<OPTION>RFC 1483
+<OPTION>ENET ENCAP
+<OPTION SELECTED>PPPoE
+</SELECT></td></tr><tr> 
+            <td colspan="4">&nbsp;</td></tr><tr> 
+            <td colspan="2" class="header2"><b> Multiplex</b> </td><td colspan="2"> <SELECT NAME="wzOthers_Multiplex" SIZE="1"><OPTION>VC
+<OPTION SELECTED>LLC
+</SELECT></td></tr><tr> 
+            <td colspan="4">&nbsp;</td></tr><tr> 
+            <td colspan="4" class="header2"><b>Virtual-Circuit-ID              </b></td></tr><tr> 
+            <td>&nbsp;</td><td>VPI</td><td colspan="2"><INPUT TYPE="TEXT" NAME="wzOthers_VPI" SIZE="5" MAXLENGTH="5" VALUE="1" onkeypress="chk_num(event)"></td></tr><tr> 
+            <td>&nbsp;</td><td>VCI   </td><td colspan="2"><INPUT TYPE="TEXT" NAME="wzOthers_VCI" SIZE="5" MAXLENGTH="5" VALUE="32" onkeypress="chk_num(event)"></td></tr>          <tr> 
+            <td colspan="4">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="4"> 
+              <div align=center> &nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="wzNext" VALUE="Weiter"></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form>
+</body></html>

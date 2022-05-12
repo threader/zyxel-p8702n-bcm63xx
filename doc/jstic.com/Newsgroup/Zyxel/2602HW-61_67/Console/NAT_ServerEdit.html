@@ -1,0 +1,81 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+<script language="JavaScript">
+top.title.h_Page='h_NAT_ServerEdit.html';
+
+function chkPortRange()
+{	var porterror = 0;
+	for (var i=1;i<33;i+=3)
+	{	port = parseInt(document.NAT_ServerEd.elements[i].value);
+		port2 = parseInt(document.NAT_ServerEd.elements[i+1].value);
+		if (port > 65535 || port < 0 || port2 > 65535 || port2 < 0)
+		{	alert("Portnummer muss zwischen 0 und 65535 liegen.");			document.NAT_ServerEd.elements[i].value = 0;
+			document.NAT_ServerEd.elements[i+1].value = 0;
+			document.NAT_ServerEd.elements[i].focus();
+			porterror = 1;	}
+		if (port2 < port)
+		{	alert("Endport muss höher als der Startport sein.");			document.NAT_ServerEd.elements[i+1].value = 0;
+			document.NAT_ServerEd.elements[i+1].focus();
+			porterror = 1;	}
+	}
+	if (porterror == 0)
+		document.NAT_ServerEd.submit();
+}
+
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="rpNATmode.html" name="NAT_ServerEd">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr>
+           <td colspan="3">
+              <div align=left class="NaviText">
+                NAT - SUA/NAT Server Set editieren              </div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <table width="90%" border="1" cellspacing="0" cellpadding="1" align=center>
+                <tr align=center> 
+                  <td width="7%" height="30" class="TableTilte">&nbsp;</td><td width="30%" height="30" class="TableTilte"> 
+                  Erste Port Nr.                  </td><td width="30%" height="30" class="TableTilte"> 
+                  Letzte Port Nr.                  </td><td width="33%" class="TableTilte"> 
+                  IP Adresse                  </td></tr><tr align=center> 
+                  <td class="TableItem">1</td><td>Alle Ports                  </td><td>Alle Ports                  </td><td><INPUT TYPE="TEXT" NAME="NATserverAddr1" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td></tr>                <tr align=center><td bgcolor=#C4D3FD class=header2>                     2                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?2" SIZE="5" MAXLENGTH="5" VALUE="4661" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?2" SIZE="5" MAXLENGTH="5" VALUE="4662" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?2" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.33" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                                <tr align=center><td bgcolor=#C4D3FD class=header2>                     3                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?3" SIZE="5" MAXLENGTH="5" VALUE="4665" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?3" SIZE="5" MAXLENGTH="5" VALUE="4665" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?3" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.33" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                                <tr align=center><td bgcolor=#C4D3FD class=header2>                     4                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?4" SIZE="5" MAXLENGTH="5" VALUE="4672" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?4" SIZE="5" MAXLENGTH="5" VALUE="4672" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?4" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.33" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                                <tr align=center><td bgcolor=#C4D3FD class=header2>                     5                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?5" SIZE="5" MAXLENGTH="5" VALUE="20" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?5" SIZE="5" MAXLENGTH="5" VALUE="21" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?5" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.10" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                                <tr align=center><td bgcolor=#C4D3FD class=header2>                     6                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?6" SIZE="5" MAXLENGTH="5" VALUE="80" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?6" SIZE="5" MAXLENGTH="5" VALUE="80" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?6" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.10" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                                <tr align=center><td bgcolor=#C4D3FD class=header2>                     7                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?7" SIZE="5" MAXLENGTH="5" VALUE="20000" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?7" SIZE="5" MAXLENGTH="5" VALUE="20059" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?7" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.7" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                                <tr align=center><td bgcolor=#C4D3FD class=header2>                     8                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?8" SIZE="5" MAXLENGTH="5" VALUE="20060" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?8" SIZE="5" MAXLENGTH="5" VALUE="20119" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?8" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.11" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                                <tr align=center><td bgcolor=#C4D3FD class=header2>                     9                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?9" SIZE="5" MAXLENGTH="5" VALUE="8080" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?9" SIZE="5" MAXLENGTH="5" VALUE="8081" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?9" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.2" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                                <tr align=center><td bgcolor=#C4D3FD class=header2>                     10                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?10" SIZE="5" MAXLENGTH="5" VALUE="8082" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?10" SIZE="5" MAXLENGTH="5" VALUE="8083" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?10" SIZE="15" MAXLENGTH="15" VALUE="192.168.1.7" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                                <tr align=center><td bgcolor=#C4D3FD class=header2>                     11                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?11" SIZE="5" MAXLENGTH="5" VALUE="0" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?11" SIZE="5" MAXLENGTH="5" VALUE="0" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?11" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                                <tr align=center><td bgcolor=#C4D3FD class=header2>                     12                 </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNo?12" SIZE="5" MAXLENGTH="5" VALUE="0" onkeypress="chk_num(event)">                   </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATPortNoEnd?12" SIZE="5" MAXLENGTH="5" VALUE="0" onkeypress="chk_num(event)">                  </td>                  <td>                    <INPUT TYPE="TEXT" NAME="NATserverAddr?12" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onFocus="this.select()" onBlur="checkIPFormat(this)">                  </td>                </tr>                              </table></td></tr>          <tr>
+  	     <td colspan="3">&nbsp;</td></tr><tr> 
+              <td width="16"></td><td colspan="2">
+		<INPUT TYPE="CHECKBOX" NAME="EnableEmule" CHECKED value="ON">           	Aktiviere Einstellungen für Emule für die folgende IP-Adresse:              </td></tr><tr> 
+            <td width="16"></td><td colspan="2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SELECT NAME="Emule_IP" SIZE="1" RpPutType="Function" RpPutPtr="Emule_IPPut""><OPTION VALUE=00000000 SELECTED>192.168.1.33
+</SELECT></td></tr>          <tr>
+  	     <td colspan="3">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <div align=center>
+		<INPUT TYPE="BUTTON" NAME="NATServerSave" VALUE="Speichern" onClick="chkPortRange()">                &nbsp;&nbsp;&nbsp; 
+                <INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" >              </div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form>
+</body></html>

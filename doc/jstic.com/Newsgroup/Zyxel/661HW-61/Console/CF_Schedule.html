@@ -1,0 +1,159 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+top.title.h_Page='h_CF_Schedule.html';
+ns = (document.layers) ? true : false;
+ie = (document.all) ? true : false;
+function BlockAllClick(form) {
+if(form.cfSche_Everyday.checked) {
+form.cfSche_Mon.checked = true;
+form.cfSche_Tue.checked = true;
+form.cfSche_Wed.checked = true;
+form.cfSche_Thu.checked = true;
+form.cfSche_Fri.checked = true;
+form.cfSche_Sat.checked = true;
+form.cfSche_Sun.checked = true;
+if(ie) {
+form.cfSche_Mon.disabled = true;
+form.cfSche_Tue.disabled = true;
+form.cfSche_Wed.disabled = true;
+form.cfSche_Thu.disabled = true;
+form.cfSche_Fri.disabled = true;
+form.cfSche_Sat.disabled = true;
+form.cfSche_Sun.disabled = true;
+}
+} else {
+form.cfSche_Mon.checked = false;
+form.cfSche_Tue.checked = false;
+form.cfSche_Wed.checked = false;
+form.cfSche_Thu.checked = false;
+form.cfSche_Fri.checked = false;
+form.cfSche_Sat.checked = false;
+form.cfSche_Sun.checked = false;
+if(ie) {
+form.cfSche_Mon.disabled = false;
+form.cfSche_Tue.disabled = false;
+form.cfSche_Wed.disabled = false;
+form.cfSche_Thu.disabled = false;
+form.cfSche_Fri.disabled = false;
+form.cfSche_Sat.disabled = false;
+form.cfSche_Sun.disabled = false;
+}
+}
+return;
+}
+function dayClick(day) {
+if(!day.checked) {
+document.forms[0].cfSche_Everyday.checked = false;
+}
+return;
+}
+function BlockDayFocus(form) {
+if(form.cfSche_Everyday.checked) {
+form.cfSche_Everyday.focus();
+form.cfSche_Everyday.focus();
+}
+}
+function BlockPeriodClick(form) {
+if(form.cfSche_AllDay.checked) {
+/*	form.cfSche_StartHour.value = 0;
+form.cfSche_StartMin.value = 0;
+form.cfSche_EndHour.value = 0;
+form.cfSche_EndMin.value = 0; */
+if(ie) {
+form.cfSche_StartHour.disabled = true;
+form.cfSche_StartMin.disabled = true;
+form.cfSche_EndHour.disabled = true;
+form.cfSche_EndMin.disabled = true;
+}
+} else {
+if(ie) {
+form.cfSche_StartHour.disabled = false;
+form.cfSche_StartMin.disabled = false;
+form.cfSche_EndHour.disabled = false;
+form.cfSche_EndMin.disabled = false;
+}
+}
+return;
+}
+function BlockTimeFocus(form) {
+if(form.cfSche_AllDay.checked) {
+form.cfSche_AllDay.focus();
+form.cfSche_AllDay.focus();
+}
+}
+function resetClick(form) {
+form.cfSche_Everyday.checked = false;
+form.cfSche_Mon.checked = false;
+form.cfSche_Tue.checked = false;
+form.cfSche_Wed.checked = false;
+form.cfSche_Thu.checked = false;
+form.cfSche_Fri.checked = false;
+form.cfSche_Sat.checked = false;
+form.cfSche_Sun.checked = false;
+form.cfSche_AllDay.checked = false;
+form.cfSche_StartHour.value = 0;
+form.cfSche_StartMin.value = 0;
+form.cfSche_EndHour.value = 0;
+form.cfSche_EndMin.value = 0;
+return;
+}
+// -->
+  </SCRIPT>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpCFilter.html" name="DHCPform" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	
+<tr>
+<td colspan="2" class="NaviText">
+<div>Content Filter - Schedule</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="2" class="header2">
+Days to Block:</td></tr><tr>
+<td width="20"></td><td>
+<INPUT TYPE="CHECKBOX" NAME="cfSche_Everyday" CHECKED onClick="BlockAllClick(this.form);" value="ON"> Everyday</td></tr><tr>
+<td width="20"></td><td>
+<INPUT TYPE="CHECKBOX" NAME="cfSche_Sun" CHECKED onClick="dayClick(this.form.cfSche_Sun);" onFocus="BlockDayFocus(this.form);" value="ON"> Sun 
+<INPUT TYPE="CHECKBOX" NAME="cfSche_Mon" CHECKED onClick="dayClick(this.form.cfSche_Mon);" onFocus="BlockDayFocus(this.form);" value="ON"> Mon 
+<INPUT TYPE="CHECKBOX" NAME="cfSche_Tue" CHECKED onClick="dayClick(this.form.cfSche_Tue);" onFocus="BlockDayFocus(this.form);" value="ON"> Tue 
+<INPUT TYPE="CHECKBOX" NAME="cfSche_Wed" CHECKED onClick="dayClick(this.form.cfSche_Wed);" onFocus="BlockDayFocus(this.form);" value="ON"> Wed 
+<INPUT TYPE="CHECKBOX" NAME="cfSche_Thu" CHECKED onClick="dayClick(this.form.cfSche_Thu);" onFocus="BlockDayFocus(this.form);" value="ON"> Thu 
+<INPUT TYPE="CHECKBOX" NAME="cfSche_Fri" CHECKED onClick="dayClick(this.form.cfSche_Fri);" onFocus="BlockDayFocus(this.form);" value="ON"> Fri 
+<INPUT TYPE="CHECKBOX" NAME="cfSche_Sat" CHECKED onClick="dayClick(this.form.cfSche_Sat);" onFocus="BlockDayFocus(this.form);" value="ON"> Sat</td></tr><tr>
+<td width="20"></td><td >&nbsp;</td></tr><tr>
+<td colspan="2" class="header2">
+Time of Day to Block: (24 Hour Format)</td></tr><tr>
+<td width="20"></td><td >
+<INPUT TYPE="CHECKBOX" NAME="cfSche_AllDay" CHECKED OnClick="BlockPeriodClick(this.form);" value="ON"> All day</td></tr><tr>
+<td width="20"></td><td >
+Start::
+<INPUT TYPE="TEXT" NAME="cfSche_StartHour" SIZE="2" MAXLENGTH="2" VALUE="0" OnFocus="BlockTimeFocus(this.form);" onkeypress="chk_num(event)"> (hour)
+<INPUT TYPE="TEXT" NAME="cfSche_StartMin" SIZE="2" MAXLENGTH="2" VALUE="0" OnFocus="BlockTimeFocus(this.form);" onkeypress="chk_num(event)"> (minute)
+End:
+<INPUT TYPE="TEXT" NAME="cfSche_EndHour" SIZE="2" MAXLENGTH="2" VALUE="0" OnFocus="BlockTimeFocus(this.form);" onkeypress="chk_num(event)"> (hour)
+<INPUT TYPE="TEXT" NAME="cfSche_EndMin" SIZE="2" MAXLENGTH="2" VALUE="0" OnFocus="BlockTimeFocus(this.form);" onkeypress="chk_num(event)"> (minute)</td></tr><tr>
+<td colspan="2">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="2">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="cfSche_BackBtn" VALUE="Back" onclick="window.location='rpCFilter.html';"> &nbsp;&nbsp;&nbsp;
+<INPUT TYPE="SUBMIT" NAME="cfSche_SaveBtn" VALUE="Apply">&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	 </table> </td></tr></table></form>
+</body></html>

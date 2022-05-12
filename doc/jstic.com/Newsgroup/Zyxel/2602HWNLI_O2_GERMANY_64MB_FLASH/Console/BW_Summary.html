@@ -1,0 +1,121 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--//
+top.header.szHelp="h_BW_Summary.html";
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+/*
+function chk_num1(numstr)
+{
+var num
+num = parseInt(numstr.value)
+if ((num > 100000) ||(num < 2) || (numstr==""))
+{
+alert("The valid value is between 2 and 100000.");	numstr.focus();
+}
+}
+*/
+function OnInterafceChange()
+{
+for(i=0;i<document.forms[0].elements.length-3;i++) {
+if(document.forms[0].elements[i].name.search("BW_Active")!=-1) {
+if(document.forms[0].elements[i].checked){
+document.forms[0].elements[i+1].disabled = false;
+document.forms[0].elements[i+2].disabled = false;
+document.forms[0].elements[i+3].disabled = false;
+}else{
+document.forms[0].elements[i+1].disabled = true;
+document.forms[0].elements[i+2].disabled = true;
+document.forms[0].elements[i+3].disabled = true;
+}
+i+=4;
+}
+}
+return;
+}
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/BW_Summary_1" name="BWSummaryform" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+Summary</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" class="sub"> <div align=center><a href="BW_classList.html" target="main" class="sub"><b><FONT class=NaviText>
+Rule Setup</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="BW_monitor.html" target="main" class="sub">
+<b><FONT class=NaviText>
+Monitor</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr height="19" class="cTitle">
+<td width="3%"> <div align=left class="cTitle"> </div></td><td class="cTitle">
+Summary</td></tr></table><table width="90%" border="0" align=center cellpadding="0" cellspacing="0">
+<tr>
+<td>&nbsp;</td></tr><tr>
+<td>BW Manager manages the bandwidth of traffic flowing out of router on the specific interface. BW Manager can be switched on/off independently for each interface.</td></tr><tr>
+<td colspan="3">&nbsp;</td><tr>
+<td colspan="3"> <table width="100%" border="1" cellspacing="0" cellpadding="0" align=center bordercolor="#FFFFFF">
+<tr align=center bgcolor="#003399">
+<td width="18%" class="tableTitle">
+Interface</td><td width="10%" class="tableTitle">
+Active</td><td width="20%" class="tableTitle">
+Speed(kbps)</td><td width="27%" class="tableTitle">
+Scheduler</td><td width="30%" class="tableTitle">
+Max Bandwidth Usage</td></tr><tr align=center class="tabcolor2">
+<td>LAN</td><td><input type="checkbox" name="BW_Active" checked onClick="OnInterafceChange();" /></td><td><input type="text" name="BW_Speed" size="6" maxlength="6" value="100000" onkeypress="chk_num(event)" /></td><td><select name="BW_Schedule" size="1"><option value=00000000 selected>Priority-Based
+<option value=00000001>Fairness-Based
+</select></td><td><input type="checkbox" name="BW_WorkCon" checked onkeypress="chk_num(event)" />Yes<input type="hidden" name="x" value="0" /></td></tr><tr align=center class="tabcolor1">
+<td>WLAN</td><td><input type="checkbox" name="BW_Active" checked onClick="OnInterafceChange();" /></td><td><input type="text" name="BW_Speed" size="6" maxlength="6" value="54000" onkeypress="chk_num(event)" /></td><td><select name="BW_Schedule" size="1"><option value=00000000 selected>Priority-Based
+<option value=00000001>Fairness-Based
+</select></td><td><input type="checkbox" name="BW_WorkCon" checked onkeypress="chk_num(event)" />Yes<input type="hidden" name="x" value="0" /></td></tr><tr align=center class="tabcolor2">
+<td>WAN</td><td><input type="checkbox" name="BW_Active" checked onClick="OnInterafceChange();" /></td><td><input type="text" name="BW_Speed" size="6" maxlength="6" value="800" onkeypress="chk_num(event)" /></td><td><select name="BW_Schedule" size="1"><option value=00000000 selected>Priority-Based
+<option value=00000001>Fairness-Based
+</select></td><td><input type="checkbox" name="BW_WorkCon" checked onkeypress="chk_num(event)" />Yes<input type="hidden" name="x" value="0" /></td></tr></table></td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+&nbsp;&nbsp;
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><script language="JavaScript">
+<!--//
+OnInterafceChange();
+showFullPath('Advanced > BW MGMT > Summary');
+//-->
+</script>
+
+</body></html>

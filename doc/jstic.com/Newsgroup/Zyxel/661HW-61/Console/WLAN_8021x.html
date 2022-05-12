@@ -1,0 +1,167 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+<script language="JavaScript">
+<!--
+          	
+top.title.h_Page='h_WLAN_802.html';
+	function chkActive()
+	{
+		document.WLAN8021x.PortCtrlFlag.value = 1;
+		document.WLAN8021x.submit();
+		return;
+	}
+	
+	function chkKeyMPro()
+	{
+		document.WLAN8021x.KeyMProFlag.value = 1;
+		document.WLAN8021x.submit();
+		return;
+	}
+		
+	function chkWPAMode()
+	{
+          	if (document.WLAN8021x.WLAN_KeyMProtocol.selectedIndex == 2)
+          	{
+			document.WLAN8021x.WPAModeFlag.value = 1;
+			document.WLAN8021x.submit();
+		}	
+		return;
+	}
+	
+	function chkAuthenTimeout(form)
+          	{	metrics = parseInt(WLAN8021x.ReAuthenTimer.value, 10);
+          		if( metrics < 60 )
+          		{	
+          		alert("The minimum of ReAuthentication Timer is 60.");          			WLAN8021x.ReAuthenTimer.value = 60;
+          			WLAN8021x.ReAuthenTimer.focus();
+          		}
+          	}	
+	function chkIdleTimeout(form)
+          	{	metrics1 = parseInt(WLAN8021x.IdleTimeout.value, 10);
+          		if( metrics1 < 10 )
+          		{
+          		alert("The minimum of Idle Timeout  is 10.");          			WLAN8021x.IdleTimeout.value = 10;
+          			WLAN8021x.IdleTimeout.focus();
+          		}
+          	
+          	}
+        	function ShowMode(form)
+          	{
+          		if (WLAN8021x.WLAN_KeyMProtocol.selectedIndex == 0)
+          		{
+				chktoRADIUS(form);
+				return;			
+          		}
+			else if (WLAN8021x.WLAN_KeyMProtocol.selectedIndex == 1)
+			{
+				WLAN8021x.AuthenDatabase.selectedIndex = 0;			
+				WLAN8021x.AuthenDatabase.disabled = true;
+				return;
+			}
+			else if (WLAN8021x.WLAN_KeyMProtocol.selectedIndex == 2)
+			{
+          			if ( WLAN8021x.WLAN_WPAMixedMode.checked )
+          			{
+					WLAN8021x.AuthenDatabase.selectedIndex = 0;			
+					WLAN8021x.AuthenDatabase.disabled = true;
+				}
+				return;
+			}
+          	}
+	function chktoRADIUS(form)
+          	{
+          		if (WLAN8021x.WLAN_8021XDyWEPKey.selectedIndex == 0)
+          		{
+				WLAN8021x.AuthenDatabase.disabled = false;			
+          		}
+			else
+			{
+				WLAN8021x.AuthenDatabase.selectedIndex = 0;			
+				WLAN8021x.AuthenDatabase.disabled = true;
+			}
+          	}
+        		function chkMixedMode(form)
+          	{
+          		if ( WLAN8021x.WLAN_WPAMixedMode.checked )
+          		{	
+				WLAN8021x.WLAN_DataPrivacy.selectedIndex = 1;			
+				WLAN8021x.WLAN_DataPrivacy.disabled = true;
+				return;	
+          		}
+          		else
+          		{
+				WLAN8021x.WLAN_DataPrivacy.disabled = false;
+				return;	        		
+          		}
+          	}          	
+        // -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpWLan.html" name="WLAN8021x" target="_self">  <table width="100%" border="0" cellspacing="1">
+    <tr>
+      <td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="93%"> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+          <tr> 
+            <td colspan="3"> 
+              <div align=left class="NaviText">
+              	Wireless LAN                	-  
+                802.1x/WPA              </div></td></tr><tr> 
+            <td colspan="3"> 
+              <hr></td></tr><tr> 
+            <td colspan="3" class="header2"> 
+            	802.1x Authentication            </td></tr><tr> 
+            <td width="16"></td><td width="186">
+            	Wireless Port Control           </td><td width="358">
+            	 <SELECT NAME="WLAN_PortCont" SIZE="1" onChange="chkActive(this.form);"><OPTION VALUE=00000000 SELECTED>Authentication Required
+<OPTION VALUE=00000001>No Access Allowed
+<OPTION VALUE=00000002>No Authentication Required
+</SELECT>		<INPUT TYPE="HIDDEN" NAME="PortCtrlFlag" VALUE="0">            </td></tr>          <tr> 
+            <td width="16"></td><td width="186">
+            	ReAuthentication Timer            </td><td width="358"> 
+            	<INPUT TYPE="TEXT" NAME="ReAuthenTimer" SIZE="5" MAXLENGTH="4" VALUE="1800" onBlur="chkAuthenTimeout(this.form);" onkeypress="chk_num(event)">              	 	&nbsp;
+              	(In Seconds)            </td></tr><tr> 
+            <td width="16"></td><td width="186">
+            	Idle Timeout            </td><td width="358">
+            	<INPUT TYPE="TEXT" NAME="IdleTimeout" SIZE="5" MAXLENGTH="4" VALUE="3600" onBlur="chkIdleTimeout(this.form);" onkeypress="chk_num(event)">              		 &nbsp;
+		(In Seconds)             </td></tr>                  <tr> 
+            <td colspan="3"> 
+              <hr></td></tr><tr> 
+            <td width="16"></td><td width="186"> 
+		Key Management Protocol            </td><td width="358"> 
+            	 <SELECT NAME="WLAN_KeyMProtocol" SIZE="1" onchange="chkKeyMPro();"><OPTION VALUE=00000000>802.1x
+<OPTION VALUE=00000001>WPA
+<OPTION VALUE=00000002 SELECTED>WPA-PSK
+</SELECT>		<INPUT TYPE="HIDDEN" NAME="KeyMProFlag" VALUE="0">            </td></tr>	             <tr> 
+            <td width="16"></td><td width="186"> 
+		Pre-Shared Key            </td><td width="358"> 
+		<INPUT TYPE="TEXT" NAME="PSK" SIZE="32" MAXLENGTH="64" VALUE="123456789abcd">            </td></tr>	             <tr> 
+            <td width="16"></td><td colspan="2"> 
+		<INPUT TYPE="CHECKBOX" NAME="WLAN_WPAMixedMode" onclick="chkMixedMode(this.form);chkWPAMode();" value="ON">		WPA Mixed Mode            </td><INPUT TYPE="HIDDEN" NAME="WPAModeFlag" VALUE="0">          </tr>	             <tr> 
+            <td width="16"></td><td width="186"> 
+		Group Data Privacy            </td><td width="358"> 
+	        <SELECT NAME="WLAN_DataPrivacy" SIZE="1" RpGetRtr="WLAN_DataPrivacyGet" RpPutType="Function" RpPutPtr="WLAN_DataPrivacyPut"><OPTION VALUE=00000000 SELECTED>TKIP
+<OPTION VALUE=00000001>WEP
+</SELECT>            </td></tr>	             <tr> 
+            <td width="16"></td><td width="186"> 
+		WPA Group Key Update Timer            </td><td width="358"> 
+		<INPUT TYPE="TEXT" NAME="WPA_TIMER" SIZE="5" MAXLENGTH="4" VALUE="1800">              		 &nbsp;
+		(In Seconds)            </td></tr>                          <tr> 
+            <td colspan="3">&nbsp;</td></tr><tr align=center valign=middle> 
+            <td colspan="3" height="36"> 
+              <hr></td></tr><tr> 
+            <td colspan="3"> 
+              <div align=center>
+                <INPUT TYPE="SUBMIT" NAME="WLAN_8021x_BackBtn" VALUE="Back" VALUE="Back" onClick="window.location='rpWLan.html';">                	&nbsp;&nbsp;&nbsp;
+                <INPUT TYPE="SUBMIT" NAME="WLAN_8021x_SaveBtn" VALUE="Apply">                	&nbsp;&nbsp;&nbsp; 
+                <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >               </div></td></tr></table></td></tr></table></form><SCRIPT language="JavaScript">
+<!--
+	ShowMode(this.form);
+		chkMixedMode(this.form);
+        // -->
+</SCRIPT>
+        
+</body></html>

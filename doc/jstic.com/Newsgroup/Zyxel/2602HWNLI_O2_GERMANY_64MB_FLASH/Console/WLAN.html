@@ -1,0 +1,184 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="Microsoft FrontPage 5.0">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--//
+top.header.szHelp="h_WLAN_General.html";
+
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+
+
+function CheckWEPKey(WepKey)
+{	
+var KeyValue = WepKey.value;
+var len = KeyValue.length;
+var flag;
+var alertStr;
+flag = 0;
+if ( (len != 5) && (len != 10) )
+{	/* 128-bit WEP */
+	if ( (len != 13) && (len != 26) )
+	{	/* 256-bit WEP */
+		if ( (len != 29) && (len != 58) )
+		{
+			alertStr = "Please type 5 or 13 or 29 characters, or 10 or 26 or 58 digit hexadecimal values into the key entry field.\r\n";
+			flag = 1;
+		}
+	}
+}
+if (flag == 1){
+	alert(alertStr);
+	this.focus();
+	return;
+}
+}
+function doSecurityChange()
+{
+	document.WLANForm.SecurityFlag.value = 1;
+	document.WLANForm.target = "main";
+	document.WLANForm.submit();
+	return;
+}
+
+function chkAuthenTimeout(form)
+{
+	metrics = parseInt(form.WLANCfgAuthenTimeout.value, 10);
+	if( metrics < 10 )
+	{
+		alert(" ** The minimum of ReAuthentication Timer is 10. **");
+		WLANForm.WLANCfgAuthenTimeout.value = 10;
+		WLANForm.WLANCfgAuthenTimeout.focus();
+	}
+}
+
+function chkIdleTimeout(value)
+{
+	if( value < 10 )
+	{
+		alert(" ** The minimum of Idle Timeout is 10. **");
+		WLANForm.WLANCfgIdleTimeout.value = 10;
+		WLANForm.WLANCfgIdleTimeout.focus();
+	}
+}
+
+function checkPort(port,i){
+	if(port < 0 || port > 65535){
+		alert(" ** Port range is 0 to 65535. **");
+		if(i==0){
+			WLANForm.WLANCfgRadiusServerPort.value = 1812;
+			WLANForm.WLANCfgRadiusServerPort.focus();
+		}else{
+			WLANForm.WLANCfgAccountServerPort.value = 1813;
+			WLANForm.WLANCfgAccountServerPort.focus();
+		}	
+	}
+}
+
+// -->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="POST" action="WLAN_Adv.html" target="_self" name="WLANForm">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b> 
+General</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="WLAN_AutoSec.html" target="main" class="sub"><b><FONT class=NaviText> 
+OTIST</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="WLAN_Filter.html" target="main" class="sub"><b><FONT class=NaviText> 
+MAC Filter</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="WLAN_QoS.html" target="main" class="sub"><b><FONT class=NaviText> 
+QoS</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td colspan="2">&nbsp;</td></tr><tr> 
+<td width="3%" height="19" class="cTitle">&nbsp;</td><td class="cTitle"> 
+Wireless Setup</td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr> 
+<td colspan="2"> 
+<input type="checkbox" name="EnableWLAN" checked value="ON" />Active Wireless LAN</td></tr><tr> 
+<td width="38%"> 
+Network Name(SSID)</td><td><input type="text" name="ESSID" size="32" maxlength="32" value="P-2602HWNLI-D7A-kk" /></td></tr><tr> 
+<td colspan="2"> 
+<input type="checkbox" name="ESSID_HIDE_Selection" value="ON" />Hide SSID</td></tr><tr> 
+<td>Channel Selection</td><td><select name="Channel_ID" size="1"><option value=00000000 selected>Channel-01 2412MHz
+<option value=00000001>Channel-02 2417MHz
+<option value=00000002>Channel-03 2422MHz
+<option value=00000003>Channel-04 2427MHz
+<option value=00000004>Channel-05 2432MHz
+<option value=00000005>Channel-06 2437MHz
+<option value=00000006>Channel-07 2442MHz
+<option value=00000007>Channel-08 2447MHz
+<option value=00000008>Channel-09 2452MHz
+<option value=00000009>Channel-10 2457MHz
+<option value=0000000a>Channel-11 2462MHz
+</select></td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td colspan="2">&nbsp;</td></tr><tr> 
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle"> 
+Security</td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr> 
+<td width="38%"> 
+Security Mode</td><td><select name="Security_Sel" size="1" onchange="doSecurityChange(this.form);"><option value=00000000>No Security
+<option value=00000001>Static WEP
+<option value=00000002>WPA-PSK
+<option value=00000003>WPA
+<option value=00000004 selected>WPA2-PSK
+<option value=00000005>WPA2
+</select><input type="hidden" name="SecurityFlag" value="0" /></td></tr><tr> 
+<td colspan="2"> 
+<input type="checkbox" name="WPA_Compatible" checked value="ON" />WPA Compatible</td></tr><tr> 
+<td width="38%"> 
+Pre-Shared Key</td><td><input type="text" name="WLANCfgPSK" size="32" maxlength="64" value="123456789abcd" /></td></tr><tr> 
+<td>ReAuthentication Timer</td><td><input type="text" name="WLANCfgAuthenTimeout" size="5" maxlength="4" value="1800" onBlur="chkAuthenTimeout(this.form);" onkeypress="chk_num(event)" />&nbsp; 
+(In Seconds)</td></tr><tr> 
+<td>Idle Timeout</td><td><input type="text" name="WLANCfgIdleTimeout" size="5" maxlength="4" value="3600" onblur="chkIdleTimeout(this.value)" onkeypress="chk_num(event)" />&nbsp; 
+(In Seconds)</td></tr><tr> 
+<td>Group Key Update Timer&nbsp;&nbsp; </td><td><input type="text" name="WLANCfgWPATimer" size="5" maxlength="4" value="1800" onkeypress="chk_num(event)" />&nbsp; 
+(In Seconds)</td></tr>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp;&nbsp; 
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >&nbsp;&nbsp;&nbsp;&nbsp; 
+<input type="submit" name="sysAdvBtn" value="Advanced Setup" /></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">    
+<!--
+showFullPath('Network > Wireless LAN > General');
+// -->
+</script>
+</html>

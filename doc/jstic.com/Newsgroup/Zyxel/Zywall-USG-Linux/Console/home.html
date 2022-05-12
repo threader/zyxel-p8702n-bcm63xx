@@ -1,0 +1,1348 @@
+<html><head><title>Home</title>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--script type="text/javascript" src="I18N.js"></script--><!--script>getLangFile()</script-->
+
+
+<link rel="stylesheet" href="control.css" type="text/css">
+<link rel="stylesheet" href="zw.css" type="text/css">
+<script type="text/javascript" src="javascript.js"></script>
+<script type="text/javascript" src="javascriptm.js"></script>
+<script type="text/javascript" src="javascriptCLI.js"></script>
+<script language="javascript" src="overlib_mini.js"></script>
+
+<script language="javascript" src="overlib_shadow_mini.js"></script>
+<style type="text/css">
+
+body {
+	background-attachment: fixed;
+	background-image: url(images/config_bg.gif);
+}
+
+</style>
+<script language="JavaScript">
+
+var gl = top.frames[1];	
+var rxdata = top.frames[4];
+var theDataPtr = gl.homeList; // get data pointer
+var theCurrPtr = gl.currList; 
+var bufDataPtr = gl.BufferObj_2; // for record current user
+var theDiskPtr = gl.BufferObj; 
+var ExtensionSlotPtr = gl.slotList;/* extension slot info */
+var pw_module_info = gl.pw_module_list;	/* redundant power module status */
+
+/* language setting */
+//var theLangPtr = gl.LangObj;
+var LangNow='';
+
+var CPU_percentage='', Mem_percentage='', disk1_Usage='', disk2_Usage='', session_Usage = '', session_Usg_Word = '';
+var retIvt;
+var flag = 0; // for current time & date
+var h_year = 0;
+var h_mon = 0;
+var h_day = 0;
+var h_hour = 0;
+var h_min = 0;
+var h_sec = 0;
+var SerialNumber='';
+var url_addr = document.URL;
+var temp = url_addr.split("/");
+var sessionUrl = temp[2];
+var MAC; // open subwindows name
+var bootStCode = 0;//boot status code
+//alert('system='+navigator.systemLanguage+'\n browser='+navigator.browserLanguage+'\nUser='+navigator.userLanguage);
+var allIface = new Array();
+/*======= Help ===========*/
+		gl.Topic= '010000';
+/*======= Help ===========*/
+var cmd = "";
+		cmd = compose_CLI(cmd, "show fqdn ");
+		cmd = compose_CLI(cmd, "show version");
+		cmd = compose_CLI(cmd, "show system uptime ");
+		cmd = compose_CLI(cmd, "show interface summary all");
+		cmd = compose_CLI(cmd, "show zone binding-iface ");
+		cmd = compose_CLI(cmd, "show service-register status all");
+		cmd = compose_CLI(cmd, "show users all ");
+		cmd = compose_CLI(cmd, "show mac");
+		cmd = compose_CLI(cmd, "show cpu status");
+		cmd = compose_CLI(cmd, "show mem status ");
+		cmd = compose_CLI(cmd, "show idp signatures version");
+		cmd = compose_CLI(cmd, "show idp signatures date ");
+		cmd = compose_CLI(cmd, "show idp signatures number");
+		cmd = compose_CLI(cmd, "show idp signatures custom-signature number ");
+		cmd = compose_CLI(cmd, "show clock time");
+		cmd = compose_CLI(cmd, "show clock date ");
+		cmd = compose_CLI(cmd, "show serial-number");
+		cmd = compose_CLI(cmd, "show device-ha status ");
+		cmd = compose_CLI(cmd, "show show anti-virus signatures status");
+		cmd = compose_CLI(cmd, "show disk ");
+		cmd = compose_CLI(cmd, "show anti-virus update status");
+		cmd = compose_CLI(cmd, "show conn status");
+		cmd = compose_CLI(cmd, "show users current ");
+		cmd = compose_CLI(cmd, "show idp signature update status");
+		cmd = compose_CLI(cmd, "show idp statistics ranking signature-name ");
+		cmd = compose_CLI(cmd, "show anti-virus statistics ranking virus-name");
+		cmd = compose_CLI(cmd, "show language setting");
+		cmd = compose_CLI(cmd, "show language all ");
+		cmd = compose_CLI(cmd, "show boot status");
+		cmd = compose_CLI(cmd, "show extension-slot ");
+
+		// write flag is 0
+		//gl.nowriteflag = true;
+		txcli(cmd, "home.html", 2, "home.html");
+
+function power_module_fetch(idx) {
+	var sourceData = rxdata['result_'+(idx)];
+	var sourcecnt = sourceData[0]._Power_Module.length;
+	var power_module_data = sourceData[0]._Power_Module;
+        pw_module_info.splice(0, pw_module_info.length);
+        for(var j = 0; j < sourcecnt; j++) {
+                pw_module_info.push([power_module_data[j]._Status]);
+        }
+}
+function extension_slot_fetch(idx){
+	/* show extension slot info */
+	var sourcePtr = rxdata['result_'+(idx)];
+	var sourcecnt = sourcePtr.length;
+	ExtensionSlotPtr.dataSet.splice(0,ExtensionSlotPtr.dataCount());
+	for(var j = 0; j < sourcecnt; j++){
+		ExtensionSlotPtr.addNewRecord(sourcePtr[j]._Slot, //mb1
+		sourcePtr[j]._Device, //mb2
+		sourcePtr[j]._Status);//mb3
+	}
+}
+function lang_fetch(idx){
+	/* get current language setting */
+	gl.ConCty= LangNow = rxdata['result_'+(gl.retbufno+26)][0]._current_language;
+
+	/* get language */
+	/*
+	var sourcePtr = rxdata['result_'+(idx+27)]; 
+	var sourcecnt = sourcePtr.length; 
+	theLangPtr.dataSet.splice(0,theLangPtr.dataCount());
+	for( var j = 0; j < sourcecnt; j++){
+		theLangPtr.addNewRecord(sourcePtr[j]._Language);
+	} 
+	*/
+	/* mapping to drop-down selector */
+	/*
+	var er = top.frames[0].document.getElementById('LANG');
+	var dcnt= theLangPtr.dataCount();
+	for ( var fi = 0 ; fi < dcnt ; fi++ ) {			
+		var outFileName = theLangPtr.getRecord(fi).mb1;						
+		er.options[fi] = new Option(outFileName, outFileName, false, false);
+		if(er.options[fi].text == LangNow) {
+			er.selectedIndex = fi;
+		}
+	}
+	*/
+}
+function ifaceZone_fetch(idx){
+	/* iface data */
+	var sourcePtr = rxdata['result_'+(idx+3)];
+	var sourcePtr2 = rxdata['result_'+(idx+17)+'_1'];
+	var sourcecnt = sourcePtr.length;
+	theDataPtr = gl.homeList;
+	theDataPtr.dataSet.splice(0,theDataPtr.dataCount());
+	allIface.splice(0, allIface.length);
+	var dhaGeneralList;
+	var dhaGeneralListCnt = 0;
+	if( sourcePtr2 != '' && sourcePtr2 != undefined ){
+		if( sourcePtr2[0]._interface != '' && sourcePtr2[0]._interface != undefined ){
+			dhaGeneralList = sourcePtr2[0]._interface;
+			dhaGeneralListCnt = dhaGeneralList.length;
+		}
+		else{
+			dhaGeneralList = new Array();
+		}
+	}
+	else{
+		dhaGeneralList = new Array();
+	}
+
+	for(var j = 0; j < sourcecnt; j++){
+	//name, status, hastatus, zone, ipaddr, subnetmask, ipassign, services, rndial
+		var _name = sourcePtr[j]._Name;
+		if(_name.search(/^ge(\d+)$/) != -1 || _name.search(/^wan(\d+)$/) != -1 || _name.search(/^lan(\d+)$/) != -1 || _name.search(/^ext-wlan$/) != -1 || _name.search(/^dmz$/) != -1 || _name.search(/^opt$/) != -1 ||
+		   _name.search(/^wlan-(\d+)-(\d+)$/) != -1 || _name.search(/^cellular(\d+)$/) != -1) {
+			var ha_status = 'n/a';
+			for( var k = 0 ; k < dhaGeneralListCnt; k++ ){
+				if( _name == dhaGeneralList[k].__name ){
+					ha_status = dhaGeneralList[k]._HA_status;
+				}
+			}
+			theDataPtr.addNewRecord(
+			                    sourcePtr[j]._Name,
+			                    sourcePtr[j]._Status,
+			                    ha_status,//HA status
+			                    "n/a",//Zone
+			                    sourcePtr[j]._IP_Address,
+			                    sourcePtr[j]._Mask,
+			                    sourcePtr[j]._IP_Assignment,
+			                    'n/a',//services
+			                    'n/a'
+		                        );
+		}else if(sourcePtr[j]._Name == "aux") {
+			gl.ifdx = j;
+			theDataPtr.addNewRecord(
+			                    sourcePtr[j]._Name,
+			                    sourcePtr[j]._Status,
+			                    'n/a',//HA status
+			                    "n/a",//Zone
+			                    sourcePtr[j]._IP_Address,
+			                    sourcePtr[j]._Mask,
+			                    sourcePtr[j]._IP_Assignment,
+			                    'n/a',//services
+			                    'n/a'
+		                        );
+		}
+		allIface.push(sourcePtr[j]._Name);
+	}
+	
+	/* mapping Zone to homeList Object */
+	var sourcePtr = rxdata['result_'+(idx+4)]; //show zone
+	var zcnt = sourcePtr.length;
+	theDataPtr = gl.homeList;
+	var dcnt= theDataPtr.dataCount(); //interface counter
+	for(var i = 0; i < dcnt; i++){
+		var data = theDataPtr.getRecord(i);
+		for(var j = 0; j < zcnt; j++){
+			if(data.name == sourcePtr[j]._Name) {
+				data.zone = sourcePtr[j]._Zone;
+			}
+		}
+	}
+		
+	/* Current-Users List */	
+	var sourcePtr = rxdata['result_'+(idx+6)];
+	var currcnt = sourcePtr.length;
+	theCurrPtr.dataSet.splice(0,theCurrPtr.dataCount());
+	for(var j = 0; j < currcnt; j++){
+		theCurrPtr.addNewRecord(
+		                        sourcePtr[j]._Name,
+		                        sourcePtr[j]._Re_Auth__Timeout+'/'+sourcePtr[j]._Lease_Timeout,
+		                        sourcePtr[j]._Service,
+		                        sourcePtr[j]._From);
+	}
+	
+	/* disk usage */
+	var sourcePtr = rxdata['result_'+(idx+19)]; 
+	var sourcecnt = sourcePtr.length; 
+	theDiskPtr.dataSet.splice(0,theDiskPtr.dataCount());
+	for( var j = 0; j < sourcecnt; j++){
+		theDiskPtr.addNewRecord(
+		                        sourcePtr[j]._Disk,//mb1
+		                        sourcePtr[j]._Size_MB_,//mb2
+		                        sourcePtr[j]._Usage,//mb3
+		                        '','','');
+	}
+	
+	/* show users current */
+	var sourcePtr = rxdata['result_'+(idx+22)]; 
+	bufDataPtr.dataSet.splice(0,bufDataPtr.dataCount());
+	bufDataPtr.addNewRecord(sourcePtr[0]._Name, sourcePtr[0]._Re_Auth__Timeout+'/'+sourcePtr[0]._Lease_Timeout);
+	gl.isLimitAdmin = (sourcePtr[0]._Type == "limited-ad") ? true : false;
+ 
+} 
+
+function curTimeDate_fetch(idx) {
+	var sourcePtr = rxdata['result_'+(idx+14)];
+	var sourcePtr2 = rxdata['result_'+(idx+15)];
+	var curTime = sourcePtr[0]._current_time.match(/\w+/g);
+	var curDate = sourcePtr2[0]._current_date.match(/\w+/g);
+	h_year = curDate[0];
+	h_mon  = curDate[1]-1;
+	h_day  = curDate[2];
+	h_hour = curTime[0];
+	h_min  = curTime[1];
+	h_sec  = curTime[2];
+}
+
+function getData(){
+	document.theHome.Refresh_Now.value = gl.getLang('_Refresh_Now', '_home');
+	
+	var er = document.getElementById("RL");
+	er.selectedIndex = gl.RefreshTime;
+	document.theHome.HostName.value = 'zywall-usg-200'; 
+	document.theHome.modelID.value = 'ZyWALL USG 200';
+	document.theHome.fwVer.value = '2.10(AQU.0) |2008-04-02 13:54:';
+	document.theHome.sysUptime.value = '2 days,23:39:38';
+	
+	/* MAC address */
+	document.theHome.macaddr.value = '00:19:cb:72:73:2c ~ 31';//licensed
+	
+	/* IDP version and day */
+	document.theHome.idpver.value = "V"+"2.026"+" |"+"2007/06/20 17:08:10";
+	document.theHome.idpNumber.value = "2020";
+	
+	/* serial number */
+	document.theHome.PrSN.value = "S070Z50038603";
+
+	/* current user */
+	document.theHome.curU.value = "admin(unlimited/unlimited)";
+	
+	/*show anti-virus database version*/
+	document.theHome.avVer.value = "V"+"1.055"+" |"+"2007-07-05 20:58:13";
+	
+	/* show anti-virus update status */
+	document.theHome.avLUT.value = "n/a"; 
+	
+	/* show anti-virus signature number */
+	document.theHome.avNumber.value = "5936";
+	
+	/*show anti-spam database version*/
+//Jerry	document.theHome.asLUT.value = rxdata['result_'+(gl.retbufno+24)][0]._version;
+	/*show anti-virus virus number*/
+//Jerry	document.theHome.avTVN.value = rxdata['result_'+(gl.retbufno+25)][0]._Virus_Number;
+	
+	/* show idp update status */
+
+	document.theHome.idpLUT.value = "n/a";
+	document.theHome.NumUsers.value = theCurrPtr.dataCount();
+	
+}
+
+function curCLK(str) {	
+	str = new Date();
+
+	str.setUTCFullYear(h_year);
+	str.setUTCMonth(h_mon);
+	str.setUTCDate(h_day);
+	str.setUTCHours(h_hour);
+	str.setUTCMinutes(h_min);
+	str.setUTCSeconds(h_sec);
+	h_sec++;
+		
+	return str;
+}
+		
+function h_disp(){
+	var clk  = curCLK(clk);
+	var h_year = clk.getUTCFullYear();
+	var h_mon  = clk.getUTCMonth() + 1;
+	var h_day  = clk.getUTCDate();
+	var h_hour = clk.getUTCHours();
+	var h_min  = clk.getUTCMinutes();
+	var h_sec  = clk.getUTCSeconds();
+		
+	h_mon  = time_format(h_mon.toString(),"00");
+	h_day  = time_format(h_day.toString(),"00");
+	h_hour = time_format(h_hour.toString(),"00");
+	h_min  = time_format(h_min.toString(),"00");
+	h_sec  = time_format(h_sec.toString(),"00");
+	
+	document.theHome.h_year.value = "2008-3-07"+" "+h_hour+":"+ h_min+":"+h_sec;
+		
+//	document.theHome.h_year.value = h_year+"-"+h_mon+"-"+h_day+" "+h_hour+":"+ h_min+":"+h_sec;
+}
+
+if(gl.RefreshTime > 0){
+	retIvt = setInterval("window.location.href = 'home.html';", gl.RefreshTime * 5 * 1000+2000);
+}
+
+function reloadSec(idx){
+	if(idx == 0){
+		clearInterval(retIvt);/*stop interval */
+	}else{
+		retIvt = setInterval("window.location.href = 'home.html';", idx * 5 * 1000+2000);
+	}
+	gl.RefreshTime = idx;
+}
+function openCpuGraphic(){
+    winName = "win_cpu_usage"; // in IE6, the arg windowName is NOT allowed to contain char '-', Firefox and opera dont have this problem
+    window.open('cpu_graphicframe.html', winName, 'width=590,height=520, status=no, scrollbars=yes, resizable=yes');
+}
+function openMemoryGraphic(){
+    winName = "win_memory_usage";
+    window.open('memory_graphicframe.html', winName, 'width=590,height=520, status=no, scrollbars=yes, resizable=yes');
+}
+function openSessionGraphic(){
+    winName = "win_session_usage";
+    window.open('session_graphicframe.html', winName, 'width=590,height=520, status=no, scrollbars=yes, resizable=yes');
+}
+function openStatistic(){
+	winName = MAC+"MtenStatus"
+	window.open('ifacestatus_1.html', winName, 'width=730,height=530, status=no, scrollbars=yes, resizable=yes');
+}
+function openDHCP(){
+	winName = MAC+"DHCPTable";
+	window.open('dhcpstatusframe.html', winName, 'width=700, height=340, , status=no, scrollbars=yes, resizable=yes');
+} 
+function openVPN(){
+	winName = MAC+"VPN";
+	window.open('vpnstatusframe.html', winName, 'width=700, height=340, , status=no, scrollbars=yes, resizable=yes');
+} 
+function openUsrList(){
+	winName = MAC+"UsrList";
+	window.open('usrstatusframe.html', winName, 'width=700, height=340, , status=no, scrollbars=yes, resizable=yes');
+}
+/* cellular detail info */
+function openCellularDetail(name){
+	gl.show_current_slot_name = name;
+	gl.show_device_slot_from_home = true;
+	winName = MAC+"CellularDetail";
+	window.open('3GDevInfoframe.html', winName, 'width=420, height=420, , status=no, scrollbars=yes, resizable=yes');
+}
+/* SEM detail info */
+function openSEMDetail(name) {
+	gl.show_current_slot_name = name;
+	gl.show_device_slot_from_home = true;
+	winName = "SEMDevInfo";
+	window.open('SEMDevInfoframe.html', winName, 'width=420, height=420, , status=no, scrollbars=yes, resizable=yes');
+}
+function getIfName(i, dataptr) {
+	return	dataptr.name.toString();	
+}
+function getIfstatus(i, dataptr) {
+	return	dataptr.status.toString();
+}
+function getHA(i, dataptr) {
+	return	dataptr.hastatus.toString();
+}
+function musOver(idx, event){
+	var data = theDataPtr.getRecord(idx);
+	gl.LeftAry[0] = data.zone;
+	//overlib(gl.LeftAry[0]);	
+	overlib(gl.LeftAry[0], SHADOW, WRAP, CAPTION, '');
+
+}
+function getZone(i, dataptr) {
+	if(dataptr.zone.length >4){
+		var str = dataptr.zone.slice(0, 4)+'..';
+		return	'<span onMouseover="this.className=\'mOver\'; musOver('+i+', event)" onmouseout="this.className=\'mDefault\'; nd()" class="mDefault">' +str+'</span>';
+	}else{
+		return dataptr.zone;
+	}
+}
+function getIPMask(i, dataptr) {
+	return	dataptr.ipaddr;
+}
+/*--- pop up windows start ---*/
+function newData(name, status){
+	if(gl.isLimitAdmin) {
+		alert("This action is not allowed for Limited-Admin accounts.");
+		return;
+	}
+	gl.rtnField.splice(0, gl.rtnField.length);
+	gl.nextPage = 'home.html';
+	gl.zyshdcnt = 0;
+	if(status == 'SIM locked-PUK' || status == 'Unlock PUK fail'){
+		gl.rtnField.push(["home", ""], ["PUK", name],["ORG_PUK", ""],["NEW_PUK", ""]);
+		gl.OpenSubWin_4('cellpin', 'Unlock_PUK_Code', 250, 190);
+	}else if(status == 'SIM locked-PIN' || status == 'Unlock PIN fail'){
+		gl.rtnField.push(["home", ""], ["PIN", name],["NEW_PIN", ""]);
+		gl.OpenSubWin_4('cellpin', 'Unlock_PIN_Code', 205, 131);
+	}else if(status == 'Device locked' || status == 'Unlock device fail'){
+		gl.rtnField.push(["home", ""], ["DEV_LOCK", name],["NEW_PIN", ""]);	
+		gl.OpenSubWin_4('cellpin', 'Unlock_DEVICE_Code', 205, 131);
+	}
+}
+/*--- pop up window end ---*/
+function getRnDial(i, dataptr) {
+	if(dataptr.status == 'SIM locked-PUK' || dataptr.status == 'Unlock PUK fail' || dataptr.status == 'SIM locked-PIN' ||
+	dataptr.status == 'Unlock PIN fail' || dataptr.status == 'Device locked' || dataptr.status == 'Unlock device fail'){
+		return '<input type="button" name="Unlock" onClick="newData(\''+dataptr.name+'\',\''+dataptr.status+'\')" value="'+gl.getLang('_Unlock', '_button')+'">';
+	}
+	if( dataptr.status == 'Connected' ) {
+		return '<img src="images/i_connect.gif" name="cont'+i+'" border=0 width="28" height="14" onclick="ReDial('+i+',event);" title=\'Disconnect\' >';
+	}else if( dataptr.status == 'Disconnected' || dataptr.status == 'Device ready'){
+		return '<img src="images/i_disconnect.gif" name="cont'+i+'" border=0 width="28" height="14" onclick="ReDial('+i+',event);" title=\'Connect\' >';
+	}else if((dataptr.ipassign == 'DHCP client')&&(dataptr.status == 'Inactive')){
+		return dataptr.rndial.toString();
+	}	
+	if((dataptr.ipassign == 'DHCP client')&&(dataptr.status != "Port Group Inactive")){
+		return '<input type="button" name="Renew" onClick="ReNew('+i+')" value="'+gl.getLang('_Renew', '_button')+'">';
+	}else{
+		return	dataptr.rndial.toString();
+	}
+}
+function ReNew(i){
+	if(gl.isLimitAdmin) {
+		alert("This action is not allowed for Limited-Admin accounts.");
+		return;
+	}
+	var arg = new Array(), cmd="";
+	var data = theDataPtr.getRecord(i);
+	
+	arg[0] = data.name;
+	cmd = "exit&cmd=renew dhcp "+ arg[0]+"&cmd=configure terminal";		
+	cmd = compose_CLI(cmd,Get_CLI("home", 1));
+	cmd = compose_CLI(cmd, 'show boot status');
+	cmd = compose_CLI(cmd, 'show extension-slot');
+	gl.retbufno = 3;
+	gl.fstTime = 1;
+	txcli(cmd, "home.html", 33, "home.html");	
+}
+
+function ReDial(i,event){
+	if(gl.isLimitAdmin) {
+		alert("This action is not allowed for Limited-Admin accounts.");
+		return;
+	}
+	var arg = new Array(), cmd="";
+	var data = theDataPtr.getRecord(i);
+		
+	arg[0] = data.name;
+	if(data.status=='Disconnected' || data.status == 'Device ready') {
+		for(var j = 0; j < allIface.length; j++) {
+			if(data.name == allIface[j]) {
+				gl.ifdx = j;
+				break;
+			}
+		}
+		gl.CLIKeyField = arg[0];
+
+		cmd = "exit&cmd=interface dial " + arg[0]+"&cmd=configure terminal&cmd=show interface summary all"; //  3. show interface all
+		gl.retbufno = 3;
+		gl.fstTime = 0;
+		txcli(cmd, "homedial.html", 4, "home.html", "home.html", "homedial.html");
+	}else{
+		cmd = "exit&cmd=interface disconnect " + arg[0]+"&cmd=configure terminal"; //  3. show interface all		
+		cmd = compose_CLI(cmd,Get_CLI("home", 1, ''));	
+		cmd = compose_CLI(cmd, 'show boot status');
+		cmd = compose_CLI(cmd, 'show extension-slot');
+		gl.retbufno = 3;
+		gl.fstTime = 1;
+		txcli(cmd, "home.html", 33, "home.html");
+	}
+}
+function display_extension_slot(){
+	var ec = document.getElementById('extension_slot');
+	var er = document.getElementById('extension_slot_entry');
+	/* only support USG100 and USG200 */
+//	if(gl.ModelType == 'ZyWALL USG 100' || gl.ModelType == 'ZyWALL USG 200' || gl.ModelType== 'ZyWALL USG 2000'){
+		ec.style.display = "";
+		er.style.display = "";
+/*	}else{
+		ec.style.display = "none";
+		er.style.display = "none";
+	}*/
+}
+
+function showPowerStatus() {
+	if(gl.ZLDSYSPARM_BUILD_REDUNDANT_POWER_MODULE == 1) {
+		var j = 0;
+		var color = "";
+		document.write('<table width="100%"  border="0" cellspacing="0" cellpadding="0">');
+		document.write('<tr class="ds_tab_bg1">');
+		document.write('<td width="3%" height="17">&nbsp;</td>');
+		document.write('<td width="36%">'+ gl.getLang("_Redundant_Power_Module", "_home")+'</td>');
+		document.write('<td>&nbsp;</td>');
+		document.write('</tr>');
+		for(var i = 1; i <= pw_module_info.length; i++) {
+			j = i % 2;
+			if(j ==0)
+				color = "ds_tab_bg1";
+			else if(j == 1)
+				color = "ds_tab_bg2";
+			document.write('<tr class="'+ color +'">');
+			document.write('<td width="3%" height="17">&nbsp;</td>');
+			document.write('<td width="36%">&nbsp;&nbsp;-'+ gl.getLang("_Power_Module", "_home") +' '+ i +':</td>');
+			document.write('<td> '+ pw_module_info[i-1][0] +'</td>');
+			document.write('</tr>');
+		}
+	}
+}
+
+function Show_Extension_Slot(){
+	for(var j = 0; j < ExtensionSlotPtr.dataCount(); j++){
+		if((j%2)==0){
+			var color = 'tabcolor2';//even
+		}else{
+			var color = 'tabcolor1';//odd
+		}
+		/* only support USG100 and USG200 */
+		document.write('<tr align="center">');
+		document.write('<td width="29%" class = "'+color+'" align="left">'+ExtensionSlotPtr.getRecord(j).mb1+'<\/td>');
+		document.write('<td width="47%" class = "'+color+'" align="left">'+ExtensionSlotPtr.getRecord(j).mb2+'<\/td>');
+		document.write('<td width="20%" class = "'+color+'" align="left">');
+		if(ExtensionSlotPtr.getRecord(j).mb3 != 'none'){
+			var solt_name = "";
+			solt_name = ExtensionSlotPtr.getRecord(j).mb1;
+			document.write('<p align="center">');
+			if(ExtensionSlotPtr.getRecord(j).mb1.substring(0, 3) == "SEM") {
+				document.write('<a href="javaScript:openSEMDetail(\''+solt_name+'\');" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage(\'Image8\',\'\',\'images/i_link_on.gif\',1)">');
+			} else {
+				document.write('<a href="javaScript:openCellularDetail(\''+solt_name+'\');" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage(\'Image8\',\'\',\'images/i_link_on.gif\',1)">');
+			}
+			document.write('<img src="images/i_link.gif" alt="Detail" name="Image8" width="14" height="15" border="0" align="absmiddle" id="Image8" title="Detail">');
+			document.write('<\/a>');
+		}else{
+			document.write('&nbsp;');
+		}
+		document.write('<\/td>');
+		document.write('<\/tr>');
+	}
+}
+function showIface(){
+	var class_str;
+	if(theDataPtr != null){
+		var dcnt = theDataPtr.dataCount();		
+		for ( var i = 0 ; i < dcnt ; i++) {				
+			var data = theDataPtr.getRecord(i);
+			if((i%2)==0){
+				 class_str='tabcolor2';//even
+			}else{
+				 class_str='tabcolor1';//odd
+			}			
+			document.write('<tr class="'+class_str+'" align="center" id="iface'+i+'">');
+			document.write('<td>' + getIfName(i, data) +'<\/td>');
+			if(getIfstatus(i, data) == 'No device' || 
+			getIfstatus(i, data) == 'Device error' ||
+			getIfstatus(i, data) == 'Probe device fail' || 
+			getIfstatus(i, data) == 'Init device fail' || 
+			getIfstatus(i, data) == 'Check lock fail' || 
+			getIfstatus(i, data) == 'Device locked' ||
+			getIfstatus(i, data) == 'SIM error' ||
+			getIfstatus(i, data) == 'SIM locked-PUK' || 
+			getIfstatus(i, data) == 'SIM locked-PIN' || 
+			getIfstatus(i, data) == 'Unlock PUK fail' || 
+			getIfstatus(i, data) == 'Unlock PIN fail' ||
+			getIfstatus(i, data) == 'Unlock device fail' ||
+			getIfstatus(i, data) == 'Get dev-info fail' ||
+			getIfstatus(i, data) == 'Get signal fail' || 
+			getIfstatus(i, data) == 'Incorrect device' || 
+			getIfstatus(i, data) == 'Set band fail' || 
+			getIfstatus(i, data) == 'Set profile fail' ||
+			getIfstatus(i, data) == 'PPP fail' ||
+			getIfstatus(i, data) == 'ERR'){
+				document.write('<td><font color="#ff0000">' + getIfstatus(i, data) +'</font><\/td>');
+			}else{
+				document.write('<td>' + getIfstatus(i, data) +'<\/td>');
+			}
+			document.write('<td>' + getHA(i, data) +'<\/td>');
+			document.write('<td>' + getZone(i, data) +'<\/td>');
+			document.write('<td>' + getIPMask(i, data) +'<\/td>');
+			document.write('<td>' + getRnDial(i, data) +'<\/td>');
+			document.write('<\/tr>');
+		}
+	}
+}
+
+function show_percentage_bar(result, category){
+	var res= parseInt(result.slice(0, -1));
+	if(res == 100)
+		document.write('<td width="'+ result +'" background="images/percent_bar_r.gif"></td><td background="images/percent_bar_r.gif">&nbsp;</td>');
+	else if(res > 95 && res < 100)
+		document.write('<td width="'+ result +'" background="images/percent_bar_r.gif"></td><td>&nbsp;</td>');
+	else if(res >= 80 && res <= 95)
+		document.write('<td width="'+ result +'" background="images/percent_bar_o.gif"></td><td>&nbsp;</td>');
+	else if(res >0 && res < 80)
+		document.write('<td width="'+ result +'" background="images/percent_bar.gif"></td><td>&nbsp;</td>');
+	else if(res == 0)
+		document.write('<td>&nbsp;</td>');
+}
+function show_percentage_word(result){
+	document.write(result);
+}
+function show_disk_name(idx){
+	var data = theDiskPtr.getRecord(idx);
+	document.write('- '+data.mb1+" ("+data.mb2+'MB)');
+}
+function showLSRD(idx){	
+	var dataPtr = rxdata['result_'+(gl.retbufno+5)];	
+	switch(dataPtr[idx]._Status){
+		//case 'licensed': revise by fanny
+		case 'Licensed':
+			document.write(dataPtr[idx]._Status+' / '+dataPtr[idx]._Expiration);
+			break;
+		//case 'unlicensed': revise by fanny
+		case 'Not Licensed':
+			document.write('<a href="m_regist.html">'+dataPtr[idx]._Status+'</a> / '+dataPtr[idx]._Expiration);
+			break;
+		//case 'expire': revise by fanny
+		case 'Expired':
+			document.write('<a href="m_registmgn.html">'+dataPtr[idx]._Status+'</a> / '+dataPtr[idx]._Expiration);
+			break;
+	}
+}
+
+function showTop5() {
+	var ptr = top.frames[4]['result_'+(gl.retbufno+24)];
+	if(ptr.length != 0) {
+		var leng = ptr[0]._ranking.length; 
+	}else {
+		var leng = 0;
+	}
+	
+	var ptr2 = top.frames[4]['result_'+(gl.retbufno+25)];
+ 	if(ptr2.length != 0) {
+ 		var leng2 = ptr2[0]._ranking.length;
+	}else {
+		var leng2 = 0;
+	}
+	
+	var whoislonger = (leng >= leng2) ? leng : leng2;
+	var whoislonger2 = (whoislonger >= 5) ? 5 : whoislonger;
+	for ( var i = 0; i < whoislonger2 ; i++) {	
+		var k = i + 1;
+		if((i%2)==0){
+			var str='tabcolor2';//even
+		}else{
+			var str='tabcolor1';//odd
+		}
+			
+		document.write('<tr class="'+str+'" align="center">');
+		document.write('<td><strong>' + k +'<\/strong><\/td>');
+		document.write('<td>' + ((k <= leng) ? '<a href=https://mysecurity.zyxel.com/mysecurity/jsp/policy/policy_detail.jsp?TYPEID='+ ptr[0]._ranking[i]._signature_id +' target="Test">'+ptr[0]._ranking[i]._signature_name+'<\/a>' : "") +'<\/td>');
+	//	document.write('<td>' + ((k <= leng2) ? '<a href=https://ebetamysecurity.zyxel.com/mysecurity/jsp/threat/virus_detail.jsp?VIRUSID='+ptr2[0]._ranking[i]._virus_id+' target="Test">'+ptr2[0]._ranking[i]._virus_name+'<\/a>'  : "") +'<\/td>');
+		document.write('<td>' + ((k <= leng2) ? ptr2[0]._ranking[i]._virus_name : "") +'<\/td>');
+		document.write('<\/tr>');
+	}
+} 
+function modelSel(){
+	var str = rxdata['result_'+(gl.retbufno+1)][0]._model;
+	showLSRD(3);
+}
+function showBootStatus(){
+	switch(bootStCode){
+		case '0': case '1': case '3':
+			document.write("<p class='dispDate2'>");
+			document.write(gl.getLang('_'+bootStCode, '_bootstatus'));
+			document.write("</p>");
+			break;
+		case '2': case '4': case '5': case '255':
+			var str = '<font color="#ff0000">'+gl.getLang('_'+bootStCode, '_bootstatus')+'</font>'+
+				'&nbsp;&nbsp;(<a href="viewlogs.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage(\'Image4\',\'\',\'images/i_link_on.gif\',1)">'+
+				gl.getLang('_View_Log', '_bootstatus')+'</a>)';
+			document.write(str);
+			break;
+	}	
+	
+}
+function multi_lingual(wording, filename){	
+	//document.write( gl.getLang(wording, filename));
+}
+
+</script></head><body onunload="page_init(); " onload="getData();showFullPath('Status', 1);">
+<form name="theHome" method="post">
+<iframe id="homeframe" style="display: none;" src="dummy.html"></iframe>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td>&nbsp;</td>
+			<td colspan="2">
+
+				<table border="0" cellpadding="0" cellspacing="0" width="98%">
+					<tbody><tr>
+						<td align="right" height="30"><script>multi_lingual("_Refresh_Interval", "_home")</script>Refresh Interval:
+							<select id="RL" name="reload" onchange="reloadSec(this.selectedIndex)">
+								<option value="0">None</option>
+								<option value="1">5 seconds</option>
+								<option value="2">10 seconds</option>
+
+								<option value="3">15 seconds</option>
+								<option value="4">20 seconds</option>
+								<option value="5">25 seconds</option>
+								<option value="6">30 seconds</option>
+							</select>&nbsp;&nbsp;&nbsp;
+							<input name="Refresh_Now" value="Refresh Now" onclick="window.location.href = 'home.html';" type="button">&nbsp;&nbsp;
+						</td>
+
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td valign="top">
+				<table border="0" cellpadding="0" cellspacing="0" width="97%">
+					<tbody><tr>
+
+						<td width="11"><img src="images/tab_d1.gif" height="22" width="11"></td>
+						<td class="sub" background="images/tab_d2.gif" nowrap="nowrap"><script>multi_lingual("_Device_Information", "_home")</script>Device Information</td>
+						<td width="11"><img src="images/tab_d3.gif" height="22" width="11"></td>
+					</tr>
+				</tbody></table>
+				<table border="0" cellpadding="2" cellspacing="0" width="97%">
+					<tbody><tr>
+						<td bgcolor="#ffffff">
+
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody><tr class="ds_tab_bg1">
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17" width="3%">&nbsp;</td>
+									<td width="40%"><script>multi_lingual("_System_Name", "_home")</script>System Name:</td>
+
+									<td>
+										<input readonly="readonly" name="HostName" value="" size="30" maxlength="30" class="dispDate1" type="text">
+										<a href="hostname.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image1','','images/i_link_on.gif',1)">
+											<img src="images/i_link.gif" alt="Help" name="Image1" id="Image1" title="update" align="absmiddle" border="0" height="15" width="14">
+										</a>
+									</td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td height="17">&nbsp;</td>
+
+									<td><script>multi_lingual("_Model_Name", "_home")</script>Model Name: </td>
+									<td><input readonly="readonly" name="modelID" value="" size="30" maxlength="30" class="dispDate2" type="text"></td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td><script>multi_lingual("_Serial_Number", "_home")</script>Serial Number: </td>
+									<td><input readonly="readonly" name="PrSN" value="" size="30" maxlength="30" class="dispDate1" type="text"></td>
+
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td height="17">&nbsp;</td>
+									<td><script>multi_lingual("_MAC_Address_Range", "_home")</script>MAC Address Range:</td>
+									<td><input readonly="readonly" name="macaddr" value="" size="30" maxlength="30" class="dispDate2" type="text"></td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+
+									<td><script>multi_lingual("_Firmware_Version", "_home")</script>Firmware Version: </td>
+									<td>
+										<input readonly="readonly" name="fwVer" value="" size="30" maxlength="30" class="dispDate1" type="text">
+										<a href="fwfile.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image2','','images/i_link_on.gif',1)">
+											<img src="images/i_link.gif" alt="Help" name="Image2" id="Image2" title="update" align="absmiddle" border="0" height="15" width="14">
+										</a>
+									</td>
+								</tr>
+
+								<tr class="ds_tab_bg2">
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table><br>
+
+				<table border="0" cellpadding="0" cellspacing="0" width="97%">
+					<tbody><tr>
+						<td width="11"><img src="images/tab_d1.gif" height="22" width="11"></td>
+						<td class="sub" background="images/tab_d2.gif" nowrap="nowrap"><script>multi_lingual("_System_Resources", "_home")</script>System Resources</td>
+						<td width="11"><img src="images/tab_d3.gif" height="22" width="11"></td>
+					</tr>
+				</tbody></table>
+				<table border="0" cellpadding="2" cellspacing="0" width="97%">
+
+					<tbody><tr>
+						<td bgcolor="#ffffff">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody><tr class="ds_tab_bg1">
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td colspan="2">&nbsp;</td>
+
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17" width="3%">&nbsp;</td>
+									<td width="35%"><script>multi_lingual("_CPU_Usage", "_home")</script>CPU Usage:</td>
+									<td class="ds_text" width="45%">
+										<table border="0" cellpadding="1" cellspacing="0" width="100%">
+											<tbody><tr>
+												<td bgcolor="#000000">
+
+													<table border="0" cellpadding="0" cellspacing="0" width="100%">
+														<tbody><tr>
+															<td background="images/percent_bg.gif">
+																<table border="0" cellpadding="0" cellspacing="0" width="100%">
+																	<tbody><tr>
+																		<script></script><td background="images/percent_bar.gif" width="5%"></td><td>&nbsp;</td>
+																	</tr>
+																</tbody></table>
+
+															</td>
+														</tr>
+													</tbody></table>
+												</td>
+											</tr>
+										</tbody></table>
+									</td>
+									<td class="ds_text" align="left">&nbsp;
+										<script></script>5 %
+									</td>
+
+                                    <td colspan="2" align="right">
+                                      <a href="javaScript:  openCpuGraphic();" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image9','','images/i_usage_on.gif',1)">
+                                        <img src="images/i_usage.gif" alt="Graphics" name="Image9" id="Image9" title="CPU Usage" align="absmiddle" border="0" height="15" width="15">
+                                       </a>
+                                    </td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td height="17">&nbsp;</td>
+									<td><script>multi_lingual("_Memory_Usage", "_home")</script>Memory Usage:</td>
+
+									<td class="ds_text">
+										<table border="0" cellpadding="1" cellspacing="0" width="100%">
+											<tbody><tr>
+												<td bgcolor="#000000">
+													<table border="0" cellpadding="0" cellspacing="0" width="100%">
+														<tbody><tr>
+															<td background="images/percent_bg.gif">
+																<table border="0" cellpadding="0" cellspacing="0" width="100%">
+																	<tbody><tr>
+
+																		<script></script><td background="images/percent_bar.gif" width="53%"></td><td>&nbsp;</td>
+																	</tr>
+																</tbody></table>
+															</td>
+														</tr>
+													</tbody></table>
+												</td>
+											</tr>
+
+										</tbody></table>
+									</td>
+									<td class="ds_text" align="left">&nbsp;
+										<script></script>53%
+									</td>
+                                    <td colspan="2" align="right">
+                                      <a href="javaScript:  openMemoryGraphic();" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image10','','images/i_usage_on.gif',1)">
+                                        <img src="images/i_usage.gif" alt="Graphics" name="Image10" id="Image10" title="Memory Usage" align="absmiddle" border="0" height="15" width="15">
+                                       </a>
+
+                                    </td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td><script>multi_lingual("_Flash_Usage", "_home")</script>Flash Usage:</td>
+									<td class="ds_text">
+										<table border="0" cellpadding="1" cellspacing="0" width="100%">
+											<tbody><tr>
+
+												<td bgcolor="#000000">
+													<table border="0" cellpadding="0" cellspacing="0" width="100%">
+														<tbody><tr>
+															<td background="images/percent_bg.gif">
+																<table border="0" cellpadding="0" cellspacing="0" width="100%">
+																	<tbody><tr>
+																		<script></script><td background="images/percent_bar.gif" width="22%"></td><td>&nbsp;</td>
+																	</tr>
+
+																</tbody></table>
+															</td>
+														</tr>
+													</tbody></table>
+												</td>
+											</tr>
+										</tbody></table>
+									</td>
+									<td class="ds_text" align="left">&nbsp;
+
+										<script></script>22%
+									</td>
+									<td colspan="2" class="ds_text">&nbsp;</td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td height="17">&nbsp;</td>
+									<td><script>multi_lingual("_Active_Sessions", "_home")</script>Active Sessions:</td>
+									<td class="ds_text">
+
+										<table border="0" cellpadding="1" cellspacing="0" width="100%">
+											<tbody><tr>
+												<td bgcolor="#000000">
+													<table border="0" cellpadding="0" cellspacing="0" width="100%">
+														<tbody><tr>
+															<td background="images/percent_bg.gif">
+																<table border="0" cellpadding="0" cellspacing="0" width="100%">
+																	<tbody><tr>
+																		<!-- FIXME -->
+
+																		<script></script><td>&nbsp;</td>
+																	</tr>
+																</tbody></table>
+															</td>
+														</tr>
+													</tbody></table>
+												</td>
+											</tr>
+
+										</tbody></table>
+									</td>
+									<td class="ds_text" align="left">&nbsp;
+										<!-- FIXME -->
+										<script></script>3/40000
+									</td>
+                                    <td colspan="2" align="right">
+                                      <a href="javaScript:  openSessionGraphic();" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image11','','images/i_usage_on.gif',1)">
+                                        <img src="images/i_usage.gif" alt="Graphics" name="Image11" id="Image11" title="Session Usage" align="absmiddle" border="0" height="15" width="15">
+
+                                       </a>
+                                    </td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td class="ds_tab_bg1" height="17">&nbsp;</td>
+									<td class="ds_tab_bg1">&nbsp;</td>
+									<td colspan="2" class="ds_tab_bg1">&nbsp;</td>
+									<td class="ds_tab_bg1">&nbsp;</td>
+									<td colspan="2" class="ds_tab_bg1">&nbsp;</td>
+
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table><br>
+				<table border="0" cellpadding="0" cellspacing="0" width="97%">
+					<tbody><tr>
+						<td width="11"><img src="images/tab_d1.gif" height="22" width="11"></td>
+						<td class="sub" background="images/tab_d2.gif" nowrap="nowrap"><script>multi_lingual("_Interface_Status_Summary", "_home")</script>Interface Status Summary</td>
+
+						<td class="sub" align="right" background="images/tab_d2.gif" nowrap="nowrap" width="20">
+							<!-- FIXME -->
+							<a href="ifacesummary.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','images/i_link_on.gif',1)">
+								<img src="images/i_link.gif" alt="Detail" title="Detail" name="Image3" border="0" height="15" width="14">
+							</a>
+						</td>
+						<td width="11"><img src="images/tab_d3.gif" height="22" width="11"></td>
+					</tr>
+				</tbody></table>
+
+				<table border="0" cellpadding="2" cellspacing="0" width="97%">
+					<tbody><tr>
+						<td bgcolor="#ffffff">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody><tr class="ds_tab_bg1">
+									<td width="3%">&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+
+									<td height="17">&nbsp;</td>
+									<td>
+										<table border="0" cellpadding="0" cellspacing="0" width="97%">
+											<tbody><tr>
+												<td bgcolor="#ffffff">
+													<table border="0" cellpadding="1" cellspacing="2" width="100%">
+														<tbody><tr align="center">
+															<td class="tableTitle" height="23" width="10%"><script>multi_lingual("_Name", "_home")</script>Name</td>
+
+															<td class="tableTitle" width="20%"><script>multi_lingual("_Status", "_home")</script>Status</td>
+															<td class="tableTitle" width="20%"><script>multi_lingual("_HA_Status", "_home")</script>HA Status</td>
+															<td class="tableTitle" width="20%"><script>multi_lingual("_Zone", "_home")</script>Zone</td>
+															<td class="tableTitle" width="20%"><script>multi_lingual("_IP_Address", "_home")</script>IP Address</td>
+															<td class="tableTitle" width="10%"><script>multi_lingual("_Action", "_home")</script>Action</td>
+
+														</tr>
+														<script> </script><tr class="tabcolor2" id="iface0" align="center"><td>wan1</td><td>100M/Full</td><td>n/a</td><td>WAN</td><td>172.25.21.64</td><td><input name="Renew" onclick="" value="Renew" type="button"></td></tr><tr class="tabcolor1" id="iface1" align="center"><td>wan2</td><td>Down</td><td>n/a</td><td>WAN</td><td>0.0.0.0</td><td><input name="Renew" onclick="" value="Renew" type="button"></td></tr><tr class="tabcolor2" id="iface2" align="center"><td>opt</td><td>Down</td><td>n/a</td><td>OPT</td><td>0.0.0.0</td><td>n/a</td></tr><tr class="tabcolor1" id="iface3" align="center"><td>lan1</td><td>Up</td><td>n/a</td><td>LAN1</td><td>192.168.1.1</td><td>n/a</td></tr><tr class="tabcolor2" id="iface4" align="center"><td>ext-wlan</td><td>Down</td><td>n/a</td><td>WLAN</td><td>192.168.3.1</td><td>n/a</td></tr><tr class="tabcolor1" id="iface5" align="center"><td>dmz</td><td>Down</td><td>n/a</td><td>DMZ</td><td>192.168.2.1</td><td>n/a</td></tr><tr class="tabcolor2" id="iface6" align="center"><td>aux</td><td>Inactive</td><td>n/a</td><td>WAN</td><td>0.0.0.0</td><td>n/a</td></tr>
+
+													</tbody></table>
+												</td>
+											</tr>
+										</tbody></table>
+									</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;</td>
+
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table><br>
+				<table id="extension_slot" style="" border="0" cellpadding="0" cellspacing="0" width="97%">
+					<tbody><tr>
+						<td width="11"><img src="images/tab_d1.gif" height="22" width="11"></td>
+						<td class="sub" background="images/tab_d2.gif" nowrap="nowrap"><script>multi_lingual("_Extension_Slot", "_home")</script>Extension Slot</td>
+
+						<td width="11"><img src="images/tab_d3.gif" height="22" width="11"></td>
+					</tr>
+				</tbody></table>
+				<table id="extension_slot_entry" style="" border="0" cellpadding="2" cellspacing="0" width="97%">
+					<tbody><tr>
+						<td bgcolor="#ffffff">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody><tr class="ds_tab_bg1">
+									<td width="3%">&nbsp;</td>
+
+									<td>&nbsp;</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td>
+										<table border="0" cellpadding="0" cellspacing="0" width="97%">
+											<tbody><tr>
+												<td bgcolor="#ffffff">
+													<table border="0" cellpadding="1" cellspacing="2" width="100%">
+
+														<tbody><tr align="center">
+															<td class="tableTitle" width="29%"><script>multi_lingual("_Exten_Slot", "_home")</script>Slot</td>
+															<td class="tableTitle" width="47%"><script>multi_lingual("_Exten_Device", "_home")</script>Device</td>
+															<td class="tableTitle" width="20%"><script>multi_lingual("_Exten_Status", "_home")</script>Status</td>
+														</tr>
+														<script></script><tr align="center"><td class="tabcolor2" align="left" width="29%">PC Card</td><td class="tabcolor2" align="left" width="47%">none</td><td class="tabcolor2" align="left" width="20%">&nbsp;</td></tr><tr align="center"><td class="tabcolor1" align="left" width="29%">USB 1</td><td class="tabcolor1" align="left" width="47%">none</td><td class="tabcolor1" align="left" width="20%">&nbsp;</td></tr><tr align="center"><td class="tabcolor2" align="left" width="29%">USB 2</td><td class="tabcolor2" align="left" width="47%">none</td><td class="tabcolor2" align="left" width="20%">&nbsp;</td></tr>
+
+													</tbody></table>
+												</td>
+											</tr>
+										</tbody></table>
+									</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;</td>
+
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table>
+				<script>display_extension_slot()</script>
+			</td>
+			<td valign="top">
+
+				<table border="0" cellpadding="0" cellspacing="0" width="97%">
+					<tbody><tr>
+						<td width="11"><img src="images/tab_d1.gif" height="22" width="11"></td>
+						<td class="sub" background="images/tab_d2.gif" nowrap="nowrap"><script>multi_lingual("_System_Status", "_home")</script>System Status</td>
+						<td width="11"><img src="images/tab_d3.gif" height="22" width="11"></td>
+					</tr>
+				</tbody></table>
+				<table border="0" cellpadding="2" cellspacing="0" width="97%">
+
+					<tbody><tr>
+						<td bgcolor="#ffffff">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody><tr class="ds_tab_bg1">
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+
+									<td height="17" width="3%">&nbsp;</td>
+									<td width="35%"><script>multi_lingual("_System_Uptime", "_home")</script>System Uptime:</td>
+									<td><input readonly="readonly" name="sysUptime" value="" size="30" maxlength="30" class="dispDate1" type="text"></td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td>&nbsp;</td>
+									<td><script>multi_lingual("_Current_Date_Time", "_home")</script>Current Date/Time:</td>
+
+									<td><input readonly="readonly" name="h_year" value="" size="30" maxlength="30" class="dispDate2" type="text"></td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17" width="3%">&nbsp;</td>
+									<td width="25%"><script>multi_lingual("_VPN_Status", "_home")</script>VPN Status:</td>
+									<td>
+										<a href="javaScript:openVPN();" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','images/i_pop_on.gif',1)">
+											<img src="images/i_pop.gif" alt="Detail" name="Image5" id="Image5" title="Detail" align="absmiddle" border="0" height="15" width="14">
+
+										</a>
+									</td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td>&nbsp;</td>
+									<td><script>multi_lingual("_DHCP_Table", "_home")</script>DHCP Table:</td>
+									<td>
+										<a href="javaScript:openDHCP();" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image6','','images/i_pop_on.gif',1)">
+
+											<img src="images/i_pop.gif" alt="Detail" name="Image6" id="Image6" title="Detail" align="absmiddle" border="0" height="15" width="14">
+										</a>
+									</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td>&nbsp;</td>
+									<td><script>multi_lingual("_Statistics", "_home")</script>Port Statistics:</td>
+									<td>
+
+										<a href="javaScript:openStatistic();" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image7','','images/i_pop_on.gif',1)">
+											<img src="images/i_pop.gif" alt="Detail" name="Image7" id="Image7" title="Detail" align="absmiddle" border="0" height="15" width="14">
+										</a>
+									</td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td>&nbsp;</td>
+									<td><script>multi_lingual("_Current_Login_User", "_home")</script>Current Login User:</td>
+
+									<td>
+										<input readonly="readonly" name="curU" value="" size="30" maxlength="30" class="dispDate2" type="text">
+									</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td>&nbsp;</td>
+									<!-- FIXME:current login list --> 
+									<td><script>multi_lingual("_Number_of_Login_Users", "_home")</script>Number of Login Users:</td>
+
+									<td>
+										<input readonly="readonly" name="NumUsers" value="" size="4" maxlength="4" class="dispDate1" type="text">
+										<a href="javaScript:openUsrList();" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','images/i_pop_on.gif',1)">
+											<img src="images/i_pop.gif" alt="Detail" name="Image4" id="Image4" title="Detail" align="absmiddle" border="0" height="15" width="14">
+										</a>
+									</td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td>&nbsp;</td>
+
+									<td><script>multi_lingual("_Boot_Status", "_home")</script>Boot Status:</td>
+									<td>
+										<script></script><p class="dispDate2">OK</p>
+									</td>
+								</tr>
+								<script></script>
+
+								<tr class="ds_tab_bg1">
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table><br>
+
+				<table border="0" cellpadding="0" cellspacing="0" width="97%">
+					<tbody><tr>
+						<td width="11"><img src="images/tab_d1.gif" height="22" width="11"></td>
+						<td class="sub" background="images/tab_d2.gif" nowrap="nowrap"><script>multi_lingual("_Licensed_Service_Status", "_home")</script>Licensed Service Status</td>
+						<td width="11"><img src="images/tab_d3.gif" height="22" width="11"></td>
+					</tr>
+				</tbody></table>
+				<table border="0" cellpadding="2" cellspacing="0" width="97%">
+
+					<tbody><tr>
+						<td bgcolor="#ffffff">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody><tr class="ds_tab_bg1">
+									<td>&nbsp;</td>
+									<td>&nbsp;</td> 
+									<td>&nbsp;</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+
+									<td height="17" width="3%">&nbsp;</td>
+									<td width="53%"><script>multi_lingual("_IDP", "_home")</script>IDP</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;&nbsp;- <script>multi_lingual("_License_Status_Remaining_days", "_home")</script>License Status/Remaining days:</td>
+
+									<td class="dispDate2"><script>//showLSRD(0)</script>Licensed / 30</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;&nbsp;- <script>multi_lingual("_Signature_Version", "_home")</script>Signature Version:</td>
+
+									<td><input readonly="readonly" name="idpver" value="" size="27" maxlength="30" class="dispDate1" type="text"></td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;&nbsp;- <script>multi_lingual("_Last_Update_Time", "_home")</script>Last Update Time:</td>
+									<td><input readonly="readonly" name="idpLUT" value="" size="25" maxlength="25" class="dispDate2" type="text"></td>
+								</tr>
+
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;&nbsp;- <script>multi_lingual("_Total_Signature_Number", "_home")</script>Total Signature Number:</td>
+									<td><input readonly="readonly" name="idpNumber" value="" size="25" maxlength="25" class="dispDate1" type="text"></td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td height="17" width="3%">&nbsp;</td>
+
+									<td width="53%"><script>multi_lingual("_Anti_Virus", "_home")</script>Anti-Virus</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;&nbsp;- <script>multi_lingual("_License_Status_Remaining_days", "_home")</script>License Status/Remaining days:</td>
+
+									<td class="dispDate1"><script></script><a href="regist.html">Not Licensed</a> / 0</td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;&nbsp;- <script>multi_lingual("_Signature_Version", "_home")</script>Signature Version:</td>
+
+									<td><input readonly="readonly" name="avVer" value="" size="27" maxlength="30" class="dispDate2" type="text"></td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;&nbsp;- <script>multi_lingual("_Last_Update_Time", "_home")</script>Last Update Time:</td>
+									<td><input readonly="readonly" name="avLUT" value="" size="25" maxlength="25" class="dispDate1" type="text"></td>
+								</tr>
+
+								<tr class="ds_tab_bg2">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;&nbsp;- <script>multi_lingual("_Total_Signature_Number", "_home")</script>Total Signature Number:</td>
+									<td><input readonly="readonly" name="avNumber" value="" size="25" maxlength="25" class="dispDate2" type="text"></td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+
+									<td><script>multi_lingual("_Content_Filter", "_home")</script> Content Filter</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr class="ds_tab_bg2">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;&nbsp;- <script>multi_lingual("_License_Status_Remaining_days", "_home")</script>License Status/Remaining days: </td>
+
+									<td class="dispDate2"> 
+										<!--FIXME : ZyWALL USG 300 showLSRD(4)-->
+										<script></script><a href="regist.html">Not Licensed</a> / 0
+									</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;</td>
+
+									<td>&nbsp;</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table><br>
+				<table border="0" cellpadding="0" cellspacing="0" width="97%">
+					<tbody><tr>
+						<td width="11"><img src="images/tab_d1.gif" height="22" width="11"></td>
+
+						<td class="sub" background="images/tab_d2.gif" nowrap="nowrap"><script>multi_lingual("_Top5", "_home")</script>Top 5 Intrusion &amp; Virus Detection</td>
+						<td width="11"><img src="images/tab_d3.gif" height="22" width="11"></td>
+					</tr>
+				</tbody></table>
+				<table border="0" cellpadding="2" cellspacing="0" width="97%">
+					<tbody><tr>
+						<td bgcolor="#ffffff">
+
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody><tr class="ds_tab_bg1">
+									<td width="3%">&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td>
+										<table border="0" cellpadding="0" cellspacing="0" width="97%">
+
+											<tbody><tr>
+												<td bgcolor="#ffffff">
+													<table border="0" cellpadding="1" cellspacing="2" width="100%">
+														<tbody><tr align="center">
+															<td class="tableTitle" width="14%"><script>multi_lingual("_Rank", "_home")</script>Rank</td>
+															<td class="tableTitle" width="43%"><script>multi_lingual("_Intrusion_Detected", "_home")</script>Intrusion Detected</td>
+															<td class="tableTitle" width="43%"><script>multi_lingual("_Virus_Detected", "_home")</script>Virus Detected</td>
+
+														</tr>
+														<script></script>
+													</tbody></table>
+												</td>
+											</tr>
+										</tbody></table>
+									</td>
+								</tr>
+
+								<tr class="ds_tab_bg1">
+									<td height="17">&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+
+		</tr>
+	</tbody></table>
+		<script language="JavaScript">
+	</script>
+
+</form>
+<div id="overDiv" style="position: absolute; visibility: hidden; z-index: 1;"></div>
+</body></html>

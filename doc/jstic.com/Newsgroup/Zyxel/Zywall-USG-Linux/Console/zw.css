@@ -1,0 +1,547 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+	margin: 0px;
+}
+
+td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+select {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+}
+input {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+}
+a:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #0000FF;
+	text-decoration: underline;
+}
+a:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #0000FF;
+	text-decoration: underline;
+}
+a:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #990000;
+	text-decoration: none;
+}
+
+/*** Define Config Item  ***/
+.cTitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #5C6682;
+	background-color: #D7E0DF;
+}
+
+/*** Define Fullpath  ***/
+.path {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+/*** Begin Status Table Style ***/
+.ds_tab_bg1 {
+	background-color: #F5F9FE;
+}
+.ds_tab_bg2 {
+	background-color: #DFE7F2;
+}
+.ds_text {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #260897;
+}
+/*** End Status Table Style ***/
+
+/*** Define Note Wording  ***/
+.note {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+}
+
+/*** Define Caution and Error  wording  ***/
+.caution {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #990000;
+}
+
+/*** Define Max. wording  ***/
+.max {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
+
+/***  Begin Config Table List Style  ***/
+.tableTitle{
+	font-weight: bold;
+	font-size: 11px;
+	color:#FFFFFF;
+	background-image: url(images/tabtitle_bg.gif);
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	height: 23px;
+}
+a.Tlink:link {
+	font-weight: bold;
+	font-size: 11px;
+	color:#FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+}
+a.Tlink:visited {
+	font-weight: bold;
+	font-size: 11px;
+	color:#FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+}
+a.Tlink:hover {
+	font-weight: bold;
+	font-size: 11px;
+	color:#FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+.tabcolor1{
+	background-color: #FFFFFF; 
+}
+.tabcolor2{
+	background-color: #EEF3F7; 
+}
+.tabcolor3{
+	color: #CCCCCC; 
+}
+.tabcolor4{
+	color: #000000; 
+}
+/***  End Config Table List Style  ***/
+
+
+/***  Begin rpPanel Mouse Roll&Over Status  ***/
+.panel {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #00FFFF;
+	text-decoration: none;
+}
+a.panel:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #00FFFF;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+a.panel:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #33FFFF;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+a.panel:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #0244E4;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+a.panel:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #0244E4;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.sub1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a.sub1:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a.sub1:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.sub2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a.sub2:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a.sub2:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a.sub2:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #C2EEE6;
+	text-decoration: none;
+	background-color: #4A5798;
+}
+/***  End rpPanel Mouse Roll&Over Status  ***/
+
+/*** Begin Config Tab Mouse Roll&Over Status  ***/
+.sub {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+a.sub:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #A3A3A3;
+	text-decoration: none;
+}
+a.sub:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #A3A3A3;
+	text-decoration: none;
+}
+a.sub:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #333333;
+	text-decoration: none;
+}
+/***  End Config Tab Mouse Roll&Over Status ***/
+
+/***  Begin Sitemap CSS ***/
+.smt {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #000759;
+}
+a.smt:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000759;
+	font-weight: bold;
+	text-decoration: underline;
+}
+a.smt:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000759;
+	font-weight: bold;
+	text-decoration: underline;
+}
+a.smt:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #0000FF;
+	font-weight: bold;
+	text-decoration: none;
+}
+.sms1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #996600;
+}
+a.sms1:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #996600;
+	text-decoration: underline;
+}
+a.sms1:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #996600;
+	text-decoration: underline;
+}
+a.sms1:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+}
+.sms2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #006699;
+	font-weight: bold;
+}
+a.sms2:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #006699;
+	text-decoration: underline;
+	font-weight: bold;
+}
+a.sms2:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #006699;
+	text-decoration: underline;
+	font-weight: bold;
+}
+a.sms2:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #996699;
+	text-decoration: none;
+}
+/***  End Sitemap CSS ***/
+
+/***  Begin Wizard CSS ***/
+.w_Title {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 17px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-transform: uppercase;
+}
+.b_Title {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 17px;
+	font-weight: bold;
+	color: #000000;
+}
+.wstep {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000759;
+}
+.wstepnone {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #7B8DB4;
+}
+.wname {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.w_item {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.w_group {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a.w_group:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #C2DFFC;
+	text-decoration: none;
+}
+a.w_group:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #C2DFFC;
+	text-decoration: none;
+}
+a.w_group:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #00CCFF;
+	text-decoration: none;
+}
+a.w_bItem:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #C9F7FE;
+	text-decoration: underline;
+	text-transform: uppercase;
+	line-height: 24px;
+}
+a.w_bItem:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #C9F7FE;
+	text-decoration: underline;
+	text-transform: uppercase;
+	line-height: 24px;
+}
+a.w_bItem:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+	text-transform: uppercase;
+	line-height: 24px;
+}
+/***  End Wizard CSS ***/
+
+.level {
+	color: #445377;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+/***  For Overview use, NAS ONLY ***/
+.overview {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #E7F0F6;
+}
+a.overview:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #E7F0F6;
+	text-decoration: none;
+}
+a.overview:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #E7F0F6;
+	text-decoration: none;
+}
+a.overview:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #0E539F;
+	text-decoration: none;
+}
+/***  For Overview use, NAS ONLY  ***/
+
+.ToolHit {
+	background-color: #C8EDFF;
+	border: 2px solid #6B7D86;
+}
+.popup {
+	border: 2px solid #5980B6;
+}
+.p_title {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #003366;
+	background-image: url(images/popup_head.gif);
+}
+.p_close{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #003366;
+	background-image: url(images/popup_head.gif);
+	cursor : pointer;
+}
+.treelink {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #666666;
+}
+a.treelink:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+}
+a.treelink:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+}
+a.treelink:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+.adv {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #5C706D;
+	text-decoration: none;
+	cursor : pointer;
+}
+
+.more{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #414141;
+	text-decoration: none;
+	cursor : pointer;
+}

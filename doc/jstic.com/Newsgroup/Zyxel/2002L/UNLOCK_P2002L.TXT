@@ -1,0 +1,82 @@
+
+ATMP > pour savoir memoire (dump boot : ATDO bfc00000,4000)
+
+------------------------
+
+
+Nun wird das Zyxel eingeschaltet. Wir verfolgen den Boot-Prozess und unterbrechen ihn an folgender Stelle durch drücken einer beliebigen Taste:
+
+Press any key to enter debug mode within 3 seconds.
+.......................
+
+es erscheint danach:
+
+Enter Debug Mode
+
+ATHE zeigt eine Liste der zur Zeit verfügbaren Befehle an
+
+ATSH zeigt uns die System-Infos an. Hiervon sollten wir uns am besten einen Screen-Shot sichern.
+
+Momentan befinden wir uns noch im einfachen Debug-Mode und haben mit 9600 Baud eine ziemlich krötige Übertragungsgeschwindigkeit. Das ändern wir erst einmal:
+
+ATBA5 setzt die Übertragungsgeschwindigkeit am Gerät auf maximale 115000 Baud. Terminal-Programm trennen, auch auf 115000 einstellen und wieder verbinden. Zur Kontrolle einfach nochmal ATHE eingeben, um zu sehen das alles o.k. ist.
+
+ATSE zeigt uns das verschlüsselte Passwort für den erweiterten Debug-Mode (welches bei jedem Start neu generiert wird). Den Wert exakt kopieren und durch den o.g. Decoder laufen lassen. Das Ergebnis wiederum kopieren -> wir benötigen es gleich!
+
+http://www.telefonica.net/web2/cooltony/zyxel/zyxel.htm#zynpass
+
+Last Digit Password
+...0 or ...8 10F0A563
+...1 or ...9 887852B1
+...2 or ...A C43C2958
+...3 or ...B 621E14AC
+...4 or ...C 310F0A56
+...5 or ...D 1887852B
+...6 or ...E 8C43C295
+...7 or ... F C621E14A
+
+ATEN1,xxxxxxxx setzt das BootExtension Debug Flag auf 1. Wobei "xxxxxxxx" für das decodierte Passwort steht. Hier muss nach absenden des Befehls ein "OK" kommen, sonst stimmt das Passwort nicht.
+
+Nochmal ATHE. Die Liste der verfügbaren Befehle sollte jetzt wesentlich länger sein. Wir befinden uns im erweiterten Debug-Mode! Von jetzt an erkläre ich nicht mehr viel. Jeder der möchte, kann es später anhand der Hilfe (ATHE) nachvollziehen. Folgt den Anweisungen bitte EXAKT. Bei einem Abbruch könnt/müsst ihr die ganze Prozedur (von Anfang an) von Neuem beginnen. Aber keine Angst! So schnell kann man ein Zyxel-Gerät nicht "schrotten".
+
+ATCL -> clear working buffer
+OK
+
+ATCB -> copy from FLASH ROM to working buffer
+OK
+
+ATPNPrestige 2002L -> set product name to "Prestige 2002L" in working buffer
+OK
+
+ATFE1,02 -> set feature bit 1 to "02" in working buffer
+OK
+
+ATBT1 -> set block0 write enable
+OK
+
+ATSB -> save working buffer to FLASH ROM
+OK
+
+...das waren die wirklichen Veränderungen. Jetzt noch die komplette Firmware (original Zyxel) einspielen. Die Dateien brauchen dabei NICHT in rom-0 u.s.w. umbenannt werden.
+
+ATDC -> disable check model mechanism
+OK
+
+ATLC -> upload router configuration file to flash ROM
+Starting XMODEM upload (CRC mode)....
+CCCCC.....
+
+*.rom Datei aus der Zyxel Firmware auswählen und via "XMODEM" senden/übertragen.
+
+ATUR -> upload router firmware to flash ROM
+Starting XMODEM upload (CRC mode)....
+CCCCC.....
+
+*.bin Datei aus der Zyxel Firmware auswählen und via "XMODEM" senden/übertragen. Bei 115000 Baud dürfte das etwa 3min dauern.
+Nach der Übertragung der Firmware startet das Zyxel automatisch neu!
+
+Da die Übertragungsgeschwindigkeit standardmässig auf 9600 Baud eingestellt ist, müssen wir unser Terminalprogramm auch wieder entsprechend einstellen.
+
+Um die Default-Einstellungen zu laden, bitte ein RESET des Gerätes durchführen (RESET-Knopf an der Rückseite länger als 7s drücken).
+Bitte denkt daran, dass IP-Adresse und Passwort dabei auf die Standadwerte zurückgesetzt werden: 192.168.5.1; 1234.
+

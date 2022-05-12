@@ -1,0 +1,111 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+<script language="JavaScript">
+<!--
+
+
+
+function PPPoEChkIdleTime(form) 
+{
+	if ( form.AOL_wan_ConnectSel[0].checked )
+	{	
+		form.AOL_wan_IdleTime.disabled = true;
+	}
+	else
+	{
+		form.AOL_wan_IdleTime.disabled = false;
+	}
+ }
+
+function PPPoEAOLWordChk(Word)
+{
+	re = new RegExp("[^a-z0-9]");
+	if((re.test(Word)) || (Word.length < 6) ||(Word.length > 8))
+	{
+		alert("Bitte prüfen Sie Ihr Kennwort. AOL-Kennwörter müssen 6-8 Zeichen lang sein und dürfen nur aus den Zahlen 0-9 und den Buchstaben a-z bestehen. Wenn Sie AOL-Mitglied sind, ändern Sie bitte ihr Passwort");
+	}
+}
+
+function PPPoEAOLNameChk(Word)
+{
+	re = new RegExp("[^-A-Za-z0-9_@\\\\]");
+	if(re.test(Word))
+	{
+		alert("Bitte prüfen Sie Ihren AOL-Namen. AOL-Namen dürfen keine Leerzeichen enthalten. Wenn Sie AOL-Mitglied sind, ändern Sie bitte Ihren AOL-Namen.");
+	}
+}
+
+function PassWordChk()
+{
+	if(document.AOLphone.aol_RePassword.value != document.AOLphone.aol_Password.value)
+	{
+		alert("Bitte überprüfen Sie ihre Passwort-Eingabe. In beiden Eingabefeldern muss das gleiche Passwort eingeben werden.");
+		document.AOLphone.aol_Password.focus();
+		document.AOLphone.aol_RePassword.value = "";
+		document.AOLphone.aol_Password.value = "";
+	}
+}
+	    parent.infoframes.location.href="Geri_AOL_phone.html";
+	    top.title.h_Page="i_AOL_phone.html";
+// -->
+  </script>
+    </head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="AOL_WLAN.html" name="AOLphone"><table width="375" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="379">
+          <tr>
+            <td colspan="2" class="NaviText" >
+              <div><b>
+                Einrichtung AOL Internetzugang            </b></div></td></tr><tr>
+            <td colspan="4">
+              <hr class="hrColor">
+            </td></tr><tr>
+            <td width="147">&nbsp;
+                AOL Name            </td><td width="232">
+              <INPUT TYPE="TEXT" NAME="aol_name" SIZE="15" MAXLENGTH="20" VALUE="kaiblume" onBlur="PPPoEAOLNameChk(this.value)">              @de.aol.com </td></tr><tr>
+            <td width="147">&nbsp;
+                AOL Kennwort            </td><td width="232">
+              <INPUT TYPE="PASSWORD" NAME="aol_Password" SIZE="15" MAXLENGTH="20" VALUE="123456" onBlur="PPPoEAOLWordChk(this.value)">            </td></tr><tr>
+            <td width="147">&nbsp;
+                Kennwort wiederholen            </td><td width="232">
+              <INPUT TYPE="PASSWORD" NAME="aol_RePassword" SIZE="15" MAXLENGTH="20" VALUE="123456" onBlur="PPPoEAOLWordChk(this.value);PassWordChk()">            </td></tr><tr>
+            <td colspan="2" class="header2"><b>
+             &nbsp;
+           </td></tr><tr>
+            <td colspan="2" class="header2"><b>
+              Verbindung            </b></td></tr><tr>
+            <td colspan="2">
+                            <INPUT TYPE="RADIO" NAME="AOL_wan_ConnectSel" VALUE="Conn_Keep_Alive" onClick="PPPoEChkIdleTime(this.form);">              Dauerverbindung</td></tr><tr>
+            <td colspan="2">
+              <INPUT TYPE="RADIO" NAME="AOL_wan_ConnectSel" VALUE="Conn_on_Demand" CHECKED onClick="PPPoEChkIdleTime(this.form);">                            Verbindung trennen nach              <INPUT TYPE="TEXT" NAME="AOL_wan_IdleTime" SIZE="5" MAXLENGTH="5" VALUE="300">              Sekunden            </td></tr><tr>
+            <td width="147"> </td><td width="232"> </td></tr><tr>
+            <td>&nbsp; </td></tr><tr>
+            <td colspan="2" height="10">&nbsp;</td></tr><tr align=center valign=middle>
+            <td colspan="6" height="36">
+              <hr class="hrColor">
+            </td></tr><tr>
+            <td colspan="2">
+              <div align=center>
+                <INPUT TYPE="BUTTON" NAME="AOL_Phone_BackBtn" VALUE="Zur&uuml;ck" onClick="javascript:parent.location='FirstPage.html';">                <INPUT TYPE="SUBMIT" NAME="AOL_Phone_Save" VALUE="Weiter" onClick="PassWordChk()">&nbsp;&nbsp;&nbsp;</div></td></tr><tr>
+            <td colspan="6" height="10">&nbsp;</td></tr><tr>
+            <td colspan="6" height="10">&nbsp;</td></tr><tr>
+            <td colspan="6" height="10">&nbsp;</td></tr></table></td></tr></table></form>
+</body></html>

@@ -1,0 +1,192 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_LAN_DHCPSetup.html";
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+
+		function doModeChange( )
+		{
+			if(document.forms[0].DHCP_Mode.value == 0){
+				document.forms[0].sysPoolStartingAddr.disabled = false;
+				document.forms[0].sysPoolCount.disabled = false;
+				document.forms[0].remoteDHCPAddr.disabled = true;
+				//document.forms[0].DHCPPriDNSAddr.disabled = false;
+				//document.forms[0].DHCPSecDNSAddr.disabled = false;
+			}
+			if(document.forms[0].DHCP_Mode.value == 1){
+				document.forms[0].sysPoolStartingAddr.disabled = true;
+				document.forms[0].sysPoolCount.disabled = true;
+				document.forms[0].remoteDHCPAddr.disabled = true;
+				//document.forms[0].DHCPPriDNSAddr.disabled = false;
+				//document.forms[0].DHCPSecDNSAddr.disabled = false;
+			}
+			if(document.forms[0].DHCP_Mode.value == 2){
+				document.forms[0].sysPoolStartingAddr.disabled = true;
+				document.forms[0].sysPoolCount.disabled = true;
+				document.forms[0].remoteDHCPAddr.disabled = false;
+				//document.forms[0].DHCPPriDNSAddr.disabled = true;
+				//document.forms[0].DHCPSecDNSAddr.disabled = true;
+			}
+		}
+
+function doFirDNSType( form )
+{	var newIndex = form.LAN_FirstDNS.selectedIndex;
+	switch(newIndex)
+	{
+	case 0:
+	case 2:
+	case 3:
+		form.DHCPFirIDNSAddr.disabled = true;			
+		break;
+	case 1:
+		form.DHCPFirIDNSAddr.disabled = false;
+		break;
+	default:
+		break;
+	}    
+}
+function doSecDNSType( form )
+{	var newIndex = form.LAN_SecondDNS.selectedIndex;
+	switch(newIndex)
+	{
+	case 0:
+	case 2:
+	case 3:
+		form.DHCPSecIDNSAddr.disabled = true;			
+		break;
+	case 1:
+		form.DHCPSecIDNSAddr.disabled = false;
+		break;
+	default:
+		break;
+	}    
+}
+function doThirdDNSType( form )
+{	var newIndex = form.LAN_ThirdDNS.selectedIndex;
+	switch(newIndex)
+	{
+	case 0:
+	case 2:
+	case 3:
+		form.DHCPThirdIDNSAddr.disabled = true;			
+		break;
+	case 1:
+		form.DHCPThirdIDNSAddr.disabled = false;
+		break;
+	default:
+		break;
+	}    
+}
+-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/LAN_DHCPSetup_1" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="LAN_IP.html" target="main" class="sub"><b><FONT class=NaviText> 
+IP</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b> 
+DHCP Setup</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="LAN_ClientList.html" target="main" class="sub"><b><FONT class=NaviText> 
+Client List</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="LAN_IPAlias.html" target="main" class="sub"><b><FONT class=NaviText> 
+IP Alias</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp; </td><td class=cTitle><b> 
+DHCP Setup</b></td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr> 
+<td colspan="2"> 
+
+</td></tr><tr> 
+<td>DHCP</td><td><select name="DHCP_Mode" size="1" onchange="doModeChange()"><option value=00000000 selected>Server
+<option value=00000001>None
+<option value=00000002>Relay
+</select></td></tr><tr> 
+<td>IP Pool Starting Address</td><td><input type="text" name="sysPoolStartingAddr" size="15" maxlength="15" value="192.168.5.33" onblur="checkIPFormat(this)" /></td></tr><tr> 
+<td  width="38%"> 
+Pool Size</td><td><input type="text" name="sysPoolCount" size="3" maxlength="3" value="32" onkeypress="chk_num(event);" /></td></tr><tr> 
+<td  width="38%"> 
+Remote DHCP Server</td><td><input type="text" name="remoteDHCPAddr" size="15" maxlength="15" value="0.0.0.0" onblur="checkIPFormat(this)" /></td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td colspan="2">&nbsp;</td></tr><tr> 
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp; </td><td class=cTitle> 
+DNS Server</td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr> 
+<td colspan="4"> 
+DNS Servers Assigned by DHCP Server</td></tr><tr>
+<td colspan="4"></td></tr><tr> 
+<td  width="38%">&nbsp;&nbsp;&nbsp;
+First DNS Server</td><td width="72%" colspan="3"> 
+<select name="LAN_FirstDNS" size="1" onchange="doFirDNSType(this.form);  document.forms[0].target='main'; document.forms[0].submit();"><option value=00000000>Obtained From ISP
+<option value=00000001>UserDefined
+<option value=00000002 selected>DNS Relay
+<option value=00000003>None
+</select><input type="text" name="DHCPFirIDNSAddr" size="15" maxlength="15" value="192.168.5.1" onblur="checkIPFormat(this)" /></td></tr><tr> 
+<td  width="25%">&nbsp;&nbsp;&nbsp;
+Second DNS Server</td><td colspan="3"> 
+<select name="LAN_SecondDNS" size="1" onchange="doSecDNSType(this.form);  document.forms[0].target='main'; document.forms[0].submit();"><option value=00000000>Obtained From ISP
+<option value=00000001 selected>UserDefined
+<option value=00000002>DNS Relay
+<option value=00000003>None
+</select><input type="text" name="DHCPSecIDNSAddr" size="15" maxlength="15" value="194.25.2.129" onblur="checkIPFormat(this)" /></td></tr><tr> 
+<td  width="25%">&nbsp;&nbsp;&nbsp;
+Third DNS Server</td><td colspan="3"> 
+<select name="LAN_ThirdDNS" size="1" onchange="doThirdDNSType(this.form);  document.forms[0].target='main'; document.forms[0].submit();"><option value=00000000 selected>Obtained From ISP
+<option value=00000001>UserDefined
+<option value=00000002>DNS Relay
+<option value=00000003>None
+</select><input type="text" name="DHCPThirdIDNSAddr" size="15" maxlength="15" value="205.188.146.145" onblur="checkIPFormat(this)" /></td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">    
+<!--
+showFullPath('Network > LAN > DHCP Setup');
+doFirDNSType( document.forms[0] );
+doSecDNSType( document.forms[0] );
+doThirdDNSType( document.forms[0] );
+doModeChange(document.forms[0]);
+//-->
+</script>
+</html>

@@ -1,0 +1,1000 @@
+<html>
+<head>
+<title>panel.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="I18N.js"></script>
+<script>getLangFile()</script>
+<script>getLangFile('panel')</script>
+<link href="zw.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="tree.js"></script>
+<script type="text/javascript" src="javascript.js" ></script>
+<script type="text/javascript" src="javascriptm.js" ></script>
+<style type="text/css">
+<!--
+body{ 
+  overflow-x:hidden;
+}
+-->
+</style>
+<script language="JavaScript" >
+var port_num = 0;
+var port_reset = false;
+
+
+var zyshdcnt = 1;	 // 0=Not Retrieve; 1=Retrieve OK; -1=Retrieve Fail  // remark by bonnie
+var fstTime = 1;  // home page, Jerry
+var BufferObj = new objGlobalList();   // for global usage (buffer data field to compare)
+var BufferObj_2 = new objGlobalList(); // for second global usage (buffer data field to compare)
+var LimitObj = new objGlobalList(); // for Limit user account usage 
+var WarnObj = new objGlobalList(); //Warning message object
+var nowriteflag = false; // for zysh-cgi write flag, default is write=1.
+var ModelType = ""; //for distinguishing what model name is. i.e. ZyWALL 1050, ZyWALL USG 300..palapala
+var isLimitAdmin = false; /* for distinguishing current user type is limit-admin or not */
+/* language setting*/
+var LangObj = new objGlobalList();
+
+/** global Maximum limit **/
+var max_Of_firewall = 5000;
+/** global Maximum limit **/
+var old_as_zone = new Array();
+
+/* language version*/
+var languAge=0;
+var ConCty='';//english version
+var langchg=false;
+
+/*console */
+var _port = 443;
+
+/*
+if(navigator.appName == "Netscape") {
+	var CC = navigator.language.toLowerCase();  
+}else{
+	 var CC = navigator.browserLanguage.toLowerCase();    	
+}
+switch(CC){
+	case 'zh-tw':
+		languAge=1;
+		break;
+	case 'ja':
+		languAge=2;
+		break;
+}
+*/
+/* inline object */	
+var newstr = '----- Create Object -----';
+var rtnField = new Array();
+
+/* member select*/
+var LeftAry = new Array();
+var RightAry = new Array();
+
+/* static route */
+var newbay = new Array();
+
+/* ZyWALL USG 300 new function (pop up inline window)*/
+var NewBackHtml='';
+var bufavail = new Array();
+var bufmber = new Array();
+/* For zone */
+var	old_zone_iflist = new Array();
+var buffer = ""; // for "zone" buffer member;
+
+/* CLI split counter */
+var TempCLI;
+var CLISplitCnt=25;
+
+/* Pop up window */
+var dataIndex = 0;	// for ifram to get profile index
+var currentData = "";
+var incoming = 0; 	//interface , Tunnel and any mode
+
+/* IPSec VPN gateway */
+var Vname='';
+/* firewall */
+var fwFilter = false;
+/* Global Object */
+var globalList = new objGlobalList();
+
+/* viewlogs split page */
+var PageIdx = 1;//page index
+var Lists = 30;
+var StartPt = 0;
+var EndPt = 30;
+
+/* service split page */
+var sevPageIdx = 1;//page index
+var sevLists = 30;
+var sevStartPt = 0;
+var sevEndPt = 30;
+var SrvTmp = 0;
+
+/* Split Virtual Server */
+var vsevPageIdx = 1;//page index
+var vsevLists = 30;
+var vsevStartPt = 0;
+var vsevEndPt = 30;
+
+/* VPN connection  split page */
+var vpncPageIdx = 1;//page index
+var vpncLists = 30;
+var vpncStartPt = 0;
+var vpncEndPt = 30;
+
+/* VPN SA Monitor  split page */
+var saPageIdx = 1;//page index
+var saLists = 30;
+var saStartPt = 0;
+var saEndPt = 30;
+
+/* idp query split page */
+var idpPageIdx =1;//page index
+var idpLists = 30;
+var idpStartPt = 0;
+var idpEndPt = 30;
+
+/* Force Auth split page */
+var fuPageIdx =1;//page index
+var fuLists = 30;
+var fuStartPt = 0;
+var fuEndPt = 30;
+
+/* anti-virus split page -- white list */
+var wPageIdx = 1;//page index
+var wLists = 30;
+var wStartPt = 0;
+var wEndPt = 30;
+
+/* anti-virus split page -- black list */
+var bPageIdx = 1;//page index
+var bLists = 30;
+var bStartPt = 0;
+var bEndPt = 30;
+/* anti-spam split page -- 1. white list 2. black list */
+var asPageIdx = new Array(1, 1);//page index
+var asLists = new Array(30, 30);
+var asStartPt = new Array(0 , 0);
+var asEndPt = new Array(30, 30);
+
+/* anti-virus split page -- signature search */
+var sigPageIdx = 1;//page index
+var sigLists = 30;
+var sigStartPt = 0;
+var sigEndPt = 30;
+
+/*Anti-Setting page */
+var eicar_status = 'no';
+
+var homeSumList =2;
+var buffCmd = "";  // for apply conf file
+var fakePASS = "??????" ; 																				//for showing password
+var recordCurDate = ''; 																					// for recording the current date within registmgn.html
+var pingChkAry = new Array('default-gateway','30','5','5','no'); 	// for recording L3 Ping Check 
+var wanOptAry = new Array(); 																			// for recording WAN Option(for interface binding DHCP)
+var fromIFrame = false; 																					// for judging by whether  it return from IFRAME
+var cre_staDHCP = "";                       											// create static dhcp command within IFRAME (interface bind static DHCP)
+var no_DHCP = new Array();														  					// To prevent interface from being deleted, and these binding DHCP pool will be zombie.
+var cmdcnt = 0;																										// for count cmd within IFRAME (interface bind static DHCP)
+var failFlag = false; 																						// for checking whether fail page return or not 
+var mbrExist = new Array();																				// for checking which one interface has been bind by bridge.
+var ifaceGpsIdx = 1;
+var action=-1;
+var bkaction=-1;
+var addrcnt=5;
+var addrdef=5;
+var iNterface=5;
+var gRoups=5;
+var carea = 5;
+var svrctrlcnt=3;
+var AddrGps=5;
+var zone=5;
+var oareacnt=5;
+var alias = new Array(0,0,0,0,0,0,0,0,0,0);
+var sa_sort = new Array(0,0,0,0,0,0,0,0,{sa_searchFlag:false, sa_name:'', sa_policy:''});
+var gl_sort = new Array(0,0,0,0,0,0);
+var gv_sort = new Array(0,0,0,0,0);
+var ad_sort = new Array(0,0,0,0);
+var ag_sort = new Array(0,0,0);
+var dary = new Array();
+var sts= false;
+var BriRoute=5;
+var snat=5;
+var dnat=5;
+var fileName="ZyWALL";
+var fullpath="";
+var fwacl=5;
+var pfilter=5;
+var PolicuRoute=3;
+var logcnt=5;
+var ifdx =0;
+var bindCnt =5;
+var YV = 0; //ScrollBar  Y value
+var XV = 0; //ScrollBar  X value
+var dLength =20;
+var aryFlag = false;
+var fireAryFlag = false; 	//for firewall sorting
+var logAryFlag = false; 	//for log sorting
+var TempAry = new Array();
+var TempLogAry = new Array(); 	//for log sorting
+var TempFireAry = new Array(); 	//for firewall zone pair sorting
+var TempAry2 = new Array(); 		//for firewall global sorting
+var arySubFlag = false;
+var TempSubAry = new Array();
+var SortIdx = new Array();
+var finSort = new Array();
+var TempName = "";
+var StRoute=5;
+var gpeditIdx = 1;
+var gifID=0;
+var gifLogID = 0; //for log sorting
+var gifFID = 0; 	//for firewall zone pair sorting
+var gifGID=0; 		//for firewall global sorting
+var sortFlag = false;
+var idpSortDirect=0;
+var doChange = false;
+var searchDone = false;
+var saveapply = false;
+var reloadFlag=false;
+var diffcnt = 0;
+var ifMsg = "";//iframs message
+
+var gifPtr= new Array(0,0,0,0,0,0,0,0,0,0);     //for route sorting
+var gifLogPtr = new Array(0,0,0,0,0,0,0,0,0,0); //for log sorting 
+var gifFPtr = new Array(0,0,0,0,0,0,0,0,0,0); 	//for firewall zone pair sorting
+var gifGPtr = new Array(0,0,0,0,0,0,0,0,0,0,0); //for firewall global sorting
+var gifAVPtr = new Array(0,0,0,0,0,0,0,0,0,0,0);//for av signature sorting
+var fw_sort = new Array(0,0,0,0,0,0,0,0,0,0);
+/* IDp Signature */
+var SortFlag1= new Array(0);
+var SortFlag2= new Array(0,0);
+var SortFlag3= new Array(0,0,0,0);
+var LayerSel = 1;// 1:Network Layer,  2:Transport Layer, 3:Application Layer
+var fetch = false;
+
+
+var subgif= new Array({idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},
+					{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},
+					{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},
+					{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},
+					{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},
+					{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},
+					{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},
+					{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0},{idx:0,value:0}
+					);/*{index,value}*/
+/*proutedit CANCEL's flag*/
+var proedCflag=false;
+
+/*stroutedit CANCEL's flag*/
+var stroedCflag=false;
+
+/*ospfedit CANCEL's flag*/
+var ospfedCflag=false;
+
+/* VoIP ALG */
+var voipalgList = new objVOIPalgList();
+
+/* HTTP Redirect */
+var httpredList = new objHTTPRedList();
+
+/* Registration */
+var regList = new objRegList(); 
+var regBuff = new Array(0,'', '', '', '', 0, '', '');
+var regChkFlag = false; 
+
+/* Help */
+var subHelp;
+var Context='Web Help';
+var Topic='1';
+
+/* Content Filter */
+var Categories = new Array();
+/* Content Filter */
+
+var VirSvr=5;
+var registype  = 1;	
+var fromZoneStr="";
+var toZoneStr="";
+
+var original_data = new Array();
+var LogList = new Array();
+var LogListTmp = new Array();
+
+var logdispCnt = LogList.length;
+var cfFlag = 0;
+
+var logmailCnt =2;//mail server counter
+var syslogCnt = 4;
+
+/* CLI command list */
+var cliCmd = new addCLI();
+
+/* Global Object */
+var retbufno=0;// default is zero
+var success_page="home.html";// when CLI success direct to the page  // backhtml
+var fail_page="home.html";		// when CLI fail direct to the page  
+var zyshErrorNo= new Array();
+var zyshErrorMsg= new Array();
+var CommObj = new Array();
+var cmdcount=0;
+var saction='';
+var newApply=0;
+var chgIface = true; // for policy route changing interface.
+var buf_obj = false; /* Obj can be buffered when create-obj return, ie. policy route trigger, l2tp, ppp.... */ 
+var RefreshTime=0;
+var dataBuf = new Array();
+/*inline function use*/
+var nextPage ='';
+
+var CLIKeyField=""; // for keep original key column use in CLI
+var member_add = new Array();
+var member_delete = new Array();
+var member_change = new Array();
+
+/* default for Zone pairs, request from PM */
+var fwgl= 0;
+var fromZone=0, toZone=0;// WAN to LAN
+/* default for Zone pairs, request from PM */
+
+var netzw = 0; // for firewall enhancement
+var fwIdx = 0;
+var alportcnt=0, exptcnt=new Array(), Defcnt=0;
+var VrrpGrpList = new objVrrpGrpList();
+var DhaHomeList = new objVrrpGrpList();
+var DhaSyncList = new objDevHaSyncList();
+  
+/* Edit record */ 
+var EditList = new objEditList(); 
+
+/* DDNS */
+var ddnsList = new  objDDNSList();
+var ddnsItem = new objDDNS('','','','','','','','','','','','');
+var ddnsIfaceList = new objDDNSIfaceList();
+
+/* Clock */ 
+var ClockList = new objClockList(); 
+function initClock(){ 
+	ClockList.addNewRecord("0","","","no","","",""); 
+} 
+/* UserSet */
+var ForceUserList = new objForceUserList();
+
+/* Host Name */
+var hostname;
+var HnameList = new objHostnameList();
+var ConsoleList = new objHostnameList(); //for BaudRate
+function initHname(){	
+	HnameList.addNewRecord("", "");
+	ConsoleList.addNewRecord("");
+}
+/* Logs */
+var SysLogList = new objSysLogList();
+var LogMailList = new objLogMailList();
+var LogDispList = new objLogDispList();
+var SystemLogConf = new Array();
+var hasSort = false;
+var LogTmpAry = new Array(1,6,'','',0,'','show logging entries priority info');
+var selectIdx = 1;
+var serFlag = 2;
+var sortID = ""; // for record sorting ID
+var vlogList = new objVlogList();
+var LogSetList = new objLogSetList();
+function initLogSet(){		
+	LogSetList.addNewRecord('System Log', 'Internal', 'Mail Server: 1.1.1.1 Mail Subject: NGNF To: PolicuRoute@zyxel.com Schedule: Hourly...', 0);	
+	LogSetList.addNewRecord('System Log', 'Internal', 'Mail Server: 1.1.1.2 Mail Subject: NGNF To: PolicuRoute@zyxel.com Schedule: Hourly...', 0);	
+	LogSetList.addNewRecord('Remote Server 1', 'Syslog', 'Server Address: 1.1.1.2 Log facility: Local 0', 0);	
+	LogSetList.addNewRecord('Remote Server 2', 'Syslog', 'Server Address: 1.1.1.3 Log facility: Local 1', 0);
+	LogSetList.addNewRecord('Remote Server 3', 'Syslog', 'Server Address: 1.1.1.4 Log facility: Local 2', 0);
+	LogSetList.addNewRecord('Remote Server 4', 'Syslog', 'Server Address: 1.1.1.5 Log facility: Local 3', 0);
+}
+/* Traffic */
+var ReportList = new objRptList();
+var ifaceIdx = 0;
+var srvIdx = 0;
+var initRptFlag = true;
+var isreload;
+var rptcnt = 1;
+var period = "0 Days, 0 Hours, 0 Minutes, 0 Seconds";
+var interfaceList = new Array('ge1','ge2','ge3','ge4','ge5','aux'); // these element is fixed.
+
+/* Session */
+var SessionList = new objSessionList();
+var sesByUsrList = new objSessionUsrList();
+var sesBySrvList = new objSessionUsrList();
+var sViewIdx = 0;
+var sViewNum = 0;
+var sPageNum = 1;
+var sTmpAry = new Array();
+var sSearch = false;
+var service = new Array();
+var tmpAry = new Array('','0','',''); //for storing search field data
+var RecordUsr_expand = new Array();
+var RecordSrv_expand = new Array();
+var expandPosition = "";
+var totalSession = 0;
+var chgPage = false;
+
+/* Diagnostic collector */
+var debugInfoList = new objGlobalList();
+
+/* Threar Report - AV */
+var rptAV	=	new objRptList();
+var rptAV_Static = new objRptList();
+var rptIdx2 = 0;
+
+/* Threar Report - IDP */
+var rptIDP	=	new objRptList();
+var rptIDP_Static = new objRptList();
+var rptIdx = 0;
+
+/* file system */
+var ConFileList = new objFileList();
+
+/* Share Script file system */
+var scriptFileList = new objFileList();
+
+/* fw file system */
+var fwFileList = new objFileList();
+
+/* IDP file system */
+var idpFileList = new objidpFileList();
+
+/* Patten file system */
+var PattenFileList = new objFileList();
+
+/* App Patrol */
+var theDfPort  = new objapList();
+
+/* Port Grouping */
+var portGpList = new objportGpList();
+
+/* VLAN */
+var ifaceFlag = 0; //when 2 : for vlan virtual interface
+var virName; //for vlan virtual interface
+var vlanList = new objVLANList();
+var vdbindList = new objDHCPList();
+
+/* Bridge */
+var bridgeList = new objVLANList();
+var bridgeAvlList = new objVLANList();
+var bridgeMemList = new objVLANList();
+var dbindList = new objDHCPList();
+
+/* Etherent */
+var ConfigEtherList = new objConfigEtherList();
+var PPPoEList = new objPPPoEList();
+var pFlag = 0; // user for pppoe/pptp edit page
+var AuxList = new objAuxList();
+var TimeOuthasBeenChg = false;
+
+/* List interface (ethernet, ppp, bridge, vlan.. etc) */
+var ifaceList = new objIfaceList(); 
+
+/* Interface Group */
+var ifaceInfoFetch = false; // In edit page, when point "add" icon to catch interface information 
+var ifaceGrpMem = new Array();// for buffer the original member.
+var attributeTmp = 0;
+var ifGrpFlag = false;
+var ifGrpIdx = 0; //for edit page, when add or insert the member and then fetch the detail info. 
+var ifGrpMem = new Array();
+
+var GupsDataList = new objGroupsList();
+var ifaceCmd = ""; // for fetching interface detail data
+var ifaceCnt = 0;  // for count the command
+var gpFlag = true; 
+
+/* Address Groups */
+var AddrGpsList = new objGroupsList();
+//var addrFlag = true; // for edit address group
+
+/* ZONE */
+var ZoneDataList = new objGroupsList();
+//var zFlag = true; // for edit zone group
+
+/* Account */
+var AcctList = new objAcctList();
+
+/* Address Book */
+var addr =5;
+var AddrDataList = new objAddrList();
+
+/* Protocol */
+var protol =5;
+var ProlDataList = new objProtocolList();
+function initProtl(protol){
+	for(var ii=(protol-1);(-1<ii); ii--){
+		ProlDataList.addNewRecord('P'+ii, 0);
+	}
+	for(var dd=0; dd <protol ;dd++){
+		for(var ff=0; ff<bindCnt; ff++){
+			ProlDataList.dataSet[dd].protocol.addNewRecord('TCP'+dd, 0, 2);
+		}
+	}
+}
+
+/* dial in */
+var dialList = new objAuxList();
+var choice = new Array(0,0,0,0,0,0,0); //FIXME : dyn. length, for recording "Advance>>" or "Basic<<" button
+
+/* Policy > Packet Filter */
+var PfilterList = new objPFilterList();
+
+/*OSPFedit add count*/
+var OspfLC=0;
+
+/* Policy > PolicuRoute */
+var PRouteList = new objRouteList();
+var preditList = new objRouteList();
+
+var wbOpt=0;
+var SelOpt=0;
+
+/* Policy > Anti Spam */
+var asList = new objGlobalList();
+var asWList = new objGlobalList();
+var asBList = new objGlobalList();
+var asDNSBL = new objGlobalList();
+var asFileList = new objidpFileList();
+var asListStatus	= new Array('', '', '');
+var asWLorBL = '';
+ 
+/* Policy > Anti Spam > white black list */
+var wbList = new objWBList();
+
+/* Policy > Anti Spam > RBL /ORDBL */
+var rbList = new objRBList();
+
+
+/* Policy >Anti-Virus */
+var avList 			= new objAVList();
+var avWList 		= new objavSettingList();
+var avWLstatus  = '';
+var avBList 		= new objavSettingList();
+var avBLstatus	= '';
+var avSigSearch = new objGlobalList();
+var avFileList 	= new objidpFileList(); // update
+var isWLorBL 		= ''; 	// Distinguish whether is White-list or Black-list
+var totalSig    = 0; 
+var sigSearch 	= false // Distinguish whether search is done or not.
+
+/* Policy > Application Patrol */
+var gerlList 	= new objAplPatrolList();
+var instList 	= new objAplPatrolList();
+var p2pList 	= new objAplPatrolList();
+var VoIPList	= new objAplPatrolList();
+var strmList 	= new objAplPatrolList();
+var defPList 	= new objAplPatrolList();
+var appIdx 		= 0;
+var allPro		= new Array('',''); // collect all protocol
+var staticList = new objAplPatrolList();
+var refTime		= 0;
+var recordPro_expand =	new Array();
+var positionIdx	=	0;
+var expandOrCollapse = 0;
+
+/* Policy > Other Protocol */
+var otherList = new objexList();
+
+/* Policy > Firewall */
+var fwList = new objRouteList();
+var fwglList = new objRouteList();
+
+var ftzoneList = new objOSPFAreaVLList();
+function initftZone(){
+	ftzoneList.addNewRecord('WAN','WAN', 0);
+	ftzoneList.addNewRecord('LAN','LAN', 0);
+	ftzoneList.addNewRecord('DMZ','DMZ', 0);
+	ftzoneList.addNewRecord('SSL VPN','SSL VPN', 0);	
+	ftzoneList.addNewRecord('IPSec VPN','IPSec VPN', 0);	
+}
+
+/* Policy > Static Route */
+var StRouteList = new objStRouteList();
+function initStRoute(StRoute){
+		StRouteList.addNewRecord('1.1.1.1', '255.255.0.0', 0, 'ge1', 1, 0);
+}
+
+/* Policy > Virtual Server */
+var VirSvrList = new objVirSvrList();
+function initVirSvr(VirSvr){
+	for(var ii=(VirSvr-1);(-1<ii); ii--){
+		VirSvrList.addNewRecord('VS'+ii, 'ge'+ii, 'Any', '0.0.0.0', '192.168.0.1', 0, 0, '12', '23', '45', '67', 0);
+	}
+}
+/* Address for Objects */
+var AddressList = new objAddressList();
+
+var DefDataList = new objAddressList();
+
+/* Routing Protocol */
+var RipList = new objRipList();
+var OSPFList = new objOSPFList();
+var OSPFAreaList =  new objOSPFAreaList();
+var ospfFlag = true;
+var showOSPFglobalIdx = 0; // for ospfedit page to decide the position of "show ospf globel"
+
+/*OSPFEdit Virtual Link Add Flag*/
+var CNTVL=0;
+
+/* Route */
+var tLength =9;
+var tuser = new Array();
+var tiface = new Array();
+var taddr = new Array();
+var tservice = new Array();
+var tnexthop = new Array();
+var tschedule = new Array();
+var sslvpn = new Array();//ZyWALL USG 300
+var tsource = new Array();
+var tdestination = new Array();
+var tsnat = new Array();
+var tgateway = new Array();
+var tvpnt = new Array();
+var ttrunk = new Array();
+var hostAddr = new Array();	//for policy route Gateway
+
+function initTdata(tLength){
+	for(var i=0; i<tLength; i++)
+	{
+		tuser[i] = new Array("User"+(i+1));  
+		tsource[i] = new Array("SRC"+(i+1)+"@IG0:AG"+(i+1)+":Protocol:..");  
+		tdestination[i] = new Array("DEST"+(i+1)+"@IG"+(i+1)+":AG0:Protocol:..");  
+		//tservice[i] = new Array("I/AG0:port"+(i+1)+" /VPN0:port"+(i+1));  
+		//tnexthop[i] = new Array("I/AG"+(i+1)+"/IPSec VPN"+(i+1)); 
+		//tsnat[i] = new Array("I/AG"+(i+1)+":port /VPN0:port"+(i+1)); 
+		//tgateway[i] = new Array("Gateway"+(i+1)+":port /VPN0:port"+(i+1)); 
+		//tvpnt[i] = new Array("IPSec VPN Tunel"+(i+1)+":port /VPN0:port"+(i+1)); 
+		//ttrunk[i] = new Array("Trunk"+(i+1)+":port /VPN0:port"+(i+1)); 
+	}	
+}
+
+/* Built in server */
+var methtemp = new Array();
+var catemp = new Array();
+var addrtemp = new Array();
+var zonetemp = new Array();
+var dnsStatus = "no";
+var dhcpStatus = "no";
+var isForce = "";
+
+var httpsList = new objRmMagList();
+var wwwList = new objRmMagList();
+var sshList = new objRmMagList();
+var telnetList = new objRmMagList();
+var ftpList = new objRmMagList();
+var snmpList = new objRmMagList();
+var cnmList = new objRmMagList();
+var dyndhcpList = new objDHCPList();
+var stadhcpList = new objDHCPList();
+var dnsSrvCtrl = new objSvrCtrlList();
+var adnsList = new objDHCPList();
+var nsdnsList = new objDHCPList();
+var mxdnsList = new objDHCPList();
+var icmpList = new objRmMagList();
+
+httpsList.addNewRecord('yes', '443', 0, 0, 0, 0);	
+var httpsAdmin = httpsList.dataSet[0].svrctrl;
+var httpsUser = httpsList.dataSet[0].svrctrl2;
+wwwList.addNewRecord('yes', '80', 0, 0);	
+var wwwAdmin = wwwList.dataSet[0].svrctrl;
+var wwwUser = wwwList.dataSet[0].svrctrl2;
+sshList.addNewRecord('yes', '22', 0, 0,0);
+var ssh = sshList.dataSet[0].svrctrl;
+ftpList.addNewRecord('yes', '21', 0, 0);	
+var ftp = ftpList.dataSet[0].svrctrl;
+telnetList.addNewRecord('yes', '23', 0, 0);
+var telnet = telnetList.dataSet[0].svrctrl;
+snmpList.addNewRecord(0, 0, 0, 0, 0, 0, '0', '0', '0', '0.0.0.0');	
+var snmp = snmpList.dataSet[0].svrctrl;
+icmpList.addNewRecord('yes', '21', 0, 0);	
+var icmp = icmpList.dataSet[0].svrctrl;
+
+/* IDP Profilel */
+var idppfcnt = 3;
+var idppfList = new objidppfList();
+var BackupList = new objidppfedList();
+var BackupList1 = new objidppfedList();
+var BackupList2 = new objidppfedList();
+var BackupList3 = new objidppfedList();
+var BackupList4 = new objidppfedList();
+
+/* IDP Query */
+var idppfedList = new objidppfedSubList();
+var idpBkList = new objidppfedSubList();
+
+/* IDP General */
+var Regstatus = '', RegType='';
+var idpglbcnt = 3;
+var idpglbList = new objidpglbList(); // rule
+
+//var idpglList = new objidpglList();
+
+/* IDP Custom Signatures */
+var idpcscnt = 5;
+var idpcsList = new objidpcsList();
+
+/* IPSec VPN Connect */
+var cnl = 0;
+var vpncdcnt = 3;
+var posalcnt = 3;
+var idnatcnt = 3;
+var vpncList = new objvpncList();
+var vpncIKE_FLAG = false;
+
+/* IPSec VPN Gateway */
+var vpngdcnt = 3;
+var posagylcnt = 3;
+var vpngList = new objvpngList();
+var vpnFlag = false;
+
+/* IPSec VPN SA Monitor */
+var vpnsadcnt = 3;
+var vpnsaList = new objvpnsaList();
+
+/* Certificates  */
+var mycertdcnt = 3;
+var trscertdcnt = 2;
+var mycertList = new objCertList();
+var trscertList = new objCertList();
+
+/* Content Filter */
+var cfdcnt = 3;
+var isTest = false;
+var cfilterList = new objCfilterList();
+
+/* Content Filter Profile */
+var cFlag = 0; // Used for Filter Profile  -- edit page.
+var cfpdcnt = 3;
+var cfprofileList = new objCfprofileList();
+
+/* Content Filter Cache */
+var cfcacheList = new objCfcacheList();
+var cfLists = 30;
+var cfStartPt = 0;
+var cfEndPt = 30;
+var cfPageIdx = 1;
+
+/* AAA Server */
+var adList = new objASLdList();//ad default page
+var adgList = new objASLgList();//ad group page
+var aldapdList = new objASLdList();// ldap default page
+var aldapgList = new objASLgList();// ldap group page 
+var ardsdList = new objASRdsdList();//radius default page
+var ardsgList = new objASRdsgList();//radius group page
+var aaaFlag = true; // for edit aaa server
+
+/* Auth method */
+var authmList = new objAuthmList();
+var theMethList = new objAuthmbrList();
+
+/* User/Group */
+var Backname="";
+var Backdesc = "";
+var usertemp = new Array();
+var usersList = new objAuthmList();
+var usgrpList = new objAuthmList();
+usgrpList.addNewRecord('User_Name','','','','','','','','','','','');
+var grpMemList = usgrpList.dataSet[0].member;
+//var grpFlag = false;
+var defaultSet = new Array('','','');
+
+/* Schedule */
+var onetmList = new objScheduleList();
+var recuList = new objScheduleList();
+
+/*  Service */
+var svrList = new objServiceList();
+var svrdefList = new objServiceList();
+var svrgrpList = new objServiceList();
+//var svrFlag = true; //for edit service group;
+
+/* Home */
+var homeList = new objHomeList();
+var hzoneList = new objHomeList();
+var currList = new objHomeList();
+var dhcpList = new objDHCPList();
+var homeDevInfo = 2;
+var homeLoginList = 2;
+var idpActivate='yes';
+
+var SubWin1, SubWin2, SubWin3, SubWin5, SubWin5_1,SubWin6;
+function openWarningMessage(){
+	var winName='ZW';
+	if(ModelType == 'ZyWALL 1050'){
+		winName += '1050warning';
+	}else if(ModelType == 'ZyWALL USG 300'){
+		winName += '300warning';
+	}
+	SubWin1 = window.open('warning.html',winName,'width=624, top=100, left=260, height=502, status=no, resizable=no, scrollbars=no, toolbar=no');
+}
+function openTXMessage(){
+	var winName='ZW';
+	if(ModelType == 'ZyWALL 1050'){
+		winName += '1050TX';
+	}else if(ModelType == 'ZyWALL USG 300'){
+		winName += '300TX';
+	}
+	SubWin2 = window.open('tx.html',winName,'width=624, top=100, left=300, height=502, status=no, resizable=no, scrollbars=no, toolbar=no');
+}
+function openRXMessage(){
+	SubWin3 = window.open('rx.html','rx','width=624, top=100, left=340, height=502, status=no, resizable=no, scrollbars=no, toolbar=no');
+}
+function OpenSubWin(fName){
+	SubWin5 = window.open(fName+'.html',fName,'width=600, top=100, left=340, height=300, status=no, resizable=yes, scrollbars=yes, toolbar=no');
+}
+function OpenSubWin_2(fName, winname, wid){
+	SubWin5_1 = window.open(fName+'.html',winname,'width='+wid+', height=300, status=no, scrollbars=no, toolbar=no');
+}
+/* ZyWALL USG 300*/
+function OpenSubWin_3(URLPath,winName){
+	SubWin6 = window.open(URLPath,winName,'width=1024, top=0, left=0, height=768, location=yes, menubar=yes, status=yes, resizable=yes, scrollbars=yes, toolbar=yes');
+}
+function closeSubWin(){
+	if(SubWin1 != undefined){
+		if(!SubWin1.closed){
+			SubWin1.close();
+		}
+	}
+	if(SubWin2 != undefined){
+		if(!SubWin2.closed){
+			SubWin2.close();
+		}
+	}
+	if(SubWin3 != undefined){
+		if(!SubWin3.closed){
+			SubWin3.close();
+		}
+	}
+	/* for help link */
+	if(subHelp != undefined){
+		if(!subHelp.closed){
+			subHelp.close();
+		}
+	}
+}
+
+/* cature mouse event  , left button =1, right button=2, med button=4*/
+/*
+var msgRight="You may not right mouse click this page.";
+var msgLeft="Pleae wait a moment , Browser busy.";
+if (navigator.appName == 'Microsoft Internet Explorer'){
+	function NOclickIE(e) {
+		if (event.button == 2 || event.button == 3 || event.button == 4) {
+			alert(msgRight);
+			return false;
+		}
+		else if(event.button == 1){// left mouse click
+			//alert(msgLeft);
+			//return false;
+		}		
+		return true;
+	}
+	document.onmousedown=NOclickIE;
+	document.onmouseup=NOclickIE;
+	window.onmousedown=NOclickIE;
+	window.onmouseup=NOclickIE;
+}else {
+	function NOclickNN(e){
+		if (document.layers||document.getElementById&&!document.all){
+			if (e.which==2||e.which==3){
+				alert(msgRight);
+				return false;
+			}
+		}
+	}
+	if (document.layers){
+		document.captureEvents(Event.MOUSEDOWN);
+		document.onmousedown=NOclickNN; 
+	}
+	document.oncontextmenu=new Function("alert(msgRight);return false")
+}
+*/
+function getLang(wording, filename){
+	return eval(filename+'[0].'+wording);
+}
+</script>
+</head>
+
+<body background="images/panel_bg0.gif" leftmargin="0" topmargin="0" onunload="page_init(); closeSubWin();" onLoad="MM_preloadImages('images/panel_menu_bg1_on.gif')">
+<br>
+<table width="178"  border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+    <a href="m_status.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Status','','images/panel_menu_bg1_on.gif',1)" target="main" onClick="zyshdcnt = 1; fstTime=1;">
+    <img src="images/panel_menu_bg1.gif" title="Device Status" name="Status" width="178" height="75" border="0"></a></td>
+  </tr>
+  <tr>
+    <td background="images/panel_menu_bg2.gif"><table width="100%"  border="0" cellpadding="0" cellspacing="0" background="images/panel_menu_bg2.gif">
+      <tr>
+        <td width="10%">&nbsp;</td>
+        <td width="85%">
+<script language="JavaScript">
+var USETEXTLINKS = 1;
+
+var foldersTree = gFld("<span class=panel>ZyWALL</span>", "");
+	aux1 = insFld(foldersTree, gFld("<span class=panel>"+getLang('_Licensing', '_panel')+"</span>", ""));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Registration'>"+getLang('_Registration', '_panel')+"</span>", "m_regist.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Update'>"+getLang('_Update', '_panel')+"</span>", "m_antiupdate.html"));
+	aux1 = insFld(foldersTree, gFld("<span class=panel>"+getLang('_Network', '_panel')+"</span>", ""));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Interface'>"+getLang('_Interface', '_panel')+"</span>", "m_ifacesummary.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Routing'>"+getLang('_Routing', '_panel')+"</span>", "m_route.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Zone'>"+getLang('_Zone', '_panel')+"</span>", "m_zone.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='DDNS'>"+getLang('_DDNS', '_panel')+"</span>", "m_ddns.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Virtual Server'>"+getLang('_Virtual_Server', '_panel')+"</span>", "m_virsvr.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='HTTP Redirect'>"+getLang('_HTTP_Redirect', '_panel')+"</span>", "m_httpred.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='ALG'>"+getLang('_ALG', '_panel')+"</span>", "m_voipalg.html"));
+	aux1 = insDoc(foldersTree, gLnk(0, "<span class=panel title='Firewall'>"+getLang('_Firewall', '_panel')+"</span>", "m_firewall.html"));			
+	aux1 = insFld(foldersTree, gFld("<span class=panel>"+getLang('_VPN', '_panel')+"</span>", ""));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='IPSec VPN'>"+getLang('_IPSec_VPN', '_panel')+"</span>", "m_vpns.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='SSL VPN'>"+getLang('_SSL_VPN', '_panel')+"</span>", "m_sslvpnac.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='L2TP VPN'>"+getLang('_L2TP_VPN', '_panel')+"</span>", "m_l2tps.html"));
+	aux1 = insDoc(foldersTree, gLnk(0, "<span class=panel title='Application Patrol'>"+getLang('_App_Patrol', '_panel')+"</span>", "m_appgeneral.html"));
+	aux1 = insFld(foldersTree, gFld("<span class=panel>"+getLang('_Anti_X', '_panel')+"</span>", ""));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Anti-Virus'>"+getLang('_Anti_Virus', '_panel')+"</span>", "m_antivirus.html"));
+//		insDoc(aux1, gLnk(0, "<span class=sub1 title='Anti-Spyware'>"+getLang('_Anti_Spyware', '_panel')+"</span>", "m_antivirus.html"));			
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='IDP'>"+getLang('_IDP', '_panel')+"</span>", "m_idpgl.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='ADP'>"+getLang('_ADP', '_panel')+"</span>", "m_idpgl_1.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Content Filter'>"+getLang('_Content_Filter', '_panel')+"</span>", "m_cfilter.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Anti-Spam'>"+getLang('_Anti_Spam', '_panel')+"</span>", "m_antispam.html"));
+	aux1 = insDoc(foldersTree, gLnk(0, "<span class=panel title='Device HA'>"+getLang('_Device_HA', '_panel')+"</span>", "m_vrrpgrp.html"));
+	aux1 = insFld(foldersTree, gFld("<span class=panel>"+getLang('_Object', '_panel')+"</span>", ""));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='User/Group'>"+getLang('_User_Group', '_panel')+"</span>", "m_users.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Address'>"+getLang('_Address', '_panel')+"</span>", "m_address.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Service'>"+getLang('_Service', '_panel')+"</span>", "m_service.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Schedule'>"+getLang('_Schedule', '_panel')+"</span>", "m_schedule.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='AAA Server'>"+getLang('_AAA_Server', '_panel')+"</span>", "m_activeDir_d.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Authentication method'>"+getLang('_Auth_method', '_panel')+"</span>", "m_authmeth.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Certificate'>"+getLang('_Certificate', '_panel')+"</span>", "m_cert.html"));
+	//	insDoc(aux1, gLnk(0, "<span class=sub1 title='ISP Account'>"+getLang('_ISP_Account', '_panel')+"</span>", "m_account.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='SSL Application'>"+getLang('_SSL_Application', '_panel')+"</span>", "m_application.html"));
+	aux1 = insFld(foldersTree, gFld("<span class=panel>"+getLang('_System', '_panel')+"</span>", ""));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Host Name'>"+getLang('_Host_Name', '_panel')+"</span>", "m_system.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Date/Time'>"+getLang('_Date_Time', '_panel')+"</span>", "m_myclock.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Console Speed'>"+getLang('_Console_Speed', '_panel')+"</span>", "m_baudrate.html"));   
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='DNS'>"+getLang('_DNS', '_panel')+"</span>", "m_dns.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='WWW'>"+getLang('_WWW', '_panel')+"</span>", "m_buinsrv.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='SSH'>"+getLang('_SSH', '_panel')+"</span>", "m_ssh.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='TELNET'>"+getLang('_TELNET', '_panel')+"</span>", "m_telnet.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='FTP'>"+getLang('_FTP', '_panel')+"</span>", "m_ftp.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='SNMP'>"+getLang('_SNMP', '_panel')+"</span>", "m_snmp.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Dial-in Mgmt.'>"+getLang('_Dial_in_Mgmt', '_panel')+"</span>", "m_dialin.html"));
+	//	insDoc(aux1, gLnk(0, "<span class=sub1 title='System Protect'>"+getLang('_System_Protect', '_panel')+"</span>", "m_idpgl_2.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Vantage CNM'>"+getLang('_Vantage_CNM', '_panel')+"</span>", "m_cnm.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Language Setting'>"+getLang('_Language', '_panel')+"</span>", "m_language.html"));
+	aux1 = insFld(foldersTree, gFld("<span class=panel>"+getLang('_Maintenance', '_panel')+"</span>", ""));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='File Manager'>"+getLang('_File_Manager', '_panel')+"</span>", "m_configure.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Log'>"+getLang('_Log', '_panel')+"</span>", "m_logs.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Report'>"+getLang('_Report', '_panel')+"</span>", "m_report.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Diagnostics'>"+getLang('_Diagnostics', '_panel')+"</span>", "m_debugCol.html"));
+		insDoc(aux1, gLnk(0, "<span class=sub1 title='Reboot'>"+getLang('_Reboot', '_panel')+"</span>", "m_reboot.html"));
+      	
+initializeDocument();
+clickOnFolder(4);
+//clickOnFolder(15);
+ </script>
+        </td>
+        <td width="5%">&nbsp;</td>        
+      </tr>
+      <tr>
+      <td width="5%">&nbsp;</td>   
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><img src="images/panel_menu_bg3.gif" width="178" height="57"></td>
+  </tr>
+</table>
+</body>
+<script language="JavaScript" >
+<!--
+
+initftZone();
+initTdata(tLength);
+initProtl(protol);
+initStRoute(StRoute);
+initVirSvr(VirSvr);
+initHname();
+initClock();
+initLogSet();
+// -->
+</script>
+</html>

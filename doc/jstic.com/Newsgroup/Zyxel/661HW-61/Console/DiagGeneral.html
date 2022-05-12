@@ -1,0 +1,67 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<SCRIPT language="JavaScript">
+<!-- 
+top.title.h_Page='h_DiagGeneral.html';
+
+		function doSubmit()
+		{
+			document.Diag.elements[0].value = ""
+		}
+
+		function ConfirmReset()
+		{	
+			if (
+			confirm("Are you sure you want to restart the device?")				)
+			{			    
+			    document.forms[0].elements[0].value = 
+			    "The device is restarting...  As there will be no indication of when the process is complete, please wait for one minute before you access the device again.";			    document.forms[1].IsReset.value = 1;
+			    document.forms[1].submit();
+			}
+		}			
+// -->
+  </SCRIPT>
+	</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td class="NaviText">
+              Diagnostic - General              </td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr align=center> 
+            <td colspan="2"> 
+            <FORM METHOD="POST" ACTION="/Forms/DiagGeneral_1" name="Diag">              <TEXTAREA NAME="InfoDisplay" ROWS="15" COLS="65" READONLY>Resolving heise.de ... 193.99.144.80 
+Reply from 193.99.144.80
+Reply from 193.99.144.80
+Reply from 193.99.144.80
+Ping Host Successful
+</TEXTAREA>              </form>            </td></tr><tr> 
+            <td colspan="2" class="header2"> 
+              TCP/IP                     </td></tr><tr> 
+            <td colspan="2">
+            <FORM METHOD="POST" ACTION="/Forms/DiagGeneral_2">            &nbsp;&nbsp;&nbsp; 
+              Address                   
+              <INPUT NAME="PingIPAddr" SIZE="30" MAXLENGTH="30" VALUE="heise.de">              <INPUT TYPE="SUBMIT" NAME="Submit" VALUE="Ping" onClick="doSubmit();">            </td></tr><tr> 
+            <td colspan="2" class="header2"> 
+              System                     </td></tr><tr> 
+            <td colspan="2">&nbsp;&nbsp;&nbsp; 
+              <INPUT TYPE="HIDDEN" NAME="IsReset" VALUE="0">              <input type="button" value="Restart the Device" onClick="ConfirmReset()">                 </td></tr><tr>
+  	     <td colspan="2">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>	  <tr>
+	    <td colspan="2" align=center>
+              <INPUT TYPE="BUTTON" NAME="apply" VALUE="Back" onClick="window.location='rpDiagnostic.html';">            </td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form>
+</body></html>

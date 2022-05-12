@@ -1,0 +1,19 @@
+P660RU2> sys atsh
+
+RAS version : V3.40(AXW.1) |08/02/2007
+Ram Size : 8192 Kbytes
+Flash Type and Size : AMD 16Mbits*1
+romRasSize : 1131796
+bootbase version : V1.04 | 7/17/2006
+Product Model : P660RU2
+MAC Address : 0019CB496F6C
+Default Country Code : FF
+Boot Module Debug Flag : 00
+RomFile Version : 05
+RomFile Checksum : 50db
+RAS F/W Checksum : c564
+SNMP MIB level & OID : 060102030405060708091011121314151617181920
+Main Feature Bits : C0
+Other Feature Bits :
+01 45 00 00 01 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 02 41 13 00 00 00

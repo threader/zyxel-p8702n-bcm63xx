@@ -1,0 +1,29 @@
+
+Bootbase Version: V1.06 | 04/01/2004 11:22:33
+RAM: Size = 16384 Kbytes
+DRAM POST: Testing: 16384K
+OK
+FLASH: Intel 16M *1
+
+ZyNOS Version: V3.40(PE.11)C0_20060720 | 7/20/2006 16:01:10
+
+-----------------------------------------------------------------------
+
+ZyNOS Version          : V3.40(PE.11)C0_20060720 | 7/20/2006 16:01:10
+Bootbase Version       : V1.06 | 04/01/2004 11:22:33
+Vendor Name            : ZyXEL Communications Corp.
+Product Model          : Prestige 660HW-61
+ZyNOS ROM address      : b0010000
+System Type            : 7
+MAC Address            : 00A0C59DD5E9
+Default Country Code   : E1
+Boot Module Debug Flag : 00
+RomFile Version        : 55
+RomFile Checksum       : 947d
+ZyNOS Checksum         : 5538
+Core Checksum          : 8aaf
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+          92 4B 00 00 00 00 00 00-00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00-02 41 13 00 00 00

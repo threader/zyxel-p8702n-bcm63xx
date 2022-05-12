@@ -1,0 +1,60 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_SysAdmin.html';
+// -->
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="/Forms/rpSysAdmin" name="PWform">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="3"> 
+              <div align=left class="NaviText"> 
+                Kennwort                 </div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td width="20"></td><td width="195"> 
+              Altes Kennwort            </td><td width="435"> 
+              <INPUT TYPE="PASSWORD" NAME="sysAdminOldPasswd" SIZE="30" MAXLENGTH="30" VALUE="" onkeypress="chk_chtNumUserName(event)">            </td></tr><tr> 
+            <td></td><td>Neues Kennwort            </td><td><INPUT TYPE="PASSWORD" NAME="sysAdminNewPasswd" SIZE="30" MAXLENGTH="30" VALUE="" onkeypress="chk_chtNumUserName(event)">            </td></tr><tr> 
+            <td></td><td>Best&auml;tigung            </td><td><INPUT TYPE="PASSWORD" NAME="sysAdminConfirmPasswd" SIZE="30" MAXLENGTH="30" VALUE="" onkeypress="chk_chtNumUserName(event)">            </td></tr><tr> 
+            <td colspan="3">&nbsp;</td></tr><tr> 
+            <td colspan="3"> 
+			<b><font color="#FF3333">
+              Bitte merken Sie sich ihr neues Passwort nach jeder &Auml;nderung. Sollten Sie das Passwort vergessen, besteht keine Zugriffsm&ouml;glichkeit mehr.			  </font></b>
+            </td></tr><tr> 
+            <td colspan="3">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <div align=center> 
+                              <INPUT TYPE="SUBMIT" NAME="Admin_SaveBtn" VALUE="Anwenden">                &nbsp;&nbsp;&nbsp; 
+                <INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" >                              </div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table>      </td></tr></table></form>
+</body></html>

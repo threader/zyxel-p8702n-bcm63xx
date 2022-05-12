@@ -1,0 +1,182 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<style>
+.hidden {
+	display: none;
+}
+.display {
+	display: inline-table;
+}
+  </style> 
+<script language="JavaScript">
+top.title.h_Page='h_WLAN_Setup.html';
+function WEPKeyCheck(key,len)
+{
+  if (document.WLAN.WEP_Selection.selectedIndex != 0){
+  
+	switch (document.WLAN.WEP_Selection.selectedIndex) {
+	case 1: if ((len != 5)&&(len != 10)&&(len != 12)){
+		alert("Please type 5 characters or 10 digit hexadecimal values into the key # entry field.");
+		key.value = "";		
+		return;
+		}
+		break;
+	case 2: if ((len != 13)&&(len != 26)&&(len != 28)){
+		alert("Please type 13 characters or 26 digit hexadecimal values into the key # entry field.");
+		key.value = "";												
+		return;			
+		}
+		break;
+	case 3:	if ((len != 29)&&(len != 58)&&(len != 60)){	
+		alert("Please type 29 characters or 58 digit hexadecimal values into the key # entry field.");	
+		key.value = "";														
+		return;
+		}
+		break;
+  	}  
+	switch (len) {
+	case 12:
+	case 28:
+	case 60:
+   		if (key.value.substr(0,1) !="0" || (key.value.substr(1,1) !="x" && key.value.substr(1,1) !="X")){
+       	    	alert("Should be preceded by the characters '0x'.");
+       	    	key.focus();
+		return;
+		}	       	    	
+	}
+  }
+}
+
+    function doWEPChange()
+    {
+
+	if ( document.WLAN.WEP_Selection.selectedIndex == 0 
+){            document.WLAN.WEP_Key1.disabled = true;
+            document.WLAN.WEP_Key2.disabled = true;
+            document.WLAN.WEP_Key3.disabled = true;
+            document.WLAN.WEP_Key4.disabled = true;            
+        }
+        else
+        {                       
+            document.WLAN.WEP_Key1.disabled = false;
+            document.WLAN.WEP_Key2.disabled = false;
+            document.WLAN.WEP_Key3.disabled = false;
+            document.WLAN.WEP_Key4.disabled = false;
+	    for (i = 0; i < 4 ;i++)            
+            document.WLAN.DefWEPKey[i].disabled = false;  
+        }
+        
+		if (document.WLAN.WEP_Selection.selectedIndex == 4){
+			document.WLAN.WLANCfgPphrase.disabled = true;
+			document.WLAN.WLANCfgPSubmit.disabled = true;
+		}else{
+			document.WLAN.WLANCfgPphrase.disabled = false;
+			document.WLAN.WLANCfgPSubmit.disabled = false;		
+		}   
+    }
+     
+    function doRTSThreshold()
+    {
+        if ( document.WLAN.RTSCTSEnable.checked )
+        {
+            document.WLAN.RTSThreshold.disabled = false;
+        }
+        else
+        {
+            document.WLAN.RTSThreshold.disabled = true;
+            document.WLAN.RTSThreshold.value = "2432";
+        }
+    }
+
+    function doFragmentThreshold()
+    {
+        if ( document.WLAN.FragmentEnable.checked )
+        {
+            document.WLAN.FragmentThreshold.disabled = false;
+        }
+        else
+        {
+            document.WLAN.FragmentThreshold.disabled = true;
+            document.WLAN.FragmentThreshold.value = "2432";
+        }
+    }
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpWLan.html" name="WLAN" target="_self">  <table width="100%" border="0" cellspacing="1">
+    <tr>
+      <td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="98%"> 
+        <table border="0" cellspacing="0" cellpadding="0" width="580">
+          <tr> 
+            <td colspan="3"> 
+              <div align=left class="NaviText"> Wireless LAN- Wireless</div></td></tr><tr> 
+            <td colspan="3"> 
+              <hr></td></tr>          <tr> 
+              <td width="16"></td><td colspan="2">
+<INPUT TYPE="CHECKBOX" NAME="EnableWLAN" CHECKED value="ON">           	Enable Wireless LAN              </td></tr><tr> 
+              <td width="16"></td><td colspan="2">
+<INPUT TYPE="CHECKBOX" NAME="Enable4xMode" value="ON">           	Enable Wireless g+              </td></tr><tr id="wlan_Mode"> 
+            <td width="16"></td><td width="186">802.11 Mode</td><td width="358">
+            <SELECT NAME="WLAN_Mode_Selection" SIZE="1"><OPTION VALUE=00000000 SELECTED>Mixed
+<OPTION VALUE=00000001>802.11 b Only
+<OPTION VALUE=00000002>802.11 g Only
+</SELECT>            </td></tr>          <tr id="ESSID"> 
+            <td width="16"></td><td width="186">ESSID</td><td width="358"><INPUT TYPE="TEXT" NAME="ESSID" SIZE="32" MAXLENGTH="32" VALUE="p662hw67-kk"></td></tr><tr id="H_ESSID"> 
+            <td width="16"></td><td width="186">Hide ESSID</td><td width="358">
+            <SELECT NAME="ESSID_HIDE_Selection" SIZE="1"><OPTION VALUE=00000000 SELECTED>No
+<OPTION VALUE=00000001>Yes
+</SELECT>           </td></tr><tr> 
+            <td width="16"></td><td width="186"> Channel ID</td><td width="358">
+            <SELECT NAME="Channel_ID" SIZE="1"><OPTION VALUE=00000000>Channel01 2412MHz
+<OPTION VALUE=00000001>Channel02 2417MHz
+<OPTION VALUE=00000002>Channel03 2422MHz
+<OPTION VALUE=00000003>Channel04 2427MHz
+<OPTION VALUE=00000004>Channel05 2432MHz
+<OPTION VALUE=00000005 SELECTED>Channel06 2437MHz
+<OPTION VALUE=00000006>Channel07 2442MHz
+<OPTION VALUE=00000007>Channel08 2448MHz
+<OPTION VALUE=00000008>Channel09 2452MHz
+<OPTION VALUE=00000009>Channel10 2457MHz
+<OPTION VALUE=0000000a>Channel11 2462MHz
+<OPTION VALUE=0000000b>Channel12 2467MHz
+<OPTION VALUE=0000000c>Channel13 2472MHz
+</SELECT></td></tr><tr> 
+            <td width="16"></td><td width="186">
+            <INPUT TYPE="CHECKBOX" NAME="RTSCTSEnable" onClick="doRTSThreshold();" value="ON">RTS/CTS Threshold</td><td width="358"> <INPUT TYPE="TEXT" NAME="RTSThreshold" SIZE="5" MAXLENGTH="5" VALUE="2432" onkeypress="chk_num(event)">&nbsp;
+    0 ~ 2432. 4096 for wireless g+              </font></td></tr><tr> 
+            <td width="16"></td><td width="186">
+            <INPUT TYPE="CHECKBOX" NAME="FragmentEnable" onClick="doFragmentThreshold();" value="ON">Fragmentation Threshold</td><td width="358"><INPUT TYPE="TEXT" NAME="FragmentThreshold" SIZE="5" MAXLENGTH="5" VALUE="2432" onkeypress="chk_num(event)">&nbsp;
+256 ~ 2432. 4096 for wireless g+              </font></td></tr><tr> 
+            <td colspan="3">&nbsp;</td></tr>          <tr id="PASSPHRASE">
+            <td width="16"></td><td width="186">Passphrase</td><td width="358"><INPUT TYPE="TEXT" NAME="WLANCfgPphrase" SIZE="32" MAXLENGTH="63" VALUE=""><INPUT TYPE="SUBMIT" NAME="WLANCfgPSubmit" VALUE="Generate"></td></tr>          <tr> 
+            <td width="16"></td><td width="186">WEP Encryption </td><td width="358">
+            <SELECT NAME="WEP_Selection" SIZE="1" onchange="doWEPChange()"><OPTION VALUE=00000000>Disable
+<OPTION VALUE=00000001>64-bit WEP
+<OPTION VALUE=00000002 SELECTED>128-bit WEP
+<OPTION VALUE=00000003>256-bit WEP
+</SELECT>           </td></tr><tr id="WEPKey"> 
+            <td colspan="3"> 
+ <table width=560 border="0" cellspacing="0" cellpadding="0">             
+          <tr> 
+            <td width="2%"></td><td colspan="2" class="descript">64-bit WEP: Enter 5 characters or 10 hexadecimal digits (&quot;0-9&quot;, &quot;A-F&quot;) preceded by 0x for each Key(1-4).<br>128-bit WEP: Enter 13 characters or 26 hexadecimal digits (&quot;0-9&quot;, &quot;A-F&quot;) preceded by 0x for each Key(1-4).<br>                 256-bit WEP: Enter 29 characters or 58 hexadecimal digits (&quot;0-9&quot;, &quot;A-F&quot;) preceded by 0x for each Key(1-4).<br>             </td></tr><tr>
+            <td width="16"></td><td width="186">&nbsp;</td><td width="358">&nbsp;</td></tr>          <tr> 
+            <td width="16"></td><td width="186"><INPUT TYPE="RADIO" NAME="DefWEPKey" VALUE="1" CHECKED onFocus="if (this.form.WEP_Selection.selectedIndex == 0) this.form.WEP_Selection.focus();">Key1 </td><td width="358"><INPUT TYPE="TEXT" NAME="WEP_Key1" SIZE="60" MAXLENGTH="60" VALUE="0x31323334353637383961626364" onFocus="if (this.form.WEP_Selection.selectedIndex == 0) this.form.WEP_Selection.focus();" onkeypress="chk_chtNum(event)" onBlur="WEPKeyCheck(this.form.WEP_Key1,this.form.WEP_Key1.value.length);">            </td></tr><tr> 
+            <td width="16"></td><td width="186"> <INPUT TYPE="RADIO" NAME="DefWEPKey" VALUE="2" onFocus="if (this.form.WEP_Selection.selectedIndex == 0) this.form.WEP_Selection.focus();">Key2</td><td width="358"><INPUT TYPE="TEXT" NAME="WEP_Key2" SIZE="60" MAXLENGTH="60" VALUE="0x31323334353637383961626364" onFocus="if (this.form.WEP_Selection.selectedIndex == 0) this.form.WEP_Selection.focus();" onkeypress="chk_chtNum(event)" onBlur="WEPKeyCheck(this.form.WEP_Key2,this.form.WEP_Key2.value.length);"></td></tr><tr> 
+            <td width="16"></td><td width="186"><INPUT TYPE="RADIO" NAME="DefWEPKey" VALUE="3" onFocus="if (this.form.WEP_Selection.selectedIndex == 0) this.form.WEP_Selection.focus();">Key3</td><td width="358"><INPUT TYPE="TEXT" NAME="WEP_Key3" SIZE="60" MAXLENGTH="60" VALUE="0x31323334353637383961626364" onFocus="if (this.form.WEP_Selection.selectedIndex == 0) this.form.WEP_Selection.focus();" onkeypress="chk_chtNum(event)" onBlur="WEPKeyCheck(this.form.WEP_Key3,this.form.WEP_Key3.value.length);"></td></tr><tr> 
+            <td width="16"></td><td width="186"><INPUT TYPE="RADIO" NAME="DefWEPKey" VALUE="4" onFocus="if (this.form.WEP_Selection.selectedIndex == 0) this.form.WEP_Selection.focus();">Key4</td><td width="358"><INPUT TYPE="TEXT" NAME="WEP_Key4" SIZE="60" MAXLENGTH="60" VALUE="0x31323334353637383961626364" onFocus="if (this.form.WEP_Selection.selectedIndex == 0) this.form.WEP_Selection.focus();" onkeypress="chk_chtNum(event)" onBlur="WEPKeyCheck(this.form.WEP_Key4,this.form.WEP_Key4.value.length);"></td></tr></table></td></tr>          <tr> 
+            <td colspan="3">&nbsp;</td></tr>          <tr align=center valign=middle> 
+            <td colspan="3" height="36"> 
+              <hr></td></tr><tr> 
+            <td colspan="3"> 
+              <div align=center> 
+           	<INPUT TYPE="SUBMIT" NAME="WLAN_BackBtn" VALUE="Back" VALUE="Back" onClick="window.location='rpWLan.html';">                	&nbsp;&nbsp;&nbsp;
+                <INPUT TYPE="SUBMIT" NAME="WLAN_SaveBtn" VALUE="Apply">                	&nbsp;&nbsp;&nbsp; 
+                <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></div></td></table></td></tr></table></form><script language="JavaScript">
+doWEPChange();
+doRTSThreshold();
+doFragmentThreshold();
+</script>
+
+</body></html>

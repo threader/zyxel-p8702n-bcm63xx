@@ -1,0 +1,16 @@
+
+Here is the way to backup your firmware and your rom user.
+
+Login to your Zyxel via a TELNET session.
+
+Type the command on telnet :
+sys stdio 0
+
+
+On another terminal window, then on your command line window :
+
+To download the firmware (ras) and the user eeprom (rom-0)
+
+tftp -i IP_ADDRESS GET ras
+tftp -i IP_ADDRESS GET rom-0
+

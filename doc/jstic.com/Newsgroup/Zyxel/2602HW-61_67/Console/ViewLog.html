@@ -1,0 +1,79 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_Log_View.html';
+// -->
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="/Forms/ViewLog_1">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="4" class="NaviText"> 
+               Protokolle - Protokoll einsehen            </td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>	</table><table width="560" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td colspan="2"><b> 
+		Anzeige:</b>
+		<SELECT NAME="ViewLog_categoryList" SIZE="1" OnChange="document.forms[0].submit();"><OPTION VALUE=00000000 SELECTED>Alle Protokolle
+<OPTION VALUE=00000001>Systemverwaltung
+<OPTION VALUE=00000002>Systemfehler
+<OPTION VALUE=00000003>Zugriffskontrolle
+<OPTION VALUE=00000004>UPnP
+<OPTION VALUE=00000005>Weitergeleitete Webseiten
+<OPTION VALUE=00000006>Gesperrte Webseiten
+<OPTION VALUE=00000008>Angriffe
+<OPTION VALUE=0000000e>802.1x
+<OPTION VALUE=0000000f>SIP
+<OPTION VALUE=00000010>RTP
+<OPTION VALUE=00000013>FSM
+</SELECT>            </td><td colspan="4">
+             <div align=center>
+            	<INPUT TYPE="BUTTON" NAME="Logs_BackBtn" VALUE="Zur&uuml;ck" onclick="window.location='rpLogs.html';">		<INPUT TYPE="SUBMIT" NAME="ViewLog_EmailLogNow" VALUE="Protokoll jetzt versenden">		<INPUT TYPE="SUBMIT" NAME="ViewLog_Refresh" VALUE="Aktualisieren">		<INPUT TYPE="SUBMIT" NAME="ViewLog_ClearLog" VALUE="Protokoll l&ouml;schen">	     </div></td></tr><tr> 
+            <td colspan="6">&nbsp;</td></tr></table><table width="560" border="1" cellspacing="0" cellpadding="0">
+	  <tr height="30">
+	    <td align=center class="TableTilte"><b>
+			  &nbsp;#</b></td><td align=center class="TableTilte"><b>
+		<a href="ViewLog0.html">
+		Uhrzeit		<IMG border=0 src="Images/upArrow.gif"></a></b></td><td align=center class="TableTilte"><b>
+		<a href="ViewLog1.html">
+		Nachricht		</a></b></td><td align=center class="TableTilte"><b>
+		<a href="ViewLog2.html">
+		Ursprung		</a></b></td><td align=center class="TableTilte"><b>
+		<a href="ViewLog3.html">
+		Ziel		</a></b></td><td align=center class="TableTilte"><b>
+		<a href="ViewLog4.html">
+		Hinweise		</a></b></td></tr>	<tr bgcolor="#FFFFFF">            <td>1  </font></td><td>01/01/2000 00:53:31</font></td><td>WEB Login Successfully</font></td><td>&nbsp;</font></td><td>&nbsp;</font></td><td>User:admin</font></td></tr>	<tr bgcolor="#FFFFFF">            <td>2  </font></td><td>01/01/2000 00:38:52</font></td><td>WEB Login Successfully</font></td><td>&nbsp;</font></td><td>&nbsp;</font></td><td>User:admin</font></td></tr>	<tr bgcolor="#FFFFFF">            <td>3  </font></td><td>01/01/2000 00:38:49</font></td><td>SMT Session End</font></td><td>&nbsp;</font></td><td>&nbsp;</font></td><td>&nbsp;</font></td></tr>	<tr bgcolor="#FFFFFF">            <td>4  </font></td><td>01/01/2000 00:38:18</font></td><td>SMT Session Begin</font></td><td>&nbsp;</font></td><td>&nbsp;</font></td><td>&nbsp;</font></td></tr>	<tr bgcolor="#FFFFFF">            <td>5  </font></td><td>01/01/2000 00:22:56</font></td><td>WEB Login Successfully</font></td><td>&nbsp;</font></td><td>&nbsp;</font></td><td>User:admin</font></td></tr>	<tr bgcolor="#FFFFFF">            <td>6  </font></td><td>01/01/2000 00:01:10</font></td><td>WEB Login Successfully</font></td><td>&nbsp;</font></td><td>&nbsp;</font></td><td>User:admin</font></td></tr>	</table><table width="560" border="0" cellspacing="0" cellpadding="0" >
+      	<tr>
+  	     <td colspan="6">&nbsp;</td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>     		</td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></table></form>
+</body></html>

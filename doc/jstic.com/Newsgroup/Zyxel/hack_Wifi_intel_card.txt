@@ -1,0 +1,62 @@
+i got my US card working in EUROPE (channels 12,13) - check this tutorial out =)
+
+1. download knoppix 4.0.2 - http://mirrors.evolva.ro/knoppix/knoppix-cd/KNOPPIX_V4.0.2CD-2005-09-23-EN.iso
+2. check md5 checksum http://mirrors.evolva.ro/knoppix/knoppix-cd/KNOPPIX_V4.0.2CD-2005-09-23-EN.iso.md5
+3. burn with your favourite program
+4. reboot system
+5. press enter at the boot prompt
+6. run root shell (click on penguin, then on root shell)
+7. follow these commands
+#mkdir /usr/tmp
+#cd /usr/tmp
+#wget http://fx.cz/sklad/intel/ipw2200-1.0.3.tgz
+#tar xvfz ipw2200-1.0.3.tgz
+#cd ipw2200-1.0.3
+#sh unload
+#sh load
+8. now as you have the patched drivers installed (these allows to modify permanently the data in the intel's card eeprom) ...
+9. locate the wireless device. it should be eth0, eth1 or eth2... etc.
+# iwconfig
+10. dump the data with (remember to change X to your appropriate device...)
+# ethtool -e ethX
+the result should look like this (it should be 256 bytes of hex values)
+Offset Values
+------ ------
+0x0000 02 a5 00 80 20 42 86 80 02 27 86 80 18 00 01 03
+0x0010 00 dc 22 c8 00 40 01 13 00 00 00 05 00 00 00 00
+0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0x0030 00 00 00 00 30 30 30 45 33 35 xx xx xx xx xx xx
+0x0040 26 38 00 0e 35 xx xx xx 00 46 00 01 5a 5a 52 00
+0x0050 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0x0060 0c 00 00 00 00 00 01 00 00 00 00 00 00 00 03 00
+0x0070 33 30 34 41 44 00 00 00 00 43 37 32 39 39 34 30
+0x0080 30 31 00 00 0e 15 f3 30 03 01 d2 05 82 ff 00 00
+0x0090 12 14 12 00 0d 00 0f f0 00 00 00 0f 00 0f f0 00
+0x00a0 00 00 00 00 00 00 00 00 f9 00 00 00 00 00 00 00
+0x00b0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0x00c0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0x00d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0x00e0 00 00 00 00 04 00 01 00 00 00 00 01 00 00 00 00
+0x00f0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+11. now edit as nescessary with the following command:
+#ethtool -E ethX magic 0x2200 offset 0xYY value 0xZZ
+note the -E is uppercase, change the X with the correct value of ethernet controller (see #9), YY with actual memory spot and ZZ with the requested value.
+Never edit values 0x40 and 0x41 !!! as these are checksums (if you incorrectly change them you will ruin your card...) once you make the changes check if they were correct (see #10) and if they are from memoryspace 0x42-0xff check that the word value at 0x40 also changed (the patched driver automatically counts the checksum)
+12. look at these changes:
+these will change the PCIID so the card will work in IBM laptops:
+for --- North American IBM Card
+#ethtool -E ethX magic 0x2200 offset 0x8 value 0x11
+for --- For European IBM Card (Channels 12,13)
+#ethtool -E ethX magic 0x2200 offset 0x8 value 0x12
+
+this will make the CARD tune up channels 12 and 13 if you are from europe and your card was bought in North America (changing country to 0x5a5a52 - ZZE)
+#ethtool -E ethX magic 0x2200 offset 0x4c value 0x5a
+#ethtool -E ethX magic 0x2200 offset 0x4d value 0x5a
+#ethtool -E ethX magic 0x2200 offset 0x4e value 0x52
+
+(i am not sure as i changed this too, but it may not be nescessary
+#ethtool -E ethX magic 0x2200 offset 0xa8 value 0xf9)
+
+check the changes and reboot to windows... then remove the wifi drivers, the inf file from c:\windows\inf containing the intel 2200bg setup, reboot and reinstall drivers from scratch, reboot and voila =)) (you may also need to reinstall IBM access connections)
+
+Based on a

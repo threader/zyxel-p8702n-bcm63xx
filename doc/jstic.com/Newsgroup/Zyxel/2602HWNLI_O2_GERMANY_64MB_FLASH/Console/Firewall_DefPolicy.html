@@ -1,0 +1,124 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--//
+top.header.szHelp="h_Firewall_DefPolicy.html";
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+function showtab()
+{
+var string = document.getElementById("WtoW").style.display;
+if (string == ""){
+document.getElementById("WtoW").style.display = "none";
+document.getElementById("LtoL").style.display = "none";
+document.getElementById("showWord").innerHTML = "Expand...";
+}else if (string =="none"){
+document.getElementById("WtoW").style.display = "";
+document.getElementById("LtoL").style.display = "";
+document.getElementById("showWord").innerHTML = "Basic...";
+}
+}
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/Firewall_DefPolicy_1" name="FW_DefPolicyform" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+General</b> </div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="Firewall_RuleSum.html" target="main" class="sub">
+<b><FONT class=NaviText>
+Rules</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="Firewall_Threshold.html" target="main" class="sub">
+<b><FONT class=NaviText>
+Threshold</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle">
+General</td></tr><tr>
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr>
+<td><div><table width="100%" border="0" align=center cellpadding="0" cellspacing="0" >
+<tr align=left>
+<td>&nbsp;</td><td >
+<input type="checkbox" name="FW_FWEnable" checked />Active Firewall</td></tr><tr align=left>
+<td>&nbsp;</td><td >
+<input type="checkbox" name="FW_BypassTri" />Bypass Triangle Route</td></tr><tr align=left>
+<td>&nbsp;</td><td >&nbsp;</td></tr><tr align=left>
+<td>&nbsp;</td><td class="caution"> <img src="Images/i_error.gif" width="18" height="17"  align="absmiddle">
+Caution:</td></tr><tr align=left>
+<td>&nbsp;</td><td class="caution">
+When Bypass Triangle Route is checked, all LAN to LAN and WAN to WAN packets will bypass the Firewall check.</td></tr></table></div></td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr>
+<td><div><table width="100%" border="1" align=center cellpadding="1" cellspacing="0" bordercolor="#FFFFFF" >
+<tr align=center>
+<td width="39%" class="tableTitle"><b>
+Packet Direction </b></td><td width="39%" class="tableTitle"><b>
+Default Action </b></td><td width="24%" class="tableTitle"><b>
+Log </b></td></tr><tr align=center class="tabcolor2" id="WtoL">
+<td>WAN to LAN</td><td><select name="FW_WtoL_DefAction" size="1"><option value=00000000>Permit
+<option value=00000001 selected>Drop
+<option value=00000002>Reject
+</select></td><td><input type="checkbox" name="FW_WtoL_DefLog" checked /></td></tr><tr align=center class="tabcolor1" id="LtoW">
+<td>LAN to WAN</td><td><select name="FW_LtoW_DefAction" size="1"><option value=00000000 selected>Permit
+<option value=00000001>Drop
+<option value=00000002>Reject
+</select></td><td><input type="checkbox" name="FW_LtoW_DefLog" checked /></td></tr><tr align=center class="tabcolor2" id="WtoW">
+<td>WAN to WAN / Router </td><td><select name="FW_WtoW_DefAction" size="1"><option value=00000000>Permit
+<option value=00000001 selected>Drop
+<option value=00000002>Reject
+</select></td><td><input type="checkbox" name="FW_WtoW_DefLog" /></td></tr><tr align=center class="tabcolor1" id="LtoL">
+<td>LAN to LAN / Router </td><td><select name="FW_LtoL_DefAction" size="1"><option value=00000000 selected>Permit
+<option value=00000001>Drop
+<option value=00000002>Reject
+</select></td><td><input type="checkbox" name="FW_LtoL_DefLog" /></td></tr><tr align=center class="tabcolor1">
+<td>&nbsp;</td><td>&nbsp;</td><td align=right><a href="javascript:showtab();"><span id = "showWord">Expand...</span></a></td></tr></table></div></td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+</tr><tr>
+<td align=center>
+<input type="submit" name="FW_DefPSaveBtn" value="Apply" />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--
+showtab();
+showFullPath('Security > Firewall > General');
+//-->
+</script>
+</html>

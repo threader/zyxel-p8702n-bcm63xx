@@ -1,0 +1,60 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language=JavaScript>
+<!--
+top.title.h_Page='h_VPN_Summary.html';
+function SelectRule(index)
+{
+document.VPNSumform.VPNIndex.value = index;
+document.VPNSumform.submit();
+}
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpVPN.html" name="VPNSumform" target="_self"> <table width="100%" border="0" cellspacing="1">
+<tr>
+<td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td><div align=left class="NaviText">
+<table border="0" cellspacing="0" cellpadding="0" width="560">
+<tr>
+<td colspan="3">
+<div align=left class="NaviText">
+VPN - Summary </div></td></tr><tr>
+<td colspan="3">
+<hr></td></tr><tr>
+<td colspan="3">
+<table border="1" cellspacing="0" cellpadding="0" align=center>
+<tr height="30" align=center>
+<td class="TableTilte" width="10%"> No.</td><td class="TableTilte" width="5%"> Name<INPUT TYPE="HIDDEN" NAME="VPNIndex" VALUE="0"></td><td class="TableTilte" width="7%"> Active</td><td class="TableTilte" width="19%"> Local Address</td><td class="TableTilte" width="19%"> Remote Address</td><td class="TableTilte" width="11%"> Encap.</td><td class="TableTilte" width="11%"> IPSec Algorithm</td><td class="TableTilte" width="18%"> Secure Gateway IP</td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a target="_self" href="VPN_IKE.html">1
+</a></td><td class="smallip" width="5%"> comsacom-lan</td><td class="smallip" width="7%"> Yes</td><td class="smallip" width="19%"> 192.168.1.0 - 255.255.255.0</td><td class="smallip" width="19%"> 192.168.0.0 - 255.255.255.0</td><td class="smallip" width="11%"> Tunnel</td><td class="smallip" width="11%"> ESP DES SHA1</td><td class="smallip" width="18%"> comsacom.dyndns.org</td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(2);>2 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(3);>3 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(4);>4 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(5);>5 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(6);>6 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(7);>7 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(8);>8 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(9);>9 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(10);>10 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(11);>11 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(12);>12 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(13);>13 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(14);>14 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(15);>15 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(16);>16 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(17);>17 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(18);>18 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(19);>19 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> <tr align=center>
+<td width="10%"> <a href="VPNSetup.html"> <a href=javascript:SelectRule(20);>20 </a></td><td class="smallip" width="5%">  - </td><td class="smallip" width="7%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="19%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="11%">  - </td><td class="smallip" width="18%">  . . . </td></tr> </table></td></tr><tr>
+<td colspan="3">&nbsp; </td></tr><tr align=center valign=middle>
+<td colspan="3" height="36">
+<hr></td></tr><tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="VPN_BackBtn" VALUE="Back" onClick="window.location='rpVPN.html';"> &nbsp;&nbsp;&nbsp;
+</div></td></tr><tr>
+<td colspan="4" height="10">&nbsp;</td></tr></table></div></td></tr></table></form>
+</body></html>

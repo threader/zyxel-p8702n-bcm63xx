@@ -1,0 +1,17 @@
+RAS version            : V3.40(PE.11)C0_20060720 | 7/20/2006
+Ram Size               : 16384 Kbytes
+Flash Type and Size    : Intel 16Mbits*1
+romRasSize             : 2025874
+bootbase version       : V1.06 | 04/01/2004
+Product Model          : Prestige 660H-61
+MAC Address            : 00134938D78A
+Default Country Code   : FF
+Boot Module Debug Flag : 00
+RomFile Version        : 55
+RomFile Checksum       : 947d
+RAS F/W Checksum       : 5538
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+92 4b 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 02 41 13 00 00 00

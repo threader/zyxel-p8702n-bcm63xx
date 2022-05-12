@@ -1,0 +1,65 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_Fire_Default.html';
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="rpFirewall.html" name="FW_DefPolicyform">
+<table width="100%" border="0" cellspacing="1">
+<tr>
+<td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="93%">
+<table border="0" cellspacing="0" cellpadding="0" width="560">
+<tr>
+<td colspan="3">
+<div align=left class="NaviText">
+Firewall - Standardregeln</div></td></tr><tr>
+<td colspan="3">
+<hr></td></tr><tr>
+<td colspan="2">
+<INPUT TYPE="CHECKBOX" NAME="FW_FWEnable" CHECKED value="ON"></td><td>Firewall aktiviert</td></tr><tr>
+<td colspan="2">
+<INPUT TYPE="CHECKBOX" NAME="FW_BypassTri" value="ON"></td><td>Asymmetrisches Routing zulassen</td></tr><tr>
+<td colspan="2">
+</td><td><font color="#FF0000">
+ACHTUNG: Wenn Asymmetrisches Routing zulassen aktiviert ist, umgehen s&aumlmtliche LAN-LAN- und WAN-WAN-Pakete die Firewall-Pr&uumlfung.</font></td></tr><tr>
+<td colspan="3">&nbsp;</td><tr>
+<td colspan="3">
+<table width="90%" border="1" cellspacing="0" cellpadding="1" align=center>
+<tr align=center bgcolor="#C4D3FD">
+<td width="37%" height="50"><b> Paket-&Uuml;bertragungsrichtung</b> </td><td width="39%"><b> Standardaktion</b> </td><td width="24%"><b> Protokoll</b> </td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%"> LAN to LAN / Router </td><td width="39%"> <INPUT TYPE="RADIO" NAME="FW_LtoL_DefAction" VALUE="0">Abweisen<INPUT TYPE="RADIO" NAME="FW_LtoL_DefAction" VALUE="1" CHECKED>Weiterleiten</td><td width="24%"> 
+<INPUT TYPE="CHECKBOX" NAME="FW_LtoL_DefLog" value="ON"></td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%"> LAN to WAN</td><td width="39%"> <INPUT TYPE="RADIO" NAME="FW_LtoW_DefAction" VALUE="0">Abweisen<INPUT TYPE="RADIO" NAME="FW_LtoW_DefAction" VALUE="1" CHECKED>Weiterleiten</td><td width="24%"> 
+<INPUT TYPE="CHECKBOX" NAME="FW_LtoW_DefLog" CHECKED value="ON"></td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%"> WAN to LAN</td><td width="39%"> <INPUT TYPE="RADIO" NAME="FW_WtoL_DefAction" VALUE="0" CHECKED>Abweisen<INPUT TYPE="RADIO" NAME="FW_WtoL_DefAction" VALUE="1">Weiterleiten</td><td width="24%"> 
+<INPUT TYPE="CHECKBOX" NAME="FW_WtoL_DefLog" CHECKED value="ON"></td></tr><tr align=center>
+<td bgcolor="#C4D3FD" width="37%"> WAN to WAN / Router </td><td width="39%"> <INPUT TYPE="RADIO" NAME="FW_WtoW_DefAction" VALUE="0" CHECKED>Abweisen<INPUT TYPE="RADIO" NAME="FW_WtoW_DefAction" VALUE="1">Weiterleiten</td><td width="24%"> 
+<INPUT TYPE="CHECKBOX" NAME="FW_WtoW_DefLog" CHECKED value="ON"></td></tr></table></td></tr><tr align=center valign=middle>
+<td colspan="3" height="36">
+<hr></td></tr><tr>
+<td colspan="3">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="FW_DefPBack" VALUE="Zur&uuml;ck" onclick="window.location='rpFirewall.html';"> &nbsp;&nbsp;
+<INPUT TYPE="SUBMIT" NAME="FW_DefPSaveBtn" VALUE="Anwenden">&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" ></div></td></table></td></tr></table></form>
+</body></html>

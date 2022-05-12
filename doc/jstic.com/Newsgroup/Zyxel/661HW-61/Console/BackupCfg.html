@@ -1,0 +1,44 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language=JavaScript>
+top.title.h_Page="h_Config_Backup.html";
+
+		function ConfirmDefault()
+		{	if (confirm('Are you sure you want to reboot to factory default?'))
+			{				    
+				document.FW.submit();
+			}
+		}
+  </script>
+	</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM ENCTYPE="multipart/form-data" METHOD="POST" ACTION="rpConfigMten.html" name="FW" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="3"> 
+              <div align=left class="NaviText"><b>Backup Configuration </b> </div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td width="2%">&nbsp; </td><td colspan="3">
+            Click <B> Backup </B> to save the current configuration of your system to you computer.</td></tr><tr> 
+            <td colspan="3">&nbsp; </td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <div align=center> 
+              <INPUT TYPE="BUTTON" NAME="BackupCfg_Back" VALUE="Back" onclick="window.location = 'rpConfigMten.html';">				&nbsp;&nbsp;&nbsp;	
+              <INPUT TYPE="BUTTON" NAME="BackupCfg_BackupBtn" VALUE="Backup" onclick="window.location = 'rom-0';">          </div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	
+        </table></td></tr></table></form>
+</body></html>

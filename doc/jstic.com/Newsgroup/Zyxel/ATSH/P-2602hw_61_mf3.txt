@@ -1,0 +1,19 @@
+ras> sys atsh
+
+RAS version            : V3.40(MF.3) | 01/05/2006
+RamSize                : 32768 Kbytes
+FlashSize              : AMD 32M
+romRasSize             : 2731758
+bootbase version       : V1.09 | 07/29/2004
+Product Model          : Prestige 2602HWL-61
+MAC Address            : 00A0C5D6B6F2
+Default Country Code   : E1
+Boot Module Debug Flag : 00
+RomFile Version        : A1
+RomFile Checksum       : e139
+RAS F/W Checksum       : 3697
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+92 5E 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 01 41 13 00 00 00

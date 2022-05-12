@@ -1,0 +1,129 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_rpSysAdmin.html";
+var ns, ie;
+var Vmajor = parseInt(navigator.appVersion);
+if(navigator.appName == "Netscape") {
+ns = true; ie = false;
+} else if(navigator.appName == "Microsoft Internet Explorer") {
+ie = true; ns = false;
+} else {
+ns = false; ie = false;
+}
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+ function chkChar(event) {
+if(ns)
+val = event.which;
+else
+val = event.keyCode;
+if(val == 0 || val == 8)
+return true;
+if((val > 47 && val < 58) || (val > 64 && val < 91) || (val > 96 && val < 123) || (val == 45) || (val == 46) || (val == 64) || (val == 95))
+return true;
+else
+return false;
+}
+function chkChar2(event) {
+if(ns)
+val = event.which;
+else
+val = event.keyCode;
+if(val == 0 || val == 8)
+return true;
+if((val > 47 && val < 58) || (val > 64 && val < 91) || (val > 96 && val < 123) || (val == 45) || (val == 46) )
+return true;
+else
+return false;
+}
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/rpSysAdmin_1" name="PWform" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+General</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" ><div align=center><a href="rpTimeZone.html" target="main" class="sub">
+<b><FONT class=NaviText>
+Time Setting</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr height="19" class ="cTitle">
+<td width="3%" height="19" class ="cTitle"> <div align=left class="NaviText"> </div></td><td height="19" class ="cTitle">
+System Setup</td></tr></table><table width="90%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="5%"></td><td width="195">&nbsp;</td><td>&nbsp;</td></tr><tr>
+<td colspan="2">
+System Name</td><td width="435">
+<input type="text" name="sysSystemName" size="30" maxlength="30" value="P-2602HWNLI-D7A" onKeyPress="return chkChar(event);" /></td></tr><tr>
+<td colspan="2">
+Domain Name</td><td><input type="text" name="sysDomainName" size="30" maxlength="38" value="zyxeltech.de" onKeyPress="return chkChar2(event);" /></td></tr><tr>
+<td colspan="2">
+Administrator Inactivity Timer</td><td><input type="text" name="StdioTimout" size="4" maxlength="4" value="5" />(minutes, 0 means no timeout)<input type="hidden" name="TitleName" value="ZyXEL P-2602HWNLI-D7A" /></td></tr><tr>
+<td colspan="3">&nbsp;</td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr height="19" class ="cTitle">
+<td width="3%" height="19" class ="cTitle"> <div align=left class="NaviText"> </div></td><td height="19" class ="cTitle">
+Password </td></tr></table><table width="90%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="5%"></td><td width="195">&nbsp;</td><td>&nbsp;</td></tr><tr>
+<td colspan="2">
+Old Password  </td><td width="435">
+<input type="password" name="sysAdminOldPasswd" size="30" maxlength="30" value="" onkeypress="chk_chtNumUserName(event)" /></td></tr><tr>
+<td colspan="2">
+New Password </td><td><input type="password" name="sysAdminNewPasswd" size="30" maxlength="30" value="" onkeypress="chk_chtNumUserName(event)" /></td></tr><tr>
+<td colspan="2">
+Retype to confirm </td><td><input type="password" name="sysAdminConfirmPasswd" size="30" maxlength="30" value="" onkeypress="chk_chtNumUserName(event)" /></td></tr><tr>
+<td colspan="3">&nbsp;</td></tr><tr>
+<td colspan="3" class="caution"><img src="Images/i_error.gif" width="18" height="17"  align="absmiddle">
+Caution:</td></tr><tr>
+<td colspan="3" class="caution"> <b><font color="#FF3333"> </font></b>
+Please record your new password whenever you change it. The system will lock you out if you have forgotten your password. </td></tr><tr>
+<td colspan="3">&nbsp;</td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table></td></tr><tr>
+<td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table><!-- 3D -->
+</td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--
+showFullPath('Maintenance > System > General');
+//-->
+</script>
+</html>

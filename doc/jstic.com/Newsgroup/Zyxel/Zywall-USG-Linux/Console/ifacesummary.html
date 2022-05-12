@@ -1,0 +1,1055 @@
+<html><head>
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"><title>ifacesummary.html</title><!--script type="text/javascript" src="I18N.js"></script>
+<script>getLangFile()</script-->
+
+
+<link rel="stylesheet" href="control.css" type="text/css">
+<link rel="stylesheet" href="zw.css" type="text/css">
+<script type="text/javascript" src="javascript.js"></script>
+<script type="text/javascript" src="javascriptCLI.js"></script>
+<script type="text/javascript" src="dragiframe.js"></script>
+<script language="JavaScript">
+
+<!--
+	var gl=top.frames[1];
+	/* for interface summary */
+	var L1_Ptr = gl.BufferObj;
+	var L1_Position = new Array();
+	var DevHA_status = new Array();
+	var Service_status = new Array();
+	var Zone_status = new Array();
+
+	/* for statistics */
+	var L1_Ptr2 = gl.BufferObj_2;
+	var L1_Position2 = new Array();
+
+	var allIface = new Array();
+ /*======= Help ===========*/
+	gl.Topic= '040700';
+/*======= Help ===========*/	
+	/*if(!gl.fromIFrame) {
+		if(gl.zyshdcnt == 0) {
+			var cmd = "";
+			cmd = compose_CLI(cmd, "show interface summary all");
+			cmd = compose_CLI(cmd, "show device-ha status");
+			cmd = compose_CLI(cmd, "show zone binding-iface");
+			cmd = compose_CLI(cmd, "show rip interface all");
+			cmd = compose_CLI(cmd, "show ospf interface all area");
+			cmd = compose_CLI(cmd, "show dhcp status all");
+			cmd = compose_CLI(cmd, "show interface summary all status");
+			cmd = compose_CLI(cmd, "show ddns");
+			// write flag is 0
+			gl.nowriteflag = true;
+			txcli(cmd, "ifacesummary.html", 8, "ifacesummary.html");
+			gl.retbufno = 0;
+		}else if(gl.zyshdcnt == 1) {
+			summary_fetch(gl.retbufno);
+			gl.retbufno = 0;
+			gl.zyshdcnt = 0;
+			gl.fromIFrame = false;
+		}
+	}else {
+		gl.fromIFrame = false;
+	}*/
+	var cmd = "";
+		cmd = compose_CLI(cmd, "show interface summary all");
+		cmd = compose_CLI(cmd, "show device-ha status");
+		cmd = compose_CLI(cmd, "show zone binding-iface ");
+		cmd = compose_CLI(cmd, "show rip interface all");
+		cmd = compose_CLI(cmd, "show ospf interface all area ");
+		cmd = compose_CLI(cmd, "show dhcp status all");
+		cmd = compose_CLI(cmd, "show interface summary all status");
+		cmd = compose_CLI(cmd, "show ddns");
+		// write flag is 0
+		//gl.nowriteflag = true;
+		txcli(cmd, "ifacesummary.html", 2, "ifacesummary.html");
+
+		
+	function summary_fetch(idx) {
+		var sourcePtr = top.frames[4]['result_'+(idx)];
+		var cnt = sourcePtr.length;
+
+		/* mapping Device HA status to specific interface */
+		var sourcePtr2 = top.frames[4]['result_'+(idx+1)+'_1'];
+		var dhaGeneralList;
+		var dhaGeneralListCnt = 0;
+		if( sourcePtr2 != '' && sourcePtr2 != undefined ){
+			if( sourcePtr2[0]._interface != '' && sourcePtr2[0]._interface != undefined ){
+				dhaGeneralList = sourcePtr2[0]._interface;
+				dhaGeneralListCnt = dhaGeneralList.length;
+			}
+			else{
+				dhaGeneralList = new Array(); 
+			}
+		}
+		else{
+			dhaGeneralList = new Array(); 
+		}
+		DevHA_status.splice(0, DevHA_status.length);
+		if( dhaGeneralListCnt  ){
+			for(var i = 0; i < cnt; i++) {
+				DevHA_status.push("n/a");
+				for(var j = 0; j < dhaGeneralListCnt; j++) {
+					if(sourcePtr[i]._Name == dhaGeneralList[j].__name){
+						DevHA_status[i] = dhaGeneralList[j]._HA_status;
+						break;
+					}
+				}
+			}
+		}
+		else{
+			for(var i = 0; i < cnt; i++) {
+				DevHA_status.push("n/a");
+			}
+		}
+
+		/*mapping Zone to homeList Object */
+		var sourcePtr2 = top.frames[4]['result_'+(idx+2)];
+		var cnt1 = sourcePtr2.length;
+		Zone_status.splice(0, Zone_status.length);
+
+		for(var i = 0; i < cnt; i++) {
+			Zone_status.push("n/a");
+			for(var j = 0; j < cnt1; j++) {
+				if(sourcePtr[i]._Name == sourcePtr2[j]._Name) {
+					Zone_status[i] = sourcePtr2[j]._Zone;
+				}
+			}
+		}	
+
+
+		/* mapping DHCP status to specific interface */
+		var sourcePtr2 = top.frames[4]['result_'+(idx+5)];
+		var cnt1 = sourcePtr2.length;
+		Service_status.splice(0, Service_status.length);
+
+		for(var i = 0; i < cnt; i++) {
+			Service_status.push("n/a");
+			for(var j = 0; j < cnt1; j++) {
+				if((sourcePtr[i]._Name == sourcePtr2[j]._Interface) && (sourcePtr2[j]._DHCP_Status != 'none')){
+					Service_status[i] = sourcePtr2[j]._DHCP_Status;
+				}
+			}
+		}
+
+		/*mapping DDNS to homeList object */	
+		var sourcePtr2 = top.frames[4]['result_'+(idx+7)];
+		var cnt1 = sourcePtr2.length;
+
+		for(var i = 0; i < cnt; i++) {
+			for(var j = 0; j < cnt1; j++) {
+				if(sourcePtr[i]._Name == sourcePtr2[j]._WAN_Interface){
+					if(Service_status[i] == 'n/a'){
+						Service_status[i] = "DDNS";
+					}else{
+						Service_status[i] += " / DDNS";
+					}
+				}
+			}
+		}
+
+		/*mapping RIP to homeList object */	
+		var sourcePtr2 = top.frames[4]['result_'+(idx+3)];
+		var cnt1 = sourcePtr2.length;
+
+		for(var i = 0; i < cnt; i++) {
+			for(var j = 0; j < cnt1; j++) {
+				if((sourcePtr[i]._Name == sourcePtr2[j]._Interface) && (sourcePtr2[j]._Network == "yes")){
+					if(Service_status[i] == 'n/a'){
+						Service_status[i] = "RIP";
+					}else{
+						Service_status[i] += " / RIP";
+					}
+				}
+			}
+		}
+
+		/*mapping RIP to homeList object */	
+		var sourcePtr2 = top.frames[4]['result_'+(idx+4)];
+		var cnt1 = sourcePtr2.length;
+
+		for(var i = 0; i < cnt; i++) {
+			for(var j = 0; j < cnt1; j++) {
+				if((sourcePtr[i]._Name == sourcePtr2[j]._Interface) && (sourcePtr2[j]._Area != "none")){
+					if(Service_status[i] == 'n/a'){
+						Service_status[i] = "OSPF";
+					}else{
+						Service_status[i] += " / OSPF";
+					}
+				}
+			}
+		}
+	
+		
+		L1_Ptr.dataSet.splice(0,L1_Ptr.dataCount());
+		L1_Position.splice(0, L1_Position.length);
+		allIface.splice(0, allIface.length);
+		for(var i = 0; i < cnt; i++){
+			allIface.push(sourcePtr[i]._Name);
+			var _name = sourcePtr[i]._Name;
+			/* Layer1 Members */
+			if(_name.search(/^ge(\d+)$/) != -1 || _name.search(/^br(\d+)$/) != -1 || _name == "aux" ||
+			   _name.search(/^wan(\d+)$/) != -1 || _name.search(/^lan(\d+)$/) != -1 || _name.search(/^dmz$/) != -1 || _name.search(/^ext-wlan$/) != -1 ||
+			   _name.search(/^wlan-(\d+)$/) != -1 || _name.search(/^cellular(\d+)$/) != -1 || _name.search(/^opt$/) != -1) {
+				L1_Ptr.addNewRecord(sourcePtr[i]._Name, 0,
+				                    sourcePtr[i]._Status,
+				                    sourcePtr[i]._IP_Address,
+				                    sourcePtr[i]._Mask,
+				                    sourcePtr[i]._IP_Assignment,
+				                    DevHA_status[i],
+				                    Zone_status[i],
+				                    Service_status[i]);
+				L1_Position.push(i);
+			}
+		}
+
+		var k = 0;	
+		for(var i = 0; i < L1_Position.length; i++){
+			var dataPtr = L1_Ptr.getRecord(i);
+			k = i + 1;
+			var L1_next_pos = (k == L1_Position.length) ? cnt : L1_Position[k];
+								
+			if((L1_next_pos - L1_Position[i]) > 1) {//means some members between 2 Layer1 interfaces
+				dataPtr.mb2 = 1;
+				var start_idx = L1_Position[i] + 1;
+				for(var j = start_idx; j < L1_next_pos; j++){
+					var _name = sourcePtr[j]._Name;
+					/* Layer 2 Members */
+					if(_name.search(/^ge(\d+):m$/) != -1 || _name.search(/^br(\d+):m$/) != -1 || _name.search(/^wan(\d+):m$/) != -1 ||
+					   _name.search(/^lan(\d+):m$/) != -1 || _name.search(/^dmz:m$/) != -1 || _name.search(/^ext-wlan:m$/) != -1 || _name.search(/^opt:m$/) != -1){
+						dataPtr.objMb1.addNewRecord(sourcePtr[j]._Name, 0, j, "NotVLAN",
+						                            sourcePtr[j]._Status,
+						                            sourcePtr[j]._IP_Address,
+						                            sourcePtr[j]._Mask,
+						                            sourcePtr[j]._IP_Assignment,
+						                            DevHA_status[j],
+						                            'n/a',
+						                            Service_status[j]);
+					}	                            	
+					else	                            
+					if(_name.search(/^ge(\d+):(\d+)$/) != -1 || _name.search(/^br(\d+):(\d+)$/) != -1 || 
+					   _name.search(/^lan(\d+):(\d+)$/) != -1 || _name.search(/^dmz:(\d+)$/) != -1 || _name.search(/^ext-wlan:(\d+)$/) != -1 || _name.search(/^opt:(\d+)$/) != -1){
+						dataPtr.objMb1.addNewRecord(sourcePtr[j]._Name, 0, j, "NotVLAN",
+						                            sourcePtr[j]._Status,
+						                            sourcePtr[j]._IP_Address,
+						                            sourcePtr[j]._Mask,
+						                            sourcePtr[j]._IP_Assignment,
+						                            DevHA_status[j],
+						                            Zone_status[L1_Position[i]],
+						                            Service_status[j]);
+					}else if(_name.search(/^vlan(\d+)$/) != -1){
+						dataPtr.objMb1.addNewRecord(sourcePtr[j]._Name, 0,  j, "VLAN",
+						                            sourcePtr[j]._Status,
+						                            sourcePtr[j]._IP_Address,
+						                            sourcePtr[j]._Mask,
+						                            sourcePtr[j]._IP_Assignment,
+						                            DevHA_status[j],
+						                            Zone_status[j],
+						                            Service_status[j]);
+					}else if(_name.search(/^ppp(\d+)$/) != -1 || _name.search(/^wlan-(\d+)-(\d+)$/) != -1 ||
+							 _name.search(/^wan(\d+)_(\w+)$/) != -1 || _name.search(/^opt_(\w+)$/) != -1){
+						dataPtr.objMb1.addNewRecord(sourcePtr[j]._Name, 0,  j, "NotVLAN",
+						                            sourcePtr[j]._Status,
+						                            sourcePtr[j]._IP_Address,
+						                            sourcePtr[j]._Mask,
+						                            sourcePtr[j]._IP_Assignment,
+						                            DevHA_status[j],
+						                            Zone_status[j],
+						                            Service_status[j]);					
+					}
+				}
+			}else if((L1_next_pos - L1_Position[i]) == 1){ //that means no members between 2 Layer1 interface
+				dataPtr.mb2 = 0;
+			}
+		}
+		
+		var k = 0; 
+		var m = 0;
+		for(var i = 0; i < L1_Position.length; i++){
+			m = i+1;
+			var L1 = L1_Ptr.getRecord(i); 
+			var L1_next_pos = (m == L1_Position.length) ? cnt : L1_Position[m];
+ 
+			var L2_mbrcnt = L1.objMb1.dataCount();
+			
+			for(var j = 0; j < L2_mbrcnt; j++){
+				k = j+1;
+				
+				var L2 = L1.objMb1.getRecord(j);
+ 
+				var L2_next_pos = (k == L2_mbrcnt) ? L1_next_pos : L1.objMb1.getRecord(k).mb3;
+							
+				if(L2.mb4== "VLAN") {
+					/* Layer 3 members */
+					var startIdx = L2.mb3 + 1;
+					if(L2_next_pos - startIdx >= 1){
+						L2.mb2 = 1;
+						for(var k = startIdx; k < L2_next_pos; k++){
+							if(sourcePtr[k]._Name.search(/^vlan(\d+):m$/) != -1){
+								L2.objMb1.addNewRecord(sourcePtr[k]._Name,
+								                       sourcePtr[k]._Status,
+								                       sourcePtr[k]._IP_Address,
+								                       sourcePtr[k]._Mask,
+								                       sourcePtr[k]._IP_Assignment,
+								                       DevHA_status[k],
+								                       'n/a',
+								                       Service_status[k]);
+							}
+							else
+							if(sourcePtr[k]._Name.search(/^vlan(\d+):(\d+)$/) != -1){
+								L2.objMb1.addNewRecord(sourcePtr[k]._Name,
+								                       sourcePtr[k]._Status,
+								                       sourcePtr[k]._IP_Address,
+								                       sourcePtr[k]._Mask,
+								                       sourcePtr[k]._IP_Assignment,
+								                       DevHA_status[k],
+								                       Zone_status[L2.mb3],
+								                       Service_status[k]);
+							}
+						}
+					}
+				} 
+			}
+		}
+
+		/* statistics */
+		var sourcePtr3 = top.frames[4]['result_'+(idx+6)];
+		var sourcecnt = sourcePtr3.length;
+
+		L1_Ptr2.dataSet.splice(0, L1_Ptr2.dataCount());
+		L1_Position2.splice(0, L1_Position2.length);
+
+		for(var i = 0; i < sourcecnt; i++){
+			var _name = sourcePtr3[i]._Name;
+			/* Layer1 Members */
+			if(_name.search(/^ge(\d+)$/) != -1 || _name.search(/^br(\d+)$/) != -1 || _name == "aux" ||
+			   _name.search(/^lan(\d+)$/) != -1 || _name.search(/^dmz$/) != -1 || _name.search(/^ext-wlan$/) != -1 || _name.search(/^wan(\d+)$/) != -1 || 
+			   _name.search(/^opt$/) != -1 || _name.search(/^wlan-(\d+)$/) != -1 || _name.search(/^cellular(\d+)$/) != -1) {
+				L1_Ptr2.addNewRecord(sourcePtr3[i]._Name, 0,
+				                     sourcePtr3[i]._Status,
+				                     sourcePtr3[i]._TxPkts,
+				                     sourcePtr3[i]._RxPkts,
+				                     sourcePtr3[i]._Colli_,
+				                     sourcePtr3[i]._TxB_s,
+				                     sourcePtr3[i]._RxB_s);
+				L1_Position2.push(i);
+			}
+		}
+
+		var k = 0;	
+		for(var i = 0; i < L1_Position2.length; i++){
+			var dataPtr = L1_Ptr2.getRecord(i);
+			k = i + 1;
+			var L1_next_pos = (k == L1_Position2.length) ? sourcecnt : L1_Position2[k];
+								
+			if((L1_next_pos - L1_Position2[i]) > 1){//means some members between 2 Layer1 interfaces
+				dataPtr.mb2 = 1;
+				var start_idx = L1_Position2[i] + 1;
+				for(var j = start_idx; j < L1_next_pos; j++){
+					var _name = sourcePtr3[j]._Name;
+					/* Layer 2 Members */
+					  if(_name.search(/^wlan-(\d+)-(\d+)$/) != -1 || _name.search(/^wan(\d+)_(\w+)$/) != -1 || _name.search(/^opt_(\w+)$/) != -1 ||
+					     _name.search(/^vlan(\d+)$/) != -1 || _name.search(/^ppp(\d+)$/) != -1){
+						dataPtr.objMb1.addNewRecord(sourcePtr3[j]._Name,
+						                            sourcePtr3[j]._Status,
+						                            sourcePtr3[j]._TxPkts,
+						                            sourcePtr3[j]._RxPkts,
+						                            sourcePtr3[j]._Colli_,
+						                            sourcePtr3[j]._TxB_s,
+						                            sourcePtr3[j]._RxB_s);
+					}
+				}
+			}else if((L1_next_pos - L1_Position2[i]) == 1){ //that means no members between 2 Layer1 interface
+				dataPtr.mb2 = 0;
+			}
+		}
+		
+	}
+	
+	function showAllEntry(L1_list) {
+		var dcnt = L1_list.dataCount();
+		for ( var i = 0 ; i < dcnt ; i++ ) {
+			if((i%2)==0){
+				var color = 'tabcolor2';//even
+			}else{
+				var color = 'tabcolor1';//odd
+			}
+			var data = L1_list.getRecord(i);
+			
+			if(data.mb2 == 1){
+				var L2_length = data.objMb1.dataCount();
+				document.write('<tr class="'+color+'">');
+				document.write('<td nowrap>');
+				document.write('<span id=\"btnPlus'+i+'\">');
+				document.write('<a href=\"javascript:showL2(\''+i+'\', \''+L2_length+'\')\" class=\"treelink\">');
+				document.write('<img src=\"images\/i_sh_a.gif\" alt=\"Expand\" width=\"12\" height=\"12\" border=\"0\" align=\"absmiddle\" title=\"Expand\">');
+				document.write(gethylink(data.mb1));// Add hyper link in here for usg100/200			
+				document.write('<\/a><\/span>');
+				document.write('<span id=\"btnMinus'+i+'\" style=\"display:none\">');
+				document.write('<a href=\"javascript:hideL2(\''+i+'\', \''+L2_length+'\')\" class=\"treelink\">');
+				document.write('<img src=\"images\/i_sh_m.gif\" alt=\"Close\" width=\"12\" height=\"12\" border=\"0\" align=\"absmiddle\" title=\"Close\">'); 
+				document.write(gethylink(data.mb1));// Add hyper link in here for usg100/200	
+				document.write('<\/a><\/span>');
+				document.write('<\/td>');
+				if(data.mb3 == 'No device' || 
+				data.mb3 == 'Device error' ||
+				data.mb3 == 'Probe device fail' || 
+				data.mb3 == 'Init device fail' || 
+				data.mb3 == 'Check lock fail' || 
+				data.mb3 == 'Device locked' ||
+				data.mb3 == 'SIM error' ||
+				data.mb3 == 'SIM locked-PUK' || 
+				data.mb3 == 'SIM locked-PIN' || 
+				data.mb3 == 'Unlock PUK fail' || 
+				data.mb3 == 'Unlock PIN fail' ||
+				data.mb3 == 'Unlock device fail' ||
+				data.mb3 == 'Get dev-info fail' ||
+				data.mb3 == 'Get signal fail' || 
+				data.mb3 == 'Incorrect device' || 
+				data.mb3 == 'Set band fail' || 
+				data.mb3 == 'Set profile fail' ||
+				data.mb3 == 'PPP fail' ||
+				data.mb3 == 'ERR'){
+					document.write('<td nowrap><font color="#ff0000">'+data.mb3+'</font><\/td>');/* status */
+				}else{
+					document.write('<td nowrap>'+data.mb3+'<\/td>');/* status */			
+				}
+				document.write('<td nowrap>'+data.mb7+'<\/td>');
+				document.write('<td nowrap>'+data.mb8+'<\/td>');
+				document.write('<td nowrap>'+data.mb4+' / '+data.mb5+'<\/td>');
+				document.write('<td nowrap>'+data.mb6+'<\/td>');
+				document.write('<td nowrap>'+data.mb9+'<\/td>');
+				document.write('<td nowrap>'+getRnDial(data.mb3, data.mb6, data)+'<\/td>');
+				document.write('<\/tr>');				
+				getL2entry(color, i, data.objMb1); 
+				if((data.mb1.search(/^wan(\d+)$/) != -1)||(data.mb1.search(/^opt$/) != -1)){
+					showL2(i, L2_length);
+				}
+				
+			}else {
+				document.write('<tr class="'+color+'">');
+				document.write('<td nowrap>');
+				document.write('<span class=\"treelink\">');
+				document.write('<img src=\"images\/i_sh_blank.gif\" width=\"12\" height=\"12\" align=\"absmiddle\">');
+				document.write(gethylink(data.mb1));// Add hyper link in here for usg100/200	
+				document.write('<\/span>');
+				document.write('<\/td>');
+				if(data.mb3 == 'No device' || 
+				data.mb3 == 'Device error' ||
+				data.mb3 == 'Probe device fail' || 
+				data.mb3 == 'Init device fail' || 
+				data.mb3 == 'Check lock fail' || 
+				data.mb3 == 'Device locked' ||
+				data.mb3 == 'SIM error' ||
+				data.mb3 == 'SIM locked-PUK' || 
+				data.mb3 == 'SIM locked-PIN' || 
+				data.mb3 == 'Unlock PUK fail' || 
+				data.mb3 == 'Unlock PIN fail' ||
+				data.mb3 == 'Unlock device fail' ||
+				data.mb3 == 'Get dev-info fail' ||
+				data.mb3 == 'Get signal fail' || 
+				data.mb3 == 'Incorrect device' || 
+				data.mb3 == 'Set band fail' || 
+				data.mb3 == 'Set profile fail' ||
+				data.mb3 == 'PPP fail' ||
+				data.mb3 == 'ERR'){
+					document.write('<td nowrap><font color="#ff0000">'+data.mb3+'</font><\/td>');/* status */
+				}else{
+					document.write('<td nowrap>'+data.mb3+'<\/td>');/* status */			
+				}
+				document.write('<td nowrap>'+data.mb7+'<\/td>');
+				document.write('<td nowrap>'+data.mb8+'<\/td>');
+				document.write('<td nowrap>'+data.mb4+' / '+data.mb5+'<\/td>');
+				document.write('<td nowrap>'+data.mb6+'<\/td>');
+				document.write('<td nowrap>'+data.mb9+'<\/td>');
+				document.write('<td nowrap>'+getRnDial(data.mb3, data.mb6, data)+'<\/td>');
+				document.write('<\/tr>');
+			}
+		}
+	}
+	
+	function getL2entry(L2_color, idx, L2_List){
+		var dcnt = L2_List.dataCount();
+
+		for ( var i = 0 ; i < dcnt ; i++ ) {
+			var color = L2_color ;
+			var data = L2_List.getRecord(i);
+ 
+			if(data.mb2 == 1){
+				var L3_length = data.objMb1.dataCount();
+				document.write('<tr id=\"L2'+idx+''+i+'\" class=\"'+color+'\" style="display: none;">');
+				document.write('<td nowrap><div style=\"margin-left:16px;\">');
+				document.write('<span id=\"btn2Plus'+idx+''+i+'\">');
+				document.write('<a href=\"javascript:showL3(\''+i+'\', \''+L3_length+'\', \''+idx+'\')\" class=\"treelink\">');
+				document.write('<img src=\"images\/i_sh_a.gif\" alt=\"Expand\" width=\"12\" height=\"12\" border=\"0\" align=\"absmiddle\" title=\"Expand\">');
+				document.write(gethylink(data.mb1));// Add hyper link in here for usg100/200	
+				document.write('<\/a><\/span>');
+				document.write('<span id="btn2Minus'+idx+''+i+'" style="display:none ">');
+				document.write('<a href=\"javascript:hideL3(\''+i+'\', \''+L3_length+'\', \''+idx+'\')\" class=\"treelink\">');
+				document.write('<img src=\"images\/i_sh_m.gif\" alt=\"Close\" width=\"12\" height=\"12\" border=\"0\" align=\"absmiddle\" title=\"Close\">'); 
+				document.write(gethylink(data.mb1));// Add hyper link in here for usg100/200	
+				document.write('<\/a><\/span>');
+				document.write('<\/div>');
+				document.write('<\/td>');
+				document.write('<td nowrap>'+data.mb5+'<\/td>');
+				document.write('<td nowrap>'+data.mb9+'<\/td>');
+				document.write('<td nowrap>'+data.mb10+'<\/td>');
+				document.write('<td nowrap>'+data.mb6+' / '+data.mb7+'<\/td>');
+				document.write('<td nowrap>'+data.mb8+'<\/td>');
+				document.write('<td nowrap>'+data.mb11+'<\/td>');
+				document.write('<td nowrap>'+getRnDial(data.mb5, data.mb8, data)+'<\/td>');
+				document.write('<\/tr>'); 
+				getL3entry(color, i, data.objMb1, idx);
+			}else {
+				document.write('<tr id=\"L2'+idx+''+i+'\" class=\"'+color+'\" style="display: none;">');
+				document.write('<td nowrap><div style=\"margin-left:16px;\">');
+				document.write('<span class=\"treelink\">');
+				document.write('<img src=\"images\/i_sh_blank.gif\" width=\"12\" height=\"12\" align=\"absmiddle\">');
+				document.write(gethylink(data.mb1));// Add hyper link in here for usg100/200	
+				document.write('<\/span>');
+				document.write('<\/td>');
+				document.write('<td nowrap>'+data.mb5+'<\/td>');
+				document.write('<td nowrap>'+data.mb9+'<\/td>');
+				document.write('<td nowrap>'+data.mb10+'<\/td>');
+				document.write('<td nowrap>'+data.mb6+' / '+data.mb7+'<\/td>');
+				document.write('<td nowrap>'+data.mb8+'<\/td>');
+				document.write('<td nowrap>'+data.mb11+'<\/td>');
+				document.write('<td nowrap>'+getRnDial(data.mb5, data.mb8, data)+'<\/td>');
+				document.write('<\/tr>');
+			}
+		}
+	}
+
+	function getL3entry(L3_color, idx, L3_List, idx2){
+		var dcnt = L3_List.dataCount();
+		for ( var i = 0 ; i < dcnt ; i++ ) {
+			var color = L3_color ;
+			var data = L3_List.getRecord(i);			
+			document.write('<tr id=\"L3'+idx2+''+idx+''+i+'\" class=\"'+color+'\" style="display: none;">');
+			document.write('<td nowrap><div style=\"margin-left:32px;\">');
+			document.write('<span class=\"treelink\">');
+			document.write('<img src=\"images\/i_sh_blank.gif\" width=\"12\" height=\"12\" align=\"absmiddle\">');
+			document.write(gethylink(data.mb1));// Add hyper link in here for usg100/200	
+			document.write('<\/span>');
+			document.write('<\/td>');
+			document.write('<td nowrap>'+data.mb2+'<\/td>');
+			document.write('<td nowrap>'+data.mb6+'<\/td>');
+			document.write('<td nowrap>'+data.mb7+'<\/td>');
+			document.write('<td nowrap>'+data.mb3+' / '+data.mb4+'<\/td>');
+			document.write('<td nowrap>'+data.mb5+'<\/td>');
+			document.write('<td nowrap>'+data.mb8+'<\/td>');
+			document.write('<td nowrap>'+getRnDial(data.mb2, data.mb5, data)+'<\/td>');
+			document.write('<\/tr>');
+		}
+	} 
+	function gethylink(data){
+		var hylink ='#';
+		if((data.search(/^wan(\d+)$/) != -1)||(data.search(/^lan(\d+)$/) != -1) ||(data.search(/^opt$/) != -1)
+			||(data.search(/^dmz$/) != -1) || (data.search(/^ext-wlan$/) != -1) || (data.search(/^lan(\d+):(\d+)$/) != -1) ||(data.search(/^opt:(\d+)$/) != -1)
+			||(data.search(/^dmz:(\d+)$/) != -1)||(data.search(/^ext-wlan:(\d+)$/) != -1)){
+			hylink = 'interface.html';
+		}else if((data.search(/^wan(\d+)_ppp$/) != -1)||(data.search(/^opt_ppp$/) != -1)){
+			hylink = 'pppoe.html';
+		}else if((data.search(/^vlan(\d+)$/) != -1)||(data.search(/^vlan(\d+):(\d+)$/) != -1)){
+			hylink = 'vlan.html';
+		}else if((data.search(/^br(\d+)$/) != -1)||(data.search(/^br(\d+):(\d+)$/) != -1)){
+			hylink = 'bridge.html';
+		}else if(data.search(/^aux$/) != -1){
+			hylink = 'aux.html';
+		}else if((data.search(/^wlan-(\d+)-(\d+)$/) != -1)||(data.search(/^wlan-(\d+)$/) != -1)){
+			hylink = 'wlan.html';
+		}else if((data.search(/^cellular(\d+)$/) != -1)){
+			hylink = 'cellular.html';
+		}
+		return '<a href="'+hylink+'">'+data+'</a>';
+	}
+	function showL2(position, L2position){
+
+		var btnPlusX = "btnPlus"+position;
+		var btnMinusX = "btnMinus"+position;
+			
+		document.getElementById(btnPlusX).style.display = "none";
+		document.getElementById(btnMinusX).style.display = "";
+		
+		for(var i = 0; i < L2position; i++) {
+			var L2X = "L2"+position+i;	
+			document.getElementById(L2X).style.display = "";
+		}	
+	}
+	
+	function hideL2(position, L2position){
+		var btnPlusX = "btnPlus"+position;
+		var btnMinusX = "btnMinus"+position;
+		
+		document.getElementById(btnPlusX).style.display = "";
+		document.getElementById(btnMinusX).style.display = "none";
+
+		for(var i = 0; i < L2position; i++) {
+			var L2X = "L2"+position+i;	
+			document.getElementById(L2X).style.display = "none";
+			/*var data = L1_Ptr.getRecord(position).objMb1.getRecord(i);
+			if(data.mb2 == 1) {				
+				var btn2PlusX = "btn2Plus"+position+i;
+				var btn2MinusX = "btn2Minus"+position+i;
+				document.getElementById(btn2PlusX).style.display = "";
+				document.getElementById(btn2MinusX).style.display = "none";
+				var dcnt = data.objMb1.dataCount();
+ 				for(var k = 0; k < dcnt; k++){
+ 					var L3X = "L3"+position+i+k;
+ 					document.getElementById(L3X).style.display = "none";
+				}
+			}	*/	
+		}
+	}
+	
+	function showL3(position, L3position, L1position){
+		var btn2PlusX = "btn2Plus"+L1position+position;
+		var btn2MinusX = "btn2Minus"+L1position+position; 
+		
+		document.getElementById(btn2PlusX).style.display = "none";
+		document.getElementById(btn2MinusX).style.display = "";
+		
+		for(var i = 0; i < L3position; i++) {
+			var L3X = "L3"+L1position+position+i;	
+			document.getElementById(L3X).style.display = "";
+		}
+	}
+	
+	function hideL3(position, L3position, L1position){
+		var btn2PlusX = "btn2Plus"+L1position+position;
+		var btn2MinusX = "btn2Minus"+L1position+position;
+		document.getElementById(btn2PlusX).style.display = "";
+		document.getElementById(btn2MinusX).style.display = "none";
+		
+		for(var i = 0; i < L3position; i++) {
+			var L3X = "L3"+L1position+position+i;	
+			document.getElementById(L3X).style.display = "none";
+		}
+	}
+	/*--- pop up windows start ---*/
+	function newData(name, status){
+		if(gl.isLimitAdmin) {
+			alert("This action is not allowed for Limited-Admin accounts.");
+			return;
+		}
+		gl.rtnField.splice(0, gl.rtnField.length);
+		gl.nextPage = 'ifacesummary.html';
+		gl.zyshdcnt = 0;
+		if(status == 'SIM locked-PUK' || status == 'Unlock PUK fail'){
+			gl.rtnField.push(["ifacesummary", ""], ["PUK", name], ["ORG_PUK", ""], ["NEW_PUK", ""]);
+			gl.OpenSubWin_4('cellpin', 'Unlock_PUK_Code', 250, 190);
+		}else if(status == 'SIM locked-PIN' || status == 'Unlock PIN fail'){
+			gl.rtnField.push(["ifacesummary", ""], ["PIN", name], ["NEW_PIN", ""]);
+			gl.OpenSubWin_4('cellpin', 'Unlock_PIN_Code', 205, 131);
+		}else if(status == 'Device locked' || status == 'Unlock device fail'){
+			gl.rtnField.push(["ifacesummary", ""], ["DEV_LOCK", name], ["NEW_PIN", ""]);	
+			gl.OpenSubWin_4('cellpin', 'Unlock_DEVICE_Code', 205, 131);
+		}
+	}
+	/*--- pop up window end ---*/
+	function getRnDial(str1, str2,dataptr) {
+		if(str1 == 'SIM locked-PUK' || str1 == 'Unlock PUK fail' || str1 == 'SIM locked-PIN' ||
+		str1 == 'Unlock PIN fail' || str1 == 'Device locked' || str1 == 'Unlock device fail'){
+			return '<input type="button" name="Unlock" onClick="newData(\''+dataptr.mb1+'\',\''+str1+'\')" value="'+gl.getLang('_Unlock', '_button')+'">';
+		}
+		if(str1 == 'Connected' ) {
+			return '<img src="images/i_connect.gif" name="cont'+dataptr.mb1+'" border=0 width="28" height="14" onclick="ReDial(\''+str1+'\',\''+dataptr.mb1+'\',event);" title=\'Disconnect\' >';
+		}else if(str1 == 'Disconnected' || str1 == 'Device ready') {
+			return '<img src="images/i_disconnect.gif" name="cont'+dataptr.mb1+'" border=0 width="28" height="14" onclick="ReDial(\''+str1+'\',\''+dataptr.mb1+'\',event);" title=\'Connect\' >';
+		}else if((str2 == 'DHCP client') && (str1 == 'Inactive')){
+			return "n/a";
+		}	
+		if((str2 == 'DHCP client') && (str1 !="Port Group Inactive")) {
+			return '<input type="button" name="Renew" onClick="ReNew(\''+dataptr.mb1+'\')" value="Renew">';
+		}else{
+			return "n/a";
+		}
+	}
+	function ReNew(str){
+		if(gl.isLimitAdmin) {
+			alert("This action is not allowed for Limited-Admin accounts.");
+			return;
+		}		
+		var cmd = "exit&cmd=renew dhcp "+ str +"&cmd=configure terminal"; 	
+		cmd = compose_CLI(cmd, "show interface summary all");
+		cmd = compose_CLI(cmd, "show device-ha status");
+		cmd = compose_CLI(cmd, "show zone binding-iface");
+		cmd = compose_CLI(cmd, "show rip interface all");
+		cmd = compose_CLI(cmd, "show ospf interface all area");
+		cmd = compose_CLI(cmd, "show dhcp status all");
+		cmd = compose_CLI(cmd, "show interface summary all status");
+		cmd = compose_CLI(cmd, "show ddns");
+	
+		txcli(cmd, "ifacesummary.html", 11, "ifacesummary.html");
+		gl.retbufno = 3;
+	}
+	function ReDial(str1, str2 ,event){
+		if(gl.isLimitAdmin) {
+			alert("This action is not allowed for Limited-Admin accounts.");
+			return;
+		}
+		if(str1=='Disconnected' || str1 == 'Device ready') {
+			for(var i = 0; i < allIface.length; i++) {
+				if(str2 == allIface[i]) {
+					gl.ifdx = i;
+					break;
+				}
+			}
+			gl.CLIKeyField = str2;
+			var cmd = "exit&cmd=interface dial " + str2 +"&cmd=configure terminal&cmd=show interface summary all";
+			txcli(cmd, "homedial.html", 4, "ifacesummary.html", "ifacesummary.html", "homedial.html");
+			gl.retbufno = 3;
+		}else{
+			var cmd = "exit&cmd=interface disconnect " + str2 +"&cmd=configure terminal";	
+			cmd = compose_CLI(cmd, "show interface summary all");
+			cmd = compose_CLI(cmd, "show device-ha status");
+			cmd = compose_CLI(cmd, "show zone binding-iface");
+			cmd = compose_CLI(cmd, "show rip interface all");
+			cmd = compose_CLI(cmd, "show ospf interface all area");
+			cmd = compose_CLI(cmd, "show dhcp status all");
+			cmd = compose_CLI(cmd, "show interface summary all status");
+			cmd = compose_CLI(cmd, "show ddns");
+			txcli(cmd, "ifacesummary.html", 11, "ifacesummary.html");
+			gl.retbufno = 3;
+		}
+	}
+
+	function showAllEntry2(L1_list) {
+		var dcnt = L1_list.dataCount();
+		for ( var i = 0 ; i < dcnt ; i++ ) {
+			if((i%2)==0){
+				var color = 'tabcolor2';//even
+			}else{
+				var color = 'tabcolor1';//odd
+			}
+			var data = L1_list.getRecord(i);
+			
+			if(data.mb2 == 1){
+				var L2_length = data.objMb1.dataCount();
+				document.write('<tr class="'+color+'">');
+				document.write('<td nowrap>');
+				document.write('<span id=\"btnPlus2'+i+'\">');
+				document.write('<a href=\"javascript:show2L2(\''+i+'\', \''+L2_length+'\')\" class=\"treelink\">');
+				document.write('<img src=\"images\/i_sh_a.gif\" alt=\"Expand\" width=\"12\" height=\"12\" border=\"0\" align=\"absmiddle\" title=\"Expand\">');
+				document.write(data.mb1);
+ 				document.write('<\/a><\/span>');
+				document.write('<span id=\"btnMinus2'+i+'\" style=\"display:none\">');
+				document.write('<a href=\"javascript:hide2L2(\''+i+'\', \''+L2_length+'\')\" class=\"treelink\">');
+				document.write('<img src=\"images\/i_sh_m.gif\" alt=\"Close\" width=\"12\" height=\"12\" border=\"0\" align=\"absmiddle\" title=\"Close\">'); 
+				document.write(data.mb1);
+				document.write('<\/a><\/span>');
+				document.write('<\/td>');
+				document.write('<td nowrap>'+data.mb3+'<\/td>');
+				document.write('<td nowrap>'+data.mb4+'<\/td>');
+				document.write('<td nowrap>'+data.mb5+'<\/td>');
+				document.write('<td nowrap>'+data.mb6+'<\/td>');
+				document.write('<td nowrap>'+data.mb7+'<\/td>');
+				document.write('<td nowrap>'+data.mb8+'<\/td>');
+				document.write('<\/tr>');
+				get2L2entry(color, i, data.objMb1); 
+				if((data.mb1.search(/^wan(\d+)$/) != -1)||(data.mb1.search(/^opt$/) != -1)){
+					show2L2(i, L2_length);
+				}
+			}else {
+				document.write('<tr class="'+color+'">');
+				document.write('<td nowrap>');
+				document.write('<span class=\"treelink\">');
+				document.write('<img src=\"images\/i_sh_blank.gif\" width=\"12\" height=\"12\" align=\"absmiddle\">');
+				document.write(data.mb1);
+				document.write('<\/span>');
+				document.write('<\/td>');
+				document.write('<td nowrap>'+data.mb3+'<\/td>');
+				document.write('<td nowrap>'+data.mb4+'<\/td>');
+				document.write('<td nowrap>'+data.mb5+'<\/td>');
+				document.write('<td nowrap>'+data.mb6+'<\/td>');
+				document.write('<td nowrap>'+data.mb7+'<\/td>');
+				document.write('<td nowrap>'+data.mb8+'<\/td>');
+				document.write('<\/tr>');
+			}
+		}
+	}
+	
+	function get2L2entry(L2_color, idx, L2_List){
+		var dcnt = L2_List.dataCount();
+
+		for ( var i = 0 ; i < dcnt ; i++ ) {
+			var color = L2_color ;
+			var data = L2_List.getRecord(i);
+ 
+			document.write('<tr id=\"LL2'+idx+''+i+'\" class=\"'+color+'\" style="display: none;">');
+			document.write('<td nowrap><div style=\"margin-left:16px;\">');
+			document.write('<span class=\"treelink\">');
+			document.write('<img src=\"images\/i_sh_blank.gif\" width=\"12\" height=\"12\" align=\"absmiddle\">');
+			document.write(data.mb1);
+			document.write('<\/span>');
+			document.write('<\/td>');
+			document.write('<td nowrap>'+data.mb2+'<\/td>');
+			document.write('<td nowrap>'+data.mb3+'<\/td>');
+			document.write('<td nowrap>'+data.mb4+'<\/td>');
+			document.write('<td nowrap>'+data.mb5+'<\/td>');
+			document.write('<td nowrap>'+data.mb6+'<\/td>');
+			document.write('<td nowrap>'+data.mb7+'<\/td>');
+			document.write('<\/tr>');
+		}
+	}
+	
+	function show2L2(position, L2position){
+
+		var btnPlusX = "btnPlus2"+position;
+		var btnMinusX = "btnMinus2"+position;
+			
+		document.getElementById(btnPlusX).style.display = "none";
+		document.getElementById(btnMinusX).style.display = "";
+		
+		for(var i = 0; i < L2position; i++) {
+			var L2X = "LL2"+position+i;	
+			document.getElementById(L2X).style.display = "";
+		}	
+	}
+	
+	function hide2L2(position, L2position){
+		var btnPlusX = "btnPlus2"+position;
+		var btnMinusX = "btnMinus2"+position;
+		
+		document.getElementById(btnPlusX).style.display = "";
+		document.getElementById(btnMinusX).style.display = "none";
+
+		for(var i = 0; i < L2position; i++) {
+			var L2X = "LL2"+position+i;	
+			document.getElementById(L2X).style.display = "none";
+		}
+	}
+	
+	function multi_lingual(wording, filename){
+		//document.write(top.frames[1].getLang(wording, filename));
+	}
+	function hide_unhide(show){
+		//var dcnt1 = L1_Ptr.dataCount();
+
+		if (show){
+			document.getElementById("btnPlus_header").style.display = "none";
+			document.getElementById("btnMinus_header").style.display = "";
+		} else {
+			document.getElementById("btnPlus_header").style.display = "";
+			document.getElementById("btnMinus_header").style.display = "none";
+		}
+		/*for ( var i = 0 ; i < dcnt1 ; i++ ) {
+			var data = L1_Ptr.getRecord(i);
+			var L2_length = data.objMb1.dataCount();
+			if (L2_length > 0){ */
+				if (show){
+					showL2('0', '1');
+					showL2('1', '1');
+					showL2('2', '1');
+					showL2('7', '1');
+				}else{
+					hideL2('0', '1');
+					hideL2('1', '1');
+					hideL2('2', '1');
+					hideL2('7', '1');
+				}
+			/*}
+		}*/
+	}
+	function hide_unhide2(show){
+	//	var dcnt1 = L1_Ptr.dataCount();
+		if (show){
+			document.getElementById("btnPlus_header2").style.display = "none";
+			document.getElementById("btnMinus_header2").style.display = "";
+		} else {
+			document.getElementById("btnPlus_header2").style.display = "";
+			document.getElementById("btnMinus_header2").style.display = "none";
+		}
+	/*	for ( var i = 0 ; i < dcnt1 ; i++ ) {
+			var data = L1_Ptr2.getRecord(i);
+			var L2_length = data.objMb1.dataCount();
+			if (L2_length > 0){ */
+				if (show){
+					show2L2('0', '1');
+					show2L2('1', '1');
+					show2L2('2', '1');
+					show2L2('7', '1');
+				}else{
+					hide2L2('0', '1');
+					hide2L2('1', '1');
+					hide2L2('2', '1');
+					hide2L2('7', '1');
+				}
+			/*}
+		}*/
+	}
+
+// -->
+</script></head><body leftmargin="0" topmargin="0" onunload="page_init();" onload=" ScrollTo(); showFullPath('Network > Interface > Status'); " background="images/config_bg.gif" marginheight="0" marginwidth="0">
+
+<form method="post" name="ifsumry">
+<iframe id="iframe" style="display: none;" src="dummy.html"></iframe>
+<script>//ShowWins()</script>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td width="2%">&nbsp;</td>
+			<td width="98%">&nbsp;</td>
+		</tr>
+	</tbody></table>
+
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td width="2%"></td>
+			<td height="18">
+				<!-- 3D -->
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td width="14"><img src="images/sub_on_1.gif" height="24" width="14"></td>
+						<td class="sub" background="images/sub_on_2.gif" nowrap="nowrap"><script>multi_lingual("_Status", "_globalTag")</script>Status</td>
+
+						<td width="14"><img src="images/sub_on_3.gif" height="24" width="14"></td>
+						
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_portrole.html" target="main" class="sub"><script>multi_lingual("_Port_Role", "_globalTag")</script>Port Role</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+							
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_interface.html" target="main" class="sub"><script>multi_lingual("_Ethernet", "_globalTag")</script>Ethernet</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+
+						
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_pppoe.html" target="main" class="sub"><script>multi_lingual("_PPP", "_globalTag")</script>PPP</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_cellular.html" target="main" class="sub"><script>multi_lingual("_Cellular", "_globalTag")</script>Cellular</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_wlan.html" target="main" class="sub"><script>multi_lingual("_WLAN", "_globalTag")</script>WLAN</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+						
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_vlan.html" target="main" class="sub"><script>multi_lingual("_VLAN", "_globalTag")</script>VLAN</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+
+						
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_bridge.html" target="main" class="sub"><script>multi_lingual("_Bridge", "_globalTag")</script>Bridge</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+						
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_aux.html" target="main" class="sub"><script>multi_lingual("_Auxiliary", "_globalTag")</script>Auxiliary</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+						
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_groups.html" target="main" class="sub"><script>multi_lingual("_Trunk", "_globalTag")</script>Trunk</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+					</tr>
+				</tbody></table>
+				<!-- 3D -->
+			</td>
+			<!--td width="2%"></td-->
+		</tr>
+
+		<tr>
+			<td width="2%">&nbsp;</td>
+			<td class="BG4">
+				<!-- 3D -->
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tbody><tr>
+						<td rowspan="3" background="images/config_bo_l.gif" width="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+						<td background="images/config_bo_t.gif" height="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+						<td rowspan="3" background="images/config_bo_r.gif" width="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+
+					</tr>
+					<tr>
+						<td>
+							<!-- 3D -->
+						  <div align="center">&nbsp;<br>
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="BG3" width="3%">&nbsp;</td>
+										<td class="BG3" width="97%"><script>multi_lingual("_Interface_Status", "_ifacesummary")</script>Interface Status</td>
+
+									</tr>
+								</tbody></table><br>
+
+								<table border="0" bordercolor="#ffffff" cellpadding="2" cellspacing="2" width="96%">
+									<tbody><tr>
+										<td class="tableTitle" align="center" width="13%"><span id="btnPlus_header"><a href="javascript:hide_unhide(1)"><img src="images/i_sh_a.gif" ,="" align="absmiddle" border="0" height="12" width="12"></a><script>multi_lingual("_Name", "_ifacesummary")</script>Name</span><span id="btnMinus_header" style="display: none;"><a href="javascript:hide_unhide(0)"><img src="images/i_sh_m.gif" align="absmiddle" border="0" height="12" width="12"></a><script>multi_lingual("_Name", "_ifacesummary")</script>Name</span></td>
+										<td class="tableTitle" align="center" width="12%"><script>multi_lingual("_Status", "_ifacesummary")</script>Status</td>
+										<td class="tableTitle" align="center" width="10%"><script>multi_lingual("_HA_Status", "_ifacesummary")</script>HA Status</td>
+ 
+										<td class="tableTitle" align="center" width="10%"><script>multi_lingual("_Zone", "_ifacesummary")</script>Zone</td>
+
+										<td class="tableTitle" align="center" width="15%"><script>multi_lingual("_IP_Netmask", "_ifacesummary")</script>IP Addr/Netmask</td>
+										<td class="tableTitle" align="center" width="10%"><script>multi_lingual("_IP_Assignment", "_ifacesummary")</script>IP Assignment</td>
+										<td class="tableTitle" align="center" width="20%"><script>multi_lingual("_Services", "_ifacesummary")</script>Services</td>
+										<td class="tableTitle" align="center" width="10%"><script>multi_lingual("_Action", "_ifacesummary")</script>Action</td>
+									</tr>
+
+									<script>//showAllEntry(L1_Ptr)</script><tr class="tabcolor2"><td nowrap="nowrap"><span style="display: none;" id="btnPlus0"><a href="javascript:showL2('0', '1')" class="treelink"><img src="images/i_sh_a.gif" alt="Expand" title="Expand" align="absmiddle" border="0" height="12" width="12"></a><a href="interface.html">wan1</a></span><span id="btnMinus0" style=""><a href="javascript:hideL2('0', '1')" class="treelink"><img src="images/i_sh_m.gif" alt="Close" title="Close" align="absmiddle" border="0" height="12" width="12"></a><a href="interface.html">wan1</a></span></td><td nowrap="nowrap">100M/Full</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">WAN</td><td nowrap="nowrap">172.25.21.64 / 255.255.255.0</td><td nowrap="nowrap">DHCP client</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap"><input name="Renew" onclick="ReNew('wan1')" value="Renew" type="button"></td></tr><tr id="L200" class="tabcolor2" style=""><td nowrap="nowrap"><div style="margin-left: 16px;"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12"><a href="pppoe.html">wan1_ppp</a></span></div></td><td nowrap="nowrap">Inactive</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">WAN</td><td nowrap="nowrap">0.0.0.0 / 0.0.0.0</td><td nowrap="nowrap">Dynamic</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td></tr><tr class="tabcolor1"><td nowrap="nowrap"><span style="display: none;" id="btnPlus1"><a href="javascript:showL2('1', '1')" class="treelink"><img src="images/i_sh_a.gif" alt="Expand" title="Expand" align="absmiddle" border="0" height="12" width="12"></a><a href="interface.html">wan2</a></span><span id="btnMinus1" style=""><a href="javascript:hideL2('1', '1')" class="treelink"><img src="images/i_sh_m.gif" alt="Close" title="Close" align="absmiddle" border="0" height="12" width="12"></a><a href="interface.html">wan2</a></span></td><td nowrap="nowrap">Down</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">WAN</td><td nowrap="nowrap">0.0.0.0 / 0.0.0.0</td><td nowrap="nowrap">DHCP client</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap"><input name="Renew" onclick="ReNew('wan2')" value="Renew" type="button"></td></tr><tr id="L210" class="tabcolor1" style=""><td nowrap="nowrap"><div style="margin-left: 16px;"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12"><a href="pppoe.html">wan2_ppp</a></span></div></td><td nowrap="nowrap">Inactive</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">WAN</td><td nowrap="nowrap">0.0.0.0 / 0.0.0.0</td><td nowrap="nowrap">Dynamic</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td></tr><tr class="tabcolor2"><td nowrap="nowrap"><span style="display: none;" id="btnPlus2"><a href="javascript:showL2('2', '1')" class="treelink"><img src="images/i_sh_a.gif" alt="Expand" title="Expand" align="absmiddle" border="0" height="12" width="12"></a><a href="interface.html">opt</a></span><span id="btnMinus2" style=""><a href="javascript:hideL2('2', '1')" class="treelink"><img src="images/i_sh_m.gif" alt="Close" title="Close" align="absmiddle" border="0" height="12" width="12"></a><a href="interface.html">opt</a></span></td><td nowrap="nowrap">Down</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">OPT</td><td nowrap="nowrap">0.0.0.0 / 0.0.0.0</td><td nowrap="nowrap">Static</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td></tr><tr id="L220" class="tabcolor2" style=""><td nowrap="nowrap"><div style="margin-left: 16px;"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12"><a href="pppoe.html">opt_ppp</a></span></div></td><td nowrap="nowrap">Inactive</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">OPT</td><td nowrap="nowrap">0.0.0.0 / 0.0.0.0</td><td nowrap="nowrap">Dynamic</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td></tr><tr class="tabcolor1"><td nowrap="nowrap"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12"><a href="interface.html">lan1</a></span></td><td nowrap="nowrap">Up</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">LAN1</td><td nowrap="nowrap">192.168.1.1 / 255.255.255.0</td><td nowrap="nowrap">Static</td><td nowrap="nowrap">DHCP server</td><td nowrap="nowrap">n/a</td></tr><tr class="tabcolor2"><td nowrap="nowrap"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12"><a href="interface.html">ext-wlan</a></span></td><td nowrap="nowrap">Down</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">WLAN</td><td nowrap="nowrap">192.168.3.1 / 255.255.255.0</td><td nowrap="nowrap">Static</td><td nowrap="nowrap">DHCP server</td><td nowrap="nowrap">n/a</td></tr><tr class="tabcolor1"><td nowrap="nowrap"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12"><a href="interface.html">dmz</a></span></td><td nowrap="nowrap">Down</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">DMZ</td><td nowrap="nowrap">192.168.2.1 / 255.255.255.0</td><td nowrap="nowrap">Static</td><td nowrap="nowrap">DHCP server</td><td nowrap="nowrap">n/a</td></tr><tr class="tabcolor2"><td nowrap="nowrap"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12"><a href="auxiliary.html">aux</a></span></td><td nowrap="nowrap">Inactive</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">WAN</td><td nowrap="nowrap">0.0.0.0 / 0.0.0.0</td><td nowrap="nowrap">Dynamic</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td></tr>
+<tr class="tabcolor1"><td nowrap="nowrap"><span id="btnPlus7"><a href="javascript:showL2('7', '1')" class="treelink"><img src="images/i_sh_a.gif" alt="Expand" title="Expand" align="absmiddle" border="0" height="12" width="12"></a><a href="wlan.html">wlan-1</a></span><span id="btnMinus7" style="display: none;"><a href="javascript:hideL2('7', '1')" class="treelink"><img src="images/i_sh_m.gif" alt="Close" title="Close" align="absmiddle" border="0" height="12" width="12"></a><a href="wlan.html">wlan-1</a></span></td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a / n/a</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td></tr><tr id="L270" class="tabcolor1" style="display: none;"><td nowrap="nowrap"><div style="margin-left: 16px;"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12"><a href="wlan.html">wlan-1-1</a></span></div></td><td nowrap="nowrap">Down</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">WLAN</td><td nowrap="nowrap">10.59.1.1 / 255.255.255.0</td><td nowrap="nowrap">static</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td></tr>
+
+								
+								
+
+								</tbody></table><br>
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="BG3" width="3%">&nbsp;</td>
+										<td class="BG3" width="97%"><script>multi_lingual("_Statistics", "_ifacesummary")</script>Interface Statistics</td>
+									</tr>
+								</tbody></table><br>
+								<table border="0" cellpadding="0" cellspacing="0" width="96%">
+
+                                  <tbody><tr>                                    <td align="right"><input name="Refresh" value="Refresh" onclick="window.location.href = 'ifacesummary.html';" type="button">                                      
+
+                                    </td>
+                                  </tr>
+                                </tbody></table>
+								<table border="0" bordercolor="#ffffff" cellpadding="2" cellspacing="2" width="96%">
+									<tbody><tr>
+                                        <td class="tableTitle" align="center" width="13%"><span id="btnPlus_header2"><a href="javascript:hide_unhide2(1)"><img src="images/i_sh_a.gif" align="absmiddle" border="0" height="12" width="12"></a><script>multi_lingual("_Name", "_ifacesummary")</script>Name</span><span id="btnMinus_header2" style="display: none;"><a href="javascript:hide_unhide2(0)"><img src="images/i_sh_m.gif" align="absmiddle" border="0" height="12" width="12"></a><script>multi_lingual("_Name", "_ifacesummary")</script>Name</span></td>
+
+										
+										<td class="tableTitle" align="center" width="15%"><script>multi_lingual("_Status", "_ifacesummary")</script>Status</td>
+
+										<td class="tableTitle" align="center" width="15%"><script>multi_lingual("_Tx_Pkts", "_ifacesummary")</script>TxPkts</td>
+ 
+										<td class="tableTitle" align="center" width="15%"><script>multi_lingual("_Rx_Pkts", "_ifacesummary")</script>RxPkts</td>
+										<td class="tableTitle" align="center" width="15%"><script>multi_lingual("_Collision", "_ifacesummary")</script>Collision</td>
+										<td class="tableTitle" align="center" width="15%"><script>multi_lingual("_Tx_Bs", "_ifacesummary")</script>Tx B/s</td>
+										<td class="tableTitle" align="center" width="15%"><script>multi_lingual("_Rx_Bs", "_ifacesummary")</script>Rx B/s</td>
+
+									</tr>
+									<script>//showAllEntry2(L1_Ptr2)</script><tr class="tabcolor2"><td nowrap="nowrap"><span style="display: none;" id="btnPlus20"><a href="javascript:show2L2('0', '1')" class="treelink"><img src="images/i_sh_a.gif" alt="Expand" title="Expand" align="absmiddle" border="0" height="12" width="12">wan1</a></span><span id="btnMinus20" style=""><a href="javascript:hide2L2('0', '1')" class="treelink"><img src="images/i_sh_m.gif" alt="Close" title="Close" align="absmiddle" border="0" height="12" width="12">wan1</a></span></td><td nowrap="nowrap">100M/Full</td><td nowrap="nowrap">2594982</td><td nowrap="nowrap">5941340</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr><tr id="LL200" class="tabcolor2" style=""><td nowrap="nowrap"><div style="margin-left: 16px;"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12">wan1_ppp</span></div></td><td nowrap="nowrap">Inactive</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr><tr class="tabcolor1"><td nowrap="nowrap"><span style="display: none;" id="btnPlus21"><a href="javascript:show2L2('1', '1')" class="treelink"><img src="images/i_sh_a.gif" alt="Expand" title="Expand" align="absmiddle" border="0" height="12" width="12">wan2</a></span><span id="btnMinus21" style=""><a href="javascript:hide2L2('1', '1')" class="treelink"><img src="images/i_sh_m.gif" alt="Close" title="Close" align="absmiddle" border="0" height="12" width="12">wan2</a></span></td><td nowrap="nowrap">Down</td><td nowrap="nowrap">93239</td><td nowrap="nowrap">615</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr><tr id="LL210" class="tabcolor1" style=""><td nowrap="nowrap"><div style="margin-left: 16px;"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12">wan2_ppp</span></div></td><td nowrap="nowrap">Inactive</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr><tr class="tabcolor2"><td nowrap="nowrap"><span style="display: none;" id="btnPlus22"><a href="javascript:show2L2('2', '1')" class="treelink"><img src="images/i_sh_a.gif" alt="Expand" title="Expand" align="absmiddle" border="0" height="12" width="12">opt</a></span><span id="btnMinus22" style=""><a href="javascript:hide2L2('2', '1')" class="treelink"><img src="images/i_sh_m.gif" alt="Close" title="Close" align="absmiddle" border="0" height="12" width="12">opt</a></span></td><td nowrap="nowrap">Down</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr><tr id="LL220" class="tabcolor2" style=""><td nowrap="nowrap"><div style="margin-left: 16px;"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12">opt_ppp</span></div></td><td nowrap="nowrap">Inactive</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr><tr class="tabcolor1"><td nowrap="nowrap"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12">lan1</span></td><td nowrap="nowrap">Up</td><td nowrap="nowrap">3055916</td><td nowrap="nowrap">1994127</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr><tr class="tabcolor2"><td nowrap="nowrap"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12">ext-wlan</span></td><td nowrap="nowrap">Down</td><td nowrap="nowrap">31</td><td nowrap="nowrap">734</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr><tr class="tabcolor1"><td nowrap="nowrap"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12">dmz</span></td><td nowrap="nowrap">Down</td><td nowrap="nowrap">397</td><td nowrap="nowrap">571</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr><tr class="tabcolor2"><td nowrap="nowrap"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12">aux</span></td><td nowrap="nowrap">Inactive</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr>
+<tr class="tabcolor1"><td nowrap="nowrap"><span id="btnPlus27"><a href="javascript:show2L2('7', '1')" class="treelink"><img src="images/i_sh_a.gif" alt="Expand" title="Expand" align="absmiddle" border="0" height="12" width="12">wlan-1</a></span><span id="btnMinus27" style="display: none;"><a href="javascript:hide2L2('7', '1')" class="treelink"><img src="images/i_sh_m.gif" alt="Close" title="Close" align="absmiddle" border="0" height="12" width="12">wlan-1</a></span></td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td><td nowrap="nowrap">n/a</td></tr><tr id="LL270" class="tabcolor1" style="display: none;"><td nowrap="nowrap"><div style="margin-left: 16px;"><span class="treelink"><img src="images/i_sh_blank.gif" align="absmiddle" height="12" width="12">wlan-1-1</span></div></td><td nowrap="nowrap">Down</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td><td nowrap="nowrap">0</td></tr>
+
+								
+								</tbody></table><br>
+								
+						  </div></td>
+						<!-- 3D -->
+					</tr>
+					<tr>
+						<td background="images/config_bo_b.gif" height="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+					</tr>
+				</tbody></table>
+				<!-- 3D -->
+
+			</td>
+		</tr>
+	</tbody></table>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr><td>&nbsp;</td></tr>
+		<tr><td>&nbsp;</td></tr>
+	</tbody></table>
+	<script language="JavaScript">
+//		document.ifsumry.Refresh.value = gl.getLang('_Refresh', '_button');
+//		document.getElementById("COLLAPSE").style.display = "none";
+//		document.getElementById("COLLAPSE2").style.display = "none";
+	</script>
+
+</form>
+</body></html>

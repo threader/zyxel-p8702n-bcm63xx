@@ -1,0 +1,56 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language=JavaScript>
+<!--
+top.title.h_Page='h_NAT_Mode.html';
+
+function mode(index)
+{	if (index == 1 && document.NAT_mode.NATsel[index].checked)
+	{	document.NAT_mode.SUAfromMode.value = 1;
+		document.NAT_mode.submit();
+	} else if (index == 2 && document.NAT_mode.NATsel[index].checked)
+	{	document.NAT_mode.SUAfromMode.value = 2;
+		document.NAT_mode.submit();	}
+}
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpNATmode.html" name="NAT_mode" target="_self">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="3"> 
+              <div align=left class="NaviText"> NAT - Mode</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td width="17"></td><td colspan="2"> Network Address Translation</td></tr><tr> 
+            <td width="17"></td><td colspan="2">             <INPUT TYPE="RADIO" NAME="NATsel" VALUE="NAT_None">None</td></tr><tr> 
+            <td width="17"></td><td width="127"> <INPUT TYPE="RADIO" NAME="NATsel" VALUE="NAT_SUAonly" CHECKED>SUA Only</td><td width="416">
+            <a target="_self" href="NAT_ServerEdit.html">Edit Details</a></td></tr>          <tr> 
+            <td width="17"></td><td width="127"> <INPUT TYPE="RADIO" NAME="NATsel" VALUE="NAT_FullFeature">Full Feature</td><td width="416">
+            <a target="_self" href="NAT_RuleList.html">Edit Details</a></td></tr><tr>
+  	     <td colspan="3">&nbsp;</td></tr><tr>
+            <td width="17"></td><td colspan="2"> 
+<INPUT TYPE="CHECKBOX" NAME="EnableALG" CHECKED value="ON">Enable SIP ALG</td></tr>          <tr align=center valign=middle> 
+            <td colspan="3">
+			  <INPUT TYPE="HIDDEN" NAME="SUAfromMode" VALUE="0">			</td></tr><tr>
+  	     <td colspan="3">&nbsp;</td></tr><tr>
+            <td width="17"></td><td colspan="2"> Global Setting</td></tr><tr>
+            <td width="17"></td><td colspan="2">   NAT Session Number Per Host             <INPUT TYPE="TEXT" NAME="natSessionNumber" SIZE="8" MAXLENGTH="10" VALUE="1024" onkeypress="chk_num(event)">             (1-6000)            </td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <div align=center> <INPUT TYPE="SUBMIT" NAME="NATmodesubmit" VALUE="Apply"></div></td></tr>	  
+        <tr>
+  	 <td colspan="6" height="10">&nbsp;</td></tr>	        </table></td></tr></table></form>
+</body></html>

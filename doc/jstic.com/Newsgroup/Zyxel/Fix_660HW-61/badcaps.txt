@@ -1,0 +1,13 @@
+Unstable LAN connection.
+With age, my Zyxel 660-HW started to be instable on all 4 LAN connections. All other functions were fine.
+Symptoms were: poor LAN performances and all LAN connections lost and soon reestablshed every 15 seconds or so.
+
+The cause was the electrolytic CAP highlighted red in the following picture.
+Replacing that cap cured the problem.
+
+Most of the electrolytics measured bad ESR values. In particular a couple in the power supply (marked in yellow in the previous picture).
+Shouldn't you have a chance to measure ESR, replace all CAPS. 
+
+-----------------
+
+http://xoomer.virgilio.it/egirland/zyxel-660HW/repair%20brief.html

@@ -1,0 +1,54 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_DHCP.html';
+// -->
+</script>
+
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="/Forms/rpDHCP_1">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	          <tr> 
+            <td colspan="3"> 
+              <div align=left class="NaviText">DHCP-Tabelle</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+                <table width="84%" border="2" cellspacing="0" cellpadding="0" align=center >
+                  <tr height="30"> 
+                    <td class="TableTilte" width="31%"> 
+                      <div align=center>Host-Name</div></td><td class="TableTilte" width="33%"> 
+                      <div align=center> IP-Adresse</div></td><td class="TableTilte" width="36%"> 
+                      <div align=center> MAC-Adresse</div></td></tr>                                  &nbsp;                                        &nbsp;                                                              &nbsp;                                                                      </table></td></tr><tr> 
+            <td colspan="3">&nbsp; </td></tr>
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr>          <tr> 
+            <td colspan="3"> 
+              <div align=center>&nbsp;</div></td></table></div></td></tr></table></form>
+</body></html>

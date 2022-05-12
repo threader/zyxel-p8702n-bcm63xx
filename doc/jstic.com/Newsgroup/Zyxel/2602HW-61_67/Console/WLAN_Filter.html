@@ -1,0 +1,56 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_WLAN_Filter.html';
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="rpWLan.html" name="WLANForm">  <table width="100%" border="0" cellspacing="1">
+    <tr>
+      <td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td><table border="0" cellspacing="0" cellpadding="0" width="560">
+          <tr> 
+            <td colspan="3" class="NaviText"> 
+              Wireless LAN- MAC-Filter            </td></tr><tr> 
+            <td colspan="3"> 
+              <hr></td></tr><tr> 
+            <td width="20"></td><td width="195">Aktiviert</td><td width="435">
+            	<SELECT NAME="WLAN_FltActive" SIZE="1"><OPTION VALUE=00000000>Nein
+<OPTION VALUE=00000001 SELECTED>Ja
+</SELECT>	    </td></tr><tr> 
+            <td></td><td width="195">Aktion</td><td><SELECT NAME="WLAN_FltAction" SIZE="1"><OPTION VALUE=00000000 SELECTED>Zuordnung erm&ouml;glichen
+<OPTION VALUE=00000001>Zuordnung verweigern
+</SELECT>	    </td></tr><tr> 
+            <td colspan="3"> 
+              &nbsp;
+            </td></tr><tr> 
+            <td colspan="3" align=center>
+              <table width="400" border="1" cellspacing="0" cellpadding="0">
+                <tr height="30" > 
+                  <td class="TableTilte" align=center colspan="4">
+                  MAC-Adresse                  </td></tr>		<TR height='30' >		 <TD align='center' >                1		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:a0:c5:b7:3d:c3" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 2		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:0e:35:67:32:30" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                3		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 4		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                5		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 6		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                7		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 8		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                9		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 10		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                11		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 12		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                13		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 14		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                15		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 16		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                17		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 18		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                19		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 20		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                21		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 22		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                23		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 24		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                25		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 26		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                27		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 28		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                29		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 30		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>				<TR height='30' >		 <TD align='center' >                31		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressL" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>		<TD align='center' >		 32		</TD>		<TD align='center' >		<INPUT TYPE="TEXT" NAME="WLAN_FltAddressR" SIZE="17" MAXLENGTH="17" VALUE="00:00:00:00:00:00" onChange="doMACcheck(this)">		</TD>                </TR>		              </table></td></tr><tr> 
+            <td>&nbsp;</td></tr><tr align=center valign=middle> 
+            <td colspan="3" height="36"> 
+              <hr></td></tr><tr> 
+            <td colspan="3"> 
+              <div align=center> 
+              	<INPUT TYPE="SUBMIT" NAME="FWRule_BackBtn" VALUE="Zur&uuml;ck" VALUE="Back" onClick="window.location='rpWLan.html';">               		 &nbsp;&nbsp;&nbsp; 
+                <INPUT TYPE="SUBMIT" NAME="WLANFlt_SaveBtn" VALUE="Anwenden">                	&nbsp;&nbsp;&nbsp;
+                <INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" ></div></td></table></td></tr></table></form>
+</body></html>

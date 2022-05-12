@@ -1,0 +1,95 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_wanBackup.html";
+
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/wanBackup_1" name="WanBackupForm" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="WAN.html" target="main" class="sub"> 
+<b>
+Internet Access Setup</b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="wanRemoteNode.html" target="main" class="sub"> 
+<b>
+More Connections</b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center>
+WAN Backup Setup</div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr> 
+<td width="3%" height="19" class="cTitle"><b><FONT class=NaviText> </font></b> </td><td height="19" class="cTitle"><b><FONT class=NaviText>
+WAN Backup Setup</font></b></td><td height="19" class="cTitle">&nbsp;</td></tr></table><table width="90%"  border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td>&nbsp;</td><td>&nbsp;</td></tr><tr> 
+<TD width="38%"> 
+Backup Type</td><td><select name="WanBK_Type" size="1" RpPutType="Function" RpPutPtr="WanBK_TypePut"><option selected>DSL Link
+<option>ICMP
+</select></td></tr><tr> 
+<td>Check WAN IP Address&nbsp;
+1</td><td><input type="text" name="WanBK_ChkIP1" size="15" maxlength="15" value="0.0.0.0" onBlur="checkIPFormat(this)" /></td></tr><tr> 
+<td>Check WAN IP Address&nbsp;
+2</td><td><input type="text" name="WanBK_ChkIP2" size="15" maxlength="15" value="0.0.0.0" onBlur="checkIPFormat(this)" /></td></tr><tr> 
+<td>Check WAN IP Address&nbsp;
+3</td><td><input type="text" name="WanBK_ChkIP3" size="15" maxlength="15" value="0.0.0.0" onBlur="checkIPFormat(this)" /></td></tr><tr> 
+<td>Fail Tolerance </td><td><input type="text" name="WanBK_FailTol" size="6" maxlength="1" value="0" onkeypress="chk_num(event)" /></td></tr><tr> 
+<td>Recovery Interval</td><td><input type="text" name="WanBK_Recovery" size="6" maxlength="6" value="0" onkeypress="chk_num(event)" />sec</td></tr><tr> 
+<td>Timeout</td><td><input type="text" name="WanBK_Timeout" size="6" maxlength="1" value="0" onkeypress="chk_num(event)" />sec</td></tr><tr> </tr><tr> 
+<td colspan=3>&nbsp;</td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr> 
+<td width="3%" height="19" class="cTitle"><b><FONT class=NaviText> </font></b> </td><td height="19" class="cTitle"><b><FONT class=NaviText>
+Traffic Redirect</font></b></td><td height="19" class="cTitle">&nbsp;</td></tr></table><table width="90%"  border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td>&nbsp;</td><td></td></tr><tr> 
+<TD width="38%"> 
+<input type="checkbox" name="WanBK_TrafficActive" />Active Traffic Redirect</td><td></td></tr><tr> 
+<td>Metric</td><td><input type="text" name="WanBK_Metric" size="2" maxlength="2" value="15" onkeypress="chk_num(event)" /></td></tr><tr> 
+<td>Backup Gateway </td><td><input type="text" name="WanBK_Gateway" size="15" maxlength="15" value="0.0.0.0" onBlur="checkIPFormat(this)" /></td></tr><td colspan=3>&nbsp;</td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" >
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table></td></tr><tr> 
+<td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table><!-- 3D -->
+</td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">    
+<!--
+
+showFullPath('Network > WAN > WAN Backup');
+
+//-->
+</script>
+</html>

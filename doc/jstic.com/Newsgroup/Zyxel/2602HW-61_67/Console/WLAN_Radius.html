@@ -1,0 +1,77 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_WLAN_RADIUS.html';
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="rpWLan.html" name="WLAN_Radius">  <table width="100%" border="0" cellspacing="1">
+    <tr>
+      <td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="93%"> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+          <tr> 
+            <td colspan="3"> 
+              <div align=left class="NaviText">
+ 		Wireless LAN              		-
+              RADIUS               </div></td></tr><tr> 
+            <td colspan="3"> 
+              <hr></td></tr><tr> 
+            <td colspan="3" class="header2"> 
+         	Authentifizierungs-Server             </td></tr><tr> 
+            <td width="20"></td><td width="200">
+            	Aktiviert            </td><td width="430"> 
+            		<SELECT NAME="WLAN_AuthenServAct" SIZE="1" RpPutType="Complex" RpPutPtr="selsectWLAN_AuthenServActive_Put"><OPTION VALUE=00000000 SELECTED>Nein
+<OPTION VALUE=00000001>Ja
+</SELECT>            </td></tr><tr> 
+            <td width="20"></td><td width="200">
+            	Server-IP-Adresse            	</td><td width="430">
+            	<INPUT TYPE="TEXT" NAME="AuthenServerAddr" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">            </td></tr><tr> 
+            <td width="20"></td><td width="200">
+            	Portnummer            	</td><td width="430">
+            	<INPUT TYPE="TEXT" NAME="AuthenServerPort" SIZE="5" MAXLENGTH="5" VALUE="1812" onkeypress="chk_num(event)">            </td></tr><tr> 
+            <td width="20"></td><td width="200">
+            	Ausgetauschter Schl&uuml;ssel       </td><td width="430">
+            	<INPUT TYPE="TEXT" NAME="AuthenServerKey" SIZE="32" MAXLENGTH="32" VALUE="">            </td></tr><tr> 
+            <td colspan="3" class="header2"> 
+            	Benutzerkonten-Server           </td></tr><tr> 
+            <td width="20"></td><td width="200">
+            	Aktiviert            </td><td width="430">
+            	<SELECT NAME="WLAN_AccouServAct" SIZE="1" RpPutType="Complex" RpPutPtr="selsectWLAN_AccouServActive_Put"><OPTION VALUE=00000000 SELECTED>Nein
+<OPTION VALUE=00000001>Ja
+</SELECT>            </td></tr><tr> 
+            <td width="20"></td><td width="200">
+            	Server-IP-Adresse           	</td><td width="430">
+            	<INPUT TYPE="TEXT" NAME="AccouServerAddr" SIZE="15" MAXLENGTH="15" VALUE="0.0.0.0" onBlur="checkIPFormat(this)">            </td></tr><tr> 
+            <td width="20"></td><td width="200">
+            	Portnummer            </td><td width="430">
+            	<INPUT TYPE="TEXT" NAME="AccouServerPort" SIZE="5" MAXLENGTH="5" VALUE="1813" onkeypress="chk_num(event)">            </td></tr><tr> 
+            <td width="20"></td><td width="200">
+		Ausgetauschter Schl&uuml;ssel            </td><td width="430">
+            	<INPUT TYPE="TEXT" NAME="AccouServerKey" SIZE="32" MAXLENGTH="32" VALUE="">            </td></tr><tr> 
+            <td colspan="3">&nbsp;</td></tr><tr align=center valign=middle> 
+            <td colspan="3" height="36"> 
+              <hr></td></tr><tr> 
+            <td colspan="3"> 
+              <div align=center> 
+              	<INPUT TYPE="SUBMIT" NAME="WLAN_Radius_BackBtn" VALUE="Zur&uuml;ck" VALUE="Back" onClick="window.location='rpWLan.html';">                			&nbsp;&nbsp;&nbsp; 
+                	<INPUT TYPE="SUBMIT" NAME="WLAN_Radius_SaveBtn" VALUE="Anwenden">                			&nbsp;&nbsp;&nbsp; 
+                	<INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" >                </div></td></table></td></tr></table></form>
+</body></html>

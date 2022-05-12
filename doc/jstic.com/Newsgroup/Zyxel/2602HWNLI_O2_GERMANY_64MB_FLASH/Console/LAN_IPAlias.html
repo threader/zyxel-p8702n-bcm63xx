@@ -1,0 +1,166 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!-- //
+top.header.szHelp="h_LAN_IPAlias.html";
+
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+
+  function getDefaultNetmask(sourceIP, netmask) {
+    if(sourceIP.value == "0.0.0.0"){
+    	netmask.value = "0.0.0.0"
+    	return;
+    }  
+    var IP = sourceIP.value;
+    IP = IP.replace(/ /g, "");
+    sourceIP.value = IP;
+    IPsplit = IP.split(".");
+    if(IPsplit.length != 4)
+      return;
+
+    for(i = 0; i < 4; i++)
+      if((isNaN(IPsplit[i])) || (IPsplit[i] == 'undefined') || (IPsplit[i] == ""))
+        return;
+      else
+        if((parseInt(IPsplit[i], 10) > 255) || (parseInt(IPsplit[i], 10) < 0))
+          return;
+
+    if(parseInt(IPsplit[0], 10) >= 192)
+      netmask.value = "255.255.255.0";
+    else if(parseInt(IPsplit[0], 10) >= 128)
+      netmask.value = "255.255.0.0";
+    else if(parseInt(IPsplit[0], 10) >= 0)
+      netmask.value = "255.0.0.0";
+  }
+function chkRIPdir(IPAliasRIPDirection, IPAliasRIPVersion)
+{	var objSelect = IPAliasRIPVersion;
+	var objOption = new Option("N/A", "N/A");
+	if (IPAliasRIPDirection.selectedIndex == 0){
+		if ( objSelect.options[objSelect.options.length - 1] != "N/A"){	
+			objSelect.options[objSelect.options.length] = objOption; //add RIP ver "N/A"
+			objSelect.selectedIndex = objSelect.options.length - 1;	
+			objSelect.disabled = true;		
+		}
+	}
+	else{
+		objSelect.disabled = false;	
+		if ( objSelect.options[objSelect.options.length - 1].text == "N/A"){		
+			objSelect.options[objSelect.options.length - 1] = null;	//remove RIP ver "N/A"
+			objSelect.selectedIndex = 0;		
+		}
+	}
+}
+// -->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/LAN_IPAlias_1" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="LAN_IP.html" target="main" class="sub"><b><FONT class=NaviText> 
+IP</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="LAN_DHCPSetup.html" target="main" class="sub"><b><FONT class=NaviText> 
+DHCP Setup</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="LAN_ClientList.html" target="main" class="sub"><b><FONT class=NaviText> 
+Client List</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b> 
+IP Alias</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp; </td><td class=cTitle><b> 
+IP Alias 1</b></td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr> 
+<td colspan="2"> 
+<input type="checkbox" name="LAN_IP_Alias_Enable1" />IP Alias 1</td></tr><tr> 
+<td width="38%" > 
+IP Address</td><td width="65%" > 
+<input type="text" name="IPAlias1Addr" size="15" maxlength="15" value="0.0.0.0" onblur="checkIPFormat(this); getDefaultNetmask(IPAlias1Addr,IPAlias1SubnetMask);" /></td></tr><tr> 
+<td > 
+IP Subnet Mask</td><td width="65%" > 
+<input type="text" name="IPAlias1SubnetMask" size="15" maxlength="15" value="0.0.0.0" onblur="SubnetCheck(this)" /></td></tr><tr> 
+<td > 
+RIP Direction </td><td width="65%" > 
+<select name="IPAlias1RIPDirection" size="1" onChange="chkRIPdir(this.form.IPAlias1RIPDirection, this.form.IPAlias1RIPVersion);"><option value=00000000 selected>None
+<option value=00000001>Both
+<option value=00000002>In Only
+<option value=00000003>Out Only
+</select></td></tr><tr> 
+<td > 
+RIP Version </td><td width="65%" > 
+<select name="IPAlias1RIPVersion" size="1"><option value=00000000 selected>RIP-1
+<option value=00000001>RIP-2B
+<option value=00000002>RIP-2M
+</select></td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td colspan="2">&nbsp;</td></tr><tr> 
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp; </td><td class=cTitle><b> 
+IP Alias 2</b></td></tr><tr> 
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellspacing="0">
+<tr> 
+<td colspan="2"> 
+<input type="checkbox" name="LAN_IP_Alias_Enable2" />IP Alias 2</td></tr><tr> 
+<td width="38%" > 
+IP Address</td><td width="65%" > 
+<input type="text" name="IPAlias2Addr" size="15" maxlength="15" value="0.0.0.0" onblur="checkIPFormat(this); getDefaultNetmask(IPAlias2Addr,IPAlias2SubnetMask);" /></td></tr><tr> 
+<td > 
+IP Subnet Mask</td><td width="65%" > 
+<input type="text" name="IPAlias2SubnetMask" size="15" maxlength="15" value="0.0.0.0" onblur="SubnetCheck(this)" /></td></tr><tr> 
+<td>RIP Direction </td><td width="65%" > 
+<select name="IPAlias2RIPDirection" size="1" onChange="chkRIPdir(this.form.IPAlias2RIPDirection, this.form.IPAlias2RIPVersion)"><option value=00000000 selected>None
+<option value=00000001>Both
+<option value=00000002>In Only
+<option value=00000003>Out Only
+</select></td></tr><tr> 
+<td > 
+RIP Version </td><td width="65%" > 
+<select name="IPAlias2RIPVersion" size="1"><option value=00000000 selected>RIP-1
+<option value=00000001>RIP-2B
+<option value=00000002>RIP-2M
+</select></td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+<input type="submit" name="sysSubmit" value="Apply" onClick="doSubmit();" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">    
+<!--
+showFullPath('Network > LAN > IP Alias');
+chkRIPdir(document.forms[0].IPAlias1RIPDirection, document.forms[0].IPAlias1RIPVersion);
+chkRIPdir(document.forms[0].IPAlias2RIPDirection, document.forms[0].IPAlias2RIPVersion);
+//-->
+</script>
+</html>

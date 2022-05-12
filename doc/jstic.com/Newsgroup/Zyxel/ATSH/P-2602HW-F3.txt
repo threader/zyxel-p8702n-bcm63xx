@@ -1,0 +1,29 @@
+# P2602HWT> sys ver  
+#    
+#  ZyNOS version: V3.70(ASC.0)b12 | 04/25/2008  
+#  romRasSize: 3392208   
+#  system up time:   224:19:08 (4d038f3 ticks)  
+#  bootbase version: V1.03 | 11/23/2007  
+# P2602HWT> sys atsh  
+#    
+# RAS version            : V3.70(ASC.0)b12 | 04/25/2008  
+# RamSize                : 2129919 Kbytes  
+# Flash Type and Size    : AMD 32Mbits*1  
+# romRasSize             : 3392208  
+# bootbase version       : V1.03 | 11/23/2007  
+# Vendor Name            : ZyXEL Communications Corp.  
+# Product Model          : P-2602HW-F3  
+# ZyNOS ROM address      : b0020000  
+# System Type            : 7  
+# MAC Address            : 0019CB56EF2C  
+# Default Country Code   : F5  
+# Boot Module Debug Flag : 00  
+# RomFile Version        : C6  
+# RomFile Checksum       : 128f  
+# RAS F/W Checksum       : f205  
+# SNMP MIB level & OID   : 000130A4FFFF30F0FFFF248200013044FFFF1460FF  
+# Main Feature Bits      : C0  
+# Other Feature Bits     :  
+# 00 B3 00 00 00 00 01 00 00 00 00 00 00 00 00 00   
+# 00 00 00 00 00 00 00 00 03 41 13 00 00 00   
+# P2602HWT> 

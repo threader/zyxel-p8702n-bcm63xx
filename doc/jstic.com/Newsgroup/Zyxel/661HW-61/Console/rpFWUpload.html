@@ -1,0 +1,44 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language=JavaScript>
+top.title.h_Page='h_FirmUp.html';
+function ConfirmDefault()
+{	if (
+confirm("Are you sure you want to reset the device back to the factory defaults?This will erase all of your custom configuration.")	)
+{
+document.FW.submit();
+}
+}
+</script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM ENCTYPE="multipart/form-data" METHOD="POST" ACTION="/Forms/rpFWUpload_1" name="FW">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr> 
+      <td width="2%">&nbsp;</td><td width="5%"></td><td width="93%"> 
+      <div align=left valign=top> 
+        <table border="0" cellspacing="0" cellpadding="0" width="560">
+  	 <tr>
+<td colspan="3">
+<div align=left class="NaviText">FIRMWARE</div></td></tr>
+          <tr> 
+            <td colspan="4"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3" class="header2">Firmware Upgrade</td></tr><tr>
+<td >&nbsp;</td><td colspan="2">&nbsp;</td></tr> <tr>
+<td >&nbsp;</td><td colspan="2">&nbsp;</td></tr><tr>
+<td >&nbsp; </td><td colspan="2">To upgrade the internal router firmware, browse to the location of the binary (.BIN) upgrade file and click UPLOAD.</td></tr><tr>
+<td colspan="3">&nbsp; </td></tr><tr>
+<td width="2%">&nbsp;</td><td width="21%"> File Path:      </td><td><INPUT TYPE="FILE" NAME="mtenFWUpload" SIZE="20" MAXLENGTH="128">&nbsp; &nbsp; &nbsp;<INPUT TYPE="SUBMIT" NAME="UploadBtn" VALUE="Upload"></td></tr><tr>
+<td colspan=3>&nbsp;</td></tr> 
+          <tr align=center valign=middle> 
+            <td colspan="6" height="36"> 
+              <hr class="hrColor">
+            </td></tr> <tr>
+<td colspan="3">&nbsp;</td></tr></table></td></tr></table></form><script language="JavaScript">
+</script>
+
+</body></html>

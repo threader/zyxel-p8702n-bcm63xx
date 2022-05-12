@@ -1,0 +1,53 @@
+
+.contentCell2 {
+background-color: #666666;
+}
+.off {
+background: #C4D3FD;
+color: #0000DE;
+background-image: url(Images/left_menu_bg.gif);
+background-repeat: repeat-y;
+background-position: right;
+}
+.on {
+background: #FEFCD8;
+color: #0000DE;
+cursor: hand;
+background-image: url(Images/left_menu_bg.gif);
+background-repeat: repeat-y;
+background-position: right;
+}
+.navLink {
+text-decoration: none;
+color: #006699;
+font-size: 11px;
+font-family: Arial, Helvetica, sans-serif;
+}
+.navNull {
+color: #006699;
+font-weight : bold;
+font-size : 9pt;
+font-family : Arial, Helvetica, sans-serif;
+background: #ffffff;
+}
+.highlight {
+background-color: #D8EEFE;
+background: #D8EEFE;
+background-image: url(Images/left_menu_bg.gif);
+background-repeat: repeat-y;
+background-position: right;
+}
+.shadow {
+background-color: #999999;
+background: #999999;
+background-image: url(Images/left_menu_bg.gif);
+background-repeat: repeat-y;
+background-position: right;
+}
+.navNull2 {
+color: #006699;
+background: #ffffff;
+text-decoration: none;
+font-size: 11px;
+font-family: Arial, Helvetica, sans-serif;
+}

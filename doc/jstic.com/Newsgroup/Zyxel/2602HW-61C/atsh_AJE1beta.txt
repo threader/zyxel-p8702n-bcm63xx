@@ -1,0 +1,20 @@
+ZyNOS Version: V3.40(AJE.1)b2-1 | 3/14/2007 15:28:20
+
+ZyNOS Version          : V3.40(AJE.1)b2-1 | 3/14/2007 15:28:20
+Bootbase Version       : V1.09 | 07/29/2004 16:00:00
+Vendor Name            : ZyXEL Communications Corp.
+Product Model          : Prestige 2602HWL-61C
+ZyNOS ROM address      : b0020000
+System Type            : 7
+MAC Address            : 001349494F16
+Default Country Code   : EC
+Boot Module Debug Flag : 00
+RomFile Version        : B5
+RomFile Checksum       : d75d
+ZyNOS Checksum         : 09f2
+Core Checksum          : 29ec
+SNMP MIB level & OID   : 060102030405060708091011121314151617181920
+Main Feature Bits      : C0
+Other Feature Bits     :
+          9D 0C 00 00 00 00 00 00-00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00-01 41 13 00 00 00

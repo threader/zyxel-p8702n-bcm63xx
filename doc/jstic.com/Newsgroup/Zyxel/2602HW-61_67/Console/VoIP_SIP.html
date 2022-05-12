@@ -1,0 +1,75 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+  </script>
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_VoIP_SIP.html';
+function chkPortRange(portvalue,i)
+{
+if (i == 3){
+if (portvalue > 65535 || portvalue < 1030 || (portvalue > 9980 && portvalue < 14097))
+{alert("The port value not allowed range - (1025 to 1029) or (9981 to 14096).");
+VoIP_SIP.elements[i].value = 5060;
+VoIP_SIP.elements[i].focus();
+}
+}
+if (i == 5 || i == 7){
+if (portvalue > 65535 || portvalue < 1)
+{alert("The Port value must position between 1 to 65535.");
+VoIP_SIP.elements[i].value = 5060;
+VoIP_SIP.elements[i].focus();
+}
+}
+}
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;doLogOut();">
+<FORM METHOD="POST" ACTION="VoIP_Adv.html" name="VoIP_SIP">
+<table width="100%" border="0" cellspacing="1" bgcolor="#ffffff">
+<tr>
+<TD width="2%">&nbsp;</td><TD width="5%">&nbsp;</td><td><table border=0 width=500>
+<tr>
+<td colspan=2 bgcolor=white><font class="NaviText"> Sprache - SIP Einstellungen</font></td><td bgcolor=white class="header2" width="51%">
+<div align=right><b>SIP Account :</b> <SELECT NAME="VoIP_SIPAccount" SIZE="1" RpPutType="Function" RpPutPtr="VoIP_SIPAccount" OnChange="document.forms[0].submit();"><OPTION VALUE=00000000 SELECTED>SIP1
+<OPTION VALUE=00000001>SIP2
+</SELECT></div></td></tr><tr>
+<td colspan=3 bgcolor=white height="16">
+<hr></td></tr><tr>
+<td colspan=3 class="header2">SIP Einstellungen</b></td></tr><tr>
+<td>&nbsp;</td><td>Aktiv SIP</td><td>
+<INPUT TYPE="CHECKBOX" NAME="VoIP_ActiveCheck" CHECKED value="ON"></td></tr><tr>
+<td width="4%">&nbsp;</td><td width="45%">SIP Nummer</td><td width="51%"> <INPUT TYPE="TEXT" NAME="VoIP_PhoneNum" SIZE="31" MAXLENGTH="95" VALUE="BitteÄndern"></td></tr><tr>
+<td width="4%">&nbsp;</td><td width="45%">Localer SIP Port</td><td width="51%"> <INPUT TYPE="TEXT" NAME="VoIP_LocalPort" SIZE="5" MAXLENGTH="5" VALUE="5060" onkeypress="chk_num(event)" onBlur="chkPortRange(this.value,3);">(1025-65535) </td></tr><tr>
+<td width="4%">&nbsp;</td><td width="45%">SIP Server Adresse</td><td width="51%"> <INPUT TYPE="TEXT" NAME="VoIP_SIP_addr" SIZE="20" MAXLENGTH="95" VALUE="aolphone.aol.de"></td></tr><tr>
+<td width="4%">&nbsp;</td><td width="45%">SIP Server Anschluss</td><td width="51%"> <INPUT TYPE="TEXT" NAME="VoIP_SIPServerPort" SIZE="5" MAXLENGTH="5" VALUE="5060" onkeypress="chk_num(event)" onBlur="chkPortRange(this.value,5);">(1-65535) </td></tr><tr>
+<td width="4%">&nbsp;</td><td width="45%">Registrierungsserver Adresse</td><td width="51%"> <INPUT TYPE="TEXT" NAME="VoIP_RegAddr" SIZE="20" MAXLENGTH="95" VALUE="aolphone.aol.de"></td></tr><tr>
+<td width="4%">&nbsp;</td><td width="45%">Registrierungsserver Anschluss</td><td width="51%"> <INPUT TYPE="TEXT" NAME="VoIP_RegPort" SIZE="5" MAXLENGTH="5" VALUE="5060" onkeypress="chk_num(event)" onBlur="chkPortRange(this.value,7);">(1-65535) </td></tr><tr>
+<td width="4%">&nbsp;</td><td width="45%">SIP Domain</td><td width="51%"> <INPUT TYPE="TEXT" NAME="VoIP_SIP_domainName" SIZE="30" MAXLENGTH="127" VALUE="aolphone.aol.de"></td></tr><tr>
+<td colspan=3 class="header2">Authentifizierung</td></tr><tr>
+<td width="4%">&nbsp;</td><td width="45%">Benutzer-ID</td><td width="51%"> <INPUT TYPE="TEXT" NAME="VoIP_userID" SIZE="31" MAXLENGTH="95" VALUE="BitteÄndern" onkeypress="chk_chtNum(event)" onkeypress="chk_chtNumUserName(event)"></td></tr><tr>
+<td width="4%">&nbsp;</td><td width="45%">Benutzerpasswort</td><td width="51%"> <INPUT TYPE="PASSWORD" NAME="VoIP_userPwd" SIZE="31" MAXLENGTH="95" VALUE="1234567890"></td></tr>  <tr>
+<td class="header2" colspan="2">Eingehende Anrufe signalisieren auf</td><td width="51%"> 
+<INPUT TYPE="CHECKBOX" NAME="VoIP_ApptoPhone1" CHECKED value="ON">Telefon 1&nbsp;&nbsp;&nbsp; 
+<INPUT TYPE="CHECKBOX" NAME="VoIP_ApptoPhone2" CHECKED value="ON">Telefon 2</td></tr><tr>
+<td class="header2" colspan="2">Erweiterte Einstellungen</td><td width="51%"> <INPUT TYPE="SUBMIT" NAME="VoIP_AdvBtn" VALUE="Einstellungen"></td></tr><tr>
+<td bgcolor=white colspan=3>&nbsp;</td></tr><tr>
+<td bgcolor=white colspan=3>
+<hr></td></tr><tr>
+<td bgcolor=white colspan=3>
+<div align=center><INPUT TYPE="SUBMIT" NAME="VoIP_SIPBackBtn" VALUE="Zur&uuml;ck">&nbsp;&nbsp;&nbsp; <INPUT TYPE="SUBMIT" NAME="VoIPSIP_Apply" VALUE="Anwenden">&nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Abbrechen" ></div></td></tr></table></td></tr></table></form>
+</body></html>

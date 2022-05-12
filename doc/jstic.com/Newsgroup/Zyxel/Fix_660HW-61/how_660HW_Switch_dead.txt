@@ -1,0 +1,59 @@
+Hi, I have a ZyXEL P660HW-61 adsl modem router, and it has the same symptoms; LAN connection blinks everytime and drops randomly for 2 seconds in 100Mb, when set NIC to 10Mb, it works without a problem.
+
+Here is the picture of the board of my modem and list of caps;
+http://img161.imageshack.us/img161/6843/48185733gh1.jpg
+1: Jackcon Low Esr 470uf 6.3v, 47uf 35v,
+2: Hermei 220uf 10v, 1000uf 16v, 22uf 16v
+3: Jackcon 2200uf 25v
+
+Anyone have an idea, which capacitor possible to be bad?
+
+I measured all the cap voltages:
+http://img258.imageshack.us/img258/2253/img7607copylz9fz9.jpg
+
+One capacitor (Hermei 220uf 10v) in section 2 is 1,92V.
+
+I didn't do the second thing you say yet, it is a little complicated, there are many power pins in adm6996L and my multimeter leads are a little big. Which pins should I test? The list of power related pins:
+http://img526.imageshack.us/img526/7840/capture3copysi7.jpg
+
+One capacitor (Hermei 220uf 10v) in section 2 is 1,92V.
+
+That seems too high. 1.8v will be pretty well spot on that voltage.
+
+Look at the chip diagram.
+
+Pin 6,7 are vcca2 That is the Tx line driver. It is 1.8v You can easily measure it even with big pins because the pins next to it are NC... not connected. Just count off and put your probe on or between 6,7.
+
+Then measure pin 39, vccad which is 3.3v. It is at the end and nothing will interfere with it.
+
+Same with vcc1k which is 1.8v. It is pin 65 at an end. Easy to get the probe on it.
+
+All pins with like named vcc power will be connected to the same supply cap.
+
+Be gentle though as the pins can bend if you use butcher force.
+
+I measured the chip power pins with on chip GND pins;
+1-1,85
+2-3,18
+3-1,88
+
+After, i measured power pins with all capacitors, 3,3V values seem OK, around 3,20V. But 1,8V ray measured around 1,92V. And that cap on section 2; Hermei 220uf 10v, seems bad, and I get zero voltage only in that capacitor's + leg, so i think, it's the cap that powers the chip's 1,8 ray.
+
+I replace the cap when I found a spare, Can I use one higher voltage and/or farad capacitor for replacement.
+
+And Revs Per Min; thank you so much for your help and interest, I hope my router works fully again.
+
+
+http://forums.whirlpool.net.au/archive/625754
+
+http://forums.whirlpool.net.au/archive/615804
+
+Thanks guys!
+Just did the trick with my Zyxel P660HW-61 showing the same symptoms. Works like a breeze now!
+Changed all the 5 caps closer to the power connector, did not change the two 2200s, did not touch any of the goldish "LOW ESR" closer to the CPU.
+Feel free to contact me for pictures.
+
+
+1 x 1000uf 16v
+2 x 220uf 16v
+2 x 22uf 16v

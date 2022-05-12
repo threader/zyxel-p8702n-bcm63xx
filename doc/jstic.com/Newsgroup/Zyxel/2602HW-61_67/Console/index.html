@@ -1,0 +1,31 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+<script language="JavaScript">
+var resttime = 300;
+
+function doLogOut() {
+  resttime--;
+  var second = resttime;
+
+  if (resttime > 0)
+    setTimeout("doLogOut()", 1000);
+  else
+    alert("Der Benutzer wurde abgemeldet, weil seit 5 Minuten keine Eingaben gemacht wurden. Bitte melden Sie sich erneut an.");
+}
+</script>
+
+<frameset cols="150,*" rows="*" frameborder="NO" border="0" bordercolor="#000000">
+    <frame src="Panel.html" name="panel" scrolling="NO" noresize frameborder="NO" bordercolor="#000000" marginwidth="0" marginheight="0">
+
+	
+	<frameset cols="*" rows="78,*" frameborder="NO" border="0" bordercolor="#000000">
+	 	
+	    <frame src="Title.html" name="title" scrolling="NO" noresize frameborder="NO" marginwidth="0" marginheight="0">        
+        <frame src="FirstPage.html" name="main" scrolling="AUTO" noresize frameborder="NO" marginwidth="0" marginheight="0">
+	</frameset></frameset><noframes>
+<body>
+</body></noframes>
+</html>

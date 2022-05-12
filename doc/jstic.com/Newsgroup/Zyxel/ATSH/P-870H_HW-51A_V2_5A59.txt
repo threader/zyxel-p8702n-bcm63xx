@@ -1,0 +1,19 @@
+ZLD      Version       : V1.01(AWZ.3)
+Bootbase Version       : V1.13 | 06/29/2010
+Vendor Name            : ZyXEL Communications Corp.
+Product Model          : P-870H/HW-51A V2
+Serial Number          : 0000000000000
+First MAC Address      : XXXXXXXXXXXX
+Last MAC Address       : XXXXXXXXXXXX
+MAC Address Quantity   : 06
+Default Country Code   : FF
+Boot Module Debug Flag : 01
+RootFS      Checksum   : 06b1d6ba
+Kernel      Checksum   : 53e33f52
+RomFile     Checksum   : 09b09518
+Main Feature Bits      : 00 ------------> THIS IS THE CHANGED VALUE.
+Other Feature Bits     :
+          5a 59 00 01 00 00 01 00-00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00-00 03 41 13 00 00
+
+Last edited by cornelus2009 (2010-12-12 08:08:23)

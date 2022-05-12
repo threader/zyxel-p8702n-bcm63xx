@@ -1,0 +1,82 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="General.js" ></script>
+<script language=JavaScript>
+<!--//
+  top.header.szHelp="h_rpFWUpload.html";
+
+    function doLoad()
+    {
+    
+        top.buttom.location="buttom.html";
+    }
+    
+		function ConfirmDefault()
+		{	if (
+		confirm("Are you sure you want to reset the device back to the factory defaults?This will erase all of your custom configuration.")			)
+			{				    
+				document.FW.submit();
+			}
+		}		
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form enctype="multipart/form-data" method="post" action="/Forms/rpFWUpload_1" name="FW">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr> 
+<td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>Firmware</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="RestoreCfg.html" target="main" class="sub"><b><FONT class=NaviText>Configuration</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="rpSysReboot.html" target="main" class="sub"><b><FONT class=NaviText>Restart</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr class="cTitle" height="19"> 
+<td width="3%"> </td><td colspan="2" class="cTitle">
+Firmware Upgrade</td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="90%">
+<tr> 
+<td colspan="2" >&nbsp;</td></tr>&nbsp; 
+<tr> 
+<td colspan="2" >&nbsp;</td></tr><tr> 
+<td colspan="2" > 
+To upgrade the internal device firmware, browse to the location of the binary (.BIN) upgrade file and click <b>Upload</b>. Upgrade files can be downloaded from website. If the upgrade file is compressed (.ZIP file), you must first extract the binary (.BIN) file. In some cases, you may need to reconfigure </td></tr><tr> 
+<td colspan="2">&nbsp; </td></tr><tr> 
+<td colspan="2"> 
+Current Firmware Version:<font color="#FF0000"> 
+V3.40(ADV.1)b1 | 7/19/2006</font></td></tr><tr> 
+<td colspan="2">&nbsp; </td></tr><tr> 
+<td>File Path:      </td><td><input type="file" name="mtenFWUpload" size="20" maxlength="128" /></td></tr><tr> 
+<td colspan=2>&nbsp;</td></tr><tr> 
+<td colspan="2" class="hidden" ><div align=center></div></td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+<tr> 
+<td colspan="2">&nbsp;</td></tr><tr align=center> 
+<td  background="Images/wg_dotline.gif">&nbsp;</td></tr><tr> 
+<td width="50%" align=center> 
+<input type="submit" name="UploadBtn" value="Upload" /></td></tr><tr> 
+<td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--//
+showFullPath('Maintenance > Tools > Firmware');
+//-->
+</script>
+</html>

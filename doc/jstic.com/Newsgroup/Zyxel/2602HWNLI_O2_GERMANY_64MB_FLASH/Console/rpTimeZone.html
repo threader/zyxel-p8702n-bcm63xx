@@ -1,0 +1,456 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.DIV_DateAndTime {
+background-Color : #FFFFFF ;
+border-width:0px;
+border-style:hidden;
+}
+-->
+</style>
+<script language="JavaScript">
+<!--
+top.header.szHelp="h_rpTimeZone.html";
+var ns, ie;
+var Vmajor = parseInt(navigator.appVersion);
+if(navigator.appName == "Netscape") {
+ns = true; ie = false;
+} else if(navigator.appName == "Microsoft Internet Explorer") {
+ie = true; ns = false;
+} else {
+ns = false; ie = false;
+}
+function checkKeyRange(startValue, endValue)
+{
+if(ns){
+element=event.target;
+val = event.which;
+}else{
+element=window.event.srcElement;
+val = event.keyCode;
+}
+if(event.shiftKey){//window.event.shiftKey
+event.returnValue=true;
+}
+if( val == 8 || val == 9 || val == 39 ) {
+return ;
+}
+if( val == 38 || val == 40 || val == 190 || val == 110 || val == 46){
+event.returnValue=false;
+return ;
+}
+document.selection.clear() ;
+if( val < 48 || val > 57 ){
+event.returnValue=false;
+return ;
+}
+num = parseInt( element.value+(val -48), 10 ) ;
+if(num > endValue){
+event.returnValue=false;
+}else if(num >= startValue){
+element.value=num;
+event.returnValue=false;
+}else{
+event.returnValue=false;
+}
+return ;
+}
+function doLoad()
+{
+top.buttom.location="buttom.html";
+}
+function do_Checked(form)
+{
+if (form.btndaylight.checked){
+form.startWeek.disabled=false;
+form.startDay.disabled=false;
+form.startMonth.disabled=false;
+form.startTime.disabled=false;
+form.endWeek.disabled=false;
+form.endDay.disabled=false;
+form.endMonth.disabled=false;
+form.endTime.disabled=false;
+}
+else{
+form.startWeek.disabled=true;
+form.startDay.disabled=true;
+form.startMonth.disabled=true;
+form.startTime.disabled=true;
+form.endWeek.disabled=true;
+form.endDay.disabled=true;
+form.endMonth.disabled=true;
+form.endTime.disabled=true;
+}
+}
+function doChange(form)
+{
+if(form.mten_ServiceType[0].checked) {
+form.mtenTimeServer.disabled = true;
+form.mtenTimeServerAddr.disabled = true;
+form.mtenNew_Hour.disabled = false;
+form.mtenNew_Min.disabled = false;
+form.mtenNew_Sec.disabled = false;
+form.mtenNew_Year.disabled = false;
+form.mtenNew_Mon.disabled = false;
+form.mtenNew_Day.disabled = false;
+} else {
+form.mtenTimeServer.disabled = false;
+form.mtenTimeServerAddr.disabled = false;
+form.mtenNew_Hour.disabled = true;
+form.mtenNew_Min.disabled = true;
+form.mtenNew_Sec.disabled = true;
+form.mtenNew_Year.disabled = true;
+form.mtenNew_Mon.disabled = true;
+form.mtenNew_Day.disabled = true;
+}
+}
+function chk_num(event)
+{
+if (event.keyCode < 48 || event.keyCode > 57)
+event.returnValue = false;
+}
+function chkMon(Mon,Year)
+{
+for(var i=0;i<BigMon.length;i++)
+if(Mon.value==BigMon[i]) return checkKeyRange(1,31);
+for(var i=0;i<SmallMon.length;i++)
+if(Mon.value==SmallMon[i]) return checkKeyRange(1,30);
+if((Year.value%4)==0)
+return checkKeyRange(1,29);
+else
+return checkKeyRange(1,28);
+}
+var whichDayNum;
+var BigMon=new Array('1','3','5','7','8','10','12');
+var SmallMon=new Array('4','6','9','11');
+var Hour, Min, Sec;
+var Year, Mon, Day;
+function IncreaseSec()
+{
+Sec = parseInt(document.TimeZoneform.mtenCurrent_Sec.value);
+Sec = Sec + 1;
+if ( Sec < 60 )
+{
+document.TimeZoneform.mtenCurrent_Time.value = DateAndTimeFormat(Hour) + ":"+ DateAndTimeFormat(Min) +":" + DateAndTimeFormat(Sec);
+document.TimeZoneform.mtenCurrent_Sec.value = Sec;
+setTimeout('IncreaseSec()', 1000);
+return ;
+}
+document.TimeZoneform.mtenCurrent_Sec.value = 0;Sec=0;
+Min = parseInt(document.TimeZoneform.mtenCurrent_Min.value);
+Min = Min + 1;
+if ( Min < 60 )
+{
+document.TimeZoneform.mtenCurrent_Time.value = DateAndTimeFormat(Hour) + ":"+ DateAndTimeFormat(Min) +":" + DateAndTimeFormat(Sec);
+document.TimeZoneform.mtenCurrent_Min.value = Min;
+setTimeout('IncreaseSec()', 1000);
+return;
+}
+document.TimeZoneform.mtenCurrent_Min.value = 0;Min=0;
+Hour = parseInt(document.TimeZoneform.mtenCurrent_Hour.value);
+Hour = Hour + 1;
+if ( Hour < 24 )
+{
+document.TimeZoneform.mtenCurrent_Time.value = DateAndTimeFormat(Hour) + ":"+ DateAndTimeFormat(Min) +":" + DateAndTimeFormat(Sec);
+document.TimeZoneform.mtenCurrent_Hour.value = Hour;
+setTimeout('IncreaseSec()', 1000);
+return;
+}
+document.TimeZoneform.mtenCurrent_Time.value = "00 : 00 : 00";
+document.TimeZoneform.mtenCurrent_Hour.value = 0;Hour=0;
+Day = parseInt(document.TimeZoneform.mtenCurrent_Day.value);
+Day = Day + 1;
+Mon = parseInt(document.TimeZoneform.mtenCurrent_Mon.value);
+Year = parseInt(document.TimeZoneform.mtenCurrent_Year.value);
+for(var i=0;i<BigMon.length;i++)
+if(Mon.value==BigMon[i]) whichDayNum=31;
+for(var i=0;i<SmallMon.length;i++)
+if(Mon.value==SmallMon[i]) whichDayNum=30;
+if((Year.value%4)==0)
+whichDayNum=29;
+else
+whichDayNum=28;
+if ( Day <= whichDayNum )
+{
+document.TimeZoneform.mtenCurrent_Date.value = Year + "-"+ DateAndTimeFormat(Mon) +"-" + DateAndTimeFormat(Day);
+document.TimeZoneform.mtenCurrent_Day.value = Day;
+setTimeout('IncreaseSec()', 1000);
+return;
+}
+document.TimeZoneform.mtenCurrent_Day.value = 1;Day=1;
+Mon = parseInt(document.TimeZoneform.mtenCurrent_Mon.value);
+Mon = Mon + 1;
+if ( Mon <= 12 )
+{
+document.TimeZoneform.mtenCurrent_Date.value = Year + "-"+ DateAndTimeFormat(Mon) +"-" + DateAndTimeFormat(Day);
+document.TimeZoneform.mtenCurrent_Mon.value = Mon;
+setTimeout('IncreaseSec()', 1000);
+return;
+}
+document.TimeZoneform.mtenCurrent_Mon.value = 1;Mon=1;
+Year = parseInt(document.TimeZoneform.mtenCurrent_Year.value);
+Year = Year + 1;
+if ( Year < 10000)
+{
+document.TimeZoneform.mtenCurrent_Date.value = Year + "-"+ DateAndTimeFormat(Mon) +"-" + DateAndTimeFormat(Day);
+document.TimeZoneform.mtenCurrent_Year.value = Year;
+setTimeout('IncreaseSec()', 1000);
+return;
+}
+document.TimeZoneform.mtenCurrent_Year.value = 1900;Year=1900;
+this.location = "rpTimeZone.html";
+return;
+}
+function initDateAndTime()
+{
+Hour=parseInt(document.TimeZoneform.mtenCurrent_Hour.value);
+Min=parseInt(document.TimeZoneform.mtenCurrent_Min.value);
+Sec=parseInt(document.TimeZoneform.mtenCurrent_Sec.value);
+Year=parseInt(document.TimeZoneform.mtenCurrent_Year.value);
+Mon=parseInt(document.TimeZoneform.mtenCurrent_Mon.value);
+Day=parseInt(document.TimeZoneform.mtenCurrent_Day.value);
+document.TimeZoneform.mtenCurrent_Time.value = DateAndTimeFormat(Hour) + ":"+ DateAndTimeFormat(Min) +":" + DateAndTimeFormat(Sec);
+document.TimeZoneform.mtenCurrent_Date.value = Year + "-"+ DateAndTimeFormat(Mon) +"-" + DateAndTimeFormat(Day);
+}
+function DateAndTimeFormat(num)
+{
+if(String(parseInt(num)).length==1)
+return "0"+num;
+else
+return num;
+}
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/rpTimeZone_1" name="TimeZoneform" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="rpSysAdmin.html" target="main" class="sub"><b><FONT class=NaviText>
+General</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+Time Setting</b></div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp; </td><td class=cTitle><b>
+Current Time</b></td></tr></table><br /><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="5%">&nbsp; </td><td width="28%" >
+Current Time</td><td width="67%"><span id = "showTime"></span>
+<input type="text" name="mtenCurrent_Time" size="8" maxlength="12" value="" readOnly class="DIV_DateAndTime" /><input type="hidden" name="mtenCurrent_Hour" value="11" /><input type="hidden" name="mtenCurrent_Min" value="25" /><input type="hidden" name="mtenCurrent_Sec" value="51" /></td></tr><tr>
+<td width="5%">&nbsp;</td><td width="28%" >
+Current Date</td><td><input type="text" name="mtenCurrent_Date" size="15" maxlength="20" value="" readOnly class="DIV_DateAndTime" /><input type="hidden" name="mtenCurrent_Year" value="2006" class="DIV_DateAndTime" /><input type="hidden" name="mtenCurrent_Mon" value="8" class="DIV_DateAndTime" /><input type="hidden" name="mtenCurrent_Day" value="27" class="DIV_DateAndTime" /></td></tr></table><br /><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp; </td><td class=cTitle><b>
+Time and Date Setup</b></td></tr></table><br /><table width="90%" border="0" align=center cellspacing="0">
+<tr>
+<td colspan="3">
+<input type="radio" name="mten_ServiceType" value="0" onClick="doChange(this.form);" />Manual</td></tr><tr>
+<td width="3%">&nbsp;</td><td width="28%">
+New Time (hh:mm:ss)</td><td><input type="text" name="mtenNew_Hour" size="2" maxlength="2" value="11" onKeyPress="checkKeyRange(0,23)" />:
+<input type="text" name="mtenNew_Min" size="2" maxlength="2" value="25" onKeyPress="checkKeyRange(0,59)" />:
+<input type="text" name="mtenNew_Sec" size="2" maxlength="2" value="51" onKeyPress="checkKeyRange(0,59)" /></tr><tr>
+<td>&nbsp;</td><td>New Date (yyyy/mm/dd)</td><td><input type="text" name="mtenNew_Year" size="4" maxlength="4" value="2006" onKeyPress="chk_num(event)" />/
+<input type="text" name="mtenNew_Mon" size="2" maxlength="2" value="8" onKeyPress="checkKeyRange(1,12)" />/
+<input type="text" name="mtenNew_Day" size="2" maxlength="2" value="27" onKeyPress="chkMon(this.form.mtenNew_Mon,this.form.mtenNew_Year);" /></td></tr><tr>
+<td colspan="3">&nbsp;</td></tr><tr>
+<td colspan="3">
+<input type="radio" name="mten_ServiceType" value="1" checked onClick="doChange(this.form);" />Get from Time Server</td></tr><tr>
+<td >&nbsp;</td><td >
+Time Protocol</td><td >
+<select name="mtenTimeServer" size="1" onchange="doChange(this.form)"><option selected>Daytime (RFC-867)
+<option>Time (RFC-868)
+<option>NTP (RFC-1305)
+</select></td></tr><tr>
+<td>&nbsp;</td><td>Time Server Address</td><td><input type="text" name="mtenTimeServerAddr" size="20" maxlength="31" value="" /></td></tr></table><br /><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp; </td><td class=cTitle><b>
+Time Zone Setup</b></td></tr></table><br /><table width="90%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>Time Zone</td><td width="69%">
+<select name="TimeZoneSelect" size="1" maxlength="15"><option value=00000000>(GMT-12:00) International Date Line West
+<option value=00000001>(GMT-11:00) Midway Island, Samoa
+<option value=00000002>(GMT-10:00) Hawaii
+<option value=00000003>(GMT-09:00) Alaska
+<option value=00000004>(GMT-08:00) Pacific Time (US & Canada), Tijuana
+<option value=00000005>(GMT-07:00) Arizona
+<option value=00000006>(GMT-07:00) Chihuahua, La Paz, Mazatlan
+<option value=00000007>(GMT-07:00) Mountain Time (US & Canada)
+<option value=00000008>(GMT-06:00) Central America
+<option value=00000009>(GMT-06:00) Central Time (US & Canada)
+<option value=0000000a>(GMT-06:00) Guadalajara, Mexico City, Monterrey
+<option value=0000000b>(GMT-06:00) Saskatchewan
+<option value=0000000c>(GMT-05:00) Bogota, Lima, Quito
+<option value=0000000d>(GMT-05:00) Eastern Time (US & Canada)
+<option value=0000000e>(GMT-05:00) Indiana (East)
+<option value=0000000f>(GMT-04:00) Atlantic Time(Canada)
+<option value=00000010>(GMT-04:00) Caracas, La Paz
+<option value=00000011>(GMT-04:00) Santiago
+<option value=00000012>(GMT-03:30) Newfoundland
+<option value=00000013>(GMT-03:00) Brasilia
+<option value=00000014>(GMT-03:00) Buenos Aires, Georgetown
+<option value=00000015>(GMT-03:00) Greenland
+<option value=00000016>(GMT-02:00) Mid-Atlantic
+<option value=00000017>(GMT-01:00) Azores
+<option value=00000018>(GMT-01:00) Cape Verde Is.
+<option value=00000019>(GMT) Casablanca, Monrovia
+<option value=0000001a>(GMT) Greenwich Mean Time : Dublin Edinburgh, Lisbon, London
+<option value=0000001b selected>(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna
+<option value=0000001c>(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague
+<option value=0000001d>(GMT+01:00) Brussels, Copenhagen, Madrid, Paris
+<option value=0000001e>(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb
+<option value=0000001f>(GMT+01:00) West Central Africa
+<option value=00000020>(GMT+02:00) Athens, Beirut, Istanbul, Minsk
+<option value=00000021>(GMT+02:00) Bucharest
+<option value=00000022>(GMT+02:00) Cairo
+<option value=00000023>(GMT+02:00) Harare, Pretoria
+<option value=00000024>(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius
+<option value=00000025>(GMT+02:00) Jerusalem
+<option value=00000026>(GMT+03:00) Baghdad
+<option value=00000027>(GMT+03:00) Kuwait, Riyadh
+<option value=00000028>(GMT+03:00) Moscow, St. Petersburg, Volgograd
+<option value=00000029>(GMT+03:00) Nairobi
+<option value=0000002a>(GMT+03:30) Tehran
+<option value=0000002b>(GMT+04:00) Abu Dhabi, Muscat
+<option value=0000002c>(GMT+04:00) Baku, Tbilisi, Yerevan
+<option value=0000002d>(GMT+04:30) Kabul
+<option value=0000002e>(GMT+05:00) Ekaterinburg
+<option value=0000002f>(GMT+05:00) Islamabad, Karachi, Tashkent
+<option value=00000030>(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi
+<option value=00000031>(GMT+05:45) Kathmandu
+<option value=00000032>(GMT+06:00) Almaty, Novosibirsk
+<option value=00000033>(GMT+06:00) Astana, Dhaka
+<option value=00000034>(GMT+06:00) Sri Jayawardenepura
+<option value=00000035>(GMT+06:30) Rangoon
+<option value=00000036>(GMT+07:00) Bangkok, Hanoi, Jakarta
+<option value=00000037>(GMT+07:00) Krasnoyarsk
+<option value=00000038>(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi
+<option value=00000039>(GMT+08:00) Irkutsk, Ulaan Bataar
+<option value=0000003a>(GMT+08:00) Kuala Lumpur, Singapore
+<option value=0000003b>(GMT+08:00) Perth
+<option value=0000003c>(GMT+08:00) Taipei
+<option value=0000003d>(GMT+09:00) Osaka, Sapporo, Tokyo
+<option value=0000003e>(GMT+09:00) Seoul
+<option value=0000003f>(GMT+09:00) Yakutsk
+<option value=00000040>(GMT+09:30) Adelaide
+<option value=00000041>(GMT+09:30) Darwin
+<option value=00000042>(GMT+10:00) Brisbane
+<option value=00000043>(GMT+10:00) Canberra, Melbourne, Sydney
+<option value=00000044>(GMT+10:00) Guam, Port Moresby
+<option value=00000045>(GMT+10:00) Hobart
+<option value=00000046>(GMT+10:00) Vladivostok
+<option value=00000047>(GMT+11:00) Magadan, Solomon Is., New Caledonia
+<option value=00000048>(GMT+12:00) Auckland, Wellington
+<option value=00000049>(GMT+12:00) Fiji, Kamchatka, Marshall Is.
+<option value=0000004a>(GMT+13:00) Nuku'alofa
+</select></td></tr><tr>
+<td colspan="2">
+<input type="checkbox" name="btndaylight" checked onclick="do_Checked(this.form)" />Daylight Savings</td></tr><tr>
+<td width="31%"> &nbsp;&nbsp;&nbsp;
+Start Date</td><td><select name="startWeek" size="1" maxlength="15"><option value=00000000>First
+<option value=00000001>Second
+<option value=00000002>Third
+<option value=00000003>Fourth
+<option value=00000004 selected>Last
+</select>&nbsp;
+<select name="startDay" size="1" maxlength="63"><option value=00000000 selected>Sunday
+<option value=00000001>Monday
+<option value=00000002>Tuesday
+<option value=00000003>Wednesday
+<option value=00000004>Thursday
+<option value=00000005>Friday
+<option value=00000006>Saturday
+</select>&nbsp;
+of&nbsp;
+<select name="startMonth" size="1" maxlength="15"><option value=00000000>January
+<option value=00000001>February
+<option value=00000002 selected>March
+<option value=00000003>April
+<option value=00000004>May
+<option value=00000005>June
+<option value=00000006>July
+<option value=00000007>August
+<option value=00000008>September
+<option value=00000009>October
+<option value=0000000a>November
+<option value=0000000b>December
+</select>&nbsp;
+(2006-03-26)&nbsp;
+at&nbsp;
+<input type="text" name="startTime" size="3" maxlength="3" value="2" onKeyPress="checkKeyRange(0,23);" />&nbsp;
+o'clock</td></tr><tr>
+<td width="31%"> &nbsp;&nbsp;&nbsp;
+End Date</td><td><select name="endWeek" size="1" maxlength="15"><option value=00000000>First
+<option value=00000001>Second
+<option value=00000002>Third
+<option value=00000003>Fourth
+<option value=00000004 selected>Last
+</select>&nbsp;
+<select name="endDay" size="1" maxlength="15"><option value=00000000 selected>Sunday
+<option value=00000001>Monday
+<option value=00000002>Tuesday
+<option value=00000003>Wednesday
+<option value=00000004>Thursday
+<option value=00000005>Friday
+<option value=00000006>Saturday
+</select>&nbsp;
+of&nbsp;
+<select name="endMonth" size="1" maxlength="15"><option value=00000000>January
+<option value=00000001>February
+<option value=00000002>March
+<option value=00000003>April
+<option value=00000004>May
+<option value=00000005>June
+<option value=00000006>July
+<option value=00000007>August
+<option value=00000008>September
+<option value=00000009 selected>October
+<option value=0000000a>November
+<option value=0000000b>December
+</select>&nbsp;
+(2006-10-29)&nbsp;
+at&nbsp;
+<input type="text" name="endTime" size="3" maxlength="3" value="3" onKeyPress="checkKeyRange(0,23);" />&nbsp;
+o'clock</td></tr><tr>
+<td colspan="3">&nbsp;</td></tr></table><table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+<tr>
+<td>&nbsp;</td></tr><tr align=center>
+<td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+<td align=center>
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></td></tr><tr>
+<td height="35">&nbsp;</td></tr></table></td></tr><tr>
+<td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table><!-- 3D -->
+</td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--
+showFullPath('Maintenance > System > Time Setting');
+setTimeout('IncreaseSec()', 1000);
+doChange(document.forms[0]);
+do_Checked(document.forms[0]);
+initDateAndTime();
+//-->
+</script>
+</html>

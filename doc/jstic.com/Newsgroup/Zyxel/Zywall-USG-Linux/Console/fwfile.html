@@ -1,0 +1,252 @@
+<html><head>
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"><title>fwfile.html</title><!--script type="text/javascript" src="I18N.js"></script--><!--script>getLangFile()</script-->
+
+
+
+<link rel="stylesheet" href="control.css" type="text/css">
+<link rel="stylesheet" href="zw.css" type="text/css">
+<script type="text/javascript" src="javascript.js"></script>
+<script type="text/javascript" src="javascriptCLI.js"></script>
+<script type="text/javascript" src="javascriptm.js"></script>
+<script language="JavaScript">
+<!--
+
+	var gl = top.frames[1];
+	var arg = new Array("",""), cmd="", cmd1="";
+	var theDataPtr = gl.fwFileList;
+	var limitPtr = gl.LimitObj;
+	var cnt=1;
+	var tcnt;
+/*======= Help ===========*/
+	gl.Topic= '030100';
+/*======= Help ===========*/
+	/*if (gl.zyshdcnt ==0) {
+		var arg = new Array("",""), cmd="";
+		cmd = Get_CLI("fwfile", 1, arg);
+		//show users current, for limit user usage
+		cmd = compose_CLI(cmd, Get_CLI("users", 21, ""));
+		// write flag is 0
+		gl.nowriteflag = true;
+		txcli(cmd, "fwfile.html", 2, "fwfile.html");
+		gl.retbufno = 0;
+	}else if(gl.zyshdcnt == 1) {
+		fwfile_fetch_1(gl.retbufno);
+		gl.retbufno = 0;
+		gl.zyshdcnt = 0;
+	}*/
+var cmd = "";
+		cmd = compose_CLI(cmd, "show version ");
+		cmd = compose_CLI(cmd, "show users current");
+		// write flag is 0
+		//gl.nowriteflag = true;
+		txcli(cmd, "fwfile.html", 2, "fwfile.html");
+	
+	function getData(){
+		var data = theDataPtr.getRecord(0);
+		document.cgi_result.fw_bootmodule.value = data.filename;//boot module
+		document.cgi_result.fw_version.value = data.size;//fw version
+		document.cgi_result.fw_releaseDate.value = data.created;//build data
+	}
+	/*--- upload ---*/
+function startTime(str){
+	//var str1 = document[str].file_path.value;
+	//if(limitPtr.getRecord(0).mb1=="limited-ad"){
+	//	alert("This action is not allowed for Limit-Admin account.");
+	//	return;
+	//}
+        var er = document.getElementById('filepath');
+	if(er.value ==""){
+		alert("File: is empty.");
+		return;
+	}
+/*
+	if(str1.indexOf(':', 0) == -1){
+		alert("Invalid file.");
+		return;
+	}*/
+	//document[str].target = "txdata";
+	//document[str].submit();
+	//clrinterval = setInterval('chkData(\''+str+'\');', 1000);	
+	//tcnt = setInterval("window.status=cnt++;", 1000);
+}
+function chkData(str){
+	if(document[str].return_errno.value != "ZLD"){
+		clearInterval(clrinterval);/*stop interval */
+		clearInterval(tcnt);/*stop interval */
+		if((document[str].return_errno.value != "ZLD") && (document[str].return_errno.value == 0)){			
+			window.location.href="fwupdone.html";
+			}else{
+			if(document[str].return_errno.value == "ZLD"){
+				return;
+			}else if(document[str].return_errno.value != "ZLD" && document[str].return_errno.value != 0){
+						gl.zyshdcnt=1;
+				displayStr('Error: ['+document[str].return_errno.value+'], '+document[str].return_errmsg.value);	
+				/* Reset to default*/		
+				setTimeout("reset_txdata(\'"+str+"\');", 1000);
+			}
+		}		
+	}
+}
+	/*--- upload ---*/
+function multi_lingual(wording, filename){
+	//document.write(top.frames[1].getLang(wording, filename));
+}
+// -->
+
+</script></head><body onunload="page_init();" onload=" showFullPath('Maintenance > File Manager > Firmware Package'); displayStr('Ready.');" background="images/config_bg.gif" marginheight="0" marginwidth="0">
+<form enctype="multipart/form-data" name="cgi_result" method="post" action="/cgi-bin/file_upload-cgi">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td width="2%">&nbsp;</td>
+			<td width="98%">&nbsp;</td>
+		</tr>
+	</tbody></table>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+
+			<td height="18" width="2%">&nbsp;</td>
+			<td height="18">
+				<!-- 3D -->
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_configure.html" target="main" class="sub"><script>multi_lingual("_Configuration_File", "_globalTag")</script>Configuration File</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+
+						
+						<td width="14"><img src="images/sub_on_1.gif" height="24" width="14"></td>
+						<td class="sub" background="images/sub_on_2.gif" nowrap="nowrap"><script>multi_lingual("_Firmware_Package", "_globalTag")</script>Firmware Package</td>
+						<td width="14"><img src="images/sub_on_3.gif" height="24" width="14"></td>
+						
+						<td width="14"><img src="images/sub_1.gif" height="24" width="14"></td>
+						<td background="images/sub_2.gif" nowrap="nowrap"><a href="m_shellfile.html" target="main" class="sub"><script>multi_lingual("_Shell_Script", "_globalTag")</script>Shell Script</a></td>
+						<td width="14"><img src="images/sub_3.gif" height="24" width="14"></td>
+					</tr>
+
+				</tbody></table>
+				<!-- 3D -->
+			</td>
+		</tr>
+		<tr>
+			<td width="2%">&nbsp;</td>
+			<td class="BG4">
+				<!-- 3D -->
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+					<tbody><tr>
+						<td rowspan="3" background="images/config_bo_l.gif" width="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+						<td background="images/config_bo_t.gif" height="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+						<td rowspan="3" background="images/config_bo_r.gif" width="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+					</tr>
+					<tr>
+						<td>
+							<!-- 3D -->
+							<div align="center">&nbsp;<br>
+
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="BG3" width="2%">&nbsp;</td>
+										<td class="BG3" width="98%"><script>multi_lingual("_FW_Version", "_fwfile")</script>Version</td>
+									</tr>
+									<tr>
+										<td width="2%">&nbsp;</td>
+										<td colspan="6">&nbsp;</td>
+
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td colspan="6">
+											<script>multi_lingual("_Boot_Module", "_fwfile")</script>Boot Module:
+											<input name="fw_bootmodule" size="32" maxlength="32" class="filedisp"  value="1.07" type="text">
+										</td>
+									</tr>
+									<tr>
+
+										<td width="2%">&nbsp;</td>
+										<td colspan="6">&nbsp;</td>
+									</tr>
+									<tr>
+										<td width="2%">&nbsp;</td>
+										<td colspan="6">
+											<script>multi_lingual("_Current_Version", "_fwfile")</script>Current Version:
+											<input name="fw_version" size="32" maxlength="32" class="filedisp" value="2.10(AQU.0)" type="text">
+										</td>
+
+									</tr>
+									<tr>
+										<td width="2%">&nbsp;</td>
+										<td colspan="6">&nbsp;</td>
+									</tr>
+									<tr>
+										<td width="2%">&nbsp;</td>
+										<td colspan="6" align="left">
+											<script>multi_lingual("_Released_Date", "_fwfile")</script>Released Date:
+											<input name="fw_releaseDate" size="32" maxlength="32" class="filedisp" value="2008-04-02 13:54:31" type="text">
+
+										</td>
+									</tr>
+									<tr>
+										<td width="2%">&nbsp;</td>
+										<td colspan="6"><b></b></td>
+									</tr>
+								</tbody></table>
+								<input name="return_errno" size="12" value="ZLD" type="hidden">
+									<input value="" size="64" name="return_errmsg" type="hidden">
+
+									<input value="firmware" name="file_type" type="hidden">
+									<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="BG3" width="2%">&nbsp;</td>
+										<td class="BG3" width="98%"><script>multi_lingual("_FW_Upload", "_fwfile")</script>Upload File</td>
+									</tr>
+									<tr>
+										<td rowspan="3">&nbsp;</td>
+
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td><script>multi_lingual("_To_upload_firmware_package", "_fwfile")</script>"To upload firmware package, browse to the location of the file and then click Upload."</td>
+									</tr>
+									<tr><td>&nbsp;</td></tr>
+									<tr>
+										<td width="2%">&nbsp;</td>
+
+										<td align="left">
+											<b><script>multi_lingual("_File_Path", "_fwfile")</script>File Path:
+												<input id="filepath" name="file_path" size="32" value="" type="file">
+												<input name="Submit" value="Upload"  type="button" onclick="">
+											</b>
+										</td>
+									</tr>
+									<tr>
+										<td width="2%">&nbsp;</td>
+
+										<td><b></b></td>
+									</tr>
+								</tbody></table>
+							</div><br>
+							<!-- 3D -->
+						</td>
+					</tr>
+					<tr>
+						<td background="images/config_bo_b.gif" height="3"><img src="images/dotspacer.gif" height="1" width="1"></td>
+
+					</tr>
+				</tbody></table>
+				<!-- 3D -->
+			</td>
+		</tr>
+	</tbody></table>
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td width="2%">&nbsp;</td>
+
+			<td width="98%"></td>
+		</tr>
+	</tbody></table>
+	<script language="JavaScript">
+	</script>
+</form>
+</body></html>

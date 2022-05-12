@@ -1,0 +1,276 @@
+
+<html><head>
+<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="generator" content="GoLive CyberStudio 3">
+
+<script type="text/javascript" src="General.js" ></script>
+<link href="control.css" rel="stylesheet" type="text/css">
+<script language=JavaScript>
+<!--
+top.header.szHelp="h_Firewall_RuleSum.html";
+var SubmitFlag=1;
+
+    function doLoad() {
+        top.buttom.location="buttom.html";
+    }
+
+
+    function doSubmit() {
+        top.buttom.location="ack.html";
+    }
+
+function doFindCurrentRule(CurrentIndex)
+{
+var num
+num = parseInt(CurrentIndex);
+document.forms[0].FWRule_Index.value = num;
+}
+function doEditRule()
+{
+document.forms[0].FWRule_Flag.value = 1;
+document.forms[0].target='main';
+document.forms[0].submit();
+}
+function doDeleteRule()
+{
+if (SubmitFlag == 1){
+SubmitFlag =0;
+document.forms[0].FWRule_Flag.value = 2;
+document.forms[0].target='main';
+document.forms[0].submit();
+}
+}
+function CheckRuleNum(RuleNum, Index)
+{
+var AlertStr;
+if( document.forms[0].MaxRuleNum.value != 0 ){
+if( (parseInt(RuleNum, 10) > parseInt(document.forms[0].MaxRuleNum.value, 10)) || ( parseInt(RuleNum, 10) < 1 ) ){
+AlertStr = "The value of rule number should be between 1 and " + document.forms[0].MaxRuleNum.value;
+alert(AlertStr);
+if(Index == 1){
+//document.forms[0].Fw_RuleMoveFrom.value	= 0;
+}
+else{
+document.forms[0].Fw_RuleMoveTo.value	= 0;
+}
+}
+}
+return;
+}
+function showtable()
+{
+var string = document.getElementById("move").style.display;
+if (string == ""){
+document.getElementById("move").style.display = "none";
+}else if (string =="none"){
+document.getElementById("move").style.display = "";
+}
+}
+function doshowmove(CurrentIndex)
+{
+var num
+num = parseInt(CurrentIndex);
+document.forms[0].FWRule_Index.value = num;
+var string = document.getElementById("move").style.display;
+if (string == ""){
+document.getElementById("move").style.display = "none";
+}else if (string =="none"){
+document.getElementById("move").style.display = "";
+}
+}
+// -->
+</script>
+</head>
+<body marginwidth="0" marginheight="0" LINK="#000000" VLINK="#000000" ALINK="#000000" onload="doLoad();">
+<form method="post" action="/Forms/Firewall_RuleSum_1" name="FWRuleSum" target="buttom">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="2%" >&nbsp;</td><td width="98%" >&nbsp;</td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="5%" >&nbsp;</td><td width="90%" height="18">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="Firewall_DefPolicy.html" target="main" class="sub">
+<b><FONT class=NaviText>
+General</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_on_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_on_2.gif" class="sub"> <div align=center><b>
+Rules</b> </div></td><td width="14"><img src="Images/sub_on_3.gif" width="14" height="24"></td><td width="14"><img src="Images/sub_1.gif" width="14" height="24"></td><td nowrap background="Images/sub_2.gif" > <div align=center><a href="Firewall_Threshold.html" target="main" class="sub">
+<b><FONT class=NaviText>
+Threshold</font></b></a></div></td><td width="14"><img src="Images/sub_3.gif" width="14" height="24"></td></tr></table>
+    </td><td width="5%" height="18">&nbsp;</td></tr><tr>
+    <td width="5%" >&nbsp;</td><td bgcolor="#787878">
+	  <table width="100%"  border="0" cellspacing="1" cellpadding="0">
+	    <tr>
+		<td bgcolor="#FFFFFF">
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3" rowspan="3" background="Images/config_bo_l.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td height="3" background="Images/config_bo_t.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td><td width="3" rowspan="3" background="Images/config_bo_r.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr><tr>
+                <td align=center> 
+                    &nbsp;                 		
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="3%" height="19" class=cTitle>&nbsp;&nbsp;</td><td class="cTitle">
+Rules</td></tr><tr>
+<td colspan="2">&nbsp;</td></tr></table><table width="90%" border="0" align=center cellpadding="0" cellspacing="0">
+<tr>
+<td><div><table width="100%" border="0" align=center cellpadding="0" cellspacing="0">
+<tr align=left>
+<td >
+Firewall Rules Storage Space in Use &nbsp;(
+4%) </td></tr><tr >
+<td width="10%" align=right> <table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="3%" height="30" align=right></td><td width="3%" align=right>0%</td><td width="75%"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td background="Images/percent_bg_1.gif"><img src="Images/percent_bar_1.gif" width="4%" height="20"></td></tr></table></td><td>100%</td></tr></table></td></tr></table></div></td></tr></table><table width="90%" border="0" align=center cellpadding="0" cellspacing="0">
+<tr>
+<td><div><table width="100%" border="0" align=center cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" >
+<tr align=left>
+<td>&nbsp;</td><td >&nbsp;</td><td width="35%">&nbsp;</td></tr><tr align=left>
+<td width="38%">
+Packet Direction </td><td width="27%" >
+<select name="FwRule_PkDir" size="1" onchange="document.forms[0].submit();"><option value=00000007>LAN to LAN / Router
+<option value=00000001>LAN to WAN
+<option value=00000002 selected>WAN to LAN
+<option value=00000008>WAN to WAN / Router
+</select></td><td>&nbsp;</td></tr><tr align=left>
+<td width="38%">
+Create a new rule after rule number :</td><td colspan="2" >
+<select name="FWRule_SInsert" size="1"><option value=00000000>  1
+<option value=00000001>  2
+<option value=00000002>  3
+<option value=00000003>  4
+<option value=00000004>  5
+</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="submit" name="sysAddBtn" value="Add" /></td></tr><tr align=left>
+<td></td><td >&nbsp;</td><td>&nbsp;</td></tr></table></div></td></tr></table><table width="90%" border="1" align=center cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">
+<tr height="27" id="move">
+<td>&nbsp;</td><td colspan="9" align=right>
+Move the rule to<input type="text" name="Fw_RuleMoveTo" size="2" maxlength="2" value="0" onblur="CheckRuleNum(this.form.Fw_RuleMoveTo.value,2);" /><input type="submit" name="sysMoveBtn" value="Move" /></td></tr><tr bgcolor="#003399" align=center class="tableTitle">
+<td width="5%" align=center class="tableTitle"> # </td><td width="7%" align=center class="tableTitle">
+Active</td><td width="15%" align=center class="tableTitle">
+Source IP</td><td width="15%" align=center class="tableTitle">
+Destination IP</td><td width="10%" align=center class="tableTitle">
+Service</td><td width="8%" align=center class="tableTitle">
+Action</td><td width="7%" align=center class="tableTitle">
+Schedule</td><td width="5%" align=center class="tableTitle">
+Log </td><td width="10%" align=center class="tableTitle">
+Modify</td><td width="8%" align=center class="tableTitle">
+Order</td></tr><tr class="tabcolor2">
+<td align=center > <strong>
+  1</strong></td><td align=center>
+<input type="checkbox" name="FWRuleSum_Active" checked /></td><td align=center>
+<select name="FwRule_SourceIP" size="1"><option value=94525d50>Any
+</select></td><td align=center>
+<select name="FwRule_DestIP" size="1"><option value=94525d50>Any
+</select></td><td align=center>
+<select name="FwRule_Service" size="1"><option value=94525d50>IKE(UDP:500)
+</select></td><td align=center>
+Permit</td><td align=center>
+No</td><td align=center>
+Yes</td><td align=center><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); " id=1>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image260','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image260" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); " id=1>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image290','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image290" width="17" height="14" border="0"></a></font></td><td align=center><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doshowmove(this.id); " id=1>
+<img src="Images/i_ton.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Imageton0','','Images/i_ton_on.gif',1)" alt="Move" title="Move" name="Imageton0" width="19" height="14" border="0"></a></font>
+<input type="hidden" name="FW_CurtIndex" value="1" /></td></tr><tr class="tabcolor1">
+<td align=center > <strong>
+  2</strong></td><td align=center>
+<input type="checkbox" name="FWRuleSum_Active" checked /></td><td align=center>
+<select name="FwRule_SourceIP" size="1"><option value=94b9bf14>Any
+</select></td><td align=center>
+<select name="FwRule_DestIP" size="1"><option value=94b9bf14>Any
+</select></td><td align=center>
+<select name="FwRule_Service" size="1"><option value=94b9bf14>PPTP_TUNNEL(GRE:0)
+</select></td><td align=center>
+Permit</td><td align=center>
+No</td><td align=center>
+Yes</td><td align=center><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); " id=2>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image261','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image261" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); " id=2>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image291','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image291" width="17" height="14" border="0"></a></font></td><td align=center><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doshowmove(this.id); " id=2>
+<img src="Images/i_ton.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Imageton1','','Images/i_ton_on.gif',1)" alt="Move" title="Move" name="Imageton1" width="19" height="14" border="0"></a></font>
+<input type="hidden" name="FW_CurtIndex" value="1" /></td></tr><tr class="tabcolor2">
+<td align=center > <strong>
+  3</strong></td><td align=center>
+<input type="checkbox" name="FWRuleSum_Active" checked /></td><td align=center>
+<select name="FwRule_SourceIP" size="1"><option value=00000001>Any
+</select></td><td align=center>
+<select name="FwRule_DestIP" size="1"><option value=00000001>192.168.5.36
+</select></td><td align=center>
+<select name="FwRule_Service" size="1"><option value=00000001>*acmsoda(TCP:6969)
+<option value=00000001>*BitTorrent other(TCP:6881-6889)
+<option value=00000001>*Shareaza(TCP/UDP:6346)
+</select></td><td align=center>
+Permit</td><td align=center>
+No</td><td align=center>
+No</td><td align=center><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); " id=3>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image262','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image262" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); " id=3>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image292','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image292" width="17" height="14" border="0"></a></font></td><td align=center><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doshowmove(this.id); " id=3>
+<img src="Images/i_ton.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Imageton2','','Images/i_ton_on.gif',1)" alt="Move" title="Move" name="Imageton2" width="19" height="14" border="0"></a></font>
+<input type="hidden" name="FW_CurtIndex" value="1" /></td></tr><tr class="tabcolor1">
+<td align=center > <strong>
+  4</strong></td><td align=center>
+<input type="checkbox" name="FWRuleSum_Active" checked /></td><td align=center>
+<select name="FwRule_SourceIP" size="1"><option value=00000001>Any
+</select></td><td align=center>
+<select name="FwRule_DestIP" size="1"><option value=00000001>192.168.5.36
+<option value=00000001>192.168.5.37
+</select></td><td align=center>
+<select name="FwRule_Service" size="1"><option value=00000001>*ICQ-Filetransfer1(TCP:20000-20059)
+<option value=00000001>*ICQ-Filetransfer2(TCP:20060-20119)
+</select></td><td align=center>
+Permit</td><td align=center>
+No</td><td align=center>
+Yes</td><td align=center><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); " id=4>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image263','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image263" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); " id=4>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image293','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image293" width="17" height="14" border="0"></a></font></td><td align=center><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doshowmove(this.id); " id=4>
+<img src="Images/i_ton.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Imageton3','','Images/i_ton_on.gif',1)" alt="Move" title="Move" name="Imageton3" width="19" height="14" border="0"></a></font>
+<input type="hidden" name="FW_CurtIndex" value="1" /></td></tr><tr class="tabcolor2">
+<td align=center > <strong>
+  5</strong></td><td align=center>
+<input type="checkbox" name="FWRuleSum_Active" checked /></td><td align=center>
+<select name="FwRule_SourceIP" size="1"><option value=00000001>Any
+</select></td><td align=center>
+<select name="FwRule_DestIP" size="1"><option value=00000001>192.168.5.35
+</select></td><td align=center>
+<select name="FwRule_Service" size="1"><option value=00000001>HTTP(TCP:80)
+<option value=00000001>FTP(TCP:20,21)
+</select></td><td align=center>
+Permit</td><td align=center>
+No</td><td align=center>
+Yes</td><td align=center><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doFindCurrentRule(this.id); doEditRule(); " id=5>
+<img src="Images/i_edit.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image264','','Images/i_edit_on.gif',1)" alt="Edit" title="Edit" name="Image264" width="19" height="14" border="0"></a><a onClick="doFindCurrentRule(this.id); doDeleteRule(); " id=5>
+<img src="Images/i_delete.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image294','','Images/i_delete_on.gif',1)"  alt="Remove" title="Remove" name="Image294" width="17" height="14" border="0"></a></font></td><td align=center><font style= "cursor:hand;cursor:pointer;">
+<a onClick="doshowmove(this.id); " id=5>
+<img src="Images/i_ton.gif" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Imageton4','','Images/i_ton_on.gif',1)" alt="Move" title="Move" name="Imageton4" width="19" height="14" border="0"></a></font>
+<input type="hidden" name="FW_CurtIndex" value="1" /></td></tr></table>
+		<table border="0" cellspacing="0" cellpadding="0" width="300" align=center>
+                      <tr>
+                        <td>&nbsp;</td></tr><tr align=center>
+                        <td background="Images/wg_dotline.gif">&nbsp;</td></tr><tr>
+                        <td align=center>
+                    &nbsp;                        
+</tr><tr>
+<td align=center>
+<input type="submit" name="sysSubmit" value="Apply" />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+<INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ><input type="hidden" name="FWRule_Index" value="0" /><input type="hidden" name="FWRule_Flag" value="0" /><input type="hidden" name="MaxRuleNum" value="5" /></td>
+                        </td></tr><tr>
+                        <td height="35">&nbsp;</td></tr></table>
+                </td></tr><tr>
+                <td height="3" background="Images/config_bo_b.gif"><img src="Images/dotspacer.gif" width="1" height="1"></td></tr></table></td></tr></table></td><td width="5%" >&nbsp;</td></tr></table></form><p>&nbsp;</p>
+</body><script language="JavaScript">
+<!--
+showFullPath('Security > Firewall > Rules');
+showtable();
+//-->
+</script>
+</html>

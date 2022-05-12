@@ -1,0 +1,91 @@
+
+<html><head>
+  <meta http-equiv='content-type' content='text/html;charset=iso-8859-1'>
+<title>Web Configurator</title>
+<SCRIPT src="General.js"></SCRIPT>
+
+
+<script language="JavaScript">
+<!--
+top.title.h_Page='h_Fire_Threshold.html';
+function OnBlockingTimeChange(form)
+{
+if(form.Radio_Delete_Old_Session[0].checked)
+{
+form.fwBlockTime.disabled = true;
+}
+else
+{
+form.fwBlockTime.disabled = false;
+}
+return;
+}
+function chkRange(value,i)
+{
+if (i != 7) {
+if (value > 256 || value < 1)
+{	alert("The value must position between 1 to 256.");	form.elements[i].value = 1;
+form.elements[i].focus();
+}
+} else {
+if (value > 255 || value < 1)
+{	alert("The value must position between 1 to 255.");	form.elements[i].value = 1;
+form.elements[i].focus();
+}
+}
+}
+function ChkLowHigh(form)
+{
+temp_low=parseInt(form.fwMinuteLow.value, 10);
+temp_high=parseInt(form.fwMinuteHigh.value, 10);
+if (temp_high < temp_low)
+{	alert("The One Minute Low value must be less than the One Minute High value.");	form.fwMinuteLow.value = 1;
+form.fwMinuteLow.focus();
+} else {
+temp_low=parseInt(form.fwIncompleteLow.value, 10);
+temp_high=parseInt(form.fwIncompleteHigh.value, 10);
+if (temp_high < temp_low)
+{	alert("The Maximum Incomplete Low value must be less than the Maximum Incomplete High value.");	form.fwIncompleteLow.value = 1;
+form.fwIncompleteLow.focus();
+} else {
+this.form.submit();
+}
+}
+}
+// -->
+  </script>
+</head><body bgcolor="#ffffff" marginwidth="0" marginheight="0" onLoad="javascript:top.title.MAIN=this.location.href;">
+<FORM METHOD="POST" ACTION="rpFirewall.html" name="form" target="_self"> <table width="100%" border="0" cellspacing="1">
+<tr>
+<td width="2%">&nbsp;</td><td width="5%">&nbsp;</td><td width="93%">
+<table border="0" cellspacing="0" cellpadding="0" width="560">
+<tr>
+<td colspan="6">
+<div><b><font class="NaviText"> Firewall - Threshold</font> </b></div></td></tr><tr>
+<td colspan="6">
+<hr></td></tr><tr>
+<td colspan="6" class="header2"> Denial of Service Thresholds</td></tr><tr>
+<td width="4%"></td><td colspan="3"> One Minute Low</td><td colspan="2" width="65%"> <INPUT TYPE="TEXT" NAME="fwMinuteLow" SIZE="3" MAXLENGTH="3" VALUE="80" onBlur="chkRange(this.value,0);"><font class="descript">(Sessions per Minute</font>)
+</td></tr><tr>
+<td width="4%"></td><td colspan="3"> One Minute High</td><td colspan="2" width="65%"> <INPUT TYPE="TEXT" NAME="fwMinuteHigh" SIZE="3" MAXLENGTH="3" VALUE="100" onBlur="chkRange(this.value,1);"><font class="descript">(Sessions per Minute</font>)
+</td></tr><tr>
+<td width="4%"></td><td colspan="3"> Maximum Incomplete Low</td><td colspan="2" width="65%"> <INPUT TYPE="TEXT" NAME="fwIncompleteLow" SIZE="3" MAXLENGTH="3" VALUE="80" onBlur="chkRange(this.value,2);"><font class="descript">(Sessions</font>) </td></tr><tr>
+<td width="4%"></td><td colspan="3"> Maximum Incomplete High</td><td colspan="2" width="65%"> <INPUT TYPE="TEXT" NAME="fwIncompleteHigh" SIZE="3" MAXLENGTH="3" VALUE="100" onBlur="chkRange(this.value,3);"><font class="descript">(Sessions)</font> </td></tr><tr>
+<td width="4%"></td><td colspan="3"> TCP Maximum Incomplete</td><td colspan="2" width="65%"> <INPUT TYPE="TEXT" NAME="fwTCPIncomplete" SIZE="3" MAXLENGTH="3" VALUE="10" onBlur="chkRange(this.value,4);"><font class="descript">(Sessions</font>) </td></tr><tr>
+<td colspan="6">&nbsp;</td></tr><tr>
+<td colspan="6" class="header2">Action taken when TCP Maximum Incomplete
+reached threshold </td></tr><tr>
+<td width="4%">&nbsp; </td><td width="5%"><INPUT TYPE="RADIO" NAME="Radio_Delete_Old_Session" VALUE="1" CHECKED onClick="OnBlockingTimeChange(this.form);"></td><td colspan="4">Delete the Oldest Half Open Session when New Connection Request Comes.</td></tr><tr>
+<td width="4%">&nbsp; </td><td width="5%"><INPUT TYPE="RADIO" NAME="Radio_Delete_Old_Session" VALUE="0" onClick="OnBlockingTimeChange(this.form);"></td><td colspan="4">Deny New Connection Request for&nbsp; <INPUT TYPE="TEXT" NAME="fwBlockTime" SIZE="3" MAXLENGTH="3" VALUE="10" onBlur="chkRange(this.value,7);"><font class="descript"> Minutes(1~255)</font> </td></tr><tr align=center valign=middle>
+<td colspan="6" height="36">
+<hr></td></tr><tr>
+<td colspan="6">
+<div align=center>
+<INPUT TYPE="BUTTON" NAME="FW_BackBtn" VALUE="Back" onclick="window.location='rpFirewall.html';"> &nbsp;&nbsp;&nbsp;
+<INPUT TYPE="BUTTON" NAME="FWThreshold_SaveBtn" VALUE="Apply" onClick="ChkLowHigh(this.form);"> &nbsp;&nbsp;&nbsp; <INPUT TYPE=RESET NAME="Cancel" VALUE="Cancel" ></div></td></tr></table></td></tr></table></form><SCRIPT language="JavaScript">
+<!--
+OnBlockingTimeChange(document.forms[0])
+// -->
+</SCRIPT>
+
+</body></html>
