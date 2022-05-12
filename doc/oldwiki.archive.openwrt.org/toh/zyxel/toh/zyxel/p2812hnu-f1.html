@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="no-js">
+
+<!-- Mirrored from openwrt.org/toh/zyxel/p2812hnu-f1 by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Sun, 10 Mar 2019 07:09:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <title>OpenWrt Project: ZyXEL P-2812HNU-F1</title>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="keywords" content="vdsl2,vr9,128ram,128flash"/>
+<link rel="search" type="application/opensearchdescription+xml" href="../../../external.html?link=https://openwrt.org/lib/exe/opensearch.php" title="OpenWrt Project"/>
+<link rel="start" href="../../../external.html?link=https://openwrt.org/"/>
+<link rel="contents" href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?do=index" title="Sitemap"/>
+<link rel="manifest" href="../../../external.html?link=https://openwrt.org/lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="../../../external.html?link=https://openwrt.org/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="../../../external.html?link=https://openwrt.org/feed.php?mode=list&amp;ns=toh:zyxel"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="../../../external.html?link=https://openwrt.org/_export/xhtml/toh/zyxel/p2812hnu-f1"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="../../../external.html?link=https://openwrt.org/_export/raw/toh/zyxel/p2812hnu-f1"/>
+<link rel="canonical" href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1"/>
+<link rel="stylesheet" type="text/css" href="../../../external.html?link=https://openwrt.org/lib/exe/css.php?t=openwrt&amp;tseed=659d77b8d7a7a08bcde1a890e899b0ef"/>
+<link type="text/css" rel="stylesheet" href="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/media/css/jquery.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/FixedHeader/css/fixedHeader.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/FixedColumns/css/fixedColumns.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Buttons/css/buttons.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Responsive/css/responsive.dataTables.min.css"/>
+<!--[if gte IE 9]><!-->
+<script type="text/javascript">/*<![CDATA[*/var NS='toh:zyxel';var JSINFO = {"plugin_imagemap_mldummy":"\/_media\/wiki\/dokuwiki-128.png","move_renameokay":false,"plugin":{"datatables":{"config":[],"enableForAllTables":0}},"schemes":["http","https","telnet","gopher","wais","ftp","ed2k","irc","ldap"],"plugin_folded":{"hide":"hide","reveal":"reveal"},"id":"toh:zyxel:p2812hnu-f1","namespace":"toh:zyxel","ACT":"show","useHeadingNavigation":1,"useHeadingContent":0};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="../../../external.html?link=https://openwrt.org/lib/exe/jquery.php?tseed=23f888679b4f1dc26eef34902aca964f"></script>
+<script type="text/javascript" charset="utf-8" src="../../../external.html?link=https://openwrt.org/lib/exe/js.php?t=openwrt&amp;tseed=659d77b8d7a7a08bcde1a890e899b0ef"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Buttons/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Buttons/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<!--<![endif]-->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" href="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/favicon.ico" />
+<link rel="apple-touch-icon" href="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/apple-touch-icon.png" />
+    </head>
+
+<body>
+    <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site" class="page_toh page_zyxel page_p2812hnu-f1"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_openwrt    showSidebar hasSidebar">
+
+        
+<!-- ********** HEADER ********** -->
+<div id="dokuwiki__header"><div class="pad group">
+
+    
+    <div class="headings group">
+        <ul class="a11y skip">
+            <li><a href="#dokuwiki__content">skip to content</a></li>
+        </ul>
+
+        <h1><a href="../../../external.html?link=https://openwrt.org/"  accesskey="h" title="[H]"><img src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/logo.png" width="386" height="98" alt="" /> <span>OpenWrt Project</span></a></h1>
+            </div>
+
+    <div class="tools group">
+        <!-- USER TOOLS -->
+                    <div id="dokuwiki__usertools">
+                <h3 class="a11y">User Tools</h3>
+                <ul>
+                    <li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?do=register"  class="action register" rel="nofollow" title="Register">Register</a></li><li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?do=login&amp;sectok="  class="action login" rel="nofollow" title="Log In">Log In</a></li>                </ul>
+            </div>
+        
+        <!-- SITE TOOLS -->
+        <div id="dokuwiki__sitetools">
+            <h3 class="a11y">Site Tools</h3>
+            <form action="../../../external.html?link=https://openwrt.org/start" method="get" role="search" class="search doku_form" id="dw__search" accept-charset="utf-8"><input type="hidden" name="do" value="search" /><input type="hidden" name="id" value="toh:zyxel:p2812hnu-f1" /><div class="no"><input name="q" type="text" class="edit" title="[F]" accesskey="f" placeholder="Search" autocomplete="on" id="qsearch__in" value="" /><button value="1" type="submit" title="Search">Search</button><div id="qsearch__out" class="ajax_qsearch JSpopup"></div></div></form>            <div class="mobileTools">
+                <form action="../../../external.html?link=https://openwrt.org/doku.php" method="get" accept-charset="utf-8"><div class="no"><input type="hidden" name="id" value="toh:zyxel:p2812hnu-f1" /><select name="do" class="edit quickselect" title="Tools"><option value="">Tools</option><optgroup label="Page Tools"><option value="edit">Show pagesource</option><option value="revisions">Old revisions</option><option value="backlink">Backlinks</option></optgroup><optgroup label="Site Tools"><option value="recent">Recent Changes</option><option value="media">Media Manager</option><option value="index">Sitemap</option></optgroup><optgroup label="User Tools"><option value="register">Register</option><option value="login">Log In</option></optgroup></select><button type="submit">&gt;</button></div></form>            </div>
+            <ul>
+                <li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?do=recent"  class="action recent" accesskey="r" rel="nofollow" title="Recent Changes [R]">Recent Changes</a></li><li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?do=media&amp;ns=toh%3Azyxel"  class="action media" rel="nofollow" title="Media Manager">Media Manager</a></li><li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?do=index"  class="action index" accesskey="x" rel="nofollow" title="Sitemap [X]">Sitemap</a></li>            </ul>
+        </div>
+
+    </div>
+
+    <!-- BREADCRUMBS -->
+            <div class="breadcrumbs">
+                            <div class="youarehere"><span class="bchead">You are here: </span><span class="home"><bdi><a href="../../../external.html?link=https://openwrt.org/start" class="wikilink1" title="start">Welcome to the OpenWrt Project</a></bdi></span> » <bdi><a href="../../../external.html?link=https://openwrt.org/toh/start" class="wikilink1" title="toh:start">Table of Hardware</a></bdi> » <bdi><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/start" class="wikilink1" title="toh:zyxel:start">ZyXEL</a></bdi> » <bdi><span class="curid"><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1" class="wikilink1" title="toh:zyxel:p2812hnu-f1">ZyXEL P-2812HNU-F1</a></span></bdi></div>
+                                                <div class="plugin_translation"><form action="../../../external.html?link=https://openwrt.org/start" id="translation__dropdown"><img src="../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/en.gif" alt="en" height="11" class="wikilink1" /> <select name="id" class="wikilink1"><option class="wikilink1 cur flag" title="English" value="toh/zyxel/p2812hnu-f1" selected="selected" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/en.gif')">English (en)</option><option class="wikilink2 flag" title="|العربية" value="ar/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/ar.gif')">|العربية (ar)</option><option class="wikilink2 flag" title="Česky" value="cs/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/cs.gif')">Česky (cs)</option><option class="wikilink2 flag" title="Deutsch" value="de/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/de.gif')">Deutsch (de)</option><option class="wikilink2 flag" title="Español" value="es/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/es.gif')">Español (es)</option><option class="wikilink2 flag" title="Français" value="fr/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/fr.gif')">Français (fr)</option><option class="wikilink2 flag" title="Magyar" value="hu/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/hu.gif')">Magyar (hu)</option><option class="wikilink2 flag" title="Italiano" value="it/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/it.gif')">Italiano (it)</option><option class="wikilink2 flag" title="日本語" value="ja/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/ja.gif')">日本語 (ja)</option><option class="wikilink2 flag" title="한국어" value="ko/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/ko.gif')">한국어 (ko)</option><option class="wikilink2 flag" title="Polski" value="pl/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/pl.gif')">Polski (pl)</option><option class="wikilink2 flag" title="Português" value="pt/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/pt.gif')">Português (pt)</option><option class="wikilink2 flag" title="Português" value="pt-br/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/pt-br.gif')">Português (pt-br)</option><option class="wikilink2 flag" title="Русский" value="ru/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/ru.gif')">Русский (ru)</option><option class="wikilink2 flag" title="Türkçe" value="tr/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/tr.gif')">Türkçe (tr)</option><option class="wikilink2 flag" title="中文" value="zh/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/zh.gif')">中文 (zh)</option><option class="wikilink2 flag" title="繁體中文" value="zh-tw/toh/zyxel/p2812hnu-f1" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/zh-tw.gif')">繁體中文 (zh-tw)</option></select><input name="go" type="submit" value="&rarr;" /></form>&nbsp<sup><a href="../../../external.html?link=https://openwrt.org/meta/translation" class="wikilink1" title="meta:translation">?</a></sup></div>        </div>
+    
+    
+    <hr class="a11y" />
+</div></div><!-- /header -->
+
+        <div class="wrapper group">
+
+                            <!-- ********** ASIDE ********** -->
+                <div id="dokuwiki__aside"><div class="pad aside include group">
+                    <h3 class="toggle">Sidebar</h3>
+                    <div class="content">
+                                                                        
+
+<ul>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/start" class="wikilink1" title="start">Welcome to OpenWrt</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/supported_devices" class="wikilink1" title="supported_devices">Supported Devices</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/packages/start" class="wikilink1" title="packages:start">Packages</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/downloads" class="wikilink1" title="downloads">Downloads</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/docs/start" class="wikilink1" title="docs:start">Documentation</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/submitting-patches" class="wikilink1" title="submitting-patches">Submitting patches</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/bugs" class="wikilink1" title="bugs">Reporting bugs</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/wiki/wikirules" class="wikilink1" title="wiki:wikirules">Wiki contribution guide</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://forum.openwrt.org/" class="urlextern" title="https://forum.openwrt.org" rel="nofollow">OpenWrt Forum</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/faq" class="wikilink1" title="faq">FAQ</a> </div>
+</li>
+</ul>
+<hr />
+<ul>
+<li class="level1 node"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/about" class="wikilink1" title="about">About OpenWrt/LEDE</a> </div>
+<ul>
+<li class="level2"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/rules" class="wikilink1" title="rules">Rules</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/infrastructure" class="wikilink1" title="infrastructure">Infrastructure</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/trademark" class="wikilink1" title="trademark">Trademark Policy</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/wiki/start" class="wikilink1" title="wiki:start">About this site</a></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/contact" class="wikilink1" title="contact">Contact Us</a> </div>
+</li>
+</ul>
+                                            </div>
+                </div></div><!-- /aside -->
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+
+                <div class="pageId"><span>toh:zyxel:p2812hnu-f1</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                    <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#zyxel_p-2812hnu-f1">ZyXEL P-2812HNU-F1</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#openwrt_status">OpenWrt Status</a></div></li>
+<li class="level2"><div class="li"><a href="#supported_versions">Supported Versions</a></div></li>
+<li class="level2"><div class="li"><a href="#hardware_highlights">Hardware Highlights</a></div></li>
+<li class="level2"><div class="li"><a href="#installation">Installation</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#replacement_of_factory_u-boot">Replacement of factory U-Boot</a></div></li>
+<li class="level3"><div class="li"><a href="#installing_openwrt">Installing OpenWrt</a></div></li>
+<li class="level3"><div class="li"><a href="#wifi_on_openwrt">WIFI on openwrt</a></div></li>
+<li class="level3"><div class="li"><a href="#return_to_factory_firmware">Return to Factory firmware</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#hardware_info">Hardware Info</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#photos">Photos</a></div></li>
+<li class="level3"><div class="li"><a href="#serial">Serial</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#bootlogs">Bootlogs</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#oem_bootlog">OEM bootlog</a></div></li>
+<li class="level3"><div class="li"><a href="#u-boot_bootlog">U-Boot bootlog</a></div></li>
+<li class="level3"><div class="li"><a href="#openwrt_bootlog">OpenWrt bootlog</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#tags">Tags</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="zyxel_p-2812hnu-f1">ZyXEL P-2812HNU-F1</h1>
+<div class="level1">
+
+<p>
+Please also see the <a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-fx" class="wikilink1" title="toh:zyxel:p2812hnu-fx">ZyXEL P-2812HNU-FX Series page</a> for more information. VMG3326-D20A is an identical variant of this designed for isp&#039;s.
+</p>
+
+<p>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/p2812/p-2812hnu-f1_general_view.gif?id=toh%3Azyxel%3Ap2812hnu-f1" class="media" title="media:zyxel:p2812:p-2812hnu-f1_general_view.gif"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/p2812/p-2812hnu-f1_general_view.gif?w=200&amp;tok=f43430" class="media" title="P-2812HNU-F1" alt="P-2812HNU-F1" width="200" /></a>
+</p>
+
+</div>
+
+<h2 class="sectionedit2" id="openwrt_status">OpenWrt Status</h2>
+<div class="level2">
+
+<p>
+<a href="../../../external.html?link=https://forum.openwrt.org/search.php?action=show_user_posts&amp;user_id=21206]" class="urlextern" title="https://forum.openwrt.org/search.php?action=show_user_posts&amp;user_id=21206]" rel="nofollow">scapi</a> has F1 to test and seems to work. Wifi at higher loads is not 100% stable with 17 or 18, some improvement with current snapshot. Original zyxel firmware is more stable on the same hardware.
+</p>
+
+</div>
+
+<h2 class="sectionedit3" id="supported_versions">Supported Versions</h2>
+<div class="level2">
+<div class="table dataaggregation"><table class="inline dataplugin_table "><tr><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=brand" title="Sort by this column">Brand</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=model" title="Sort by this column">Model</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=version" title="Sort by this column">Version</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=supported%20current%20rel" title="Sort by this column">Current Release</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=oem%20device%20homepage%20url" title="Sort by this column">OEM Info</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=owrt%20forum%20topic%20url" title="Sort by this column">Forum Topic</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=device%20techdata" title="Sort by this column">Technical Data</a></th></tr><tr><td class="centeralign brand">ZyXEL</td><td class="centeralign model">P-2812HNU-F1</td><td class="centeralign version"></td><td class="centeralign supported_current_rel">18.06.2</td><td class="centeralign oem_device_homepage_url"><a href='../../../external.html?link=https://www.zyxel.com/support/SupportLandingSR.shtml?c=gb&amp;l=en&amp;kbid=MD09036&amp;md=P-2812HNU-F1' class='urlextern' rel="nofollow">https://www.zyxel.com/support/SupportLandingSR.shtml?c=gb&amp;l=en&amp;kbid=MD09036&amp;md=P-2812HNU-F1</a></td><td class="centeralign owrt_forum_topic_url"><a href='../../../external.html?link=https://forum.openwrt.org/viewtopic.php?id=53511' class='urlextern' rel="nofollow">https://forum.openwrt.org/viewtopic.php?id=53511</a></td><td class="centeralign device_techdata"><a href="../../../external.html?link=https://openwrt.org/toh/hwdata/zyxel/zyxel_p-2812hnu-f1" class="wikilink1" title="toh:hwdata:zyxel:zyxel_p-2812hnu-f1">View/Edit data</a></td></tr></table></div>
+</div>
+
+<h2 class="sectionedit4" id="hardware_highlights">Hardware Highlights</h2>
+<div class="level2">
+<div class="table dataaggregation"><table class="inline dataplugin_table "><tr><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=model" title="Sort by this column">Model</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=version" title="Sort by this column">Version</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=cpu" title="Sort by this column">SoC</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=cpu%20mhz" title="Sort by this column">CPU MHz</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=flash%20mb" title="Sort by this column">Flash MB</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=ram%20mb" title="Sort by this column">RAM MB</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=wlan%20hardware" title="Sort by this column">WLAN Hardware</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=wlan%202.4ghz" title="Sort by this column">WLAN2.4</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=wlan%205.0ghz" title="Sort by this column">WLAN5.0</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=ethernet%20100m%20ports" title="Sort by this column">100M ports</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=ethernet%20gbit%20ports" title="Sort by this column">Gbit ports</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=modem" title="Sort by this column">Modem</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=usb%20ports" title="Sort by this column">USB</a></th></tr><tr><td class="centeralign model">P-2812HNU-F1</td><td class="centeralign version"></td><td class="centeralign cpu">Lantiq XWAY VRX288</td><td class="centeralign cpu_mhz">500</td><td class="centeralign flash_mb">128NAND</td><td class="centeralign ram_mb">128</td><td class="centeralign wlan_hardware">Ralink RT3062F</td><td class="centeralign wlan_24ghz">b/g/n</td><td class="centeralign wlan_50ghz">-</td><td class="centeralign ethernet_100m_ports">-</td><td class="centeralign ethernet_gbit_ports">5</td><td class="centeralign modem">VDSL2</td><td class="centeralign usb_ports">2x 2.0</td></tr></table></div>
+</div>
+
+<h2 class="sectionedit5" id="installation">Installation</h2>
+<div class="level2">
+<div class="table dataaggregation"><table class="inline dataplugin_table "><tr><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=model" title="Sort by this column">Model</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=version" title="Sort by this column">Version</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=supported%20current%20rel" title="Sort by this column">Current Release</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=firmware%20openwrt%20install%20url" title="Sort by this column">Firmware OpenWrt Install</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=firmware%20openwrt%20upgrade%20url" title="Sort by this column">Firmware OpenWrt Upgrade</a></th><th><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?datasrt=firmware%20oem%20stock%20url" title="Sort by this column">Firmware OEM Stock</a></th></tr><tr><td class="centeralign model">P-2812HNU-F1</td><td class="centeralign version"></td><td class="centeralign supported_current_rel">18.06.2</td><td class="align firmware_openwrt_install_url"></td><td class="align firmware_openwrt_upgrade_url"><a href='../../../external.html?link=http://downloads.openwrt.org/releases/18.06.2/targets/lantiq/xrx200/openwrt-18.06.2-lantiq-xrx200-zyxel_p-2812hnu-f1-squashfs-sysupgrade.bin' class='urlextern' rel="nofollow">http://downloads.openwrt.org/releases/18.06.2/targets/lantiq/xrx200/openwrt-18.06.2-lantiq-xrx200-zyxel_p-2812hnu-f1-squashfs-sysupgrade.bin</a></td><td class="align firmware_oem_stock_url"><a href='../../../external.html?link=https://www.zyxel.com/support/SupportLandingSR.shtml?c=gb&amp;l=en&amp;kbid=MD09036&amp;md=P-2812HNU-F1' class='urlextern' rel="nofollow">https://www.zyxel.com/support/SupportLandingSR.shtml?c=gb&amp;l=en&amp;kbid=MD09036&amp;md=P-2812HNU-F1</a></td></tr></table></div>
+<p>
+→ <a href="../../../external.html?link=https://openwrt.org/docs/guide-user/installation/generic.flashing" class="wikilink1" title="docs:guide-user:installation:generic.flashing">Install OpenWrt (generic explanation)</a>
+</p>
+
+</div>
+
+<h3 class="sectionedit6" id="replacement_of_factory_u-boot">Replacement of factory U-Boot</h3>
+<div class="level3">
+
+<p>
+Where to get your files:
+U-boot.asc Ether from most recent openwrt release e.g. <a href="../../../external.html?link=http://downloads.openwrt.org/releases/18.06.2/targets/lantiq/xrx200/u-boot-p2812hnufx_ram/" class="urlextern" title="http://downloads.openwrt.org/releases/18.06.2/targets/lantiq/xrx200/u-boot-p2812hnufx_ram/" rel="nofollow">http://downloads.openwrt.org/releases/18.06.2/targets/lantiq/xrx200/u-boot-p2812hnufx_ram/</a>
+or from  ScApi &#039;s github <a href="../../../external.html?link=https://github.com/ScApi/P2812HNUFx-Pre-Build/tree/OpenWrt-Chaos-Calmer-r45578" class="urlextern" title="https://github.com/ScApi/P2812HNUFx-Pre-Build/tree/OpenWrt-Chaos-Calmer-r45578" rel="nofollow">https://github.com/ScApi/P2812HNUFx-Pre-Build/tree/OpenWrt-Chaos-Calmer-r45578</a>
+openwrt-lantiq-p2812hnufx_nandtpl-u-boot.img only from ScApi&#039;s github and pay attention to which release you get known to work is r45578
+uImage and initramfs are currently only available at ScApi&#039;s github make sure you get r45578
+While you are there grab the calibration data as well you need the RT3062.eeprom file
+</p>
+
+<p>
+Power of board.
+</p>
+
+<p>
+Short the (R17) bootsel_1 and power on the router. 
+</p>
+
+<p>
+When CFG 02 UART Popups in terminal You can disconnect/revert bootsel pin to normal or You can wait till the end of process.
+</p>
+
+<p>
+Upload a special (openwrt-lantiq-p2812hnufx_ram-u-boot.asc) U-Boot RAM image using a serial (baud 115200) cable via „Send File”, cutecom for linux. On windows there are some more caveats, you can try terraterm first, if it does not work, which is indicated by * signs appearing on the prompt try to set a transmit delay of 1 msec/char. If that makes the upload excruciatingly slow try realterm with the same settings. It still won&#039;t be fast but cuts the waiting game from multiple hours to about 20 minutes. 
+Wait for U-Boot to load and stop auto-boot process.
+</p>
+
+<p>
+Then:
+PRE STEP 1 Make a backup of your NAND !
+(instructions to follow when I finally am successful, think in the lines of nandread a bit to memory(remember memory and nand flash are the same size if you do it all at once your U-boot will be overwritten) and then send it over the network, tftpput was not able to send it to tftpd64 for some reason)
+</p>
+
+<p>
+Step 1: Type in console
+</p>
+<pre class="code">nand erase.chip</pre>
+
+<p>
+Step 2: Set Your <abbr title="Internet Protocol">IP</abbr> addres to “192.168.1.2” and start tftp server
+</p>
+
+<p>
+Step 3: Place openwrt-lantiq-p2812hnufx_nandtpl-u-boot.img in tftp folder
+</p>
+
+<p>
+Step 4: Type in console
+</p>
+<pre class="code">tftpboot openwrt-lantiq-p2812hnufx_nandtpl-u-boot.img</pre>
+
+<p>
+Step 5: Type in console
+</p>
+<pre class="code">nand erase 0 $filesize &amp;&amp; nand write $fileaddr 0 $filesize</pre>
+
+<p>
+Step 6: Power off board
+</p>
+
+<p>
+Step 7: Turn modem/router back on and stop autoboot proces
+</p>
+
+<p>
+Step 8: Add some environment variables and save them, use the ethaddr that is printed on the bottom of the modem(MAC address + 3)
+</p>
+<pre class="code">mtdparts add nand0 256k uboot
+mtdparts add nand0 128k uboot-env
+mtdparts add nand0 3m kernel
+mtdparts add nand0 - ubi
+setenv ethaddr XX:XX:XX:XX:XX:XX
+setenv nboot &#039;nand read 0x80800000 0x60000 0x300000; bootm 0x80800000&#039;
+setenv bootcmd &#039;run nboot&#039;
+saveenv</pre>
+
+<p>
+Continue further below
+</p>
+
+</div>
+
+<h3 class="sectionedit7" id="installing_openwrt">Installing OpenWrt</h3>
+<div class="level3">
+
+<p>
+At the present time, a working version needs to be from ScApi r45578.
+</p>
+
+<p>
+Target System:Lantiq Subtarget:XRX200 Target Profile:ZyXEL P-2812HNU-F1. 
+Bootloaders:Has a packaging error ATM, use the instructions above once.
+</p>
+
+<p>
+NOTES: Future upgrades can be done by flashing *sysupgrade.bin from luci.
+</p>
+
+<p>
+Step 1: Place openwrt-lantiq-xrx200-P2812HNUF1-uImage-initramfs in tftp folder
+</p>
+
+<p>
+Step 2: Set Your <abbr title="Internet Protocol">IP</abbr> addres to “192.168.1.2” and start tftp server
+</p>
+
+<p>
+Step 3: Upload initramfs image
+</p>
+<pre class="code">tftpboot openwrt-lantiq-xrx200-P2812HNUF1-uImage-initramfs</pre>
+
+<p>
+Step 4: Run initramfs image and wait till fully booted
+</p>
+<pre class="code">bootm $fileaddr</pre>
+
+<p>
+Step 5: set root passwd on OpenWrt in the luci console
+</p>
+
+<p>
+Step 5: Go to System flash firmware and flash the current release.
+</p>
+
+<p>
+Step 10: the router Reboots itself
+</p>
+
+</div>
+
+<h3 class="sectionedit8" id="wifi_on_openwrt">WIFI on openwrt</h3>
+<div class="level3">
+
+<p>
+For as long as the standard installation deletes the whole NAND, the information the wifi drivers need to start the chip are lost.
+Currently there is one copy of this data(rt3062.eeprom) and you have already downloaded it if you followed the directions above.
+In order to make use of it copy the file to the /lib/firmware/ folder with winscp or just scp if your on linux.
+error message in the kernel log is :
+</p>
+<pre class="code">rt2800pci 0000:00:0e.0: Direct firmware load for RT3062.eeprom failed with error -2</pre>
+
+</div>
+
+<h3 class="sectionedit9" id="return_to_factory_firmware">Return to Factory firmware</h3>
+<div class="level3">
+
+<p>
+You need some files from the unbranding process <a href="../../../external.html?link=https://forum.archive.openwrt.org/viewtopic.php?id=47957&amp;p=1" class="urlextern" title="https://forum.archive.openwrt.org/viewtopic.php?id=47957&amp;p=1" rel="nofollow">https://forum.archive.openwrt.org/viewtopic.php?id=47957&amp;p=1</a>
+</p>
+
+<p>
+Then: 
+De OOB the .bm file aka remove crc bits every 0x800 bytes 0x40 bytes long, here is a copy already done. <a href="../../../external.html?link=https://github.com/Mafketel/p2812hnu-f1-files" class="urlextern" title="https://github.com/Mafketel/p2812hnu-f1-files" rel="nofollow">https://github.com/Mafketel/p2812hnu-f1-files</a>
+</p>
+
+<p>
+start modem with serial attached and stop the autoboot process
+</p>
+
+<p>
+or if it is bricked start with r17 shorted for uart boot and send u-boot.asc file
+</p>
+<pre class="code">tftpboot 304TUJ.bm-deOOBed</pre>
+
+<p>
+only erase whole nand if it is necessary otherwise erase only what you are going to overwrite.
+</p>
+<pre class="code">nand erase 0 $filesize</pre>
+
+<p>
+or
+</p>
+<pre class="code">nand erase.chip</pre>
+<pre class="code">nand write $fileaddr 0 $filesize
+reset</pre>
+
+<p>
+you will get to a very basic script inside u-boot called ZLO
+setup your tftp server at 192.168.1.33
+I think you can use any binary firmware from the p-2812hnu-f1 I just happened to use this one <a href="../../../external.html?link=https://www.zyxel.com/us/en/support/DownloadLandingSR.shtml?c=us&amp;l=en&amp;kbid=MD09036&amp;md=P-2812HNU-F1" class="urlextern" title="https://www.zyxel.com/us/en/support/DownloadLandingSR.shtml?c=us&amp;l=en&amp;kbid=MD09036&amp;md=P-2812HNU-F1" rel="nofollow">https://www.zyxel.com/us/en/support/DownloadLandingSR.shtml?c=us&amp;l=en&amp;kbid=MD09036&amp;md=P-2812HNU-F1</a>
+</p>
+<pre class="code">zlua 310TUJ0C0.bin</pre>
+
+<p>
+wait ;) you should see # apearing
+</p>
+<pre class="code">zlgo</pre>
+
+<p>
+reboot through webinterface on 192.168.1.1
+use space, or probably any other key to interrupt autoboot
+</p>
+<pre class="code">atcb
+atbt 1
+atsn serialnumber that is on the bottom of your router</pre>
+
+<p>
+the modem will reboot
+</p>
+<pre class="code">atcb
+atbt 1
+atwm XXXXXXXXXXX
+atsb</pre>
+
+<p>
+Replace XXXXXXXX with your MAC written on the bottom of your modem
+</p>
+
+<p>
+Then you are almost done, I flashed the modem with the most recent firmware from the zyxel site through the webinterface.
+I still see some error in the console so I do not know if everything is honky-dory now but my wifi works also at the other side of the house now without cutting out all the time, I would prefer to run openwrt but the wifi needs to be better.
+</p>
+
+</div>
+
+<h2 class="sectionedit10" id="hardware_info">Hardware Info</h2>
+<div class="level2">
+<div class="table sectionedit11"><table class="inline">
+	<tr class="row0">
+		<th class="col0 leftalign"> <a href="../../../external.html?link=https://en.wikipedia.org/wiki/Instruction set" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Instruction set">Architecture</a>    </th><td class="col1"> <a href="../../../external.html?link=https://en.wikipedia.org/wiki/MIPS architecture" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/MIPS architecture">MIPS</a></td>
+	</tr>
+	<tr class="row1">
+		<th class="col0 leftalign"> Vendor          </th><td class="col1"> <a href="../../../external.html?link=https://en.wikipedia.org/wiki/Lantiq" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Lantiq">Lantiq</a> </td>
+	</tr>
+	<tr class="row2">
+		<th class="col0 leftalign"> <a href="../../../external.html?link=https://openwrt.org/docs/techref/bootloader" class="wikilink1" title="docs:techref:bootloader">bootloader</a>     </th><td class="col1"> <a href="../../../external.html?link=https://openwrt.org/docs/techref/bootloader/uboot" class="wikilink1" title="docs:techref:bootloader:uboot">U-Boot</a></td>
+	</tr>
+	<tr class="row3">
+		<th class="col0 leftalign"> <a href="../../../external.html?link=https://openwrt.org/docs/techref/hardware/soc" class="wikilink1" title="docs:techref:hardware:soc">System-On-Chip</a>  </th><td class="col1"> <a href="../../../external.html?link=http://www.lantiq.com/uploads/media//Lantiq_XWAY-VRX288_Product-Brief_03.pdf" class="urlextern" title="http://www.lantiq.com/uploads/media//Lantiq_XWAY-VRX288_Product-Brief_03.pdf" rel="nofollow">XWAY VRX288</a> (<a href="../../../external.html?link=https://openwrt.org/docs/techref/hardware/soc/soc.lantiq" class="wikilink1" title="docs:techref:hardware:soc:soc.lantiq">VR9 Family)</a> </td>
+	</tr>
+	<tr class="row4">
+		<th class="col0 leftalign"> <a href="../../../external.html?link=https://openwrt.org/docs/techref/hardware/cpu" class="wikilink1" title="docs:techref:hardware:cpu">CPU</a>/Speed       </th><td class="col1"> 34K V5.5 500 <abbr title="Megahertz">MHz</abbr> </td>
+	</tr>
+	<tr class="row5">
+		<th class="col0 leftalign"> Flash-Chip      </th><td class="col1"> <a href="../../../external.html?link=http://www.tech-blog.pl/wordpress/wp-content/uploads/2013/10/k9f1g08u0d_00.pdf" class="urlextern" title="http://www.tech-blog.pl/wordpress/wp-content/uploads/2013/10/k9f1g08u0d_00.pdf" rel="nofollow">K9F1G08U0D</a> </td>
+	</tr>
+	<tr class="row6">
+		<th class="col0 leftalign"> Flash size      </th><td class="col1"> 128 MiB NAND Flash </td>
+	</tr>
+	<tr class="row7">
+		<th class="col0 leftalign"> RAM             </th><td class="col1"> 128 MiB </td>
+	</tr>
+	<tr class="row8">
+		<th class="col0 leftalign"> Wireless        </th><td class="col1"> RaLink RT3062f 2.4GHz 802.11bgn </td>
+	</tr>
+	<tr class="row9">
+		<th class="col0 leftalign"> Ethernet        </th><td class="col1"> XWAY PEF 42068 F  <a href="../../../external.html?link=https://openwrt.org/docs/techref/swconfig" class="wikilink1" title="docs:techref:swconfig">swconfig</a> </td>
+	</tr>
+	<tr class="row10">
+		<th class="col0 leftalign"> Internet        </th><td class="col1"> ADSL/VDSL/FTTH </td>
+	</tr>
+	<tr class="row11">
+		<th class="col0 leftalign"> USB             </th><td class="col1 leftalign"> Yes 2 x 2.0     </td>
+	</tr>
+	<tr class="row12">
+		<th class="col0 leftalign"> <a href="../../../external.html?link=https://openwrt.org/docs/techref/hardware/port.serial" class="wikilink1" title="docs:techref:hardware:port.serial">Serial</a>          </th><td class="col1"> Yes </td>
+	</tr>
+	<tr class="row13">
+		<th class="col0 leftalign"> <a href="../../../external.html?link=https://openwrt.org/docs/techref/hardware/port.jtag" class="wikilink1" title="docs:techref:hardware:port.jtag">JTAG</a>            </th><td class="col1"> No </td>
+	</tr>
+</table></div>
+
+</div>
+
+<h3 class="sectionedit12" id="photos">Photos</h3>
+<div class="level3">
+
+<p>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/p2812/p-2812hnu-f1_large.jpg?id=toh%3Azyxel%3Ap2812hnu-f1" class="media" title="media:zyxel:p2812:p-2812hnu-f1_large.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/p2812/p-2812hnu-f1_large.jpg?w=200&amp;tok=ffe6de" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/p2812/p-2812_sticker.jpg?id=toh%3Azyxel%3Ap2812hnu-f1" class="media" title="media:zyxel:p2812:p-2812_sticker.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/p2812/p-2812_sticker.jpg?w=200&amp;tok=4c4518" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/p2812/p-2812hnu-f1_board_top.jpg?id=toh%3Azyxel%3Ap2812hnu-f1" class="media" title="media:zyxel:p2812:p-2812hnu-f1_board_top.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/p2812/p-2812hnu-f1_board_top.jpg?w=200&amp;tok=d30634" class="media" alt="" width="200" /></a> <a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/p2812/p-2812hnu-f1_board_bottom.jpg?id=toh%3Azyxel%3Ap2812hnu-f1" class="media" title="media:zyxel:p2812:p-2812hnu-f1_board_bottom.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/p2812/p-2812hnu-f1_board_bottom.jpg?w=200&amp;tok=427959" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/p2812/p-2812hnu-f1_nand.png?id=toh%3Azyxel%3Ap2812hnu-f1" class="media" title="media:zyxel:p2812:p-2812hnu-f1_nand.png"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/p2812/p-2812hnu-f1_nand.png?w=200&amp;tok=865850" class="media" alt="" width="200" /></a> <a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/p2812/p-2812hnu-f1_serial.jpg?id=toh%3Azyxel%3Ap2812hnu-f1" class="media" title="media:zyxel:p2812:p-2812hnu-f1_serial.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/p2812/p-2812hnu-f1_serial.jpg?w=110&amp;tok=2d42bc" class="media" alt="" width="110" /></a>
+</p>
+
+</div>
+
+<h3 class="sectionedit13" id="serial">Serial</h3>
+<div class="level3">
+
+<p>
+UART mode: CFG 02 short R17 located near NAND
+</p>
+
+<p>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/p2812/p-2812hnu-f1_nand.jpg?id=toh%3Azyxel%3Ap2812hnu-f1" class="media" title="media:zyxel:p2812:p-2812hnu-f1_nand.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/p2812/p-2812hnu-f1_nand.jpg?w=200&amp;tok=dd68a8" class="media" title="UART mode: CFG 02 short R17 located near NAND" alt="UART mode: CFG 02 short R17 located near NAND" width="200" /></a>
+</p>
+
+</div>
+
+<h2 class="sectionedit14" id="bootlogs">Bootlogs</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit15" id="oem_bootlog">OEM bootlog</h3>
+<div class="level3">
+<div class="wrap_bootlog plugin_wrap">
+<p>
+ROM-D check=0
+MRD_CERT_1 check=0
+MRD_CERT_2 check=0
+
+
+ Read Kernel to RAM from 2f00000
+bootargs=root=/dev/mtdblock1 rootfstype=yaffs2 console=ttyS0,115200 phym=128M mem=126M panic=1 vpe1_load_addr=0x87e00000M vpe1_mem=2M vpe1_wired_tlb_entries=0
+## Booting image at 80800000 ...
+   Image Name:   MIPS Linux-2.6.32
+   Created:      2014-02-14   3:33:18 UTC
+   Image Type:   MIPS Linux Kernel Image (lzma compressed)
+   Data Size:    1544334 Bytes =  1.5 MB
+   Load Address: 80002000
+   Entry Point:  80006f30
+   Verifying Checksum ... OK
+   Uncompressing Kernel Image ... OK
+No initrd
+## Transferring control to Linux (at address 80006f30) ...
+## Giving linux memsize in MB, 128
+
+Starting kernel ...
+
+Lantiq xDSL CPE VR9
+mips_hpt_frequency = 250000000, counter_resolution = 2
+Linux version 2.6.32.32 (tresia@tpds-dsl) (gcc version 4.3.3 (GCC) ) #17 Fri Feb 14 01:15:50 CST 2014
+phym = 08000000, mem = 07e00000, max_pfn = 00007e00
+Reserving memory for CP1 @0xa7e00000, size 0x00200000
+CPU revision is: 00019555 (MIPS 34Kc)
+Determined physical RAM map:
+User-defined physical RAM map:
+ memory: 07e00000 @ 00000000 (usable)
+Initrd not found or empty - disabling initrd
+Zone PFN ranges:
+  Normal   0x00000000 -&gt; 0x00007e00
+Movable zone start PFN for each node
+early_node_map[1] active PFN ranges
+    0: 0x00000000 -&gt; 0x00007e00
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 32004
+Kernel command line: root=/dev/mtdblock1 rootfstype=yaffs2 console=ttyS0,115200 phym=128M mem=126M panic=1 vpe1_load_addr=0x87e00000M vpe1_mem=2M vpe1_wired_tlb_entries=0 
+PID hash table entries: 512 (order: -1, 2048 bytes)
+Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)
+Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)
+Primary instruction cache 32kB, VIPT, 4-way, linesize 32 bytes.
+Primary data cache 32kB, 4-way, VIPT, cache aliases, linesize 32 bytes
+Writing ErrCtl register=00000000
+Readback ErrCtl register=00000000
+Memory: 122436k/129024k available (3514k kernel code, 6424k reserved, 986k data, 204k init, 0k highmem)
+Hierarchical RCU implementation.
+NR_IRQS:185
+Lantiq ICU driver, version 3.0.1, (c) 2001-2011 Lantiq Deutschland GmbH
+console [ttyS0] enabled
+Calibrating delay loop... 332.59 BogoMIPS (lpj=1662976)
+Security Framework initialized
+Mount-cache hash table entries: 512
+NET: Registered protocol family 16
+Lantiq PCI host controller driver, version 1.2.0, (c) 2001-2011 Lantiq Deutschland GmbH
+bio: create slab &lt;bio-0&gt; at 0
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+pci 0000:00:00.0: PME# supported from D1 D2
+pci 0000:00:00.0: PME# disabled
+NET: Registered protocol family 8
+NET: Registered protocol family 20
+Switching to clocksource MIPS
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 4096 (order: 3, 32768 bytes)
+TCP bind hash table entries: 4096 (order: 2, 16384 bytes)
+TCP: Hash tables configured (established 4096 bind 4096)
+TCP reno registered
+NET: Registered protocol family 1
+gptu: totally 6 16-bit timers/counters
+gptu: misc_register on minor 63
+gptu: succeeded to request irq 118
+gptu: succeeded to request irq 119
+gptu: succeeded to request irq 120
+gptu: succeeded to request irq 121
+gptu: succeeded to request irq 122
+gptu: succeeded to request irq 123
+IFX DMA driver, version ifxmips_dma_core.c:v1.0.24 
+,(c)2009 Infineon Technologies AG
+Lantiq CGU driver, version 1.1.32, (c) 2001-2011 Lantiq Deutschland GmbH
+vpe1_mem = 200000
+Wired TLB entries for Linux read_c0_wired() = 0
+squashfs: version 4.0 (2009/01/31) Phillip Lougher
+Registering mini_fo version $Id$
+JFFS2 version 2.2 (NAND) (SUMMARY) (ZLIB) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+yaffs Feb 14 2014 01:10:13 Installing. 
+msgmni has been set to 239
+io scheduler noop registered (default)
+ifx_pmu_init: Major 252
+Lantiq PMU driver, version 1.2.6, (c) 2001-2011 Lantiq Deutschland GmbH
+Lantiq GPIO driver, version 1.3.2, (c) 2001-2011 Lantiq Deutschland GmbH
+Infineon Technologies RCU driver version 1.0.7 
+Lantiq LED Controller driver, version 1.1.3, (c) 2001-2011 Lantiq Deutschland GmbH
+MEI CPE Driver, Version 1.2.1
+
+(c) Copyright 2009, Infineon Technologies AG
+
+### MEI CPE - MEI CPE - MEI CPE - MEI CPE ###
+
+ttyS0 at MMIO 0xbe100c00 (irq = 105) is a IFX_ASC
+Register ASC (UART) to PMCU.
+Lantiq ASC (UART) driver, version 1.0.11, (c) 2001-2011 Lantiq Deutschland GmbH
+brd: module loaded
+loop: module loaded
+ifx_nand_init
+Probe for NAND flash...
+Checking if ONFI complient
+NAND device: Manufacturer ID: 0xec, Chip ID: 0xf1 (Samsung NAND 128MiB 3,3V 8-bit)
+Scanning device for bad blocks
+Creating 8 MTD partitions on &quot;ifx_nand&quot;:
+0x0000000e0000-0x000001ee0000 : &quot;rootfs,kernel1&quot;
+0x000001ee0000-0x000003ce0000 : &quot;rootfs,kernel2&quot;
+0x000003ce0000-0x000004760000 : &quot;reserve&quot;
+0x000004760000-0x000007420000 : &quot;firmware&quot;
+0x000007420000-0x000007ec0000 : &quot;config&quot;
+0x000007ec0000-0x000007f00000 : &quot;romd&quot;
+0x000007f00000-0x000007f40000 : &quot;mrd_cert1&quot;
+0x000007f40000-0x000007f80000 : &quot;mrd_cert2&quot;
+Lantiq SSC driver, version 2.3.9, (c) 2001-2011 Lantiq Deutschland GmbH
+PPP generic driver version 2.4.2
+PPP Deflate Compression module registered
+PPP BSD Compression module registered
+PPP MPPE Compression module registered
+NET: Registered protocol family 24
+IMQ driver loaded successfully.
+    Hooking IMQ after NAT on PREROUTING.
+    Hooking IMQ after NAT on POSTROUTING.
+pegasus: v0.6.14 (2006/09/27), Pegasus/Pegasus II USB Ethernet driver
+usbcore: registered new interface driver pegasus
+IFX SWITCH API, Version 1.1.8.5
+SWAPI: Registered character device [switch_api] with major no [81]
+Switch API: PCE MicroCode loaded !!
+GPHY FW load for G.Hn !!
+GPHY FW load for A11 !!
+GPHY FIRMWARE LOAD SUCCESSFULLY AT ADDR (VR9) : 4bc000
+GPHY FIRMWARE LOAD SUCCESSFULLY AT ADDR (GHN) : 4bc000
+IFX GPHY driver GE Mode, version ifxmips_vr9_gphy: V1.0.1 - Firmware: 8304
+@@@@@@ disable GPHY port 0, 1, 2, 4 and 5 @@@@@@@@@@@@@ !!
+Checking PHY LED States!!
+
+Registered led device: broadband_led
+Registered led device: internet_led
+Registered led device: ledc_2
+Registered led device: ledc_3
+Registered led device: ledc_4
+Registered led device: ledc_5
+Registered led device: ledc_6
+Registered led device: ledc_7
+Registered led device: ledc_8
+Registered led device: ledc_9
+Registered led device: ledc_10
+Registered led device: ledc_11
+Registered led device: wps:green
+Registered led device: ledc_13
+Registered led device: ledc_14
+Registered led device: usb2_link_led
+Registered led device: ledc_16
+Registered led device: ledc_17
+Registered led device: usb1_link_led
+Registered led device: fxo_act_led
+Registered led device: internet_red_led
+Registered led device: voip_led
+Registered led device: warning_led
+Registered led device: ledc_23
+Lantiq LED driver, version 1.1.4, (c) 2001-2011 Lantiq Deutschland GmbH
+Mirror/redirect action on
+u32 classifier
+    Performance counters on
+    input device check on 
+    Actions configured 
+nf_conntrack version 0.5.0 (2048 buckets, 8192 max)
+ip_conntrack_rtsp v0.6.21 loading
+xt_time: kernel timezone is -0000
+ZLD: zy_sm_init() register hooks successful.
+GRE over IPv4 tunneling driver
+ip_nat_rtsp v0.6.21 loading
+ip_tables: (C) 2000-2006 Netfilter Core Team
+TCP cubic registered
+Initializing XFRM netlink socket
+NET: Registered protocol family 10
+ip6_tables: (C) 2000-2006 Netfilter Core Team
+IPv6 over IPv4 tunneling driver
+NET: Registered protocol family 17
+NET: Registered protocol family 15
+Ebtables v2.0 registered
+lec.c: Feb 14 2014 01:12:31 initialized
+mpc.c: Feb 14 2014 01:12:28 initialized
+KOAM is loaded successfully.
+802.1Q VLAN Support v1.8 Ben Greear &lt;greearb@candelatech.com&gt;
+All bugs added by David S. Miller &lt;davem@redhat.com&gt;
+yaffs: dev is 32505857 name is &quot;mtdblock1&quot;
+yaffs: passed flags &quot;&quot;
+yaffs: Attempting MTD mount on 31.1, &quot;mtdblock1&quot;
+yaffs_read_super: isCheckpointed 0
+VFS: Mounted root (yaffs2 filesystem) readonly on device 31:1.
+Freeing unused kernel memorinit started: BusyBox v1.10.4 (2014-02-14 01:32:30 CST)
+starting pid 235, tty &#039;&#039;: &#039;/etc/init.d/rcS&#039;
+Run init.d/rcS!
+Trying to mount NAND flash as YAFFS2 for configuration files (/dev/mtdblock4)
+yaffs: dev is 32505860 name is &quot;mtdblock4&quot;
+yaffs: passed flags &quot;&quot;
+yaffs: Attempting MTD mount on 31.4, &quot;mtdblock4&quot;
+yaffs: restored from checkpoint
+yaffs_read_super: isCheckpointed 1
+save exit: isCheckpointed 1
+Trying to mount NAND flash as YAFFS2 for temporal space for firmware upgrade (/dev/mtdblock3)
+yaffs: dev is 32505859 name is &quot;mtdblock3&quot;
+yaffs: passed flags &quot;&quot;
+yaffs: Attempting MTD mount on 31.3, &quot;mtdblock3&quot;
+yaffs: restored from checkpoint
+yaffs_read_super: isCheckpointed 1
+save exit: isCheckpointed 1
+/
+INITRD: Trying to mount NAND flash as Root FSsave exit: isCheckpointed 1
+sync
+Run init.d/rcS1!
+Running all S1 scripts in /etc/init.dload hidden_nand_access.ko
+Checking if ONFI complient
+NAND device: Manufacturer ID: 0xec, Chip ID: 0xf1 (Samsung NAND 128MiB 3,3V 8-bit)
+Scanning device for bad blocks
+
+
+===&gt; Dump Default Romfile and FW Info
+
+mcputil.c:read item (tag 0x70) failed
+Nothing to dump ROM-D!
+
+==================================================
+=    ZyCLiP Version Information                  =
+==================================================
+ZyCLiP    :   3.0.0.0
+ZLOader   :   3.0
+Z-Boot    :   3.0.0
+Run S1_10ethernet to load Ethernet module
+First get MAC address=B0B2DC170758
+Create MAC = B0:B2:DC:17:07:58
+Create MAC = B0:B2:dc:17:07:59
+Create MAC = B0:B2:dc:17:07:5a
+Create MAC = B0:B2:dc:17:07:5b
+Create MAC = B0:B2:dc:17:07:5c
+Create MAC = B0:B2:dc:17:07:5d
+Create MAC = B0:B2:dc:17:07:5e
+Insert BTN IO module
+
+
+GPIO phy addr:1e100b10, len:58, vir addr: be100b10
+
+
+LED phy addr:1e100bb0, len:14, vir addr: be100bb0
+init_gpio_reg
+/proc/btn_io is created
+init_btn_io_module() SUCCESS, Major Numer is 220
+Insert LCD Control module
+
+Enable BTN_timer.
+Run S1_12xdsl to load xdsl module
+IFXOS, Version 1.5.14 (c) Copyright 2009, Lantiq Deutschland GmbH
+@@@@@@@@@@SW switch
+touch: invalid option -- t
+BusyBox v1.10.4 (2014-02-14 01:32:30 CST) multi-call binary
+
+Usage: touch [-c] FILE [FILE...]
+
+Update the last-modified date on the given FILE[s]
+
+Options:
+    -c    Do not create any files
+
+X_ZyXEL_Ext.SWWANSwitch value :  VDSL
+ccc_be use wanmode : VDSL
+Loads switch module S17
+portdisable Disable Success
+disable ether wan
+portdisable Disable Success
+portdisable Disable Success
+portdisable Disable Success
+portdisable Disable Success
+Run S1_20voip to load ZyIMS module
+#### Tune MIPS-34k VPE Priority for VoIP ####
+insmod: cannot insert &#039;/usr/opt/ifx/bin/drv_ifxos.ko&#039;: File exists
+Lantiq TAPI device driver, version 3.13.0.2, (c) 2001-2010 Lantiq Deutschland GmbH
+IFX KPI egress tasklet registered to group 1
+Lantiq KPI2UDP driver, version 2.2.0.0, (c) 2008-2010 Lantiq Deutschland GmbH
+modprobe: module softdog_vpe not found
+modprobe: failed to load module softdog_vpe
+Lantiq MIPS34KEc MPS driver, version 2.2.2.5, (c) 2006-2010 Lantiq Deutschland GmbH
+Lantiq VMMC device driver, version 1.9.0.3, (c) 2006-2010 Lantiq Deutschland GmbH
+BRIDGE_DEV=br0
+ignore /sbin/CfgVLAN.sh
+Set VLAN Enable Success
+pkgSize 1536 Success
+portdisable Disable Success
+portdisable Disable Success
+portdisable Disable Success
+portdisable Disable Success
+portdisable Disable Success
+******WAN PORT *******
+    nRegAddr = 0xccd
+    nData = 0x0
+*******WAN PORT *******
+ERROR: (VID does not exists) drivers/net/ifxmips_switch_api/ifx_ethsw_flow_api.c:IFX_FLOW_VLAN_IdGet:1872 
+ERROR: (VID does not exists) drivers/net/ifxmips_switch_api/ifx_ethsw_flow_api.c:IFX_FLOW_VLAN_IdGet:1872 
+ERROR: (VID does not exists) drivers/net/ifxmips_switch_api/ifx_ethsw_flow_api.c:IFX_FLOW_VLAN_IdGet:1872 
+Wan pin select is 1 (0:Ethernet Wan, 1:DSL Wan)
+Wan mode file setting is VDSL
+Loading E5 (MII0/1) driver ...... Succeeded!
+PPE datapath driver info:
+  Version ID: 64.3.3.1.0.1.1
+  Family    : VR9
+  DR Type   : Normal Data Path | Indirect-Fast Path
+  Interface : MII0 | MII1
+  Mode      : Routing
+  Release   : 0.1.1
+PPE 0 firmware info:
+  Version ID: 7.1.5.1.0.45
+  Family    : VR9
+  FW Type   : Standard
+  Interface : MII0/1 + PTM
+  Mode      : PTM (E1)
+  Release   : 0.45
+PPE 1 firmware info:
+  Version ID: 7.2.7.8.3.9
+  Family    : VR9
+  FW Type   : Acceleration
+  Interface : MII0/1 + PTM Bonding
+  Mode      : 6rd/DS-lite
+  Release   : 3.9
+ifx_ppa_api: module license &#039;unspecified&#039; taints kernel.
+Disabling lock debugging due to kernel taint
+PPA API --- init successfully
+
+
+Lantiq CPE API Driver version: DSL CPE API V4.11.11
+
+Predefined debug level: 3
+bring up xdsl...
+Bring up DSL CPE Control Application
+ADSL Annex A
+dsl_cpe_control  -i 04_00_04_00_0C_01_00_07 -T4_0_1  -f /lib/firmware/2.6.32.32/xcpe_hw.bin -A /usr/opt/ifx/bin/vdsl.scr -a /usr/opt/ifx/bin/adsl.scr -n /usr/etc/dsl_api/xdslrc.sh -t0.0.0.0 &amp;
+wait dsl_cpe_control
+VDSL Annex A
+nReturn=0 
+
+nReturn=0 
+
+Insert internet LED control module
+init_internet_led_control_module() SUCCESS, Major Numer is 225
+device eth0 entered promiscuous mode
+br0: port 1(eth0) entering learning state
+br0: port 1(eth0) entering disabled state
+br0: port 1(eth0) entering learning state
+/etc/init.d/40network_lan: line 175: showdbgMsg: not founError: the port was not in the member
+d
+/etc/init.d/40network_lan: line 175: showdbgMsg: not fError: the port was not in the member
+ound
+/etc/init.d/40network_lan: line 175: showdbgMsg: not found
+Enabling IP forwarding
+Bringing up interface lo
+params = lo 127.0.0.1
+Read GATEWAY_CONF_FILE fail
+portdisable Enable Success
+portdisable Enable Success
+portdisable Enable Success
+portdisable Enable Success
+/etc/init.d/S1_99local: line 51: /sbin/ltefwwatcher: not found
+Running all S2 scripts in /mnt/NAND/script/init.d/
+Starting syslog-ng...
+Starting ZLD CCC(Common Configuration Center)...
+Set uptream HW_queue... 
+
+RESET CCC LOG LEVEL: 6
+
+
+RESET CCC LOG LEVEL: 6
+
+
+RESET CCC LOG LEVEL: 6
+
+touch: invalid option -- t
+BusyBox v1.10.4 (2014-02-14 01:32:30 CST) multi-call binary
+
+Usage: touch [-c] FILE [FILE...]
+
+Update the last-modified date on the given FILE[s]
+
+Options:
+    -c    Do not create any files
+
+nReturn=0 nData=&quot;0F45 0000 0001 0036 &quot;
+mkdir: cannot create directory &#039;2&#039;: Read-only file system
+BE DHCPCLIENT init
+interface eth0.10 does not exist!
+vconfig: ioctl error for rem: No such device
+fopen fail !!
+=======================================
+resetAllPPPDUnitNumberStatus(): 
+pppdUnitNumberInUsed[0]=0 
+pppdUnitNumberInUsed[1]=0 
+pppdUnitNumberInUsed[2]=0 
+pppdUnitNumberInUsed[3]=0 
+pppdUnitNumberInUsed[4]=0 
+pppdUnitNumberInUsed[5]=0 
+pppdUnitNumberInUsed[6]=0 
+pppdUnitNumberInUsed[7]=0 
+=======================================
+sh: \A3: not found
+cp: cannot stat &#039;/etc/sysconfig/network-scripts/wan-multi/ifcfg-eth0&#039;: No such file or directory
+finish download certificate
+rm: cannot remove &#039;/etc/allcert/all.pem&#039;: No such file or directory
+starting ftpd... done
+Start ROM Convert
+ERROR: (VID does not exists) drivers/net/ifxmips_switch_api/ifx_ethsw_flow_api.c:IFX_FLOW_VLAN_IdGet:1872 
+ifconfig: bad address &#039;1500&#039;
+device ptm0.3900 is not a slave of br0
+setled Success
+cat: can&#039;t open &#039;/var/tmp/hosts&#039;: No such file or directory
+transaction successful !!
+
+SEL InternetGatewayDevice.LANDevice.1.WLANConfiguration.1: success
+
+SET X_ZyXEL_IgmpSnoopingEnabled: success
+
+SEL InternetGatewayDevice.X_ZyXEL_Ext.TR069: success
+
+SET Enable: success
+
+SAVE: success
+Starting ZySH daemon and client...
+/etc/init.d/rcS: /mnt/NAND/script/init.d/rcS2: line 159: /sbin/zysh.sh: not found
+/etc/init.d/rcS: /mnt/NAND/script/init.d/rcS2: line 159: /usr/sbin/zyshclient: not found
+sysctl: can&#039;t open &#039;/etc/sysctl.conf&#039;: No such file or directory
+/etc/init.d/rcS: /mnt/NAND/script/init.d/rcS2: line 159: /usr/bin/setsystz: not found
+/etc/init.d/rcS: mkdir: cannot create directory &#039;2&#039;: Read-only file system
+/mnt/NAND/script/init.d/rcS2: line 159: /etc/init.d/stoinit.sh: not found
+Starting celld daemon......
+Enter user spaceRTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+nice: /usr/local/btn/do_btncpy: No such file or directory
+Starting crond...
+Starting crontab...
+Starting diagnosed...
+starting p910nd... done
+nice: /usr/bin/schedule_controller: No such file or directory
+nice: timer_source: No such file or directory
+device eth0.3901 is not a slave of br0
+device eth0 is already a member of a bridge; can&#039;t enslave it to bridge br0.
+starting pid 1220, tty &#039;&#039;: &#039;/sbin/getty 115200 ttyS0&#039;
+ERROR: (VID does not exists) drivers/net/ifxmips_switch_api/ifx_ethsw_flow_api.c:IFX_FLOW_VLAN_IdGet:1872 
+ERROR: (VID does not exists) drivers/net/ifxmips_switch_api/ifx_ethsw_flow_api.c:IFX_FLOW_VLAN_IdGet:1872 
+ERROR: (VID does not exists) drivers/net/ifxmips_switch_api/ifx_ethsw_flow_api.c:IFX_FLOW_VLAN_IdGet:1872 
+ERROR: (VID does not exists) drivers/net/ifxmips_switch_api/ifx_ethsw_flow_api.c:IFX_FLOW_VLAN_IdGet:1872 
+sh: cannot create /proc/lan_vid: nonexistent directory
+cat: can&#039;t open &#039;/tmp/schedule/*.sche&#039;: No such file or directory
+killall: updatedd: no process killed
+portdisable Enable Success
+autonego Success
+portdisable Enable Success
+autonego Success
+portdisable Enable Success
+autonego Success
+portdisable Enable Success
+autonego Success
+
+router login: rm: cannot remove &#039;/etc/igmpproxy.conf&#039;: No such file or directory
+rm: cannot remove &#039;/etc/igmpv3.conf&#039;: No such file or directory
+br0: port 1(eth0) entering forwarding state
+iptables v1.4.6: interface name `ruletmp:/sbin/crond&#039; must be shorter than IFNAMSIZ (15)
+Try `iptables -h&#039; or &#039;iptables --help&#039; for more information.
+sh: -p: not found
+Jan  1 01:00:30 ccc_be: beSysMtnReloadConfig(): Loading beVoipConfigLoad...
+
+***********************************************
+zyims is not running , just start up zyims
+Restarting 
+killall: voiceApp: no process killed
+killall: mm.exe: no process killed
+killall: icf.exe: no process killed
+***********************************************
+MaxLineCount = 8 
+
+ GetWanInterfaceDnsName: get_voip_iface_address fail
+
+ GetWanInterfaceDnsName: get_voip_iface_address fail
+icf_port_open_ipc_channel path = /var/iptk_es.chanl
+the open channel succeded 
+exit from the es init 
+Stopping strongSwan IPsec failed: starter is not running
+
+ @@@@@KENNY TEST FUNC = PhoneInit, COUNTRY = 14
+Filesystem firmware binary used (/root/voip_fw/ar9_firmware.bin).
+Filesystem BBD binary used (/root/voip_fw/bbd_Netherlands.bin).
+BOARD_Easy50812_PrepareBoard : analogCh = 2, coderCh = 5 , DECT_Ch = 0
+BOARD_Easy50812_PrepareBoard pBoard-&gt;nUsedChannels = 5
+Set fxsFd 0 to /dev/vmmc11
+Set channelFd 0 to /dev/vmmc11
+Set fxsFd 1 to /dev/vmmc12
+Set channelFd 1 to /dev/vmmc12
+Set channelFd 2 to /dev/vmmc13
+Set channelFd 3 to /dev/vmmc14
+Set channelFd 4 to /dev/vmmc15
+VMMC [version 0x 0, type 0x 7, channels 2] ready!
+FW Version 2.1
+VMMC Driver version 1.9.0.3
+73M1966 TAPI Driver, Rev. 2.2, (c) 2007-2009 Teridian Semiconductor Corp.
+73M1966 Driver, Rev. 2.7.3lq4, (c) 2007-2009 Teridian Semiconductor Corp.
+stopping ftpd... done
+Set fxsFd 0 to /dev/vmmc11
+Set channelFd 0 to /dev/vmmc11
+Set fxsFd 1 to /dev/vmmc12
+Set channelFd 1 to /dev/vmmc12
+Set channelFd 2 to /dev/vmmc13
+Set channelFd 3 to /dev/vmmc14
+Set channelFd 4 to /dev/vmmc15
+PhoneEventRxTask() : error to open Dev_FD : -1 
+
+rm: cannot remove &#039;/tmp/SIPPktDebug&#039;: No such file or directory
+voiceApp:-   GET IP ADDRESS FAIL!
+voiceApp:-   GET IPADDRESS FAIL : CFG_SET_SELF_IP_REQ
+voiceApp &gt; ICF_CFG_SET_SELF_IP_REQ towards IP Phone Toolkit Failed.
+voiceApp:-   GET IPADDRESS FAIL : CFG_SET_SELF_IP_REQ
+voiceApp &gt; ICF_CFG_SET_SELF_IP_REQ towards IP Phone Toolkit Failed.
+voiceApp:-   GET IP ADDRESS FAIL!
+voiceApp:-   GET IP ADDRESS FAIL!
+voiceApp:-   GET IP ADDRESS FAIL!
+starting ftpd... done
+cannot open directory: /var/mnt/usb
+stopping minidlna server... cat: can&#039;t open &#039;/var/run/minidlna.pid&#039;: No such file or directory
+sh: you need to specify whom to kill
+Killed
+Sorry, rule does not exist.
+$LOCAL_ADMIN_MAC=B2:B2:DC:17:07:5c
+can&#039;t add ra1 to bridge br0: Invalid argument
+can&#039;t add ra2 to bridge br0: Invalid argument
+can&#039;t add ra3 to bridge br0: Invalid argument
+
+@@@fxo relay Switch 1
+@@@fxo relay Switch 2
+killall: upnpd: no process killed
+Jan  1 01:00:58 ccc_mr: cccRegModule(): register tr69FE
+
+Unknown commands:  httplearning
+
+VAH_LINKDETECTION Init!
+Action 4 device ifb1 ifindex 6
+Action 4 device ifb1 ifindex 6
+Jan  1 01:01:13 ccc_be:           &lt; (R)beScheduleConfigLoad &gt;
+
+Jan  1 01:01:14 ccc_be:       - eventHandlerName = beSysMtnHandleEvent
+
+Jan  1 01:01:14 ccc_be:  - lastUpdateTime = Thu Jan  1 01:01:14 1970
+
+ip6tables: No chain/target/match by that name.
+ip6tables: No chain/target/match by that name.
+ip6tables: No chain/target/match by that name.
+ip6tables: No chain/target/match by that name.
+ip6tables: No chain/target/match by that name.
+mkdir: cannot create directory &#039;2&#039;: Read-only file system
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+RTNETLINK answers: No such file or directory
+killall: webipqd: no process killed
+killall: zyTimeZoneUpdater: no process killed
+mini_httpd: exiting due to signal 15
+mini_httpd_ssl: exiting due to signal 15
+configGetStatsBuf(0, 0)
+pack line id:0, phyPort:0
+unpack line id:0, phyPort:0
+rtpGetSessionStats rtp is null
+phy port id:0
+Status = Disabled
+CallState = Idle
+configGetStatsBuf(0, 1)
+pack line id:1, phyPort:1
+unpack line id:1, phyPort:1
+rtpGetSessionStats rtp is null
+phy port id:1
+Status = Disabled
+CallState = Idle
+no sip account... configGetStatsBuf(0, 2)
+Status = Disabled
+CallState = Idle
+no sip account... configGetStatsBuf(0, 3)
+Status = Disabled
+CallState = Idle
+no sip account... configGetStatsBuf(1, 0)
+Status = Disabled
+CallState = Idle
+no sip account... configGetStatsBuf(1, 1)
+Status = Disabled
+CallState = Idle
+no sip account... configGetStatsBuf(1, 2)
+Status = Disabled
+CallState = Idle
+no sip account... configGetStatsBuf(1, 3)
+Status = Disabled
+CallState = Idle
+
+router login
+</p>
+</div>
+<p>
+<br/>
+
+</p>
+
+</div>
+
+<h3 class="sectionedit18" id="u-boot_bootlog">U-Boot bootlog</h3>
+<div class="level3">
+<div class="wrap_bootlog plugin_wrap">
+<p>
+ROM VER: 1.0.5
+CFG 06
+NAND
+NAND Read OK
+
+U-Boot SPL 2013.10-openwrt5 (Nov 18 2014 - 19:54:01)
+SPL: initializing NAND flash
+SPL: checking U-Boot image
+SPL: loading U-Boot to RAM
+SPL: decompressing U-Boot with LZO
+SPL: jumping to U-Boot
+
+
+U-Boot 2013.10-openwrt5 (Nov 18 2014 - 19:54:01) P-2812HNU-Fx
+
+Board: ZyXEL P-2812HNU-Fx
+SoC:   Lantiq VRX288 v1.1
+CPU:   500 MHz
+IO:    250 MHz
+BUS:   250 MHz
+BOOT:  NAND
+DRAM:  128 MiB
+NAND:  128 MiB
+In:    serial
+Out:   serial
+Err:   serial
+Net:   ltq-eth
+Hit any key to stop autoboot: 0 
+P-2812HNU-Fx #
+</p>
+</div>
+<p>
+<br/>
+
+</p>
+
+</div>
+
+<h3 class="sectionedit21" id="openwrt_bootlog">OpenWrt bootlog</h3>
+<div class="level3">
+<div class="wrap_bootlog plugin_wrap">
+<p>
+[    0.000000] Linux version 3.14.27 (sylwek@WRT) (gcc version 4.8.3 (OpenWrt/Linaro GCC 4.8-2014.04 r43910) ) #12 Sun Jan 11 11:19:59 CET 2015
+[    0.000000] SoC: VR9 rev 1.1
+[    0.000000] bootconsole [early0] enabled
+[    0.000000] CPU0 revision is: 00019555 (MIPS 34Kc)
+[    0.000000] MIPS: machine is P2812HNUF1 - ZyXEL P-2812HNU-F1
+[    0.000000] Determined physical RAM map:
+[    0.000000]  memory: 08000000 @ 00000000 (usable)
+[    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x00000000-0x07ffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x00000000-0x07ffffff]
+[    0.000000] On node 0 totalpages: 32768
+[    0.000000] free_area_init_node: node 0, pgdat 80408460, node_mem_map 810041a0
+[    0.000000]   Normal zone: 256 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 32768 pages, LIFO batch:7
+[    0.000000] Primary instruction cache 32kB, VIPT, 4-way, linesize 32 bytes.
+[    0.000000] Primary data cache 32kB, 4-way, VIPT, cache aliases, linesize 32 bytes
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 32512
+[    0.000000] Kernel command line: console=ttyLTQ0,115200 init=/etc/preinit
+[    0.000000] PID hash table entries: 512 (order: -1, 2048 bytes)
+[    0.000000] Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)
+[    0.000000] Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.000000] Writing ErrCtl register=000038c5
+[    0.000000] Readback ErrCtl register=000038c5
+[    0.000000] Memory: 125252K/131072K available (3181K kernel code, 152K rwdata, 900K rodata, 164K init, 201K bss, 5820K reserved)
+[    0.000000] NR_IRQS:256
+[    0.000000] CPU Clock: 500MHz
+[    0.028000] Calibrating delay loop... 332.54 BogoMIPS (lpj=665088)
+[    0.032000] pid_max: default: 32768 minimum: 301
+[    0.036000] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.040000] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.044000] pinctrl core: initialized pinctrl subsystem
+[    0.048000] NET: Registered protocol family 16
+[    0.060000] pinctrl-xway 1e100b10.pinmux: Init done
+[    0.064000] dma-xway 1e104100.dma: Init done - hw rev: 7, ports: 7, channels: 28
+[    0.072000] dcdc-xrx200 1f106a00.dcdc: Core Voltage : 1016 mV
+[    0.076000] PCI host bridge /fpi@10000000/pci@E105400 ranges:
+[    0.080000]  MEM 0x0000000018000000..0x0000000019ffffff
+[    0.084000]   IO 0x000000001ae00000..0x000000001affffff
+[    0.100000] bio: create slab &lt;bio-0&gt; at 0
+[    0.104000] gpio-stp-xway 1e100bb0.stp: Init done
+[    0.108000] usbcore: registered new interface driver usbfs
+[    0.112000] usbcore: registered new interface driver hub
+[    0.116000] usbcore: registered new device driver usb
+[    0.120000] PCI host bridge to bus 0000:00
+[    0.124000] pci_bus 0000:00: root bus resource [mem 0x18000000-0x19ffffff]
+[    0.128000] pci_bus 0000:00: root bus resource [io  0x1ae00000-0x1affffff]
+[    0.132000] pci_bus 0000:00: No busn resource found for root bus, will use [bus 00-ff]
+[    0.136000] pci 0000:00:0e.0: [1814:3062] type 00 class 0x028000
+[    0.136000] pci 0000:00:0e.0: reg 0x10: [mem 0xffff0000-0xffffffff]
+[    0.136000] pci_bus 0000:00: busn_res: [bus 00-ff] end is updated to 00
+[    0.136000] pci 0000:00:0e.0: BAR 0: assigned [mem 0x18000000-0x1800ffff]
+[    0.140000] Switched to clocksource MIPS
+[    0.148000] NET: Registered protocol family 2
+[    0.152000] TCP established hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.160000] TCP bind hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.164000] TCP: Hash tables configured (established 1024 bind 1024)
+[    0.172000] TCP: reno registered
+[    0.176000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    0.180000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    0.188000] NET: Registered protocol family 1
+[    0.192000] PCI: CLS 0 bytes, default 32
+[    0.192000] gptu: totally 6 16-bit timers/counters
+[    0.196000] gptu: misc_register on minor 63
+[    0.200000] gptu: succeeded to request irq 126
+[    0.204000] gptu: succeeded to request irq 127
+[    0.212000] gptu: succeeded to request irq 128
+[    0.216000] gptu: succeeded to request irq 129
+[    0.220000] gptu: succeeded to request irq 130
+[    0.224000] gptu: succeeded to request irq 131
+[    0.232000] ralink,eeprom ralink_eep.6: using RT3062.eeprom as eeprom
+[    0.236000] phy-xrx200 gphy-xrx200.4: requesting lantiq/vr9_phy11g_a1x.bin
+[    0.244000] phy-xrx200 gphy-xrx200.4: booting GPHY0 firmware at 78C0000
+[    0.252000] phy-xrx200 gphy-xrx200.4: booting GPHY1 firmware at 78C0000
+[    0.360000] futex hash table entries: 256 (order: -1, 3072 bytes)
+[    0.368000] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.372000] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.384000] msgmni has been set to 244
+[    0.388000] io scheduler noop registered
+[    0.392000] io scheduler deadline registered (default)
+[    0.400000] 1e100c00.serial: ttyLTQ0 at MMIO 0x1e100c00 (irq = 112, base_baud = 0) is a lantiq,asc
+[    0.408000] console [ttyLTQ0] enabled
+[    0.416000] bootconsole [early0] disabled
+[    0.424000] nand: device found, Manufacturer ID: 0xec, Chip ID: 0xf1
+[    0.424000] nand: Samsung NAND 128MiB 3,3V 8-bit
+[    0.424000] nand: 128MiB, SLC, page size: 2048, OOB size: 64
+[    0.440000] Scanning device for bad blocks
+[    0.448000] Bad eraseblock 55 at 0x0000006e0000
+[    0.504000] 4 ofpart partitions found on MTD device 10000000.nand-parts
+[    0.512000] Creating 4 MTD partitions on &quot;10000000.nand-parts&quot;:
+[    0.516000] 0x000000000000-0x000000040000 : &quot;uboot&quot;
+[    0.524000] 0x000000040000-0x000000060000 : &quot;uboot-env&quot;
+[    0.528000] 0x000000060000-0x000000260000 : &quot;kernel&quot;
+[    0.536000] 0x000000260000-0x000008000000 : &quot;ubi&quot;
+[    0.648000] libphy: lantiq,xrx200-mdio: probed
+[    0.656000] net-xrx200: invalid MAC, using random
+[    0.724000] eth0: attached PHY [Lantiq XWAY VR9 GPHY 11G v1.3] (phy_addr=0:00, irq=-1)
+[    0.792000] eth0: attached PHY [Lantiq XWAY VR9 GPHY 11G v1.3] (phy_addr=0:01, irq=-1)
+[    0.860000] eth0: attached PHY [Lantiq XWAY VR9 GPHY 11G v1.4] (phy_addr=0:11, irq=-1)
+[    0.928000] eth0: attached PHY [Lantiq XWAY VR9 GPHY 11G v1.4] (phy_addr=0:13, irq=-1)
+[    0.996000] eth0: attached PHY [Lantiq XWAY VR9 GPHY 11G v1.3] (phy_addr=0:05, irq=-1)
+[    1.004000] wdt 1f8803f0.watchdog: Init done
+[    1.012000] TCP: cubic registered
+[    1.016000] NET: Registered protocol family 17
+[    1.020000] 8021q: 802.1Q VLAN Support v1.8
+[    1.028000] UBI: auto-attach mtd3
+[    1.032000] UBI: attaching mtd3 to ubi0
+[    1.224000] UBI: scanning is finished
+[    1.240000] UBI: attached mtd3 (name &quot;ubi&quot;, size 125 MiB) to ubi0
+[    1.244000] UBI: PEB size: 131072 bytes (128 KiB), LEB size: 129024 bytes
+[    1.248000] UBI: min./max. I/O unit sizes: 2048/2048, sub-page size 512
+[    1.256000] UBI: VID header offset: 512 (aligned 512), data offset: 2048
+[    1.264000] UBI: good PEBs: 1004, bad PEBs: 1, corrupted PEBs: 0
+[    1.268000] UBI: user volume: 1, internal volumes: 1, max. volumes count: 128
+[    1.276000] UBI: max/mean erase counter: 26/14, WL threshold: 4096, image sequence number: 886882633
+[    1.284000] UBI: available PEBs: 0, total reserved PEBs: 1004, PEBs reserved for bad PEB handling: 19
+[    1.296000] UBI: background thread &quot;ubi_bgt0d&quot; started, PID 234
+[    1.304000] mtd: device 4 (rootfs) set to be root filesystem
+[    1.332000] UBIFS: background thread &quot;ubifs_bgt0_0&quot; started, PID 240
+[    1.420000] UBIFS: mounted UBI device 0, volume 0, name &quot;rootfs&quot;
+[    1.424000] UBIFS: LEB size: 129024 bytes (126 KiB), min./max. I/O unit sizes: 2048 bytes/2048 bytes
+[    1.432000] UBIFS: FS size: 125153280 bytes (119 MiB, 970 LEBs), journal size 9033728 bytes (8 MiB, 71 LEBs)
+[    1.444000] UBIFS: reserved for root: 0 bytes (0 KiB)
+[    1.448000] UBIFS: media format: w4/r0 (latest is w4/r0), UUID 60C0DF37-85F1-4EFE-A441-5FB594C2805E, small LPT model
+[    1.460000] VFS: Mounted root (ubifs filesystem) on device 0:10.
+[    1.464000] Freeing unused kernel memory: 164K (80427000 - 80450000)
+[    1.808000] SCSI subsystem initialized
+[    1.832000] IFXUSB: ifxusb_hcd: version 3.2 B110801
+[    1.836000] Chip Version :01c0 BurstSize=0
+[    2.440000] IFXUSB: USB core #0 soft-reset
+[    2.744000] IFXUSB: USB core #0 soft-reset
+[    2.744000] ifxusb_hcd ifxusb_hcd: IFX USB Controller
+[    2.752000] ifxusb_hcd ifxusb_hcd: new USB bus registered, assigned bus number 1
+[    2.756000] ifxusb_hcd ifxusb_hcd: irq 62, io mem 0xbe101000
+[    2.764000] IFXUSB: Init: Power Port (0)
+[    2.768000] eth0: port 4 got link
+[    2.772000] hub 1-0:1.0: USB hub found
+[    2.776000] hub 1-0:1.0: 1 port detected
+[    3.280000] IFXUSB: USB core #1 soft-reset
+[    3.580000] IFXUSB: USB core #1 soft-reset
+[    3.584000] ifxusb_hcd ifxusb_hcd: IFX USB Controller
+[    3.588000] ifxusb_hcd ifxusb_hcd: new USB bus registered, assigned bus number 2
+[    3.596000] ifxusb_hcd ifxusb_hcd: irq 91, io mem 0xbe106000
+[    3.600000] IFXUSB: Init: Power Port (0)
+[    3.608000] hub 2-0:1.0: USB hub found
+[    3.608000] hub 2-0:1.0: 1 port detected
+[    3.616000] ifxusb_hcd ifxusb_hcd: requested GPIO 233
+[    3.628000] usbcore: registered new interface driver usb-storage
+[    3.988000] random: mktemp urandom read with 15 bits of entropy available
+[    3.992000] usb 2-1: new full-speed USB device number 2 using ifxusb_hcd
+[    7.168000] UBI error: ubi_open_volume: cannot open device 0, volume 0, error -16
+[    7.248000] random: nonblocking pool is initialized
+[    9.732000] IFXOS, Version 1.5.14 (c) Copyright 2009, Lantiq Deutschland GmbH
+[    9.732000] 
+[    9.832000] NET: Registered protocol family 10
+[    9.852000] NET: Registered protocol family 8
+[    9.856000] NET: Registered protocol family 20
+[    9.872000] PPP generic driver version 2.4.2
+[    9.888000] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[    9.928000] MEI CPE Driver, Version 1.2.0
+[    9.928000] 
+[    9.932000] (c) Copyright 2009, Infineon Technologies AG
+[    9.932000] 
+### MEI CPE - MEI CPE - MEI CPE - MEI CPE ###
+[    9.940000] 
+[    9.940000] 
+[    9.940000] Lantiq CPE API Driver version: DSL CPE API V4.11.4
+[    9.988000] 
+[    9.988000] Predefined debug level: 2
+[   10.000000] Loading modules backported from Linux version master-2014-11-04-0-gf3660a2
+[   10.008000] Backport generated by backports.git backports-20141023-2-g4ff890b
+[   10.020000] ip_tables: (C) 2000-2006 Netfilter Core Team
+[   10.036000] Infineon Technologies DEU driver version 2.0.0 
+[   10.044000] IFX DEU DES initialized (multiblock).
+[   10.048000] IFX DEU AES initialized (multiblock).
+[   10.052000] IFX DEU ARC4 initialized (multiblock).
+[   10.056000] IFX DEU SHA1 initialized.
+[   10.060000] IFX DEU MD5 initialized.
+[   10.064000] IFX DEU SHA1_HMAC initialized.
+[   10.068000] IFX DEU MD5_HMAC initialized.
+[   10.088000] nf_conntrack version 0.5.0 (1959 buckets, 7836 max)
+[   10.116000] NET: Registered protocol family 24
+[   10.124000] usbcore: registered new interface driver ums-alauda
+[   10.128000] usbcore: registered new interface driver ums-cypress
+[   10.136000] usbcore: registered new interface driver ums-datafab
+[   10.144000] usbcore: registered new interface driver ums-freecom
+[   10.152000] usbcore: registered new interface driver ums-isd200
+[   10.160000] usbcore: registered new interface driver ums-jumpshot
+[   10.164000] usbcore: registered new interface driver ums-karma
+[   10.172000] usbcore: registered new interface driver ums-sddr09
+[   10.180000] usbcore: registered new interface driver ums-sddr55
+[   10.188000] usbcore: registered new interface driver ums-usbat
+[   10.208000] usblp 2-1:1.0: usblp0: USB Bidirectional printer dev 2 if 0 alt 0 proto 2 vid 0x04E8 pid 0x3256
+[   10.220000] usbcore: registered new interface driver usblp
+[   10.240000] usbcore: registered new interface driver usbserial
+[   10.248000] usbcore: registered new interface driver usbserial_generic
+[   10.252000] usbserial: USB Serial support registered for generic
+[   10.280000] xt_time: kernel timezone is -0000
+[   10.360000] cfg80211: Calling CRDA to update world regulatory domain
+[   10.368000] cfg80211: World regulatory domain updated:
+[   10.368000] cfg80211:  DFS Master region: unset
+[   10.376000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
+[   10.384000] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+[   10.392000] cfg80211:   (2457000 KHz - 2482000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+[   10.400000] cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (N/A, 2000 mBm), (N/A)
+[   10.408000] cfg80211:   (5170000 KHz - 5250000 KHz @ 80000 KHz), (N/A, 2000 mBm), (N/A)
+[   10.416000] cfg80211:   (5250000 KHz - 5330000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (0 s)
+[   10.424000] cfg80211:   (5490000 KHz - 5730000 KHz @ 160000 KHz), (N/A, 2000 mBm), (0 s)
+[   10.432000] cfg80211:   (5735000 KHz - 5835000 KHz @ 80000 KHz), (N/A, 2000 mBm), (N/A)
+[   10.440000] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 0 mBm), (N/A)
+[   10.688000] PCI: Enabling device 0000:00:0e.0 (0000 -&gt; 0002)
+[   10.692000] rt2800pci 0000:00:0e.0: failed to load eeprom property
+[   10.696000] ieee80211 phy0: rt2x00lib_request_eeprom_file: Info - Loading EEPROM data from &#039;RT3062.eeprom&#039;.
+[   10.708000] ieee80211 phy0: rt2x00_set_rt: Info - RT chipset 3572, rev 0223 detected
+[   10.716000] ieee80211 phy0: rt2x00_set_rf: Info - RF chipset 0008 detected
+[   10.724000] ieee80211 phy0: Selected rate control algorithm &#039;minstrel_ht&#039;
+[   15.172000] ATM1.0.26    ATM (A1) firmware version 0.24
+[   15.176000] ifxmips_atm: ATM init succeed
+[   17.200000] device eth0.1 entered promiscuous mode
+[   17.204000] device eth0 entered promiscuous mode
+[   17.216000] br-lan: port 1(eth0.1) entered forwarding state
+[   17.220000] br-lan: port 1(eth0.1) entered forwarding state
+[   17.908000] cfg80211: Calling CRDA for country: PL
+[   17.920000] cfg80211: Regulatory domain changed to country: PL
+[   17.924000] cfg80211:  DFS Master region: ETSI
+[   17.928000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
+[   17.936000] cfg80211:   (2402000 KHz - 2482000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+[   17.944000] cfg80211:   (5170000 KHz - 5250000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (N/A)
+[   17.956000] cfg80211:   (5250000 KHz - 5330000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (0 s)
+[   17.964000] cfg80211:   (5490000 KHz - 5710000 KHz @ 160000 KHz), (N/A, 2700 mBm), (0 s)
+[   17.972000] cfg80211:   (57000000 KHz - 66000000 KHz @ 2160000 KHz), (N/A, 4000 mBm), (N/A)
+[   19.224000] br-lan: port 1(eth0.1) entered forwarding state
+[   20.204000] ieee80211 phy0: rt2x00lib_request_firmware: Info - Loading firmware file &#039;rt2860.bin&#039;
+[   20.228000] ieee80211 phy0: rt2x00lib_request_firmware: Info - Firmware detected - version: 0.34
+[   20.340000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+[   20.348000] device wlan0 entered promiscuous mode
+[   21.932000] br-lan: port 2(wlan0) entered forwarding state
+[   21.936000] br-lan: port 2(wlan0) entered forwarding state
+[   21.940000] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+[   23.940000] br-lan: port 2(wlan0) entered forwarding state
+
+
+
+
+BusyBox v1.22.1 (2014-12-03 20:32:36 CET) built-in shell (ash)
+Enter &#039;help&#039; for a list of built-in commands.
+
+  _______                     ________        __
+ |       |.-----.-----.-----.|  |  |  |.----.|  |_
+ |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
+ |_______||   __|_____|__|__||________||__|  |____|
+          |__| W I R E L E S S   F R E E D O M
+ -----------------------------------------------------
+ CHAOS CALMER (Bleeding Edge, r43437)
+ -----------------------------------------------------
+  * 1 1/2 oz Gin            Shake with a glassful
+  * 1/4 oz Triple Sec       of broken ice and pour
+  * 3/4 oz Lime Juice       unstrained into a goblet.
+  * 1 1/2 oz Orange Juice
+  * 1 tsp. Grenadine Syrup
+ -----------------------------------------------------
+root@OpenWrt:/#
+</p>
+</div>
+<p>
+<br/>
+
+</p>
+
+</div>
+
+<h2 class="sectionedit24" id="tags">Tags</h2>
+<div class="level2">
+
+<p>
+<a href="../../../external.html?link=https://openwrt.org/meta/tags" class="wikilink1" title="meta:tags">How to add tags</a>
+</p>
+<div class="tags"><span>
+	<a href="../../../external.html?link=https://openwrt.org/tag/vdsl2?do=showtag&amp;tag=VDSL2" class="wikilink1" title="tag:vdsl2" rel="tag">VDSL2</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/vr9?do=showtag&amp;tag=VR9" class="wikilink1" title="tag:vr9" rel="tag">VR9</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/128ram?do=showtag&amp;tag=128ram" class="wikilink1" title="tag:128ram" rel="tag">128ram</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/128flash?do=showtag&amp;tag=128flash" class="wikilink1" title="tag:128flash" rel="tag">128flash</a>
+</span></div>
+
+</div>
+
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>toh/zyxel/p2812hnu-f1.txt</bdi> · Last modified: 2019/03/08 22:49 by <bdi>mafketel</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/p2812hnu-f1?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+        
+<!-- ********** FOOTER ********** -->
+<div id="dokuwiki__footer"><div class="pad">
+    <div class="license">Except where otherwise noted, content on this wiki is licensed under the following license: <bdi><a href="../../../external.html?link=http://creativecommons.org/licenses/by-sa/4.0/" rel="license" class="urlextern">CC Attribution-Share Alike 4.0 International</a></bdi></div>
+    <div class="buttons">
+        <a href="../../../external.html?link=http://creativecommons.org/licenses/by-sa/4.0/" rel="license"><img src="../../../external.html?link=https://openwrt.org/lib/images/license/button/cc-by-sa.png" alt="CC Attribution-Share Alike 4.0 International" /></a>        <a href="../../../external.html?link=http://www.dokuwiki.org/donate" title="Donate" ><img
+            src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/button-donate.gif" width="80" height="15" alt="Donate" /></a>
+        <a href="../../../external.html?link=http://www.php.net/" title="Powered by PHP" ><img
+            src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/button-php.gif" width="80" height="15" alt="Powered by PHP" /></a>
+        <a href="../../../external.html?link=http://validator.w3.org/check/referer" title="Valid HTML5" ><img
+            src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/button-html5.png" width="80" height="15" alt="Valid HTML5" /></a>
+        <a href="../../../external.html?link=http://jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS" ><img
+            src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/button-css.png" width="80" height="15" alt="Valid CSS" /></a>
+        <a href="../../../external.html?link=http://dokuwiki.org/" title="Driven by DokuWiki" ><img
+            src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/button-dw.png" width="80" height="15" alt="Driven by DokuWiki" /></a>
+    </div>
+</div></div><!-- /footer -->
+
+<script language="javascript" type="text/javascript" src="../../../external.html?link=https://openwrt.org/js/awstats_misc_tracker.js" ></script>
+<noscript><img src="../../../external.html?link=https://openwrt.org/js/awstats_misc_tracker.js?nojs=y" height="0" width="0" border="0" style="display: none"></noscript>
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="../../../external.html?link=https://openwrt.org/lib/exe/indexer.php?id=toh%3Azyxel%3Ap2812hnu-f1&amp;1552201042" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</body>
+
+<!-- Mirrored from openwrt.org/toh/zyxel/p2812hnu-f1 by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Sun, 10 Mar 2019 07:09:33 GMT -->
+</html>

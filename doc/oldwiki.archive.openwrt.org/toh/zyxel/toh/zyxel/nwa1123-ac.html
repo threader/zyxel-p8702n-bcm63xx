@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="no-js">
+
+<!-- Mirrored from openwrt.org/toh/zyxel/nwa1123-ac by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Sun, 10 Mar 2019 07:09:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <title>OpenWrt Project: ZyXEL NWA1123-AC</title>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="index,follow"/>
+<meta name="keywords" content="gigabitethernet,fastethernet,1nic,1wnic,5port,usb,2usb,ath9k,detachableantenna,32ram,8flash,mips,mips32,34k"/>
+<link rel="search" type="application/opensearchdescription+xml" href="../../lib/exe/opensearch.php" title="OpenWrt Project"/>
+<link rel="start" href="../../index.html"/>
+<link rel="contents" href="nwa1123-acdecf?do=index" title="Sitemap"/>
+<link rel="manifest" href="../../lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="../../feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="../../../external.html?link=https://openwrt.org/feed.php?mode=list&amp;ns=toh:zyxel"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="../../_export/xhtml/toh/zyxel/nwa1123-ac"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="../../_export/raw/toh/zyxel/nwa1123-ac"/>
+<link rel="canonical" href="nwa1123-ac.html"/>
+<link rel="stylesheet" type="text/css" href="../../lib/exe/cssca56.css?t=openwrt&amp;tseed=659d77b8d7a7a08bcde1a890e899b0ef"/>
+<link type="text/css" rel="stylesheet" href="../../lib/plugins/datatables/assets/datatables/media/css/jquery.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../lib/plugins/datatables/assets/datatables/extensions/FixedHeader/css/fixedHeader.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../lib/plugins/datatables/assets/datatables/extensions/FixedColumns/css/fixedColumns.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../lib/plugins/datatables/assets/datatables/extensions/Buttons/css/buttons.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../lib/plugins/datatables/assets/datatables/extensions/Responsive/css/responsive.dataTables.min.css"/>
+<!--[if gte IE 9]><!-->
+<script type="text/javascript">/*<![CDATA[*/var NS='toh:zyxel';var JSINFO = {"plugin_imagemap_mldummy":"\/_media\/wiki\/dokuwiki-128.png","move_renameokay":false,"plugin":{"datatables":{"config":[],"enableForAllTables":0}},"schemes":["http","https","telnet","gopher","wais","ftp","ed2k","irc","ldap"],"plugin_folded":{"hide":"hide","reveal":"reveal"},"id":"toh:zyxel:nwa1123-ac","namespace":"toh:zyxel","ACT":"show","useHeadingNavigation":1,"useHeadingContent":0};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="../../lib/exe/jquery1d4f.php?tseed=23f888679b4f1dc26eef34902aca964f"></script>
+<script type="text/javascript" charset="utf-8" src="../../lib/exe/jsca56.php?t=openwrt&amp;tseed=659d77b8d7a7a08bcde1a890e899b0ef"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/Buttons/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/Buttons/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<!--<![endif]-->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" href="../../lib/tpl/openwrt/images/favicon.ico" />
+<link rel="apple-touch-icon" href="../../lib/tpl/openwrt/images/apple-touch-icon.png" />
+    </head>
+
+<body>
+    <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site" class="page_toh page_zyxel page_nwa1123-ac"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_openwrt    showSidebar hasSidebar">
+
+        
+<!-- ********** HEADER ********** -->
+<div id="dokuwiki__header"><div class="pad group">
+
+    
+    <div class="headings group">
+        <ul class="a11y skip">
+            <li><a href="#dokuwiki__content">skip to content</a></li>
+        </ul>
+
+        <h1><a href="../../index.html"  accesskey="h" title="[H]"><img src="../../lib/tpl/openwrt/images/logo.png" width="386" height="98" alt="" /> <span>OpenWrt Project</span></a></h1>
+            </div>
+
+    <div class="tools group">
+        <!-- USER TOOLS -->
+                    <div id="dokuwiki__usertools">
+                <h3 class="a11y">User Tools</h3>
+                <ul>
+                    <li><a href="nwa1123-acf59b?do=register"  class="action register" rel="nofollow" title="Register">Register</a></li><li><a href="nwa1123-ac51ef?do=login&amp;sectok="  class="action login" rel="nofollow" title="Log In">Log In</a></li>                </ul>
+            </div>
+        
+        <!-- SITE TOOLS -->
+        <div id="dokuwiki__sitetools">
+            <h3 class="a11y">Site Tools</h3>
+            <form action="../../../external.html?link=https://openwrt.org/start" method="get" role="search" class="search doku_form" id="dw__search" accept-charset="utf-8"><input type="hidden" name="do" value="search" /><input type="hidden" name="id" value="toh:zyxel:nwa1123-ac" /><div class="no"><input name="q" type="text" class="edit" title="[F]" accesskey="f" placeholder="Search" autocomplete="on" id="qsearch__in" value="" /><button value="1" type="submit" title="Search">Search</button><div id="qsearch__out" class="ajax_qsearch JSpopup"></div></div></form>            <div class="mobileTools">
+                <form action="../../../external.html?link=https://openwrt.org/doku.php" method="get" accept-charset="utf-8"><div class="no"><input type="hidden" name="id" value="toh:zyxel:nwa1123-ac" /><select name="do" class="edit quickselect" title="Tools"><option value="">Tools</option><optgroup label="Page Tools"><option value="edit">Show pagesource</option><option value="revisions">Old revisions</option><option value="backlink">Backlinks</option></optgroup><optgroup label="Site Tools"><option value="recent">Recent Changes</option><option value="media">Media Manager</option><option value="index">Sitemap</option></optgroup><optgroup label="User Tools"><option value="register">Register</option><option value="login">Log In</option></optgroup></select><button type="submit">&gt;</button></div></form>            </div>
+            <ul>
+                <li><a href="nwa1123-ac810b?do=recent"  class="action recent" accesskey="r" rel="nofollow" title="Recent Changes [R]">Recent Changes</a></li><li><a href="nwa1123-ac0b87?do=media&amp;ns=toh%3Azyxel"  class="action media" rel="nofollow" title="Media Manager">Media Manager</a></li><li><a href="nwa1123-acdecf?do=index"  class="action index" accesskey="x" rel="nofollow" title="Sitemap [X]">Sitemap</a></li>            </ul>
+        </div>
+
+    </div>
+
+    <!-- BREADCRUMBS -->
+            <div class="breadcrumbs">
+                            <div class="youarehere"><span class="bchead">You are here: </span><span class="home"><bdi><a href="../../start.html" class="wikilink1" title="start">Welcome to the OpenWrt Project</a></bdi></span> » <bdi><a href="../start.html" class="wikilink1" title="toh:start">Table of Hardware</a></bdi> » <bdi><a href="start.html" class="wikilink1" title="toh:zyxel:start">ZyXEL</a></bdi> » <bdi><span class="curid"><a href="nwa1123-ac.html" class="wikilink1" title="toh:zyxel:nwa1123-ac">ZyXEL NWA1123-AC</a></span></bdi></div>
+                                                <div class="plugin_translation"><form action="../../../external.html?link=https://openwrt.org/start" id="translation__dropdown"><img src="../../lib/plugins/translation/flags/en.gif" alt="en" height="11" class="wikilink1" /> <select name="id" class="wikilink1"><option class="wikilink1 cur flag" title="English" value="toh/zyxel/nwa1123-ac" selected="selected" style="background-image: url('../../lib/plugins/translation/flags/en.gif')">English (en)</option><option class="wikilink2 flag" title="|العربية" value="ar/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/ar.gif')">|العربية (ar)</option><option class="wikilink2 flag" title="Česky" value="cs/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/cs.gif')">Česky (cs)</option><option class="wikilink2 flag" title="Deutsch" value="de/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/de.gif')">Deutsch (de)</option><option class="wikilink2 flag" title="Español" value="es/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/es.gif')">Español (es)</option><option class="wikilink2 flag" title="Français" value="fr/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/fr.gif')">Français (fr)</option><option class="wikilink2 flag" title="Magyar" value="hu/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/hu.gif')">Magyar (hu)</option><option class="wikilink2 flag" title="Italiano" value="it/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/it.gif')">Italiano (it)</option><option class="wikilink2 flag" title="日本語" value="ja/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/ja.gif')">日本語 (ja)</option><option class="wikilink2 flag" title="한국어" value="ko/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/ko.gif')">한국어 (ko)</option><option class="wikilink2 flag" title="Polski" value="pl/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/pl.gif')">Polski (pl)</option><option class="wikilink2 flag" title="Português" value="pt/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/pt.gif')">Português (pt)</option><option class="wikilink2 flag" title="Português" value="pt-br/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/pt-br.gif')">Português (pt-br)</option><option class="wikilink2 flag" title="Русский" value="ru/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/ru.gif')">Русский (ru)</option><option class="wikilink2 flag" title="Türkçe" value="tr/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/tr.gif')">Türkçe (tr)</option><option class="wikilink2 flag" title="中文" value="zh/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/zh.gif')">中文 (zh)</option><option class="wikilink2 flag" title="繁體中文" value="zh-tw/toh/zyxel/nwa1123-ac" style="background-image: url('../../lib/plugins/translation/flags/zh-tw.gif')">繁體中文 (zh-tw)</option></select><input name="go" type="submit" value="&rarr;" /></form>&nbsp<sup><a href="../../meta/translation.html" class="wikilink1" title="meta:translation">?</a></sup></div>        </div>
+    
+    
+    <hr class="a11y" />
+</div></div><!-- /header -->
+
+        <div class="wrapper group">
+
+                            <!-- ********** ASIDE ********** -->
+                <div id="dokuwiki__aside"><div class="pad aside include group">
+                    <h3 class="toggle">Sidebar</h3>
+                    <div class="content">
+                                                                        
+
+<ul>
+<li class="level1"><div class="li"> <a href="../../start.html" class="wikilink1" title="start">Welcome to OpenWrt</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../supported_devices.html" class="wikilink1" title="supported_devices">Supported Devices</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../packages/start.html" class="wikilink1" title="packages:start">Packages</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../downloads.html" class="wikilink1" title="downloads">Downloads</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../docs/start.html" class="wikilink1" title="docs:start">Documentation</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../submitting-patches.html" class="wikilink1" title="submitting-patches">Submitting patches</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../bugs.html" class="wikilink1" title="bugs">Reporting bugs</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../wiki/wikirules.html" class="wikilink1" title="wiki:wikirules">Wiki contribution guide</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://forum.openwrt.org/" class="urlextern" title="https://forum.openwrt.org" rel="nofollow">OpenWrt Forum</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/faq" class="wikilink1" title="faq">FAQ</a> </div>
+</li>
+</ul>
+<hr />
+<ul>
+<li class="level1 node"><div class="li"> <a href="../../about.html" class="wikilink1" title="about">About OpenWrt/LEDE</a> </div>
+<ul>
+<li class="level2"><div class="li"> <a href="../../rules.html" class="wikilink1" title="rules">Rules</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../../infrastructure.html" class="wikilink1" title="infrastructure">Infrastructure</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../../trademark.html" class="wikilink1" title="trademark">Trademark Policy</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="../../wiki/start.html" class="wikilink1" title="wiki:start">About this site</a></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="../../contact.html" class="wikilink1" title="contact">Contact Us</a> </div>
+</li>
+</ul>
+                                            </div>
+                </div></div><!-- /aside -->
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+
+                <div class="pageId"><span>toh:zyxel:nwa1123-ac</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                    <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#zyxel_nwa1123-ac">ZyXEL NWA1123-AC</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#hardware_highlights">Hardware Highlights</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#buttons">Buttons</a></div></li>
+<li class="level3"><div class="li"><a href="#gpios">GPIOs</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#hardware">Hardware</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#info">Info</a></div></li>
+<li class="level3"><div class="li"><a href="#photos">Photos</a></div></li>
+<li class="level3"><div class="li"><a href="#opening_the_case">Opening the case</a></div></li>
+<li class="level3"><div class="li"><a href="#serial">Serial</a></div></li>
+<li class="level3"><div class="li"><a href="#jtag">JTAG</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#debricking">Debricking</a></div></li>
+<li class="level2"><div class="li"><a href="#bootloader_mods">Bootloader Mods</a></div></li>
+<li class="level2"><div class="li"><a href="#hardware_mods">Hardware mods</a></div></li>
+<li class="level2"><div class="li"><a href="#flash_rom_memory_map">Flash ROM memory map</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#oem_memory_map">OEM memory map</a></div></li>
+<li class="level3"><div class="li"><a href="#oem_loaded_linux_kernel_modules">OEM loaded linux kernel modules</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#bootlogs">Bootlogs</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#oem_bootlog">OEM bootlog</a></div></li>
+<li class="level3"><div class="li"><a href="#openwrt_bootlog_experimental_version_patched_snapshot_r6796-56ae9f9">OpenWrt bootlog EXPERIMENTAL VERSION, patched Snapshot r6796-56ae9f9</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#notes">Notes</a></div></li>
+<li class="level2"><div class="li"><a href="#tags">Tags</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="zyxel_nwa1123-ac">ZyXEL NWA1123-AC</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> <abbr title="Wireless Local Area Network">WLAN</abbr> access point with PoE</div>
+</li>
+<li class="level1"><div class="li"> Dual band 2.4 <abbr title="Gigahertz">GHz</abbr> and 5 <abbr title="Gigahertz">GHz</abbr> simultaneously</div>
+</li>
+<li class="level1"><div class="li"> 1 Gigabit <abbr title="Local Area Network">LAN</abbr> port with PoE 802.3af</div>
+</li>
+<li class="level1"><div class="li"> smoke detector design</div>
+</li>
+</ul>
+
+<p>
+<strong>CURRENTLY NOT SUPPORTED / SUPPORT NOT CLEAR / WIP</strong>
+</p>
+
+</div>
+
+<h2 class="sectionedit2" id="hardware_highlights">Hardware Highlights</h2>
+<div class="level2">
+<div class="table sectionedit3"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> SoC                    </th><th class="col1 leftalign"> Ram     </th><th class="col2 leftalign"> Flash   </th><th class="col3 leftalign"> Network   </th><th class="col4 leftalign"> USB   </th><th class="col5 leftalign"> Serial   </th><th class="col6 leftalign"> JTag   </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign"> Atheros AR9342 rev 3   </td><td class="col1 leftalign"> 64MiB   </td><td class="col2 leftalign"> 16MiB   </td><td class="col3 leftalign"> 1 x 1     </td><td class="col4 leftalign"> No    </td><td class="col5 leftalign"> Yes      </td><td class="col6 leftalign"> No     </td>
+	</tr>
+</table></div>
+
+<p>
+Flash memory info: 
+</p>
+
+<p>
+Flash memory data sheet: <a href="../../../external.html?link=http://pdf1.alldatasheet.com/datasheet-pdf/view/267918/MCNIX/MX25L12845EMI-10G.html" class="urlextern" title="http://pdf1.alldatasheet.com/datasheet-pdf/view/267918/MCNIX/MX25L12845EMI-10G.html" rel="nofollow">http://pdf1.alldatasheet.com/datasheet-pdf/view/267918/MCNIX/MX25L12845EMI-10G.html</a>
+</p>
+
+<p>
+Manufacturer&#039;s site: <a href="../../../external.html?link=http://www.zyxel.com/products_services/nwa1120_series.shtml" class="urlextern" title="http://www.zyxel.com/products_services/nwa1120_series.shtml" rel="nofollow">http://www.zyxel.com/products_services/nwa1120_series.shtml</a>
+</p>
+
+<p>
+Manual: <a href="../../../ftp.zyxel.com/NWA1123-AC/user_guide/NWA1123-AC_1.00.pdf" class="urlextern" title="ftp://ftp.zyxel.com/NWA1123-AC/user_guide/NWA1123-AC_1.00.pdf" rel="nofollow">ftp://ftp.zyxel.com/NWA1123-AC/user_guide/NWA1123-AC_1.00.pdf</a>
+</p>
+
+<p>
+Forum: <a href="../../../external.html?link=https://forum.openwrt.org/viewtopic.php?id=56608" class="urlextern" title="https://forum.openwrt.org/viewtopic.php?id=56608" rel="nofollow">https://forum.openwrt.org/viewtopic.php?id=56608</a>
+</p>
+
+</div>
+
+<h3 class="sectionedit4" id="buttons">Buttons</h3>
+<div class="level3">
+
+<p>
+The NWA1123-AC has only one button.
+</p>
+<div class="table sectionedit5"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> BUTTON   </th><th class="col1 leftalign"> Event   </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign"> Reset    </td><td class="col1 leftalign"> reset   </td>
+	</tr>
+</table></div>
+
+</div>
+
+<h3 class="sectionedit6" id="gpios">GPIOs</h3>
+<div class="level3">
+<div class="table sectionedit7"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> GPIO   </th><th class="col1 leftalign"> Element        </th><th class="col2 leftalign"> Activity        </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign"> 4      </td><td class="col1 leftalign"> reset button   </td><td class="col2 leftalign"> active low      </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> 9      </td><td class="col1 leftalign"> UART output ?  </td><td class="col2"> don&#039;t touch it! </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> 10     </td><td class="col1 leftalign"> UART input ?   </td><td class="col2"> don&#039;t touch it! </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> 11     </td><td class="col1 leftalign"> LED amber      </td><td class="col2 leftalign"> active low      </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign"> 12     </td><td class="col1 leftalign"> LED green      </td><td class="col2 leftalign"> active low      </td>
+	</tr>
+</table></div>
+
+</div>
+
+<h2 class="sectionedit8" id="hardware">Hardware</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit9" id="info">Info</h3>
+<div class="level3">
+<div class="table sectionedit10"><table class="inline">
+	<tr class="row0">
+		<td class="col0 leftalign"> <strong><a href="../../../external.html?link=https://en.wikipedia.org/wiki/Instruction set" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Instruction set">Instruction set</a>:</strong>               </td><td class="col1"> <a href="../../../external.html?link=https://en.wikipedia.org/wiki/MIPS architecture" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/MIPS architecture">MIPS</a> </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0 leftalign"> <strong>Vendor:</strong>                               </td><td class="col1"> <a href="../../../external.html?link=https://en.wikipedia.org/wiki/Qualcomm Atheros" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Qualcomm Atheros">Qualcomm Atheros</a> </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> <strong><a href="../../docs/techref/bootloader" class="wikilink1" title="docs:techref:bootloader">bootloader</a>:</strong>           </td><td class="col1"> <a href="../../docs/techref/bootloader/uboot" class="wikilink1" title="docs:techref:bootloader:uboot">U-Boot</a> </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> <strong><a href="../../docs/techref/hardware/soc" class="wikilink1" title="docs:techref:hardware:soc">System-On-Chip</a>:</strong>  </td><td class="col1"> Atheros AR9342 rev 3 </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> <strong><a href="../../docs/techref/hardware/cpu" class="wikilink1" title="docs:techref:hardware:cpu">CPU</a> @Frq</strong>         </td><td class="col1"> 560.000MHz </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign"> <strong>Flash size:</strong>                 </td><td class="col1"> 16 MiB </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0 leftalign"> <strong>Flash Chip:</strong>                 </td><td class="col1"> <a href="../../../external.html?link=http://pdf1.alldatasheet.com/datasheet-pdf/view/267918/MCNIX/MX25L12845EMI-10G.html" class="urlextern" title="http://pdf1.alldatasheet.com/datasheet-pdf/view/267918/MCNIX/MX25L12845EMI-10G.html" rel="nofollow">MX25L12845EMI-10G</a> </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0 leftalign"> <strong>RAM size:</strong>                   </td><td class="col1 leftalign"> 64 MiB   </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0 leftalign"> <strong>RAM Chip:</strong>                   </td><td class="col1 leftalign"> ?  </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0 leftalign"> <strong>Wireless No1:</strong>               </td><td class="col1 leftalign"> ???? <em>SoC-integrated</em>: QCA9558-AT4A w/ 3&times;3 MIMO for 2.4GHz 802.11b/g/n   </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0 leftalign"> <strong>Wireless No2:</strong>               </td><td class="col1 leftalign"> ???? <em>distinct Chip</em>: AR9580-AR1A w/ 3&times;3 MIMO for 5GHz 802.11a/n/ac  </td>
+	</tr>
+	<tr class="row11">
+		<td class="col0 leftalign"> <strong><a href="../../docs/techref/hardware/switch" class="wikilink1" title="docs:techref:hardware:switch">switch</a>:</strong>    </td><td class="col1"> ag71xx-mdio.1: Found an AR934X built-in switch ? correct ? </td>
+	</tr>
+	<tr class="row12">
+		<td class="col0 leftalign"> <strong><a href="../../docs/techref/hardware/internet.access.technologies" class="wikilink1" title="docs:techref:hardware:internet.access.technologies">Modem</a>:</strong>   </td><td class="col1"> <em>none</em> </td>
+	</tr>
+	<tr class="row13">
+		<td class="col0 leftalign"> <strong>USB:</strong>                        </td><td class="col1"> No </td>
+	</tr>
+	<tr class="row14">
+		<td class="col0 leftalign"> <strong><a href="../../docs/techref/hardware/port.serial" class="wikilink1" title="docs:techref:hardware:port.serial">Serial</a>:</strong>  </td><td class="col1"> <a href="#serial" title="toh:zyxel:nwa1123-ac ↵" class="wikilink1">Yes</a> </td>
+	</tr>
+	<tr class="row15">
+		<td class="col0 leftalign"> <strong><a href="../../docs/techref/hardware/port.jtag" class="wikilink1" title="docs:techref:hardware:port.jtag">JTAG</a>:</strong>      </td><td class="col1 leftalign"> ??   </td>
+	</tr>
+</table></div>
+
+</div>
+
+<h3 class="sectionedit11" id="photos">Photos</h3>
+<div class="level3">
+
+<p>
+Model Number
+</p>
+
+<p>
+<em>Front:</em>
+</p>
+
+<p>
+<a href="../../_detail/media/zyxel/nwa1123/nwa1123-ac-frontside-closed42ac.jpg?id=toh%3Azyxel%3Anwa1123-ac" class="media" title="media:zyxel:nwa1123:nwa1123-ac-frontside-closed.jpg"><img src="../../_media/media/zyxel/nwa1123/nwa1123-ac-frontside-closed60f9.jpg?w=200&amp;tok=f59c50" class="media" alt="" width="200" /></a>
+</p>
+
+<p>
+<em>Back:</em>
+</p>
+
+<p>
+<a href="../../_detail/media/zyxel/nwa1123/nwa1123-ac-backside-closed42ac.jpg?id=toh%3Azyxel%3Anwa1123-ac" class="media" title="media:zyxel:nwa1123:nwa1123-ac-backside-closed.jpg"><img src="../../_media/media/zyxel/nwa1123/nwa1123-ac-backside-closed6cd8.jpg?w=200&amp;tok=25d8cb" class="media" alt="" width="200" /></a>
+</p>
+
+<p>
+<em>Plug connectors on the back (ethernet with PoE, separate power connector):</em>
+</p>
+
+<p>
+<a href="../../_detail/media/zyxel/nwa1123/nwa1123-ac-backside-power42ac.jpg?id=toh%3Azyxel%3Anwa1123-ac" class="media" title="media:zyxel:nwa1123:nwa1123-ac-backside-power.jpg"><img src="../../_media/media/zyxel/nwa1123/nwa1123-ac-backside-power39ea.jpg?w=200&amp;tok=3e1270" class="media" alt="" width="200" /></a>
+</p>
+
+</div>
+
+<h3 class="sectionedit12" id="opening_the_case">Opening the case</h3>
+<div class="level3">
+
+<p>
+<strong>Note:</strong> This will void your warranty!
+</p>
+<ul>
+<li class="level1"><div class="li"> To remove the cover remove the four screws on the backside.</div>
+</li>
+</ul>
+
+<p>
+<em>Main PCB: back side</em>
+</p>
+
+<p>
+<a href="../../_detail/media/zyxel/nwa1123/nwa1123-ac-backside-opened42ac.jpg?id=toh%3Azyxel%3Anwa1123-ac" class="media" title="media:zyxel:nwa1123:nwa1123-ac-backside-opened.jpg"><img src="../../_media/media/zyxel/nwa1123/nwa1123-ac-backside-opened9251.jpg?w=200&amp;tok=46997b" class="media" alt="" width="200" /></a>
+</p>
+
+<p>
+<em>Main PCB: front side</em>
+</p>
+
+<p>
+<a href="../../_detail/media/zyxel/nwa1123/nwa1123-ac-frontside-opened42ac.jpg?id=toh%3Azyxel%3Anwa1123-ac" class="media" title="media:zyxel:nwa1123:nwa1123-ac-frontside-opened.jpg"><img src="../../_media/media/zyxel/nwa1123/nwa1123-ac-frontside-opened8358.jpg?w=200&amp;tok=ccfcc5" class="media" alt="" width="200" /></a>
+</p>
+
+</div>
+
+<h3 class="sectionedit13" id="serial">Serial</h3>
+<div class="level3">
+
+<p>
+→ <a href="../../docs/techref/hardware/port.serial" class="wikilink1" title="docs:techref:hardware:port.serial">port.serial</a> general information about the serial port, serial port cable, etc.
+</p>
+
+<p>
+How to connect to the Serial Port of this specific device:
+</p>
+
+<p>
+There are four pins on the front side of the PCB, see the photo below. GND is marked with a square, VCC +3.3 V is marked with a circle. Starting numbering GND with 1, the pinout is as following:
+</p>
+<ul>
+<li class="level1"><div class="li"> 1 GND</div>
+</li>
+<li class="level1"><div class="li"> 2 RD (receive data - input to <abbr title="Access Point">AP</abbr>)</div>
+</li>
+<li class="level1"><div class="li"> 3 TD (transmit data - output from <abbr title="Access Point">AP</abbr>)</div>
+</li>
+<li class="level1"><div class="li"> 4 VCC +3.3V</div>
+</li>
+</ul>
+
+<p>
+<strong>Photo of PCB with markings</strong>
+</p>
+
+<p>
+The position of the serial connector on the PCB is marked with a red ellipse:
+</p>
+
+<p>
+<a href="../../_detail/media/zyxel/nwa1123/nwa1123-ac-serial-connect42ac.jpg?id=toh%3Azyxel%3Anwa1123-ac" class="media" title="media:zyxel:nwa1123:nwa1123-ac-serial-connect.jpg"><img src="../../_media/media/zyxel/nwa1123/nwa1123-ac-serial-connect6a55.jpg?w=200&amp;tok=cba7e9" class="media" alt="" width="200" /></a>
+</p>
+
+</div>
+
+<h3 class="sectionedit14" id="jtag">JTAG</h3>
+<div class="level3">
+
+<p>
+→ <a href="../../docs/techref/hardware/port.jtag" class="wikilink1" title="docs:techref:hardware:port.jtag">port.jtag</a> general information about the JTAG port, JTAG cable, etc.
+</p>
+
+<p>
+I could not find a JTAG port on this device.
+</p>
+
+</div>
+
+<h2 class="sectionedit15" id="debricking">Debricking</h2>
+<div class="level2">
+
+<p>
+→ <a href="../../docs/guide-user/troubleshooting/generic.debrick" class="wikilink1" title="docs:guide-user:troubleshooting:generic.debrick">generic.debrick</a>
+</p>
+
+</div>
+
+<h2 class="sectionedit16" id="bootloader_mods">Bootloader Mods</h2>
+<div class="level2">
+<ol>
+<li class="level1"><div class="li"> you could read about <a href="../../docs/techref/bootloader" class="wikilink1" title="docs:techref:bootloader">bootloader</a> in general</div>
+</li>
+</ol>
+
+</div>
+
+<h2 class="sectionedit17" id="hardware_mods">Hardware mods</h2>
+<div class="level2">
+
+<p>
+Currently none.
+</p>
+
+</div>
+
+<h2 class="sectionedit18" id="flash_rom_memory_map">Flash ROM memory map</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit19" id="oem_memory_map">OEM memory map</h3>
+<div class="level3">
+<pre class="code">0x000000000000-0x000000040000 : &quot;u-boot&quot; (256 KiB)
+0x000000040000-0x000000050000 : &quot;u-boot-env&quot; (64 KiB)
+0x000000050000-0x000000850000 : &quot;rootfs&quot; (8192 KiB)
+0x000000850000-0x000000940000 : &quot;uImage&quot; (960 KiB)
+0x000000940000-0x000000fa0000 : &quot;reserve&quot; (6528 KiB)
+0x000000fa0000-0x000000fe0000 : &quot;config&quot; (256 KiB)
+0x000000fe0000-0x000000ff0000 : &quot;mib0&quot; (64 KiB)
+0x000000ff0000-0x000001000000 : &quot;ART&quot; (64 KiB)</pre>
+
+</div>
+
+<h3 class="sectionedit20" id="oem_loaded_linux_kernel_modules">OEM loaded linux kernel modules</h3>
+<div class="level3">
+<pre class="code">~ # lsmod
+Module                  Size  Used by    Tainted: P  
+xt_tcpudp 2176 4 - Live 0x831e7000
+xt_physdev 1760 2 - Live 0x831ed000
+iptable_filter 1552 1 - Live 0x8394a000
+ip_tables 10656 1 iptable_filter, Live 0x831e4000
+x_tables 12672 3 xt_tcpudp,xt_physdev,ip_tables, Live 0x831f4000
+ath_pktlog 16192 0 - Live 0x831c0000 (P)
+umac 1628576 1 ath_pktlog, Live 0x83200000
+ath_dev 237760 2 ath_pktlog,umac, Live 0x83bc0000 (P)
+ath_dfs 52064 1 umac, Live 0x83a30000 (P)
+ath_rate_atheros 33488 3 ath_pktlog,umac,ath_dev, Live 0x83ac0000 (P)
+ath_hal 627664 4 ath_pktlog,umac,ath_dev,ath_rate_atheros, Live 0x83b00000 (P)
+asf 7232 5 ath_pktlog,umac,ath_dev,ath_dfs,ath_hal, Live 0x83a26000 (P)
+adf 12432 3 umac,ath_dev,ath_hal, Live 0x83a28000 (P)
+athrs_gmac 36944 0 - Live 0x83950000</pre>
+
+</div>
+
+<h2 class="sectionedit21" id="bootlogs">Bootlogs</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit22" id="oem_bootlog">OEM bootlog</h3>
+<div class="level3">
+<div class="wrap_bootlog plugin_wrap">
+<p>
+U-Boot 1.1.4-g3ba2fcff-dirty (Aug 27 2013 - 12:33:31)
+
+U-boot MI124
+DRAM:  Tap value selected = 0xf [0x0 - 0x1f]
+Setting 0xb8116290 to 0x30602d0f
+64 MB
+Top of RAM usable for U-Boot at: 84000000
+Reserving 220k for U-Boot at: 83fc8000
+Reserving 192k for malloc() at: 83f98000
+Reserving 44 Bytes for Board Info at: 83f97fd4
+Reserving 48 Bytes for Global Data at: 83f97fa4
+Reserving 128k for boot params() at: 83f77fa4
+Stack Pointer at: 83f77f88
+Now running in RAM - U-Boot at: 83fc8000
+Flash Manuf Id 0xc2, DeviceId0 0x20, DeviceId1 0x18
+flash size 16MB, sector count = 256
+Flash: 16 MB
+pci_init_board: PCIe PLL not set for 40MHz refclk
+BOARD IS NOT CALIBRATED!!!
+In:    serial
+Out:   serial
+Err:   serial
+Net:   ag934x_enet_initialize...
+Fetching MAC Address from 0x83fed7b8
+ wasp  reset mask:c02200 
+WASP  ----&gt; F1 PHY *
+: cfg1 0x80000000 cfg2 0x7114
+eth0: 00:30:ab:11:20:e1
+F1Phy reg init 
+ATHR_AUTONEG_ADVERT:1DE1
+ATHR_1000BASET_CONTROL:200
+ATHR_PHY_CONTROL:3100
+ATHRSF1_PHY: Port 0, Neg Success
+ATHRSF1_PHY: unit 0 phy addr 0 eth0 up
+ethact=eth0
+
+************ Post Result *******************
+POST memory PASSED
+POST uart PASSED
+POST ethernet PASSED
+Hit any key to stop autoboot:  4  3  2  1  0 
+## Booting image at 9f850000 ...
+   Image Name:   Linux Kernel Image
+   Created:      2013-10-31   6:06:08 UTC
+   Image Type:   MIPS Linux Kernel Image (lzma compressed)
+   Data Size:    951427 Bytes = 929.1 kB
+   Load Address: 80002000
+   Entry Point:  801f84f0
+   Verifying Checksum at 0x9f850040 ...OK
+   Uncompressing Kernel Image ... OK
+No initrd
+## Transferring control to Linux (at address 801f84f0) ...
+## Giving linux memsize in bytes, 67108864
+
+Starting kernel ...
+
+Booting Atheros AR934x
+ Linux version 2.6.31--LSDK-9.2.0_U10.1020-00006-g848b629-dirty (dnisw3@SW3L01) (gcc version 4.3.3 (GCC) ) #1 Thu Oct 31 14:02:45 CST 2013
+flash_size passed from bootloader = 16
+arg 1: console=ttyS0,115200
+arg 2: root=31:02
+arg 3: rootfstype=jffs2
+arg 4: init=/sbin/init
+arg 5: mtdparts=ath-nor0:256k(u-boot),64k(u-boot-env),8192k(rootfs),960k(uImage),6528k(reserve),256k(config),64k(mib0),64k(ART)
+arg 6: mem=64M
+CPU revision is: 0001974c (MIPS 74Kc)
+ath_sys_frequency: cpu srif ddr srif cpu 560 ddr 400 ahb 200
+Determined physical RAM map:
+ memory: 02000000 @ 00000000 (usable)
+User-defined physical RAM map:
+ memory: 04000000 @ 00000000 (usable)
+Initrd not found or empty - disabling initrd
+Zone PFN ranges:
+  Normal   0x00000000 -&gt; 0x00004000
+Movable zone start PFN for each node
+early_node_map[1] active PFN ranges
+    0: 0x00000000 -&gt; 0x00004000
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 16256
+Kernel command line: console=ttyS0,115200 root=31:02 rootfstype=jffs2 init=/sbin/init mtdparts=ath-nor0:256k(u-boot),64k(u-boot-env),8192k(rootfs),960k(uImage),6528k(reserve),256k(config),64k(mib0),64k(ART) mem=64M 
+PID hash table entries: 256 (order: 8, 1024 bytes)
+Dentry cache hash table entries: 8192 (order: 3, 32768 bytes)
+Inode-cache hash table entries: 4096 (order: 2, 16384 bytes)
+Primary instruction cache 64kB, VIPT, 4-way, linesize 32 bytes.
+Primary data cache 32kB, 4-way, VIPT, cache aliases, linesize 32 bytes
+Writing ErrCtl register=00000000
+Readback ErrCtl register=00000000
+Memory: 47784k/65536k available (2026k kernel code, 17684k reserved, 486k data, 156k init, 0k highmem)
+NR_IRQS:128
+plat_time_init: plat time init done
+Calibrating delay loop... 279.55 BogoMIPS (lpj=559104)
+Mount-cache hash table entries: 512
+
+****************ALLOC***********************
+ Packet mem: 802ae5c0 (0xe00000 bytes)
+********************************************
+
+NET: Registered protocol family 16
+PCI init:ath_pcibios_init
+ath_pcibios_init(294): PCI CMD write: 0x356
+registering PCI controller with io_map_base unset
+bio: create slab &lt;bio-0&gt; at 0
+SCSI subsystem initialized
+pci 0000:00:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+pci 0000:00:00.0: PME# disabled
+Returning IRQ 64
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 2048 (order: 2, 16384 bytes)
+TCP bind hash table entries: 2048 (order: 1, 8192 bytes)
+TCP: Hash tables configured (established 2048 bind 2048)
+TCP reno registered
+NET: Registered protocol family 1
+ATH GPIOC major 0
+JFFS2 version 2.2 (ZLIB) (RTIME) (c) 2001-2006 Red Hat, Inc.
+fuse init (API version 7.12)
+msgmni has been set to 93
+io scheduler noop registered
+io scheduler deadline registered (default)
+Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+serial8250.0: ttyS0 at MMIO 0xb8020000 (irq = 19) is a 16550A
+console [ttyS0] enabled
+brd: module loaded
+8 cmdlinepart partitions found on MTD device ath-nor0
+Creating 8 MTD partitions on &quot;ath-nor0&quot;:
+0x000000000000-0x000000040000 : &quot;u-boot&quot;
+0x000000040000-0x000000050000 : &quot;u-boot-env&quot;
+0x000000050000-0x000000850000 : &quot;rootfs&quot;
+0x000000850000-0x000000940000 : &quot;uImage&quot;
+0x000000940000-0x000000fa0000 : &quot;reserve&quot;
+0x000000fa0000-0x000000fe0000 : &quot;config&quot;
+0x000000fe0000-0x000000ff0000 : &quot;mib0&quot;
+0x000000ff0000-0x000001000000 : &quot;ART&quot;
+TCP cubic registered
+NET: Registered protocol family 10
+lo: Disabled Privacy Extensions
+IPv6 over IPv4 tunneling driver
+sit0: Disabled Privacy Extensions
+NET: Registered protocol family 17
+Bridge firewalling registered
+802.1Q VLAN Support v1.8 Ben Greear &lt;greearb@candelatech.com&gt;
+All bugs added by David S. Miller &lt;davem@redhat.com&gt;
+arch/mips/atheros/gpio.c (ath_simple_config_init) JUMPSTART_GPIO: 4
+athwdt_init: Registering WDT success
+ath_otp_init: Registering OTP success
+ath_clksw_init: Registering Clock Switch Interface success
+VFS: Mounted root (jffs2 filesystem) readonly on device 31:2.
+Freeing unused kernel memory: 156k freed
+init started:  BusyBox v1.01 (2013.10.31-06:02+0000) multi-call binary
+ATHR_GMAC: Length per segment 1536
+ATHR_GMAC: fifo cfg 3 01f00140
+ATHR_GMAC: RX TASKLET - Pkts per Intr:100
+ATHR_GMAC: Mac address for unit 0:bfff0000
+ATHR_GMAC: 00:30:ab:11:20:e1 
+ATHR_GMAC: Max segments per packet :   1
+ATHR_GMAC: Max tx descriptor count :   128
+ATHR_GMAC: Max rx descriptor count :   128
+ATHR_GMAC: Mac capability flags    :   2380
+1+0 records in
+1+0 records out
+athr_gmac_ring_alloc Allocated 2048 at 0x83941800
+athr_gmac_ring_alloc Allocated 2048 at 0x83941000
+WASP ----&gt; F1e PHY
+Setting Drop CRC Errors, Pause Frames and Length Error frames 
+Setting PHY...
+ATHR_AUTONEG_ADVERT:DE1
+ATHR_1000BASET_CONTROL:200
+ATHR_PHY_CONTROL:1000
+ATHRSF1_PHY: Port 0, Neg Success
+ATHRSF1_PHY: unit 0 phy addr 0 
+ADDRCONF(NETDEV_UP): eth0: link is not ready
+SIOCGIFFLAGS: No such device
+apcfg: Skip default verifying.
+device eth0 entered promiscuous mode
+apcfg: Skip default verifying.
+Password changed.
+athstats
+80211stats
+wlanconfig
+pktlogconf
+pktlogdump
+radartool
+**** drop_caches_sysctl_handler: all done timer added ...**** 
+apcfg: Skip default verifying.
+SEC_MODE=WPA
+apcfg: Skip default verifying.
+apcfg: Skip default verifying.
+Args: 1
+adf: module license &#039;Proprietary&#039; taints kernel.
+Disabling lock debugging due to kernel taint
+ath_hal: 0.9.17.1 (AR5416, AR9380, REGOPS_FUNC, WRITE_EEPROM, 11D)
+ath_rate_atheros: Copyright (c) 2001-2005 Atheros Communications, Inc, All Rights Reserved
+insmod: cannot open module `/lib/modules/2.6.31/net/ath_spectral.ko&#039;: No such file or directory
+ath_dfs: Version 2.0.0
+Copyright (c) 2005-2006 Atheros Communications, Inc. All Rights Reserved
+insmod: cannot open module `/lib/modules/2.6.31/net/hst_tx99.ko&#039;: No such file or directory
+ath_dev: Copyright (c) 2001-2007 Atheros Communications, Inc, All Rights Reserved
+ath_ahb: 10.1.389 (Atheros/multi-bss)
+__ath_attach: Set global_scn[0]
+ACBKMinfree = 48
+ACBEMinfree = 32
+ACVIMinfree = 16
+ACVOMinfree = 0
+CABMinfree = 48
+UAPSDMinfree = 0
+Enterprise mode: 0x00000000
+Restoring Cal data from Flash
+Green-AP : Green-AP : Attached
+
+ath_get_caps[5942] rx chainmask mismatch actual 3 sc_chainmak 0
+ath_get_caps[5917] tx chainmask mismatch actual 3 sc_chainmak 0
+ath_attach_dfs[11817] dfsdomain 0
+ath_tx_paprd_init sc 83bf0000 PAPRD Enabled
+SC Callback Registration for wifi0
+wifi0: Atheros 9340: mem=0xb8100000, irq=2
+ath_pci: 10.1.389 (Atheros/multi-bss)
+ath_pci_probe
+PCI device id is 003c :003c
+ath_pci 0000:00:00.0: ath DEBUG: sc=0x83bffc00
+
+ ol_ath_pci_configure : num_desired MSI set to 0
+
+ Using PCI Legacy Interrupt
+__ol_ath_attach: ath_attach TODO
+ol_ath_attach() BMI inited.
+ol_ath_attach() BMI Get Target Info.
+ol_ath_attach() TARGET TYPE: 7 Vers 0x4100016c
+NUM_DEV=1 FWMODE=0x2 FWSUBMODE=0x0 FWBR_BUF 0
+ol_ath_attach() configure Target .
+ol_transfer_bin_file 1582: Download Board data len 2116
+ol_ath_download_firmware: Using 0x1234 for the remainder of init
+ol_transfer_bin_file 1574: Download OTP data len 5972
+ol_transfer_bin_file 1620: Download Firmware data len 187520
+ol_ath_attach() Download FW. 
+ol_ath_attach() HT Create .
+ol_ath_attach() HIF Claim.
+ol_ath_attach() BMI Done. 
+ol_ath_attach() WMI attached. wmi_handle 83000000 
++HWT
+-HWT
+HTC Service:0x0300 ep:1 TX flow control disabled
+TXRX: Created pdev 83bff600
+wmi_service_ready_event_rx:  WMI UNIFIED SERVICE READY event 
+num_rf_chain : 00000002
+ht_cap_info: : 0000085b
+vht_cap_info : 338001b2
+vht_supp_mcs : 0000fffa
+LARGE_AP enabled. num_peers 144, num_vdevs 16, num_tids 256
+idx 0 req 1  num_units 0 num_unit_info 2 unit size 404 actual units 145 
+chunk 0 len 58580 requested ,ptr  0x3120000 
+FIRMWARE:P 145 V 16 T 443
+ 
+wmi_ready_event_rx:  WMI UNIFIED READY event 
+ol_ath_connect_htc() WMI is ready
+ol_ath_set_host_app_area TODO
+ol_ath_attach() connect HTC. 
+target uses HTT version 2.1; host uses 2.1
+ol_regdmn_start: reg-domain param: regdmn=0, countryName=, wModeSelect=FFFFFFFF, netBand=FFFFFFFF, extendedChanMode=0.
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x2) flags 0x2150
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x4) flags 0xa0
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x8) flags 0xc0
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x20) flags 0xd0
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x40) flags 0x150
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x800) flags 0x10080
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x2000) flags 0x20080
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x4000) flags 0x40080
+Skipping VHT80 channel 5825
+ol_ath_phyerr_attach: called
+OL Resmgr Init-ed
+Green-AP : Green-AP : Attached
+
+Green-AP : Attached
+ol_if_dfs_setup: called 
+ol_if_dfs_attach: called; ptr=83109974, radar_info=839f1c48
+ol_ath_rtt_meas_report_attach: called
+ol_ath_attach() UMAC attach . 
+ol_if_dfs_configure: called
+ol_if_dfs_configure: UNINIT domain
+ol_if_dfs_disable: called
+__ol_ath_attach: init tx/rx TODO
+__ol_ath_attach: hard_header_len reservation 58
+__ol_ath_attach: dev name wifi1
+SC Callback Registration for wifi1
+insmod: cannot open module `/lib/modules/2.6.31/net/wlan_me.ko&#039;: No such file or directory
+Initializing Pktlogs for 11ac
+1+0 records in
+1+0 records out
+1+0 records in
+1+0 records out
+756
+ath_attach_dfs[11817] dfsdomain 0
+isCountryCodeValid: EEPROM regdomain 0x0
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x2) flags 0x2150
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x4) flags 0xa0
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x8) flags 0xc0
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x20) flags 0xd0
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x40) flags 0x150
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x800) flags 0x10080
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x2000) flags 0x20080
+ol_regdmn_init_channels: !avail mode 0x1f9001 (0x4000) flags 0x40080
+Skipping VHT80 channel 5660
+Skipping VHT80 channel 5680
+Skipping VHT80 channel 5700
+Creating ap for ZyXEL on
+wlan_vap_create : enter. devhandle=0x83bcc2c0, opmode=IEEE80211_M_HOSTAP, flags=0x1
+wlan_vap_create : exit. devhandle=0x83bcc2c0, opmode=IEEE80211_M_HOSTAP, flags=0x1.
+VAP device ath0 created 
+Added ath0 mode master
+Invalid command : bgscan
+Interface doesn&#039;t accept private ioctl...
+HALDbg (8BE0): Operation not permitted
+Invalid command : noedgech
+WARNING: Fragmentation with HT mode NOT ALLOWED!!
+Error for wireless request &quot;Set Fragmentation Threshold&quot; (8B24) :
+    SET failed on device ath0 ; Invalid argum 
+ DES SSID SET=ZyXEL 
+ent.
+ ieee80211_ioctl_siwmode: imr.ifm_active=131712, new mode=3, valid=1 
+/etc/ath/makeVAP: 464: cannot create /proc/sys/dev/ath/htdupieenable: Directory nonexistent
+Invalid command : setVowExt
+/etc/ath/makeVAP: 507: APNAME: not found
+acparams  no private ioctls.
+
+Invalid command : set_vsp_enable
+Interface doesn&#039;t accept private ioctl...
+setPhyRestartWar (8BE0): Operation not permitted
+Invalid command : setVowExtStats
+Created ath0 mode ap for ZyXEL
+lo        no wireless extensions.
+
+sit0      no wireless extensions.
+
+eth0      no wireless extensions.
+
+br0       no wireless extensions.
+
+wifi0     no wSetting Max Stations:64
+ireless extensions.
+
+wifi1     no wireless extensions.
+
+apcfg: Skip default verifying.
+lo        no wireless extensions.
+
+sit0      no wireless extensions.
+
+eth0      no wireless extensions.
+
+br0       no wireless extensions.
+
+wifi0     no wireless extensions.
+
+wifi1     no wireless extensions.
+
+device ath0 entered promiscuous mode
+br0: port 2(ath0) entering forwarding state
+ARPING to 192.168.1.2 from 192.168.1.2 via br0
+Sent 1 probes (1 broadcast(s))
+Received 0 reply
+apcfg: Skip default verifying.
+ath_paprd_cal sc 83bf0000 chan_mask 3 PAPRD excessive failure disabling PAPRD now
+device eth0 left promiscuous mode
+br0: port 1(eth0) entering disabled state
+device ath0 left promiscuous mode
+br0: port 2(ath0) entering disabled state
+device eth0 entered promiscuous mode
+device ath0 entered promiscuous mode
+br0: port 2(ath0) entering forwarding state
+interface ath8 does not exist!
+SIOCGIFFLAGS: No such device
+ip_tables: (C) 2000-2006 Netfilter Core Team
+iptables v1.4.5: unknown option `--dport&#039;
+Try `iptables -h&#039; or &#039;iptables --help&#039; for more information.
+iptables v1.4.5: unknown option `--dport&#039;
+Try `iptables -h&#039; or &#039;iptables --help&#039; for more information.
+Bad argument `tcp&#039;
+Try `iptables -h&#039; or &#039;iptables --help&#039; for more information.
+Bad argument `udp&#039;
+Try `iptables -h&#039; or &#039;iptables --help&#039; for more information.
+SEC_MODE=WPA
+apcfg: Skip default verifying.
+Modules already loaded
+Creating ap for ZyXEL on
+ath_ioctl: SIOC80211IFCREATE CALLED
+wmi_unified_vdev_create_send: ID = 0 VAP Addr = 4c:9e:ff:90:bf:62:
+TXRX: Created vdev 831049c0 (4c:9e:ff:90:bf:62)
+VAP device ath8 created 
+TXRX: ol_txrx_peer_find_add_id: peer 83a13000 ID 187
+TXRX: ol_txrx_peer_find_add_id: peer 83a13000 ID 171
+Added ath8 mode master
+Invalid command : bgscan
+Invalid command : HALDbg
+Invalid command : ATHDebug
+ol_ath_vap_set_param: VAP param unsupported param:127 value:0
+Setting vdev param = 1a, value = 1
+Invalid command : noedgech
+Invalid command : set_swapled
+Invalid command : set_ledcustom
+Interface doesn&#039;t accept private ioctl...
+AMPDU (8BE0): Operation not permitted
+Interface doesn&#039;t accept private ioctl...
+AMPDUFrames (8BE0): Operation not permitted
+Interface doesn&#039;t accept private ioctlol_ath_vap_set_param: VAP param unsupported param:43 value:0
+...
+AMPDULim (8BE0): Operation not permitted
+ol_ath_vap_set_param: VAP param unsupported param:7 value:1
+WARNING: Fragmentation with HT mode NOT ALLOWED!!
+Error for wireless request &quot;Set Fragmentation Threshold&quot; (8B24) :
+    SET failed on device ath8 ; Invalid argum 
+ DES SSID SET=ZyXEL 
+ent.
+ ieee80211_ioctl_siwmode: imr.ifm_active=66176, new mode=3, valid=1 
+OL vap_stop +
+wmi_unified_vdev_stop_send 
+OL vap_stop -
+STOPPED EVENT for vap 0 
+/etc/ath/makeVAP: 464: cannot create /proc/sys/dev/ath/htdupieenable: Directory nonexistent
+Setting vdev param = 3, value = 100
+Setting vdev param = d, value = 1
+Invalid command : setVowExt
+Invalid command : setKeySrchAlways
+Setting vdev param = 2a, value = 0
+ol_ath_vap_set_param: VAP param is now supported param:62 value:0
+/etc/ath/makeVAP: 533: APNAME: not found
+acparams  no private ioctls.
+
+Invalid command : set_vsp_enable
+Invalid command : setPhyRestartWar
+Invalid command : setVowExtStats
+Created ath8 mode ap for ZyXEL
+lo        no wireless extensions.
+
+sit0      no wireless extensions.
+
+eth0      no wireless extensions.
+
+br0       no wireless extensions.
+
+wifi0     no wSetting Max Stations:64
+ireless extensions.
+
+wifi1     no wireless extensions.
+
+ol_ath_vap_set_param: VAP param unsupported param:35 value:0
+Setting vdev param = 1e, value = 1
+apcfg: Skip default verifying.
+lo        no wireless extensions.
+
+sit0      no wireless extensions.
+
+eth0      no wireless extensions.
+
+br0       no wireless extensions.
+
+wifi0     no wireless extensions.
+
+wifi1     no wireless extensions.
+
+OL vap_stop +
+wmi_unified_vdev_stop_send 
+OL vap_stop -
+STOPPED EVENT for vap 0 
+OL vap_start +
+OL vap_start -
+ol_vdev_start_resp_ev
+ol_ath_vap_join: join operation is only for STA/IBSS mode
+ol_ath_wmm_update:
+Setting vdev param = 3, value = 100
+Notification to UMAC VAP layer
+FWLOG: [42334] WHAL_ERROR_RESET_CHANNF1 (  )
+FWLOG: [42334] WAL channel change (force reset) freq=5200, flags=10 mode=0 rx_ok=1 tx_ok=1
+device ath8 entered promiscuous mode
+br0: port 3(ath8) entering forwarding state
+arping: bind
+apcfg: Skip default verifying.
+Setting vdev param = 12, value = 1
+wmi_unified_vdev_stop_send 
+STOPPED EVENT for vap 0 
+OL vap_start +
+OL vap_start -
+ol_vdev_start_resp_ev
+ol_ath_vap_join: join operation is only for STA/IBSS mode
+Setting vdev param = 3, value = 100
+Notification to UMAC VAP layer
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+ol_ath_wmm_update:
+device eth0 left promiscuous mode
+br0: port 1(eth0) entering disabled state
+device ath0 left promiscuous mode
+br0: port 2(ath0) entering disabled state
+device ath8 left promiscuous mode
+br0: port 3(ath8) entering disabled state
+device eth0 entered promiscuous mode
+device ath0 entered promiscuous mode
+br0: port 2(ath0) entering forwarding state
+device ath8 entered promiscuous mode
+br0: port 3(ath8) entering forwarding state
+iptables v1.4.5: unknown option `--dport&#039;
+Try `iptables -h&#039; or &#039;iptables --help&#039; for more information.
+iptables v1.4.5: unknown option `--dport&#039;
+Try `iptables -h&#039; or &#039;iptables --help&#039; for more information.
+Bad argument `tcp&#039;
+Try `iptables -h&#039; or &#039;iptables --help&#039; for more information.
+Bad argument `udp&#039;
+Try `iptables -h&#039; or &#039;iptables --help&#039; for more information.
+route: SIOC[ADD|DEL]RT: No such process
+ARPING to 192.168.1.2 from 192.168.1.2 via br0
+Sent 1 probes (1 broadcast(s))
+Received 0 reply
+Configuration fi ieee80211_ioctl_siwmode: imr.ifm_active=393856, new mode=3, valid=1 
+le: /tmp/apath0
+br0: port 2(ath0) entering disabled state
+ DEVICE IS DOWN ifname=ath0
+Could not connec DEVICE IS DOWN ifname=ath0
+t to kernel driver.
+Using interface ath0 with hwaddr 4c:9e:ff:90:bf:61 and ssid &#039;ZyXEL&#039;
+random: Cannot read from /dev/random: Resource temporarily unavailable
+random: Only 0/20 bytes of strong random data available from /dev/random
+random: Not enough entropy pool available for secure operations
+WPA: Not enough entropy in random pool for secure operations - update keys later when the first station connects
+br0: port 2(ath0) entering forwarding state
+Configuration fi ieee80211_ioctl_siwmode: imr.ifm_active=643, new mode=3, valid=1 
+le: /tmp/apath8wmi_unified_vdev_stop_send 
+
+STOPPED EVENT for vap 0 
+br0: port 3(ath8) entering disabled state
+ol_ath_vap_set_param: VAP param unsupported param:32 value:0
+ol_ath_vap_set_param: VAP param unsupported param:121 value:1
+ DEVICE IS DOWN ifname=ath8
+Could not connec DEVICE IS DOWN ifname=ath8
+t to kernel drivol_ath_vap_set_param: VAP param unsupported param:32 value:0
+er.
+Using interface ath8 with hwaddr 4c:9e:ff:90:bf:62 and ssid &#039;ZyXEL&#039;
+random: Cannot rol_ath_vap_set_param: VAP param unsupported param:74 value:1
+ead from /dev/ra Group Keyidx set=1 
+ ndom: Resource twmi_unified_vdev_install_key_send Setting Key for Macaddress:0x62bf90ff9e4c 
+emporarily unavaKeyix=1 Keylen=32 Keyflags=1 Cipher=2 
+ Keydata=ilable
+random: 0x86 Only 0/20 bytes 0xbc of strong random0xf7  data available 0xeb from /dev/random0xd6 
+random: Not en0xec ough entropy poo0x6 l available for 0x97 secure operation0x68 s
+WPA: Not enou0xa8 gh entropy in ra0xca ndom pool for se0x8d cure operations 0x5f - update keys la0xc5 ter when the fir0x9b st station conne0xe1 cts
+0xd3 0xef 0xb9 0x3 0x4e 0x8b 0xae 0x27 0x6f 0xef 0xb 0xc3 0xe3 0x4 0xd1 0x12 
+ol_ath_vap_set_param: VAP param unsupported param:74 value:0
+TXRX: ol_txrx_peer_find_add_id: peer 83a13000 ID 139
+TXRX: sec spec for peer 83a13000 (4c:9e:ff:90:bf:62): mcast key of type 4
+Setting vdev param = 1f, value = 1
+ol_ath_vap_set_param: VAP param unsupported param:32 value:1
+OL vap_stop +
+wmi_unified_vdev_stop_send 
+OL vap_stop -
+STOPPED EVENT for vap 0 
+OL vap_start +
+OL vap_start -
+ol_vdev_start_resp_ev
+ol_ath_vap_join: join operation is only for STA/IBSS mode
+ol_ath_wmm_update:
+Setting vdev param = 3, value = 100
+Notification to UMAC VAP layer
+br0: port 3(ath8) entering forwarding state
+Invalid command : txstbc
+Invalid command : rxstbc
+FWLOG: [46778] WAL_DBGID_SECURITY_ENCR_EN (  )
+FWLOG: [46778] WAL_DBGID_SECURITY_MCAST_KEY_SET ( 0x1 )
+bind: Address already in use
+mini_httpd: started as root without requesting chroot(), warning only
+bind: Address already in use
+mini_httpd: started as root without requesting chroot(), warning only
+apcfg: Skip default verifying.
+apcfg: Skip default verifying.
+apcfg: Skip default verifying.
+date: invalid date `00000.0&#039;
+Ebtables v2.0 registered
+Ebtables v2.0 unregistered
+
+ NWA1123-AC mips #1 Thu Oct 31 14:02:45 CST 2013 (none)
+NWA1123-AC login: 
+</p>
+</div>
+<p>
+<br/>
+
+</p>
+
+</div>
+
+<h3 class="sectionedit25" id="openwrt_bootlog_experimental_version_patched_snapshot_r6796-56ae9f9">OpenWrt bootlog EXPERIMENTAL VERSION, patched Snapshot r6796-56ae9f9</h3>
+<div class="level3">
+<div class="wrap_bootlog plugin_wrap">
+<p>
+[    0.000000] Linux version 4.9.96 (chr@charlie) (gcc version 7.3.0 (OpenWrt GCC 7.3.0 r6796-56ae9f9) ) #0 Mon Apr 30 08:12:55 2018
+[    0.000000] MyLoader: sysp=c50e0400, boardp=0203c100, parts=8c00082a
+[    0.000000] bootconsole [early0] enabled
+[    0.000000] CPU0 revision is: 0001974c (MIPS 74Kc)
+[    0.000000] SoC: Atheros AR9342 rev 3
+[    0.000000] Determined physical RAM map:
+[    0.000000]  memory: 04000000 @ 00000000 (usable)
+[    0.000000] User-defined physical RAM map:
+[    0.000000]  memory: 04000000 @ 00000000 (usable)
+[    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Primary instruction cache 64kB, VIPT, 4-way, linesize 32 bytes.
+[    0.000000] Primary data cache 32kB, 4-way, VIPT, cache aliases, linesize 32 bytes
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000000000000-0x0000000003ffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x0000000003ffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x0000000003ffffff]
+[    0.000000] On node 0 totalpages: 16384
+[    0.000000] free_area_init_node: node 0, pgdat 8041e5e4, node_mem_map 81000020
+[    0.000000]   Normal zone: 128 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 16384 pages, LIFO batch:3
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 16256
+[    0.000000] Kernel command line: board=DB120 console=ttyS0,115200 root=31:02 rootfstype=jffs2 init=/sbin/init mtdparts=spi0.0:256k(u-boot),64k(u-boot-env),8192k(rootfs),960k(uImage),6528k(reserve),256k(config),64k(mib0),64k(ART) mem=64M rootfstype=squashfs noinitrd
+[    0.000000] PID hash table entries: 256 (order: -2, 1024 bytes)
+[    0.000000] Dentry cache hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.000000] Inode-cache hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Writing ErrCtl register=00000000
+[    0.000000] Readback ErrCtl register=00000000
+[    0.000000] Memory: 60224K/65536K available (2914K kernel code, 161K rwdata, 760K rodata, 252K init, 206K bss, 5312K reserved, 0K cma-reserved)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS:51
+[    0.000000] Clocks: CPU:560.000MHz, DDR:400.000MHz, AHB:200.000MHz, Ref:40.000MHz
+[    0.000000] clocksource: MIPS: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 6825930166 ns
+[    0.000010] sched_clock: 32 bits at 280MHz, resolution 3ns, wraps every 7669584382ns
+[    0.008333] Calibrating delay loop... 278.93 BogoMIPS (lpj=1394688)
+[    0.081153] pid_max: default: 32768 minimum: 301
+[    0.086189] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.093245] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.103836] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.114346] futex hash table entries: 256 (order: -1, 3072 bytes)
+[    0.121516] NET: Registered protocol family 16
+[    0.128056] MIPS: machine is DB120 reference board
+[    0.136914] registering PCI controller with io_map_base unset
+[    0.143228] ar71xx: using random MAC address for eth0
+[    0.376703] ar71xx: using random MAC address for eth1
+[    0.631035] PCI host bridge to bus 0000:00
+[    0.635413] pci_bus 0000:00: root bus resource [mem 0x10000000-0x13ffffff]
+[    0.642784] pci_bus 0000:00: root bus resource [io  0x0000]
+[    0.648714] pci_bus 0000:00: root bus resource [??? 0x00000000 flags 0x0]
+[    0.655952] pci_bus 0000:00: No busn resource found for root bus, will use [bus 00-ff]
+[    0.664413] pci 0000:00:00.0: [168c:003c] type 00 class 0x028000
+[    0.664425] pci 0000:00:00.0: invalid calibration data
+[    0.669932] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x001fffff 64bit]
+[    0.669990] pci 0000:00:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
+[    0.670072] pci 0000:00:00.0: supports D1 D2
+[    0.670083] pci 0000:00:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    0.670325] pci_bus 0000:00: busn_res: [bus 00-ff] end is updated to 00
+[    0.670358] pci 0000:00:00.0: BAR 0: assigned [mem 0x10000000-0x101fffff 64bit]
+[    0.678159] pci 0000:00:00.0: BAR 6: assigned [mem 0x10200000-0x1020ffff pref]
+[    0.685892] pci 0000:00:00.0: using irq 40 for pin 1
+[    0.692000] clocksource: Switched to clocksource MIPS
+[    0.698647] NET: Registered protocol family 2
+[    0.704246] TCP established hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.711684] TCP bind hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.718517] TCP: Hash tables configured (established 1024 bind 1024)
+[    0.725402] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    0.731637] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    0.738638] NET: Registered protocol family 1
+[    0.743371] PCI: CLS 0 bytes, default 32
+[    0.748572] Crashlog allocated RAM at address 0x3f00000
+[    0.755325] workingset: timestamp_bits=30 max_order=14 bucket_order=0
+[    0.769656] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.775917] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.796128] io scheduler noop registered
+[    0.800304] io scheduler deadline registered (default)
+[    0.806271] Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+[    0.813542] console [ttyS0] disabled
+[    0.837435] serial8250.0: ttyS0 at MMIO 0x18020000 (irq = 11, base_baud = 2500000) is a 16550A
+[    0.846640] console [ttyS0] enabled
+[    0.854062] bootconsole [early0] disabled
+[    0.866368] m25p80 spi0.0: found mx25l12805d, expected m25p80
+[    0.872967] m25p80 spi0.0: mx25l12805d (16384 Kbytes)
+[    0.878153] 8 cmdlinepart partitions found on MTD device spi0.0
+[    0.884208] Creating 8 MTD partitions on &quot;spi0.0&quot;:
+[    0.889077] 0x000000000000-0x000000040000 : &quot;u-boot&quot;
+[    0.895840] 0x000000040000-0x000000050000 : &quot;u-boot-env&quot;
+[    0.903174] 0x000000050000-0x000000850000 : &quot;rootfs&quot;
+[    0.910025] mtd: device 2 (rootfs) set to be root filesystem
+[    0.915885] 1 squashfs-split partitions found on MTD device rootfs
+[    0.922184] 0x0000002f0000-0x000000850000 : &quot;rootfs_data&quot;
+[    0.929500] 0x000000850000-0x000000940000 : &quot;uImage&quot;
+[    0.936470] 0x000000940000-0x000000fa0000 : &quot;reserve&quot;
+[    0.943522] 0x000000fa0000-0x000000fe0000 : &quot;config&quot;
+[    0.950393] 0x000000fe0000-0x000000ff0000 : &quot;mib0&quot;
+[    0.957201] 0x000000ff0000-0x000001000000 : &quot;ART&quot;
+[    0.965040] libphy: Fixed MDIO Bus: probed
+[    0.988315] libphy: ag71xx_mdio: probed
+[    0.997405] libphy: ag71xx_mdio: probed
+[    1.722564] ag71xx ag71xx.0: connected to PHY at ag71xx-mdio.0:00 [uid=004dd072, driver=Atheros 8035 ethernet]
+[    1.733561] eth0: Atheros AG71xx at 0xb9000000, irq 4, mode:RGMII
+[    2.363776] ag71xx-mdio.1: Found an AR934X built-in switch
+[    2.416254] eth1: Atheros AG71xx at 0xba000000, irq 5, mode:GMII
+[    2.423539] NET: Registered protocol family 17
+[    2.428233] 8021q: 802.1Q VLAN Support v1.8
+[    2.439587] VFS: Mounted root (squashfs filesystem) readonly on device 31:2.
+[    2.448495] Freeing unused kernel memory: 252K
+[    2.453048] This architecture does not have kernel memory protection.
+[    2.562012] random: fast init done
+[    3.048454] init: Console is alive
+[    3.052256] init: - watchdog -
+[    4.398740] kmodloader: loading kernel modules from /etc/modules-boot.d/*
+[    4.458417] usbcore: registered new interface driver usbfs
+[    4.464173] usbcore: registered new interface driver hub
+[    4.469670] usbcore: registered new device driver usb
+[    4.481158] ehci_hcd: USB 2.0 &#039;Enhanced&#039; Host Controller (EHCI) Driver
+[    4.498196] SCSI subsystem initialized
+[    4.507597] ehci-platform: EHCI generic platform driver
+[    4.518064] usbcore: registered new interface driver usb-storage
+[    4.524927] kmodloader: done loading kernel modules from /etc/modules-boot.d/*
+[    4.534917] init: - preinit -
+[    5.747112] random: procd: uninitialized urandom read (4 bytes read)
+[    8.833639] eth0: link up (1000Mbps/Full duplex)
+[    9.097396] jffs2: notice: (377) jffs2_build_xattr_subsystem: complete building xattr subsystem, 0 of xdatum (0 unchecked, 0 orphan) and 0 of xref (0 dead, 0 orphan) found.
+[    9.114747] mount_root: switching to jffs2 overlay
+[    9.151584] urandom-seed: Seeding with /etc/urandom.seed
+[    9.202447] eth0: link down
+[    9.219119] procd: - early -
+[    9.222248] procd: - watchdog -
+[    9.938154] procd: - watchdog -
+[    9.941642] procd: - ubus -
+[   10.196549] random: ubusd: uninitialized urandom read (4 bytes read)
+[   10.298102] random: ubusd: uninitialized urandom read (4 bytes read)
+[   10.305182] random: ubusd: uninitialized urandom read (4 bytes read)
+[   10.311687] random: ubusd: uninitialized urandom read (4 bytes read)
+[   10.318516] random: ubusd: uninitialized urandom read (4 bytes read)
+[   10.325095] random: ubusd: uninitialized urandom read (4 bytes read)
+[   10.331779] random: ubusd: uninitialized urandom read (4 bytes read)
+[   10.338485] random: ubusd: uninitialized urandom read (4 bytes read)
+[   10.345445] procd: - init -
+[   10.715673] kmodloader: loading kernel modules from /etc/modules.d/*
+[   10.752666] Loading modules backported from Linux version wt-2017-11-01-0-gfe248fc2c180
+[   10.760792] Backport generated by backports.git v4.14-rc2-1-31-g86cf0e5d
+[   10.775671] nf_conntrack version 0.5.0 (1024 buckets, 4096 max)
+[   10.845746] xt_time: kernel timezone is -0000
+[   11.032539] ip_tables: (C) 2000-2006 Netfilter Core Team
+[   11.083796] PPP generic driver version 2.4.2
+[   11.091026] NET: Registered protocol family 24
+[   11.129883] PCI: Enabling device 0000:00:00.0 (0000 -&gt; 0002)
+[   11.137968] ath10k_pci 0000:00:00.0: pci irq legacy oper_irq_mode 1 irq_mode 0 reset_mode 0
+[   11.416753] ath10k_pci 0000:00:00.0: Direct firmware load for ath10k/pre-cal-pci-0000:00:00.0.bin failed with error -2
+[   11.427665] ath10k_pci 0000:00:00.0: Falling back to user helper
+[   11.656957] firmware ath10k!pre-cal-pci-0000:00:00.0.bin: firmware_loading_store: map pages failed
+[   11.666454] ath10k_pci 0000:00:00.0: Direct firmware load for ath10k/cal-pci-0000:00:00.0.bin failed with error -2
+[   11.677012] ath10k_pci 0000:00:00.0: Falling back to user helper
+[   11.856859] firmware ath10k!cal-pci-0000:00:00.0.bin: firmware_loading_store: map pages failed
+[   11.866108] ath10k_pci 0000:00:00.0: Direct firmware load for ath10k/QCA988X/hw2.0/firmware-6.bin failed with error -2
+[   11.877025] ath10k_pci 0000:00:00.0: Falling back to user helper
+[   12.057460] firmware ath10k!QCA988X!hw2.0!firmware-6.bin: firmware_loading_store: map pages failed
+[   12.083770] ath10k_pci 0000:00:00.0: qca988x hw2.0 target 0x4100016c chip_id 0x043222ff sub 0000:0000
+[   12.093176] ath10k_pci 0000:00:00.0: kconfig debug 1 debugfs 1 tracing 0 dfs 1 testmode 1
+[   12.107809] ath10k_pci 0000:00:00.0: firmware ver 10.2.4-1.0-00033 api 5 features no-p2p,raw-mode,mfp,allows-mesh-bcast crc32 c41417d0
+[   12.202260] ath10k_pci 0000:00:00.0: Direct firmware load for ath10k/QCA988X/hw2.0/board-2.bin failed with error -2
+[   12.212899] ath10k_pci 0000:00:00.0: Falling back to user helper
+[   12.326564] firmware ath10k!QCA988X!hw2.0!board-2.bin: firmware_loading_store: map pages failed
+[   12.361487] ath10k_pci 0000:00:00.0: board_file api 1 bmi_id N/A crc32 bebc7c08
+[   13.544414] ath10k_pci 0000:00:00.0: htt-ver 2.1 wmi-op 5 htt-op 2 cal otp max-sta 128 raw 0 hwcrypto 1
+[   13.684206] ath: EEPROM regdomain: 0x0
+[   13.684216] ath: EEPROM indicates default country code should be used
+[   13.684220] ath: doing EEPROM country-&gt;regdmn map search
+[   13.684236] ath: country maps to regdmn code: 0x3a
+[   13.684242] ath: Country alpha2 being used: US
+[   13.684246] ath: Regpair used: 0x3a
+[   13.827244] ath: EEPROM regdomain: 0x0
+[   13.827254] ath: EEPROM indicates default country code should be used
+[   13.827258] ath: doing EEPROM country-&gt;regdmn map search
+[   13.827275] ath: country maps to regdmn code: 0x3a
+[   13.827281] ath: Country alpha2 being used: US
+[   13.827284] ath: Regpair used: 0x3a
+[   13.841021] ieee80211 phy1: Selected rate control algorithm &#039;minstrel_ht&#039;
+[   13.845570] ieee80211 phy1: Atheros AR9340 Rev:3 mem=0xb8100000, irq=47
+[   13.857081] kmodloader: done loading kernel modules from /etc/modules.d/*
+[   15.156831] random: jshn: uninitialized urandom read (4 bytes read)
+[   25.923709] eth0: link up (1000Mbps/Full duplex)
+</p>
+</div>
+<p>
+<br/>
+
+</p>
+
+</div>
+
+<h2 class="sectionedit28" id="notes">Notes</h2>
+<div class="level2">
+
+</div>
+
+<h2 class="sectionedit29" id="tags">Tags</h2>
+<div class="level2">
+
+<p>
+<a href="../../../external.html?link=https://openwrt.org/meta/tags" class="wikilink1" title="meta:tags">How to add tags</a>
+</p>
+<div class="tags"><span>
+	<a href="../../../external.html?link=https://openwrt.org/tag/gigabitethernet?do=showtag&amp;tag=GigabitEthernet" class="wikilink1" title="tag:gigabitethernet" rel="tag">GigabitEthernet</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/fastethernet?do=showtag&amp;tag=FastEthernet" class="wikilink1" title="tag:fastethernet" rel="tag">FastEthernet</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/1nic?do=showtag&amp;tag=1NIC" class="wikilink1" title="tag:1nic" rel="tag">1NIC</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/1wnic?do=showtag&amp;tag=1WNIC" class="wikilink1" title="tag:1wnic" rel="tag">1WNIC</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/5port?do=showtag&amp;tag=5Port" class="wikilink1" title="tag:5port" rel="tag">5Port</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/usb?do=showtag&amp;tag=USB" class="wikilink1" title="tag:usb" rel="tag">USB</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/2usb?do=showtag&amp;tag=2USB" class="wikilink1" title="tag:2usb" rel="tag">2USB</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/ath9k?do=showtag&amp;tag=ath9k" class="wikilink1" title="tag:ath9k" rel="tag">ath9k</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/detachableantenna" class="wikilink1" title="tag:detachableantenna" rel="tag">DetachableAntenna</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/32ram?do=showtag&amp;tag=32RAM" class="wikilink1" title="tag:32ram" rel="tag">32RAM</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/8flash?do=showtag&amp;tag=8Flash" class="wikilink1" title="tag:8flash" rel="tag">8Flash</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/mips?do=showtag&amp;tag=MIPS" class="wikilink1" title="tag:mips" rel="tag">MIPS</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/mips32?do=showtag&amp;tag=MIPS32" class="wikilink1" title="tag:mips32" rel="tag">MIPS32</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/34k?do=showtag&amp;tag=34K" class="wikilink1" title="tag:34k" rel="tag">34K</a>
+</span></div>
+
+</div>
+
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>toh/zyxel/nwa1123-ac.txt</bdi> · Last modified: 2018/05/26 14:44 by <bdi>tmomas</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="nwa1123-ac39b4?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="nwa1123-ac5f35?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="nwa1123-ac2271?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+        
+<!-- ********** FOOTER ********** -->
+<div id="dokuwiki__footer"><div class="pad">
+    <div class="license">Except where otherwise noted, content on this wiki is licensed under the following license: <bdi><a href="../../../external.html?link=http://creativecommons.org/licenses/by-sa/4.0/" rel="license" class="urlextern">CC Attribution-Share Alike 4.0 International</a></bdi></div>
+    <div class="buttons">
+        <a href="../../../external.html?link=http://creativecommons.org/licenses/by-sa/4.0/" rel="license"><img src="../../lib/images/license/button/cc-by-sa.png" alt="CC Attribution-Share Alike 4.0 International" /></a>        <a href="../../../external.html?link=http://www.dokuwiki.org/donate" title="Donate" ><img
+            src="../../lib/tpl/openwrt/images/button-donate.gif" width="80" height="15" alt="Donate" /></a>
+        <a href="../../../external.html?link=http://www.php.net/" title="Powered by PHP" ><img
+            src="../../lib/tpl/openwrt/images/button-php.gif" width="80" height="15" alt="Powered by PHP" /></a>
+        <a href="../../../external.html?link=http://validator.w3.org/check/referer" title="Valid HTML5" ><img
+            src="../../lib/tpl/openwrt/images/button-html5.png" width="80" height="15" alt="Valid HTML5" /></a>
+        <a href="../../../external.html?link=http://jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS" ><img
+            src="../../lib/tpl/openwrt/images/button-css.png" width="80" height="15" alt="Valid CSS" /></a>
+        <a href="../../../external.html?link=http://dokuwiki.org/" title="Driven by DokuWiki" ><img
+            src="../../lib/tpl/openwrt/images/button-dw.png" width="80" height="15" alt="Driven by DokuWiki" /></a>
+    </div>
+</div></div><!-- /footer -->
+
+<script language="javascript" type="text/javascript" src="../../js/awstats_misc_tracker.js" ></script>
+<noscript><img src="../../js/awstats_misc_trackerd389.js?nojs=y" height="0" width="0" border="0" style="display: none"></noscript>
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="../../lib/exe/indexerad49.php?id=toh%3Azyxel%3Anwa1123-ac&amp;1552201039" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</body>
+
+<!-- Mirrored from openwrt.org/toh/zyxel/nwa1123-ac by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Sun, 10 Mar 2019 07:09:32 GMT -->
+</html>

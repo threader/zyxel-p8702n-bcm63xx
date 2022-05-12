@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="no-js">
+
+<!-- Mirrored from openwrt.org/toh/zyxel/vmg3312-b10b by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Sun, 10 Mar 2019 07:09:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <title>OpenWrt Project: ZyXEL VMG3312-B10B</title>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="keywords" content="bcm63xx,bcm63168"/>
+<link rel="search" type="application/opensearchdescription+xml" href="../../../external.html?link=https://openwrt.org/lib/exe/opensearch.php" title="OpenWrt Project"/>
+<link rel="start" href="../../../external.html?link=https://openwrt.org/"/>
+<link rel="contents" href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b?do=index" title="Sitemap"/>
+<link rel="manifest" href="../../../external.html?link=https://openwrt.org/lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="../../../external.html?link=https://openwrt.org/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="../../../external.html?link=https://openwrt.org/feed.php?mode=list&amp;ns=toh:zyxel"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="../../../external.html?link=https://openwrt.org/_export/xhtml/toh/zyxel/vmg3312-b10b"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="../../../external.html?link=https://openwrt.org/_export/raw/toh/zyxel/vmg3312-b10b"/>
+<link rel="canonical" href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b"/>
+<link rel="stylesheet" type="text/css" href="../../../external.html?link=https://openwrt.org/lib/exe/css.php?t=openwrt&amp;tseed=659d77b8d7a7a08bcde1a890e899b0ef"/>
+<link type="text/css" rel="stylesheet" href="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/media/css/jquery.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/FixedHeader/css/fixedHeader.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/FixedColumns/css/fixedColumns.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Buttons/css/buttons.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Responsive/css/responsive.dataTables.min.css"/>
+<!--[if gte IE 9]><!-->
+<script type="text/javascript">/*<![CDATA[*/var NS='toh:zyxel';var JSINFO = {"plugin_imagemap_mldummy":"\/_media\/wiki\/dokuwiki-128.png","move_renameokay":false,"plugin":{"datatables":{"config":[],"enableForAllTables":0}},"schemes":["http","https","telnet","gopher","wais","ftp","ed2k","irc","ldap"],"plugin_folded":{"hide":"hide","reveal":"reveal"},"id":"toh:zyxel:vmg3312-b10b","namespace":"toh:zyxel","ACT":"show","useHeadingNavigation":1,"useHeadingContent":0};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="../../../external.html?link=https://openwrt.org/lib/exe/jquery.php?tseed=23f888679b4f1dc26eef34902aca964f"></script>
+<script type="text/javascript" charset="utf-8" src="../../../external.html?link=https://openwrt.org/lib/exe/js.php?t=openwrt&amp;tseed=659d77b8d7a7a08bcde1a890e899b0ef"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Buttons/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Buttons/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="../../../external.html?link=https://openwrt.org/lib/plugins/datatables/assets/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<!--<![endif]-->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" href="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/favicon.ico" />
+<link rel="apple-touch-icon" href="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/apple-touch-icon.png" />
+    </head>
+
+<body>
+    <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site" class="page_toh page_zyxel page_vmg3312-b10b"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_openwrt    showSidebar hasSidebar">
+
+        
+<!-- ********** HEADER ********** -->
+<div id="dokuwiki__header"><div class="pad group">
+
+    
+    <div class="headings group">
+        <ul class="a11y skip">
+            <li><a href="#dokuwiki__content">skip to content</a></li>
+        </ul>
+
+        <h1><a href="../../../external.html?link=https://openwrt.org/"  accesskey="h" title="[H]"><img src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/logo.png" width="386" height="98" alt="" /> <span>OpenWrt Project</span></a></h1>
+            </div>
+
+    <div class="tools group">
+        <!-- USER TOOLS -->
+                    <div id="dokuwiki__usertools">
+                <h3 class="a11y">User Tools</h3>
+                <ul>
+                    <li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b?do=register"  class="action register" rel="nofollow" title="Register">Register</a></li><li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b?do=login&amp;sectok="  class="action login" rel="nofollow" title="Log In">Log In</a></li>                </ul>
+            </div>
+        
+        <!-- SITE TOOLS -->
+        <div id="dokuwiki__sitetools">
+            <h3 class="a11y">Site Tools</h3>
+            <form action="../../../external.html?link=https://openwrt.org/start" method="get" role="search" class="search doku_form" id="dw__search" accept-charset="utf-8"><input type="hidden" name="do" value="search" /><input type="hidden" name="id" value="toh:zyxel:vmg3312-b10b" /><div class="no"><input name="q" type="text" class="edit" title="[F]" accesskey="f" placeholder="Search" autocomplete="on" id="qsearch__in" value="" /><button value="1" type="submit" title="Search">Search</button><div id="qsearch__out" class="ajax_qsearch JSpopup"></div></div></form>            <div class="mobileTools">
+                <form action="../../../external.html?link=https://openwrt.org/doku.php" method="get" accept-charset="utf-8"><div class="no"><input type="hidden" name="id" value="toh:zyxel:vmg3312-b10b" /><select name="do" class="edit quickselect" title="Tools"><option value="">Tools</option><optgroup label="Page Tools"><option value="edit">Show pagesource</option><option value="revisions">Old revisions</option><option value="backlink">Backlinks</option></optgroup><optgroup label="Site Tools"><option value="recent">Recent Changes</option><option value="media">Media Manager</option><option value="index">Sitemap</option></optgroup><optgroup label="User Tools"><option value="register">Register</option><option value="login">Log In</option></optgroup></select><button type="submit">&gt;</button></div></form>            </div>
+            <ul>
+                <li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b?do=recent"  class="action recent" accesskey="r" rel="nofollow" title="Recent Changes [R]">Recent Changes</a></li><li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b?do=media&amp;ns=toh%3Azyxel"  class="action media" rel="nofollow" title="Media Manager">Media Manager</a></li><li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b?do=index"  class="action index" accesskey="x" rel="nofollow" title="Sitemap [X]">Sitemap</a></li>            </ul>
+        </div>
+
+    </div>
+
+    <!-- BREADCRUMBS -->
+            <div class="breadcrumbs">
+                            <div class="youarehere"><span class="bchead">You are here: </span><span class="home"><bdi><a href="../../../external.html?link=https://openwrt.org/start" class="wikilink1" title="start">Welcome to the OpenWrt Project</a></bdi></span> » <bdi><a href="../../../external.html?link=https://openwrt.org/toh/start" class="wikilink1" title="toh:start">Table of Hardware</a></bdi> » <bdi><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/start" class="wikilink1" title="toh:zyxel:start">ZyXEL</a></bdi> » <bdi><span class="curid"><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b" class="wikilink1" title="toh:zyxel:vmg3312-b10b">ZyXEL VMG3312-B10B</a></span></bdi></div>
+                                                <div class="plugin_translation"><form action="../../../external.html?link=https://openwrt.org/start" id="translation__dropdown"><img src="../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/en.gif" alt="en" height="11" class="wikilink1" /> <select name="id" class="wikilink1"><option class="wikilink1 cur flag" title="English" value="toh/zyxel/vmg3312-b10b" selected="selected" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/en.gif')">English (en)</option><option class="wikilink2 flag" title="|العربية" value="ar/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/ar.gif')">|العربية (ar)</option><option class="wikilink2 flag" title="Česky" value="cs/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/cs.gif')">Česky (cs)</option><option class="wikilink2 flag" title="Deutsch" value="de/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/de.gif')">Deutsch (de)</option><option class="wikilink2 flag" title="Español" value="es/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/es.gif')">Español (es)</option><option class="wikilink2 flag" title="Français" value="fr/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/fr.gif')">Français (fr)</option><option class="wikilink2 flag" title="Magyar" value="hu/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/hu.gif')">Magyar (hu)</option><option class="wikilink2 flag" title="Italiano" value="it/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/it.gif')">Italiano (it)</option><option class="wikilink2 flag" title="日本語" value="ja/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/ja.gif')">日本語 (ja)</option><option class="wikilink2 flag" title="한국어" value="ko/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/ko.gif')">한국어 (ko)</option><option class="wikilink2 flag" title="Polski" value="pl/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/pl.gif')">Polski (pl)</option><option class="wikilink2 flag" title="Português" value="pt/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/pt.gif')">Português (pt)</option><option class="wikilink2 flag" title="Português" value="pt-br/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/pt-br.gif')">Português (pt-br)</option><option class="wikilink2 flag" title="Русский" value="ru/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/ru.gif')">Русский (ru)</option><option class="wikilink2 flag" title="Türkçe" value="tr/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/tr.gif')">Türkçe (tr)</option><option class="wikilink2 flag" title="中文" value="zh/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/zh.gif')">中文 (zh)</option><option class="wikilink2 flag" title="繁體中文" value="zh-tw/toh/zyxel/vmg3312-b10b" style="background-image: url('../../../external.html?link=https://openwrt.org/lib/plugins/translation/flags/zh-tw.gif')">繁體中文 (zh-tw)</option></select><input name="go" type="submit" value="&rarr;" /></form>&nbsp<sup><a href="../../../external.html?link=https://openwrt.org/meta/translation" class="wikilink1" title="meta:translation">?</a></sup></div>        </div>
+    
+    
+    <hr class="a11y" />
+</div></div><!-- /header -->
+
+        <div class="wrapper group">
+
+                            <!-- ********** ASIDE ********** -->
+                <div id="dokuwiki__aside"><div class="pad aside include group">
+                    <h3 class="toggle">Sidebar</h3>
+                    <div class="content">
+                                                                        
+
+<ul>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/start" class="wikilink1" title="start">Welcome to OpenWrt</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/supported_devices" class="wikilink1" title="supported_devices">Supported Devices</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/packages/start" class="wikilink1" title="packages:start">Packages</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/downloads" class="wikilink1" title="downloads">Downloads</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/docs/start" class="wikilink1" title="docs:start">Documentation</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/submitting-patches" class="wikilink1" title="submitting-patches">Submitting patches</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/bugs" class="wikilink1" title="bugs">Reporting bugs</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/wiki/wikirules" class="wikilink1" title="wiki:wikirules">Wiki contribution guide</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://forum.openwrt.org/" class="urlextern" title="https://forum.openwrt.org" rel="nofollow">OpenWrt Forum</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/faq" class="wikilink1" title="faq">FAQ</a> </div>
+</li>
+</ul>
+<hr />
+<ul>
+<li class="level1 node"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/about" class="wikilink1" title="about">About OpenWrt/LEDE</a> </div>
+<ul>
+<li class="level2"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/rules" class="wikilink1" title="rules">Rules</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/infrastructure" class="wikilink1" title="infrastructure">Infrastructure</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/trademark" class="wikilink1" title="trademark">Trademark Policy</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/wiki/start" class="wikilink1" title="wiki:start">About this site</a></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/contact" class="wikilink1" title="contact">Contact Us</a> </div>
+</li>
+</ul>
+                                            </div>
+                </div></div><!-- /aside -->
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+
+                <div class="pageId"><span>toh:zyxel:vmg3312-b10b</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                    <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#zyxel_vmg3312-b10b">ZyXEL VMG3312-B10B</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#supported_versions">Supported Versions</a></div></li>
+<li class="level2"><div class="li"><a href="#hardware_highlights">Hardware Highlights</a></div></li>
+<li class="level2"><div class="li"><a href="#basic_configuration">Basic configuration</a></div></li>
+<li class="level2"><div class="li"><a href="#specific_configuration">Specific Configuration</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#failsafe_mode">Failsafe mode</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#hardware">Hardware</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#info">Info</a></div></li>
+<li class="level3"><div class="li"><a href="#photos">Photos</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#bootlogs">Bootlogs</a></div></li>
+<li class="level2"><div class="li"><a href="#notes">Notes</a></div></li>
+<li class="level2"><div class="li"><a href="#tags">Tags</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="zyxel_vmg3312-b10b">ZyXEL VMG3312-B10B</h1>
+<div class="level1">
+
+<p>
+ADSL2/VDSL2 Modem router based Broadcom BCM63168D0 chip.
+</p>
+
+</div>
+<div class="plugin_include_content plugin_include__meta:infobox:broadcom_dsl">
+<div class="level1">
+<div class="wrap_center wrap_round wrap_important plugin_wrap" style="width: 650px; max-width: 100%;">
+<p>
+<strong>DSL will not work at all on devices with BCM63xx DSL chipset</strong> (due to unavailability of <abbr title="Free/Libre and Open Source Software">FLOSS</abbr> driver for Broadcom chips). Consider this when chosing a device to buy, or when deciding to flash OpenWrt on your device because it is listed as supported.<br/>
+
+See <a href="../../../external.html?link=https://openwrt.org/meta/infobox/broadcom_dsl" class="wikilink1" title="meta:infobox:broadcom_dsl">broadcom_dsl</a>, <a href="../../../external.html?link=https://openwrt.org/unsupported/dsl_modem" class="wikilink1" title="unsupported:dsl_modem">dsl_modem</a> and <a href="../../../external.html?link=https://openwrt.org/docs/techref/hardware/soc/soc.broadcom.bcm63xx" class="wikilink1" title="docs:techref:hardware:soc:soc.broadcom.bcm63xx">soc.broadcom.bcm63xx</a> for details.
+</p>
+</div>
+</div>
+</div>
+<div class="level1">
+
+</div>
+<div class="plugin_include_content plugin_include__meta:infobox:broadcom_wifi">
+<div class="level1">
+<div class="wrap_center wrap_round wrap_important plugin_wrap" style="width: 650px; max-width: 100%;">
+<p>
+Devices with Broadcom WiFi chipsets have <strong>limited OpenWrt supportability</strong> (due to limited <abbr title="Free/Libre and Open Source Software">FLOSS</abbr> driver availability for Broadcom chips). Consider this when chosing a device to buy, or when deciding to flash OpenWrt on your device because it is listed as supported.
+See <a href="../../../external.html?link=https://openwrt.org/meta/infobox/broadcom_wifi" class="wikilink1" title="meta:infobox:broadcom_wifi">broadcom_wifi</a> for details.
+</p>
+</div>
+</div>
+</div>
+<div class="level1">
+
+</div>
+
+<h2 class="sectionedit10" id="supported_versions">Supported Versions</h2>
+<div class="level2">
+<div class="table sectionedit11"><table class="inline">
+	<tr class="row0">
+		<th class="col0"> Version/Model </th><th class="col1"> Launch Date </th><th class="col2"> S/N </th><th class="col3"> OpenWrt Version Supported </th><th class="col4"> Model Specific Notes </th>
+	</tr>
+</table></div>
+
+<p>
+<span style='color:red; '><strong>NOT SUPPORTED YET</strong></span>
+</p>
+
+</div>
+
+<h2 class="sectionedit12" id="hardware_highlights">Hardware Highlights</h2>
+<div class="level2">
+<div class="table sectionedit13"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> SoC                 </th><th class="col1 leftalign"> Ram    </th><th class="col2 leftalign"> Flash        </th><th class="col3 leftalign"> Network   </th><th class="col4 leftalign"> USB   </th><th class="col5 leftalign"> Serial   </th><th class="col6 leftalign"> JTag   </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign"> Broadcom BCM63168   </td><td class="col1 centeralign">  64MB  </td><td class="col2 leftalign"> 128MB NAND   </td><td class="col3 leftalign">           </td><td class="col4 leftalign"> yes   </td><td class="col5 centeralign">   yes    </td><td class="col6 leftalign">        </td>
+	</tr>
+</table></div>
+
+</div>
+
+<h2 class="sectionedit14" id="basic_configuration">Basic configuration</h2>
+<div class="level2">
+
+<p>
+→ <a href="../../../external.html?link=https://openwrt.org/docs/guide-quick-start/checks_and_troubleshooting" class="wikilink1" title="docs:guide-quick-start:checks_and_troubleshooting">Basic configuration</a> After flashing, proceed with this.<br/>
+
+Set up your Internet connection, configure wireless, configure USB port, etc.
+</p>
+
+</div>
+
+<h2 class="sectionedit15" id="specific_configuration">Specific Configuration</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit16" id="failsafe_mode">Failsafe mode</h3>
+<div class="level3">
+
+<p>
+→ <a href="../../../external.html?link=https://openwrt.org/docs/guide-user/troubleshooting/failsafe_and_factory_reset" class="wikilink1" title="docs:guide-user:troubleshooting:failsafe_and_factory_reset">failsafe_and_factory_reset</a>
+</p>
+
+</div>
+
+<h2 class="sectionedit17" id="hardware">Hardware</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit18" id="info">Info</h3>
+<div class="level3">
+<div class="table sectionedit19"><table class="inline">
+	<tr class="row0">
+		<th class="col0 leftalign"> Architecture       </th><td class="col1 leftalign"> MIPS                 </td>
+	</tr>
+	<tr class="row1">
+		<th class="col0 leftalign"> Vendor             </th><td class="col1 leftalign"> Broadcom             </td>
+	</tr>
+	<tr class="row2">
+		<th class="col0 leftalign"> Model Name / ID    </th><td class="col1 leftalign"> ZyXEL VMG3312-B10B   </td>
+	</tr>
+	<tr class="row3">
+		<th class="col0 leftalign"> Bootloader         </th><td class="col1 leftalign"> CFE                  </td>
+	</tr>
+	<tr class="row4">
+		<th class="col0 leftalign"> Board ID           </th><td class="col1 leftalign"> 963168VX             </td>
+	</tr>
+	<tr class="row5">
+		<th class="col0 leftalign"> System-On-Chip     </th><td class="col1 leftalign"> Broadcom BCM63168    </td>
+	</tr>
+	<tr class="row6">
+		<th class="col0 leftalign"> CPU / Speed        </th><td class="col1"> Broadcom MIPS 4350 V8.0 32-bit (SoC) / 400 <abbr title="Megahertz">MHz</abbr> Dual Core </td>
+	</tr>
+	<tr class="row7">
+		<th class="col0 leftalign"> Flash-Chip         </th><td class="col1"> Macronix MXIC MX30LF1G08AA 1G-bit (128 M x 8 bit) NAND Flash Memory </td>
+	</tr>
+	<tr class="row8">
+		<th class="col0 leftalign"> Flash-Size         </th><td class="col1 leftalign"> 128MB   </td>
+	</tr>
+	<tr class="row9">
+		<th class="col0 leftalign"> RAM-Chip           </th><td class="col1 leftalign">         </td>
+	</tr>
+	<tr class="row10">
+		<th class="col0 leftalign"> RAM-Size           </th><td class="col1 leftalign"> 64MB    </td>
+	</tr>
+	<tr class="row11">
+		<th class="col0 leftalign"> VDSL2 Line Driver  </th><td class="col1 leftalign">         </td>
+	</tr>
+	<tr class="row12">
+		<th class="col0 leftalign"> Ethernet           </th><td class="col1"> Broadcom BCM63168D0 Ethernet Network Device ? </td>
+	</tr>
+	<tr class="row13">
+		<th class="col0 leftalign"> Wireless           </th><td class="col1"> Broadcom BCM435f 802.11 Wireless Controller ? </td>
+	</tr>
+	<tr class="row14">
+		<th class="col0 leftalign"> USB                </th><td class="col1 leftalign"> 1x USB (USB1.1??? USB2.0??? USB.0???)         </td>
+	</tr>
+	<tr class="row15">
+		<th class="col0 leftalign"> Serial             </th><td class="col1 leftalign"> yes      </td>
+	</tr>
+	<tr class="row16">
+		<th class="col0 leftalign"> JTAG               </th><td class="col1 leftalign">          </td>
+	</tr>
+	<tr class="row17">
+		<th class="col0 leftalign"> Antenna            </th><td class="col1 leftalign">          </td>
+	</tr>
+	<tr class="row18">
+		<th class="col0 leftalign"> Power              </th><td class="col1 leftalign"> 12V 1A   </td>
+	</tr>
+</table></div>
+
+</div>
+
+<h3 class="sectionedit20" id="photos">Photos</h3>
+<div class="level3">
+
+<p>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_1_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_1_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_1_.jpg?w=200&amp;tok=4b6b2f" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_2_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_2_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_2_.jpg?w=200&amp;tok=f36bb0" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_5_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_5_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_5_.jpg?w=200&amp;tok=bbfcc7" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_6_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_6_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_6_.jpg?w=200&amp;tok=d64e4a" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_7_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_7_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_7_.jpg?w=200&amp;tok=cde0a0" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_8_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_8_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_8_.jpg?w=200&amp;tok=40adca" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_9_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_9_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_9_.jpg?w=200&amp;tok=ab9ac3" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_10_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_10_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_10_.jpg?w=200&amp;tok=e64c9d" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_11_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_11_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_11_.jpg?w=200&amp;tok=06b801" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_12_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_12_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_12_.jpg?w=200&amp;tok=5e61d4" class="media" alt="" width="200" /></a>
+</p>
+
+<p>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_3_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_3_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_3_.jpg?w=200&amp;tok=c56bfc" class="media" alt="" width="200" /></a>
+<a href="../../../external.html?link=https://openwrt.org/_detail/media/zyxel/vmg3312/zyxel_vmg3312-b10b_4_.jpg?id=toh%3Azyxel%3Avmg3312-b10b" class="media" title="media:zyxel:vmg3312:zyxel_vmg3312-b10b_4_.jpg"><img src="../../../external.html?link=https://openwrt.org/_media/media/zyxel/vmg3312/zyxel_vmg3312-b10b_4_.jpg?w=200&amp;tok=2aa0d9" class="media" alt="" width="200" /></a>
+</p>
+
+</div>
+
+<h2 class="sectionedit21" id="bootlogs">Bootlogs</h2>
+<div class="level2">
+<div class="wrap_bootlog plugin_wrap">
+<p>
+Linux version 2.6.30 (hill@ShangHaoBu) (gcc version 4.4.2 (Buildroot 2010.02-git) ) #7 SMP PREEMPT Thu Nov 6 18:01:30 CST 2014
+NAND flash device: name MXIC MX30LF1G08AA, id 0xc2f1 block 128KB size 131072KB
+963168VX prom init
+CPU revision is: 0002a080 (Broadcom4350)
+DSL SDRAM reserved: 0x132000
+Determined physical RAM map:
+ memory: 03ece000 @ 00000000 (usable)
+Zone PFN ranges:
+  DMA      0x00000000 -&gt; 0x00001000
+  Normal   0x00001000 -&gt; 0x00003ece
+Movable zone start PFN for each node
+early_node_map[1] active PFN ranges
+    0: 0x00000000 -&gt; 0x00003ece
+On node 0 totalpages: 16078
+free_area_init_node: node 0, pgdat 804121c0, node_mem_map 81000000
+  DMA zone: 32 pages used for memmap
+  DMA zone: 0 pages reserved
+  DMA zone: 4064 pages, LIFO batch:0
+  Normal zone: 94 pages used for memmap
+  Normal zone: 11888 pages, LIFO batch:1
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 15952
+Kernel command line: root=mtd:rootfs ro rootfstype=jffs2 console=ttyS0,115200
+wait instruction: enabled
+Primary instruction cache 64kB, VIPT, 4-way, linesize 16 bytes.
+Primary data cache 32kB, 2-way, VIPT, cache aliases, linesize 16 bytes
+NR_IRQS:128
+PID hash table entries: 256 (order: 8, 1024 bytes)
+console [ttyS0] enabled
+Dentry cache hash table entries: 8192 (order: 3, 32768 bytes)
+Inode-cache hash table entries: 4096 (order: 2, 16384 bytes)
+Memory: 58608k/64312k available (3233k kernel code, 5684k reserved, 824k data, 156k init, 0k highmem)
+Calibrating delay loop... 399.36 BogoMIPS (lpj=199680)
+Mount-cache hash table entries: 512
+--Kernel Config--
+  SMP=1
+  PREEMPT=1
+  DEBUG_SPINLOCK=0
+  DEBUG_MUTEXES=0
+Broadcom Logger v0.1 Nov  3 2014 15:45:22
+CPU revision is: 0002a080 (Broadcom4350)
+Primary instruction cache 64kB, VIPT, 4-way, linesize 16 bytes.
+Primary data cache 32kB, 2-way, VIPT, cache aliases, linesize 16 bytes
+Calibrating delay loop... 402.43 BogoMIPS (lpj=201216)
+Brought up 2 CPUs
+net_namespace: 1144 bytes
+NET: Registered protocol family 16
+Internal 1P2 VREG will be shutdown if unused...Unused, turn it off (000091b3-000091bb=-8&lt;300)
+registering PCI controller with io_map_base unset
+registering PCI controller with io_map_base unset
+bio: create slab &lt;bio-0&gt; at 0
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+pci 0000:00:00.0: reg 10 32bit mmio: [0x10004000-0x10013fff]
+pci 0000:00:00.0: reg 30 32bit mmio: [0x000000-0x0007ff]
+pci 0000:00:00.0: supports D1 D2
+pci 0000:00:00.0: PME# supported from D0 D3hot D3cold
+pci 0000:00:00.0: PME# disabled
+pci 0000:00:09.0: reg 10 32bit mmio: [0x10002600-0x100026ff]
+pci 0000:00:0a.0: reg 10 32bit mmio: [0x10002500-0x100025ff]
+pci 0000:01:00.0: PME# supported from D0 D3hot
+pci 0000:01:00.0: PME# disabled
+pci 0000:01:00.0: PCI bridge, secondary bus 0000:02
+pci 0000:01:00.0:   IO window: disabled
+pci 0000:01:00.0:   MEM window: disabled
+pci 0000:01:00.0:   PREFETCH window: disabled
+PCI: Setting latency timer of device 0000:01:00.0 to 64
+[0;34mBLOG v3.0 Initialized[0m
+BLOG Rule v1.0 Initialized
+Broadcom IQoS v0.1 Nov  3 2014 15:46:56 initialized
+Broadcom GBPM v0.1 Nov  3 2014 15:46:56 initialized
+NET: Registered protocol family 8
+NET: Registered protocol family 20
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 2048 (order: 2, 16384 bytes)
+TCP bind hash table entries: 2048 (order: 2, 16384 bytes)
+TCP: Hash tables configured (established 2048 bind 2048)
+TCP reno registered
+NET: Registered protocol family 1
+JFFS2 version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+fuse init (API version 7.11)
+msgmni has been set to 114
+io scheduler noop registered (default)
+PCI: Setting latency timer of device 0000:01:00.0 to 64
+Driver &#039;sd&#039; needs updating - please use bus_type methods
+PPP generic driver version 2.4.2
+PPP Deflate Compression module registered
+PPP BSD Compression module registered
+PPP MPPE Compression module registered
+NET: Registered protocol family 24
+Broadcom DSL NAND controller (BrcmNand Controller)
+--&gt;brcmnand_scan: CS=0, numchips=1, csi=0
+mtd-&gt;oobsize=0, mtd-&gt;eccOobSize=0
+NAND_CS_NAND_XOR=00000000
+Disabling XOR on CS#0
+brcmnand_scan: Calling brcmnand_probe for CS=0
+B4: NandSelect=40000001, nandConfig=15142200, chipSelect=0
+brcmnand_read_id: CS0: dev_id=c2f1801d
+After: NandSelect=40000001, nandConfig=15142200
+DevId c2f1801d may not be supported.  Will use config info
+Spare Area Size = 16B/512B
+Block size=00020000, erase shift=17
+NAND Config: Reg=15142200, chipSize=128 MB, blockSize=128K, erase_shift=11
+busWidth=1, pageSize=2048B, page_shift=11, page_mask=000007ff
+timing1 not adjusted: 6574845b
+timing2 not adjusted: 00001e96
+brcmnand_adjust_acccontrol: gAccControl[CS=0]=00000000, ACC=f7ff1010
+ECC level changed to 15
+OOB size changed to 16
+BrcmNAND mfg 0 0 UNSUPPORTED NAND CHIP 128MB on CS0
+
+Found NAND on CS0: ACC=f7ff1010, cfg=15142200, flashId=c2f1801d, tim1=6574845b, tim2=00001e96
+BrcmNAND version = 0x0400 128MB @00000000
+brcmnand_scan: Done brcmnand_probe
+brcmnand_scan: B4 nand_select = 40000001
+brcmnand_scan: After nand_select = 40000001
+100 CS=0, chip-&gt;ctrl-&gt;CS[0]=0
+ECC level 15, threshold at 1 bits
+reqEccLevel=0, eccLevel=15
+190 eccLevel=15, chip-&gt;ecclevel=15, acc=f7ff1010
+brcmnand_scan 10
+200 CS=0, chip-&gt;ctrl-&gt;CS[0]=0
+200 chip-&gt;ecclevel=15, acc=f7ff1010
+page_shift=11, bbt_erase_shift=17, chip_shift=27, phys_erase_shift=17
+brcmnand_scan 220
+Brcm NAND controller version = 4.0 NAND flash size 128MB @18000000
+brcmnand_scan 230
+brcmnand_scan 40, mtd-&gt;oobsize=64, chip-&gt;ecclayout=00000000
+brcmnand_scan 42, mtd-&gt;oobsize=64, chip-&gt;ecclevel=15, isMLC=0, chip-&gt;cellinfo=0
+ECC layout=brcmnand_oob_bch4_4k
+brcmnand_scan:  mtd-&gt;oobsize=64
+brcmnand_scan: oobavail=50, eccsize=512, writesize=2048
+brcmnand_scan, eccsize=512, writesize=2048, eccsteps=4, ecclevel=15, eccbytes=3
+300 CS=0, chip-&gt;ctrl-&gt;CS[0]=0
+500 chip=83a3a190, CS=0, chip-&gt;ctrl-&gt;CS[0]=0
+--&gt;brcmnand_default_bbt
+brcmnand_default_bbt: bbt_td = bbt_main_descr
+Bad block table Bbt0 found at page 0000ffc0, version 0x01 for chip on CS0
+Bad block table 1tbB found at page 0000ff80, version 0x01 for chip on CS0
+File system address: 0xb8040000
+nand_read_bbt: Bad block at 0x05cc0000
+nand_read_bbt: Bad block at 0x05ea0000
+rescanning .... 
+Found bad block at offset 5cc0000, in BBT
+Found bad block at offset 5ea0000, in BBT
+----- Contents of BBT -----
+Bad block at 5cc0000
+Bad block at 5ea0000
+----- END Contents of BBT -----
+brcmnandCET: Status -&gt; Deferred
+brcmnand_scan 99
+Root file system size 28e0000
+bad block number = 0
+Creating 4 MTD partitions on &quot;brcmnand.0&quot;:
+0x000000040000-0x0000010e0000 : &quot;rootfs&quot;
+0x0000051e0000-0x0000055e0000 : &quot;data&quot;
+0x000000000000-0x000000020000 : &quot;nvram&quot;
+0x0000055e0000-0x000007f00000 : &quot;fw&quot;
+ehci_hcd: USB 2.0 &#039;Enhanced&#039; Host Controller (EHCI) Driver
+PCI: Enabling device 0000:00:0a.0 (0000 -&gt; 0002)
+PCI: Setting latency timer of device 0000:00:0a.0 to 64
+ehci_hcd 0000:00:0a.0: EHCI Host Controller
+ehci_hcd 0000:00:0a.0: new USB bus registered, assigned bus number 1
+ehci_hcd 0000:00:0a.0: Enabling legacy PCI PM
+ehci_hcd 0000:00:0a.0: irq 18, io mem 0x10002500
+ehci_hcd 0000:00:0a.0: USB f.f started, EHCI 1.00
+usb usb1: configuration #1 chosen from 1 choice
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 2 ports detected
+ohci_hcd: USB 1.1 &#039;Open&#039; Host Controller (OHCI) Driver
+PCI: Enabling device 0000:00:09.0 (0000 -&gt; 0002)
+PCI: Setting latency timer of device 0000:00:09.0 to 64
+ohci_hcd 0000:00:09.0: OHCI Host Controller
+ohci_hcd 0000:00:09.0: new USB bus registered, assigned bus number 2
+ohci_hcd 0000:00:09.0: irq 17, io mem 0x10002600
+usb usb2: configuration #1 chosen from 1 choice
+hub 2-0:1.0: USB hub found
+hub 2-0:1.0: 2 ports detected
+usbcore: registered new interface driver usblp
+Initializing USB Mass Storage driver...
+usbcore: registered new interface driver usb-storage
+USB Mass Storage support registered.
+Watchdog Timer Init -- kthread
+brcmboard: brcm_board_init entry
+SES: Button Interrupt 0x2 is enabled
+SES: LED GPIO 0x10 is enabled
+PCIe: No device found - Powering down
+Serial: BCM63XX driver $Revision: 3.00 $
+[0;33mMagic SysRq enabled (type ^ h for list of supported commands)[0m
+ttyS0 at MMIO 0xb0000180 (irq = 13) is a BCM63XX
+ttyS1 at MMIO 0xb00001a0 (irq = 42) is a BCM63XX
+bcmPktDma_init: Broadcom Packet DMA Library initialized
+Total # RxBds=1448
+bcmPktDmaBds_init: Broadcom Packet DMA BDs initialized
+
+bcmxtmrt: Broadcom BCM3168D0 ATM/PTM Network Device v0.4 Nov  3 2014 15:46:42
+GACT probability NOT on
+Mirror/redirect action on
+u32 classifier
+    input device check on 
+    Actions configured 
+GRE over IPv4 tunneling driver
+TCP cubic registered
+Initializing XFRM netlink socket
+NET: Registered protocol family 10
+IPv6 over IPv4 tunneling driver
+NET: Registered protocol family 17
+NET: Registered protocol family 15
+Initializing MCPD Module
+Ebtables v2.0 registered
+ebt_time registered
+ebt_dhcpopt registered
+ebt_ftos registered
+ebt_wmm_mark registered
+802.1Q VLAN Support v1.8 Ben Greear &lt;greearb@candelatech.com&gt;
+All bugs added by David S. Miller &lt;davem@redhat.com&gt;
+VFS: Mounted root (jffs2 filesystem) readonly on device 31:0.
+Freeing unused kernel memory: 156k freed
+chipinfo: module license &#039;proprietary&#039; taints kernel.
+Disabling lock debugging due to kernel taint
+brcmchipinfo: brcm_chipinfo_init entry
+Broadcom Ingress QoS Module  Char Driver v0.1 Nov  3 2014 15:45:41 Registered&lt;243&gt;[0m
+
+Broadcom Ingress QoS ver 0.1 initialized
+BPM: tot_mem_size=67108864B (64MB), buf_mem_size=10066320B (9MB), num of buffers=4766, buf size=2112
+Broadcom BPM Module Char Driver v0.1 Nov  3 2014 15:45:36 Registered&lt;244&gt;[0m
+[0;34m[NTC bpm] bpm_set_status: BPM status : enabled 
+[0m
+NBUFF v1.0 Initialized
+[0;36;44mInitialized fcache state[0m
+[0;36;44mBroadcom Packet Flow Cache  Char Driver v2.2 Nov  3 2014 15:45:42 Registered&lt;242&gt;[0m
+Created Proc FS /procfs/fcache
+[0;36;44mBroadcom Packet Flow Cache registered with netdev chain[0m
+[0;36;44mBroadcom Packet Flow Cache learning via BLOG enabled.[0m
+[0;36;44mConstructed Broadcom Packet Flow Cache v2.2 Nov  3 2014 15:45:42[0m
+chipId 0x631680D0
+Broadcom Forwarding Assist Processor (FAP) Char Driver v0.1 Nov  3 2014 15:45:38 Registered &lt;241&gt;
+FAP Debug values at 0x00000010 0x00000010
+Enabling SMISBUS PHYS_FAP_BASE[0] is 0x10c01000
+FAP Soft Reset Done
+4ke Reset Done
+Enabling SMISBUS PHYS_FAP_BASE[1] is 0x10c01000
+FAP Soft Reset Done
+4ke Reset Done
+FAP Debug values at 0xa2adb290 0xa2b1b290
+Allocated FAP0 GSO Buffers (0xA2AE1548) : 1048576 bytes @ 0xA2400000
+Allocated FAP1 GSO Buffers (0xA2B21548) : 1048576 bytes @ 0xA2500000
+Allocated FAP0 TM SDRAM Queue Storage (a2ae154c) : 219456 bytes @ a2b40000
+Allocated FAP1 TM SDRAM Queue Storage (a2b2154c) : 219456 bytes @ a2b80000
+[0;34m[NTC fapProto] fapReset  : Reset FAP Protocol layer[0m
+[FAP0] DSPRAM : stack &lt;0x80000000&gt;&lt;1536&gt;, global &lt;0x80000600&gt;&lt;6432&gt;, free &lt;224&gt;, total&lt;8192&gt;
+[FAP1] DSPRAM : stack &lt;0x80000000&gt;&lt;1536&gt;, global &lt;0x80000600&gt;&lt;6432&gt;, free &lt;224&gt;, total&lt;8192&gt;
+[FAP0] PSM : addr&lt;0x80002000&gt;, used &lt;24412&gt;, free &lt;164&gt;, total &lt;24576&gt;
+[FAP1] PSM : addr&lt;0x80002000&gt;, used &lt;24412&gt;, free &lt;164&gt;, total &lt;24576&gt;
+[FAP0] Flows supported: 222 (dsp 54, psm 44, qsm 124)
+[FAP1] Flows supported: 222 (dsp 54, psm 44, qsm 124)
+[FAP0] System timer rollover protection is enabled. (initial jiffies = -249F0)
+[FAP1] System timer rollover protection is enabled. (initial jiffies = -249F0)
+[FAP0] DQM : availableMemory 15464 bytes, nextByteAddress 0xE0010398
+[FAP1] DQM : availableMemory 15464 bytes, nextByteAddress 0xE0010398
+[FAP0] GSO Buffer set to 0xA2400000
+[FAP1] GSO Buffer set to 0xA2500000
+[FAP0] FAP BPM Initialized.
+[FAP1] FAP BPM Initialized.
+fapDrv_construct: FAP0: pManagedMemory=b0820710. wastage 8 bytes
+fapDrv_construct: FAP1: pManagedMemory=b0a20710. wastage 8 bytes
+bcmPktDma_bind: FAP Driver binding successfull
+[FAP0] FAP TM: ON
+[FAP1] FAP TM: ON
+bcmxtmcfg: bcmxtmcfg_init entry
+adsl: adsl_init entry
+Broadcom BCM63168D0 Ethernet Network Device v0.1 Nov  3 2014 15:46:37
+Broadcom GMAC Char Driver v0.1 Nov  3 2014 15:46:40 Registered&lt;249&gt;[0m
+Broadcom GMAC Driver v0.1 Nov  3 2014 15:46:40 Initialized
+fapDrv_psmAlloc: fapIdx=1, size: 4000, offset=b0a20710 bytes remaining 7000
+ETH Init: Ch:0 - 200 tx BDs at 0xb0a20710
+bcmPktDma_EthInitTxChan_Dqm LINE 97
+bcmPktDma_EthInitTxChan_Dqm LINE 109
+bcmPktDma_EthInitTxChan_Dqm LINE 117
+bcmPktDma_EthInitTxChan_Dqm LINE 120
+bcmPktDma_EthInitTxChan_Dqm LINE 122
+fapDrv_psmAlloc: fapIdx=0, size: 4000, offset=b0820710 bytes remaining 7000
+ETH Init: Ch:1 - 200 tx BDs at 0xb0820710
+bcmPktDma_EthInitTxChan_Dqm LINE 97
+bcmPktDma_EthInitTxChan_Dqm LINE 109
+bcmPktDma_EthInitTxChan_Dqm LINE 117
+bcmPktDma_EthInitTxChan_Dqm LINE 120
+bcmPktDma_EthInitTxChan_Dqm LINE 122
+fapDrv_psmAlloc: wastage 8 bytes
+fapDrv_psmAlloc: fapIdx=0, size: 4808, offset=b08216b0 bytes remaining 2184
+ETH Init: Ch:0 - 600 rx BDs at 0xb08216b0
+fapDrv_psmAlloc: wastage 8 bytes
+fapDrv_psmAlloc: fapIdx=1, size: 4808, offset=b0a216b0 bytes remaining 2184
+ETH Init: Ch:1 - 600 rx BDs at 0xb0a216b0
+dgasp: kerSysRegisterDyingGaspHandler: bcmsw registered 
+eth1: MAC Address: 10:7B:EF:ED:66:90
+eth2: MAC Address: 10:7B:EF:ED:66:90
+eth3: MAC Address: 10:7B:EF:ED:66:90
+eth4: MAC Address: 10:7B:EF:ED:66:90
+eth0: MAC Address: 10:7B:EF:ED:66:90
+Broadcom BCM3168D0 USB Network Device v0.4a Nov  3 2014 15:45:47
+usb0: MAC Address: 10 7B EF ED 66 91
+usb0: Host MAC Address: 10 7B EF ED 66 92
+hub 1-0:1.0: over-current change on port 2
+USBD Initialization done status 0 
+USB Link DOWN.
+
+message received before monitor task is initialized kerSysSendtoMonitorTask 
+eth3 Link UP 100 mbps full duplex
+eth0 Link UP 100 mbps full duplex
+message received before monitor task is initialized kerSysSendtoMonitorTask 
+--SMP support
+wl: dsl_tx_pkt_flush_len=338
+wl: high_wmark_tot=3097
+PCI: Setting latency timer of device 0000:00:00.0 to 64
+wl: passivemode=1
+wl: napimode=0
+wl0: allocskbmode=1 currallocskbsz=256
+otp_read_pci: bad crc
+Neither SPROM nor OTP has valid image
+wl:srom/otp not programmed, using main memory mapped srom info(wombo board)
+wl:loading /etc/wlan/bcm6362_vars.bin
+Failed to open srom image from &#039;/etc/wlan/bcm6362_vars.bin&#039;.
+wl:loading /etc/wlan/bcm6362_map.bin
+wl0: Broadcom BCM435f 802.11 Wireless Controller 5.100.138.2008.cpe4.12L06B.4
+dgasp: kerSysRegisterDyingGaspHandler: wl0 registered 
+p8021ag: p8021ag_init entry
+Broadcom 802.1Q VLAN Interface, v0.1
+</p>
+</div>
+<p>
+<br/>
+
+</p>
+
+</div>
+
+<h2 class="sectionedit24" id="notes">Notes</h2>
+<div class="level2">
+
+</div>
+
+<h2 class="sectionedit25" id="tags">Tags</h2>
+<div class="level2">
+
+<p>
+<a href="../../../external.html?link=https://openwrt.org/meta/tags" class="wikilink1" title="meta:tags">How to add tags</a>
+</p>
+<div class="tags"><span>
+	<a href="../../../external.html?link=https://openwrt.org/tag/bcm63xx?do=showtag&amp;tag=bcm63xx" class="wikilink1" title="tag:bcm63xx" rel="tag">bcm63xx</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/bcm63168?do=showtag&amp;tag=bcm63168" class="wikilink1" title="tag:bcm63168" rel="tag">bcm63168</a>
+</span></div>
+
+</div>
+
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>toh/zyxel/vmg3312-b10b.txt</bdi> · Last modified: 2019/03/09 17:09 by <bdi>tmomas</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="../../../external.html?link=https://openwrt.org/toh/zyxel/vmg3312-b10b?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+        
+<!-- ********** FOOTER ********** -->
+<div id="dokuwiki__footer"><div class="pad">
+    <div class="license">Except where otherwise noted, content on this wiki is licensed under the following license: <bdi><a href="../../../external.html?link=http://creativecommons.org/licenses/by-sa/4.0/" rel="license" class="urlextern">CC Attribution-Share Alike 4.0 International</a></bdi></div>
+    <div class="buttons">
+        <a href="../../../external.html?link=http://creativecommons.org/licenses/by-sa/4.0/" rel="license"><img src="../../../external.html?link=https://openwrt.org/lib/images/license/button/cc-by-sa.png" alt="CC Attribution-Share Alike 4.0 International" /></a>        <a href="../../../external.html?link=http://www.dokuwiki.org/donate" title="Donate" ><img
+            src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/button-donate.gif" width="80" height="15" alt="Donate" /></a>
+        <a href="../../../external.html?link=http://www.php.net/" title="Powered by PHP" ><img
+            src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/button-php.gif" width="80" height="15" alt="Powered by PHP" /></a>
+        <a href="../../../external.html?link=http://validator.w3.org/check/referer" title="Valid HTML5" ><img
+            src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/button-html5.png" width="80" height="15" alt="Valid HTML5" /></a>
+        <a href="../../../external.html?link=http://jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS" ><img
+            src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/button-css.png" width="80" height="15" alt="Valid CSS" /></a>
+        <a href="../../../external.html?link=http://dokuwiki.org/" title="Driven by DokuWiki" ><img
+            src="../../../external.html?link=https://openwrt.org/lib/tpl/openwrt/images/button-dw.png" width="80" height="15" alt="Driven by DokuWiki" /></a>
+    </div>
+</div></div><!-- /footer -->
+
+<script language="javascript" type="text/javascript" src="../../../external.html?link=https://openwrt.org/js/awstats_misc_tracker.js" ></script>
+<noscript><img src="../../../external.html?link=https://openwrt.org/js/awstats_misc_tracker.js?nojs=y" height="0" width="0" border="0" style="display: none"></noscript>
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="../../../external.html?link=https://openwrt.org/lib/exe/indexer.php?id=toh%3Azyxel%3Avmg3312-b10b&amp;1552201057" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</body>
+
+<!-- Mirrored from openwrt.org/toh/zyxel/vmg3312-b10b by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Sun, 10 Mar 2019 07:09:37 GMT -->
+</html>

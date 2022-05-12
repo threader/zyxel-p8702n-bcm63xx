@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="no-js">
+
+<!-- Mirrored from openwrt.org/toh/zyxel/nbg6616 by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Sun, 10 Mar 2019 07:09:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <title>OpenWrt Project: ZyXEL NBG6616</title>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="index,follow"/>
+<meta name="keywords" content="qca9557,gigabitethernet,4port,2wnic,802.11ac,ath10k,802.11abgn,802.11abgn simultan,usb,serial,usb2.0,2usb,128ram,16flash,mips,mips32,74kc"/>
+<link rel="search" type="application/opensearchdescription+xml" href="../../lib/exe/opensearch.php" title="OpenWrt Project"/>
+<link rel="start" href="../../index.html"/>
+<link rel="contents" href="nbg6616decf?do=index" title="Sitemap"/>
+<link rel="manifest" href="../../lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="../../feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="../../../external.html?link=https://openwrt.org/feed.php?mode=list&amp;ns=toh:zyxel"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="../../_export/xhtml/toh/zyxel/nbg6616"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="../../_export/raw/toh/zyxel/nbg6616"/>
+<link rel="canonical" href="nbg6616.html"/>
+<link rel="stylesheet" type="text/css" href="../../lib/exe/cssca56.css?t=openwrt&amp;tseed=659d77b8d7a7a08bcde1a890e899b0ef"/>
+<link type="text/css" rel="stylesheet" href="../../lib/plugins/datatables/assets/datatables/media/css/jquery.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../lib/plugins/datatables/assets/datatables/extensions/FixedHeader/css/fixedHeader.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../lib/plugins/datatables/assets/datatables/extensions/FixedColumns/css/fixedColumns.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../lib/plugins/datatables/assets/datatables/extensions/Buttons/css/buttons.dataTables.min.css"/>
+<link type="text/css" rel="stylesheet" href="../../lib/plugins/datatables/assets/datatables/extensions/Responsive/css/responsive.dataTables.min.css"/>
+<!--[if gte IE 9]><!-->
+<script type="text/javascript">/*<![CDATA[*/var NS='toh:zyxel';var JSINFO = {"plugin_imagemap_mldummy":"\/_media\/wiki\/dokuwiki-128.png","move_renameokay":false,"plugin":{"datatables":{"config":[],"enableForAllTables":0}},"schemes":["http","https","telnet","gopher","wais","ftp","ed2k","irc","ldap"],"plugin_folded":{"hide":"hide","reveal":"reveal"},"id":"toh:zyxel:nbg6616","namespace":"toh:zyxel","ACT":"show","useHeadingNavigation":1,"useHeadingContent":0};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="../../lib/exe/jquery1d4f.php?tseed=23f888679b4f1dc26eef34902aca964f"></script>
+<script type="text/javascript" charset="utf-8" src="../../lib/exe/jsca56.php?t=openwrt&amp;tseed=659d77b8d7a7a08bcde1a890e899b0ef"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/Buttons/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/Buttons/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="../../lib/plugins/datatables/assets/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<!--<![endif]-->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" href="../../lib/tpl/openwrt/images/favicon.ico" />
+<link rel="apple-touch-icon" href="../../lib/tpl/openwrt/images/apple-touch-icon.png" />
+    </head>
+
+<body>
+    <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site" class="page_toh page_zyxel page_nbg6616"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_openwrt    showSidebar hasSidebar">
+
+        
+<!-- ********** HEADER ********** -->
+<div id="dokuwiki__header"><div class="pad group">
+
+    
+    <div class="headings group">
+        <ul class="a11y skip">
+            <li><a href="#dokuwiki__content">skip to content</a></li>
+        </ul>
+
+        <h1><a href="../../index.html"  accesskey="h" title="[H]"><img src="../../lib/tpl/openwrt/images/logo.png" width="386" height="98" alt="" /> <span>OpenWrt Project</span></a></h1>
+            </div>
+
+    <div class="tools group">
+        <!-- USER TOOLS -->
+                    <div id="dokuwiki__usertools">
+                <h3 class="a11y">User Tools</h3>
+                <ul>
+                    <li><a href="nbg6616f59b?do=register"  class="action register" rel="nofollow" title="Register">Register</a></li><li><a href="nbg661651ef?do=login&amp;sectok="  class="action login" rel="nofollow" title="Log In">Log In</a></li>                </ul>
+            </div>
+        
+        <!-- SITE TOOLS -->
+        <div id="dokuwiki__sitetools">
+            <h3 class="a11y">Site Tools</h3>
+            <form action="../../../external.html?link=https://openwrt.org/start" method="get" role="search" class="search doku_form" id="dw__search" accept-charset="utf-8"><input type="hidden" name="do" value="search" /><input type="hidden" name="id" value="toh:zyxel:nbg6616" /><div class="no"><input name="q" type="text" class="edit" title="[F]" accesskey="f" placeholder="Search" autocomplete="on" id="qsearch__in" value="" /><button value="1" type="submit" title="Search">Search</button><div id="qsearch__out" class="ajax_qsearch JSpopup"></div></div></form>            <div class="mobileTools">
+                <form action="../../../external.html?link=https://openwrt.org/doku.php" method="get" accept-charset="utf-8"><div class="no"><input type="hidden" name="id" value="toh:zyxel:nbg6616" /><select name="do" class="edit quickselect" title="Tools"><option value="">Tools</option><optgroup label="Page Tools"><option value="edit">Show pagesource</option><option value="revisions">Old revisions</option><option value="backlink">Backlinks</option></optgroup><optgroup label="Site Tools"><option value="recent">Recent Changes</option><option value="media">Media Manager</option><option value="index">Sitemap</option></optgroup><optgroup label="User Tools"><option value="register">Register</option><option value="login">Log In</option></optgroup></select><button type="submit">&gt;</button></div></form>            </div>
+            <ul>
+                <li><a href="nbg6616810b?do=recent"  class="action recent" accesskey="r" rel="nofollow" title="Recent Changes [R]">Recent Changes</a></li><li><a href="nbg66160b87?do=media&amp;ns=toh%3Azyxel"  class="action media" rel="nofollow" title="Media Manager">Media Manager</a></li><li><a href="nbg6616decf?do=index"  class="action index" accesskey="x" rel="nofollow" title="Sitemap [X]">Sitemap</a></li>            </ul>
+        </div>
+
+    </div>
+
+    <!-- BREADCRUMBS -->
+            <div class="breadcrumbs">
+                            <div class="youarehere"><span class="bchead">You are here: </span><span class="home"><bdi><a href="../../start.html" class="wikilink1" title="start">Welcome to the OpenWrt Project</a></bdi></span> » <bdi><a href="../start.html" class="wikilink1" title="toh:start">Table of Hardware</a></bdi> » <bdi><a href="start.html" class="wikilink1" title="toh:zyxel:start">ZyXEL</a></bdi> » <bdi><span class="curid"><a href="nbg6616.html" class="wikilink1" title="toh:zyxel:nbg6616">ZyXEL NBG6616</a></span></bdi></div>
+                                                <div class="plugin_translation"><form action="../../../external.html?link=https://openwrt.org/start" id="translation__dropdown"><img src="../../lib/plugins/translation/flags/en.gif" alt="en" height="11" class="wikilink1" /> <select name="id" class="wikilink1"><option class="wikilink1 cur flag" title="English" value="toh/zyxel/nbg6616" selected="selected" style="background-image: url('../../lib/plugins/translation/flags/en.gif')">English (en)</option><option class="wikilink2 flag" title="|العربية" value="ar/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/ar.gif')">|العربية (ar)</option><option class="wikilink2 flag" title="Česky" value="cs/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/cs.gif')">Česky (cs)</option><option class="wikilink2 flag" title="Deutsch" value="de/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/de.gif')">Deutsch (de)</option><option class="wikilink2 flag" title="Español" value="es/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/es.gif')">Español (es)</option><option class="wikilink2 flag" title="Français" value="fr/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/fr.gif')">Français (fr)</option><option class="wikilink2 flag" title="Magyar" value="hu/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/hu.gif')">Magyar (hu)</option><option class="wikilink2 flag" title="Italiano" value="it/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/it.gif')">Italiano (it)</option><option class="wikilink2 flag" title="日本語" value="ja/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/ja.gif')">日本語 (ja)</option><option class="wikilink2 flag" title="한국어" value="ko/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/ko.gif')">한국어 (ko)</option><option class="wikilink2 flag" title="Polski" value="pl/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/pl.gif')">Polski (pl)</option><option class="wikilink2 flag" title="Português" value="pt/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/pt.gif')">Português (pt)</option><option class="wikilink2 flag" title="Português" value="pt-br/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/pt-br.gif')">Português (pt-br)</option><option class="wikilink2 flag" title="Русский" value="ru/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/ru.gif')">Русский (ru)</option><option class="wikilink2 flag" title="Türkçe" value="tr/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/tr.gif')">Türkçe (tr)</option><option class="wikilink2 flag" title="中文" value="zh/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/zh.gif')">中文 (zh)</option><option class="wikilink2 flag" title="繁體中文" value="zh-tw/toh/zyxel/nbg6616" style="background-image: url('../../lib/plugins/translation/flags/zh-tw.gif')">繁體中文 (zh-tw)</option></select><input name="go" type="submit" value="&rarr;" /></form>&nbsp<sup><a href="../../meta/translation.html" class="wikilink1" title="meta:translation">?</a></sup></div>        </div>
+    
+    
+    <hr class="a11y" />
+</div></div><!-- /header -->
+
+        <div class="wrapper group">
+
+                            <!-- ********** ASIDE ********** -->
+                <div id="dokuwiki__aside"><div class="pad aside include group">
+                    <h3 class="toggle">Sidebar</h3>
+                    <div class="content">
+                                                                        
+
+<ul>
+<li class="level1"><div class="li"> <a href="../../start.html" class="wikilink1" title="start">Welcome to OpenWrt</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../supported_devices.html" class="wikilink1" title="supported_devices">Supported Devices</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../packages/start.html" class="wikilink1" title="packages:start">Packages</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../downloads.html" class="wikilink1" title="downloads">Downloads</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../docs/start.html" class="wikilink1" title="docs:start">Documentation</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../submitting-patches.html" class="wikilink1" title="submitting-patches">Submitting patches</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../bugs.html" class="wikilink1" title="bugs">Reporting bugs</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../wiki/wikirules.html" class="wikilink1" title="wiki:wikirules">Wiki contribution guide</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://forum.openwrt.org/" class="urlextern" title="https://forum.openwrt.org" rel="nofollow">OpenWrt Forum</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../../../external.html?link=https://openwrt.org/faq" class="wikilink1" title="faq">FAQ</a> </div>
+</li>
+</ul>
+<hr />
+<ul>
+<li class="level1 node"><div class="li"> <a href="../../about.html" class="wikilink1" title="about">About OpenWrt/LEDE</a> </div>
+<ul>
+<li class="level2"><div class="li"> <a href="../../rules.html" class="wikilink1" title="rules">Rules</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../../infrastructure.html" class="wikilink1" title="infrastructure">Infrastructure</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../../trademark.html" class="wikilink1" title="trademark">Trademark Policy</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="../../wiki/start.html" class="wikilink1" title="wiki:start">About this site</a></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="../../contact.html" class="wikilink1" title="contact">Contact Us</a> </div>
+</li>
+</ul>
+                                            </div>
+                </div></div><!-- /aside -->
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+
+                <div class="pageId"><span>toh:zyxel:nbg6616</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                    <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#zyxel_nbg6616">ZyXEL NBG6616</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#supported_versions">Supported Versions</a></div></li>
+<li class="level2"><div class="li"><a href="#hardware_highlights">Hardware Highlights</a></div></li>
+<li class="level2"><div class="li"><a href="#installation">Installation</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#upgrade_from_zyxel_customized_openwrt">Upgrade from ZyXEL customized OpenWrt</a></div></li>
+<li class="level3"><div class="li"><a href="#sysupgrade">Sysupgrade</a></div></li>
+<li class="level3"><div class="li"><a href="#recovery">Recovery</a></div></li>
+<li class="level3"><div class="li"><a href="#technical_noteheader">Technical note: header</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#hardware">Hardware</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#info">Info</a></div></li>
+<li class="level3"><div class="li"><a href="#switch_configuration">Switch Configuration</a></div></li>
+<li class="level3"><div class="li"><a href="#photos">Photos</a></div></li>
+<li class="level3"><div class="li"><a href="#serial">Serial</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#bootlogs">Bootlogs</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#oem_bootlog">OEM bootlog</a></div></li>
+<li class="level3"><div class="li"><a href="#openwrt_boot_log">OpenWrt Boot Log</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#tags">Tags</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="zyxel_nbg6616">ZyXEL NBG6616</h1>
+<div class="level1">
+
+</div>
+
+<h2 class="sectionedit2" id="supported_versions">Supported Versions</h2>
+<div class="level2">
+<div class="table dataaggregation"><table class="inline dataplugin_table "><tr><th><a href="nbg66160dfa?datasrt=brand" title="Sort by this column">Brand</a></th><th><a href="nbg661627c4?datasrt=model" title="Sort by this column">Model</a></th><th><a href="nbg661667f5?datasrt=version" title="Sort by this column">Version</a></th><th><a href="nbg6616bd45?datasrt=supported%20current%20rel" title="Sort by this column">Current Release</a></th><th><a href="nbg66169d8c?datasrt=oem%20device%20homepage%20url" title="Sort by this column">OEM Info</a></th><th><a href="nbg66160465?datasrt=owrt%20forum%20topic%20url" title="Sort by this column">Forum Topic</a></th><th><a href="nbg6616338a?datasrt=device%20techdata" title="Sort by this column">Technical Data</a></th></tr><tr><td class="centeralign brand">ZyXEL</td><td class="centeralign model">NBG6616</td><td class="centeralign version">A00</td><td class="centeralign supported_current_rel">18.06.2</td><td class="centeralign oem_device_homepage_url"><a href='../../../external.html?link=https://www.zyxel.com/products_services/nbg6616.shtml?t=p' class='urlextern' rel="nofollow">https://www.zyxel.com/products_services/nbg6616.shtml?t=p</a></td><td class="centeralign owrt_forum_topic_url"><a href='../../../external.html?link=https://forum.openwrt.org/viewtopic.php?id=54020' class='urlextern' rel="nofollow">https://forum.openwrt.org/viewtopic.php?id=54020</a></td><td class="centeralign device_techdata"><a href="../hwdata/zyxel/zyxel_nbg6616" class="wikilink1" title="toh:hwdata:zyxel:zyxel_nbg6616">View/Edit data</a></td></tr></table></div>
+</div>
+
+<h2 class="sectionedit3" id="hardware_highlights">Hardware Highlights</h2>
+<div class="level2">
+<div class="table dataaggregation"><table class="inline dataplugin_table "><tr><th><a href="nbg661627c4?datasrt=model" title="Sort by this column">Model</a></th><th><a href="nbg661667f5?datasrt=version" title="Sort by this column">Version</a></th><th><a href="nbg6616bd34?datasrt=cpu" title="Sort by this column">SoC</a></th><th><a href="nbg6616c521?datasrt=cpu%20mhz" title="Sort by this column">CPU MHz</a></th><th><a href="nbg661687fd?datasrt=flash%20mb" title="Sort by this column">Flash MB</a></th><th><a href="nbg661694f5?datasrt=ram%20mb" title="Sort by this column">RAM MB</a></th><th><a href="nbg6616d2e7?datasrt=wlan%20hardware" title="Sort by this column">WLAN Hardware</a></th><th><a href="nbg6616eefa?datasrt=wlan%202.4ghz" title="Sort by this column">WLAN2.4</a></th><th><a href="nbg6616e7e6?datasrt=wlan%205.0ghz" title="Sort by this column">WLAN5.0</a></th><th><a href="nbg6616a83b?datasrt=ethernet%20100m%20ports" title="Sort by this column">100M ports</a></th><th><a href="nbg6616c27c?datasrt=ethernet%20gbit%20ports" title="Sort by this column">Gbit ports</a></th><th><a href="nbg66166ecb?datasrt=modem" title="Sort by this column">Modem</a></th><th><a href="nbg66168ad2?datasrt=usb%20ports" title="Sort by this column">USB</a></th></tr><tr><td class="centeralign model">NBG6616</td><td class="centeralign version">A00</td><td class="centeralign cpu">Qualcomm Atheros QCA9557</td><td class="centeralign cpu_mhz">720</td><td class="centeralign flash_mb">16</td><td class="centeralign ram_mb">128</td><td class="centeralign wlan_hardware">Qualcomm Atheros QCA9557, Qualcomm Atheros QCA9882</td><td class="centeralign wlan_24ghz">b/g/n</td><td class="centeralign wlan_50ghz">a/n/ac</td><td class="centeralign ethernet_100m_ports">-</td><td class="centeralign ethernet_gbit_ports">5</td><td class="centeralign modem">-</td><td class="centeralign usb_ports">2x 2.0</td></tr></table></div>
+</div>
+
+<h2 class="sectionedit4" id="installation">Installation</h2>
+<div class="level2">
+<div class="table dataaggregation"><table class="inline dataplugin_table "><tr><th><a href="nbg661627c4?datasrt=model" title="Sort by this column">Model</a></th><th><a href="nbg661667f5?datasrt=version" title="Sort by this column">Version</a></th><th><a href="nbg6616bd45?datasrt=supported%20current%20rel" title="Sort by this column">Current Release</a></th><th><a href="nbg66166594?datasrt=firmware%20openwrt%20install%20url" title="Sort by this column">Firmware OpenWrt Install</a></th><th><a href="nbg66166a94?datasrt=firmware%20openwrt%20upgrade%20url" title="Sort by this column">Firmware OpenWrt Upgrade</a></th><th><a href="nbg6616b80a?datasrt=firmware%20oem%20stock%20url" title="Sort by this column">Firmware OEM Stock</a></th></tr><tr><td class="centeralign model">NBG6616</td><td class="centeralign version">A00</td><td class="centeralign supported_current_rel">18.06.2</td><td class="align firmware_openwrt_install_url"></td><td class="align firmware_openwrt_upgrade_url"><a href='../../../external.html?link=https://downloads.openwrt.org/releases/18.06.2/targets/ar71xx/generic/openwrt-18.06.2-ar71xx-generic-NBG6616-squashfs-sysupgrade.bin' class='urlextern' rel="nofollow">https://downloads.openwrt.org/releases/18.06.2/targets/ar71xx/generic/openwrt-18.06.2-ar71xx-generic-NBG6616-squashfs-sysupgrade.bin</a></td><td class="align firmware_oem_stock_url"><a href='../../../external.html?link=https://www.zyxel.com/support/SupportLandingSR.shtml?c=gb&amp;l=en&amp;kbid=M-01999&amp;md=NBG6616' class='urlextern' rel="nofollow">https://www.zyxel.com/support/SupportLandingSR.shtml?c=gb&amp;l=en&amp;kbid=M-01999&amp;md=NBG6616</a></td></tr></table></div>
+</div>
+
+<h3 class="sectionedit5" id="upgrade_from_zyxel_customized_openwrt">Upgrade from ZyXEL customized OpenWrt</h3>
+<div class="level3">
+
+<p>
+On the ZyXEL firmware there is one large mtd partition for the kernel and everything. <abbr title="Secure Shell">SSH</abbr> into the router, user “root” and password (default is “1234”), and write the sysupgrade image to /dev/mtd6:
+</p>
+<pre class="code"># mtd -r write /tmp/firmware.bin /dev/mtd6</pre>
+
+<p>
+The following is a more detailed example of installing OpenWrt.
+</p>
+<pre class="code">ssh root@192.168.1.254
+cd /tmp/
+# the prompt should show root@nbg6161:/tmp
+wget http://downloads.openwrt.org/releases/18.06.2/targets/ar71xx/generic/openwrt-18.06.2-ar71xx-generic-NBG6616-squashfs-sysupgrade.bin -O firmware.bin
+mtd -r write /tmp/firmware.bin /dev/mtd6
+Unlocking /dev/mtd6 ...
+Writing from /tmp/firmware.bin to /dev/mtd6 ...     
+Rebooting ... [w]</pre>
+
+<p>
+Now you can configure the device via <code>http://192.168.1.1/</code>
+</p>
+
+</div>
+
+<h3 class="sectionedit6" id="sysupgrade">Sysupgrade</h3>
+<div class="level3">
+
+<p>
+→  <a href="../../docs/guide-user/installation/generic.sysupgrade" class="wikilink1" title="docs:guide-user:installation:generic.sysupgrade">generic.sysupgrade</a>
+</p>
+
+</div>
+
+<h3 class="sectionedit7" id="recovery">Recovery</h3>
+<div class="level3">
+
+<p>
+The device is able to flash from a tftp server. You can also abort the boot loader via serial if a cable is attached to a <abbr title="Local Area Network">LAN</abbr> port.
+</p>
+<ul>
+<li class="level1"><div class="li"> Configure your server to 192.168.1.33, netmask 255.255.255.0</div>
+</li>
+<li class="level1"><div class="li"> Attach to one of the <abbr title="Local Area Network">LAN</abbr> ports</div>
+</li>
+<li class="level1"><div class="li"> Copy your firmware file into the tftp directory and name it ras.bin (<abbr title="Internet Explorer">IE</abbr> download it from zyxel directly)</div>
+</li>
+<li class="level1"><div class="li"> Turn on device holding down WPS key</div>
+</li>
+<li class="level1"><div class="li"> Keep holding WPS key until the firmware is downloaded and router is flashing</div>
+</li>
+<li class="level1"><div class="li"> Power cycle device when Power and USB2 LEDs flash. (It will take more than 5 minutes)</div>
+</li>
+</ul>
+
+</div>
+
+<h3 class="sectionedit8" id="technical_noteheader">Technical note: header</h3>
+<div class="level3">
+
+<p>
+Building an custom image that can be flashed currently requires adding a header. Either use genImgHdr from the open source bundle or implement a new header writer for OpenWrt (documentation is in the Makefile).
+</p>
+
+</div>
+
+<h2 class="sectionedit9" id="hardware">Hardware</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit10" id="info">Info</h3>
+<div class="level3">
+<div class="table sectionedit11"><table class="inline">
+	<tr class="row0">
+		<th class="col0 leftalign"> Architecture   </th><td class="col1 leftalign"> MIPS32 (MIPS74Kc)   </td>
+	</tr>
+	<tr class="row1">
+		<th class="col0 leftalign"> Target         </th><td class="col1 leftalign"> ar7xxx/ar9xxx       </td>
+	</tr>
+	<tr class="row2">
+		<th class="col0 leftalign"> Vendor         </th><td class="col1 leftalign"> ZyXEL               </td>
+	</tr>
+	<tr class="row3">
+		<th class="col0 leftalign"> <a href="../../docs/techref/bootloader" class="wikilink1" title="docs:techref:bootloader">bootloader</a>  </th><td class="col1"> <a href="../../docs/techref/bootloader/uboot" class="wikilink1" title="docs:techref:bootloader:uboot">U-Boot</a> </td>
+	</tr>
+	<tr class="row4">
+		<th class="col0 leftalign"> <a href="../../docs/techref/hardware/soc" class="wikilink1" title="docs:techref:hardware:soc">System-On-Chip</a>   </th><td class="col1 leftalign"> QCA9557-AT4A   </td>
+	</tr>
+	<tr class="row5">
+		<th class="col0 leftalign"> <a href="../../docs/techref/hardware/cpu" class="wikilink1" title="docs:techref:hardware:cpu">CPU Model</a>        </th><td class="col1 leftalign"> QCA9557        </td>
+	</tr>
+	<tr class="row6">
+		<th class="col0 leftalign"> CPU Speed                 </th><td class="col1 leftalign"> 720MHz                      </td>
+	</tr>
+	<tr class="row7">
+		<th class="col0 leftalign"> Flash size                </th><td class="col1 leftalign"> 16MB                        </td>
+	</tr>
+	<tr class="row8">
+		<th class="col0 leftalign"> Flash Chip                </th><td class="col1 leftalign"> Macronix MX25L128E (16MB)   </td>
+	</tr>
+	<tr class="row9">
+		<th class="col0 leftalign"> RAM size                  </th><td class="col1 leftalign"> 128MB                       </td>
+	</tr>
+	<tr class="row10">
+		<th class="col0 leftalign"> RAM Chip                  </th><td class="col1 leftalign"> Nanya NT5TU64M16GG-AC ?     </td>
+	</tr>
+	<tr class="row11">
+		<th class="col0 leftalign"> <a href="../../docs/techref/hardware/switch" class="wikilink1" title="docs:techref:hardware:switch">switch</a>   </th><td class="col1 leftalign"> QCA8337?                    </td>
+	</tr>
+	<tr class="row12">
+		<th class="col0 leftalign"> <abbr title="Wide Area Network">WAN</abbr>            </th><td class="col1 leftalign"> 1x RJ45 Gbe   </td>
+	</tr>
+	<tr class="row13">
+		<th class="col0 leftalign"> Ethernet       </th><td class="col1 leftalign"> 4x RJ45 Gbe   </td>
+	</tr>
+	<tr class="row14">
+		<th class="col0 leftalign"> Wireless No1   </th><td class="col1 leftalign"> <em>SoC-integrated</em> QCA9557-AT4A w/ 2&times;2 MIMO for 2.4GHz 802.11b/g/n   </td>
+	</tr>
+	<tr class="row15">
+		<th class="col0 leftalign"> Wireless No2   </th><td class="col1 leftalign"> ?? w/ 2&times;2 MIMO for 5GHz 802.11a/n/ac                                 </td>
+	</tr>
+	<tr class="row16">
+		<th class="col0 leftalign"> USB            </th><td class="col1 leftalign"> Yes 2 x 2.0                                                          </td>
+	</tr>
+	<tr class="row17">
+		<th class="col0 leftalign"> <a href="../../docs/techref/hardware/port.serial" class="wikilink1" title="docs:techref:hardware:port.serial">Serial</a>   </th><td class="col1 leftalign"> <a href="#serial" title="toh:zyxel:nbg6616 ↵" class="wikilink1">Yes</a>   </td>
+	</tr>
+	<tr class="row18">
+		<th class="col0 leftalign"> <a href="../../docs/techref/hardware/port.jtag" class="wikilink1" title="docs:techref:hardware:port.jtag">JTAG</a>       </th><td class="col1 leftalign"> unknown           </td>
+	</tr>
+	<tr class="row19">
+		<th class="col0 leftalign"> Buttons   </th><td class="col1 leftalign"> power switch, on/off switch, wifi switch, reset button   </td>
+	</tr>
+	<tr class="row20">
+		<th class="col0 leftalign"> Power     </th><td class="col1 leftalign"> external 12V 2A                                          </td>
+	</tr>
+</table></div>
+
+</div>
+
+<h3 class="sectionedit12" id="switch_configuration">Switch Configuration</h3>
+<div class="level3">
+
+<p>
+Note that port #4 on the switch is the one next to the <abbr title="Wide Area Network">WAN</abbr> port.
+</p>
+<div class="table sectionedit13"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Switch Port </th><th class="col1"> Function </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign"> 0    </td><td class="col1"> CPU0 (eth0.1 mapped to <abbr title="Local Area Network">LAN</abbr> ports) </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> 1    </td><td class="col1"> <abbr title="Local Area Network">LAN</abbr> 1 </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> 2    </td><td class="col1"> <abbr title="Local Area Network">LAN</abbr> 2 </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> 3    </td><td class="col1"> <abbr title="Local Area Network">LAN</abbr> 3 </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign"> 4    </td><td class="col1"> <abbr title="Local Area Network">LAN</abbr> 4 </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0 leftalign"> 5    </td><td class="col1"> <abbr title="Wide Area Network">WAN</abbr> Port </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0 leftalign"> 6    </td><td class="col1"> CPU1 (eth1 mapped to <abbr title="Wide Area Network">WAN</abbr> ports) </td>
+	</tr>
+</table></div>
+
+</div>
+
+<h3 class="sectionedit14" id="photos">Photos</h3>
+<div class="level3">
+
+<p>
+<a href="../../_media/media/zyxel/zyxelnbg6616_board.jpg" class="media" title="media:zyxel:zyxelnbg6616_board.jpg"><img src="../../_media/media/zyxel/zyxelnbg6616_board1a68.jpg?w=400&amp;tok=36621b" class="media" alt="" width="400" /></a>
+</p>
+
+</div>
+
+<h3 class="sectionedit15" id="serial">Serial</h3>
+<div class="level3">
+
+<p>
+→ <a href="../../docs/techref/hardware/port.serial" class="wikilink1" title="docs:techref:hardware:port.serial">port.serial</a> general information about the serial port, serial port cable, etc.
+</p>
+
+<p>
+How to connect to the Serial Port of this specific device:
+</p>
+
+<p>
+The device uses <abbr title="Time To Live">TTL</abbr> @ 3.3V and not a standard RS-232 Serial that operates between 3 and 15V, so do not try to connect it to a common serial adapter: you will certainly fry the serial circuit or even the whole board. There are plenty of USB to <abbr title="Time To Live">TTL</abbr> and RS-232 to <abbr title="Time To Live">TTL</abbr> available on the market, just be careful with the voltage: the standard is 5V and it may also damage your board. Look for the ones with 3.3V or with both voltages and a way to switch between them.
+</p>
+
+<p>
+Bits per second: <strong>115200</strong><br/>
+
+Data bits: <strong>8</strong><br/>
+
+Parity: <strong>None</strong><br/>
+
+Stop bits: <strong>1</strong><br/>
+
+Flow control: <strong>None</strong><br/>
+
+</p>
+
+<p>
+J1
+</p>
+
+<p>
+PIN1: <strong>3.3V</strong><br/>
+
+PIN2: <strong>GND</strong><br/>
+
+PIN3: <strong>RX</strong><br/>
+
+PIN4: <strong>TX</strong><br/>
+
+</p>
+<pre class="code">PINS 
+----&gt; Power On/Off / Wifi On/Off button side
+4 3 2 1
+&lt;--- USB ports side</pre>
+
+</div>
+
+<h2 class="sectionedit16" id="bootlogs">Bootlogs</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit17" id="oem_bootlog">OEM bootlog</h3>
+<div class="level3">
+<div class="wrap_bootlog plugin_wrap">
+<p>
+could not establish link on eth0
+eth_init failed!
+### JFFS2 loading &#039;/boot/vmlinux.lzma.uImage&#039; to 0x80400000
+Scanning JFFS2 FS: &#039;/boot/vmlinux.lzma.uImage&#039; found, done
+Loading file: done
+### JFFS2 load complete: 1040648 bytes loaded to 0x80400000
+## Booting kernel from Legacy Image at 80400000 ...
+   Image Name:   MIPS OpenWrt Linux-3.3.8
+   Created:      2015-02-16   4:30:11 UTC
+   Image Type:   MIPS Linux Kernel Image (lzma compressed)
+   Data Size:    1040584 Bytes = 1016.2 kB
+   Load Address: 80060000
+   Entry Point:  80060000
+   Verifying Checksum ... OK
+   Uncompressing Kernel Image ... OK
+
+Starting kernel ...
+
+[    0.000000] Linux version 3.3.8 (hank@ubuntu) (gcc version 4.6.4 20121106 (prerelease) (Linaro GCC 4.6-2012.11) ) #1 Tue Jan 20 11:07:48 CST 2015
+[    0.000000] bootconsole [early0] enabled
+[    0.000000] CPU revision is: 00019750 (MIPS 74Kc)
+[    0.000000] SoC: Qualcomm Atheros QCA9558 rev 0
+[    0.000000] Clocks: CPU:720.000MHz, DDR:600.000MHz, AHB:200.000MHz, Ref:40.000MHz
+[    0.000000] Determined physical RAM map:
+[    0.000000]  memory: 08000000 @ 00000000 (usable)
+[    0.000000] User-defined physical RAM map:
+[    0.000000]  memory: 08000000 @ 00000000 (usable)
+[    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Zone PFN ranges:
+[    0.000000]   Normal   0x00000000 -&gt; 0x00008000
+[    0.000000] Movable zone start PFN for each node
+[    0.000000] Early memory PFN ranges
+[    0.000000]     0: 0x00000000 -&gt; 0x00008000
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 32512
+[    0.000000] Kernel command line:  board=NBG6616 root=/dev/mtdblock6 rootfstype=jffs2 noinitrd zld_ver=1.41 console=ttyS0,115200 mtdparts=spi0.0:0x30000(u-boot)ro,0x10000(env)ro,0x10000(RFdata)ro,0x60000(rootfs_data),0x60000(romd),0x10000(header),0xee0000(rootfs) mem=128M ethaddr=90:EF:68:7E:AC:5C
+[    0.000000] PID hash table entries: 512 (order: -1, 2048 bytes)
+[    0.000000] Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)
+[    0.000000] Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.000000] Primary instruction cache 64kB, VIPT, 4-way, linesize 32 bytes.
+[    0.000000] Primary data cache 32kB, 4-way, VIPT, cache aliases, linesize 32 bytes
+[    0.000000] Writing ErrCtl register=00000000
+[    0.000000] Readback ErrCtl register=00000000
+[    0.000000] Memory: 126300k/131072k available (2239k kernel code, 4772k reserved, 590k data, 180k init, 0k highmem)
+[    0.000000] SLUB: Genslabs=9, HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS:83
+[    0.000000] Calibrating delay loop... 358.80 BogoMIPS (lpj=1794048)
+[    0.060000] pid_max: default: 32768 minimum: 301
+[    0.060000] Mount-cache hash table entries: 512
+[    0.070000] Performance counters: mips/74K PMU enabled, 4 32-bit counters available to each CPU, irq 13
+[    0.080000] Initialized recycle list for cpu 0.
+[    0.080000] NET: Registered protocol family 16
+[    0.090000] gpiochip_add: registered GPIOs 0 to 23 on device: ath79
+[    0.090000] MIPS: machine is ZyXEL NBG6616
+[    0.100000] ar724x-pci ar724x-pci.0: PCIe link is down
+[    0.100000] registering PCI controller with io_map_base unset
+[    0.110000] registering PCI controller with io_map_base unset
+[    1.510000] bio: create slab &lt;bio-0&gt; at 0
+[    1.520000] PCI host bridge to bus 0000:00
+[    1.520000] pci_bus 0000:00: root bus resource [mem 0x10000000-0x11ffffff]
+[    1.530000] pci_bus 0000:00: root bus resource [io  0x0000]
+[    1.530000] PCI host bridge to bus 0000:01
+[    1.530000] pci_bus 0000:01: root bus resource [mem 0x12000000-0x13ffffff]
+[    1.540000] pci_bus 0000:01: root bus resource [io  0x0001]
+[    1.540000] pci 0000:01:00.0: BAR 0: assigned [mem 0x12000000-0x121fffff 64bit]
+[    1.550000] pci 0000:01:00.0: BAR 6: assigned [mem 0x12200000-0x1220ffff pref]
+[    1.550000] pci 0000:01:00.0: using irq 41 for pin 1
+[    1.560000] Switching to clocksource MIPS
+[    1.560000] NET: Registered protocol family 2
+[    1.570000] IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    1.570000] TCP established hash table entries: 4096 (order: 3, 32768 bytes)
+[    1.580000] TCP bind hash table entries: 4096 (order: 2, 16384 bytes)
+[    1.580000] TCP: Hash tables configured (established 4096 bind 4096)
+[    1.590000] TCP reno registered
+[    1.590000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.600000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.600000] NET: Registered protocol family 1
+[    1.620000] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    1.620000] JFFS2 version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    1.640000] msgmni has been set to 246
+[    1.640000] io scheduler noop registered
+[    1.640000] io scheduler deadline registered (default)
+[    1.650000] Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+[    1.670000] serial8250.0: ttyS0 at MMIO 0x18020000 (irq = 11) is a 16550A
+[    1.680000] console [ttyS0] enabled, bootconsole disabled
+[    1.680000] console [ttyS0] enabled, bootconsole disabled
+[    1.690000] m25p80 spi0.0: found mx25l12805d, expected m25p80
+[    1.700000] m25p80 spi0.0: mx25l12805d (16384 Kbytes)
+[    1.710000] 7 cmdlinepart partitions found on MTD device spi0.0
+[    1.710000] Creating 7 MTD partitions on &quot;spi0.0&quot;:
+[    1.720000] 0x000000000000-0x000000030000 : &quot;u-boot&quot;
+[    1.720000] 0x000000030000-0x000000040000 : &quot;env&quot;
+[    1.730000] 0x000000040000-0x000000050000 : &quot;RFdata&quot;
+[    1.730000] 0x000000050000-0x0000000b0000 : &quot;rootfs_data&quot;
+[    1.740000] 0x0000000b0000-0x000000110000 : &quot;romd&quot;
+[    1.750000] 0x000000110000-0x000000120000 : &quot;header&quot;
+[    1.750000] 0x000000120000-0x000001000000 : &quot;rootfs&quot;
+[    1.760000] mtd: partition &quot;rootfs&quot; set to be root filesystem
+[    1.770000] split_squashfs: no squashfs found in &quot;spi0.0&quot;
+[    1.910000] ag71xx_mdio: probed
+[    1.920000] eth0: Atheros AG71xx at 0xb9000000, irq 4, mode:RGMII
+[    2.500000] eth0: Atheros AR8337 switch driver attached.
+[    3.690000] ag71xx ag71xx.0: eth0: connected to PHY at ag71xx-mdio.0:00 [uid=004dd036, driver=Atheros AR8216/AR8236/AR8316]
+[    3.700000] eth1: Atheros AG71xx at 0xba000000, irq 5, mode:SGMII
+[    4.260000] TCP cubic registered
+[    4.260000] NET: Registered protocol family 17
+[    4.260000] 8021q: 802.1Q VLAN Support v1.8
+[    4.270000] ### of_selftest(): No testcase data in device tree; not running tests
+[   13.040000] JFFS2 notice: (1) jffs2_build_xattr_subsystem: complete building xattr subsystem, 0 of xdatum (0 unchecked, 0 orphan) and 0 of xref (0 dead, 0 orphan) found.
+[   13.060000] VFS: Mounted root (jffs2 filesystem) readonly on device 31:6.
+[   13.060000] Freeing unused kernel memory: 180k freed
+- preinit -
+- regular preinit -
+[   18.110000] JFFS2 notice: (463) jffs2_build_xattr_subsystem: complete building xattr subsystem, 2 of xdatum (0 unchecked, 1 orphan) and 38 of xref (0 dead, 23 orphan) found.
+[   18.370000] SCSI subsystem initialized
+[   18.480000] usbcore: registered new interface driver usbfs
+[   18.480000] usbcore: registered new interface driver hub
+[   18.490000] usbcore: registered new device driver usb
+[   18.930000] eth0: link up (1000Mbps/Full duplex)
+[   18.960000] ehci_hcd: USB 2.0 &#039;Enhanced&#039; Host Controller (EHCI) Driver
+[   18.970000] ehci-platform ehci-platform.0: Generic Platform EHCI Controller
+[   18.970000] ehci-platform ehci-platform.0: new USB bus registered, assigned bus number 1
+[   19.010000] ehci-platform ehci-platform.0: irq 48, io mem 0x1b000000
+[   19.030000] ehci-platform ehci-platform.0: USB 2.0 started, EHCI 1.00
+[   19.030000] hub 1-0:1.0: USB hub found
+[   19.040000] hub 1-0:1.0: 1 port detected
+[   19.040000] ehci-platform ehci-platform.1: Generic Platform EHCI Controller
+[   19.050000] ehci-platform ehci-platform.1: new USB bus registered, assigned bus number 2
+[   19.090000] ehci-platform ehci-platform.1: irq 49, io mem 0x1b400000
+[   19.110000] ehci-platform ehci-platform.1: USB 2.0 started, EHCI 1.00
+[   19.110000] hub 2-0:1.0: USB hub found
+[   19.120000] hub 2-0:1.0: 1 port detected
+[   19.150000] ohci_hcd: USB 1.1 &#039;Open&#039; Host Controller (OHCI) Driver
+[   19.180000] uhci_hcd: USB Universal Host Controller Interface driver
+[   19.220000] Initializing USB Mass Storage driver...
+[   19.230000] usbcore: registered new interface driver usb-storage
+[   19.230000] USB Mass Storage support registered.
+
+switching to jffs2
+- init -
+[   39.420000] eth0: link down
+
+Please press Enter to activate this console. sysinit: Start preboot
+
+
+(none) login: sysinit: Start defconfig
+
+sysinit: Start luci_fixtime
+
+sysinit: Mon Feb 16 04:27:00 UTC 2015
+
+sysinit: Start ess_info
+
+sysinit: Start boot
+
+
+NBG6616 login: admin
+Password: 
+Login incorrect
+NBG6616 login: asysinit: Start password
+
+dsysinit: Changing password for root
+
+sysinit: New password: 
+
+sysinit: Bad password: too short
+
+misysinit: Retype password: 
+
+sysinit: Password for root changed by root
+
+sysinit: Start procd
+
+sysinit: Start fstab
+
+sysinit: Start network
+
+sysinit: Interface wan not found
+
+sysinit: Start usb
+
+sysinit: Start wireless
+
+sysinit: Not to remove kernel module when disable wifi function
+
+sysinit: Not to remove kernel module when disable wifi function
+
+sysinit: wifi0(ar71xx): enable failed
+
+sysinit: Start firewall
+
+sysinit: Start firewall6
+
+sysinit: Start intfGrp
+
+sysinit: Start cron
+
+sysinit: Start dropbear
+
+sysinit: Start nat
+
+sysinit: Start proftpd
+
+sysinit: Changing password for root
+
+sysinit: New password: 
+
+sysinit: Bad password: too short
+
+sysinit: Retype password: 
+
+sysinit: Password for root changed by root
+
+sysinit: Start radvd
+
+sysinit: Start telnet
+
+sysinit: Start uhttpd
+
+sysinit: disable www
+
+sysinit: Start updatedd
+
+sysinit: Start luci_dhcp_migrate
+
+sysinit: Start RA_dhcp6c
+
+sysinit: Start RA_status
+
+sysinit: Start default_lan_radvd
+
+sysinit: Start dnsmasq
+
+sysinit: no more available dns servers !
+
+sysinit: no more available dns servers !
+
+
+
+Please press Enter to activate this console. sysinit: Start samba
+
+sysinit: Changing password for root
+
+sysinit: New password: 
+
+sysinit: Bad password: too short
+
+sysinit: Retype password: 
+
+sysinit: Password for root changed by root
+
+sysinit: Start wol
+
+sysinit: Start lldpd
+
+sysinit: Start route
+
+sysinit: Start done
+
+sysinit: Start miniupnpd
+
+sysinit: miniupnpd starting ...
+
+sysinit: Start led
+
+sysinit: Start portTrigger
+
+sysinit: Start time_daemon
+
+sysinit: Start watchdog
+
+sysinit: Start webstr_filter
+
+sysinit: Start wifi_scheduling
+
+sysinit: Start wifi_scheduling5G
+
+sysinit: Start wireless5G_macfilter
+
+sysinit: Start wireless_macfilter
+
+sysinit: Start qos
+
+sysinit: Start sysntpd
+
+sysinit: Start app-agent
+
+sysinit: Start dlna
+
+sysinit: UCI get command: system.main.pwd
+
+sysinit: UCI option get value:1234
+
+sysinit: APP Agent TCP socket ready!
+
+sysinit: add 0 node .....................
+
+sysinit: add 1 node .....................
+
+sysinit: parent node addr 0x0x425358
+
+sysinit: found parent 0 parent found: 0
+
+sysinit: add 1 vertical after 0
+
+sysinit: add 2 node .....................
+
+sysinit: parent node addr 0x0x425358
+
+sysinit: found parent 0 parent found: 0
+
+sysinit: ptr2 parent 0 ptr index 0
+
+sysinit: add 2 horizon after 1
+
+sysinit: add 3 node .....................
+
+sysinit: parent node addr 0x0x425358
+
+sysinit: found parent 0 parent found: 0
+
+sysinit: ptr2 parent 0 ptr index 0
+
+sysinit: add 3 horizon after 3
+
+sysinit: add 4 node .....................
+
+sysinit: parent node addr 0x0x425358
+
+sysinit: found parent 0 parent found: 0
+
+sysinit: ptr2 parent 0 ptr index 0
+
+sysinit: add 4 horizon after 4
+
+sysinit: add 5 node .....................
+
+sysinit: parent node addr 0x0x425380
+
+sysinit: found parent 1 parent found: 1
+
+sysinit: add 5 vertical after 1
+
+sysinit: add 6 node .....................
+
+sysinit: parent node addr 0x0x425380
+
+sysinit: found parent 1 parent found: 1
+
+sysinit: ptr2 parent 1 ptr index 1
+
+sysinit: add 6 horizon after 20
+
+sysinit: add 7 node .....................
+
+sysinit: parent node addr 0x0x425420
+
+sysinit: found parent 20 parent found: 20
+
+sysinit: add 7 vertical after 20
+
+sysinit: add 8 node .....................
+
+sysinit: parent node addr 0x0x425448
+
+sysinit: found parent 21 parent found: 21
+
+sysinit: add 8 vertical after 21
+
+sysinit: add 9 node .....................
+
+sysinit: parent node addr 0x0x425470
+
+sysinit: found parent 22 parent found: 22
+
+sysinit: add 9 vertical after 22
+
+sysinit: add 10 node .....................
+
+sysinit: parent node addr 0x0x425498
+
+sysinit: found parent 23 parent found: 23
+
+sysinit: ptr2 parent 1 ptr index 23
+
+sysinit: add 10 vertical after 23
+
+sysinit: add 11 node .....................
+
+sysinit: parent node addr 0x0x425380
+
+sysinit: found parent 1 parent found: 1
+
+sysinit: ptr2 parent 1 ptr index 1
+
+sysinit: add 11 horizon after 21
+
+sysinit: add 12 node .....................
+
+sysinit: parent node addr 0x0x425380
+
+sysinit: found parent 1 parent found: 1
+
+sysinit: ptr2 parent 1 ptr index 1
+
+sysinit: add 12 horizon after 26
+
+sysinit: add 13 node .....................
+
+sysinit: parent node addr 0x0x425538
+
+sysinit: found parent 27 parent found: 27
+
+sysinit: add 13 vertical after 27
+
+sysinit: add 14 node .....................
+
+sysinit: parent node addr 0x0x425560
+
+sysinit: found parent 28 parent found: 28
+
+sysinit: ptr2 parent 1 ptr index 28
+
+sysinit: add 14 vertical after 28
+
+sysinit: add 15 node .....................
+
+sysinit: parent node addr 0x0x425560
+
+sysinit: found parent 28 parent found: 28
+
+sysinit: ptr2 parent 28 ptr index 28
+
+sysinit: add 15 horizon after 29
+
+sysinit: add 16 node .....................
+
+sysinit: parent node addr 0x0x4255b0
+
+sysinit: found parent 30 parent found: 30
+
+sysinit: add 16 vertical after 30
+
+sysinit: add 17 node .....................
+
+sysinit: parent node addr 0x0x4255d8
+
+sysinit: found parent 31 parent found: 31
+
+sysinit: ptr2 parent 28 ptr index 31
+
+sysinit: add 17 vertical after 31
+
+sysinit: add 18 node .....................
+
+sysinit: parent node addr 0x0x4253a8
+
+sysinit: found parent 3 parent found: 3
+
+sysinit: add 18 vertical after 3
+
+sysinit: add 19 node .....................
+
+sysinit: parent node addr 0x0x4253a8
+
+sysinit: found parent 3 parent found: 3
+
+sysinit: ptr2 parent 3 ptr index 3
+
+sysinit: add 19 horizon after 33
+
+sysinit: add 20 node .....................
+
+sysinit: parent node addr 0x0x425650
+
+sysinit: found parent 34 parent found: 34
+
+sysinit: add 20 vertical after 34
+
+sysinit: add 21 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 3 ptr index 35
+
+sysinit: add 21 vertical after 35
+
+sysinit: add 22 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 35 ptr index 35
+
+sysinit: add 22 horizon after 36
+
+sysinit: add 23 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 35 ptr index 35
+
+sysinit: add 23 horizon after 37
+
+sysinit: add 24 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 35 ptr index 35
+
+sysinit: add 24 horizon after 145
+
+sysinit: add 25 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 35 ptr index 35
+
+sysinit: add 25 horizon after 146
+
+sysinit: add 26 node .....................
+
+sysinit: parent node addr 0x0x425498
+
+sysinit: found parent 23 parent found: 23
+
+sysinit: ptr2 parent 23 ptr index 23
+
+sysinit: add 26 horizon after 25
+
+sysinit: add 27 node .....................
+
+sysinit: parent node addr 0x0x425498
+
+sysinit: found parent 23 parent found: 23
+
+sysinit: ptr2 parent 23 ptr index 23
+
+sysinit: add 27 horizon after 48
+
+sysinit: add 28 node .....................
+
+sysinit: parent node addr 0x0x425498
+
+sysinit: found parent 23 parent found: 23
+
+sysinit: ptr2 parent 23 ptr index 23
+
+sysinit: add 28 horizon after 49
+
+sysinit: add 29 node .....................
+
+sysinit: parent node addr 0x0x425498
+
+sysinit: found parent 23 parent found: 23
+
+sysinit: ptr2 parent 23 ptr index 23
+
+sysinit: add 29 horizon after 50
+
+sysinit: add 30 node .....................
+
+sysinit: parent node addr 0x0x425560
+
+sysinit: found parent 28 parent found: 28
+
+sysinit: ptr2 parent 28 ptr index 28
+
+sysinit: add 30 horizon after 30
+
+sysinit: add 31 node .....................
+
+sysinit: parent node addr 0x0x425808
+
+sysinit: found parent 54 parent found: 54
+
+sysinit: add 31 vertical after 54
+
+sysinit: add 32 node .....................
+
+sysinit: parent node addr 0x0x425808
+
+sysinit: found parent 54 parent found: 54
+
+sysinit: ptr2 parent 54 ptr index 54
+
+sysinit: add 32 horizon after 55
+
+sysinit: add 33 node .....................
+
+sysinit: parent node addr 0x0x425808
+
+sysinit: found parent 54 parent found: 54
+
+sysinit: ptr2 parent 54 ptr index 54
+
+sysinit: add 33 horizon after 56
+
+sysinit: add 34 node .....................
+
+sysinit: parent node addr 0x0x425380
+
+sysinit: found parent 1 parent found: 1
+
+sysinit: ptr2 parent 1 ptr index 1
+
+sysinit: add 34 horizon after 27
+
+sysinit: add 35 node .....................
+
+sysinit: parent node addr 0x0x4258a8
+
+sysinit: found parent 58 parent found: 58
+
+sysinit: add 35 vertical after 58
+
+sysinit: add 36 node .....................
+
+sysinit: parent node addr 0x0x4258a8
+
+sysinit: found parent 58 parent found: 58
+
+sysinit: ptr2 parent 58 ptr index 58
+
+sysinit: add 36 horizon after 59
+
+sysinit: add 37 node .....................
+
+sysinit: parent node addr 0x0x4258a8
+
+sysinit: found parent 58 parent found: 58
+
+sysinit: ptr2 parent 58 ptr index 58
+
+sysinit: add 37 horizon after 60
+
+sysinit: add 38 node .....................
+
+sysinit: parent node addr 0x0x4253d0
+
+sysinit: found parent 4 parent found: 4
+
+sysinit: add 38 vertical after 4
+
+sysinit: add 39 node .....................
+
+sysinit: parent node addr 0x0x425948
+
+sysinit: found parent 62 parent found: 62
+
+sysinit: ptr2 parent 0 ptr index 62
+
+sysinit: add 39 vertical after 62
+
+sysinit: add 40 node .....................
+
+sysinit: parent node addr 0x0x425948
+
+sysinit: found parent 62 parent found: 62
+
+sysinit: ptr2 parent 62 ptr index 62
+
+sysinit: add 40 horizon after 63
+
+sysinit: add 41 node .....................
+
+sysinit: parent node addr 0x0x4253f8
+
+sysinit: found parent 5 parent found: 5
+
+sysinit: add 41 vertical after 5
+
+sysinit: add 42 node .....................
+
+sysinit: parent node addr 0x0x425380
+
+sysinit: found parent 1 parent found: 1
+
+sysinit: ptr2 parent 1 ptr index 1
+
+sysinit: add 42 horizon after 58
+
+sysinit: add 43 node .....................
+
+sysinit: parent node addr 0x0x425380
+
+sysinit: found parent 1 parent found: 1
+
+sysinit: ptr2 parent 1 ptr index 1
+
+sysinit: add 43 horizon after 66
+
+sysinit: add 44 node .....................
+
+sysinit: parent node addr 0x0x425358
+
+sysinit: found parent 0 parent found: 0
+
+sysinit: ptr2 parent 0 ptr index 0
+
+sysinit: add 44 horizon after 5
+
+sysinit: add 45 node .....................
+
+sysinit: parent node addr 0x0x425a38
+
+sysinit: found parent 69 parent found: 69
+
+sysinit: add 45 vertical after 69
+
+sysinit: add 46 node .....................
+
+sysinit: parent node addr 0x0x425a38
+
+sysinit: found parent 69 parent found: 69
+
+sysinit: ptr2 parent 69 ptr index 69
+
+sysinit: add 46 horizon after 70
+
+sysinit: add 47 node .....................
+
+sysinit: parent node addr 0x0x425a88
+
+sysinit: found parent 71 parent found: 71
+
+sysinit: add 47 vertical after 71
+
+sysinit: add 48 node .....................
+
+sysinit: parent node addr 0x0x425a88
+
+sysinit: found parent 71 parent found: 71
+
+sysinit: ptr2 parent 71 ptr index 71
+
+sysinit: add 48 horizon after 72
+
+sysinit: add 49 node .....................
+
+sysinit: parent node addr 0x0x425a88
+
+sysinit: found parent 71 parent found: 71
+
+sysinit: ptr2 parent 71 ptr index 71
+
+sysinit: add 49 horizon after 73
+
+sysinit: add 50 node .....................
+
+sysinit: parent node addr 0x0x425a88
+
+sysinit: found parent 71 parent found: 71
+
+sysinit: ptr2 parent 71 ptr index 71
+
+sysinit: add 50 horizon after 74
+
+sysinit: add 51 node .....................
+
+sysinit: parent node addr 0x0x425498
+
+sysinit: found parent 23 parent found: 23
+
+sysinit: ptr2 parent 23 ptr index 23
+
+sysinit: add 51 horizon after 51
+
+sysinit: add 52 node .....................
+
+sysinit: parent node addr 0x0x425498
+
+sysinit: found parent 23 parent found: 23
+
+sysinit: ptr2 parent 23 ptr index 23
+
+sysinit: add 52 horizon after 76
+
+sysinit: add 53 node .....................
+
+sysinit: parent node addr 0x0x425498
+
+sysinit: found parent 23 parent found: 23
+
+sysinit: ptr2 parent 23 ptr index 23
+
+sysinit: add 53 horizon after 77
+
+sysinit: add 54 node .....................
+
+sysinit: parent node addr 0x0x425498
+
+sysinit: found parent 23 parent found: 23
+
+sysinit: ptr2 parent 23 ptr index 23
+
+sysinit: add 54 horizon after 78
+
+sysinit: add 55 node .....................
+
+sysinit: parent node addr 0x0x425498
+
+sysinit: found parent 23 parent found: 23
+
+sysinit: ptr2 parent 23 ptr index 23
+
+sysinit: add 55 horizon after 79
+
+sysinit: add 56 node .....................
+
+sysinit: parent node addr 0x0x425470
+
+sysinit: found parent 22 parent found: 22
+
+sysinit: ptr2 parent 22 ptr index 22
+
+sysinit: add 56 horizon after 24
+
+sysinit: add 57 node .....................
+
+sysinit: parent node addr 0x0x425470
+
+sysinit: found parent 22 parent found: 22
+
+sysinit: ptr2 parent 22 ptr index 22
+
+sysinit: add 57 horizon after 81
+
+sysinit: add 58 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 35 ptr index 35
+
+sysinit: add 58 horizon after 38
+
+sysinit: add 59 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 35 ptr index 35
+
+sysinit: add 59 horizon after 83
+
+sysinit: add 60 node .....................
+
+sysinit: parent node addr 0x0x4253d0
+
+sysinit: found parent 4 parent found: 4
+
+sysinit: ptr2 parent 4 ptr index 4
+
+sysinit: add 60 horizon after 62
+
+sysinit: add 61 node .....................
+
+sysinit: parent node addr 0x0x4253d0
+
+sysinit: found parent 4 parent found: 4
+
+sysinit: ptr2 parent 4 ptr index 4
+
+sysinit: add 61 horizon after 85
+
+sysinit: add 62 node .....................
+
+sysinit: parent node addr 0x0x425ce0
+
+sysinit: found parent 86 parent found: 86
+
+sysinit: add 62 vertical after 86
+
+sysinit: add 63 node .....................
+
+sysinit: parent node addr 0x0x425d08
+
+sysinit: found parent 87 parent found: 87
+
+sysinit: ptr2 parent 4 ptr index 87
+
+sysinit: add 63 vertical after 87
+
+sysinit: add 64 node .....................
+
+sysinit: parent node addr 0x0x425d08
+
+sysinit: found parent 87 parent found: 87
+
+sysinit: ptr2 parent 87 ptr index 87
+
+sysinit: add 64 horizon after 88
+
+sysinit: add 65 node .....................
+
+sysinit: parent node addr 0x0x425d08
+
+sysinit: found parent 87 parent found: 87
+
+sysinit: ptr2 parent 87 ptr index 87
+
+sysinit: add 65 horizon after 89
+
+sysinit: add 66 node .....................
+
+sysinit: parent node addr 0x0x425d08
+
+sysinit: found parent 87 parent found: 87
+
+sysinit: ptr2 parent 87 ptr index 87
+
+sysinit: add 66 horizon after 90
+
+sysinit: add 67 node .....................
+
+sysinit: parent node addr 0x0x425da8
+
+sysinit: found parent 91 parent found: 91
+
+sysinit: add 67 vertical after 91
+
+sysinit: add 68 node .....................
+
+sysinit: parent node addr 0x0x425da8
+
+sysinit: found parent 91 parent found: 91
+
+sysinit: ptr2 parent 91 ptr index 91
+
+sysinit: add 68 horizon after 92
+
+sysinit: add 69 node .....................
+
+sysinit: parent node addr 0x0x425da8
+
+sysinit: found parent 91 parent found: 91
+
+sysinit: ptr2 parent 91 ptr index 91
+
+sysinit: add 69 horizon after 93
+
+sysinit: add 70 node .....................
+
+sysinit: parent node addr 0x0x425da8
+
+sysinit: found parent 91 parent found: 91
+
+sysinit: ptr2 parent 91 ptr index 91
+
+sysinit: add 70 horizon after 94
+
+sysinit: add 71 node .....................
+
+sysinit: parent node addr 0x0x425da8
+
+sysinit: found parent 91 parent found: 91
+
+sysinit: ptr2 parent 91 ptr index 91
+
+sysinit: add 71 horizon after 95
+
+sysinit: add 72 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 35 ptr index 35
+
+sysinit: add 72 horizon after 84
+
+sysinit: add 73 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 35 ptr index 35
+
+sysinit: add 73 horizon after 97
+
+sysinit: add 74 node .....................
+
+sysinit: parent node addr 0x0x425d08
+
+sysinit: found parent 87 parent found: 87
+
+sysinit: ptr2 parent 87 ptr index 87
+
+sysinit: add 74 horizon after 91
+
+sysinit: add 75 node .....................
+
+sysinit: parent node addr 0x0x4258a8
+
+sysinit: found parent 58 parent found: 58
+
+sysinit: ptr2 parent 58 ptr index 58
+
+sysinit: add 75 horizon after 61
+
+sysinit: add 76 node .....................
+
+sysinit: parent node addr 0x0x425f10
+
+sysinit: found parent 100 parent found: 100
+
+sysinit: add 76 vertical after 100
+
+sysinit: add 77 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 35 ptr index 35
+
+sysinit: add 77 horizon after 98
+
+sysinit: add 78 node .....................
+
+sysinit: parent node addr 0x0x425678
+
+sysinit: found parent 35 parent found: 35
+
+sysinit: ptr2 parent 35 ptr index 35
+
+sysinit: add 78 horizon after 102
+
+sysinit: add 79 node .....................
+
+sysinit: parent node addr 0x0x4253d0
+
+sysinit: found parent 4 parent found: 4
+
+sysinit: ptr2 parent 4 ptr index 4
+
+sysinit: add 79 horizon after 86
+
+sysinit: add 80 node .....................
+
+sysinit: parent node addr 0x0x425fb0
+
+sysinit: found parent 104 parent found: 104
+
+sysinit: add 80 vertical after 104
+
+sysinit: add 81 node .....................
+
+sysinit: parent node addr 0x0x4253d0
+
+sysinit: found parent 4 parent found: 4
+
+sysinit: ptr2 parent 4 ptr index 4
+
+sysinit: add 81 horizon after 104
+
+sysinit: add 82 node .....................
+
+sysinit: parent node addr 0x0x426000
+
+sysinit: found parent 106 parent found: 106
+
+sysinit: add 82 vertical after 106
+
+sysinit: add 83 node .....................
+
+sysinit: parent node addr 0x0x4253d0
+
+sysinit: found parent 4 parent found: 4
+
+sysinit: ptr2 parent 4 ptr index 4
+
+sysinit: add 83 horizon after 106
+
+sysinit: add 84 node .....................
+
+sysinit: parent node addr 0x0x426050
+
+sysinit: found parent 108 parent found: 108
+
+sysinit: add 84 vertical after 108
+
+sysinit: add 85 node .....................
+
+sysinit: parent node addr 0x0x4253d0
+
+sysinit: found parent 4 parent found: 4
+
+sysinit: ptr2 parent 4 ptr index 4
+
+sysinit: add 85 horizon after 108
+
+sysinit: add 86 node .....................
+
+sysinit: parent node addr 0x0x4260a0
+
+sysinit: found parent 110 parent found: 110
+
+sysinit: add 86 vertical after 110
+
+sysinit: add 87 node .....................
+
+sysinit: parent node addr 0x0x4253d0
+
+sysinit: found parent 4 parent found: 4
+
+sysinit: ptr2 parent 4 ptr index 4
+
+sysinit: add 87 horizon after 110
+
+sysinit: add 88 node .....................
+
+sysinit: parent node addr 0x0x4260f0
+
+sysinit: found parent 112 parent found: 112
+
+sysinit: add 88 vertical after 112
+
+sysinit: add 89 node .....................
+
+sysinit: parent node addr 0x0x4253d0
+
+sysinit: found parent 4 parent found: 4
+
+sysinit: ptr2 parent 4 ptr index 4
+
+sysinit: add 89 horizon after 112
+
+sysinit: add 90 node .....................
+
+sysinit: parent node addr 0x0x4253d0
+
+sysinit: found parent 4 parent found: 4
+
+sysinit: ptr2 parent 4 ptr index 4
+
+sysinit: add 90 horizon after 114
+
+sysinit: add 91 node .....................
+
+sysinit: parent node addr 0x0x425358
+
+sysinit: found parent 0 parent found: 0
+
+sysinit: ptr2 parent 0 ptr index 0
+
+sysinit: add 91 horizon after 69
+
+sysinit: add 92 node .....................
+
+sysinit: parent node addr 0x0x426190
+
+sysinit: found parent 116 parent found: 116
+
+sysinit: add 92 vertical after 116
+
+sysinit: add 93 node .....................
+
+sysinit: parent node addr 0x0x4261b8
+
+sysinit: found parent 117 parent found: 117
+
+sysinit: ptr2 parent 0 ptr index 117
+
+sysinit: add 93 vertical after 117
+
+sysinit: add 94 node .....................
+
+sysinit: parent node addr 0x0x4261e0
+
+sysinit: found parent 118 parent found: 118
+
+sysinit: ptr2 parent 0 ptr index 118
+
+sysinit: add 94 vertical after 118
+
+sysinit: add 95 node .....................
+
+sysinit: parent node addr 0x0x4261e0
+
+sysinit: found parent 118 parent found: 118
+
+sysinit: ptr2 parent 118 ptr index 118
+
+sysinit: add 95 horizon after 119
+
+sysinit: add 96 node .....................
+
+sysinit: parent node addr 0x0x4261e0
+
+sysinit: found parent 118 parent found: 118
+
+sysinit: ptr2 parent 118 ptr index 118
+
+sysinit: add 96 horizon after 120
+
+sysinit: add 97 node .....................
+
+sysinit: parent node addr 0x0x425358
+
+sysinit: found parent 0 parent found: 0
+
+sysinit: ptr2 parent 0 ptr index 0
+
+sysinit: add 97 horizon after 116
+
+sysinit: add 98 node .....................
+
+sysinit: parent node addr 0x0x426280
+
+sysinit: found parent 122 parent found: 122
+
+sysinit: add 98 vertical after 122
+
+sysinit: add 99 node .....................
+
+sysinit: parent node addr 0x0x4262a8
+
+sysinit: found parent 123 parent found: 123
+
+sysinit: ptr2 parent 0 ptr index 123
+
+sysinit: add 99 vertical after 123
+
+sysinit: add 100 node .....................
+
+sysinit: parent node addr 0x0x4262d0
+
+sysinit: found parent 124 parent found: 124
+
+sysinit: ptr2 parent 0 ptr index 124
+
+sysinit: add 100 vertical after 124
+
+sysinit: add 101 node .....................
+
+sysinit: parent node addr 0x0x425358
+
+sysinit: found parent 0 parent found: 0
+
+sysinit: ptr2 parent 0 ptr index 0
+
+sysinit: add 101 horizon after 122
+
+sysinit: add 102 node .....................
+
+sysinit: parent node addr 0x0x426320
+
+sysinit: found parent 126 parent found: 126
+
+sysinit: add 102 vertical after 126
+
+sysinit: add 103 node .....................
+
+sysinit: parent node addr 0x0x426348
+
+sysinit: found parent 127 parent found: 127
+
+sysinit: ptr2 parent 0 ptr index 127
+
+sysinit: add 103 vertical after 127
+
+sysinit: add 104 node .....................
+
+sysinit: parent node addr 0x0x426370
+
+sysinit: found parent 128 parent found: 128
+
+sysinit: ptr2 parent 0 ptr index 128
+
+sysinit: add 104 vertical after 128
+
+sysinit: add 105 node .....................
+
+sysinit: parent node addr 0x0x426370
+
+sysinit: found parent 128 parent found: 128
+
+sysinit: ptr2 parent 128 ptr index 128
+
+sysinit: add 105 horizon after 129
+
+sysinit: add 106 node .....................
+
+sysinit: parent node addr 0x0x4263c0
+
+sysinit: found parent 130 parent found: 130
+
+sysinit: add 106 vertical after 130
+
+sysinit: add 107 node .....................
+
+sysinit: parent node addr 0x0x4263e8
+
+sysinit: found parent 131 parent found: 131
+
+sysinit: ptr2 parent 128 ptr index 131
+
+sysinit: add 107 vertical after 131
+
+sysinit: add 108 node .....................
+
+sysinit: parent node addr 0x0x4263e8
+
+sysinit: found parent 131 parent found: 131
+
+sysinit: ptr2 parent 131 ptr index 131
+
+sysinit: add 108 horizon after 132
+
+sysinit: add 109 node .....................
+
+sysinit: parent node addr 0x0x425358
+
+sysinit: found parent 0 parent found: 0
+
+sysinit: ptr2 parent 0 ptr index 0
+
+sysinit: add 109 horizon after 126
+
+sysinit: add 110 node .....................
+
+sysinit: parent node addr 0x0x426460
+
+sysinit: found parent 134 parent found: 134
+
+sysinit: add 110 vertical after 134
+
+sysinit: add 111 node .....................
+
+sysinit: parent node addr 0x0x426488
+
+sysinit: found parent 135 parent found: 135
+
+sysinit: ptr2 parent 0 ptr index 135
+
+sysinit: add 111 vertical after 135
+
+sysinit: add 112 node .....................
+
+sysinit: parent node addr 0x0x4264b0
+
+sysinit: found parent 136 parent found: 136
+
+sysinit: ptr2 parent 0 ptr index 136
+
+sysinit: add 112 vertical after 136
+
+sysinit: add 113 node .....................
+
+sysinit: parent node addr 0x0x4264d8
+
+sysinit: found parent 137 parent found: 137
+
+sysinit: ptr2 parent 0 ptr index 137
+
+sysinit: add 113 vertical after 137
+
+sysinit: add 114 node .....................
+
+sysinit: parent node addr 0x0x426500
+
+sysinit: found parent 138 parent found: 138
+
+sysinit: ptr2 parent 0 ptr index 138
+
+sysinit: add 114 vertical after 138
+
+sysinit: add 115 node .....................
+
+sysinit: parent node addr 0x0x425358
+
+sysinit: found parent 0 parent found: 0
+
+sysinit: ptr2 parent 0 ptr index 0
+
+sysinit: add 115 horizon after 134
+
+sysinit: add 116 node .....................
+
+sysinit: parent node addr 0x0x426550
+
+sysinit: found parent 140 parent found: 140
+
+sysinit: add 116 vertical after 140
+
+sysinit: add 117 node .....................
+
+sysinit: Start gw6c
+
+sysinit: You haven&#039;t edited your configuration file. Gateway6 is disabled.
+
+sysinit: Gateway6 client cannot start.
+
+sysinit: Start igmpproxy
+
+sysinit: Start netprobe
+
+sysinit: --- p0f 3.05b by Michal Zalewski &lt;lcamtuf@coredump.cx&gt; ---
+
+sysinit: [!] Consider specifying -u in daemon mode (see README).
+
+sysinit: [+] Closed 1 file descriptor.
+
+sysinit: [+] Loaded 484 signatures from &#039;/etc/appflow/p0f.fp&#039;.
+
+sysinit: [+] Intercepting traffic on interface &#039;br-lan&#039;.
+
+sysinit: [+] Default packet filtering configured [+VLAN].
+
+sysinit: [+] Listening on API socket &#039;/tmp/p0f.sock&#039; (max 20 clients).
+
+sysinit: [+] Daemon process created, PID 3910 (stderr kept as-is).
+
+sysinit: Good luck, you&#039;re on your own now!
+
+sysinit: Start parental_monitor
+
+sysinit: Start sysctl
+
+sysinit: Start wan_status_monitor
+
+sysinit: Start zybootend
+
+sysinit: Boot finished!
+
+
+
+NBG6616 login: root
+Password: 
+
+
+BusyBox v1.19.4 (2015-01-20 10:36:13 CST) built-in shell (ash)
+Enter &#039;help&#039; for a list of built-in commands.
+
+  _______                     ________        __
+ |       |.-----.-----.-----.|  |  |  |.----.|  |_
+ |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
+ |_______||   __|_____|__|__||________||__|  |____|
+          |__| W I R E L E S S   F R E E D O M
+ -----------------------------------------------------
+ (r4768)
+root@NBG6616:~#
+</p>
+</div>
+<p>
+<br/>
+
+</p>
+
+</div>
+
+<h3 class="sectionedit20" id="openwrt_boot_log">OpenWrt Boot Log</h3>
+<div class="level3">
+<div class="wrap_bootlog plugin_wrap">
+<p>
+U-Boot 2009.11 (Jan 20 2015 - 10:35:51)
+
+NBG6616 - Scorpion 1.0
+DRAM:  32bit ddr2 128 MB
+Flash: 16 MB
+*** Warning *** : PCIe WLAN Module not found !!!
+Net:   eth0, eth1
+
+
+ZyXEL zloader v1.41 (Jan 20 2015 - 11:02:19)
+Multiboot clinent version: 1.2
+could not establish link on eth0
+eth_init failed!
+### JFFS2 loading &#039;/boot/vmlinux.lzma.uImage&#039; to 0x80400000
+Scanning JFFS2 FS: &#039;/boot/vmlinux.lzma.uImage&#039; found, done
+Loading file: done
+### JFFS2 load complete: 1056433 bytes loaded to 0x80400000
+## Booting kernel from Legacy Image at 80400000 ...
+   Image Name:   MIPS OpenWrt Linux-3.10.49
+   Created:      2015-10-28  21:52:01 UTC
+   Image Type:   MIPS Linux Kernel Image (lzma compressed)
+   Data Size:    1056369 Bytes =  1 MB
+   Load Address: 80060000
+   Entry Point:  80060000
+   Verifying Checksum ... OK
+   Uncompressing Kernel Image ... OK
+
+Starting kernel ...
+
+[    0.000000] Linux version 3.10.49 (benjamin@ben-t450) (gcc version 4.8.3 (OpenWrt/Linaro GCC 4.8-2014.04 r46516) ) #3 Wed Oct 28 22:51:55 CET 2015
+[    0.000000] bootconsole [early0] enabled
+[    0.000000] CPU revision is: 00019750 (MIPS 74Kc)
+[    0.000000] SoC: Qualcomm Atheros QCA9558 rev 0
+[    0.000000] Clocks: CPU:720.000MHz, DDR:600.000MHz, AHB:200.000MHz, Ref:40.000MHz
+[    0.000000] Determined physical RAM map:
+[    0.000000]  memory: 08000000 @ 00000000 (usable)
+[    0.000000] User-defined physical RAM map:
+[    0.000000]  memory: 08000000 @ 00000000 (usable)
+[    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x00000000-0x07ffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x00000000-0x07ffffff]
+[    0.000000] Primary instruction cache 64kB, VIPT, 4-way, linesize 32 bytes.
+[    0.000000] Primary data cache 32kB, 4-way, VIPT, cache aliases, linesize 32 bytes
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 32512
+[    0.000000] Kernel command line:  board=NBG6616 console=ttyS0,115200 mtdparts=spi0.0:192k(u-boot)ro,64k(env)ro,64k(RFdata)ro,384k(zyxel_rfsd),384k(romd),64k(header),2048k(kernel),13184k(rootfs),15232k@0x120000(firmware) mem=128M ethaddr=90:EF:68:7E:AC:5C rootfstype=squashfs,jffs2 noinitrd
+[    0.000000] PID hash table entries: 512 (order: -1, 2048 bytes)
+[    0.000000] Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)
+[    0.000000] Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.000000] Writing ErrCtl register=00000000
+[    0.000000] Readback ErrCtl register=00000000
+[    0.000000] Memory: 126248k/131072k available (2238k kernel code, 4824k reserved, 604k data, 228k init, 0k highmem)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS:51
+[    0.000000] Calibrating delay loop... 358.80 BogoMIPS (lpj=1794048)
+[    0.060000] pid_max: default: 32768 minimum: 301
+[    0.060000] Mount-cache hash table entries: 512
+[    0.070000] NET: Registered protocol family 16
+[    0.070000] MIPS: machine is Zyxel NBG6616
+[    0.120000] ar724x-pci ar724x-pci.0: PCIe link is down
+[    0.130000] registering PCI controller with io_map_base unset
+[    0.130000] registering PCI controller with io_map_base unset
+[    0.540000] bio: create slab &lt;bio-0&gt; at 0
+[    0.550000] PCI host bridge to bus 0000:00
+[    0.550000] pci_bus 0000:00: root bus resource [mem 0x10000000-0x11ffffff]
+[    0.560000] pci_bus 0000:00: root bus resource [io  0x0000]
+[    0.560000] pci_bus 0000:00: No busn resource found for root bus, will use [bus 00-ff]
+[    0.570000] PCI host bridge to bus 0000:01
+[    0.570000] pci_bus 0000:01: root bus resource [mem 0x12000000-0x13ffffff]
+[    0.580000] pci_bus 0000:01: root bus resource [io  0x0001]
+[    0.580000] pci_bus 0000:01: No busn resource found for root bus, will use [bus 01-ff]
+[    0.590000] pci 0000:01:00.0: invalid calibration data
+[    0.590000] pci 0000:01:00.0: BAR 0: assigned [mem 0x12000000-0x121fffff 64bit]
+[    0.600000] pci 0000:01:00.0: BAR 6: assigned [mem 0x12200000-0x1220ffff pref]
+[    0.600000] pci 0000:01:00.0: using irq 41 for pin 1
+[    0.610000] Switching to clocksource MIPS
+[    0.610000] NET: Registered protocol family 2
+[    0.620000] TCP established hash table entries: 1024 (order: 1, 8192 bytes)
+[    0.620000] TCP bind hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.620000] TCP: Hash tables configured (established 1024 bind 1024)
+[    0.630000] TCP: reno registered
+[    0.630000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    0.640000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    0.650000] NET: Registered protocol family 1
+[    0.660000] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.670000] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.680000] msgmni has been set to 246
+[    0.680000] io scheduler noop registered
+[    0.690000] io scheduler deadline registered (default)
+[    0.690000] Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+[    0.720000] serial8250.0: ttyS0 at MMIO 0x18020000 (irq = 11) is a 16550A
+[    0.720000] console [ttyS0] enabled, bootconsole disabled
+[    0.720000] console [ttyS0] enabled, bootconsole disabled
+[    0.740000] ath79-spi ath79-spi: master is unqueued, this is deprecated
+[    0.740000] m25p80 spi0.0: found mx25l12805d, expected m25p80
+[    0.750000] m25p80 spi0.0: mx25l12805d (16384 Kbytes)
+[    0.760000] 9 cmdlinepart partitions found on MTD device spi0.0
+[    0.760000] Creating 9 MTD partitions on &quot;spi0.0&quot;:
+[    0.770000] 0x000000000000-0x000000030000 : &quot;u-boot&quot;
+[    0.770000] 0x000000030000-0x000000040000 : &quot;env&quot;
+[    0.780000] 0x000000040000-0x000000050000 : &quot;RFdata&quot;
+[    0.780000] 0x000000050000-0x0000000b0000 : &quot;zyxel_rfsd&quot;
+[    0.790000] 0x0000000b0000-0x000000110000 : &quot;romd&quot;
+[    0.800000] 0x000000110000-0x000000120000 : &quot;header&quot;
+[    0.800000] 0x000000120000-0x000000320000 : &quot;kernel&quot;
+[    0.810000] 0x000000320000-0x000001000000 : &quot;rootfs&quot;
+[    0.820000] mtd: device 7 (rootfs) set to be root filesystem
+[    0.820000] 1 squashfs-split partitions found on MTD device rootfs
+[    0.830000] 0x000000500000-0x000001000000 : &quot;rootfs_data&quot;
+[    0.830000] 0x000000120000-0x000001000000 : &quot;firmware&quot;
+[    0.870000] switch0: Atheros AR8337 rev. 2 switch registered on ag71xx-mdio.0
+[    2.140000] libphy: ag71xx_mdio: probed
+[    2.700000] ag71xx ag71xx.0: connected to PHY at ag71xx-mdio.0:00 [uid=004dd036, driver=Atheros AR8216/AR8236/AR8316]
+[    2.710000] eth0: Atheros AG71xx at 0xb9000000, irq 4, mode:RGMII
+[    3.260000] eth1: Atheros AG71xx at 0xba000000, irq 5, mode:SGMII
+[    3.270000] TCP: cubic registered
+[    3.280000] NET: Registered protocol family 17
+[    3.280000] 8021q: 802.1Q VLAN Support v1.8
+[    3.290000] VFS: Mounted root (squashfs filesystem) readonly on device 31:7.
+[    3.300000] Freeing unused kernel memory: 228K (80327000 - 80360000)
+procd: Console is alive
+procd: - watchdog -
+[    5.990000] usbcore: registered new interface driver usbfs
+[    5.990000] usbcore: registered new interface driver hub
+[    6.000000] usbcore: registered new device driver usb
+[    6.010000] SCSI subsystem initialized
+[    6.020000] ehci_hcd: USB 2.0 &#039;Enhanced&#039; Host Controller (EHCI) Driver
+[    6.030000] ehci-platform: EHCI generic platform driver
+[    6.030000] ehci-platform ehci-platform.0: EHCI Host Controller
+[    6.040000] ehci-platform ehci-platform.0: new USB bus registered, assigned bus number 1
+[    6.050000] ehci-platform ehci-platform.0: TX-TX IDP fix enabled
+[    6.050000] ehci-platform ehci-platform.0: irq 48, io mem 0x1b000000
+[    6.080000] ehci-platform ehci-platform.0: USB 2.0 started, EHCI 1.00
+[    6.080000] hub 1-0:1.0: USB hub found
+[    6.090000] hub 1-0:1.0: 1 port detected
+[    6.090000] ehci-platform ehci-platform.1: EHCI Host Controller
+[    6.100000] ehci-platform ehci-platform.1: new USB bus registered, assigned bus number 2
+[    6.110000] ehci-platform ehci-platform.1: TX-TX IDP fix enabled
+[    6.110000] ehci-platform ehci-platform.1: irq 49, io mem 0x1b400000
+[    6.140000] ehci-platform ehci-platform.1: USB 2.0 started, EHCI 1.00
+[    6.140000] hub 2-0:1.0: USB hub found
+[    6.150000] hub 2-0:1.0: 1 port detected
+[    6.150000] usbcore: registered new interface driver usb-storage
+procd: - preinit -
+Press the [f] key and hit [enter] to enter failsafe mode
+Press the [1], [2], [3] or [4] key and hit [enter] to select the debug level
+[    6.730000] usb 2-1: new full-speed USB device number 2 using ehci-platform
+[    7.730000] eth0: link up (1000Mbps/Full duplex)
+jffs2 is ready
+No jffs2 marker was found
+[    9.960000] jffs2: notice: (361) jffs2_build_xattr_subsystem: complete building xattr subsystem, 2 of xdatum (0 unchecked, 1 orphan) and 15 of xref (0 dead, 3 orphan) found.
+switching to overlay
+2116+0 records in
+2116+0 records out
+6+0 records in
+6+0 records out
+[   10.040000] eth0: link down
+procd: - early -
+procd: - watchdog -
+procd: - ubus -
+procd: - init -
+Please press Enter to activate this console.
+[   11.420000] NET: Registered protocol family 10
+[   11.430000] nf_conntrack version 0.5.0 (1976 buckets, 7904 max)
+[   11.440000] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[   11.450000] Loading modules backported from Linux version master-2014-05-22-0-gf2032ea
+[   11.460000] Backport generated by backports.git backports-20140320-37-g5c33da0
+[   11.480000] cfg80211: Calling CRDA to update world regulatory domain
+[   11.480000] cfg80211: World regulatory domain updated:
+[   11.490000] cfg80211:  DFS Master region: unset
+[   11.490000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
+[   11.500000] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+[   11.510000] cfg80211:   (2457000 KHz - 2482000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+[   11.520000] cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (N/A, 2000 mBm), (N/A)
+[   11.530000] cfg80211:   (5170000 KHz - 5250000 KHz @ 160000 KHz), (N/A, 2000 mBm), (N/A)
+[   11.530000] cfg80211:   (5250000 KHz - 5330000 KHz @ 160000 KHz), (N/A, 2000 mBm), (0 s)
+[   11.540000] cfg80211:   (5490000 KHz - 5730000 KHz @ 160000 KHz), (N/A, 2000 mBm), (0 s)
+[   11.550000] cfg80211:   (5735000 KHz - 5835000 KHz @ 80000 KHz), (N/A, 2000 mBm), (N/A)
+[   11.560000] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 0 mBm), (N/A)
+[   11.600000] ath10k_pci 0000:01:00.0: BAR 0: assigned [mem 0x12000000-0x121fffff 64bit]
+[   11.610000] PCI: Enabling device 0000:01:00.0 (0000 -&gt; 0002)
+[   11.920000] ath10k: pci irq legacy irq_mode 0 reset_mode 0
+[   12.010000] ath10k: otp stream is empty, using board.bin contents
+[   12.830000] ath10k: qca988x hw2.0 (0x4100016c, 0x043222ff) fw 10.1.467.2-1 api 2 htt 2.1
+[   13.370000] cfg80211: Calling CRDA for country: US
+[   13.380000] cfg80211: Regulatory domain changed to country: US
+[   13.390000] cfg80211:  DFS Master region: FCC
+[   13.390000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
+[   13.400000] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A, 3000 mBm), (N/A)
+[   13.410000] cfg80211:   (5170000 KHz - 5250000 KHz @ 80000 KHz), (N/A, 1700 mBm), (N/A)
+[   13.420000] cfg80211:   (5250000 KHz - 5330000 KHz @ 80000 KHz), (N/A, 2300 mBm), (0 s)
+[   13.430000] cfg80211:   (5735000 KHz - 5835000 KHz @ 80000 KHz), (N/A, 3000 mBm), (N/A)
+[   13.440000] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 4000 mBm), (N/A)
+[   13.450000] ip_tables: (C) 2000-2006 Netfilter Core Team
+[   13.520000] xt_time: kernel timezone is -0000
+[   13.550000] PPP generic driver version 2.4.2
+[   13.550000] NET: Registered protocol family 24
+[   13.600000] ieee80211 phy1: Atheros AR9550 Rev:0 mem=0xb8100000, irq=47
+procd: - init complete -
+
+</p>
+</div>
+<p>
+<br/>
+
+</p>
+
+</div>
+
+<h2 class="sectionedit23" id="tags">Tags</h2>
+<div class="level2">
+
+<p>
+<a href="../../../external.html?link=https://openwrt.org/meta/tags" class="wikilink1" title="meta:tags">How to add tags</a>
+</p>
+<div class="tags"><span>
+	<a href="../../../external.html?link=https://openwrt.org/tag/qca9557?do=showtag&amp;tag=qca9557" class="wikilink1" title="tag:qca9557" rel="tag">qca9557</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/gigabitethernet?do=showtag&amp;tag=GigabitEthernet" class="wikilink1" title="tag:gigabitethernet" rel="tag">GigabitEthernet</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/4port?do=showtag&amp;tag=4Port" class="wikilink1" title="tag:4port" rel="tag">4Port</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/2wnic?do=showtag&amp;tag=2WNIC" class="wikilink1" title="tag:2wnic" rel="tag">2WNIC</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/802.11ac?do=showtag&amp;tag=802.11ac" class="wikilink1" title="tag:802.11ac" rel="tag">802.11ac</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/ath10k?do=showtag&amp;tag=ath10k" class="wikilink1" title="tag:ath10k" rel="tag">ath10k</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/802.11abgn?do=showtag&amp;tag=802.11abgn" class="wikilink1" title="tag:802.11abgn" rel="tag">802.11abgn</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/802.11abgn_simultan?do=showtag&amp;tag=802.11abgn_simultan" class="wikilink1" title="tag:802.11abgn_simultan" rel="tag">802.11abgn simultan</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/usb?do=showtag&amp;tag=USB" class="wikilink1" title="tag:usb" rel="tag">USB</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/serial?do=showtag&amp;tag=Serial" class="wikilink1" title="tag:serial" rel="tag">Serial</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/usb2.0?do=showtag&amp;tag=USB2.0" class="wikilink1" title="tag:usb2.0" rel="tag">USB2.0</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/2usb?do=showtag&amp;tag=2USB" class="wikilink1" title="tag:2usb" rel="tag">2USB</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/128ram?do=showtag&amp;tag=128RAM" class="wikilink1" title="tag:128ram" rel="tag">128RAM</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/16flash?do=showtag&amp;tag=16Flash" class="wikilink1" title="tag:16flash" rel="tag">16Flash</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/mips?do=showtag&amp;tag=MIPS" class="wikilink1" title="tag:mips" rel="tag">MIPS</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/mips32?do=showtag&amp;tag=MIPS32" class="wikilink1" title="tag:mips32" rel="tag">MIPS32</a>,
+	<a href="../../../external.html?link=https://openwrt.org/tag/74kc?do=showtag&amp;tag=74kc" class="wikilink1" title="tag:74kc" rel="tag">74kc</a>
+</span></div>
+
+</div>
+
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>toh/zyxel/nbg6616.txt</bdi> · Last modified: 2019/02/02 16:49 by <bdi>frtz</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="nbg661639b4?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="nbg66165f35?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="nbg66162271?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+        
+<!-- ********** FOOTER ********** -->
+<div id="dokuwiki__footer"><div class="pad">
+    <div class="license">Except where otherwise noted, content on this wiki is licensed under the following license: <bdi><a href="../../../external.html?link=http://creativecommons.org/licenses/by-sa/4.0/" rel="license" class="urlextern">CC Attribution-Share Alike 4.0 International</a></bdi></div>
+    <div class="buttons">
+        <a href="../../../external.html?link=http://creativecommons.org/licenses/by-sa/4.0/" rel="license"><img src="../../lib/images/license/button/cc-by-sa.png" alt="CC Attribution-Share Alike 4.0 International" /></a>        <a href="../../../external.html?link=http://www.dokuwiki.org/donate" title="Donate" ><img
+            src="../../lib/tpl/openwrt/images/button-donate.gif" width="80" height="15" alt="Donate" /></a>
+        <a href="../../../external.html?link=http://www.php.net/" title="Powered by PHP" ><img
+            src="../../lib/tpl/openwrt/images/button-php.gif" width="80" height="15" alt="Powered by PHP" /></a>
+        <a href="../../../external.html?link=http://validator.w3.org/check/referer" title="Valid HTML5" ><img
+            src="../../lib/tpl/openwrt/images/button-html5.png" width="80" height="15" alt="Valid HTML5" /></a>
+        <a href="../../../external.html?link=http://jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS" ><img
+            src="../../lib/tpl/openwrt/images/button-css.png" width="80" height="15" alt="Valid CSS" /></a>
+        <a href="../../../external.html?link=http://dokuwiki.org/" title="Driven by DokuWiki" ><img
+            src="../../lib/tpl/openwrt/images/button-dw.png" width="80" height="15" alt="Driven by DokuWiki" /></a>
+    </div>
+</div></div><!-- /footer -->
+
+<script language="javascript" type="text/javascript" src="../../js/awstats_misc_tracker.js" ></script>
+<noscript><img src="../../js/awstats_misc_trackerd389.js?nojs=y" height="0" width="0" border="0" style="display: none"></noscript>
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="../../lib/exe/indexereeb1.php?id=toh%3Azyxel%3Anbg6616&amp;1552201034" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</body>
+
+<!-- Mirrored from openwrt.org/toh/zyxel/nbg6616 by HTTraQt Website Copier/1.x [Karbofos 2012-2017] Sun, 10 Mar 2019 07:09:30 GMT -->
+</html>
