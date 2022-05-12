@@ -1,0 +1,113 @@
+/****************************************************************************
+*
+*  Copyright (c) 2005-2008 Broadcom Corporation
+*
+*  This program is the proprietary software of Broadcom Corporation and/or
+*  its licensors, and may only be used, duplicated, modified or distributed
+*  pursuant to the terms and conditions of a separate, written license
+*  agreement executed between you and Broadcom (an "Authorized License").
+*  Except as set forth in an Authorized License, Broadcom grants no license
+*  (express or implied), right to use, or waiver of any kind with respect to
+*  the Software, and Broadcom expressly reserves all rights in and to the
+*  Software and all intellectual property rights therein.  IF YOU HAVE NO
+*  AUTHORIZED LICENSE, THEN YOU HAVE NO RIGHT TO USE THIS SOFTWARE IN ANY WAY,
+*  AND SHOULD IMMEDIATELY NOTIFY BROADCOM AND DISCONTINUE ALL USE OF THE
+*  SOFTWARE.
+*
+*  Except as expressly set forth in the Authorized License,
+*
+*  1.     This program, including its structure, sequence and organization,
+*  constitutes the valuable trade secrets of Broadcom, and you shall use all
+*  reasonable efforts to protect the confidentiality thereof, and to use this
+*  information only in connection with your use of Broadcom integrated circuit
+*  products.
+*
+*  2.     TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE SOFTWARE IS PROVIDED
+*  "AS IS" AND WITH ALL FAULTS AND BROADCOM MAKES NO PROMISES, REPRESENTATIONS
+*  OR WARRANTIES, EITHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, WITH
+*  RESPECT TO THE SOFTWARE.  BROADCOM SPECIFICALLY DISCLAIMS ANY AND ALL
+*  IMPLIED WARRANTIES OF TITLE, MERCHANTABILITY, NONINFRINGEMENT, FITNESS FOR
+*  A PARTICULAR PURPOSE, LACK OF VIRUSES, ACCURACY OR COMPLETENESS, QUIET
+*  ENJOYMENT, QUIET POSSESSION OR CORRESPONDENCE TO DESCRIPTION. YOU ASSUME
+*  THE ENTIRE RISK ARISING OUT OF USE OR PERFORMANCE OF THE SOFTWARE.
+*
+*  3.     TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL BROADCOM
+*  OR ITS LICENSORS BE LIABLE FOR (i) CONSEQUENTIAL, INCIDENTAL, SPECIAL,
+*  INDIRECT, OR EXEMPLARY DAMAGES WHATSOEVER ARISING OUT OF OR IN ANY WAY
+*  RELATING TO YOUR USE OF OR INABILITY TO USE THE SOFTWARE EVEN IF BROADCOM
+*  HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES; OR (ii) ANY AMOUNT IN
+*  EXCESS OF THE AMOUNT ACTUALLY PAID FOR THE SOFTWARE ITSELF OR U.S. $1,
+*  WHICHEVER IS GREATER. THESE LIMITATIONS SHALL APPLY NOTWITHSTANDING ANY
+*  FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY.
+*
+****************************************************************************
+*  voipfirewallapi.c
+*
+*  PURPOSE:
+*
+*     API for fire wall for voice data - accept packets with certain dest. ports
+*
+*  NOTES:
+*
+****************************************************************************/
+
+#include <env.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <errno.h>
+#include "voipfirewall.h"
+#include <cms_core.h>
+#include <dal_voice.h>
+
+/****************************************************************************
+* FUNCTION: voicePerformFilterOperation   
+*
+* PURPOSE:  API function used by the SIP/MGCP call manager to enable or 
+*           disable a firewall filter. This API function is used to block/
+*           unblock SIP and RTP ports.   
+*
+* PARAMETERS: id       - Unique ID for the filter 
+*             enable   - Flag to enable/disable filter
+*             ipaddr   - Destination IP address for incoming packets
+*             port     - Destination port for incoming packets
+*             mask     - Subnet mask
+*             protocol - Transport protocol (TCP/UDP/TCP or UDP)  
+*
+* RETURNS:    Nothing  
+****************************************************************************/
+void voicePerformFilterOperation(UINT32 id, UINT32 enable, char* ipAddr, UINT32 port, char* mask, UINT32 protocol)
+{
+   DAL_VOICE_FIREWALL_CTL_BLK fwCtlBlk;
+   const char* transportStrings[] = { "UDP", "TCP", "TCP or UDP" };
+   const char signature[] = { 225, 226, 227, 228, '\0' }; 
+   char fid[10]; 
+
+   /* Populate firewall control block */
+   fwCtlBlk.enable = enable;
+
+   sprintf(fid, "%x", id);
+   sprintf(fwCtlBlk.filterName, "%sVoiceFilter%s", signature, (id == DELETE_ALL) ? "" : fid);
+   strncpy(fwCtlBlk.protocol, transportStrings[protocol], STRMAXSIZE);
+   fwCtlBlk.sourcePort = 0; 
+   fwCtlBlk.destinationPort = port;
+   strncpy(fwCtlBlk.sourceIPAddress, "", STRMAXSIZE);
+   strncpy(fwCtlBlk.sourceNetMask, "", STRMAXSIZE);
+   strncpy(fwCtlBlk.destinationIPAddress, ipAddr, STRMAXSIZE);
+   strncpy(fwCtlBlk.destinationNetMask, mask, STRMAXSIZE);
+
+   /* Aquire Lock */
+   cmsLck_acquireLock();
+
+   /* 
+   ** Invoke CMS DAL function to set/reset firewall filter. The value of
+   ** the enable field set in the control block above decides whether the
+   ** the filter is added or deleted.
+   */
+   if ( dalVoice_performFilterOperation(NULL, &fwCtlBlk) != CMSRET_SUCCESS )
+   {
+      printf("%s: Failed to perform firewall filter operation!!\n", __FUNCTION__);   
+   }
+    
+   /* Release Lock */
+   cmsLck_releaseLock();
+}

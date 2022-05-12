@@ -1,0 +1,267 @@
+<script language="javascript">
+
+var dydnsentry = '<%ejGetOther(dynamicdnsentry)%>';
+	
+function ddnsChange() {
+  with ( document.forms[0] ) {
+    var ddns = service[service.selectedIndex].value;
+
+    if(ddns=="5") {
+      showhide("server_display","1");
+    }
+    else {
+      showhide("server_display","0");
+    }
+  }
+}
+function updateCurStatus() {
+  var delay = 2000;
+//  setTimeout(function(){
+  setInterval(function(){
+    if (window.XMLHttpRequest) {
+      objChScanXMLHTTP=new XMLHttpRequest();
+      postCurStatusCmd();
+    } else if (window.ActiveXObject) {
+//  code for IE
+      objChScanXMLHTTP=new ActiveXObject("Microsoft.XMLHTTP");
+      postCurStatusCmd();
+    }
+    function postCurStatusCmd()
+    {
+      if ( objChScanXMLHTTP != null ) {
+        objChScanXMLHTTP.open("POST","dns-status.cmd", true);
+        objChScanXMLHTTP.onreadystatechange = function() 
+      {
+        if(objChScanXMLHTTP.readyState == 4) {
+          var result = objChScanXMLHTTP.responseText;						
+	  if (result != "") {
+            var result2 = result.split('/');
+            var str = '';
+            str += '<table width="97%" border="0" align="center" cellspacing="0" cellpadding="0">';
+            str += '<tr><th colspan="2" height="28" style="font-size:14px;font-weight:bold">Dynamic DNS Status</th></tr>';
+            str += '<tr><td width="36%" height="28">User Authentication Result :</td><td>' + result2[0] + '</td></tr>';
+            str += '<tr><td width="36%" height="28">Last Updated Time :</td><td>' + result2[1] + '</td></tr>';
+            str += '<tr><td width="36%" height="28">Current Dynamic IP :</td><td>' + result2[2] + '</td></tr>';
+            str += '</table>';
+            delay = 0;
+            document.getElementById("info2").innerHTML = str;						
+          }
+        }
+      }
+      objChScanXMLHTTP.send(null);				  
+      }
+    }
+  },delay);
+}
+
+function frmLoad() {
+   with (document.forms[0]) {
+//  alert(dydnsentry);
+      showhide("server_display","0");	  
+      if (dydnsentry == "") {
+         service.selectedIndex = 0;
+         DDNSEnable[1].checked = true;
+      }
+      else {
+         var info = dydnsentry.split("/");
+         dyndnsHostname.value = info[0];
+         dyndnsUsername.value = info[1];
+         dyndnsPassword.value = info[2];
+         
+         if (info[3] == "dyndns") {
+            service.selectedIndex = 0;
+            showhide("server_display","0");
+         } else if (info[3] == "freedns") {
+            service.selectedIndex = 1; 
+            showhide("server_display","0");
+         } else if (info[3] == "zoneedit") {
+            service.selectedIndex = 2;
+            showhide("server_display","0");
+         } else if (info[3] == "noip") {
+            service.selectedIndex = 3;
+            showhide("server_display","0");
+         } else if (info[3] == "gnudip") {
+            service.selectedIndex = 4;
+            dyndnsServer.value = info[5];
+            showhide("server_display","1");
+         }
+         
+         if (info[4] == "1") {
+            DDNSEnable[0].checked = true;
+         } else {
+            DDNSEnable[1].checked = true;
+         }
+      }
+   }
+
+   ddnsChange();
+   var str = '';
+   str += '<table width="97%" border="0" align="center" cellspacing="0" cellpadding="0">';
+   str += '<tr><th colspan="2" height="28" style="font-size:14px;font-weight:bold">Dynamic DNS Status</th></tr>';
+   str += '<tr><td width="36%" height="28">User Authentication Result :</td><td> </td></tr>';
+   str += '<tr><td width="36%" height="28">Last Updated Time :</td><td> </td></tr>';
+   str += '<tr><td width="36%" height="28">Current Dynamic IP :</td><td> </td></tr>';
+   str += '</table>';
+   document.getElementById("info2").innerHTML = str;	
+   if (info[4] == "1") {
+      updateCurStatus();
+   }
+}
+
+function btnSave() {
+   with ( document.forms[0] ) {
+           username.value = dyndnsUsername.value;
+           password.value = dyndnsPassword.value;
+      var msg = "";
+
+      if ( username.value.length == 0 ) {
+         if ( service[service.selectedIndex].value != "0" ) {
+            msg = '<%ejGetML(MLG_Network_DynamicDNS_AlertMsg_Str1)%>';
+            hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+//        } else {
+//            msg = '<%ejGetML(MLG_Network_DynamicDNS_AlertMsg_Str2)%>';
+//			 hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+         }
+         return;
+      }
+
+      if ( password.value.length == 0 ) {
+         if ( service[service.selectedIndex].value != "0" ) {
+            msg = '<%ejGetML(MLG_Network_DynamicDNS_AlertMsg_Str3)%>';
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+//         } else {
+//            msg = '<%ejGetML(MLG_Network_DynamicDNS_AlertMsg_Str4)%>';
+//			 hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+         }
+         return;
+      }
+			hostname.value=dyndnsHostname.value;
+      if ( hostname.value.length == 0 ) {
+         msg = '<%ejGetML(MLG_Network_DynamicDNS_AlertMsg_Str5)%>';
+         hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+         return;
+      }
+      if(service[service.selectedIndex].value =="5") {
+         servername.value=dyndnsServer.value;
+         if ( servername.value.length == 0 ) {
+            msg = '<%ejGetML(MLG_Network_DynamicDNS_AlertMsg_Str8)%>';
+            hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+            return;
+         }
+      }
+      sessionKey.value = "<%ejGetOther(sessionKey)%>";
+      $.openLoadingMask(1);
+       document.forms[0].submit();
+      return;
+   }
+}
+
+$(document).ready(function() {
+	frmLoad();
+});
+
+</script>
+
+ <form action="/pages/tabFW/dns-ddnsmngr.cmd" method="post">
+      <input size="15" type="hidden" name="action" value="update"/>
+      <input size="15" type="hidden" name="hostname" />
+      <input size="15" type="hidden" name="username" />
+      <input size="15" type="hidden" name="password" />
+      <input size="15" type="hidden" name="sessionKey" />
+      <input size="15" type="hidden" name="iface" value="all" />
+      <input size="15" type="hidden" name="servername" />
+      
+<div class="content_frame">
+  <!--Unit Explain start-->
+  <div class="explain">
+    <div><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div>
+    <div class="explain_text"><%ejGetML(MLG_Network_DynamicDNS_Str2)%></div>
+    <div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div>
+  </div>
+  <!--Unit Explain End-->
+  <div class="data_frame">
+    <ul>
+      <li class="set1">
+        <div class="title"><%ejGetML(MLG_Network_DynamicDNS_Setup)%></div>
+        <div class="w_text">
+          <ul>
+            <li class="left_table" ><%ejGetML(MLG_Network_DynamicDNS_Str4)%></li>
+            <li class="right_table">
+           	<input name="DDNSEnable" type="radio" value = "1" /><%ejGetML(MLG_Common_Enable)%>
+            <input name="DDNSEnable" type="radio" value = "0" /><%ejGetML(MLG_Common_Disable)%>
+            </li>
+          </ul>
+          <ul>
+            <li class="left_table"><%ejGetML(MLG_Network_DynamicDNS_Str5)%>  : </li>
+            <li class="right_table">
+              <select name="service" onChange='ddnsChange();'>
+               <!--  <option value="0">None</option>  -->
+                 <option value="1"><%ejGetML(MLG_Network_DynamicDNS_Str10)%></option>
+                 <option value="2"><%ejGetML(MLG_Network_DynamicDNS_Str14)%></option>
+                 <option value="3"><%ejGetML(MLG_Network_DynamicDNS_Str15)%></option>
+                 <option value="4"><%ejGetML(MLG_Network_DynamicDNS_Str16)%></option>
+                 <option value="5"><%ejGetML(MLG_Network_DynamicDNS_Str17)%></option>
+<!--
+                 <option value="1"><%ejGetML(MLG_Network_DynamicDNS_Str10)%></option>
+                 <option value="0"><%ejGetML(MLG_Network_DynamicDNS_Str11)%></option>
+-->
+              </select>
+            </li>
+          </ul>
+      
+          <ul>
+            <li class="left_table"><%ejGetML(MLG_Network_DNSEntry_Str4)%>  : </li>
+            <li class="right_table">
+              <input type="text" name="dyndnsHostname" maxlength="160" />
+            </li>
+          </ul>
+          <ul>
+            <li class="left_table"><%ejGetML(MLG_Common_Username)%>  : </li>
+            <li class="right_table">
+              <input type="text" name="dyndnsUsername" maxlength="32" />
+            </li>
+          </ul>
+          <ul>
+            <li class="left_table"><%ejGetML(MLG_Common_Password)%>  : </li>
+            <li class="right_table">
+              <input type="password" name="dyndnsPassword" maxlength="32" />
+            </li>
+          </ul>
+          <div id="server_display">
+            <ul>
+              <li class="left_table"><%ejGetML(MLG_Network_DNS_Server)%>  : </li>
+              <li class="right_table">
+                <input type="text" name="dyndnsServer" maxlength="40" />
+              </li>
+            </ul>
+          </div> 
+<!--
+         <ul>
+            <li class="left_table"><%ejGetML(MLG_Network_DynamicDNS_Str9)%>  : </li>
+            <li class="right_table">
+            <input type="text" name="tzoEmail" maxlength="128">
+            </li>
+         </ul>
+         <ul>
+            <li class="left_table"><%ejGetML(MLG_Network_DynamicDNS_Str6)%>  : </li>
+            <li class="right_table">
+            <input type="text" name="tzoKey" maxlength="32">
+          </li>
+        </ul>
+-->
+        </div>        
+      </li>
+      <li class="space"></li>
+      <li class="buttonframe">
+        <div class="button_position">
+          <input name="sysSubmit" value="<%ejGetML(MLG_Common_Apply)%>" type="button" onclick="btnSave();"/>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          <input name="Cancel" value="<%ejGetML(MLG_Common_Cancel)%>" type="button" onclick="frmLoad();" />
+        </div>
+      </li>
+      <div id="info2"></div>
+    </ul>
+  </div>
+</div>
+<br/><br/>
+</form>

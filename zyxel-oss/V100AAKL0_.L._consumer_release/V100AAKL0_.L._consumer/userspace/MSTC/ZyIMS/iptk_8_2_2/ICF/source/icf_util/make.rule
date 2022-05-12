@@ -1,0 +1,27 @@
+#******************************************************************************
+#                                    
+# FILE NAME    : make.rule                
+#                                    
+# DESCRIPTION  : Contains the rule to identify the set of common utilities to 
+#                be created 
+#                                    
+# Revision History :                            
+#
+#  DATE            NAME                 REFERENCE       REASON        
+# ------         ------------           ---------     ----------
+# 20-Jan-2009    Anuradha Gupta         None          Initial
+# 09-Mar-2009    Alok Tiwari            IPTK 8.1      rule added to compile
+#                                                     arMD5.
+#           
+# Copyright 2009, Aricent.                       
+#                                    
+#******************************************************************************/
+# Following are a set of rules on the basis of which the common utilities are 
+# created. 
+# The value of 1 means the library shall be built.
+# the value of 0 means the library shall not be built.
+ABASE64 = 0
+ADIGEST = 1
+ARSTUNENCDEC = 1
+ARMD5 = 1
+

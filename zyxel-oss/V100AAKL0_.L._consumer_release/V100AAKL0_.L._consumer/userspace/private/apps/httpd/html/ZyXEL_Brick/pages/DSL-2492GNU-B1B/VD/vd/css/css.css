@@ -1,0 +1,40 @@
+/*@import url("reset.css");*/
+/* Lan----------------------------------*/ 
+#vdCenter .vdFrame {position:relative;width:670px;height:403px;margin:0 auto;color:#000;background:url(../images/i_vd.gif) no-repeat;top:-15px;left:-10px;}
+#vdCenter .lanFrame {position:absolute;top:295px;left:268px;width:140px; height:29px;}
+#vdCenter .lanFrame ul li {display:block;text-align:center;width:35px;height:29px;position:relative;margin:0;padding:0;float:right;margin-right:-2px;}
+#vdCenter .lan_on {background:url(../images/earthnet.gif) -1px 0 no-repeat;display:block;width:35px;height:29px;margin:0;padding:0;}
+
+#vdCenter .voipFrame{position:absolute;left:445px;top:295px;width:55px;height:30px;}
+#vdCenter .voipFrame ul li{display:block;text-align:center;width:25px;height:30px;position:relative;margin:0;padding:0;float:right;margin-right:-2px;}
+#vdCenter .voip_on {background:url(../images/i_voip.gif) no-repeat;width:25px;height:30px;}
+
+#vdCenter .wan_on {background:url(../images/wan.gif) -1px 0 no-repeat;display:block;width:35px;height:29px;position:absolute;left:412px;top:295px;}
+#vdCenter .dslline_on {background:url(../images/i_dsl.gif) no-repeat;display:block;width:25px;height:29px;position:absolute;left:246px;top:295px;}
+#vdCenter .usbFrame {position:absolute;left:80px;top:123px;width:28px;height:80px;}
+#vdCenter .usbFrame ul li{display:block;text-align:center;width:28px;height:35px;position:relative;margin:0;padding:0;}
+#vdCenter .usbFrame ul li.usb2{position:relative;left:-18px;top:39px; margin:0;padding:0;}
+#vdCenter .usb_on {background:url(../images/i_usb.gif) -1px 0 no-repeat;width:28px;height:35px;display:block;margin:0;padding:0;}
+
+
+.off .dslname{ display:none;}
+.dslline_on .dslname{ position:relative; top:90px;  left:0;text-align:center;}
+
+.off .wanname{ display:none;}
+.wan_on .wanname{ position:relative; top:90px;  left:0;text-align:center;}
+
+.off .usbname1, .off .usbname2{ display:none;}
+.usb_on .usbname1{ position:relative; top:5px;  left:-67px;}
+.usb_on .usbname2{ position:relative; top:5px;  left:-67px;}
+
+.lan_on .lanname1{position:relative; top:90px;  left:0;}
+.off .lanname1{display:none;}
+.lan_on .lanname2{position:relative; top:90px;  left:0;}
+.off .lanname2{display:none;}
+.lan_on .lanname3{position:relative; top:90px;  left:0;}
+.off .lanname3{display:none;}
+.lan_on .lanname4{position:relative; top:90px;  left:0;}
+.off .lanname4{display:none;}
+
+.voip_on .voipname{position:relative; top:90px;  left:0;}
+.off .voipname{display:none;}

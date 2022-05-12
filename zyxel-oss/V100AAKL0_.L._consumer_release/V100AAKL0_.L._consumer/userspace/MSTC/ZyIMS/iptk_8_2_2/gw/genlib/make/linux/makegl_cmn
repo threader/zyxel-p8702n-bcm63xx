@@ -1,0 +1,61 @@
+#******************************************************************************
+#        	Makefile for all Generic Library Common components 
+#  
+#                
+#  
+# DATE        NAME            REFERENCE        REASON
+# ----------- --------------- ------------- -------------------------------
+#
+# 11/07/2002  Ravi Jindal     SPR-3656       Intial Draft.
+#                                            Enhancements for Rel-1.0.
+# 02-May-2009 Anuradha Gupta  SPR 19443      Depend Rule added                                           
+#
+# COPYRIGHT , Aricent, 2009
+#******************************************************************************
+
+GW_BASE		=	../../..
+INC_MK          =       $(GW_BASE)/build/make/linux
+include			$(INC_MK)/makefile.mk
+
+INC_MK_GL       =       $(GW_BASE)/genlib/make
+include                 $(INC_MK_GL)/makegl.mk
+ 
+LIB_DIR         =       $(GW_BASE)$(GW_SLASH)lib$(GW_SLASH)linux
+
+GL_OBJ_DIR_DOS_CMD =	..$(GW_SLASH)..$(GW_SLASH)obj
+
+INCLUDE         +=      -I$(CMN_BASE)$(GW_SLASH)h\
+			-I$(GL_CMN_DIR)$(GW_SLASH)h
+
+all:	clean gl_ulm gl_ulm_mt
+	
+
+clean:
+	$(RM) $(GL_CMN_OBJ_FILES)
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_ulml.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_ulm_mtl.a
+
+
+gl_ulm:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) $(GL_CMN_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_ulml.a $(GL_CMN_OBJ_FILES)
+
+
+gl_ulm_mt:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) -DGW_MT_ENABLED\
+	$(GL_CMN_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_ulm_mtl.a $(GL_CMN_OBJ_FILES)
+
+depend_cmn.$(CPU):
+		touch depend_cmn.$(CPU)
+
+depend  :
+		$(CC) -M $(CFLAGS) $(INCLUDE) $(GL_CMN_SRC_FILES) > depend_cmn.$(CPU)
+		$(ICF_DEV_DIR)/build/linux/build.sh  depend_cmn.$(CPU) $(GL_OBJ_DIR_DOS_CMD)
+
+include depend_cmn.$(CPU)
+    

@@ -1,0 +1,24 @@
+#! /bin/sh
+
+PATH=/sbin:/bin
+export PATH
+
+mount -t proc proc /proc
+/bin/mount -a
+#/sbin/inetd
+
+mkdir /var/etc
+mkdir /var/etc/ppp
+mkdir /var/etc/ppp/chat
+
+cp /etc/pwdog/* /var/etc
+cp /etc/ppp/* /var/etc/ppp
+cp /etc/ppp/chat/* /var/etc/ppp/chat
+# automount
+#mount -t tmpfs mdev /dev/mdev
+#echo /sbin/mdev > /proc/sys/kernel/hotplug
+#mdev -s 
+
+# wwan data
+mkdir /var/etc
+cp -r /etc/wwan /var/etc

@@ -1,0 +1,7 @@
+echo ********************Generate SMT CFE END********************
+cp ../../defaultcfg/132TUZ0_TE.rom ./132TUZ0_TE.rom
+./CompressConfig_CFE ./132TUZ0_TE.rom ./132TUZ0_TE.rom_COMP
+cat ./cfe63268nand128.bm ./132TUZ0_TE.rom_COMP > ./cfe63268nand128.tmp
+./createboot --boardid=963168VX --numbermac=12 --macaddr=CC:5D:4E:00:00:01 --countrycode=F5 --manufactureConfig=1 --modelid=600a --tp=0 --psisize=128 --backuppsi= --inputfile=cfe63268nand128.tmp --outputfile=cfe63268nand128_Release_TE.bin --cfeSize=$(find . -name cfe63268nand128.bm -printf '%s')
+./createboot --boardid=963168VX --numbermac=12 --macaddr=CC:5D:4E:00:00:01 --countrycode=F5 --manufactureConfig=1 --modelid=600a --tp=0 --psisize=128 --empty --backuppsi= --inputfile=cfe63268nand128.tmp --outputfile=cfe63268nand128_TE.bin --cfeSize=$(find . -name cfe63268nand128.bm -printf '%s')
+echo ********************Generate SMT CFE END********************

@@ -1,0 +1,50 @@
+
+
+INC_MK			=       ../../../port/build/make/linux
+
+include                 $(INC_MK)/makefile.mk
+
+MM_CFG_BASE			=	../..
+MM_CFG_SRC		=	$(MM_CFG_BASE)/src
+
+MM_CFG_OBJ_FILES		=	mm_cfg_init.o\
+				mm_cfg_msg_handler.o
+
+MM_CFG_SRC_FILES	=	$(MM_CFG_SRC)/mm_cfg_init.c\
+				$(MM_CFG_SRC)/mm_cfg_msg_handler.c
+
+MM_CFG_INCLUDES		=	-I$(MM_CFG_BASE)/h \
+				-I$(MM_CORE_BASE)/h -I$(MM_PORT_BASE)/h \
+				-I$(SRTP_LIB_DIR)/include \
+				-I$(SRTP_LIB_DIR)/crypto/include \
+				-I$(ICF_BASE)/ext_if \
+				-I$(PRJ_BASE)/common/h \
+				$(IPTK_COMMON_INC)
+				
+				
+
+
+#***************************************
+#**Compiling CFG elements
+#***************************************
+ifeq ($(MAKE_DEPEND),YES)
+all		:	depend	$(MM_CFG_LIB_A)
+else
+all		:	$(MM_CFG_LIB_A)
+endif
+
+$(MM_CFG_LIB_A):	$(MM_CFG_OBJ_FILES)
+			$(LIB) $(MM_CFG_LIB_A)  $(MM_CFG_OBJ_FILES)
+			$(CP) $(MM_CFG_LIB_A) $(LIB_OS)
+
+%.o: $(MM_CFG_SRC)/%.c
+	$(CC) $(MM_CFG_INCLUDES) $(MM_COMMON_INCLUDES) $(CFLAGS_CMN) -c $< -o $@
+
+depend.$(CPU).cfg:
+	$(CC) -M $(MM_CFG_INCLUDES) $(MM_COMMON_INCLUDES) $(CFLAGS_CMN) $(MM_CFG_SRC_FILES) > depend.$(CPU).cfg
+
+include depend.$(CPU).cfg
+clean_all:
+			$(RM) $(MM_CFG_LIB_A) $(MM_CFG_OBJ_FILES) $(LIB_OS_MM_CFG_LIB_A) depend.$(CPU).cfg
+depend:
+	$(CC) -M $(MM_CFG_INCLUDES) $(MM_COMMON_INCLUDES) $(CFLAGS_CMN) $(MM_CFG_SRC_FILES) > depend.$(CPU).cfg

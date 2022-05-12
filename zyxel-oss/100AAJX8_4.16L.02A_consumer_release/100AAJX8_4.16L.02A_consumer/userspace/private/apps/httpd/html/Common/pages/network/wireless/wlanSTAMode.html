@@ -1,0 +1,564 @@
+<script language="javascript">
+<!-- hide
+var syncNvram = '<%ejGetWl(wlSyncNvram)%>';
+var STAMode = '<%ejGetOther(wlanSTAMode)%>';
+var supportwlan = '<%ejGetOther(sysInfo, numWlAdaptor)%>';
+var forNorwaywl  = '<%ejGetOther(sysInfo, forNorwaywl)%>';
+var Device = '<%ejGetWl(wlDevice)%>';
+var ethWanType = '<%ejGetOther(sysInfo, isEthWanBrobandExist)%>';
+var upprocess = '<%ejGet(UpdateProcess)%>';
+var sessionkey = '<%ejGetOther(sessionKey)%>';
+var AP_select_index = '-1';
+
+
+function isValidWPAPskKey(val) {
+
+   var ret = false;
+   var len = val.length;
+   var maxSize = 64;
+   var minSize = 8;
+   var i;
+   var msg;
+
+	if (len < minSize){
+		msg = "The encryption-key you have typed is too short. Minimum length is 8 characters.Please note that all your changes have been discarded.";
+        hciAlert(msg, {height: 180, type: 2, title: ''});         		
+        return ret;
+	}
+
+   if (len >= minSize && len < maxSize){
+      var regex = /^[A-Za-z0-9._-]+$/;
+      if (val.match(regex) != null){
+         ret = true;
+      }
+   } else if (len == maxSize) {
+      for (i = 0; i < maxSize; i++ ){
+         if (isHexaDigit(val.charAt(i)) == false){
+            break;
+         }
+      }
+      
+      if (i == maxSize){
+         ret = true;
+      }
+      
+   } else{
+      ret = false;
+   }
+	if (ret == false)
+	{
+	 	msg = "The encryption-key you have typed contains one or more invalid characters. Valid characters are [a-z], [A-Z], [0-9] and [-_.]Please note that all your changes have been discarded.";
+        hciAlert(msg, {height: 180, type: 2, title: ''});
+	}
+   return ret;
+}
+
+function radiochange(index)
+{
+	with (document.forms[0]) {
+	AP_select_index=index;
+	}
+
+}
+function setSTAinfo()
+{
+	with (document.forms[0]) {
+		if(AP_select_index >= 0){
+			var getSSID="ssid_wl"+AP_select_index;
+			var getSSIDValue= document.getElementById(getSSID);
+			var getSeMode = "SeMode_wl"+AP_select_index;
+			var getSeModeValue= document.getElementById(getSeMode);
+			var getSe ="Encrypt_wl"+AP_select_index;
+			wlSTA_SSID.value= getSSIDValue.innerHTML;
+			
+      		var SSID_len = new String();
+      		SSID_len = wlSTA_SSID.value;
+
+			if ( isvalidSsid(wlSTA_SSID.value) == false ) {
+         		msg = "The SSID you have typed is invalid. The SSID can not contain &, <, >, ' or \".Please note that all your changes have been discarded.";
+         		hciAlert(msg, {height: 180, type: 2, title: ''});         		
+         		return false;
+      		}
+
+			if ( SSID_len.length > 32 ||  SSID_len.length == 0 ) {
+         		msg = '<%ejGetML(MLG_WLAN_AdditionalWLANs_Str4)%> "' + wlSTA_SSID.value + '" <%ejGetML(MLG_WLAN_AdditionalWLANs_AlertMsg_Str1)%>';
+         		hciAlert(msg, {height: 180, type: 2, title: ''});
+         		return false;
+      		}
+
+			if (getSeModeValue.innerHTML=='WPA2-PSK(TKIP)'){
+				wlSTA_SeMode.value='psk2-tkip';
+				wlSTA_psk.value= document.getElementById(getSe).value;
+				if (isValidWPAPskKey(wlSTA_psk.value)==false) {
+					return false;			
+				}
+			}else if(getSeModeValue.innerHTML=='WPA-PSK(TKIP)'){
+				wlSTA_SeMode.value='psk-tkip';
+				wlSTA_psk.value= document.getElementById(getSe).value;
+				if (isValidWPAPskKey(wlSTA_psk.value)==false) {
+					return false;			
+				}
+			}else if(getSeModeValue.innerHTML=='WPA2-PSK(AES)'){
+				wlSTA_SeMode.value='psk2-aes';
+				wlSTA_psk.value= document.getElementById(getSe).value;
+				if (isValidWPAPskKey(wlSTA_psk.value)==false) {
+					return false;			
+				}
+			}else if(getSeModeValue.innerHTML=='WPA-PSK(AES)'){
+				wlSTA_SeMode.value='psk-aes';
+				wlSTA_psk.value= document.getElementById(getSe).value;
+				if (isValidWPAPskKey(wlSTA_psk.value)==false) {
+					return false;			
+				}
+			}else{
+				wlSTA_SeMode.value='open';
+				 wlSTA_psk.disabled = true;
+			}
+			wl_AP_index.disabled = true;
+			return true;
+
+			//alert(wlSTA_SSID.value);
+			//alert(wlSTA_SeMode.value);
+			//alert(wlSTA_psk.value);
+		}else{
+			wl_AP_index.disabled = true;
+			wlSTA_SSID.disabled = true;
+			wlSTA_SeMode.disabled = true;
+			wlSTA_psk.disabled = true;
+			wlSTAMode.disabled = true;
+			return true;
+		}
+	}
+}
+function getAPScanResult()
+{
+   if (window.XMLHttpRequest) {
+      objChScanXMLHTTP=new XMLHttpRequest();
+	  requestScanResult();
+   } else if (window.ActiveXObject) {
+      // code for IE
+      objChScanXMLHTTP=new ActiveXObject("Microsoft.XMLHTTP");
+      requestScanResult();
+   }
+
+   function requestScanResult()
+   {
+	  if ( objChScanXMLHTTP != null ) {
+	      objChScanXMLHTTP.open("POST","/pages/network/wireless/wlan_WlSitSurveyinfo.html", true);
+	      objChScanXMLHTTP.onreadystatechange = function() 
+	      {
+	         if(objChScanXMLHTTP.readyState == 4) {
+	            var result = objChScanXMLHTTP.responseText;
+				var str = '';
+				var index = 0;
+				var Ap_info = result.split("@");
+
+				
+				/* in case parse data fail*/
+				if (Ap_info.length-1 <= 0)
+				{
+					$('#Scan_img').html("<i><font color=\"red\">Retrieve data failed, please press \"Scan\" to try again.</font></i>");
+					enblScanBtn();
+					return;
+				}
+				Ap_info.sort(); 
+				     str += "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\" id=\"APinfoTable\" class=\"table_frame\">";
+                     str += "<tr align=\"center\" >";
+                     str += "<td width=\"5%\" class=\"top_font\">#</td>";
+                     str += "<td class=\"top_font\">SSID</td>";
+                     str += "<td class=\"top_font\">Signal strength</td>";
+                     str += "<td class=\"top_font\">Security</td>";
+                     str += "<td class=\"top_font\">Password</td>";
+                     str += "</tr>";
+				
+				//alert(Ap_info.length);
+				/* assign the correspond attributes to each colorbar */
+				for(var i=(Ap_info.length-1); i > 0; i--) {
+					if (Ap_info[i])
+					{
+
+						//alert(Ap_info[i]);
+						var subAPinfo = Ap_info[i].split('|');
+						var Seid ="Encrypt_wl"+index;
+						var ssidID = "ssid_wl"+index;
+						var SeMode_ID = "SeMode_wl"+index;
+						
+						str += "<tr align=\"center\" >";
+						str += "<td class=\"table_font\"><input  name=\"wl_AP_index\" type=\"radio\" value=\"" + index + "\" onClick=\"radiochange(" + index + ");\" /></td>";
+						//str += "<td class=\"table_font\">" + subAPinfo[1] + "</td>";
+						//str += "<td class=\"table_font\"><input type=\"text\" value=\"" + subAPinfo[1] + "\" id=\"" + ssidID + "\" disabled/></td>";
+						str += "<td class=\"table_font\"><p id=\"" + ssidID + "\">"  + subAPinfo[1] + "</p></td>";
+						str += "<td class=\"table_font\">" + subAPinfo[0] + "%</td>";
+						if (subAPinfo[2] == 'open'){
+							str += "<td class=\"table_font\"><p id=\"" + SeMode_ID + "\">No Security</p></td>";
+						}else if (subAPinfo[2] == 'psk'){
+							if(subAPinfo[3] == 'tkip')
+								str += "<td class=\"table_font\"><p id=\"" + SeMode_ID + "\">WPA-PSK(TKIP)</p></td>";
+							else
+								str += "<td class=\"table_font\"><p id=\"" + SeMode_ID + "\">WPA-PSK(AES)</p></td>";
+						}else{
+							if(subAPinfo[3] == 'tkip')
+								str += "<td class=\"table_font\"><p id=\"" + SeMode_ID + "\">WPA2-PSK(TKIP)</p></td>";
+							else
+								str += "<td class=\"table_font\"><p id=\"" + SeMode_ID + "\">WPA2-PSK(AES)</p></td>";
+						}
+						if (subAPinfo[2] == 'open'){
+							str += "<td class=\"table_font\"><input type=\"text\" id=\"" + Seid + "\" size='17' disabled/></td>";
+						}
+						else{
+							str += "<td class=\"table_font\"><input type=\"text\" id=\"" + Seid + "\" size='17'/></td>";
+						}
+						str += "</tr>";
+                        index++;
+                     }	 
+					
+				}
+				str += "</table>";
+				enblScanBtn();	
+				$('#APinfoTable').replaceWith(str);
+				$('#APINFOTABLE').show();
+				$('#APINFOtitle').show();
+				
+	         }
+	      }
+	      objChScanXMLHTTP.send(null);
+	  }
+   }
+}
+
+function enblScanBtn()
+{
+	with (document.forms[0]) {
+		Scan.disabled = false;
+		sysSubmit.disabled = false;
+		Cancel.disabled = false;
+		Scan.value = "<%ejGetML(MLG_WLAN_WDS_Str12)%>";
+		$('#Scan_img').html("");
+	}
+}
+
+function doRefresh()
+{
+    delay = 1000;
+	$('#APINFOTABLE').hide();
+	$('#APINFOtitle').hide();
+	with (document.forms[0]) {
+		$('#Scan_img').html("&nbsp;<img src=\"../../images/grid-loading.gif\" width=\"16\" height=\"16\"/>");
+		Scan.disabled = true;
+		sysSubmit.disabled = true;
+		Cancel.disabled = true;
+		Scan.value = "<%ejGetML(MLG_WLAN_WDS_Str12_1)%>";
+
+		setTimeout(function(){
+
+		   if (window.XMLHttpRequest) {
+		      objChScanXMLHTTP=new XMLHttpRequest();
+			  postChScanCmd();
+		   } else if (window.ActiveXObject) {
+		      // code for IE
+		      objChScanXMLHTTP=new ActiveXObject("Microsoft.XMLHTTP");
+		      postChScanCmd();
+		   }
+
+		   function postChScanCmd()
+		   {
+
+			  if ( objChScanXMLHTTP != null ) {
+			      objChScanXMLHTTP.open("POST","wireless-sta.cmd", true);
+			      objChScanXMLHTTP.onreadystatechange = function() 
+			      {
+			         if(objChScanXMLHTTP.readyState == 4) {
+			            var result = objChScanXMLHTTP.responseText;
+			            if(result.length > 5){
+                              delay = 0;
+				             getAPScanResult();
+			            }
+			         }
+			      }
+			      objChScanXMLHTTP.send(null);
+			  }
+		   }
+		}, delay);
+	}
+	return;
+}
+function NeedReboot(){
+	with ( document.forms[0] ) {
+		var mode;
+		if (wlSTAMode[1].checked == true) {	
+			mode = "1"; 						
+		}else if (wlSTAMode[2].checked == true){ 
+			mode = "2"; 
+
+		}else{
+			mode = "0"; 
+		}
+		if (STAMode != mode){
+			isWlanChangeMode.value = "1";
+		}else{
+			isWlanChangeMode.value = "0";
+		}
+		if ( (STAMode != mode) && ( mode !=0 ) ){
+			return true;
+		}
+		return false;	  
+	}
+}
+function modeChange() {
+   with ( document.forms[0] ) {
+   	$('#APINFOTABLE').hide();
+	$('#APINFOtitle').hide();
+      if (wlSTAMode[1].checked == true) {
+			wlanSTA_mode.value = "1"; 			
+			$("#select_0").attr("style", "display:none;");
+			$("#select_1").removeAttr("style");
+			$("#select_2").attr("style", "display:none;");
+			document.getElementById("Scan").style.visibility="hidden";
+			
+		//	if (STAMode != wlanSTA_mode.value ){
+		//		msg = 'Not allowed to use client-mode when there is a Ether WAN interface defined.';
+		//		hciAlert(msg, {height: 180,type: 0, title: 'Message'});		
+		//	}
+			
+      }else if (wlSTAMode[2].checked == true){ 
+			wlanSTA_mode.value = "2"; 
+			$("#select_0").attr("style", "display:none;");
+			$("#select_1").attr("style", "display:none;");
+			$("#select_2").removeAttr("style");
+			document.getElementById('Scan').style.visibility = 'visible';
+		//	if (STAMode != wlanSTA_mode.value ){
+		//		msg = 'Not allowed to use client-mode when there is a Ether WAN interface defined.';
+		//		hciAlert(msg, {height: 180,type: 0, title: 'Message'});		
+		//	}
+			
+      }else{
+			wlanSTA_mode.value = "0"; 
+			$("#select_0").removeAttr("style");
+			$("#select_1").attr("style", "display:none;");
+			$("#select_2").attr("style", "display:none;");
+			document.getElementById("Scan").style.visibility="hidden";
+
+      }	  
+   }
+}
+
+function frmLoad() {
+   with ( document.forms[0] ) {
+
+   //   if (forNorwaywl == '1' && supportwlan == '2')
+   //      document.getElementById("switch_wlDevice").style.display='';
+   //   else
+   //      document.getElementById("switch_wlDevice").style.display='none';
+			
+	
+      //if (Device == '0')
+      //   wl_device[0].checked = true;
+      //else
+      //   wl_device[1].checked = true;
+	  
+      if (STAMode == '1'){
+         wlSTAMode[1].checked = true;
+      }else if (STAMode == '2'){
+         wlSTAMode[2].checked = true;
+	  }else{
+         wlSTAMode[0].checked = true;
+	  }
+	  $('#APINFOTABLE').hide();
+	  $('#APINFOtitle').hide();
+	  AP_select_index = '-1';// user push cancel, will un-select radio
+      modeChange();
+	if (upprocess == '2' /* && STAMode == '1'*/) {
+		   //alert("The device needs to reboot to apply the changes");
+		   setTimeout("$.openLoadingMask(2)", 1500);
+		   setTimeout("BackgroundUrl('reboot-rebootpost.cgi')", 10000);
+		   setTimeout('reboot()', 150000);		
+		}
+   }
+}
+
+function reboot() {
+	var loc = '/login/login.html';
+	var code = 'window.top.location="' + loc + '"';
+	eval(code);
+}
+
+function BackgroundUrl(url)
+{
+	var objXMLHTTP = null;
+
+	if (window.XMLHttpRequest){
+		objXMLHTTP=new XMLHttpRequest();
+	}// code for IE
+	else if (window.ActiveXObject){
+		objXMLHTTP=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	else{
+		alert("The browser no support XMLHttp Object");
+		return;
+	}
+
+	if ( objXMLHTTP != null ){
+		objXMLHTTP.open("GET","./"+url,true);
+		objXMLHTTP.onreadystatechange = function()
+		{
+		}
+		objXMLHTTP.send(null);
+	}
+}
+
+function btnApply(formsidx) {
+   with ( document.forms[formsidx] ) {
+	      sessionKey.value = '<%ejGetOther(sessionKey)%>';
+
+	  if (forNorwaywl == '1' && supportwlan == '2' && formsidx == '0'){
+	
+		if (NeedReboot()==true){
+			Canreboot = confirm('The device needs to reboot to apply the changes and please wait.');
+
+			if( Canreboot == true){
+			}else{
+				return false;
+			}
+
+		}
+		modeChange();
+		if (setSTAinfo()==false){
+			$('#APINFOTABLE').show();
+			$('#APINFOtitle').show();
+			return false;
+		}
+	
+		 //  if(ethWanType == '1'){
+		 //     msg = 'Can not set when there is a wan interface for ethernet wan in <a href="#" onClick="$(\'.ui-dialog-titlebar-close\').trigger(\'click\'); window.parent.document.activePage(\'network-broadband\', 0);" >Broadband</a> page.';
+		  //    hciAlert(msg, {height: 180,type: 0, title: 'Message'});
+		      //AlertOpen("Can not set when there is a wan interface for ethernet wan in <a href=\"#\" onClick= \"$('.ui-dialog-titlebar-close').trigger('click'); window.parent.document.activePage('network-broadband', 0);\">Broadband</a> page.", 2);
+		//      return false
+		//   }
+		 //   if (wlSTAMode[2].checked == true){
+				//alert("The device will reboot after changing WAN to LAN. The LAN IP address change to 10.0.0.139. You need to refresh your IP address to access correct LAN IP address of the device.");
+				//wait to refresh	  
+				//$.openLoadingMask(2);
+				//wait to refresh	  
+				//setTimeout(function(){top.location = 'http://10.0.0.139'; },150000);		  
+		  // 	}
+		var wl_nvram = document.createElement("input");
+		wl_nvram.type = "hidden";
+		wl_nvram.size = "15";
+		wl_nvram.name = "wlSyncNvram";
+		wl_nvram.value = "1";
+		document.forms[0].appendChild(wl_nvram);
+		}
+	  
+   }
+
+   return true;
+}
+
+function doSubmit() {
+   if (btnApply(0)) {
+      document.forms[0].submit();
+      $.openLoadingMask(1);
+   }else{
+	 //loadDevice();
+   }
+}
+
+
+$(document).ready(function() {
+   frmLoad();
+});
+// done hiding -->
+</script>
+ <form name="0" action="/pages/tabFW/wireless-wlanSTAMode.wl" method="post" onSubmit="return false;">
+	<div class="content_frame"><div class="explain"><div> <b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div> 
+	<div class="explain_text"><%ejGetML(MLG_WLAN_STA_Mode_Str1)%><br>
+		<table><tr><td width="12%" valign="top" style="font-weight: bold">Access Point:</td><td><%ejGetML(MLG_WLAN_STA_Mode_Str2)%></td></tr></table></div>
+	<div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div></div>
+         
+			<div class="data_frame"><ul>
+	            <li class="set1">
+	   <!---          <div id="switch_wlDevice" class="w_text">
+	                  <ul>
+	                     <li class="left_table" style="font-weight: bold"> <%ejGetML(MLG_WLAN_BasicWirelessSetup_Str5)%> :</li>
+	                     <li>
+	                        <input name="wl_device" type="radio" value="0" onChange="doSubmit();"/>  2.4GHz&nbsp;&nbsp;
+	                        <input name="wl_device" type="radio" value="1" onChange="doSubmit();"/>  5GHz</li>
+	                  </ul>
+	            </div><br>    ---->
+					<div class="w_text">
+						<ul>
+							<li class="left_table" style="font-weight: bold">Selected mode :</li>
+							<li>
+									<input name="wlSTAMode" type="radio" value="0" onClick="modeChange();" />Router (Default)&nbsp;&nbsp;
+									<input name="wlSTAMode" type="radio" value="1" onClick="modeChange();" />Access Point&nbsp;&nbsp;
+									<input name="wlSTAMode" type="radio" value="2" onClick="modeChange();" style="display:none;"/>
+									<input type="button" value="<%ejGetML(MLG_WLAN_WDS_Str12)%>" name="Scan" id="Scan" onClick="doRefresh();" />
+									<span id="Scan_img"></span>
+							</li>
+						</ul>
+					</div>
+				</li>
+		            
+            <li class="set1">
+			<div class="w_text" id="APINFOtitle" >
+			<ul>
+			<li class="left_table" style="font-weight: bold">Site Survey</li>
+			</ul>
+			</div>
+               <div id="APINFOTABLE" class="w_table" >
+             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table_frame" id="APinfoTable">
+
+                   <tr align="center" >
+					<td width="5%" class="top_font">#</td>
+					<td class="top_font">SSID</td>
+					<td class="top_font">Signal strength</td>
+					<td class="top_font">Security</td>
+					<td class="top_font">Password</td>
+                   </tr>
+<script language="javascript">
+<!-- hide
+{
+ var str = '';
+ 						str += "<tr align=\"center\" >";
+						str += "<td class=\"table_font\"><input name=\"wl_AP_index\" type=\"radio\" value=0 /></td>";
+						str += "<td class=\"table_font\"></td>";
+						str += "<td class=\"table_font\"></td>";
+						str += "<td class=\"table_font\"></td>";
+						str += "<td class=\"table_font\"><input type=\"text\" name=\"pass\" size='17'/></td>";
+						
+						str += "</tr>";
+
+$('#APinfoTable').append(str);
+}
+ // done hiding -->
+</script>
+                  </table>
+               </div>
+            </li>
+	            <input size="15" type="hidden" name="sessionKey" />
+	            <input size="15" type="hidden" name="deviceIndex" value="1"/>
+	            <input size="15" type="hidden" name="wlanSTA_mode" />
+	            <input size="15" type="hidden" name="isWlanChangeMode" />
+	            <input size="32" type="hidden" name="wlSTA_SSID" />
+	            <input size="32" type="hidden" name="wlSTA_SeMode" />
+	            <input size="32" type="hidden" name="wlSTA_psk" />	            
+	            <li class="space"></li>
+				<li class="buttonframe">
+					<div class="button_position"><input name="sysSubmit" id="sysSubmit" value="<%ejGetML(MLG_Common_Apply)%>" type="button" onClick="doSubmit();" >&nbsp;&nbsp;&nbsp;
+						<input name="Cancel" id="Cancel" value="<%ejGetML(MLG_Common_Cancel)%>" type="button" onClick='frmLoad();' /> 
+					</div>
+				</li>
+
+				<br>
+				<table border=0>
+				<td align=center>
+					<div id="select_0" class="sta_img_1"></div>
+					<div id="select_1" class="sta_img_2" style="display:none;"></div>
+					<div id="select_2" class="sta_img_3" style="display:none;"></div>
+				</td>
+				</table>
+								
+			</ul></div>
+
+	</div>
+ </form><br/><br/>

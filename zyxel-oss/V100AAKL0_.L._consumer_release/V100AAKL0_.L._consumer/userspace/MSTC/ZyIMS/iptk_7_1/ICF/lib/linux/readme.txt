@@ -1,0 +1,1 @@
+File to allow CVS to make the folder a VoB element

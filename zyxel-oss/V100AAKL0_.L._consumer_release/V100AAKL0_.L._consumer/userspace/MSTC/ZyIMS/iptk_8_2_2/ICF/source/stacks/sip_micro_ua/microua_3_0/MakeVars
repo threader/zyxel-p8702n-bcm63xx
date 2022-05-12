@@ -1,0 +1,3 @@
+STACK_DIR=sip_stack_3_0_src
+MICROSIP_STACK_DIR=sip_stack_3_0_src
+UA_DIR=ua_3_0_src

@@ -1,0 +1,467 @@
+<?xml version="1.0"?>
+<DslCpeConfig version="3.0">
+  <InternetGatewayDevice>
+    <LANDeviceNumberOfEntries>1</LANDeviceNumberOfEntries>
+    <WANDeviceNumberOfEntries>3</WANDeviceNumberOfEntries>
+    <X_5067F0_LoginCfg>
+      <AdminUserName>admin</AdminUserName>
+      <AdminPassword>Y2luYmVsbA==</AdminPassword>
+      <SupportUserName>support</SupportUserName>
+      <SupportPassword>MTIzNAA=</SupportPassword>
+      <UserUserName>user</UserUserName>
+      <UserPassword>MTIzNAA=</UserPassword>
+      <X_5067F0_LoginGroupNumberOfEntries>2</X_5067F0_LoginGroupNumberOfEntries>
+      <X_5067F0_Login_Group instance="1">
+        <Privilege>broadband,wireless,homeNetworking,usbService,routing,dnsroute,qos,nat,dns,halfBridge,igmpSetting,intfGrp,firewall,macFilter,parentalControl,schedulerRule,certificates,ipsecVPN,sip,phone,callRule,log,trafficStatus,voipStatus,arpTable,igmpGroupStatus,xdslStatistics,system,userAccount,remoteMGMT,tr069Client,tr064,time,emailNotification,logSetting,firmwareUpgrade,configuration,reboot,disagnostic,HelpDesk,wizard</Privilege>
+        <Name>Administrator</Name>
+        <ConsoleLevel>2</ConsoleLevel>
+        <Use_Login_Info instance="1">
+          <UserName>zyadmin</UserName>
+          <Password>MTIzNAA=</Password>
+        </Use_Login_Info>
+        <Use_Login_Info nextInstance="2" ></Use_Login_Info>
+      </X_5067F0_Login_Group>
+      <X_5067F0_Login_Group instance="2">
+        <GroupKey>2</GroupKey>
+        <Privilege>log,trafficStatus,arpTable,igmpGroupStatus,xdslStatistics,system,userAccount,remoteMGMT,time,emailNotification,logSetting,firmwareUpgrade,configuration,reboot,disagnostic,HelpDesk</Privilege>
+        <Name>User</Name>
+        <ConsoleLevel>2</ConsoleLevel>
+        <Use_Login_Info instance="1">
+          <UserName>zyuser</UserName>
+          <Password>MTIzNAA=</Password>
+        </Use_Login_Info>
+        <Use_Login_Info nextInstance="2" ></Use_Login_Info>
+      </X_5067F0_Login_Group>
+      <X_5067F0_Login_Group nextInstance="3" ></X_5067F0_Login_Group>
+    </X_5067F0_LoginCfg>
+    <Layer2Bridging>
+      <BridgeNumberOfEntries>1</BridgeNumberOfEntries>
+      <FilterNumberOfEntries>5</FilterNumberOfEntries>
+      <MarkingNumberOfEntries>0</MarkingNumberOfEntries>
+      <AvailableInterfaceNumberOfEntries>6</AvailableInterfaceNumberOfEntries>
+      <Bridge instance="1">
+        <BridgeKey>0</BridgeKey>
+        <BridgeEnable>TRUE</BridgeEnable>
+        <BridgeName>Default</BridgeName>
+      </Bridge>
+      <Bridge nextInstance="2" ></Bridge>
+      <Filter instance="1">
+        <FilterKey>0</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>1</FilterInterface>
+      </Filter>
+      <Filter instance="2">
+        <FilterKey>0</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>2</FilterInterface>
+      </Filter>
+      <Filter instance="3">
+        <FilterKey>0</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>3</FilterInterface>
+      </Filter>
+      <Filter instance="4">
+        <FilterKey>0</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>4</FilterInterface>
+      </Filter>
+      <Filter instance="5">
+        <FilterKey>0</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>5</FilterInterface>
+      </Filter>
+      <Filter nextInstance="6" ></Filter>
+      <AvailableInterface instance="1">
+        <AvailableInterfaceKey>0</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.1</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="2">
+        <AvailableInterfaceKey>0</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.2</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="3">
+        <AvailableInterfaceKey>0</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.3</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="4">
+        <AvailableInterfaceKey>0</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.4</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="5">
+        <AvailableInterfaceKey>0</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.LANUSBInterfaceConfig.1</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface nextInstance="6" ></AvailableInterface>
+    </Layer2Bridging>
+    <QueueManagement>
+      <ClassificationNumberOfEntries>0</ClassificationNumberOfEntries>
+      <AppNumberOfEntries>0</AppNumberOfEntries>
+      <FlowNumberOfEntries>0</FlowNumberOfEntries>
+      <PolicerNumberOfEntries>0</PolicerNumberOfEntries>
+      <QueueNumberOfEntries>8</QueueNumberOfEntries>
+      <DefaultDSCPMark>-1</DefaultDSCPMark>
+	  <Queue instance="1">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>8</QueuePrecedence>
+	    <X_5067F0_QueueName>DefaultQueue</X_5067F0_QueueName>
+	    <X_5067F0_DslLatency>0</X_5067F0_DslLatency>
+	    <X_5067F0_PtmPriority>0</X_5067F0_PtmPriority>
+	    <X_5067F0_QueueId>1</X_5067F0_QueueId>
+	  </Queue>
+	  <Queue instance="2">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <X_5067F0_QueueName>PriQ1</X_5067F0_QueueName>
+	    <X_5067F0_DslLatency>0</X_5067F0_DslLatency>
+	    <X_5067F0_PtmPriority>0</X_5067F0_PtmPriority>
+	    <X_5067F0_QueueId>2</X_5067F0_QueueId>
+	  </Queue>
+	  <Queue instance="3">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>2</QueuePrecedence>
+	    <X_5067F0_QueueName>PriQ2</X_5067F0_QueueName>
+	    <X_5067F0_DslLatency>0</X_5067F0_DslLatency>
+	    <X_5067F0_PtmPriority>0</X_5067F0_PtmPriority>
+	    <X_5067F0_QueueId>3</X_5067F0_QueueId>
+	  </Queue>
+	  <Queue instance="4">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>3</QueuePrecedence>
+	    <X_5067F0_QueueName>PriQ3</X_5067F0_QueueName>
+	    <X_5067F0_DslLatency>0</X_5067F0_DslLatency>
+	    <X_5067F0_PtmPriority>0</X_5067F0_PtmPriority>
+	    <X_5067F0_QueueId>4</X_5067F0_QueueId>
+	  </Queue>
+	  <Queue instance="5">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>4</QueuePrecedence>
+	    <X_5067F0_QueueName>PriQ4</X_5067F0_QueueName>
+	    <X_5067F0_DslLatency>0</X_5067F0_DslLatency>
+	    <X_5067F0_PtmPriority>0</X_5067F0_PtmPriority>
+	    <X_5067F0_QueueId>5</X_5067F0_QueueId>
+	  </Queue>
+	  <Queue instance="6">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>5</QueuePrecedence>
+	    <X_5067F0_QueueName>PriQ5</X_5067F0_QueueName>
+	    <X_5067F0_DslLatency>0</X_5067F0_DslLatency>
+	    <X_5067F0_PtmPriority>0</X_5067F0_PtmPriority>
+	    <X_5067F0_QueueId>6</X_5067F0_QueueId>
+	  </Queue>
+	  <Queue instance="7">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>6</QueuePrecedence>
+	    <X_5067F0_QueueName>PriQ6</X_5067F0_QueueName>
+	    <X_5067F0_DslLatency>0</X_5067F0_DslLatency>
+	    <X_5067F0_PtmPriority>0</X_5067F0_PtmPriority>
+	    <X_5067F0_QueueId>7</X_5067F0_QueueId>
+	  </Queue>
+	  <Queue instance="8">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>7</QueuePrecedence>
+	    <X_5067F0_QueueName>PriQ7</X_5067F0_QueueName>
+	    <X_5067F0_DslLatency>0</X_5067F0_DslLatency>
+	    <X_5067F0_PtmPriority>0</X_5067F0_PtmPriority>
+	    <X_5067F0_QueueId>8</X_5067F0_QueueId>
+	  </Queue>
+	  <Queue nextInstance="9" ></Queue>
+    </QueueManagement>
+    <LANDevice instance="1">
+      <LANEthernetInterfaceNumberOfEntries>4</LANEthernetInterfaceNumberOfEntries>
+      <LANUSBInterfaceNumberOfEntries>1</LANUSBInterfaceNumberOfEntries>
+      <LANWLANConfigurationNumberOfEntries>0</LANWLANConfigurationNumberOfEntries>
+      <X_5067F0_LANMocaInterfaceNumberOfEntries>0</X_5067F0_LANMocaInterfaceNumberOfEntries>
+      <X_5067F0_IgmpSnoopingConfig>
+        <Enable>TRUE</Enable>
+      </X_5067F0_IgmpSnoopingConfig>
+      <LANHostConfigManagement>
+        <DHCPServerEnable>TRUE</DHCPServerEnable>
+        <IPInterfaceNumberOfEntries>3</IPInterfaceNumberOfEntries>
+        <IPInterface instance="1">
+          <Enable>TRUE</Enable>
+          <X_5067F0_IfName>br0</X_5067F0_IfName>
+        </IPInterface>
+        <IPInterface instance="2">
+          <Enable>FALSE</Enable>
+          <IPInterfaceIPAddress>0.0.0.0</IPInterfaceIPAddress>
+          <IPInterfaceSubnetMask>0.0.0.0</IPInterfaceSubnetMask>
+          <X_5067F0_IfName>br0:0</X_5067F0_IfName>
+        </IPInterface>
+        <IPInterface instance="3">
+          <Enable>FALSE</Enable>
+          <IPInterfaceIPAddress>0.0.0.0</IPInterfaceIPAddress>
+          <IPInterfaceSubnetMask>0.0.0.0</IPInterfaceSubnetMask>
+          <X_5067F0_IfName>br0:1</X_5067F0_IfName>
+        </IPInterface>
+        <IPInterface nextInstance="4" ></IPInterface>
+      </LANHostConfigManagement>
+      <X_5067F0_IPv6LANHostConfigManagement>
+        <IPv6InterfaceNumberOfEntries>0</IPv6InterfaceNumberOfEntries>
+      </X_5067F0_IPv6LANHostConfigManagement>
+      <LANEthernetInterfaceConfig instance="1">
+        <Enable>TRUE</Enable>
+        <X_5067F0_ETHEnbQos>TRUE</X_5067F0_ETHEnbQos>
+        <X_5067F0_IfName>eth0.0</X_5067F0_IfName>
+        <X_5067F0_DefaultTagProcessing>-1</X_5067F0_DefaultTagProcessing>
+        <X_5067F0_DefaultVLANIDMark>-1</X_5067F0_DefaultVLANIDMark>
+        <X_5067F0_DefaultethernetPriorityMark>-1</X_5067F0_DefaultethernetPriorityMark>
+      </LANEthernetInterfaceConfig>
+      <LANEthernetInterfaceConfig instance="2">
+        <Enable>TRUE</Enable>
+        <X_5067F0_ETHEnbQos>TRUE</X_5067F0_ETHEnbQos>
+        <X_5067F0_IfName>eth1.0</X_5067F0_IfName>
+        <X_5067F0_DefaultTagProcessing>-1</X_5067F0_DefaultTagProcessing>
+        <X_5067F0_DefaultVLANIDMark>-1</X_5067F0_DefaultVLANIDMark>
+        <X_5067F0_DefaultethernetPriorityMark>-1</X_5067F0_DefaultethernetPriorityMark>
+      </LANEthernetInterfaceConfig>
+      <LANEthernetInterfaceConfig instance="3">
+        <Enable>TRUE</Enable>
+        <X_5067F0_ETHEnbQos>TRUE</X_5067F0_ETHEnbQos>
+        <X_5067F0_IfName>eth2.0</X_5067F0_IfName>
+        <X_5067F0_DefaultTagProcessing>-1</X_5067F0_DefaultTagProcessing>
+        <X_5067F0_DefaultVLANIDMark>-1</X_5067F0_DefaultVLANIDMark>
+        <X_5067F0_DefaultethernetPriorityMark>-1</X_5067F0_DefaultethernetPriorityMark>
+      </LANEthernetInterfaceConfig>
+      <LANEthernetInterfaceConfig instance="4">
+        <Enable>TRUE</Enable>
+        <X_5067F0_ETHEnbQos>TRUE</X_5067F0_ETHEnbQos>
+        <X_5067F0_IfName>eth3.0</X_5067F0_IfName>
+        <X_5067F0_DefaultTagProcessing>-1</X_5067F0_DefaultTagProcessing>
+        <X_5067F0_DefaultVLANIDMark>-1</X_5067F0_DefaultVLANIDMark>
+        <X_5067F0_DefaultethernetPriorityMark>-1</X_5067F0_DefaultethernetPriorityMark>
+      </LANEthernetInterfaceConfig>
+      <LANEthernetInterfaceConfig nextInstance="5" ></LANEthernetInterfaceConfig>
+      <LANUSBInterfaceConfig instance="1">
+        <Enable>TRUE</Enable>
+        <X_5067F0_IfName>usb0</X_5067F0_IfName>
+      </LANUSBInterfaceConfig>
+      <LANUSBInterfaceConfig nextInstance="2" ></LANUSBInterfaceConfig>
+      <WLANConfiguration instance="1">
+        <WEPKey instance="1">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="2">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="3">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="4">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey nextInstance="5" ></WEPKey>
+        <PreSharedKey instance="1">
+        </PreSharedKey>
+        <PreSharedKey nextInstance="2" ></PreSharedKey>
+      </WLANConfiguration>
+      <WLANConfiguration instance="2">
+        <WEPKey instance="1">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="2">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="3">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="4">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey nextInstance="5" ></WEPKey>
+        <PreSharedKey instance="1">
+        </PreSharedKey>
+        <PreSharedKey nextInstance="2" ></PreSharedKey>
+      </WLANConfiguration>
+      <WLANConfiguration instance="3">
+        <WEPKey instance="1">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="2">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="3">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="4">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey nextInstance="5" ></WEPKey>
+        <PreSharedKey instance="1">
+        </PreSharedKey>
+        <PreSharedKey nextInstance="2" ></PreSharedKey>
+      </WLANConfiguration>
+      <WLANConfiguration instance="4">
+         <WEPKey instance="1">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="2">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="3">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="4">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey nextInstance="5" ></WEPKey>
+        <PreSharedKey instance="1">
+        </PreSharedKey>
+        <PreSharedKey nextInstance="2" ></PreSharedKey>
+      </WLANConfiguration> 
+      <WLANConfiguration nextInstance="5" ></WLANConfiguration>
+    </LANDevice>
+    <LANDevice nextInstance="2" ></LANDevice>
+    <WANDevice instance="1">
+      <WANConnectionNumberOfEntries>1</WANConnectionNumberOfEntries>
+      <WANCommonInterfaceConfig>
+        <WANAccessType>DSL</WANAccessType>
+      </WANCommonInterfaceConfig>
+      <WANDSLInterfaceConfig>
+        <Enable>TRUE</Enable>
+      </WANDSLInterfaceConfig>
+      <WANConnectionDevice instance="1">
+        <WANIPConnectionNumberOfEntries>1</WANIPConnectionNumberOfEntries>
+        <WANPPPConnectionNumberOfEntries>0</WANPPPConnectionNumberOfEntries>
+        <WANDSLLinkConfig>
+          <Enable>TRUE</Enable>
+          <LinkType>EoA</LinkType>
+          <DestinationAddress>PVC: 0/33</DestinationAddress>
+          <X_5067F0_IfName>atm0</X_5067F0_IfName>
+        </WANDSLLinkConfig>
+        <WANIPConnection instance="1">
+          <Enable>TRUE</Enable>
+          <ConnectionType>IP_Routed</ConnectionType>
+          <Name>ADSL</Name>
+          <NATEnabled>TRUE</NATEnabled>
+          <X_5067F0_IGMPEnabled>TRUE</X_5067F0_IGMPEnabled>
+          <MaxMTUSize>1500</MaxMTUSize>
+          <X_5067F0_IfName>atm0</X_5067F0_IfName>
+          <PortMappingNumberOfEntries>0</PortMappingNumberOfEntries>
+          <X_5067F0_GatewayUsed>TRUE</X_5067F0_GatewayUsed>
+        </WANIPConnection>
+        <WANIPConnection nextInstance="2" ></WANIPConnection>
+      </WANConnectionDevice>
+      <WANConnectionDevice nextInstance="2" ></WANConnectionDevice>
+    </WANDevice>
+    <WANDevice instance="2">
+      <WANConnectionNumberOfEntries>1</WANConnectionNumberOfEntries>
+      <WANCommonInterfaceConfig>
+        <WANAccessType>DSL</WANAccessType>
+      </WANCommonInterfaceConfig>
+      <WANDSLInterfaceConfig>
+        <Enable>TRUE</Enable>
+        <LinkEncapsulationUsed>G.992.3_Annex_K_PTM</LinkEncapsulationUsed>
+      </WANDSLInterfaceConfig>
+      <WANConnectionDevice instance="1">
+        <WANIPConnectionNumberOfEntries>1</WANIPConnectionNumberOfEntries>
+        <WANPPPConnectionNumberOfEntries>0</WANPPPConnectionNumberOfEntries>
+        <WANPTMLinkConfig>
+          <Enable>TRUE</Enable>
+          <X_5067F0_PTMPriorityHigh>TRUE</X_5067F0_PTMPriorityHigh>
+          <X_5067F0_PTMEnbQos>TRUE</X_5067F0_PTMEnbQos>
+          <X_5067F0_GrpPrecedence>8</X_5067F0_GrpPrecedence>
+          <X_5067F0_QueuePrecedence>8</X_5067F0_QueuePrecedence>
+          <X_5067F0_ConnectionMode>VlanMuxMode</X_5067F0_ConnectionMode>
+          <X_5067F0_IfName>ptm0</X_5067F0_IfName>
+        </WANPTMLinkConfig>
+        <WANIPConnection instance="1">
+          <Enable>TRUE</Enable>
+          <ConnectionType>IP_Routed</ConnectionType>
+          <Name>VDSL</Name>
+          <NATEnabled>TRUE</NATEnabled>
+          <X_5067F0_IGMPEnabled>TRUE</X_5067F0_IGMPEnabled>
+          <MaxMTUSize>1500</MaxMTUSize>
+          <X_5067F0_IfName>ptm0.1</X_5067F0_IfName>
+          <X_5067F0_ConnectionId>1</X_5067F0_ConnectionId>
+          <PortMappingNumberOfEntries>0</PortMappingNumberOfEntries>
+          <X_5067F0_GatewayUsed>TRUE</X_5067F0_GatewayUsed>
+        </WANIPConnection>
+        <WANIPConnection nextInstance="2" ></WANIPConnection>
+      </WANConnectionDevice>
+      <WANConnectionDevice nextInstance="2" ></WANConnectionDevice>
+    </WANDevice>
+    <WANDevice instance="3">
+      <WANConnectionNumberOfEntries>1</WANConnectionNumberOfEntries>
+      <WANCommonInterfaceConfig>
+        <WANAccessType>Ethernet</WANAccessType>
+      </WANCommonInterfaceConfig>
+      <WANEthernetInterfaceConfig>
+        <Enable>TRUE</Enable>
+        <MaxBitRate>Auto</MaxBitRate>
+        <DuplexMode>Auto</DuplexMode>
+        <X_5067F0_IfName>eth4</X_5067F0_IfName>
+        <X_5067F0_ConnectionMode>VlanMuxMode</X_5067F0_ConnectionMode>
+      </WANEthernetInterfaceConfig>
+      <WANConnectionDevice instance="1">
+        <WANIPConnectionNumberOfEntries>1</WANIPConnectionNumberOfEntries>
+        <WANPPPConnectionNumberOfEntries>0</WANPPPConnectionNumberOfEntries>
+        <WANIPConnection instance="1">
+          <Enable>TRUE</Enable>
+          <ConnectionType>IP_Routed</ConnectionType>
+          <Name>ETHWAN</Name>
+          <NATEnabled>TRUE</NATEnabled>
+          <X_5067F0_IGMPEnabled>TRUE</X_5067F0_IGMPEnabled>
+          <MaxMTUSize>1500</MaxMTUSize>
+          <X_5067F0_IfName>eth4.1</X_5067F0_IfName>
+          <X_5067F0_ConnectionId>1</X_5067F0_ConnectionId>
+          <PortMappingNumberOfEntries>0</PortMappingNumberOfEntries>
+          <X_5067F0_GatewayUsed>TRUE</X_5067F0_GatewayUsed>
+        </WANIPConnection>
+        <WANIPConnection nextInstance="2" ></WANIPConnection>
+      </WANConnectionDevice>
+      <WANConnectionDevice nextInstance="2" ></WANConnectionDevice>
+    </WANDevice>
+    <Layer3Forwarding>
+      <ForwardNumberOfEntries>0</ForwardNumberOfEntries>
+      <X_5067F0_DefaultConnectionServices>atm0,ptm0.1,eth4.1</X_5067F0_DefaultConnectionServices>
+    </Layer3Forwarding>
+    <X_5067F0_IPv6Layer3Forwarding>
+      <ForwardNumberOfEntries>0</ForwardNumberOfEntries>
+    </X_5067F0_IPv6Layer3Forwarding>
+    <Services>
+      <StorageService instance="1">
+      </StorageService>
+      <StorageService nextInstance="2" ></StorageService>
+    </Services>
+    <X_5067F0_NetworkConfig>
+      <DNSIfName>atm0,ptm0.1,eth4.1</DNSIfName>
+    </X_5067F0_NetworkConfig>
+    <X_5067F0_IEEE8021xAuthenticationSupplicant instance="1">
+    <Enable>0</Enable>
+    </X_5067F0_IEEE8021xAuthenticationSupplicant>
+    <X_5067F0_IEEE8021xAuthenticationSupplicant instance="2">
+    <Enable>0</Enable>
+    </X_5067F0_IEEE8021xAuthenticationSupplicant>
+    <X_5067F0_IEEE8021xAuthenticationSupplicant instance="3">
+    <Enable>0</Enable>
+    </X_5067F0_IEEE8021xAuthenticationSupplicant>
+    <X_5067F0_WebUi>
+      <X_5067F0_WebUiStyle>2</X_5067F0_WebUiStyle>
+    </X_5067F0_WebUi>
+  </InternetGatewayDevice>
+</DslCpeConfig> 

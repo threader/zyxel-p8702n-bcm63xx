@@ -1,0 +1,61 @@
+#******************************************************************************
+#        Makefile for CTA module of ICF.
+#
+#
+#
+#        DATE               NAME            REFERENCE        REASON
+#        ----               ----            ---------        ------
+#        Mar,2005         Amit Sharma                    Initial Version
+#        30-Apr-2009        Anuradha Gupta   SPR 19443       Removing local options
+#        
+#
+#
+#        Copyright (c) 2009, Aricent .
+#******************************************************************************
+ICF_LIB= $(ICF_DEV_DIR)/lib/linux
+include $(ICF_DEV_DIR)/build/linux/makefile.mk
+
+INCLUDE                         +=      -I $(GW_COMMON)/common/h \
+					-I $(GW_COMMON)/genlib/common/h \
+					-I $(GW_COMMON)/genlib/db/h \
+					-I $(GW_COMMON)/genlib/os/h \
+					-I $(ICF_SRC_DIR)/cfg/h \
+					-I $(ICF_SRC_DIR)/regm/h \
+					-I $(ICF_SRC_DIR)/dbm/h \
+					-I $(ICF_SRC_DIR)/sc/cta/h \
+					-I .
+
+SRCDIR	=	$(ICF_SRC_DIR)/sc/cta/src
+OBJDIR	=	$(ICF_SRC_DIR)/sc/cta/bin/$(CPU)
+SRCFILES	=			$(SRCDIR)/icf_cta_fsm.c \
+					$(SRCDIR)/icf_cta_util.c \
+					$(SRCDIR)/icf_cta_main.c
+
+OBJFILES	=			$(OBJDIR)/icf_cta_fsm.o \
+					$(OBJDIR)/icf_cta_util.o \
+					$(OBJDIR)/icf_cta_main.o
+
+CFLAGS		+=			-D__ANSI_C__  -DICF_CTA_SERVICE
+
+TARGET=$(ICF_LIB)/libcta.a
+
+all     :$(TARGET)
+$(TARGET):$(OBJFILES)
+	$(ICF_AR) $(ICF_AR_FLAGS) $(TARGET) $(OBJFILES)
+$(OBJDIR)/%.o:$(SRCDIR)/%.c
+	$(CC) $(CFLAGS)  $(INCLUDE) $< -o $@
+
+clean	:
+		$(ICF_RM) $(OBJFILES)
+		$(ICF_RM) $(ICF_LIB)/libcta.a
+
+depend.$(CPU):
+		touch depend.$(CPU)
+
+depend  :
+		$(CC) -M $(CFLAGS) $(INCLUDE) $(SRCFILES) > depend.$(CPU)
+		$(ICF_DEV_DIR)/build/linux/build.sh  depend.$(CPU) $(OBJDIR)
+
+
+include depend.$(CPU)
+# DO NOT DELETE THIS LINE -- make depend depends on it.

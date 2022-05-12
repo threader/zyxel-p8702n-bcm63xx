@@ -1,0 +1,76 @@
+
+INC_MK			=       ../../../port/build/make/linux
+
+include                 $(INC_MK)/makefile.mk
+
+MM_CORE_BASE			=	../..
+MM_CORE_SRC		=	$(MM_CORE_BASE)/src
+
+MM_CORE_OBJ_FILES		=	mm_core_fsm.o\
+					mm_core_fsm_intf.o\
+					mm_core_fill_call_api.o\
+					mm_core_rtp.o\
+					mm_core_rtcp.o\
+					voice_dsp_core_fsm.o\
+					mm_core_ivr.o
+
+ifneq ($(strip $(BUILD_MSTC_VOICE_SRTP)),)
+MM_CORE_OBJ_FILES += mm_core_srtp.o
+endif	
+					
+MM_CORE_SRC_FILES	=	$(MM_CORE_SRC)/mm_core_fsm.c\
+				$(MM_CORE_SRC)/mm_core_fsm_intf.c\
+				$(MM_CORE_SRC)/mm_core_fill_call_api.c\
+				$(MM_CORE_SRC)/mm_core_rtp.c\
+				$(MM_CORE_SRC)/mm_core_rtcp.c\
+				$(MM_CORE_SRC)/voice_dsp_core_fsm.c\
+				$(MM_CORE_SRC)/mm_core_ivr.c
+				
+ifneq ($(strip $(BUILD_MSTC_VOICE_SRTP)),)				
+MM_CORE_SRC_FILES += $(MM_CORE_SRC)/mm_core_srtp.c
+endif												
+
+				
+MM_CORE_INCLUDES		=	-DLINUX -DBOS_OS_LINUXUSER \
+				-I$(MM_CORE_BASE)/h \
+				-I$(MM_CFG_BASE)/h -I$(MM_PORT_BASE)/h \
+				-I$(SRTP_LIB_DIR)/include \
+				-I$(SRTP_LIB_DIR)/crypto/include \
+				-I$(ICF_BASE)/ext_if \
+				-I$(PRJ_BASE)/common/h \
+				-I$(PRJ_BASE)/sys_itf/h \
+				-I$(PRJ_BASE)/voice/h \
+				-I$(PRJ_BASE)/driver_itf/h \
+				-I$(PRJ_BASE)/config/h \
+				-I$(XCHANGE_DIR)/dslx/src/mta/inc/cfg \
+				-I$(XCHANGE_DIR)/dslx/apps/cfginc/xchg_common \
+				-I$(XCHANGE_DIR)/dslx_common/xchg_common/bos/publicInc \
+				-I$(XCHANGE_DIR)/dslx_common/xchg_common/assert/cfginc \
+				-I$(XCHANGE_DIR)/dslx_common/xchg_common/assert/inc \
+				$(IPTK_COMMON_INC)
+
+#***************************************
+#**Compiling CORE elements
+#***************************************
+ifeq ($(MAKE_DEPEND),YES)
+all		:	depend	$(MM_CORE_LIB_A)
+else
+all		:	$(MM_CORE_LIB_A)
+endif
+
+
+$(MM_CORE_LIB_A):	$(MM_CORE_OBJ_FILES)
+			$(LIB) $(MM_CORE_LIB_A)  $(MM_CORE_OBJ_FILES)
+			$(CP) $(MM_CORE_LIB_A) $(LIB_OS)
+
+%.o: $(MM_CORE_SRC)/%.c
+	$(CC) $(INCLUDE) $(MM_CORE_INCLUDES) $(MM_COMMON_INCLUDES) $(CFLAGS_CMN) -c $< -o $@
+
+depend.$(CPU).core:
+	$(CC) -M $(INCLUDE) $(MM_CORE_INCLUDES) $(MM_COMMON_INCLUDES) $(CFLAGS_CMN) $(MM_CORE_SRC_FILES) > depend.$(CPU).core
+
+include depend.$(CPU).core
+clean_all:
+			$(RM) $(MM_CORE_LIB_A) $(MM_CORE_OBJ_FILES) $(LIB_OS_MM_CORE_LIB_A) depend.$(CPU).core
+depend:
+	$(CC) -M $(INCLUDE) $(MM_CORE_INCLUDES) $(MM_COMMON_INCLUDES) $(CFLAGS_CMN) $(MM_CORE_SRC_FILES) > depend.$(CPU).core

@@ -1,0 +1,1232 @@
+<?xml version="1.0"?>
+<DslCpeConfig version="3.0">
+  <InternetGatewayDevice>
+    <LANDeviceNumberOfEntries>1</LANDeviceNumberOfEntries>
+    <WANDeviceNumberOfEntries>4</WANDeviceNumberOfEntries>
+    <X_404A03_LoginCfg>
+      <X_404A03_LoginGroupNumberOfEntries>2</X_404A03_LoginGroupNumberOfEntries>
+      <X_404A03_Login_Group instance="1">
+        <Privilege>broadband,wireless,homeNetworking,usbService,routing,dnsroute,qos,nat,dns,halfBridge,igmpSetting,intfGrp,firewall,macFilter,parentalControl,schedulerRule,certificates,ipsecVPN,sip,phone,callRule,log,trafficStatus,voipStatus,arpTable,routeTable,igmpGroupStatus,xdslStatistics,system,userAccount,remoteMGMT,tr069Client,tr064,time,emailNotification,logSetting,firmwareUpgrade,configuration,reboot,disagnostic,HelpDesk,wizard,sniffer</Privilege>
+        <Name>Administrator</Name>
+        <ConsoleLevel>2</ConsoleLevel>
+        <Use_Login_Info instance="1">
+          <UserName>admin</UserName>
+          <Password>MTIzNAA=</Password>
+        </Use_Login_Info>
+        <Use_Login_Info nextInstance="2" ></Use_Login_Info>
+      </X_404A03_Login_Group>
+      <X_404A03_Login_Group instance="2">
+        <GroupKey>2</GroupKey>
+        <Privilege>log,trafficStatus,arpTable,routeTable,igmpGroupStatus,xdslStatistics,system,userAccount,remoteMGMT,time,emailNotification,logSetting,firmwareUpgrade,configuration,reboot,disagnostic,HelpDesk</Privilege>
+        <Name>User</Name>
+        <ConsoleLevel>2</ConsoleLevel>
+        <Use_Login_Info instance="1">
+          <UserName>zyuser</UserName>
+          <Password>MTIzNAA=</Password>
+        </Use_Login_Info>
+        <Use_Login_Info nextInstance="2" ></Use_Login_Info>
+      </X_404A03_Login_Group>
+      <X_404A03_Login_Group nextInstance="3" ></X_404A03_Login_Group>
+    </X_404A03_LoginCfg>
+    <Layer2Bridging>
+      <BridgeNumberOfEntries>1</BridgeNumberOfEntries>
+      <FilterNumberOfEntries>17</FilterNumberOfEntries>
+      <MarkingNumberOfEntries>0</MarkingNumberOfEntries>
+      <AvailableInterfaceNumberOfEntries>17</AvailableInterfaceNumberOfEntries>
+      <Bridge instance="1">
+        <BridgeKey>0</BridgeKey>
+        <BridgeEnable>TRUE</BridgeEnable>
+        <BridgeName>Default</BridgeName>
+      </Bridge>
+      <Bridge nextInstance="2" ></Bridge>
+      <Filter instance="1">
+        <FilterKey>1</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>1</FilterInterface>
+      </Filter>
+      <Filter instance="2">
+        <FilterKey>2</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>2</FilterInterface>
+      </Filter>
+      <Filter instance="3">
+        <FilterKey>3</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>3</FilterInterface>
+      </Filter>
+      <Filter instance="4">
+        <FilterKey>4</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>4</FilterInterface>
+      </Filter>
+      <Filter instance="5">
+        <FilterKey>5</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>5</FilterInterface>
+      </Filter>
+      <Filter instance="6">
+        <FilterKey>6</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>6</FilterInterface>
+      </Filter>
+      <Filter instance="7">
+        <FilterKey>7</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>7</FilterInterface>
+      </Filter>
+      <Filter instance="8">
+        <FilterKey>8</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>8</FilterInterface>
+      </Filter>
+      <Filter instance="9">
+        <FilterKey>9</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>9</FilterInterface>
+      </Filter>
+      <Filter instance="10">
+        <FilterKey>10</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>10</FilterInterface>
+      </Filter>
+      <Filter instance="11">
+        <FilterKey>11</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>11</FilterInterface>
+      </Filter>
+      <Filter instance="12">
+        <FilterKey>12</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>12</FilterInterface>
+      </Filter>
+      <Filter instance="13">
+        <FilterKey>13</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>13</FilterInterface>
+      </Filter>
+      <Filter instance="14">
+        <FilterKey>14</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>14</FilterInterface>
+      </Filter>
+      <Filter instance="15">
+        <FilterKey>15</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>15</FilterInterface>
+      </Filter>
+      <Filter instance="16">
+        <FilterKey>16</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>16</FilterInterface>
+      </Filter>
+      <Filter instance="17">
+        <FilterKey>17</FilterKey>
+        <FilterEnable>TRUE</FilterEnable>
+        <FilterBridgeReference>0</FilterBridgeReference>
+        <FilterInterface>17</FilterInterface>
+      </Filter>
+      <Filter nextInstance="18" ></Filter>
+      <AvailableInterface instance="1">
+        <AvailableInterfaceKey>1</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.1</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="2">
+        <AvailableInterfaceKey>2</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.2</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="3">
+        <AvailableInterfaceKey>3</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.3</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="4">
+        <AvailableInterfaceKey>4</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.4</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="5">
+        <AvailableInterfaceKey>5</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.LANUSBInterfaceConfig.1</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="6">
+        <AvailableInterfaceKey>6</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.X_404A03_WlanAdapter.WlVirtIntfCfg.1</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="7">
+        <AvailableInterfaceKey>7</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.X_404A03_WlanAdapter.WlVirtIntfCfg.2</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="8">
+        <AvailableInterfaceKey>8</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.X_404A03_WlanAdapter.WlVirtIntfCfg.3</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="9">
+        <AvailableInterfaceKey>9</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.X_404A03_WlanAdapter.WlVirtIntfCfg.4</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="10">
+        <AvailableInterfaceKey>10</AvailableInterfaceKey>
+        <InterfaceType>WANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.WANDevice.2.WANConnectionDevice.1.WANIPConnection.1</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="11">
+        <AvailableInterfaceKey>11</AvailableInterfaceKey>
+        <InterfaceType>WANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANIPConnection.1</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="12">
+        <AvailableInterfaceKey>12</AvailableInterfaceKey>
+        <InterfaceType>WANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.WANDevice.3.WANConnectionDevice.1.WANIPConnection.1</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="13">
+        <AvailableInterfaceKey>13</AvailableInterfaceKey>
+        <InterfaceType>WANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.WANDevice.7.WANConnectionDevice.1.WANPPPConnection.1</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="14">
+        <AvailableInterfaceKey>14</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.WLANConfiguration.2.X_404A03_WlanAdapter.WlVirtIntfCfg.1</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="15">
+        <AvailableInterfaceKey>15</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.WLANConfiguration.2.X_404A03_WlanAdapter.WlVirtIntfCfg.2</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="16">
+        <AvailableInterfaceKey>16</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.WLANConfiguration.2.X_404A03_WlanAdapter.WlVirtIntfCfg.3</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface instance="17">
+        <AvailableInterfaceKey>17</AvailableInterfaceKey>
+        <InterfaceType>LANInterface</InterfaceType>
+        <InterfaceReference>InternetGatewayDevice.LANDevice.1.WLANConfiguration.2.X_404A03_WlanAdapter.WlVirtIntfCfg.4</InterfaceReference>
+      </AvailableInterface>
+      <AvailableInterface nextInstance="18" ></AvailableInterface>
+    </Layer2Bridging>
+    <QueueManagement>
+      <ClassificationNumberOfEntries>0</ClassificationNumberOfEntries>
+      <AppNumberOfEntries>0</AppNumberOfEntries>
+      <FlowNumberOfEntries>0</FlowNumberOfEntries>
+      <PolicerNumberOfEntries>0</PolicerNumberOfEntries>
+      <QueueNumberOfEntries>8</QueueNumberOfEntries>
+      <DefaultDSCPMark>-1</DefaultDSCPMark>
+	  <Queue instance="1">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>8</QueuePrecedence>
+	    <X_404A03_QueueName>DefaultQueue</X_404A03_QueueName>
+	    <X_404A03_DslLatency>0</X_404A03_DslLatency>
+	    <X_404A03_PtmPriority>0</X_404A03_PtmPriority>
+	    <X_404A03_QueueId>1</X_404A03_QueueId>
+	  </Queue>
+	  <Queue instance="2">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <X_404A03_QueueName>PriQ1</X_404A03_QueueName>
+	    <X_404A03_DslLatency>0</X_404A03_DslLatency>
+	    <X_404A03_PtmPriority>0</X_404A03_PtmPriority>
+	    <X_404A03_QueueId>2</X_404A03_QueueId>
+	  </Queue>
+	  <Queue instance="3">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>2</QueuePrecedence>
+	    <X_404A03_QueueName>PriQ2</X_404A03_QueueName>
+	    <X_404A03_DslLatency>0</X_404A03_DslLatency>
+	    <X_404A03_PtmPriority>0</X_404A03_PtmPriority>
+	    <X_404A03_QueueId>3</X_404A03_QueueId>
+	  </Queue>
+	  <Queue instance="4">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>3</QueuePrecedence>
+	    <X_404A03_QueueName>PriQ3</X_404A03_QueueName>
+	    <X_404A03_DslLatency>0</X_404A03_DslLatency>
+	    <X_404A03_PtmPriority>0</X_404A03_PtmPriority>
+	    <X_404A03_QueueId>4</X_404A03_QueueId>
+	  </Queue>
+	  <Queue instance="5">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>4</QueuePrecedence>
+	    <X_404A03_QueueName>PriQ4</X_404A03_QueueName>
+	    <X_404A03_DslLatency>0</X_404A03_DslLatency>
+	    <X_404A03_PtmPriority>0</X_404A03_PtmPriority>
+	    <X_404A03_QueueId>5</X_404A03_QueueId>
+	  </Queue>
+	  <Queue instance="6">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>5</QueuePrecedence>
+	    <X_404A03_QueueName>PriQ5</X_404A03_QueueName>
+	    <X_404A03_DslLatency>0</X_404A03_DslLatency>
+	    <X_404A03_PtmPriority>0</X_404A03_PtmPriority>
+	    <X_404A03_QueueId>6</X_404A03_QueueId>
+	  </Queue>
+	  <Queue instance="7">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>6</QueuePrecedence>
+	    <X_404A03_QueueName>PriQ6</X_404A03_QueueName>
+	    <X_404A03_DslLatency>0</X_404A03_DslLatency>
+	    <X_404A03_PtmPriority>0</X_404A03_PtmPriority>
+	    <X_404A03_QueueId>7</X_404A03_QueueId>
+	  </Queue>
+	  <Queue instance="8">
+	    <QueueEnable>TRUE</QueueEnable>
+	    <QueueWeight>1</QueueWeight>
+	    <QueueInterface>WAN</QueueInterface>
+	    <QueuePrecedence>7</QueuePrecedence>
+	    <X_404A03_QueueName>PriQ7</X_404A03_QueueName>
+	    <X_404A03_DslLatency>0</X_404A03_DslLatency>
+	    <X_404A03_PtmPriority>0</X_404A03_PtmPriority>
+	    <X_404A03_QueueId>8</X_404A03_QueueId>
+	  </Queue>
+	  <Queue nextInstance="9" ></Queue>
+    </QueueManagement>
+    <LANDevice instance="1">
+      <LANEthernetInterfaceNumberOfEntries>5</LANEthernetInterfaceNumberOfEntries>
+      <LANUSBInterfaceNumberOfEntries>1</LANUSBInterfaceNumberOfEntries>
+      <LANWLANConfigurationNumberOfEntries>2</LANWLANConfigurationNumberOfEntries>
+      <X_404A03_LANMocaInterfaceNumberOfEntries>0</X_404A03_LANMocaInterfaceNumberOfEntries>
+      <X_404A03_IgmpSnoopingConfig>
+        <Enable>TRUE</Enable>
+        <Mode>Standard</Mode>
+      </X_404A03_IgmpSnoopingConfig>
+      <LANHostConfigManagement>
+        <DHCPServerEnable>TRUE</DHCPServerEnable>
+        <IPInterfaceNumberOfEntries>3</IPInterfaceNumberOfEntries>
+        <IPInterface instance="1">
+          <Enable>TRUE</Enable>
+          <X_404A03_IfName>br0</X_404A03_IfName>
+        </IPInterface>
+        <IPInterface instance="2">
+          <Enable>FALSE</Enable>
+          <IPInterfaceIPAddress>0.0.0.0</IPInterfaceIPAddress>
+          <IPInterfaceSubnetMask>0.0.0.0</IPInterfaceSubnetMask>
+          <X_404A03_IfName>br0:0</X_404A03_IfName>
+        </IPInterface>
+        <IPInterface instance="3">
+          <Enable>FALSE</Enable>
+          <IPInterfaceIPAddress>0.0.0.0</IPInterfaceIPAddress>
+          <IPInterfaceSubnetMask>0.0.0.0</IPInterfaceSubnetMask>
+          <X_404A03_IfName>br0:1</X_404A03_IfName>
+        </IPInterface>
+        <IPInterface nextInstance="4" ></IPInterface>
+      </LANHostConfigManagement>
+      <X_404A03_IPv6LANHostConfigManagement>
+        <IPv6InterfaceNumberOfEntries>0</IPv6InterfaceNumberOfEntries>
+      </X_404A03_IPv6LANHostConfigManagement>
+      <LANEthernetInterfaceConfig instance="1">
+        <Enable>TRUE</Enable>
+        <X_404A03_ETHEnbQos>TRUE</X_404A03_ETHEnbQos>
+        <X_404A03_IfName>eth0</X_404A03_IfName>
+        <X_404A03_DefaultTagProcessing>-1</X_404A03_DefaultTagProcessing>
+        <X_404A03_DefaultVLANIDMark>-1</X_404A03_DefaultVLANIDMark>
+        <X_404A03_DefaultethernetPriorityMark>-1</X_404A03_DefaultethernetPriorityMark>
+      </LANEthernetInterfaceConfig>
+      <LANEthernetInterfaceConfig instance="2">
+        <Enable>TRUE</Enable>
+        <X_404A03_ETHEnbQos>TRUE</X_404A03_ETHEnbQos>
+        <X_404A03_IfName>eth1</X_404A03_IfName>
+        <X_404A03_DefaultTagProcessing>-1</X_404A03_DefaultTagProcessing>
+        <X_404A03_DefaultVLANIDMark>-1</X_404A03_DefaultVLANIDMark>
+        <X_404A03_DefaultethernetPriorityMark>-1</X_404A03_DefaultethernetPriorityMark>
+      </LANEthernetInterfaceConfig>
+      <LANEthernetInterfaceConfig instance="3">
+        <Enable>TRUE</Enable>
+        <X_404A03_ETHEnbQos>TRUE</X_404A03_ETHEnbQos>
+        <X_404A03_IfName>eth2</X_404A03_IfName>
+        <X_404A03_DefaultTagProcessing>-1</X_404A03_DefaultTagProcessing>
+        <X_404A03_DefaultVLANIDMark>-1</X_404A03_DefaultVLANIDMark>
+        <X_404A03_DefaultethernetPriorityMark>-1</X_404A03_DefaultethernetPriorityMark>
+      </LANEthernetInterfaceConfig>
+      <LANEthernetInterfaceConfig instance="4">
+        <Enable>TRUE</Enable>
+        <X_404A03_ETHEnbQos>TRUE</X_404A03_ETHEnbQos>
+        <X_404A03_IfName>eth3</X_404A03_IfName>
+        <X_404A03_DefaultTagProcessing>-1</X_404A03_DefaultTagProcessing>
+        <X_404A03_DefaultVLANIDMark>-1</X_404A03_DefaultVLANIDMark>
+        <X_404A03_DefaultethernetPriorityMark>-1</X_404A03_DefaultethernetPriorityMark>
+      </LANEthernetInterfaceConfig>
+      <LANEthernetInterfaceConfig instance="5">
+        <Enable>TRUE</Enable>
+        <X_404A03_ETHEnbQos>TRUE</X_404A03_ETHEnbQos>
+        <X_404A03_IfName>eth5</X_404A03_IfName>
+        <X_404A03_DefaultTagProcessing>-1</X_404A03_DefaultTagProcessing>
+        <X_404A03_DefaultVLANIDMark>-1</X_404A03_DefaultVLANIDMark>
+        <X_404A03_DefaultethernetPriorityMark>-1</X_404A03_DefaultethernetPriorityMark>
+      </LANEthernetInterfaceConfig>
+      <LANEthernetInterfaceConfig nextInstance="6" ></LANEthernetInterfaceConfig>
+      <LANUSBInterfaceConfig instance="1">
+        <Enable>TRUE</Enable>
+        <X_404A03_IfName>usb0</X_404A03_IfName>
+      </LANUSBInterfaceConfig>
+      <LANUSBInterfaceConfig nextInstance="2" ></LANUSBInterfaceConfig>
+      <WLANConfiguration instance="1">
+        <WEPKey instance="1">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="2">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="3">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey instance="4">
+          <WEPKey></WEPKey>
+        </WEPKey>
+        <WEPKey nextInstance="5" ></WEPKey>
+        <PreSharedKey instance="1">
+        </PreSharedKey>
+        <PreSharedKey nextInstance="2" ></PreSharedKey>
+        <APWMMParameter instance="1">
+        </APWMMParameter>
+        <APWMMParameter instance="2">
+        </APWMMParameter>
+        <APWMMParameter instance="3">
+        </APWMMParameter>
+        <APWMMParameter instance="4">
+        </APWMMParameter>
+        <APWMMParameter nextInstance="5" ></APWMMParameter>
+        <STAWMMParameter instance="1">
+        </STAWMMParameter>
+        <STAWMMParameter instance="2">
+        </STAWMMParameter>
+        <STAWMMParameter instance="3">
+        </STAWMMParameter>
+        <STAWMMParameter instance="4">
+        </STAWMMParameter>
+        <STAWMMParameter nextInstance="5" ></STAWMMParameter>
+        <X_404A03_WlanAdapter>
+          <WlBaseCfg>
+            <WlPhyType>n</WlPhyType>
+            <WlCoreRev>16</WlCoreRev>
+            <WlFrameBurst>on</WlFrameBurst>
+            <WlAburnSupported>1</WlAburnSupported>
+            <WlAmpduSupported>1</WlAmpduSupported>
+            <WlWmeSupported>1</WlWmeSupported>
+            <WlWmfSupported>1</WlWmfSupported>
+          </WlBaseCfg>
+          <WlStaticWdsCfg instance="1">
+          </WlStaticWdsCfg>
+          <WlStaticWdsCfg instance="2">
+          </WlStaticWdsCfg>
+          <WlStaticWdsCfg instance="3">
+          </WlStaticWdsCfg>
+          <WlStaticWdsCfg instance="4">
+          </WlStaticWdsCfg>
+          <WlStaticWdsCfg nextInstance="5" ></WlStaticWdsCfg>
+          <WlWmmCfg>
+            <WlAPWmmParameterCfg instance="1">
+              <ACName>be</ACName>
+              <AIFSN>3</AIFSN>
+              <ECWMin>4</ECWMin>
+              <ECWMax>6</ECWMax>
+            </WlAPWmmParameterCfg>
+            <WlAPWmmParameterCfg instance="2">
+              <ACName>bk</ACName>
+              <AIFSN>7</AIFSN>
+              <ECWMin>4</ECWMin>
+              <ECWMax>10</ECWMax>
+            </WlAPWmmParameterCfg>
+            <WlAPWmmParameterCfg instance="3">
+              <ACName>vi</ACName>
+              <AIFSN>1</AIFSN>
+              <ECWMin>3</ECWMin>
+              <ECWMax>4</ECWMax>
+              <TXOP>94</TXOP>
+            </WlAPWmmParameterCfg>
+            <WlAPWmmParameterCfg instance="4">
+              <ACName>vo</ACName>
+              <AIFSN>1</AIFSN>
+              <ECWMin>2</ECWMin>
+              <ECWMax>3</ECWMax>
+              <TXOP>47</TXOP>
+            </WlAPWmmParameterCfg>
+            <WlAPWmmParameterCfg nextInstance="5" ></WlAPWmmParameterCfg>
+            <WlSTAWmmParameterCfg instance="1">
+              <ACName>be</ACName>
+              <AIFSN>3</AIFSN>
+              <ECWMin>4</ECWMin>
+              <ECWMax>10</ECWMax>
+            </WlSTAWmmParameterCfg>
+            <WlSTAWmmParameterCfg instance="2">
+              <ACName>bk</ACName>
+              <AIFSN>7</AIFSN>
+              <ECWMin>4</ECWMin>
+              <ECWMax>10</ECWMax>
+            </WlSTAWmmParameterCfg>
+            <WlSTAWmmParameterCfg instance="3">
+              <ACName>vi</ACName>
+              <ECWMin>3</ECWMin>
+              <ECWMax>4</ECWMax>
+              <TXOP>94</TXOP>
+            </WlSTAWmmParameterCfg>
+            <WlSTAWmmParameterCfg instance="4">
+              <ACName>vo</ACName>
+              <ECWMin>2</ECWMin>
+              <ECWMax>3</ECWMax>
+              <TXOP>47</TXOP>
+            </WlSTAWmmParameterCfg>
+            <WlSTAWmmParameterCfg nextInstance="5" ></WlSTAWmmParameterCfg>
+          </WlWmmCfg>
+          <WlVirtIntfCfg instance="1">
+            <WlIdx>0</WlIdx>
+            <WlSsid>MitraStar00000</WlSsid>
+            <WlBssMacAddr>02:10:18:01:00:02</WlBssMacAddr>
+            <WlWpa>tkip+aes</WlWpa>
+            <X_404A03_WepSsidPrefix>MitraStar</X_404A03_WepSsidPrefix>
+            <X_404A03_WpaSsidPrefix>MitraStar</X_404A03_WpaSsidPrefix>
+            <X_404A03_AutoGenerateWepKey>TRUE</X_404A03_AutoGenerateWepKey>
+            <X_404A03_AutoGenerateWpaKey>TRUE</X_404A03_AutoGenerateWpaKey>
+            <WlKey64Cfg instance="1">
+              <WlKey64>299E0475F3</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="2">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="3">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="4">
+            </WlKey64Cfg>
+            <WlKey64Cfg nextInstance="5" ></WlKey64Cfg>
+            <WlKey128Cfg instance="1">
+              <WlKey128>5A987F1B425F982368BDDA3F57</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="2">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="3">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="4">
+            </WlKey128Cfg>
+            <WlKey128Cfg nextInstance="5" ></WlKey128Cfg>
+          </WlVirtIntfCfg>
+          <WlVirtIntfCfg instance="2">
+            <WlSsid>MitraStar00000_Guest1</WlSsid>
+            <WlIfcname>wl0.1</WlIfcname>
+            <WlBssMacAddr>72:10:18:01:00:03</WlBssMacAddr>
+            <WlWpaPsk>12345678</WlWpaPsk>
+            <WlWpa>tkip+aes</WlWpa>
+            <WlEnblSsid>0</WlEnblSsid>
+            <X_404A03_WepSsidPrefix>MitraStar</X_404A03_WepSsidPrefix>
+            <X_404A03_WpaSsidPrefix>MitraStar</X_404A03_WpaSsidPrefix>
+            <X_404A03_AutoGenerateWepKey>FALSE</X_404A03_AutoGenerateWepKey>
+            <X_404A03_AutoGenerateWpaKey>FALSE</X_404A03_AutoGenerateWpaKey>
+            <WlKey64Cfg instance="1">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="2">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="3">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="4">
+            </WlKey64Cfg>
+            <WlKey64Cfg nextInstance="5" ></WlKey64Cfg>
+            <WlKey128Cfg instance="1">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="2">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="3">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="4">
+            </WlKey128Cfg>
+            <WlKey128Cfg nextInstance="5" ></WlKey128Cfg>
+          </WlVirtIntfCfg>
+          <WlVirtIntfCfg instance="3">
+            <WlIdx>2</WlIdx>
+            <WlSsid>MitraStar00000_Guest2</WlSsid>
+            <WlIfcname>wl0.2</WlIfcname>
+            <WlBssMacAddr>72:10:18:01:00:00</WlBssMacAddr>
+            <WlWpaPsk>12345678</WlWpaPsk>
+            <WlWpa>tkip+aes</WlWpa>
+            <WlEnblSsid>0</WlEnblSsid>
+            <X_404A03_WepSsidPrefix>MitraStar</X_404A03_WepSsidPrefix>
+            <X_404A03_WpaSsidPrefix>MitraStar</X_404A03_WpaSsidPrefix>
+            <X_404A03_AutoGenerateWepKey>FALSE</X_404A03_AutoGenerateWepKey>
+            <X_404A03_AutoGenerateWpaKey>FALSE</X_404A03_AutoGenerateWpaKey>
+            <WlKey64Cfg instance="1">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="2">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="3">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="4">
+            </WlKey64Cfg>
+            <WlKey64Cfg nextInstance="5" ></WlKey64Cfg>
+            <WlKey128Cfg instance="1">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="2">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="3">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="4">
+            </WlKey128Cfg>
+            <WlKey128Cfg nextInstance="5" ></WlKey128Cfg>
+          </WlVirtIntfCfg>
+          <WlVirtIntfCfg instance="4">
+            <WlIdx>3</WlIdx>
+            <WlSsid>MitraStar00000_Guest3</WlSsid>
+            <WlIfcname>wl0.3</WlIfcname>
+            <WlBssMacAddr>72:10:18:01:00:01</WlBssMacAddr>
+            <WlWpaPsk>12345678</WlWpaPsk>
+            <WlWpa>tkip+aes</WlWpa>
+            <WlEnblSsid>0</WlEnblSsid>
+            <X_404A03_WepSsidPrefix>MitraStar</X_404A03_WepSsidPrefix>
+            <X_404A03_WpaSsidPrefix>MitraStar</X_404A03_WpaSsidPrefix>
+            <X_404A03_AutoGenerateWepKey>FALSE</X_404A03_AutoGenerateWepKey>
+            <X_404A03_AutoGenerateWpaKey>FALSE</X_404A03_AutoGenerateWpaKey>
+            <WlKey64Cfg instance="1">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="2">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="3">
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="4">
+            </WlKey64Cfg>
+            <WlKey64Cfg nextInstance="5" ></WlKey64Cfg>
+            <WlKey128Cfg instance="1">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="2">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="3">
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="4">
+            </WlKey128Cfg>
+            <WlKey128Cfg nextInstance="5" ></WlKey128Cfg>
+          </WlVirtIntfCfg>
+          <WlVirtIntfCfg nextInstance="5" ></WlVirtIntfCfg>
+        </X_404A03_WlanAdapter>
+      </WLANConfiguration>
+      <WLANConfiguration instance="2">
+        <Enable>TRUE</Enable>
+        <Status>Up</Status>
+        <MaxBitRate>54</MaxBitRate>
+        <Channel>36</Channel>
+        <SSID>BrcmAP1</SSID>
+        <BeaconType>Basic</BeaconType>
+        <MACAddressControlEnabled>FALSE</MACAddressControlEnabled>
+        <Standard>a</Standard>
+        <WEPKeyIndex>1</WEPKeyIndex>
+        <KeyPassphrase>NOS</KeyPassphrase>
+        <WEPEncryptionLevel>104-bit</WEPEncryptionLevel>
+        <BasicEncryptionModes>None</BasicEncryptionModes>
+        <BasicAuthenticationMode>None</BasicAuthenticationMode>
+        <WPAEncryptionModes>TKIPandAESEncryption</WPAEncryptionModes>
+        <WPAAuthenticationMode>PSKAuthentication</WPAAuthenticationMode>
+        <IEEE11iEncryptionModes>TKIPandAESEncryption</IEEE11iEncryptionModes>
+        <IEEE11iAuthenticationMode>PSKAuthentication</IEEE11iAuthenticationMode>
+        <PossibleChannels>36,40,44,48,52,56,60,64,149,153,157,161,165,</PossibleChannels>
+        <BasicDataTransmitRates>54</BasicDataTransmitRates>
+        <OperationalDataTransmitRates>NOS</OperationalDataTransmitRates>
+        <PossibleDataTransmitRates>NOS</PossibleDataTransmitRates>
+        <InsecureOOBAccessEnabled>FALSE</InsecureOOBAccessEnabled>
+        <BeaconAdvertisementEnabled>FALSE</BeaconAdvertisementEnabled>
+        <RadioEnabled>TRUE</RadioEnabled>
+        <AutoRateFallBackEnabled>FALSE</AutoRateFallBackEnabled>
+        <LocationDescription>NOS</LocationDescription>
+        <RegulatoryDomain>US</RegulatoryDomain>
+        <TotalPSKFailures>0</TotalPSKFailures>
+        <TotalIntegrityFailures>0</TotalIntegrityFailures>
+        <ChannelsInUse>NOS</ChannelsInUse>
+        <DeviceOperationMode>InfrastructureAccessPoint</DeviceOperationMode>
+        <DistanceFromRoot>0</DistanceFromRoot>
+        <PeerBSSID>NOS</PeerBSSID>
+        <AuthenticationServiceMode>NOS</AuthenticationServiceMode>
+        <TotalBytesSent>68</TotalBytesSent>
+        <TotalBytesReceived>0</TotalBytesReceived>
+        <TotalPacketsSent>1</TotalPacketsSent>
+        <TotalPacketsReceived>0</TotalPacketsReceived>
+        <X_404A03_RxErrors>0</X_404A03_RxErrors>
+        <X_404A03_RxDrops>0</X_404A03_RxDrops>
+        <X_404A03_TxErrors>0</X_404A03_TxErrors>
+        <X_404A03_TxDrops>0</X_404A03_TxDrops>
+        <TotalAssociations>0</TotalAssociations>
+        <X_404A03_IfName>wl1</X_404A03_IfName>
+        <X_404A03_HideSSID>FALSE</X_404A03_HideSSID>
+        <X_404A03_TxPowerPercent>100</X_404A03_TxPowerPercent>
+        <X_404A03_GuestSSID>wl1_Guest1</X_404A03_GuestSSID>
+        <X_404A03_GuestEnable>TRUE</X_404A03_GuestEnable>
+        <X_404A03_GuestHiden>FALSE</X_404A03_GuestHiden>
+        <X_404A03_GuestIsolateClients>FALSE</X_404A03_GuestIsolateClients>
+        <X_404A03_GuestDisableWMMAdvertise>TRUE</X_404A03_GuestDisableWMMAdvertise>
+        <X_404A03_GuestMaxClients>16</X_404A03_GuestMaxClients>
+        <X_404A03_Guest1SSID>wl1_Guest2</X_404A03_Guest1SSID>
+        <X_404A03_Guest1Enable>TRUE</X_404A03_Guest1Enable>
+        <X_404A03_Guest1Hiden>FALSE</X_404A03_Guest1Hiden>
+        <X_404A03_Guest1IsolateClients>FALSE</X_404A03_Guest1IsolateClients>
+        <X_404A03_Guest1DisableWMMAdvertise>TRUE</X_404A03_Guest1DisableWMMAdvertise>
+        <X_404A03_Guest1MaxClients>16</X_404A03_Guest1MaxClients>
+        <X_404A03_Guest2SSID>wl1_Guest3</X_404A03_Guest2SSID>
+        <X_404A03_Guest2Enable>TRUE</X_404A03_Guest2Enable>
+        <X_404A03_Guest2Hiden>FALSE</X_404A03_Guest2Hiden>
+        <X_404A03_Guest2IsolateClients>FALSE</X_404A03_Guest2IsolateClients>
+        <X_404A03_Guest2DisableWMMAdvertise>TRUE</X_404A03_Guest2DisableWMMAdvertise>
+        <X_404A03_Guest2MaxClients>16</X_404A03_Guest2MaxClients>
+        <WEPKey instance="1">
+          <WEPKey>1234567890123</WEPKey>
+        </WEPKey>
+        <WEPKey instance="2">
+          <WEPKey>1234567890123</WEPKey>
+        </WEPKey>
+        <WEPKey instance="3">
+          <WEPKey>1234567890123</WEPKey>
+        </WEPKey>
+        <WEPKey instance="4">
+          <WEPKey>1234567890123</WEPKey>
+        </WEPKey>
+        <WEPKey nextInstance="5" ></WEPKey>
+        <PreSharedKey instance="1">
+          <PreSharedKey>(null)</PreSharedKey>
+          <KeyPassphrase>1234567890</KeyPassphrase>
+          <AssociatedDeviceMACAddress>(null)</AssociatedDeviceMACAddress>
+        </PreSharedKey>
+        <PreSharedKey nextInstance="2" ></PreSharedKey>
+        <X_404A03_WlanAdapter>
+          <WlBaseCfg>
+            <WlEnbl>1</WlEnbl>
+            <WlSsidIdx>0</WlSsidIdx>
+            <WlMode>ap</WlMode>
+            <WlCountry>US</WlCountry>
+            <WlPhyType>n</WlPhyType>
+            <WlCoreRev>29</WlCoreRev>
+            <WlBasicRate>default</WlBasicRate>
+            <WlProtection>auto</WlProtection>
+            <WlPreambleType>long</WlPreambleType>
+            <WlAfterBurnerEn>off</WlAfterBurnerEn>
+            <WlFrameBurst>off</WlFrameBurst>
+            <WlChannel>36</WlChannel>
+            <WlCurrentChannel>1</WlCurrentChannel>
+            <WlFrgThrshld>2346</WlFrgThrshld>
+            <WlRtsThrshld>2347</WlRtsThrshld>
+            <WlDtmIntvl>1</WlDtmIntvl>
+            <WlBcnIntvl>100</WlBcnIntvl>
+            <WlRate>0</WlRate>
+            <WlgMode>1</WlgMode>
+            <WlBand>1</WlBand>
+            <WlMCastRate>0</WlMCastRate>
+            <WlInfra>1</WlInfra>
+            <WlAntDiv>-1</WlAntDiv>
+            <WlWme>1</WlWme>
+            <WlWmeNoAck>0</WlWmeNoAck>
+            <WlWmeApsd>1</WlWmeApsd>
+            <WlTxPwrPcnt>100</WlTxPwrPcnt>
+            <WlRegMode>0</WlRegMode>
+            <WlDfsPreIsm>60</WlDfsPreIsm>
+            <WlDfsPostIsm>60</WlDfsPostIsm>
+            <WlTpcDb>0</WlTpcDb>
+            <WlCsScanTimer>0</WlCsScanTimer>
+            <WlGlobalMaxAssoc>16</WlGlobalMaxAssoc>
+            <WlMBands>3</WlMBands>
+            <WlVer>5.100.138.2001.cpe4.12L04.3</WlVer>
+            <WlNumBss>4</WlNumBss>
+            <WlMaxMbss>4</WlMaxMbss>
+            <WlMbssSupported>TRUE</WlMbssSupported>
+            <WlLazyWds>0</WlLazyWds>
+            <WlAburnSupported>1</WlAburnSupported>
+            <WlAmpduSupported>1</WlAmpduSupported>
+            <WlAmsduSupported>0</WlAmsduSupported>
+            <WlWmeSupported>1</WlWmeSupported>
+            <WlWmfSupported>1</WlWmfSupported>
+            <WlVecSupported>0</WlVecSupported>
+            <WlVec>0</WlVec>
+            <WlIperf>0</WlIperf>
+            <WlRifsAdvert>-1</WlRifsAdvert>
+            <WlChanImEnab>1</WlChanImEnab>
+            <WlObssCoex>1</WlObssCoex>
+            <WlRxChainPwrSaveEnable>0</WlRxChainPwrSaveEnable>
+            <WlRxChainPwrSaveQuietTime>10</WlRxChainPwrSaveQuietTime>
+            <WlRxChainPwrSavePps>10</WlRxChainPwrSavePps>
+            <WlRadioPwrSaveEnable>0</WlRadioPwrSaveEnable>
+            <WlRadioPwrSaveQuietTime>10</WlRadioPwrSaveQuietTime>
+            <WlRadioPwrSavePps>1</WlRadioPwrSavePps>
+            <WlRadioPwrSaveLevel>0</WlRadioPwrSaveLevel>
+            <WlTxPriority>FALSE</WlTxPriority>
+            <WlRxPriority>FALSE</WlRxPriority>
+            <WlCalPriority>TRUE</WlCalPriority>
+            <WlWdsSec>0</WlWdsSec>
+            <WlWdsKey></WlWdsKey>
+            <WlWdsSecEnable>0</WlWdsSecEnable>
+            <WlEnableUre>0</WlEnableUre>
+            <WlStaRetryTime>10</WlStaRetryTime>
+          </WlBaseCfg>
+          <WlStaticWdsCfg instance="1">
+            <WlMacAddr></WlMacAddr>
+          </WlStaticWdsCfg>
+          <WlStaticWdsCfg instance="2">
+            <WlMacAddr></WlMacAddr>
+          </WlStaticWdsCfg>
+          <WlStaticWdsCfg instance="3">
+            <WlMacAddr></WlMacAddr>
+          </WlStaticWdsCfg>
+          <WlStaticWdsCfg instance="4">
+            <WlMacAddr></WlMacAddr>
+          </WlStaticWdsCfg>
+          <WlStaticWdsCfg nextInstance="5" ></WlStaticWdsCfg>
+          <WlMimoCfg>
+            <WlNBwCap>2</WlNBwCap>
+            <WlNCtrlsb>-1</WlNCtrlsb>
+            <WlNBand>2</WlNBand>
+            <WlNMcsidx>-1</WlNMcsidx>
+            <WlNProtection>auto</WlNProtection>
+            <WlRifs>auto</WlRifs>
+            <WlAmpdu>auto</WlAmpdu>
+            <WlAmsdu>auto</WlAmsdu>
+            <WlNmode>auto</WlNmode>
+            <WlNReqd>0</WlNReqd>
+            <WlStbcTx>-1</WlStbcTx>
+            <WlStbcRx>0</WlStbcRx>
+          </WlMimoCfg>
+          <WlSesCfg>
+            <WlSesEnable>1</WlSesEnable>
+            <WlSesEvent>2</WlSesEvent>
+            <WlSesStates>01:01</WlSesStates>
+            <WlSesSsid>(null)</WlSesSsid>
+            <WlSesWpaPsk>(null)</WlSesWpaPsk>
+            <WlSesHide>0</WlSesHide>
+            <WlSesAuth>0</WlSesAuth>
+            <WlSesAuthMode>(null)</WlSesAuthMode>
+            <WlSesWep>(null)</WlSesWep>
+            <WlSesWpa>(null)</WlSesWpa>
+            <WlSesWdsMode>2</WlSesWdsMode>
+            <WlSesClEnable>1</WlSesClEnable>
+            <WlSesClEvent>0</WlSesClEvent>
+            <WlSesWdsWsec>(null)</WlSesWdsWsec>
+          </WlSesCfg>
+          <WlVirtIntfCfg instance="1">
+            <WlIdx>0</WlIdx>
+            <WlSsid>BrcmAP1</WlSsid>
+            <WlIfcname>wl1</WlIfcname>
+            <WlBrName>br0</WlBrName>
+            <WlWpaPsk>1234567890</WlWpaPsk>
+            <WlWep>disabled</WlWep>
+            <WlWpa>tkip+aes</WlWpa>
+            <WlAuthMode>open</WlAuthMode>
+            <WlWpaGTKRekey>0</WlWpaGTKRekey>
+            <WlRadiusKey></WlRadiusKey>
+            <WlRadiusServerIP>0.0.0.0</WlRadiusServerIP>
+            <WlRadiusPort>1812</WlRadiusPort>
+            <WlWapiCertificate>(null)</WlWapiCertificate>
+            <WlAuth>0</WlAuth>
+            <WlEnblSsid>1</WlEnblSsid>
+            <WlKeyIndex128>1</WlKeyIndex128>
+            <WlKeyIndex64>1</WlKeyIndex64>
+            <WlKeyBit>0</WlKeyBit>
+            <WlPreauth>0</WlPreauth>
+            <WlNetReauth>36000</WlNetReauth>
+            <WlHide>0</WlHide>
+            <WlAPIsolation>0</WlAPIsolation>
+            <WlMaxAssoc>16</WlMaxAssoc>
+            <WlDisableWme>0</WlDisableWme>
+            <WlFltMacMode>disabled</WlFltMacMode>
+            <WlEnableWmf>0</WlEnableWmf>
+            <WlKey64Cfg instance="1">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="2">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="3">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="4">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg nextInstance="5" ></WlKey64Cfg>
+            <WlKey128Cfg instance="1">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="2">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="3">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="4">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg nextInstance="5" ></WlKey128Cfg>
+            <WlWpsCfg>
+              <Wsc_config_state>1</Wsc_config_state>
+              <Wsc_mode>disabled</Wsc_mode>
+            </WlWpsCfg>
+          </WlVirtIntfCfg>
+          <WlVirtIntfCfg instance="2">
+            <WlIdx>1</WlIdx>
+            <WlSsid>wl1_Guest1</WlSsid>
+            <WlIfcname>wl1.1</WlIfcname>
+            <WlBrName>br0</WlBrName>
+            <WlBssMacAddr>6a:11:22:33:44:56</WlBssMacAddr>
+            <WlWpaPsk>1234567890</WlWpaPsk>
+            <WlWep>disabled</WlWep>
+            <WlWpa>tkip+aes</WlWpa>
+            <WlAuthMode>open</WlAuthMode>
+            <WlWpaGTKRekey>0</WlWpaGTKRekey>
+            <WlRadiusKey></WlRadiusKey>
+            <WlRadiusServerIP>0.0.0.0</WlRadiusServerIP>
+            <WlRadiusPort>1812</WlRadiusPort>
+            <WlWapiCertificate>(null)</WlWapiCertificate>
+            <WlAuth>0</WlAuth>
+            <WlEnblSsid>0</WlEnblSsid>
+            <WlKeyIndex128>1</WlKeyIndex128>
+            <WlKeyIndex64>1</WlKeyIndex64>
+            <WlKeyBit>0</WlKeyBit>
+            <WlPreauth>0</WlPreauth>
+            <WlNetReauth>36000</WlNetReauth>
+            <WlHide>0</WlHide>
+            <WlAPIsolation>0</WlAPIsolation>
+            <WlMaxAssoc>16</WlMaxAssoc>
+            <WlDisableWme>0</WlDisableWme>
+            <WlFltMacMode>disabled</WlFltMacMode>
+            <WlEnableWmf>0</WlEnableWmf>
+            <WlKey64Cfg instance="1">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="2">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="3">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="4">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg nextInstance="5" ></WlKey64Cfg>
+            <WlKey128Cfg instance="1">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="2">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="3">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="4">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg nextInstance="5" ></WlKey128Cfg>
+            <WlWpsCfg>
+              <Wsc_config_state>1</Wsc_config_state>
+              <Wsc_mode>disabled</Wsc_mode>
+            </WlWpsCfg>
+          </WlVirtIntfCfg>
+          <WlVirtIntfCfg instance="3">
+            <WlIdx>2</WlIdx>
+            <WlSsid>wl1_Guest2</WlSsid>
+            <WlIfcname>wl1.2</WlIfcname>
+            <WlBrName>br0</WlBrName>
+            <WlBssMacAddr>6a:11:22:33:44:57</WlBssMacAddr>
+            <WlWpaPsk>1234567890</WlWpaPsk>
+            <WlWep>disabled</WlWep>
+            <WlWpa>tkip+aes</WlWpa>
+            <WlAuthMode>open</WlAuthMode>
+            <WlWpaGTKRekey>0</WlWpaGTKRekey>
+            <WlRadiusKey></WlRadiusKey>
+            <WlRadiusServerIP>0.0.0.0</WlRadiusServerIP>
+            <WlRadiusPort>1812</WlRadiusPort>
+            <WlWapiCertificate>(null)</WlWapiCertificate>
+            <WlAuth>0</WlAuth>
+            <WlEnblSsid>0</WlEnblSsid>
+            <WlKeyIndex128>1</WlKeyIndex128>
+            <WlKeyIndex64>1</WlKeyIndex64>
+            <WlKeyBit>0</WlKeyBit>
+            <WlPreauth>0</WlPreauth>
+            <WlNetReauth>36000</WlNetReauth>
+            <WlHide>0</WlHide>
+            <WlAPIsolation>0</WlAPIsolation>
+            <WlMaxAssoc>16</WlMaxAssoc>
+            <WlDisableWme>0</WlDisableWme>
+            <WlFltMacMode>disabled</WlFltMacMode>
+            <WlEnableWmf>0</WlEnableWmf>
+            <WlKey64Cfg instance="1">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="2">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="3">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="4">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg nextInstance="5" ></WlKey64Cfg>
+            <WlKey128Cfg instance="1">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="2">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="3">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="4">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg nextInstance="5" ></WlKey128Cfg>
+            <WlWpsCfg>
+              <Wsc_config_state>1</Wsc_config_state>
+              <Wsc_mode>disabled</Wsc_mode>
+            </WlWpsCfg>
+          </WlVirtIntfCfg>
+          <WlVirtIntfCfg instance="4">
+            <WlIdx>3</WlIdx>
+            <WlSsid>wl1_Guest3</WlSsid>
+            <WlIfcname>wl1.3</WlIfcname>
+            <WlBrName>br0</WlBrName>
+            <WlBssMacAddr>6a:11:22:33:44:54</WlBssMacAddr>
+            <WlWpaPsk>1234567890</WlWpaPsk>
+            <WlWep>disabled</WlWep>
+            <WlWpa>tkip+aes</WlWpa>
+            <WlAuthMode>open</WlAuthMode>
+            <WlWpaGTKRekey>0</WlWpaGTKRekey>
+            <WlRadiusKey></WlRadiusKey>
+            <WlRadiusServerIP>0.0.0.0</WlRadiusServerIP>
+            <WlRadiusPort>1812</WlRadiusPort>
+            <WlWapiCertificate>(null)</WlWapiCertificate>
+            <WlAuth>0</WlAuth>
+            <WlEnblSsid>0</WlEnblSsid>
+            <WlKeyIndex128>1</WlKeyIndex128>
+            <WlKeyIndex64>1</WlKeyIndex64>
+            <WlKeyBit>0</WlKeyBit>
+            <WlPreauth>0</WlPreauth>
+            <WlNetReauth>36000</WlNetReauth>
+            <WlHide>0</WlHide>
+            <WlAPIsolation>0</WlAPIsolation>
+            <WlMaxAssoc>16</WlMaxAssoc>
+            <WlDisableWme>0</WlDisableWme>
+            <WlFltMacMode>disabled</WlFltMacMode>
+            <WlEnableWmf>0</WlEnableWmf>
+            <WlKey64Cfg instance="1">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="2">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="3">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg instance="4">
+              <WlKey64>1234567890</WlKey64>
+            </WlKey64Cfg>
+            <WlKey64Cfg nextInstance="5" ></WlKey64Cfg>
+            <WlKey128Cfg instance="1">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="2">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="3">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg instance="4">
+              <WlKey128>1234567890123</WlKey128>
+            </WlKey128Cfg>
+            <WlKey128Cfg nextInstance="5" ></WlKey128Cfg>
+            <WlWpsCfg>
+              <Wsc_config_state>1</Wsc_config_state>
+              <Wsc_mode>disabled</Wsc_mode>
+            </WlWpsCfg>
+          </WlVirtIntfCfg>
+          <WlVirtIntfCfg nextInstance="5" ></WlVirtIntfCfg>
+        </X_404A03_WlanAdapter>
+      </WLANConfiguration>
+      <WLANConfiguration nextInstance="3" ></WLANConfiguration>
+    </LANDevice>
+    <LANDevice nextInstance="2" ></LANDevice>
+    <WANDevice instance="1">
+      <WANConnectionNumberOfEntries>1</WANConnectionNumberOfEntries>
+      <WANCommonInterfaceConfig>
+        <WANAccessType>DSL</WANAccessType>
+      </WANCommonInterfaceConfig>
+      <WANDSLInterfaceConfig>
+        <Enable>TRUE</Enable>
+        <X_404A03_EnableBonding>TRUE</X_404A03_EnableBonding>
+      </WANDSLInterfaceConfig>
+      <WANConnectionDevice instance="1">
+        <WANIPConnectionNumberOfEntries>1</WANIPConnectionNumberOfEntries>
+        <WANPPPConnectionNumberOfEntries>0</WANPPPConnectionNumberOfEntries>
+        <WANDSLLinkConfig>
+          <Enable>TRUE</Enable>
+          <LinkType>EoA</LinkType>
+          <DestinationAddress>PVC: 0/33</DestinationAddress>
+          <X_404A03_IfName>atm0</X_404A03_IfName>
+        </WANDSLLinkConfig>
+        <WANIPConnection instance="1">
+          <Enable>TRUE</Enable>
+          <ConnectionType>IP_Routed</ConnectionType>
+          <Name>ADSL</Name>
+          <NATEnabled>TRUE</NATEnabled>
+          <X_404A03_IGMPEnabled>TRUE</X_404A03_IGMPEnabled>
+          <MaxMTUSize>1500</MaxMTUSize>
+          <X_404A03_IfName>atm0</X_404A03_IfName>
+          <PortMappingNumberOfEntries>0</PortMappingNumberOfEntries>
+          <X_404A03_GatewayUsed>TRUE</X_404A03_GatewayUsed>
+        </WANIPConnection>
+        <WANIPConnection nextInstance="2" ></WANIPConnection>
+      </WANConnectionDevice>
+      <WANConnectionDevice nextInstance="2" ></WANConnectionDevice>
+    </WANDevice>
+    <WANDevice instance="2">
+      <WANConnectionNumberOfEntries>1</WANConnectionNumberOfEntries>
+      <WANCommonInterfaceConfig>
+        <WANAccessType>DSL</WANAccessType>
+      </WANCommonInterfaceConfig>
+      <WANDSLInterfaceConfig>
+        <Enable>TRUE</Enable>
+        <X_404A03_EnableBonding>TRUE</X_404A03_EnableBonding>
+        <LinkEncapsulationUsed>G.992.3_Annex_K_PTM</LinkEncapsulationUsed>
+      </WANDSLInterfaceConfig>
+      <WANConnectionDevice instance="1">
+        <WANIPConnectionNumberOfEntries>1</WANIPConnectionNumberOfEntries>
+        <WANPPPConnectionNumberOfEntries>0</WANPPPConnectionNumberOfEntries>
+        <WANPTMLinkConfig>
+          <Enable>TRUE</Enable>
+          <X_404A03_PTMPriorityHigh>TRUE</X_404A03_PTMPriorityHigh>
+          <X_404A03_PTMEnbQos>TRUE</X_404A03_PTMEnbQos>
+          <X_404A03_GrpPrecedence>8</X_404A03_GrpPrecedence>
+          <X_404A03_QueuePrecedence>8</X_404A03_QueuePrecedence>
+          <X_404A03_ConnectionMode>VlanMuxMode</X_404A03_ConnectionMode>
+          <X_404A03_IfName>ptm0</X_404A03_IfName>
+        </WANPTMLinkConfig>
+        <WANIPConnection instance="1">
+          <Enable>TRUE</Enable>
+          <ConnectionType>IP_Routed</ConnectionType>
+          <Name>VDSL</Name>
+          <NATEnabled>TRUE</NATEnabled>
+          <X_404A03_IGMPEnabled>TRUE</X_404A03_IGMPEnabled>
+          <MaxMTUSize>1500</MaxMTUSize>
+          <X_404A03_IfName>ptm0.1</X_404A03_IfName>
+          <X_404A03_ConnectionId>1</X_404A03_ConnectionId>
+          <PortMappingNumberOfEntries>0</PortMappingNumberOfEntries>
+          <X_404A03_GatewayUsed>TRUE</X_404A03_GatewayUsed>
+        </WANIPConnection>
+        <WANIPConnection nextInstance="2" ></WANIPConnection>
+      </WANConnectionDevice>
+      <WANConnectionDevice nextInstance="2" ></WANConnectionDevice>
+    </WANDevice>
+    <WANDevice instance="3">
+      <WANConnectionNumberOfEntries>1</WANConnectionNumberOfEntries>
+      <WANCommonInterfaceConfig>
+        <WANAccessType>Ethernet</WANAccessType>
+      </WANCommonInterfaceConfig>
+      <WANEthernetInterfaceConfig>
+        <Enable>TRUE</Enable>
+        <MaxBitRate>Auto</MaxBitRate>
+        <DuplexMode>Auto</DuplexMode>
+        <X_404A03_IfName>eth4</X_404A03_IfName>
+        <X_404A03_ConnectionMode>VlanMuxMode</X_404A03_ConnectionMode>
+      </WANEthernetInterfaceConfig>
+      <WANConnectionDevice instance="1">
+        <WANIPConnectionNumberOfEntries>1</WANIPConnectionNumberOfEntries>
+        <WANPPPConnectionNumberOfEntries>0</WANPPPConnectionNumberOfEntries>
+        <WANIPConnection instance="1">
+          <Enable>TRUE</Enable>
+          <ConnectionType>IP_Routed</ConnectionType>
+          <Name>ETHWAN</Name>
+          <NATEnabled>TRUE</NATEnabled>
+          <X_404A03_IGMPEnabled>TRUE</X_404A03_IGMPEnabled>
+          <MaxMTUSize>1500</MaxMTUSize>
+          <X_404A03_IfName>eth4.1</X_404A03_IfName>
+          <X_404A03_ConnectionId>1</X_404A03_ConnectionId>
+          <PortMappingNumberOfEntries>0</PortMappingNumberOfEntries>
+          <X_404A03_GatewayUsed>TRUE</X_404A03_GatewayUsed>
+        </WANIPConnection>
+        <WANIPConnection nextInstance="2" ></WANIPConnection>
+      </WANConnectionDevice>
+      <WANConnectionDevice nextInstance="2" ></WANConnectionDevice>
+    </WANDevice>
+    <WANDevice instance="7">
+      <WANConnectionNumberOfEntries>1</WANConnectionNumberOfEntries>
+      <WANCommonInterfaceConfig>
+        <WANAccessType>WWAN</WANAccessType>
+      </WANCommonInterfaceConfig>
+      <WANConnectionDevice instance="1">
+        <WANIPConnectionNumberOfEntries>0</WANIPConnectionNumberOfEntries>
+        <WANPPPConnectionNumberOfEntries>1</WANPPPConnectionNumberOfEntries>
+        <X_404A03_WWANInterfaceConfig>
+          <Enable>TRUE</Enable>
+          <Status>Disabled</Status>
+          <AccessPointName>internet</AccessPointName>
+          <PhoneNumber>*99#</PhoneNumber>
+          <PINCode></PINCode>
+          <PUKCode></PUKCode>
+          <CheckingTime>10</CheckingTime>
+          <PowerUpTimeout>20</PowerUpTimeout>
+        </X_404A03_WWANInterfaceConfig>
+        <WANPPPConnection instance="1">
+          <Enable>TRUE</Enable>
+          <ConnectionType>IP_Routed</ConnectionType>
+          <Name>pppo3G</Name>
+          <NATEnabled>TRUE</NATEnabled>
+          <X_404A03_IfName>pppo3G0</X_404A03_IfName>
+          <ConnectionTrigger>AlwaysOn</ConnectionTrigger>
+          <PortMappingNumberOfEntries>0</PortMappingNumberOfEntries>
+        </WANPPPConnection>
+        <WANPPPConnection nextInstance="2" ></WANPPPConnection>
+      </WANConnectionDevice>
+    </WANDevice>
+    <Layer3Forwarding>
+      <ForwardNumberOfEntries>0</ForwardNumberOfEntries>
+      <X_404A03_DefaultConnectionServices>atm0,ptm0.1,eth4.1</X_404A03_DefaultConnectionServices>
+    </Layer3Forwarding>
+    <X_404A03_IPv6Layer3Forwarding>
+      <ForwardNumberOfEntries>0</ForwardNumberOfEntries>
+    </X_404A03_IPv6Layer3Forwarding>
+    <Services>
+      <StorageService instance="1">
+      </StorageService>
+      <StorageService nextInstance="2" ></StorageService>
+    </Services>
+    <X_404A03_NetworkConfig>
+      <DNSIfName>atm0,ptm0.1,eth4.1</DNSIfName>
+    </X_404A03_NetworkConfig>
+    <X_404A03_IEEE8021xAuthenticationSupplicant instance="1">
+    <Enable>0</Enable>
+    </X_404A03_IEEE8021xAuthenticationSupplicant>
+    <X_404A03_IEEE8021xAuthenticationSupplicant instance="2">
+    <Enable>0</Enable>
+    </X_404A03_IEEE8021xAuthenticationSupplicant>
+    <X_404A03_IEEE8021xAuthenticationSupplicant instance="3">
+    <Enable>0</Enable>
+    </X_404A03_IEEE8021xAuthenticationSupplicant>
+    <X_404A03_SyslogCfg>
+      <Status>Disabled</Status>
+      <Option>remote</Option>
+    </X_404A03_SyslogCfg>
+    <DeviceInfo>
+      <Manufacturer>ZyXEL</Manufacturer>
+    </DeviceInfo>
+  </InternetGatewayDevice>
+</DslCpeConfig> 

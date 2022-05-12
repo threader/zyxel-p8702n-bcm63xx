@@ -1,0 +1,40 @@
+#!/bin/sh
+ZYIMS_SVN_URL="http://svn.zyxel.com.tw/svn/CPE_SW1/BRCM_Trunk/Modules/Voice/ZyIMS"
+ZYIMS_ZYXEL_ROOT_SVN_URL="${ZYIMS_SVN_URL}/zyxel/ZyIMS"
+ZYIMS_SVN_IPTK_URL="${ZYIMS_SVN_URL}/third-party/Aricent/iptk_7_1"
+ZYIMS_SVN_BROADCOM_URL="${ZYIMS_SVN_URL}/broadcom"
+PWD_DIR=`pwd`
+TARGET_DIR="${PWD_DIR}/ZyIMS"
+BROADCOM_DIR="${TARGET_DIR}/broadcom"
+IPTK_DIR="${TARGET_DIR}/iptk_7_1"
+
+echo ""
+echo "This scripts will start to svn checkout and switch files "
+echo "Checkout from : ${ZYIMS_SVN_URL}"
+echo "ZyIMS root directory checkout from : ${ZYIMS_ZYXEL_ROOT_SVN_URL}"
+echo "IPTK directory checkout from : ${ZYIMS_SVN_IPTK_URL}"
+echo "Broadcom directory checkout from : ${ZYIMS_SVN_BROADCOM_URL}"
+
+read -p "Press 'y' to start this scripts " -n 1 dr_continue
+if [ "$dr_continue" != "y" ] ; then
+	echo "";
+	echo "exiting script";
+	echo "";
+	exit
+fi
+
+if [ -e "${TARGET_DIR}" ]
+then
+	echo "";
+	echo "${TARGET_DIR} alreay exists, exiting!";
+	echo "";
+	exit
+fi
+
+svn checkout ${ZYIMS_ZYXEL_ROOT_SVN_URL}
+mkdir ${IPTK_DIR}
+svn checkout ${ZYIMS_SVN_IPTK_URL} ${IPTK_DIR}
+mkdir ${BROADCOM_DIR}
+svn checkout ${ZYIMS_SVN_BROADCOM_URL} ${BROADCOM_DIR}
+
+

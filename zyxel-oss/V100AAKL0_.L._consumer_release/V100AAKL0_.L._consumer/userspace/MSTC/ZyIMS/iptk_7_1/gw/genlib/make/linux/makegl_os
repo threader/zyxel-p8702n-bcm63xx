@@ -1,0 +1,131 @@
+#******************************************************************************
+#        	Makefile MACROS for all Generic Library OS components 
+#  
+#                
+#  
+# DATE        NAME            REFERENCE        REASON
+# ----------- --------------- ------------- -------------------------------
+# 10/04/2002    Ravi Jindal     SPR-3928    Intial draft for Linux Port.
+#
+# 11/07/2002    Ravi Jindal     SPR-3656    Enhancements for Rel-1.0.
+# 
+# COPYRIGHT , Aricent, 2006
+#
+#******************************************************************************
+
+GW_BASE		=       ../../..
+INC_MK	  	=	$(GW_BASE)/build/make/linux
+include                	$(INC_MK)/makefile.mk
+
+INC_MK_GL       =       $(GW_BASE)/genlib/make
+include                 $(INC_MK_GL)/makegl.mk
+
+LIB_DIR         =       $(GW_BASE)$(GW_SLASH)lib$(GW_SLASH)linux
+
+GL_OBJ_DIR_DOS_CMD =	..$(GW_SLASH)..$(GW_SLASH)obj
+
+
+INCLUDE         +=      -I$(CMN_BASE)$(GW_SLASH)h\
+                        -I$(GL_CMN_DIR)$(GW_SLASH)h\
+                        -I$(GL_OS_DIR)$(GW_SLASH)h
+
+
+all: 	clean gl_mm gl_mm_mt gl_tm gl_tm_mt gl_tmport\
+	gl_single_timeout_tm gl_single_timeout_tm_mt\
+	gl_skm gl_gscim gl_gscim_mt
+	
+
+clean:
+	$(RM) $(GL_MM_OBJ_FILES)
+	$(RM) $(GL_TM_OBJ_FILES)
+	$(RM) $(GL_SKM_OBJ_FILES)
+	$(RM) $(GL_GSCIM_OBJ_FILES)
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_mml.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_mm_mtl.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_tml.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_tm_mtl.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_tmportl.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_single_timeout_tml.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_single_timeout_tm_mtl.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_skml.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_gsciml.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_gscim_mtl.a	
+
+
+
+gl_mm:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) $(GL_MM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_mml.a $(GL_MM_OBJ_FILES)
+
+
+gl_mm_mt:	
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) -DGW_MT_ENABLED \
+	$(GL_MM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_mm_mtl.a $(GL_MM_OBJ_FILES)
+
+
+
+gl_tm:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) $(GL_TM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_tml.a $(GL_TM_OBJ_FILES)
+
+
+gl_tmport:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) $(GL_TMPORT_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_tmportl.a $(GL_TMPORT_OBJ_FILES)
+
+
+gl_tm_mt:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) -DGW_MT_ENABLED \
+	$(GL_TM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_tm_mtl.a $(GL_TM_OBJ_FILES)
+
+
+gl_single_timeout_tm:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) -DGL_SINGLE_TIMEOUT \
+	$(GL_TM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_single_timeout_tml.a $(GL_TM_OBJ_FILES)
+
+
+gl_single_timeout_tm_mt:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) -DGL_SINGLE_TIMEOUT \
+	 -DGW_MT_ENABLED $(GL_TM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_single_timeout_tm_mtl.a $(GL_TM_OBJ_FILES)
+
+
+gl_skm:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) $(GL_SKM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_skml.a $(GL_SKM_OBJ_FILES)
+
+
+gl_gscim:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) $(GL_GSCIM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_gsciml.a $(GL_GSCIM_OBJ_FILES)
+
+
+gl_gscim_mt:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) -DGW_MT_ENABLED \
+	$(GL_GSCIM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_gscim_mtl.a $(GL_GSCIM_OBJ_FILES)
+
+

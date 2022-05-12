@@ -1,0 +1,54 @@
+#***************************************************************************************
+#               Makefile for Port Module of Sample Program
+#
+#
+#
+#        DATE               NAME            REFERENCE        REASON
+#        ----               ----            ---------        ------
+#        07/12/2007   	    Amit Sikka                       Initial Creation
+#
+#        Copyright (c) 2007 Aricent Inc . All Rights Reserved
+#
+#***************************************************************************************
+
+INC_MK			=       ../../../port/build/make/linux
+
+include                 $(INC_MK)/makefile.mk
+
+IPTKAPP_PORT_BASE			=	..$(IPTKAPP_SLASH)..
+IPTKAPP_PORT_SRC		=	$(IPTKAPP_PORT_BASE)$(IPTKAPP_SLASH)src
+
+IPTKAPP_PORT_OBJ_FILES		=	iptkapp_port_wrapper.o\
+					iptkapp_main.o
+
+IPTKAPP_PORT_SRC_FILES	=	$(IPTKAPP_PORT_SRC)$(IPTKAPP_SLASH)iptkapp_port_wrapper.c\
+				$(IPTKAPP_PORT_SRC)$(IPTKAPP_SLASH)iptkapp_main.c
+
+IPTKAPP_PORT_INCLUDES		=	-I$(IPTKAPP_CFG_BASE)$(IPTKAPP_SLASH)h \
+				-I$(IPTKAPP_CORE_BASE)$(IPTKAPP_SLASH)h -I$(IPTKAPP_PORT_BASE)$(IPTKAPP_SLASH)h \
+				-I$(ICF_BASE)$(IPTKAPP_SLASH)ext_if
+
+#***************************************
+#**Compiling PORT elements
+#***************************************
+ifeq ($(MAKE_DEPEND),YES)
+all		:	depend	$(IPTKAPP_PORT_LIB_A)
+else
+all		:	$(IPTKAPP_PORT_LIB_A)
+endif
+
+$(IPTKAPP_PORT_LIB_A):	$(IPTKAPP_PORT_OBJ_FILES)
+			$(LIB) $(IPTKAPP_PORT_LIB_A)  $(IPTKAPP_PORT_OBJ_FILES)
+			$(CP) $(IPTKAPP_PORT_LIB_A) $(LIB_OS)
+
+%.o: $(IPTKAPP_PORT_SRC)$(IPTKAPP_SLASH)%.c
+	$(CC) $(INCLUDE) $(IPTKAPP_PORT_INCLUDES) $(IPTKAPP_COMMON_INCLUDES) $(CFLAGS_CMN) -c $< -o $@
+
+depend.$(CPU).port:
+	$(CC) -M $(INCLUDE) $(IPTKAPP_PORT_INCLUDES) $(IPTKAPP_COMMON_INCLUDES) $(CFLAGS_CMN) $(IPTKAPP_PORT_SRC_FILES) > depend.$(CPU).port
+
+include depend.$(CPU).port
+clean_all:
+			$(RM) $(IPTKAPP_PORT_LIB_A) $(IPTKAPP_PORT_OBJ_FILES) $(LIB_OS_IPTKAPP_PORT_LIB_A)
+depend:
+	$(CC) -M $(INCLUDE) $(IPTKAPP_PORT_INCLUDES) $(IPTKAPP_COMMON_INCLUDES) $(COMMON_INCLUDES) $(CFLAGS_CMN) $(IPTKAPP_PORT_SRC_FILES) > depend.$(CPU).port

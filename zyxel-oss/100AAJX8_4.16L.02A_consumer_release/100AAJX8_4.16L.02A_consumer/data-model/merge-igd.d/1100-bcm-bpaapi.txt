@@ -1,0 +1,17 @@
+#
+# Add the object in cms-dm-bcm-bpaapi.xml below the 
+# object InternetGatewayDevice.DeviceInfo.
+#
+# This one is a little tricky because InternetGatewayDevice.DeviceInfo. has
+# a child: InternetGatewayDevice.DeviceInfo.VendorConfigFile.{i}.
+# But note that the object we are adding will be on the same level as
+# InternetGatewayDevice.DeviceInfo. --- not the same level as 
+# InternetGatewayDevice.DeviceInfo.VendorConfigFile.{i}.
+# That is, the addObjBelowObj command means to add the object(s) at
+# the same level as the target object.
+#
+# See 0000-README.txt for more details
+#
+
+addObjBelowObj cms-dm-bcm-bpaapi.xml InternetGatewayDevice.DeviceInfo.
+

@@ -1,0 +1,57 @@
+#***************************************************************************************
+#               Makefile for Cfg Module of Sample Program
+#
+#
+#
+#        DATE               NAME            REFERENCE        REASON
+#        ----               ----            ---------        ------
+#        07/12/2007   	    Amit Sikka                       Initial Creation
+#
+#        Copyright (c) 2007 Aricent Inc . All Rights Reserved
+#
+#***************************************************************************************
+
+INC_MK			=       ../../../port/build/make/linux
+
+include                 $(INC_MK)/makefile.mk
+
+IPTKAPP_CFG_BASE			=	..$(IPTKAPP_SLASH)..
+IPTKAPP_CFG_SRC		=	$(IPTKAPP_CFG_BASE)$(IPTKAPP_SLASH)src
+
+IPTKAPP_CFG_OBJ_FILES		=	iptkapp_cfg_init.o\
+				iptkapp_cfg_msg_handler.o\
+				iptkapp_cfg_read_config_file.o
+
+IPTKAPP_CFG_SRC_FILES	=	$(IPTKAPP_CFG_SRC)$(IPTKAPP_SLASH)iptkapp_cfg_init.c\
+				$(IPTKAPP_CFG_SRC)$(IPTKAPP_SLASH)iptkapp_cfg_msg_handler.c\
+				$(IPTKAPP_CFG_SRC)$(IPTKAPP_SLASH)iptkapp_cfg_read_config_file.c
+
+IPTKAPP_CFG_INCLUDES		=	-I$(IPTKAPP_CFG_BASE)$(IPTKAPP_SLASH)h \
+				-I$(IPTKAPP_CORE_BASE)$(IPTKAPP_SLASH)h -I$(IPTKAPP_PORT_BASE)$(IPTKAPP_SLASH)h \
+				-I$(IPTK_BASE)$(IPTKAPP_SLASH)ext_if
+
+
+#***************************************
+#**Compiling CFG elements
+#***************************************
+ifeq ($(MAKE_DEPEND),YES)
+all		:	depend	$(IPTKAPP_CFG_LIB_A)
+else
+all		:	$(IPTKAPP_CFG_LIB_A)
+endif
+
+$(IPTKAPP_CFG_LIB_A):	$(IPTKAPP_CFG_OBJ_FILES)
+			$(LIB) $(IPTKAPP_CFG_LIB_A)  $(IPTKAPP_CFG_OBJ_FILES)
+			$(CP) $(IPTKAPP_CFG_LIB_A) $(LIB_OS)
+
+%.o: $(IPTKAPP_CFG_SRC)$(IPTKAPP_SLASH)%.c
+	$(CC) $(IPTKAPP_CFG_INCLUDES) $(IPTKAPP_COMMON_INCLUDES) $(CFLAGS_CMN) -c $< -o $@
+
+depend.$(CPU).cfg:
+	$(CC) -M $(IPTKAPP_CFG_INCLUDES) $(IPTKAPP_COMMON_INCLUDES) $(CFLAGS_CMN) $(IPTKAPP_CFG_SRC_FILES) > depend.$(CPU).cfg
+
+include depend.$(CPU).cfg
+clean_all:
+			$(RM) $(IPTKAPP_CFG_LIB_A) $(IPTKAPP_CFG_OBJ_FILES) $(LIB_OS_IPTKAPP_CFG_LIB_A)
+depend:
+	$(CC) -M $(IPTKAPP_CFG_INCLUDES) $(IPTKAPP_COMMON_INCLUDES) $(CFLAGS_CMN) $(IPTKAPP_CFG_SRC_FILES) > depend.$(CPU).cfg

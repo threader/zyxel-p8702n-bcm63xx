@@ -1,0 +1,107 @@
+<script language="javascript"> 
+
+var buttonMode = '<%ejGetOther(wlanButtonMode)%>';
+
+function btnApply() 
+{
+	with( document.forms[0] ) 
+	{
+		if ( $("input[name='mode']").get(0).checked == true ) {
+			wlanButton_mode.value = 0;	
+		} else if ( $("input[name='mode']").get(1).checked == true ) {
+			wlanButton_mode.value = 1;
+		}else if ( $("input[name='mode']").get(2).checked == true ) {
+			wlanButton_mode.value = 2;
+		}else {
+			wlanButton_mode.value = 3;
+		}
+			
+		$('.ui-dialog-titlebar-close').trigger('click');
+		$.openLoadingMask(1);
+		submit();
+	}
+}
+
+function frmLoad () {
+	with( document.forms[0] ) 
+	{
+		if (buttonMode == 0) {
+			$("input[name='mode']").get(0).checked = true;
+		}else if (buttonMode == 1) {
+			$("input[name='mode']").get(1).checked = true;
+		}else if (buttonMode == 2) {
+			$("input[name='mode']").get(2).checked = true;
+		}else if (buttonMode == 3) {
+			$("input[name='mode']").get(3).checked = true;
+		}
+	}
+	
+}
+
+$(document).ready(function() {
+	frmLoad();
+});
+</script>
+
+<div class="content_frame" >
+<!--Unit Explain start-->
+<div class="explain">
+<div><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div>
+<div class="explain_text">This page lets you control the behaviour of the WLAN-button on the front of the device.</div>
+<div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div></div>
+<!--Unit Explain End-->
+<!--Set area start-->
+<form action="/pages/tabFW/wlBN-wlBN.cgi" method="post" >
+<input type="hidden" name="sessionKey" id="sessionKey" value="<%ejGetOther(sessionKey)%>"/>
+<input type="hidden" name="wlanButton_mode" id="wlanButton_mode" />
+<div class="data_frame">
+<ul><li class="set1">
+<div class="w_text">
+
+          <table width="100%" border="0" cellpadding="0" cellspacing="0" >
+                        <tr>
+                          <td width="25%" height="25" >Mode:</td>
+                          <td width="75%" ><input name="mode" type="radio" value="0" />
+                            Button disabled </td>
+                        </tr>
+                        <tr>
+                          <td height="25"></td>
+                          <td ><input name="mode" type="radio" value="1" />
+                          Button enables/disables both 2.4GHz and 5GHz WLAN </td>
+                        </tr>
+                        <tr>
+                          <td height="25"></td>
+                          <td ><input name="mode" type="radio" value="2" />
+                          Button enables/disables 2.4GHz WLAN </td>
+                        </tr>
+                        <tr>
+                          <td height="25"></td>
+                          <td ><input name="mode" type="radio" value="3" />
+                          Button enables/disables 5GHz WLAN </td>
+                        </tr>
+            </table>
+                        <ul>
+                           <li class="right_table">
+						  <li class="space"></li>
+							  <li class="buttonframe">
+								<div class="button_position">
+<input name="button" type="button" onclick='btnApply();' value="<%ejGetML(MLG_Common_Apply)%>"/>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+<input name="Cancel" value="<%ejGetML(MLG_Common_Cancel)%>" type="button" onClick="frmLoad();"/>
+								</div>
+							  </li>
+                        </ul>
+						
+						
+						 <ul></ul> <ul></ul>
+						
+						
+          </div></li>
+  <li class="set1"></li>
+</ul>
+</div>
+<!--Set area end-->
+</form>
+<br />
+<br />
+</ul>
+</div>

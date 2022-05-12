@@ -1,0 +1,58 @@
+#***************************************************************************************
+#               Makefile for Port Module of Sample Program
+#
+#
+#
+#        DATE               NAME            REFERENCE        REASON
+#        ----               ----            ---------        ------
+#        07/12/2007   	    Amit Sikka                       Initial Creation
+#
+#        Copyright (c) 2007 Aricent Inc . All Rights Reserved
+#
+#***************************************************************************************
+
+INC_MK			=       ../../../port/build/make/linux
+
+include                 $(INC_MK)/makefile.mk
+
+MM_PORT_BASE			=	../..
+MM_PORT_SRC		=	$(MM_PORT_BASE)/src
+
+MM_PORT_OBJ_FILES		=	mm_port_wrapper.o\
+					mm_main.o
+
+MM_PORT_SRC_FILES	=	$(MM_PORT_SRC)/mm_port_wrapper.c\
+				$(MM_PORT_SRC)/mm_main.c
+
+MM_PORT_INCLUDES		=	-I$(MM_CFG_BASE)/h \
+				-I$(MM_CORE_BASE)/h -I$(MM_PORT_BASE)/h \
+				-I$(SRTP_LIB_DIR)/include \
+				-I$(SRTP_LIB_DIR)/crypto/include \
+				-I$(ICF_BASE)/ext_if \
+				-I$(PRJ_BASE)/common/h \
+				$(IPTK_COMMON_INC)
+
+#***************************************
+#**Compiling PORT elements
+#***************************************
+ifeq ($(MAKE_DEPEND),YES)
+all		:	depend	$(MM_PORT_LIB_A)
+else
+all		:	$(MM_PORT_LIB_A)
+endif
+
+$(MM_PORT_LIB_A):	$(MM_PORT_OBJ_FILES)
+			$(LIB) $(MM_PORT_LIB_A)  $(MM_PORT_OBJ_FILES)
+			$(CP) $(MM_PORT_LIB_A) $(LIB_OS)
+
+%.o: $(MM_PORT_SRC)/%.c
+	$(CC) $(INCLUDE) $(MM_PORT_INCLUDES) $(MM_COMMON_INCLUDES) $(CFLAGS_CMN) -c $< -o $@
+
+depend.$(CPU).port:
+	$(CC) -M $(INCLUDE) $(MM_PORT_INCLUDES) $(MM_COMMON_INCLUDES) $(CFLAGS_CMN) $(MM_PORT_SRC_FILES) > depend.$(CPU).port
+
+include depend.$(CPU).port
+clean_all:
+			$(RM) $(MM_PORT_LIB_A) $(MM_PORT_OBJ_FILES) $(LIB_OS_MM_PORT_LIB_A) depend.$(CPU).port
+depend:
+	$(CC) -M $(INCLUDE) $(MM_PORT_INCLUDES) $(MM_COMMON_INCLUDES) $(COMMON_INCLUDES) $(CFLAGS_CMN) $(MM_PORT_SRC_FILES) > depend.$(CPU).port

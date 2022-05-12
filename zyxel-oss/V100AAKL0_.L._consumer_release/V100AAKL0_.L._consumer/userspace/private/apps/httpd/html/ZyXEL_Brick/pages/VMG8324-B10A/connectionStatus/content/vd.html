@@ -1,0 +1,56 @@
+  <script src="../../js/jquery.tooltip.min.js" type="text/javascript" ></script>
+  <script src="../VD/VDcomponent.js" type="text/javascript"></script>
+  
+  <script type="text/javascript">
+     var VDdate1 = {
+     dslline: {status: 'on', msg: 'dsl line on' },
+     lan1: {status: 'on', msg: 'LAN1 on <br> ip:192.168.0.1'},
+     lan2: {status: 'on', msg: 'LAN2 on <br> ip:192.168.0.1'},
+     lan3: {status: 'off'},
+     lan4: {status: 'on', msg: 'LAN4 on <br> ip:192.168.0.1'},
+     wan: {status: 'off' },
+     usb1: {status: 'off' },
+     usb2: {status: 'off' },
+     voip1: {status: 'on', msg: 'Phone1 on'},
+     voip2: {status: 'on', msg: 'Phone2 on'}
+   } ;
+//test data 2
+  var VDdate2 = {
+     dslline: {status: 'off'},
+     lan1: {status: 'off' },
+     lan2: {status: 'on', msg: 'LAN2 on'},
+     lan3: {status: 'off'},
+     lan4: {status: 'off'},
+     wan: {status: 'on', msg: 'wan on' },
+     usb1: {status: 'on', msg: 'USB1 on' },
+     usb2: {status: 'on', msg: 'USB2 on' },
+     voip1: {status: 'off'},
+     voip2: {status: 'off'}
+   } ;
+  
+ // install vd 
+  var $VDObj2628 = $('#vdContainer').VDcomponent({
+        vdHtml: '../VD/vd/VD.html',
+        vdCss: ['../VD/vd/css/css.css'],
+        portDef:'../VD/vd/portDef.js'
+  });
+  
+  
+  //vd set init value
+  $VDObj2628.setValue(VDdate1);
+  
+  //for test!
+  $VDObj2628.toggle(function(){
+       $VDObj2628.setValue(VDdate1);
+  }, function(){
+       $VDObj2628.setValue(VDdate2);
+  })
+      
+      
+      
+ </script>
+
+
+ <div id='VDView' class='naviView' style='position: relative;'>
+    <div id='vdContainer' style='position:relative; left:4%;right:4%; top:100px; '></div> 
+  </div>

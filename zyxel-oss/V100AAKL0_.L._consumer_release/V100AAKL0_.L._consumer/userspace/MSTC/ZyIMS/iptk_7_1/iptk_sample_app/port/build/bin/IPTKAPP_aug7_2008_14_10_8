@@ -1,0 +1,90 @@
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_APP_ADD_CFM
+bit_mask = 0, result = 1
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_SET_TRANSPORT_REQ
+
+api name : Set Trans Param Req
+
+bit_mask = 15
+transport_addr[0] = line_id = 0, action = 0, 	addr_type = 2,10.10.100.1, 
+port_num = 5060, mode = 0 
+self_transport_address = (addr_type = 2,10.10.100.64 
+self_port = 5060, self_mode = 0
+}
+
+
+
+TRACE STRING : Proxy Transport Address configured
+TRACE STRING : Self transport address configured
+TRACE STRING : Application Message
+{
+
+ api name = ICF_CONFIGURE_CFM
+Line ID = 0
+result = 1, error_cause = 0
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_SET_REGISTRATION_REQ
+ 
+ line_id = 0, 
+ action = 0, 
+ registrar_addr = addr_type = 2, 10.10.100.1, port_num = 5060),
+presence_flag = 3,reg_mode = 0) 
+registration_duration = 36000, 
+}
+
+
+
+TRACE STRING : Registrar Transport Address configured
+TRACE STRING : Application Message
+{
+
+ api name = ICF_CONFIGURE_CFM
+Line ID = 0
+result = 1, error_cause = 0
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_SET_SELF_ID_REQ
+presence_flag = 106 
+line_id = 0, action = 0, 
+self_addr_type = 3, self_addr_val = 1251401@10.10.100.64, 
+self_name = 1251401@10.10.100.64) 
+default_settings = 0 
+authentication_key = cpesw1 
+authentication_password = 1234 
+configured_realm = 
+}
+
+
+
+TRACE STRING : User Configuration Info
+TRACE STRING : UDP Server Opened
+TRACE STRING : Application Message
+{
+
+ api name = ICF_CONFIGURE_CFM
+Line ID = 0
+result = 1, error_cause = 0
+}
+
+

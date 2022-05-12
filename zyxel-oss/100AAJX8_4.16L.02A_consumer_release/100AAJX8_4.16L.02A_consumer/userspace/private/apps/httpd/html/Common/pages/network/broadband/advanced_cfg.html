@@ -1,0 +1,195 @@
+<script type="text/javascript"> 
+var bonding = '<%ejGet(dslBonding)%>';
+var upprocess = '<%ejGet(UpdateProcess)%>';
+var isSupportbonding = '<%ejGetOther(sysInfo, buildDslBonding)%>';
+var USPhyR = '<%ejGet(USPhyR)%>';
+var DSPhyR = '<%ejGet(DSPhyR)%>';
+var enblAdslPTM = '<%ejGet(enblAdslPTM)%>';
+var enblAnnexM = '<%ejGet(enblAnnexM)%>';
+var adslFlag = '<%ejGet(adslFlag)%>';
+
+function reboot() {
+	var loc = '/login/login.html';
+	var code = 'window.top.location="' + loc + '"';
+
+	eval(code);
+}
+function doSraEnable(enable){
+   with ( document.forms[0] ) {
+	if(enable){
+		adslFlag.value |= 0x08000000;
+	}
+	else{
+		adslFlag.value = adslFlag.value & ~(0x08000000);
+	}
+}
+}
+function doAnnexMEnable(enable){
+   with ( document.forms[0] ) {
+	if(enable){
+		adslFlag.value |= 0x00000040;
+	}
+	else{
+		adslFlag.value = adslFlag.value & ~(0x00000040);
+	}
+}
+}
+function btnApply()
+{   
+   $.openLoadingMask(1);
+   document.forms[0].submit();
+   
+}
+
+function frmLoad() {
+
+
+   document.forms[0].adslFlag.value=adslFlag;
+
+   // support DSL advanced setup
+   if (enblAdslPTM=='1')
+      $("input[name='enblAdslPTM']").get(0).checked = true;
+   else 
+      $("input[name='enblAdslPTM']").get(1).checked = true;
+      
+   if (adslFlag & 0x00000040)
+      $("input[name='enblAnnexM']").get(0).checked = true;
+   else 
+      $("input[name='enblAnnexM']").get(1).checked = true;
+   
+   if (USPhyR=='1')
+      $("input[name='USPhyR']").get(0).checked = true;
+   else 
+      $("input[name='USPhyR']").get(1).checked = true;
+   
+   if (DSPhyR=='1')
+      $("input[name='DSPhyR']").get(0).checked = true;
+   else
+      $("input[name='DSPhyR']").get(1).checked = true;
+   
+  
+  if (adslFlag & 0x08000000)
+	$("input[name='adslSra']").get(0).checked = true;        
+  else
+	 $("input[name='adslSra']").get(1).checked = true;
+	
+
+		 
+   /* support bonding option */
+   if(isSupportbonding=='1')
+   {
+      showhide("BondingSection",1);
+      if (upprocess == '2') {
+         setTimeout("$.openLoadingMask(2)", 1500);
+         setTimeout("BackgroundUrl('reboot-rebootpost.cgi')", 1500);
+         setTimeout('reboot()', 65000);
+      }
+      if (bonding=='1')
+         $("input[name='dslBonding']").get(0).checked = true;
+      else 
+         $("input[name='dslBonding']").get(1).checked = true;
+   }else{
+      showhide("BondingSection",0);
+      $("input[name='dslBonding']").get(1).checked = true;
+   }
+}
+
+$(document).ready(function() {
+ 	var errMsg = "<%ejGetOther(errMsg)%>";
+	frmLoad();
+	if (errMsg != '')
+	{
+		hciAlert(errMsg, 2);
+	}
+});
+
+</script>
+
+<div class="content_frame" >
+<!--Unit Explain start-->
+<div class="explain">
+<div><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div>
+<div class="explain_text"><%ejGetML(MLG_WAN_Broadband_AlertMsg_Str43_2)%></div>
+<div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div></div>
+<!--Unit Explain End-->
+<!--Set area start-->
+<form action="/pages/tabFW/broadband-advanced_cfg.cgi" method="post" onSubmit="$.openLoadingMask(1);return true;">
+	<input type="hidden" name="sessionKey" id="sessionKey" value="<%ejGetOther(sessionKey)%>">
+	<input type="hidden" name="adslFlag" id="adslFlag" value="">
+<div class="data_frame"><ul>
+<!--level 1 start-->
+<div id="BondingSection">
+<li class="title"><%ejGetML(MLG_WAN_Broadband_Str89)%></li>
+<li class="set1"> <div class="w_text">
+  <ul>
+    <li class="left_table"><%ejGetML(MLG_WAN_Broadband_Str3)%> :</li>
+     <li class="right_table">
+      <input name="dslBonding" id="dslBonding" type="radio" value="1" />
+      <%ejGetML(MLG_WAN_Broadband_Str4)%>
+      <input name="dslBonding" id="dslBonding" type="radio" value="0" />
+      <%ejGetML(MLG_WAN_Broadband_Str5)%>
+     </li>
+  </ul>
+</div>
+</li>
+</div>
+<div id="xdslAdvCfg">
+<li class="title"><%ejGetML(MLG_WAN_xDSL_setup)%></li>
+<li class="set1"> <div class="w_text">
+   <ul>
+	<li class="left_table"><%ejGetML(MLG_Common_ADSLoverPTM)%> :</li>
+	<li class="right_table">
+      <input name="enblAdslPTM" id="enblAdslPTM" type="radio" value="1"/>
+      <%ejGetML(MLG_WAN_Broadband_Str4)%>
+      <input name="enblAdslPTM" id="enblAdslPTM" type="radio" value="0"/>
+      <%ejGetML(MLG_WAN_Broadband_Str5)%>
+	</li>
+  </ul>
+   <ul>
+	<li class="left_table"><%ejGetML(MLG_WAN_AnnexM)%>:</li>
+	<li class="right_table">
+      <input name="enblAnnexM" id="enblAnnexM" type="radio" value="1" onclick="doAnnexMEnable(1)"/>
+      <%ejGetML(MLG_WAN_Broadband_Str4)%>
+      <input name="enblAnnexM" id="enblAnnexM" type="radio" value="0" onclick="doAnnexMEnable(0)"/>
+      <%ejGetML(MLG_WAN_Broadband_Str5)%>
+	</li>
+  </ul>
+  <ul>
+	<li class="left_table"><%ejGetML(MLG_WAN_Broadband_Str87)%> :</li>
+	<li class="right_table">
+      <input name="USPhyR" id="USPhyR" type="radio" value="1"/>
+      <%ejGetML(MLG_WAN_Broadband_Str4)%>
+      <input name="USPhyR" id="USPhyR" type="radio" value="0"/>
+      <%ejGetML(MLG_WAN_Broadband_Str5)%>
+	</li>
+  </ul>
+  <ul>
+	<li class="left_table"><%ejGetML(MLG_WAN_Broadband_Str88)%> :</li>
+	<li class="right_table">
+      <input name="DSPhyR" id="DSPhyR" type="radio" value="1"/>
+      <%ejGetML(MLG_WAN_Broadband_Str4)%>
+      <input name="DSPhyR" id="DSPhyR" type="radio" value="0"/>
+      <%ejGetML(MLG_WAN_Broadband_Str5)%>
+	</li>
+  </ul>  
+  <ul>
+	<li class="left_table"><%ejGetML(MLG_WAN_Broadband_SRA)%> :</li>
+	<li class="right_table">
+      <input name="adslSra" id="adslSra" type="radio" value="1" onclick="doSraEnable(1)" />
+      <%ejGetML(MLG_WAN_Broadband_Str4)%>
+      <input name="adslSra" id="adslSra" type="radio" value="0" onclick="doSraEnable(0)"/>
+      <%ejGetML(MLG_WAN_Broadband_Str5)%>
+	</li>
+  </ul>
+</div>
+</li>
+</div>
+<!--level 1 end-->
+<li class="space"> </li>
+<!--Button define start-->
+<li class="buttonframe"><div class="button_position"><input name="sysSubmit" value="<%ejGetML(MLG_Common_Apply)%>" type="button" onClick="btnApply()" />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<input name="Cancel" value="<%ejGetML(MLG_Common_Cancel)%>" type="button" onClick='frmLoad();'/></div></li>
+<!--Button define end-->
+</ul></div>
+</form>
+<!--Set area end-->
+</div>

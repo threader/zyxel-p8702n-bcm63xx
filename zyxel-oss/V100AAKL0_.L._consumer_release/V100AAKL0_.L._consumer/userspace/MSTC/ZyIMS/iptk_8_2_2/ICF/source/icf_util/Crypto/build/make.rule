@@ -1,0 +1,39 @@
+######################################################################
+# Copyright (C) 2008 Aricent Inc . All Rights Reserved                #
+# ------------------------------------------                          #
+# $Id: make.rule,v 1.2 2009/03/02 16:16:44 gur16603 Exp $                  #
+#    DESCRIPTION            : Specifies the rules and dependencies for#
+#                             building the Aricent Crypto             #
+#######################################################################
+include $(CRYPTO_BASE_DIR)/build/make.h
+
+ifeq (${MD5}, YES)
+	LIB_DEPENDENCIES += $(CRYPTO_ALGO_DIR)/md5/obj/md5.o
+endif
+ifeq (${DES}, YES)
+	LIB_DEPENDENCIES += $(CRYPTO_ALGO_DIR)/des/obj/des.o
+endif
+ifeq (${SHA1}, YES)
+	LIB_DEPENDENCIES += $(CRYPTO_ALGO_DIR)/sha1/obj/sha1.o
+endif
+ifeq (${AES}, YES)
+	LIB_DEPENDENCIES += $(CRYPTO_ALGO_DIR)/aes/obj/aes.o
+endif
+ifeq (${HMAC}, YES)
+	LIB_DEPENDENCIES += $(CRYPTO_ALGO_DIR)/hmac/obj/hmac.o
+endif
+
+#ZyXEL porting
+LD         = $(ICF_LD)
+AR         = $(ICF_AR)
+RM         = $(ICF_RM)
+#ZyXEL porting end
+
+LD_FLAGS   = -r
+AR_FLAGS   = -r
+#ZyXEL porting
+#CC         = echo $(notdir $<); gcc -g
+#ZyXEL porting end
+#CC         = echo $(notdir $<); /opt/Rational/releases/purify.i386_linux2.2003a.06.15/purify -best-effort -inuse_at_exit=yes -threads=yes -use-internal-locks=yes  -cache-dir=$(ROOTDIR)/temp/ -max_threads=40 -chain-length="30" -mt_safe_malloc=yes gcc -g
+CFLAGS         = -DCRYPTO_DEBUG_LOG
+

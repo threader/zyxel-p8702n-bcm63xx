@@ -1,0 +1,121 @@
+#******************************************************************************
+#        	Makefile for all Generic Library DB components 
+#  
+#                
+#  
+# DATE        NAME            REFERENCE        REASON
+# ----------- --------------- ------------- -------------------------------
+# 10/04/2002    Ravi Jindal     SPR-3928    Intial draft for Linux Port.
+#
+# 11/07/2002    Ravi Jindal     SPR-3656    Enhancements for Rel-1.0.
+# 02-May-2009   Anuradha Gupta  SPR 19443   Depend rule added
+#
+# COPYRIGHT , Aricent, 2009
+#
+#******************************************************************************
+
+GW_BASE		=	../../..
+INC_MK          =       $(GW_BASE)/build/make/linux
+include			$(INC_MK)/makefile.mk
+
+INC_MK_GL       =       $(GW_BASE)/genlib/make
+include                 $(INC_MK_GL)/makegl.mk
+
+LIB_DIR         =       $(GW_BASE)$(GW_SLASH)lib$(GW_SLASH)linux
+
+GL_OBJ_DIR_DOS_CMD =	..$(GW_SLASH)..$(GW_SLASH)obj
+
+
+INCLUDE		+=	-I$(CMN_BASE)$(GW_SLASH)h\
+			-I$(GL_CMN_DIR)$(GW_SLASH)h\
+			-I$(GL_DB_DIR)$(GW_SLASH)h
+
+
+all: 	clean gl_htm gl_htm_mt gl_lm gl_lm_mt\
+	gl_mqm gl_mqm_mt gl_sim gl_sim_mt
+ 
+clean:
+	$(RM) $(GL_HTM_OBJ_FILES)
+	$(RM) $(GL_LLM_OBJ_FILES)
+	$(RM) $(GL_MQM_OBJ_FILES)
+	$(RM) $(GL_SIM_OBJ_FILES)
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_html.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_htm_mtl.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_lml.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_lm_mtl.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_mqml.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_mqm_mtl.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_siml.a
+	$(RM) $(LIB_DIR)$(GW_SLASH)libgl_sim_mtl.a
+  
+  
+
+gl_htm:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) $(GL_HTM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_html.a $(GL_HTM_OBJ_FILES)
+
+
+gl_htm_mt:	
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) -DGW_MT_ENABLED \
+	$(GL_HTM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_htm_mtl.a $(GL_HTM_OBJ_FILES)
+
+
+gl_lm:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) $(GL_LLM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_lml.a $(GL_LLM_OBJ_FILES)
+
+
+gl_lm_mt:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) -DGW_MT_ENABLED \
+	$(GL_LLM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_lm_mtl.a $(GL_LLM_OBJ_FILES)
+
+
+gl_mqm:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) $(GL_MQM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_mqml.a $(GL_MQM_OBJ_FILES)
+
+
+gl_mqm_mt:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) -DGW_MT_ENABLED \
+	$(GL_MQM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_mqm_mtl.a $(GL_MQM_OBJ_FILES)
+
+
+gl_sim:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) $(GL_SIM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_siml.a $(GL_SIM_OBJ_FILES)
+
+
+gl_sim_mt:
+	$(CC) $(COPTIONS) $(INCLUDE) $(CFLAGS_CMN) -DGW_MT_ENABLED \
+	$(GL_SIM_SRC_FILES)
+
+	$(MV) *.$(OBJ_SUFFIX) $(GL_OBJ_DIR_DOS_CMD)
+	$(LIB) $(LIB_DIR)/libgl_sim_mtl.a $(GL_SIM_OBJ_FILES)
+
+depend_db.$(CPU):
+		touch depend_db.$(CPU)
+
+depend  :
+		$(CC) -M $(CFLAGS) ${INCLUDE} $(wildcard $(GL_MQM_SRC_FILES) $(GL_SIM_SRC_FILES) $(GL_LLM_SRC_FILES) $(GL_HTM_SRC_FILES)) > depend_db.$(CPU)
+		$(ICF_DEV_DIR)/build/linux/build.sh  depend_db.$(CPU) $(GL_OBJ_DIR_DOS_CMD)
+
+include depend_db.$(CPU)
+# do not delete this line.make depend depends on it
+    

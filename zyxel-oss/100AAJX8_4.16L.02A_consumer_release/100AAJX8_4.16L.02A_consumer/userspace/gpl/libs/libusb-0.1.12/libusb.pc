@@ -1,0 +1,11 @@
+prefix=/home/weilin/P8702N/Final/0728/100AAJX8/userspace/gpl/libs/libusb-0.1.12/install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libusb
+Description: USB access library
+Version: 0.1.12
+Libs: -L${libdir} -lusb
+Cflags: -I${includedir}
+

@@ -1,0 +1,4386 @@
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_APP_ADD_CFM
+bit_mask = 0, result = 1
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_SET_TRANSPORT_REQ
+
+api name : Set Trans Param Req
+
+bit_mask = 15
+transport_addr[0] = line_id = 0, action = 0, 	addr_type = 2,10.10.100.1, 
+port_num = 5060, mode = 0 
+self_transport_address = (addr_type = 2,10.10.100.64 
+self_port = 5060, self_mode = 0
+}
+
+
+
+TRACE STRING : Proxy Transport Address configured
+TRACE STRING : Self transport address configured
+TRACE STRING : Application Message
+{
+
+ api name = ICF_CONFIGURE_CFM
+Line ID = 0
+result = 1, error_cause = 0
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_SET_REGISTRATION_REQ
+ 
+ line_id = 0, 
+ action = 0, 
+ registrar_addr = addr_type = 2, 10.10.100.1, port_num = 5060),
+presence_flag = 3,reg_mode = 0) 
+registration_duration = 36000, 
+}
+
+
+
+TRACE STRING : Registrar Transport Address configured
+TRACE STRING : Application Message
+{
+
+ api name = ICF_CONFIGURE_CFM
+Line ID = 0
+result = 1, error_cause = 0
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_SET_SELF_ID_REQ
+presence_flag = 106 
+line_id = 0, action = 0, 
+self_addr_type = 3, self_addr_val = 1251401@10.10.100.64, 
+self_name = 1251401@10.10.100.64) 
+default_settings = 0 
+authentication_key = cpesw1 
+authentication_password = 1234 
+configured_realm = 
+}
+
+
+
+TRACE STRING : User Configuration Info
+TRACE STRING : UDP Server Opened
+TRACE STRING : Application Message
+{
+
+ api name = ICF_CONFIGURE_CFM
+Line ID = 0
+result = 1, error_cause = 0
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_REQ
+}
+
+
+
+TRACE STRING : Registration Resp Sent to App
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_CFMbit_mask = 0, line_id = 0, request_type = 5
+result = 1, error_cause = 0
+to.addr_type = 0, to.addr_val.str = 
+}
+
+
+
+TRACE STRING : Registration Req Recvd from App
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1665189780-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 1 REGISTER
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Challenged by 401
+TRACE STRING : SIP Message PDUSIP/2.0 401 Unauthorized
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1665189780-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.d04c
+Call-ID: 1665189538-32115
+CSeq: 1 REGISTER
+WWW-Authenticate: Digest realm="zyxel.com.tw", nonce="489aa07e48906b257ef739cb3603404815d8c8b8"
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1665196613-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 2 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1665196613-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.0d57
+Call-ID: 1665189538-32115
+CSeq: 2 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Resp Sent to App
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_STATUS_IND
+bit_mask = 4, line_id = 0, nrequest_type = 0
+result = 1, error_cause = 0
+to.addr_type = 3, to.addr_val.str = 1251401@10.10.100.64
+}
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1666804979-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 3 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1666804979-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.5272
+Call-ID: 1665189538-32115
+CSeq: 3 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1668411966-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 4 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1668411966-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.8594
+Call-ID: 1665189538-32115
+CSeq: 4 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1669919379-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 5 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1669919379-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.863d
+Call-ID: 1665189538-32115
+CSeq: 5 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1671430012-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 6 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1671430012-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.d395
+Call-ID: 1665189538-32115
+CSeq: 6 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1673036376-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 7 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1673036376-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.30b1
+Call-ID: 1665189538-32115
+CSeq: 7 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1674642965-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 8 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1674642965-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.619d
+Call-ID: 1665189538-32115
+CSeq: 8 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1676150450-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 9 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1676150450-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.aaa2
+Call-ID: 1665189538-32115
+CSeq: 9 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1677757967-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 10 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1677757967-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.52ca
+Call-ID: 1665189538-32115
+CSeq: 10 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1679364980-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 11 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1679364980-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.a14e
+Call-ID: 1665189538-32115
+CSeq: 11 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1680872305-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 12 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1680872305-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.55a5
+Call-ID: 1665189538-32115
+CSeq: 12 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1682477963-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 13 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1682477963-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.2636
+Call-ID: 1665189538-32115
+CSeq: 13 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1684085380-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 14 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1684085380-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.ba34
+Call-ID: 1665189538-32115
+CSeq: 14 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1685594421-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 15 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1685594421-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.77fe
+Call-ID: 1665189538-32115
+CSeq: 15 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1687202337-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 16 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1687202337-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.cc75
+Call-ID: 1665189538-32115
+CSeq: 16 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1688708956-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 17 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1688708956-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.7f5b
+Call-ID: 1665189538-32115
+CSeq: 17 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1690216323-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 18 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1690216323-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.1aa3
+Call-ID: 1665189538-32115
+CSeq: 18 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1691822976-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 19 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1691822976-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.68af
+Call-ID: 1665189538-32115
+CSeq: 19 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1693429394-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 20 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1693429394-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.0800
+Call-ID: 1665189538-32115
+CSeq: 20 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1694937294-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 21 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1694937294-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.b9b0
+Call-ID: 1665189538-32115
+CSeq: 21 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1696542963-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 22 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1696542963-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.16ce
+Call-ID: 1665189538-32115
+CSeq: 22 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1698150048-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 23 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1698150048-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.49b9
+Call-ID: 1665189538-32115
+CSeq: 23 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1699756969-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 24 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1699756969-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.ba7d
+Call-ID: 1665189538-32115
+CSeq: 24 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1701364371-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 25 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1701364371-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.88b3
+Call-ID: 1665189538-32115
+CSeq: 25 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1702871306-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 26 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1702871306-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.14a2
+Call-ID: 1665189538-32115
+CSeq: 26 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1704477962-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 27 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1704477962-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.0164
+Call-ID: 1665189538-32115
+CSeq: 27 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1706083968-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 28 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1706083968-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.bbd0
+Call-ID: 1665189538-32115
+CSeq: 28 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1707591376-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 29 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1707591376-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.4466
+Call-ID: 1665189538-32115
+CSeq: 29 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1709098312-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 30 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1709098312-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.821e
+Call-ID: 1665189538-32115
+CSeq: 30 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1710604963-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 31 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1710604963-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.fa76
+Call-ID: 1665189538-32115
+CSeq: 31 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1712210961-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 32 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1712210961-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.53bb
+Call-ID: 1665189538-32115
+CSeq: 32 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1713718954-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 33 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1713718954-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.1ed2
+Call-ID: 1665189538-32115
+CSeq: 33 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1715325345-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 34 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1715325345-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.204c
+Call-ID: 1665189538-32115
+CSeq: 34 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1716931949-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 35 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1716931949-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.5027
+Call-ID: 1665189538-32115
+CSeq: 35 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1718537941-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 36 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1718537941-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.72b7
+Call-ID: 1665189538-32115
+CSeq: 36 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1720044970-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 37 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1720044970-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.8d49
+Call-ID: 1665189538-32115
+CSeq: 37 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1721651353-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 38 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1721651353-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.3a81
+Call-ID: 1665189538-32115
+CSeq: 38 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1723258348-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 39 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1723258348-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.cb4a
+Call-ID: 1665189538-32115
+CSeq: 39 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1724766968-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 40 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1724766968-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.bcca
+Call-ID: 1665189538-32115
+CSeq: 40 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1726274424-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 41 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1726274424-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.bf08
+Call-ID: 1665189538-32115
+CSeq: 41 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1727782352-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 42 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1727782352-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.accd
+Call-ID: 1665189538-32115
+CSeq: 42 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1729388388-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 43 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1729388388-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.7db8
+Call-ID: 1665189538-32115
+CSeq: 43 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1730895338-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 44 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1730895338-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.5975
+Call-ID: 1665189538-32115
+CSeq: 44 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1732501976-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 45 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1732501976-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.86bf
+Call-ID: 1665189538-32115
+CSeq: 45 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1734108411-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 46 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1734108411-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.5817
+Call-ID: 1665189538-32115
+CSeq: 46 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1735615351-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 47 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1735615351-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.f89a
+Call-ID: 1665189538-32115
+CSeq: 47 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1737222963-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 48 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1737222963-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.eb4c
+Call-ID: 1665189538-32115
+CSeq: 48 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1738730391-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 49 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1738730391-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.05e1
+Call-ID: 1665189538-32115
+CSeq: 49 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1740237479-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 50 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1740237479-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.a600
+Call-ID: 1665189538-32115
+CSeq: 50 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1741843952-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 51 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1741843952-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.5dd6
+Call-ID: 1665189538-32115
+CSeq: 51 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1743352349-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 52 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1743352349-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.6318
+Call-ID: 1665189538-32115
+CSeq: 52 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1744861369-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 53 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1744861369-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.2c59
+Call-ID: 1665189538-32115
+CSeq: 53 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1746468323-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 54 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1746468323-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.58b2
+Call-ID: 1665189538-32115
+CSeq: 54 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1748075976-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 55 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1748075976-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.48d3
+Call-ID: 1665189538-32115
+CSeq: 55 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1749681934-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 56 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1749681934-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.152b
+Call-ID: 1665189538-32115
+CSeq: 56 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1751287981-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 57 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1751287981-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.8bb5
+Call-ID: 1665189538-32115
+CSeq: 57 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1752894379-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 58 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1752894379-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.e87f
+Call-ID: 1665189538-32115
+CSeq: 58 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1754403768-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 59 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1754403768-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.bb9e
+Call-ID: 1665189538-32115
+CSeq: 59 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1756009971-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 60 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1756009971-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.3adc
+Call-ID: 1665189538-32115
+CSeq: 60 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1757517415-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 61 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1757517415-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.253e
+Call-ID: 1665189538-32115
+CSeq: 61 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1759023970-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 62 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1759023970-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.81df
+Call-ID: 1665189538-32115
+CSeq: 62 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1760630971-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 63 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1760630971-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.30fe
+Call-ID: 1665189538-32115
+CSeq: 63 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1762237041-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 64 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1762237041-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.d3d9
+Call-ID: 1665189538-32115
+CSeq: 64 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1763843964-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 65 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1763843964-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.6494
+Call-ID: 1665189538-32115
+CSeq: 65 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1765351297-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 66 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1765351297-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.4646
+Call-ID: 1665189538-32115
+CSeq: 66 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1766958389-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 67 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1766958389-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.9ad6
+Call-ID: 1665189538-32115
+CSeq: 67 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1768465806-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 68 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1768465806-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.4414
+Call-ID: 1665189538-32115
+CSeq: 68 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1770071963-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 69 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1770071963-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.2525
+Call-ID: 1665189538-32115
+CSeq: 69 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1771579337-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 70 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1771579337-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.2d2a
+Call-ID: 1665189538-32115
+CSeq: 70 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1773186365-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 71 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1773186365-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.4bdb
+Call-ID: 1665189538-32115
+CSeq: 71 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1774793064-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 72 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1774793064-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.2c22
+Call-ID: 1665189538-32115
+CSeq: 72 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1776400826-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 73 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1776400826-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.b8d6
+Call-ID: 1665189538-32115
+CSeq: 73 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1777908317-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 74 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1777908317-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.8073
+Call-ID: 1665189538-32115
+CSeq: 74 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1779513987-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 75 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1779513987-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.6f80
+Call-ID: 1665189538-32115
+CSeq: 75 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1781021399-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 76 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1781021399-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.a0f7
+Call-ID: 1665189538-32115
+CSeq: 76 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1782627294-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 77 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1782627294-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.05df
+Call-ID: 1665189538-32115
+CSeq: 77 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1784233965-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 78 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1784233965-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.f678
+Call-ID: 1665189538-32115
+CSeq: 78 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1785840394-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 79 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1785840394-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.d449
+Call-ID: 1665189538-32115
+CSeq: 79 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1787348476-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 80 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1787348476-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.8659
+Call-ID: 1665189538-32115
+CSeq: 80 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1788954963-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 81 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1788954963-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.ef85
+Call-ID: 1665189538-32115
+CSeq: 81 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1790462431-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 82 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1790462431-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.ada3
+Call-ID: 1665189538-32115
+CSeq: 82 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1792069382-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 83 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1792069382-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.65fc
+Call-ID: 1665189538-32115
+CSeq: 83 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1793577327-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 84 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1793577327-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.2c84
+Call-ID: 1665189538-32115
+CSeq: 84 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1795183996-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 85 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1795183996-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.3002
+Call-ID: 1665189538-32115
+CSeq: 85 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1796692387-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 86 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1796692387-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.08f2
+Call-ID: 1665189538-32115
+CSeq: 86 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1798200821-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 87 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1798200821-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.6dc7
+Call-ID: 1665189538-32115
+CSeq: 87 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1799807046-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 88 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1799807046-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.ab01
+Call-ID: 1665189538-32115
+CSeq: 88 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1801313984-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 89 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1801313984-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.f0b5
+Call-ID: 1665189538-32115
+CSeq: 89 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1802919970-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 90 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1802919970-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.c02b
+Call-ID: 1665189538-32115
+CSeq: 90 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1804527965-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 91 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1804527965-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.c2ea
+Call-ID: 1665189538-32115
+CSeq: 91 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1806135358-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 92 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1806135358-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.07de
+Call-ID: 1665189538-32115
+CSeq: 92 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1807742368-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 93 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1807742368-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.3d10
+Call-ID: 1665189538-32115
+CSeq: 93 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1809249482-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 94 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1809249482-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.e8c9
+Call-ID: 1665189538-32115
+CSeq: 94 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1810856408-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 95 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1810856408-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.05ef
+Call-ID: 1665189538-32115
+CSeq: 95 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1812363793-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 96 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1812363793-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.6861
+Call-ID: 1665189538-32115
+CSeq: 96 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1813969970-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 97 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1813969970-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.da96
+Call-ID: 1665189538-32115
+CSeq: 97 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1815575962-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 98 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1815575962-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.9f14
+Call-ID: 1665189538-32115
+CSeq: 98 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1817182337-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 99 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1817182337-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.e941
+Call-ID: 1665189538-32115
+CSeq: 99 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1818690317-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 100 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1818690317-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.d95a
+Call-ID: 1665189538-32115
+CSeq: 100 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1820196971-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 101 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1820196971-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.dc0c
+Call-ID: 1665189538-32115
+CSeq: 101 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1821803355-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 102 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1821803355-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.07fb
+Call-ID: 1665189538-32115
+CSeq: 102 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1823313416-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 103 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1823313416-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.beb3
+Call-ID: 1665189538-32115
+CSeq: 103 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1824820330-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 104 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1824820330-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.03e9
+Call-ID: 1665189538-32115
+CSeq: 104 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1826425977-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 105 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1826425977-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.db33
+Call-ID: 1665189538-32115
+CSeq: 105 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1828033414-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 106 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1828033414-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.3030
+Call-ID: 1665189538-32115
+CSeq: 106 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1829540680-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 107 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1829540680-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.d8a0
+Call-ID: 1665189538-32115
+CSeq: 107 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1831048764-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 108 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1831048764-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.382a
+Call-ID: 1665189538-32115
+CSeq: 108 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1832654977-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 109 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1832654977-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.995d
+Call-ID: 1665189538-32115
+CSeq: 109 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1834262396-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 110 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1834262396-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.8809
+Call-ID: 1665189538-32115
+CSeq: 110 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1835869345-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 111 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1835869345-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.1829
+Call-ID: 1665189538-32115
+CSeq: 111 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1837475373-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 112 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1837475373-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.878c
+Call-ID: 1665189538-32115
+CSeq: 112 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1838982004-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 113 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1838982004-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.4322
+Call-ID: 1665189538-32115
+CSeq: 113 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1840589785-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 114 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1840589785-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.a863
+Call-ID: 1665189538-32115
+CSeq: 114 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1842195975-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 115 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1842195975-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.5eed
+Call-ID: 1665189538-32115
+CSeq: 115 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1843703799-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 116 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1843703799-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.e278
+Call-ID: 1665189538-32115
+CSeq: 116 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1845211335-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 117 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1845211335-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.09fb
+Call-ID: 1665189538-32115
+CSeq: 117 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1846718434-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 118 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1846718434-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.d720
+Call-ID: 1665189538-32115
+CSeq: 118 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1848325809-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 119 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1848325809-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.c18d
+Call-ID: 1665189538-32115
+CSeq: 119 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1849833385-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 120 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1849833385-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.b18d
+Call-ID: 1665189538-32115
+CSeq: 120 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1851439347-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 121 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1851439347-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.db9b
+Call-ID: 1665189538-32115
+CSeq: 121 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Timer Expires
+TRACE STRING : ReRegistration sent to registrar
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1852946102-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 122 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 3
+Contact: <sip:1251401@10.10.100.64:5060>;expires=3 
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1852946102-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.83d4
+Call-ID: 1665189538-32115
+CSeq: 122 REGISTER
+Contact: <sip:1251401@10.10.100.64:5060>;expires=60
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_REQ
+}
+
+
+
+TRACE STRING : Registration Resp Sent to App
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_CFMbit_mask = 0, line_id = 0, request_type = 5
+result = 1, error_cause = 0
+to.addr_type = 0, to.addr_val.str = 
+}
+
+
+
+TRACE STRING : SIP Message PDUREGISTER sip:10.10.100.1:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1854320970-32115
+Max-Forwards: 70
+Supported: replaces
+Accept: application/simple-message-summary
+Accept: application/sdp
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>
+Call-ID: 1665189538-32115
+CSeq: 123 REGISTER
+Authorization: Digest username="cpesw1",realm="zyxel.com.tw",nonce="489aa07e48906b257ef739cb3603404815d8c8b8",uri="sip:10.10.100.1:5060",response="eda0fe7de3801b8202bea2178cfd2892",algorithm=md5
+Expires: 0
+Contact: *
+Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,NOTIFY,MESSAGE
+Content-Length: 0
+
+
+
+
+TRACE STRING : DeRegistration Req Recvd from App
+TRACE STRING : DeRegistration Req Recvd from App
+TRACE STRING : SIP Message PDUSIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.10.100.64:5060;branch=z9hG4bK1854320970-32115
+From: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=AricentUA_1665189920-32115
+To: 1251401@10.10.100.64<sip:1251401@10.10.100.64>;tag=329cfeaa6ded039da25ff8cbb8668bd2.b519
+Call-ID: 1665189538-32115
+CSeq: 123 REGISTER
+Server: OpenSER (1.3.2-notls (i386/linux))
+Content-Length: 0
+
+
+
+
+TRACE STRING : Registration Resp Sent to App
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_CFMbit_mask = 4, line_id = 0, request_type = 4
+result = 1, error_cause = 0
+to.addr_type = 3, to.addr_val.str = 1251401@10.10.100.64
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_REQ
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_CFMbit_mask = 1, line_id = 0, request_type = 0
+result = 0, error_cause = 74
+ Error String = ICF_CAUSE_ONGOING_REGISTRATION 
+to.addr_type = 0, to.addr_val.str = 
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_REQ
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_CFMbit_mask = 1, line_id = 0, request_type = 0
+result = 0, error_cause = 74
+ Error String = ICF_CAUSE_ONGOING_REGISTRATION 
+to.addr_type = 0, to.addr_val.str = 
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_REQ
+}
+
+
+
+TRACE STRING : Application Message
+{
+
+ api name = ICF_REGISTER_CFMbit_mask = 1, line_id = 0, request_type = 0
+result = 0, error_cause = 74
+ Error String = ICF_CAUSE_ONGOING_REGISTRATION 
+to.addr_type = 0, to.addr_val.str = 
+}
+
+

@@ -1,0 +1,1 @@
+config.h.sun4sol26

@@ -1,0 +1,72 @@
+##############################################################################
+# This is the global include file that is included from all the Makefiles in 
+# each SIP Directory 
+##############################################################################
+#
+# Possible Compile Time Flags
+#
+#	SIP_SOLARIS	 			-If compiled in solaris, this must be defined
+#	SIP_LINUX	 			-If compiled in Linux, this must be defined
+#	SIP_DEBUG				-This makes the stack generate a lot of debug
+#							 messages while parsing
+#	SIP_TRACE 				-Enable trace log support
+#	SIP_ERROR 				-Enable error log support
+#	SIP_STATISTICS			-Enable statistics support
+#	SIP_OVERRIDE_SNPRINTF	-Include this macro if your default library does
+#							 not support snprintf() API (eg. SunOS 5.5.1)
+#	SIP_MAX_MSG_SIZE=<val>	-Maximum SIP message size allocated by the stack
+#							 when forming outgoing messages.
+#							 (default 3000)
+#	SIP_NO_CHECK			-Specifying this macro results in no parameter
+#							 checks performed by accessor APIs. This results
+#							 in a minor performance enhancement
+#	SIP_THREAD_SAFE			-Makes stack thread safe (portlayer mutex
+#							 functions must be ported)
+#	SIP_BY_REFERENCE		-Makes all accessor APIs get/set values by
+#							 reference and not as value. 
+#							-This results in a significant
+#							-performance increase. Specifying this macro also
+#							 adds reference counting to all accessor APIs.
+#	SIP_NO_CALLBACK			-Enabling this flag would mean the stack does not
+#							 call the indicateXXXX callbacks onto
+#							-the client. The stack would still be issuing the
+#							 other callbacks like the timer callbacks.
+#							-This mode is desirable if the user wants to get
+#							 back the decoded message in the same context
+#							-and not in an indicate Callback
+#	SIP_IMPP				- Enable this for Instant Messaging and 
+#							  Presence support
+#	SIP_LOCKEDREFCOUNT		- Use this flag in along with the SIP_THREAD_SAFE
+#							  option to use mutex locks around reference count
+#							  operations. This option incurs the overhead
+#							  of one mutex for every microSIP stack structure
+#							  instance.
+#	SIP_INCREMENTAL_PARSING	- Use this flag to enable the code for incremental parsing.
+#	SIP_BADMESSAGE_PARSING	- Use this flag to enable bad message parsing.
+#							  The run-time option SIP_OPT_BADMESSAGE must
+#							  also be enabled.
+#   SIP_MSGBUFFER_CHECK     - Use this flag to check for buffer overflow
+#                             before anything is written into a character buffer
+#							  
+						  
+PURIFY=/opt/pure/releases/PurifyPlusFamily.2003.06.00/sun4_solaris2/bin/purify -best-effort -inuse_at_exit=yes -cache-dir=/user1/sipuser1/purifycache -threads=yes -use-internal-locks=yes -max_threads=40 -chain-length="30" -mt_safe_malloc=yes
+PURIFY=
+
+#Test includes directory
+TESTINCLUDES=-Isiplib/parser/h 				-Isiplib/accessor/h 				-Isiplib/common/h
+
+#Archiver to use
+AR=$(ICF_AR) $(ICF_AR_FLAGS)
+
+#Compiler to use
+#CC=gcc
+#PURIFYCC=${PURIFY} ${CC}
+PURIFYCC=$(CC_CMN)
+
+#Flags for compilation
+CFLAGS+= -DICF_STACK_PORT -D_GNU_SOURCE -DSIP_3GPP -DSIP_CONGEST -DSIP_PRES -USIP_THREAD_SAFE -USIP_LOCKEDREFCOUNT -DSIP_3GPP -DSIP_BADMESSAGE_PARSING -DANSI_PROTO -DSIP_LINUX -D_REENTRANT -DSIP_BY_REFERENCE -DSIP_TXN_LAYER -DSIP_RPR -DSIP_NO_CALLBACK -DSIP_IMPP -DSIP_TEL  -DSIP_SESSIONTIMER  -DSIP_CLONE -DSIP_ACC -DSIP_TRACE -DSIP_OVERRIDE_SNPRINTF -DSIP_REFER  -DSIP_REPLACES  -DSIP_AUTHENTICATE  -DSIP_MIME_PARSING  -DSIP_ISUP  -DSIP_SIPMSGBODY  -DSIP_IMURL  -DSIP_CORE_STACK_COMPATIBLE -DSIP_TIMESTAMP -DSIP_DATE -DSIP_MSGBUFFER_CHECK  -Wall -Wimplicit -Wmissing-prototypes                  -Wcomment -Waggregate-return                 -Wmissing-declarations -Wreturn-type                 -Wparentheses -Wpointer-arith                 -fno-builtin -fno-inline-functions                 -fsigned-char -pipe -Wstrict-prototypes                 -Wno-format -W -fcond-mismatch -Wnested-externs                 -Wswitch -O2  
+
+#linker options to use
+LDFLAGS=-Llib/ -lnsl -lpthread
+
+

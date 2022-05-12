@@ -1,0 +1,28 @@
+/*@import url("reset.css");*/
+/* Lan----------------------------------*/ 
+#vdCenter .vdFrame {position:relative;width:447px;height:170px;margin:0 auto;color:#FFFFFF;background:url(../images/i_vd.gif) no-repeat;margin-top:20px;}
+#vdCenter .lanFrame {position:absolute;top:107px;left:58px;width:148px; height:29px;}
+#vdCenter .lanFrame ul li {display:block;text-align:center;width:35px;height:29px;position:relative;margin:0;padding:0;float:right;margin-right:-2px;}
+#vdCenter .lan_on {background:url(../images/earthnet.gif) -1px 0 no-repeat;display:block;width:35px;height:29px;margin:0;padding:0;}
+#vdCenter .wifiSignal_off {background:url(../images/i_wifi_off.gif) no-repeat;width:40px;height:38px;position:absolute;left:412px;top:20px;}
+#vdCenter .wifiSignal_on {background:url(../images/i_wifi_on.gif) no-repeat;width:40px;height:38px;position:absolute;left:412px;top:20px;}
+#vdCenter .wan_on {background:url(../images/wan.gif) -1px 0 no-repeat;display:block;width:35px;height:29px;position:absolute;left:221px;top:107px;}
+#vdCenter .dslline_on {background:url(../images/i_dsl.gif) no-repeat;display:block;width:25px;height:29px;position:absolute;left:32px;top:107px;}
+#vdCenter .usb_on {background:url(../images/usb.gif) no-repeat;width:17px;height:30px;position:absolute;left:269px;top:106px;}
+
+.off .dslname{ display:none;}
+.dslline_on .dslname{ position:relative; top:70px;  left:0;text-align:center;}
+.off .wanname{ display:none;}
+.wan_on .wanname{ position:relative; top:70px;  left:0;text-align:center;}
+.off .usbname{ display:none;}
+.usb_on .usbname{ position:relative; top:70px;  left:-4px;}
+.lan_on .lanname1{position:relative; top:70px;  left:0;}
+.off .lanname1{display:none;}
+.lan_on .lanname2{position:relative; top:70px;  left:0;}
+.off .lanname2{display:none;}
+.lan_on .lanname3{position:relative; top:70px;  left:0;}
+.off .lanname3{display:none;}
+.lan_on .lanname4{position:relative; top:70px;  left:0;}
+.off .lanname4{display:none;}
+.wifiSignal_on .wifiSignalname{position:relative; top:10px;  left:42px;}
+.wifiSignal_off .wifiSignalname{display:none;}

@@ -1,0 +1,61 @@
+#***************************************************************************************
+#               Makefile for core module of sample program 
+#
+#
+#
+#        DATE               NAME            REFERENCE        REASON
+#        ----               ----            ---------        ------
+#        07/12/2007   	    Amit Sikka                       Initial Creation
+#
+#        Copyright (c) 2007 Aricent Inc . All Rights Reserved
+#
+#***************************************************************************************
+
+INC_MK			=       ../../../port/build/make/linux
+
+include                 $(INC_MK)/makefile.mk
+
+IPTKAPP_CORE_BASE			=	..$(IPTKAPP_SLASH)..
+IPTKAPP_CORE_SRC		=	$(IPTKAPP_CORE_BASE)$(IPTKAPP_SLASH)src
+
+IPTKAPP_CORE_OBJ_FILES		=	iptkapp_core_cli_intf.o\
+					iptkapp_core_fsm.o\
+					iptkapp_core_log.o\
+					iptkapp_core_fsm_intf.o\
+					iptkapp_core_fill_call_api.o
+
+IPTKAPP_CORE_SRC_FILES	=	$(IPTKAPP_CORE_SRC)$(IPTKAPP_SLASH)iptkapp_core_cli_intf.c\
+				$(IPTKAPP_CORE_SRC)$(IPTKAPP_SLASH)iptkapp_core_fsm.c\
+				$(IPTKAPP_CORE_SRC)$(IPTKAPP_SLASH)iptkapp_core_log.c\
+				$(IPTKAPP_CORE_SRC)$(IPTKAPP_SLASH)iptkapp_core_fsm_intf.c\
+				$(IPTKAPP_CORE_SRC)$(IPTKAPP_SLASH)iptkapp_core_fill_call_api.c
+
+IPTKAPP_CORE_INCLUDES		=	-I$(IPTKAPP_CORE_BASE)$(IPTKAPP_SLASH)h \
+				-I$(IPTKAPP_CFG_BASE)$(IPTKAPP_SLASH)h -I$(IPTKAPP_PORT_BASE)$(IPTKAPP_SLASH)h \
+				-I$(ICF_BASE)$(IPTKAPP_SLASH)ext_if
+
+
+#***************************************
+#**Compiling CORE elements
+#***************************************
+ifeq ($(MAKE_DEPEND),YES)
+all		:	depend	$(IPTKAPP_CORE_LIB_A)
+else
+all		:	$(IPTKAPP_CORE_LIB_A)
+endif
+
+$(IPTKAPP_CORE_LIB_A):	$(IPTKAPP_CORE_OBJ_FILES)
+			$(LIB) $(IPTKAPP_CORE_LIB_A)  $(IPTKAPP_CORE_OBJ_FILES)
+			$(CP) $(IPTKAPP_CORE_LIB_A) $(LIB_OS)
+
+%.o: $(IPTKAPP_CORE_SRC)$(IPTKAPP_SLASH)%.c
+	$(CC) $(INCLUDE) $(IPTKAPP_CORE_INCLUDES) $(IPTKAPP_COMMON_INCLUDES) $(CFLAGS_CMN) -c $< -o $@
+
+depend.$(CPU).core:
+	$(CC) -M $(INCLUDE) $(IPTKAPP_CORE_INCLUDES) $(IPTKAPP_COMMON_INCLUDES) $(CFLAGS_CMN) $(IPTKAPP_CORE_SRC_FILES) > depend.$(CPU).core
+
+include depend.$(CPU).core
+clean_all:
+			$(RM) $(IPTKAPP_CORE_LIB_A) $(IPTKAPP_CORE_OBJ_FILES) $(LIB_OS_IPTKAPP_CORE_LIB_A)
+depend:
+	$(CC) -M $(INCLUDE) $(IPTKAPP_CORE_INCLUDES) $(IPTKAPP_COMMON_INCLUDES) $(CFLAGS_CMN) $(IPTKAPP_CORE_SRC_FILES) > depend.$(CPU).core
