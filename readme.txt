@@ -1,4 +1,5 @@
 Read:
+
 ---
 https://oldwiki.archive.openwrt.org/toh/zyxel/zyxel_p8702n or doc/
 https://forum.archive.openwrt.org/viewtopic.php?id=51212
@@ -29,7 +30,18 @@ is 100AAJX14D0.bin , to flash this, older, or different firmwares the router nee
 in a special mode, i'll get the techincal details later, but it involves holding the 'reset'
 button untill a light blinks red, set a static ip via ethernet cable to i believe 192.160.1.x
 and connect to 192.168.1.1. This should be in the linked documentation above.
---
+---
+
+Unlock Bootloader:
+
+*Nix:
+Compile zynpass to generate bootloader unlock key - Thanks mr. goldyfruit!
+gcc zynpass.c -o zynpass
+./zynpass 00044320D52F
+
+Windows - Untested:
+doc/jstic.com/Newsgroup/Zyxel/ZynPass.zip is a windows version from 2012:
+---
 
 Serial connection:
 < I'll provice pictures or something and pinouts to connect >
@@ -46,10 +58,6 @@ OK
 CFE> ATEN 1 820FFBDD
 
 OK
-
-Compile zynpass to generate bootloader unlock key - Thanks mr. goldyfruit!
-gcc zynpass.c
-./a.out 00044320D52F
 
 *** command status = 0
 CFE> ATHE
