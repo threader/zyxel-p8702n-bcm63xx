@@ -53,4 +53,7 @@ gcc zynpass.c
 
 *** command status = 0
 CFE> ATHE
+
+OPTIONAL: Make FS writeable (I believe, I read the documentation at the time but found this in a log)
+CFE> ATBT 1
 <snip>
