@@ -30,6 +30,16 @@ is 100AAJX14D0.bin , to flash this, older, or different firmwares the router nee
 in a special mode, i'll get the techincal details later, but it involves holding the 'reset'
 button untill a light blinks red, set a static ip via ethernet cable to i believe 192.160.1.x
 and connect to 192.168.1.1. This should be in the linked documentation above.
+
+To force flash firmware:
+from zyxel-p8702n-bcm63xx/doc/bcm963xx_bootloader_appnote.pdf :
+"
+1. Press and hold the reset button until the “DSL” LED goes on. It will take about 8 seconds.
+2. Configure a PC Ethernet connection with a static IP address on subnet 192.168.1.x.
+3. Open a Web browser to IP address 192.168.1.1. The following screen will appear.
+"
+To flash  a non locked Telenor firmwre, select zyxel-p8702n-bcm63xx/firmware/p8702/100AAJX14D0.bin
+
 ---
 
 Unlock Bootloader:
