@@ -43,35 +43,48 @@ To flash a non Telenor WAN locked firmwre, you can now select:
 
 ---
 
-Unlock Bootloader:
-<TODO: Explain this better>
-*Nix:
-Compile zynpass to generate bootloader unlock key - Thanks mr. goldyfruit!
-gcc zynpass.c -o zynpass
-./zynpass 00044320D52F
 
-Windows - Untested:
-doc/jstic.com/Newsgroup/Zyxel/ZynPass.zip is a windows version from 2012:
 ---
+A bit of copy-paste from zyxel-p8702n-bcm63xx/doc/oldwiki.archive.openwrt.org/toh/zyxel/zyxel_p8702n.html: 
 
 Serial connection:
+
 < I'll provice pictures or something and pinouts to connect >
+
 Connect via ttl serial - ie. 'cu -l /dev/ttyUSB0 -s 115200' or putty
 
+To show a list of commands:
 CFE> ATHE
 <snip>
+In true ZyXEL style, you now need to generate a seed for the bootloader password generator.
 CFE> ATSE DSL-2492GNAU-B3BC
 
 00044320D52F
 OK
 *** command status = 0
+---
+Unlock Bootloader:
+<TODO: Explain this better>
+
+*Nix:
+Compile zynpass to generate bootloader unlock key - Thanks mr. goldyfruit!
+
+gcc zynpass.c -o zynpass
+./zynpass 00044320D52F
+
+Windows - Untested:
+doc/jstic.com/Newsgroup/Zyxel/ZynPass.zip is a windows version from 2012:
+
+This will output the next input
+---
 
 CFE> ATEN 1 820FFBDD
 
 OK
 
 *** command status = 0
-CFE> ATHE
+
+Now the bootloader is unlocked.
 
 OPTIONAL: Make FS writeable (I believe, I read the documentation at the time but found this in a log)
 CFE> ATBT 1
