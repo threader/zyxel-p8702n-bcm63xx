@@ -38,12 +38,13 @@ from zyxel-p8702n-bcm63xx/doc/bcm963xx_bootloader_appnote.pdf :
 2. Configure a PC Ethernet connection with a static IP address on subnet 192.168.1.x.
 3. Open a Web browser to IP address 192.168.1.1. The following screen will appear.
 "
-To flash  a non locked Telenor firmwre, select zyxel-p8702n-bcm63xx/firmware/p8702/100AAJX14D0.bin
+To flash a non Telenor WAN locked firmwre, you can now select:
+'zyxel-p8702n-bcm63xx/firmware/p8702/100AAJX14D0.bin'
 
 ---
 
 Unlock Bootloader:
-
+<TODO: Explain this better>
 *Nix:
 Compile zynpass to generate bootloader unlock key - Thanks mr. goldyfruit!
 gcc zynpass.c -o zynpass
