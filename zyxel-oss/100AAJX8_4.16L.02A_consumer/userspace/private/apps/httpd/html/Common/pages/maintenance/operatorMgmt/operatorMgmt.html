@@ -1,0 +1,73 @@
+<script language="javascript">
+<!-- hide
+var elEnableConfig = '<%ejGet(EnableConfigAccount)%>';
+function frmLoad()
+{
+	if(elEnableConfig == '0')
+		document.forms[0].EnableConfig.checked = false;
+	else
+		document.forms[0].EnableConfig.checked = true;
+	parent.$.closeLoadingMask();
+}
+
+function btnApply(){
+	with(document.forms[0]) {
+		if(EnableConfig.checked == true){
+			EnableConfigAccount.value=1;
+      }
+		else{
+			EnableConfigAccount.value=0;
+			}
+	}
+   parent.$.openLoadingMask(1);
+	document.operatorMgmtFrom.submit();
+}
+
+function btnCancel(){
+	frmLoad();
+}
+
+$(document).ready(function() {
+   frmLoad();
+});
+// done hiding -->
+
+</script>   
+<body>
+<form  id="operatorMgmtFrom" name="operatorMgmtFrom" method="post" action="/pages/tabFW/operatorMgmt-operatorMgmt.cgi" >
+<input type="hidden" name="sessionKey" id="sessionKey" value="<%ejGetOther(sessionKey)%>">	
+<div class="content_frame" >
+<!--Unit Explain start-->
+<div class="explain">
+      <div><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div>
+      <div class="explain_text"><%ejGetML(MLG_Maintenance_OperatorManagement_ExplainText)%></div>
+      <div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div>
+   </div>
+<!--Unit Explain End-->
+<!--Set area start-->
+<div class="data_frame"><ul>
+<li class="set1">
+<div class="w_text">
+<ul>
+<li>
+<input type="checkbox" name="EnableConfig" value="1" >&nbsp; <%ejGetML(MLG_Maintenance_AccountControlStr)%>   
+<input size="15" type="hidden" name="EnableConfigAccount" />          
+</li>
+</ul>
+</div>
+</li>
+<li class="space"></li>
+            <li class="buttonframe">
+			<div class="button_position">
+			<input name="sysSubmit" value='<%ejGetML(MLG_Maintenance_Apply_Btn)%>' type="button" onClick="btnApply();" />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+			<input name="Cancel" value='<%ejGetML(MLG_Maintenance_Cancel_Btn)%>' type="reset" onclick='frmLoad();' />
+               </div>
+            </li>
+</ul></div>
+<!--Set area end-->
+</div>
+<br/><br/>
+</form>
+</body>
+</html>
+<!-- #ENDZONE form_operatorMgmt_zone -->

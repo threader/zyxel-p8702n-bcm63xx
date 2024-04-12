@@ -1,0 +1,97 @@
+<script type='text/javascript'>
+/*   
+    $(function(){
+        $('input[name="sysSubmit"]').click(function(){
+           window.parent.$.openLoadingMask(2);
+           
+           //close loading mask by calling window.parent.$.closeLoadingMask();
+           setTimeout(function(){ window.parent.$.closeLoadingMask();}, 2000);
+        });
+    });*/
+</script>
+<script language="javascript">
+var sessionKey='<%ejGetOther(sessionKey)%>';
+var upprocess = '<%ejGet(UpdateProcess)%>';
+var voiceRunning='<%ejGetVoice(voiceInUse)%>';
+
+function btnReset() {
+	var loc = '/pages/tabFW/reboot-rebootinfo.cgi?';
+	loc += 'sessionKey=' + sessionKey;
+	var code = 'location="' + loc + '"';
+	$.openLoadingMask(1);
+//	window.parent.$.openLoadingMask(2);
+	eval(code);
+}
+
+function reboot() {
+	var loc = '/login/login.html';
+	var code = 'window.top.location="' + loc + '"';
+	eval(code);
+}
+
+function BackgroundUrl(url)
+{
+	var objXMLHTTP = null;
+
+	if (window.XMLHttpRequest){
+		objXMLHTTP=new XMLHttpRequest();
+	}// code for IE
+	else if (window.ActiveXObject){
+		objXMLHTTP=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	else{
+		alert("The browser no support XMLHttp Object");
+		return;
+	}
+
+	if ( objXMLHTTP != null ){
+		objXMLHTTP.open("GET","./"+url,true);
+		objXMLHTTP.onreadystatechange = function()
+		{
+		}
+		objXMLHTTP.send(null);
+	}
+}
+
+function frmLoad () {
+
+	if( parseInt(voiceRunning) == 1 ){
+		alert("VoIP is in use, reboot will take effect after the end of the call\n");
+	}		
+
+	if (upprocess == '2') {
+		setTimeout("$.openLoadingMask(2)", 1500);
+		setTimeout("BackgroundUrl('reboot-rebootpost.cgi')", 1500);
+		setTimeout('reboot()', 150000);
+	}
+}
+
+$(document).ready(function() {
+  frmLoad();
+});
+</script>
+<div class="content_frame" >
+<!--Unit Explain start-->
+<div class="explain">
+<div><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div>
+<div class="explain_text"><%ejGetML(MLG_Maintenance_Reboot_Str1)%></div>
+<div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div></div>
+<!--Unit Explain End-->
+<!--Set area start-->
+<div class="data_frame">
+<ul><li class="set1">
+<div class="w_text">
+                        <ul>
+                           <li class="left_table"><%ejGetML(MLG_Maintenance_Reboot_Str2)%> :</li>
+                           <li class="right_table">
+                              <span class="none_right"><input name="sysSubmit" value="<%ejGetML(MLG_Maintenance_Reboot_Btn1)%>" type="button" onClick='btnReset()'/></span></li>
+                        </ul>
+                     </div></li>
+</ul>
+</div>
+<!--Set area end-->
+
+<br />
+<br />
+</ul>
+</div>

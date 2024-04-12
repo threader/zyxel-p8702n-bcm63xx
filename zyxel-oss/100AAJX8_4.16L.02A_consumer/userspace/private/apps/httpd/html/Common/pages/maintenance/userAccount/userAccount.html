@@ -1,0 +1,135 @@
+<script language='javascript'>
+<!-- hide
+var gblsessionKey = "<%ejGetOther(sessionKey)%>";
+var errMsg = "<%ejGetOther(errMsg)%>";
+var curUserName = "<%ejGet(curUserName)%>";
+var curLevel = "<%ejGet(curLevel)%>";
+var forEircom  = '<%ejGetOther(sysInfo, forEircom)%>';
+var localAdmin= "<%ejGet(localAdminCheck)%>";
+
+function btnApply(){
+    with ( document.forms[0] ) {
+      if(AuthPasswordVerify.value != ChangedAuthPasswd.value)
+      {
+         $("#Message").html("<font color='#FF0000'><%ejGetML(MLG_Maintenance_LogsSetting_AlertMsg_Str17)%></font>");
+         return;
+      }
+	  if(localAdminCheck.checked==true)
+	  {
+	  	localAdminCheck.value=1;
+	  }
+	  else
+	  {
+	  	localAdminCheck.value=0;
+	  }
+      userName.value = uName.value;
+      action.value="edit";
+      sessionKey.value = gblsessionKey;
+      $.openLoadingMask(1);
+      submit();
+   }
+}
+
+function frmLoad()
+{
+   with ( document.forms[0] ) {
+      uName.value = curUserName;
+      oldpassword.value = "";
+      ChangedAuthPasswd.value = "";
+      AuthPasswordVerify.value = "";
+
+      if (forEircom == 1 ){
+            $('#localAdmin').fadeIn(0);
+			if(localAdmin==1)
+			{
+				localAdminCheck.checked=true;
+			}
+			else
+			{
+				localAdminCheck.checked=false;
+			}
+			
+      }else{	
+            $('#localAdmin').fadeOut(0);		
+      }
+   }
+}
+
+$(document).ready(function() {
+   frmLoad();
+   if (errMsg)
+   {
+      $("#Message").html("<font color='#FF0000'>"+errMsg+"</font>");
+      return;
+   }
+});
+// done hiding -->
+</script>
+<form method="post" action="/pages/tabFW/userAccount-cfg.cmd">
+<input type="hidden" name="action" id="action">
+<input type="hidden" name="userName" id="userName">
+<input name="sessionKey" type="hidden" id="sessionKey"/>
+   <div class="content_frame" >
+      <!--Unit Explain start-->
+      <div class="explain">
+         <div><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div>
+         <div class="explain_text"><%ejGetML(MLG_Maintenance_UserAccount_Explain)%></div>
+         <div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div>
+      </div>
+      <!--Unit Explain End-->
+      <!--Set area start-->
+      <div class="data_frame">
+         <ul>
+            <li class="set1">
+               <div class="w_text">
+                  <ul>
+                     <li class="left_table"><%ejGetML(MLG_Maintenance_LogsSetting_Str20)%>  : </li>
+                     <li class="right_table">
+                        <input disabled="disabled" size="15" name="uName" />
+                     </li>
+                  </ul>
+                  <ul>
+                     <li class="left_table"><%ejGetML(MLG_Maintenance_LogsSetting_Old_Pwd)%>   : </li>
+                     <li class="right_table">
+                        <input name="oldpassword" type="password" size="30" maxlength="256"/>
+                     </li>
+                  </ul>
+                  <ul>
+                     <li class="left_table"><%ejGetML(MLG_Maintenance_LogsSetting_New_Pwd)%>  : </li>
+                     <li class="right_table">
+                        <input name="ChangedAuthPasswd" type="password" size="30" maxlength="256" />
+                     </li>
+                  </ul>
+                  <ul>
+                     <li class="left_table"><%ejGetML(MLG_Maintenance_LogsSetting_Pwd_Confirm)%>  : </li>
+                     <li class="right_table">
+                        <input name="AuthPasswordVerify" type="password" size="30" maxlength="256">
+                     </li>
+                  </ul>
+                  <ul id="localAdmin" style="display:none;">
+                     <li class="left_table" ><%ejGetML(MLG_Maintenance_Enable_Local_Admin)%>:</li>
+                     <li class="right_table">
+                     <input name='localAdminCheck' type='checkbox'/></li>
+                  </ul>
+                  <label id="Message"></label>
+               </div>
+            </li>
+            <li class="space"></li>
+            <li class="buttonframe">
+               <div class="button_position">
+                  <input name="sysSubmit" value=<%ejGetML(MLG_Maintenance_Apply_Btn)%> type="button" onclick="btnApply();" />
+                     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                  <input name="Cancel" value=<%ejGetML(MLG_Maintenance_Cancel_Btn)%> type="button" onclick='frmLoad();' />
+               </div>
+            </li>
+            <li class="space"> </li>
+            <li class="noteframe"> <div class="w_text"><span class="i_note"><%ejGetML(MLG_Common_Note)%>:</span></div>
+               <div class="note_text" id="usernamesecurityid">&nbsp;&nbsp;* <%ejGetML(MLG_Maintenance_LogsSetting_AlertMsg_Str13)%></div>
+               <div class="note_text" id="usernamesecurityid">&nbsp;&nbsp;* <%ejGetML(MLG_Maintenance_LogsSetting_AlertMsg_Str14)%></div>
+               <div class="note_text" id="usernamesecurityid">&nbsp;&nbsp;* <%ejGetML(MLG_Maintenance_LogsSetting_AlertMsg_Str15)%></div>
+            </li>
+         </ul>
+      </div>
+      <!--Set area end-->
+   </div>
+</form>

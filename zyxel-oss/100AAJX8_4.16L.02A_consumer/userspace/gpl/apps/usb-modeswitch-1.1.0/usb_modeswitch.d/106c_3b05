@@ -1,0 +1,12 @@
+########################################################
+# Pantech UMW190NCD (distributor "Verizon")
+
+DefaultVendor= 0x106c
+DefaultProduct=0x3b05
+
+TargetVendor=  0x106c
+TargetProduct= 0x3716
+
+CheckSuccess=20
+
+MessageContent="55534243b82e238c24000000800008ff020000000000000000000000000000"

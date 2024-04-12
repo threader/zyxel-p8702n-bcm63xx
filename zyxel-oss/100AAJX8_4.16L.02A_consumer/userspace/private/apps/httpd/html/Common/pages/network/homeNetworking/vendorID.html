@@ -1,0 +1,197 @@
+<script language="javascript">
+<!-- hide
+
+function frmLoad()
+{
+	var vendorID = "<%ejGet(STBVendorID)%>";		
+	var tempStr = vendorID.split(',');
+		
+	for (i = 1; i <= 5; i++)
+	{
+	  if (tempStr[i-1] != '')
+		  $("#vendorid"+i).attr("value", tempStr[i-1]);
+        else
+		  $("#vendorid"+i).attr("value", '');			 
+	}
+
+	var errMsg = "<%ejGetOther(errMsg)%>";
+	if (errMsg != '')
+	{
+		hciAlert(errMsg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+	}
+}
+
+
+function isDuplicatedRecord(idx){
+   with ( document.forms[0] ) {	
+
+		if ($("#vendorid"+idx).attr("value") == '')
+			return false;
+		for (i = 1; i <= 5; i++)
+		{
+			if (i == idx)
+			{
+				continue;
+			}			
+			
+			if ($("#vendorid"+i).attr("value") == $("#vendorid"+idx).attr("value")){
+				return true;
+			}
+		}		
+		return false;
+   }
+}
+
+function btnSave() {
+   with ( document.forms[0] ) {
+   {			
+		if (isDuplicatedRecord('1') == true) {
+            msg = MLG_Makestring("<%ejGetML(MLG_Network_STBVendorID_AlertMsg_Str1)%>", vendorid1.value );
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+            return;
+        } 
+		
+		if (isDuplicatedRecord('2') == true) {
+            msg = MLG_Makestring("<%ejGetML(MLG_Network_STBVendorID_AlertMsg_Str1)%>", vendorid2.value );
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+			return;
+        } 
+		
+		if (isDuplicatedRecord('3') == true) {
+            msg = MLG_Makestring("<%ejGetML(MLG_Network_STBVendorID_AlertMsg_Str1)%>", vendorid3.value );
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+            return;
+        } 		
+
+		if (isDuplicatedRecord('4') == true) {
+            msg = MLG_Makestring("<%ejGetML(MLG_Network_STBVendorID_AlertMsg_Str1)%>", vendorid4.value );
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+            return;
+        } 
+		
+		if (isDuplicatedRecord('5') == true) {
+            msg = MLG_Makestring("<%ejGetML(MLG_Network_STBVendorID_AlertMsg_Str1)%>", vendorid5.value );
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+            return;
+        }
+
+		
+		if (isValidHostName(vendorid1.value) == false) {
+            msg = MLG_Makestring("<%ejGetML(MLG_Network_STBVendorID_AlertMsg_Str2)%>", vendorid1.value );
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+            return;
+        } 
+		
+		if (isValidHostName(vendorid2.value) == false) {
+            msg = MLG_Makestring("<%ejGetML(MLG_Network_STBVendorID_AlertMsg_Str2)%>", vendorid2.value );
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+            return;
+        } 
+		
+		if (isValidHostName(vendorid3.value) == false) {
+            msg = MLG_Makestring("<%ejGetML(MLG_Network_STBVendorID_AlertMsg_Str2)%>", vendorid3.value );
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+            return;
+        } 	
+
+		if (isValidHostName(vendorid4.value) == false) {
+            msg = MLG_Makestring("<%ejGetML(MLG_Network_STBVendorID_AlertMsg_Str2)%>", vendorid4.value );
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+            return;
+        } 
+		
+		if (isValidHostName(vendorid5.value) == false) {
+            msg = MLG_Makestring("<%ejGetML(MLG_Network_STBVendorID_AlertMsg_Str2)%>", vendorid5.value );
+			hciAlert(msg, {height: 180,type: 2, title: '<%ejGetML(MLG_Common_Error)%>'});
+            return;
+        } 
+
+		if (vendorid1.value != '')
+			STBVendorID.value += vendorid1.value + ',';
+		if (vendorid2.value != '')
+			STBVendorID.value += vendorid2.value + ',';
+		if (vendorid3.value != '')
+			STBVendorID.value += vendorid3.value + ',';			
+		if (vendorid4.value != '')
+			STBVendorID.value += vendorid4.value + ',';			
+		if (vendorid5.value != '')
+			STBVendorID.value += vendorid5.value + ',';
+
+		//strip the last ','
+		STBVendorID.value = STBVendorID.value.toString().substring(0,STBVendorID.value.toString().length - 1);
+ 		submit();
+
+        	$.openLoadingMask(1);
+         	return;
+      }
+   }
+}
+
+$(document).ready(function() {
+	frmLoad();
+});
+
+//hiding done-->	
+</script>
+
+<form action="/pages/tabFW/homeNetworking-vendorID.cgi" method="post">
+<input name="sessionKey" type="HIDDEN" id="sessionKey" value="<%ejGetOther(sessionKey)%>" />
+<input name="STBVendorID" type="HIDDEN" id="STBVendorID" value="" />
+<div class="content_frame" >
+<!--Unit Explain start-->
+<div class="explain">
+<div><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div>
+<div class="explain_text"><%ejGetML(MLG_Network_VendorID_Explain)%></div>
+<div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div></div>
+<!--Unit Explain End-->
+<!--Set area start-->
+<div class="data_frame"><ul>
+<!--level 1 start-->
+<li class="set1"> 
+<div class="w_text"><%ejGetML(MLG_Network_STBVendorID_Str2)%></div>
+<div class="w_text">
+  <ul>
+    <li class="left_table"><%ejGetML(MLG_Network_STBVendorID_Str6)%> 1:</li>
+    <li class="right_table">
+		<input type='text' id='vendorid1' name='vendorid1' size="32" maxlength="64">
+	</li>
+  </ul>
+  <ul>
+    <li class="left_table"><%ejGetML(MLG_Network_STBVendorID_Str6)%> 2:</li>
+    <li class="right_table">
+		<input type='text' id='vendorid2' name='vendorid2' size="32" maxlength="64">
+	</li>
+  </ul>
+  <ul>
+    <li class="left_table"><%ejGetML(MLG_Network_STBVendorID_Str6)%> 3:</li>
+    <li class="right_table">
+		<input type='text' id='vendorid3' name='vendorid3' size="32" maxlength="64">
+	</li>
+  </ul>
+  <ul>
+    <li class="left_table"><%ejGetML(MLG_Network_STBVendorID_Str6)%> 4:</li>
+    <li class="right_table">
+		<input type='text' id='vendorid4' name='vendorid4' size="32" maxlength="64">
+	</li>
+  </ul>
+  <ul>
+    <li class="left_table"><%ejGetML(MLG_Network_STBVendorID_Str6)%> 5:</li>
+    <li class="right_table">
+		<input type='text' id='vendorid5' name='vendorid5' size="32" maxlength="64">
+	</li>
+  </ul>  
+</div>
+</li>
+<li class="space"> </li>
+<li class="buttonframe"><div class="button_position"><input name="sysSubmit" value="<%ejGetML(MLG_Common_Apply)%>" type="button" onClick="btnSave()" />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<input name="Cancel" value="<%ejGetML(MLG_Common_Cancel)%>" type="button" onClick="frmLoad()" /></div></li>
+
+</ul></div>
+<!--Set area end-->
+</div>
+</form>
+
+<script language="JavaScript">
+with ( document.forms[0] ) {
+   vendorid1.focus();
+}
+</script>

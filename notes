@@ -1,0 +1,15 @@
+Makefile:
+kernel_clean: sanity_check
+	-$(MAKE) -C $(KERNEL_DIR) mrproper
+	rm -f $(KERNEL_DIR)/arch/mips/defconfig
+useerspace/public/libs/Makefile;
+
+#__MSTC__, TengChang, for ProFTPD with SFTP
+openssl: sanity_check
+	(tar xkfj openssl.tar.bz2 2> /dev/null || true)
+	$(MAKE) -j 1 -C openssl all
+	$(MAKE) -j 1 -C openssl install
+
+zlib-1.2.7: sanity_check
+	$(MAKE) -C zlib-1.2.7
+	$(MAKE) -C zlib-1.2.7 install

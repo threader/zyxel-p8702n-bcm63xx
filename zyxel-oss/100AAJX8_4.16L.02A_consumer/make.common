@@ -1,0 +1,3148 @@
+#***********************************************************************
+#
+#  Copyright (c) 2006  Broadcom Corporation
+#  All Rights Reserved
+#
+#***********************************************************************/
+
+#
+# This makefile is included by most of the lower level makefiles
+# to suck in the common defines.
+#
+
+#
+# version.make has the 4.0.0 version number,
+# each directory must set depth appropriately
+#
+include $(BUILD_DIR)/version.make
+
+BRCM_RELEASETAG=$(BRCM_VERSION).$(BRCM_RELEASE)L.$(BRCM_EXTRAVERSION)
+
+###########################################
+# Define build environment (profile and
+# toolchain)
+#
+###########################################
+
+TARGETS_DIR := $(BUILD_DIR)/targets
+INC_KERNEL_BASE := $(BUILD_DIR)/kernel
+
+#
+# If we don't define a PROFILE, try to figure out what the last profile
+# was and use that.
+#
+ifneq ($(MAKECMDGOALS), menuconfig)
+
+ifneq ($(MAKECMDGOALS), distclean)
+ifneq ($(MAKECMDGOALS), cleanall)
+ifneq ($(MAKECMDGOALS), binaryonly_dist_clean)
+
+LAST_PROFILE_COOKIE := $(BUILD_DIR)/.last_profile
+LAST_PROFILE        := $(strip $(shell cat $(LAST_PROFILE_COOKIE) 2>/dev/null))
+ifeq ($(strip $(PROFILE)),)
+PROFILE=$(LAST_PROFILE)
+export PROFILE
+endif #PROFILE
+
+endif #binaryonly_dist_clean
+endif #cleanall
+endif #distclean
+
+
+ifneq ($(strip $(PROFILE)),)
+
+PROFILE_DIR   := $(TARGETS_DIR)/$(PROFILE)
+PROFILE_FILE  := $(PROFILE_DIR)/$(PROFILE)
+
+include $(PROFILE_FILE)
+
+#
+# Get Kernel and Toolchain versions based
+# on profile
+#
+
+# --- KERNEL VERSION SPECIFIC INFORMATION:
+
+# for MIPS, big endian, Linux 3.4.0
+DEFAULT_TOOLCHAIN_LINUX_3_4_0_RT_MIPS       := /opt/toolchains/crosstools-mips-gcc-4.6-linux-3.4-uclibc-0.9.32-binutils-2.21
+DEFAULT_TOOLCHAIN_VER_LINUX_3_4_0_RT_MIPS   := 4.6.2
+TOOLCHAIN_PREFIX_LINUX_3_4_0_RT_MIPS        := mips-unknown-linux-uclibc
+TOOLCHAIN_LIBDIR_LINUX_3_4_0_RT_MIPS        := usr/$(TOOLCHAIN_PREFIX_LINUX_3_4_0_RT_MIPS)/sysroot/lib
+TOOLCHAIN_INCDIR_LINUX_3_4_0_RT_MIPS        := usr/$(TOOLCHAIN_PREFIX_LINUX_3_4_0_RT_MIPS)/sysroot/usr/include
+
+# for MIPS, little endian, Linux 3.4.0
+DEFAULT_TOOLCHAIN_LINUX_3_4_0_RT_MIPSEL     := /opt/toolchains/crosstools-mipsel-gcc-4.6-linux-3.4-uclibc-0.9.32-binutils-2.21
+DEFAULT_TOOLCHAIN_VER_LINUX_3_4_0_RT_MIPSEL := 4.6.2
+TOOLCHAIN_PREFIX_LINUX_3_4_0_RT_MIPSEL      := mipsel-unknown-linux-uclibc
+TOOLCHAIN_LIBDIR_LINUX_3_4_0_RT_MIPSEL      := usr/$(TOOLCHAIN_PREFIX_LINUX_3_4_0_RT_MIPSEL)/sysroot/lib
+TOOLCHAIN_INCDIR_LINUX_3_4_0_RT_MIPSEL      := usr/$(TOOLCHAIN_PREFIX_LINUX_3_4_0_RT_MIPSEL)/sysroot/usr/include
+
+# for ARM, Linux 3.4.0
+DEFAULT_TOOLCHAIN_LINUX_3_4_0_RT_ARM        := /opt/toolchains/crosstools-arm-gcc-4.6-linux-3.4-uclibc-0.9.32-binutils-2.21-NPTL
+DEFAULT_TOOLCHAIN_VER_LINUX_3_4_0_RT_ARM    := 4.6.2
+TOOLCHAIN_PREFIX_LINUX_3_4_0_RT_ARM         := arm-unknown-linux-uclibcgnueabi
+TOOLCHAIN_LIBDIR_LINUX_3_4_0_RT_ARM         := usr/$(TOOLCHAIN_PREFIX_LINUX_3_4_0_RT_ARM)/sysroot/lib
+TOOLCHAIN_INCDIR_LINUX_3_4_0_RT_ARM         := usr/$(TOOLCHAIN_PREFIX_LINUX_3_4_0_RT_ARM)/sysroot/usr/include
+
+LINUX_ZIP_FILE_LINUX_3_4_0_RT         := src-linux-3.4.11-rt19.tar.bz2
+LINUX_SUB_DIR_LINUX_3_4_0_RT          := linux-3.4rt
+KERNEL_CHECK_FILE_LINUX_3_4_0_RT      := MAINTAINERS
+LINUX_VER_STR_LINUX_3_4_0_RT          := 3.4.11-rt19
+
+ifeq ($(strip $(PROFILE_ARCH)),mips)
+ARCHCAP := MIPS
+ARCH := mips
+ARCH_ENDIAN := big
+export BRCM_ENDIAN_FLAGS := -b
+else
+ARCH_ENDIAN := little
+export BRCM_ENDIAN_FLAGS := -l
+ifeq ($(strip $(PROFILE_ARCH)),arm)
+ARCHCAP := ARM
+ARCH := arm
+else
+ARCHCAP := MIPSEL
+ARCH := mips
+endif
+endif
+
+# ---
+ifeq ($(PROFILE_KERNEL_VER),)
+$(error KERNEL VERSION not specified in profile $(PROFILE_FILE))
+endif
+
+ifndef TOOLCHAIN_TOP
+TOOLCHAIN_TOP := ${DEFAULT_TOOLCHAIN_${PROFILE_KERNEL_VER}_${ARCHCAP}}
+endif
+
+TOOLCHAIN_VER := ${DEFAULT_TOOLCHAIN_VER_${PROFILE_KERNEL_VER}_${ARCHCAP}}
+TOOLCHAIN_LIBDIR := ${TOOLCHAIN_LIBDIR_${PROFILE_KERNEL_VER}_${ARCHCAP}}
+TOOLCHAIN_PREFIX := ${TOOLCHAIN_PREFIX_${PROFILE_KERNEL_VER}_${ARCHCAP}}
+TOOLCHAIN_INCLUDE_DIR := $(TOOLCHAIN_TOP)/${TOOLCHAIN_INCDIR_${PROFILE_KERNEL_VER}_${ARCHCAP}}
+KERNEL_CHECK_FILE := ${KERNEL_CHECK_FILE_${PROFILE_KERNEL_VER}}
+LINUX_VER_STR := ${LINUX_VER_STR_${PROFILE_KERNEL_VER}}
+
+CONFIG_BCM_KERNEL_CUSTOM:=y
+BCM_KF:=y
+
+LINUX_ZIP_FILE := ${LINUX_ZIP_FILE_${PROFILE_KERNEL_VER}}
+LINUX_SUB_DIR := ${LINUX_SUB_DIR_${PROFILE_KERNEL_VER}}
+
+KERNEL_DIR := $(BUILD_DIR)/kernel/$(LINUX_SUB_DIR)
+KERNEL_LINKS_DIR := $(INC_KERNEL_BASE)
+KERNEL_INCLUDE_LINK_NAME := bcm_local_kernel_include
+KERNEL_MIPS_INCLUDE_LINK_NAME := bcm_local_kernel_mips_include
+KERNEL_ARM_INCLUDE_LINK_NAME := bcm_local_kernel_arm_include
+#KERNEL_GEN_INCLUDE_LINK_NAME := bcm_local_kernel_gen_include
+KERNEL_INCLUDE_LINK := $(KERNEL_LINKS_DIR)/$(KERNEL_INCLUDE_LINK_NAME)
+KERNEL_MIPS_INCLUDE_LINK := $(KERNEL_LINKS_DIR)/$(KERNEL_MIPS_INCLUDE_LINK_NAME)
+KERNEL_ARM_INCLUDE_LINK := $(KERNEL_LINKS_DIR)/$(KERNEL_ARM_INCLUDE_LINK_NAME)
+#KERNEL_GEN_INCLUDE_LINK_NAME := bcm_local_kernel_gen_include
+
+export BRCM_CHIP
+export BRCM_CHIP_WVER
+export BRCM_FLASHPSI_SIZE
+export BRCM_DRIVER_WIRELESS_PCMCIA_DATASWAP BRCM_DRIVER_WIRELESS_EBI_DMA
+export BRCM_DRIVER_USB BRCM_DRIVER_ETHERNET_CONFIG BRCM_DRIVER_GPON BRCM_DRIVER_XTM
+export BRCM_DRIVER_LOG BRCM_GPON_FPGA BRCM_DRIVER_I2C
+export BRCM_DRIVER_PKTFLOW_DEBUG BRCM_DRIVER_PKTFLOW_IPV6 BRCM_DRIVER_PKTFLOW_MCAST
+export BRCM_DRIVER_MoCA_CTP_CANDIDATE BUILD_6802_MOCA MOCA_LAN_DISCONN MOCA_WAN_DISCONN
+export BRCM_DRIVER_ISDN
+export BRCM_DEFAULTCFG
+export BRCM_CERT_FILE
+export BRCM_KERNEL_NF_FIREWALL BRCM_KERNEL_NF_MANGLE BRCM_KERNEL_NF_NAT
+export BRCM_KERNEL_NF_NAT_ALG_FTP BRCM_KERNEL_NF_NAT_ALG_SIP BRCM_KERNEL_NF_NAT_ALG_TFTP BRCM_KERNEL_NF_NAT_ALG_H323 BRCM_KERNEL_NF_NAT_ALG_H323_SIGNAL_PROXY
+export BRCM_KERNEL_NF_NAT_ALG_IRC BRCM_KERNEL_NF_NAT_ALG_WM BRCM_KERNEL_NF_NAT_ALG_PT BRCM_KERNEL_NF_NAT_ALG_PPTP BRCM_KERNEL_NF_NAT_ALG_IPSEC
+export BRCM_KERNEL_NF_NAT_ALG_RTSP BRCM_KERNEL_NF_NAT_ALG_SNMP BRCM_KERNEL_NF_NAT_ALG_TALK
+export BRCM_KERNEL_NF_LAYER7_FILTER
+export BRCM_EXT_SWITCH_TYPE BRCM_EXT_SWITCH_REV
+export BCM_PHY_54616
+export BRCM_BOARD_ID BRCM_NUM_MAC_ADDRESSES BRCM_BASE_MAC_ADDRESS BRCM_PSI_SIZE
+export BUILD_SECURE_BOOT SECURE_BOOT_NUM_BTLDR_IMAGES SECURE_BOOT_NUM_BOOT_BLKS
+export BRCM_AUXFS_PERCENT BRCM_GPON_SERIAL_NUMBER BRCM_GPON_PASSWORD
+export BRCM_VOICE_BOARD_ID BRCM_MAIN_TP_NUM
+export BRCM_DRIVER_FBOND_DEBUG
+export BRCM_SPDSVC_SUPPORT
+
+endif # PROFILE
+endif #menuconfig
+
+###########################################
+# Define Basic Variables
+#
+###########################################
+
+BL_BUILD_DIR=$(BUILD_DIR)/cfe/build/broadcom/bcm63xx_rom
+BRCM_BOARD := bcm963xx
+BRCMDRIVERS_DIR = $(BUILD_DIR)/bcmdrivers
+SWMDK_BASE = mdk
+
+BRCM_CHIP_WVER = $(BRCM_CHIP)$(BRCM_CHIP_VER)
+HOSTTOOLS_DIR = $(BUILD_DIR)/hostTools
+HOSTTOOLS_PERL_LIB = $(HOSTTOOLS_DIR)/PerlLib
+IMAGES_DIR = $(BUILD_DIR)/images
+RELEASE_DIR = $(BUILD_DIR)/release
+TARGETS_DIR = $(BUILD_DIR)/targets
+DEFAULTCFG_DIR = $(TARGETS_DIR)/defaultcfg
+FSSRC_DIR = $(TARGETS_DIR)/fs.src
+CFE_FILE = $(TARGETS_DIR)/cfe/cfe$(BRCM_CHIP_WVER).bin
+#start __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+#CFE_ROM_FILE = $(TARGETS_DIR)/cfe/cfe$(BRCM_CHIP)rom.bin
+# Autumn
+CFE_ROM_FILE = $(TARGETS_DIR)/cfe/cfe$(BRCM_CHIP)rom_Release.bin
+CFE_NAND128_FILE = $(TARGETS_DIR)/cfe/cfe$(BRCM_CHIP)nand128.bin
+CFE_NAND128_FILE_TE = $(TARGETS_DIR)/cfe/cfe$(BRCM_CHIP)nand128_TE.bin
+#end __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+PMC_FILE = $(TARGETS_DIR)/pmc/pmc$(BRCM_CHIP).bin
+
+SHARED_DIR = $(BUILD_DIR)/shared
+CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
+          else if [ -x /bin/bash ]; then echo /bin/bash; \
+          else echo sh; fi ; fi)
+GENDEFCONFIG_CMD = $(HOSTTOOLS_DIR)/scripts/gendefconfig
+
+6510_REF_CODE=$(BUILD_DIR)/userapps/broadcom/6510refCode
+USERSPACE_PUBLIC_LIBS_DIR=$(BUILD_DIR)/userspace/public/libs
+
+KERNEL_DEBUG=0
+KERNEL_KALLSYMS=0
+
+ifdef FORCE
+COND_FAIL:=(echo "NOT FAILING DUE TO FORCE=$(FORCE)";true)
+else #FORCE
+COND_FAIL:=(false)
+endif #else FORCE
+
+#
+# This is for CMS
+# We could put this in the make menuconfig, but it might
+# confuse the users.  For now, we only support one target OS.
+# Everytime we see OALDIR, substitute it with linux
+#
+TARGET_OS = LINUX
+OALDIR = $(subst LINUX,linux,$(strip $(TARGET_OS)))
+
+
+export PROFILE_ARCH BL_BUILD_DIR PROFILE_KERNEL_VER KERNEL_DIR BRCMDRIVERS_DIR \
+       LINUXDIR HOSTTOOLS_DIR IMAGES_DIR TARGETS_DIR DEFAULTCFG_DIR \
+       FSSRC_DIR CFE_FILE PMC_FILE SHARED_DIR GENDEFCONFIG_CMD CONFIG_BCM_KERNEL_CUSTOM BCM_KF\
+       6510_REF_CODE CMS_LOG_FLAGS OALDIR USERSPACE_PUBLIC_LIBS_DIR \
+       KERNEL_DEBUG ARCH ARCH_ENDIAN
+
+
+export DESKTOP_LINUX BRCM_BOARD BRCM_UCLIBC 
+
+# these vars are needed by busybox
+export BUILD_BUSYBOX_GUNZIP BUILD_BUSYBOX_GZIP \
+       BUILD_BUSYBOX_TAR BUILD_BUSYBOX_UNTAR \
+       BUILD_BUSYBOX_VI  \
+       BUILD_BUSYBOX_BRCM_VANILLA \
+       BUILD_WGET_HTTPS 
+ifneq ($(MAKECMDGOALS), menuconfig)
+ifneq ($(strip $(PROFILE)),)
+
+#__MSTC__, TengChang
+export MSTC_FLASH_FS_SIZE BRCM_KERNEL_AUXFS_JFFS2 MSTC_LOGRAM_SIZE MSTC_LOG_ROTATE_NUM MSTC_SYSLOG_CATEGORY MSTC_SYS_AND_SEC_LOG MSTC_HIDE_BRCM_LOG
+#__MSTC__, Dennis
+export BUILD_MSTC_WPUT
+export BUILD_MSTC_WGET
+export MSTC_ROM_D MSTC_OBM_IMAGE_DEFAULT MSTC_REDUCE_CFE MSTC_OBM_IMAGE_DEFAULT_FILE
+#__MSTC__, Richard Huang
+export BUILD_BCM_SEPARATE_MAC_FOR_WAN_INTERFACES BUILD_MSTC_ALL_WAN_SAME_MAC BUILD_MSTC_DIFF_L2_SAME_MAC
+#__MSTC__, Eason
+export BRCM_VOICE_BOARD_ID
+
+ifeq ($(strip $(MSTC_TE_ATMC)), y) 
+export MSTC_TE_ATMC
+export MSTC_TE_DEFAULTCFG
+# JhihShan 
+export SMT_DEFAULTCFG
+endif
+#__MSTC__, Marcus
+export BUILD_SIK_PARTITION_FEATURE
+export MSTC_MINIFW_VERSION
+endif
+endif
+###########################################
+#
+# Define Toolchain
+#
+###########################################
+ifeq ($(strip $(BRCM_UCLIBC)),y)
+NTC=1
+ifeq ($(strip $(NTC)),1)
+
+TOOLCHAIN = $(TOOLCHAIN_TOP)/usr
+LIBDIR = $(TOOLCHAIN_TOP)/$(TOOLCHAIN_LIBDIR)
+HOSTUSRLIBDIR = $(TOOLCHAIN_TOP)/usr/lib
+USRGCCLIBDIR = $(TOOLCHAIN_TOP)/usr/lib/gcc/$(TOOLCHAIN_PREFIX)/$(TOOLCHAIN_VER)
+EXTRALIBDIR = $(TOOLCHAIN_TOP)/usr/$(TOOLCHAIN_PREFIX)/lib
+EXTRAINCDIR = $(TOOLCHAIN_TOP)/usr/lib/gcc/$(TOOLCHAIN_PREFIX)/$(TOOLCHAIN_VER)/include
+LIB_PATH        = $(TOOLCHAIN_TOP)/lib
+LIBCDIR         = $(TOOLCHAIN_TOP)/lib
+
+ifndef NO_WERRS
+# The new compiler has a bug that if you specify -Werror=frame-larger-than=X, it treats X as 1 (and errors on all functions)
+#export BRCM_WERROR_CFLAGS :=  -Werror=return-type -Werror=uninitialized -Wframe-larger-than=1024
+export BRCM_WERROR_CFLAGS :=  -Werror=return-type -Werror=uninitialized
+else
+export BRCM_WERROR_CFLAGS :=
+endif
+
+ifeq ($(ARCH),mips)
+BRCM_COMMON_CFLAGS :=  -Os -march=mips32  -fomit-frame-pointer -fno-strict-aliasing -mabi=32 -G 0 -msoft-float -pipe -Wa,-mips32 $(BRCM_WERROR_CFLAGS)
+export BRCM_APP_CFLAGS :=  $(BRCM_COMMON_CFLAGS) -mno-shared
+else
+BRCM_COMMON_CFLAGS := -Os -march=armv7-a -fomit-frame-pointer -mno-thumb-interwork -mabi=aapcs-linux -marm -fno-common -ffixed-r8 -msoft-float -D__ARM_ARCH_7A__ $(BRCM_WERROR_CFLAGS)
+#for mips' -mno-shared (do not generate posistion independent code), arm is -mno-apcs-reentrant which is the default
+export BRCM_APP_CFLAGS :=  $(BRCM_COMMON_CFLAGS)
+endif
+
+
+export BRCM_SO_CFLAGS :=   $(BRCM_COMMON_CFLAGS)
+
+CROSS_COMPILE = $(TOOLCHAIN)/bin/$(TOOLCHAIN_PREFIX)-
+else #NTC
+TOOLCHAIN=/opt/toolchains/uclibc
+CROSS_COMPILE = $(TOOLCHAIN)/bin/mips-uclibc-
+endif #NTC
+else #BRCM_UCLIBC
+TOOLCHAIN=/usr/crossdev/mips
+CROSS_COMPILE = $(TOOLCHAIN)/bin/mips-linux-
+endif #BRCM_UCLIBC
+
+ifeq ($(strip $(DESKTOP_LINUX)),y)
+CROSS_COMPILE = /usr/bin/
+endif
+
+
+AR              = $(CROSS_COMPILE)ar
+AS              = $(CROSS_COMPILE)as
+LD              = $(CROSS_COMPILE)ld
+CC              = $(CROSS_COMPILE)gcc
+CXX             = $(CROSS_COMPILE)g++
+CPP             = $(CROSS_COMPILE)cpp
+NM              = $(CROSS_COMPILE)nm
+STRIP           = $(CROSS_COMPILE)strip
+SSTRIP          = $(CROSS_COMPILE)sstrip
+OBJCOPY         = $(CROSS_COMPILE)objcopy
+OBJDUMP         = $(CROSS_COMPILE)objdump
+RANLIB          = $(CROSS_COMPILE)ranlib
+
+# If building on desktop, don't strip binaries
+ifeq ($(strip $(DESKTOP_LINUX)),y)
+STRIP  = /bin/touch
+SSTRIP = /bin/touch
+endif
+
+# If building on desktop, set LIBDIR for legacy makefiles
+# that still use LIBDIR (e.g. zebra)
+ifeq ($(strip $(DESKTOP_LINUX)),y)
+LIB_PATH        = /usr/lib
+LIBDIR          = /usr/lib
+LIBCDIR         = /usr/lib
+endif
+
+
+# STRIP is used to strip the kernel modules.  Currently, there is no
+# usage scenario which requires unstripped kernel modules.
+
+# SSTRIP is used to strip userspace apps in the final fs dir.
+
+
+export TOOLCHAIN_TOP TOOLCHAIN LEGACY_TOOLCHAIN CROSS_COMPILE \
+       AR AS LD CC CXX CPP NM STRIP SSTRIP OBJCOPY OBJDUMP RANLIB \
+       LIB_PATH LIBDIR HOSTUSRLIBDIR EXTRALIBDIR EXTRAINCDIR LIBCDIR \
+       BUILD_GDBSERVER
+
+
+###########################################
+#
+# Application-specific settings
+#
+###########################################
+TARGET_FS = $(TARGETS_DIR)/$(PROFILE)/fs
+TARGET_BOOTFS = $(TARGETS_DIR)/$(PROFILE)/bootfs
+PROFILE_DIR = $(TARGETS_DIR)/$(PROFILE)
+INSTALL_DIR=$(PROFILE_DIR)/fs.install
+BCM_FSBUILD_DIR=$(PROFILE_DIR)/fs.build
+PROFILE_PATH = $(TARGETS_DIR)/$(PROFILE)/$(PROFILE)
+VENDOR_NAME = bcm
+FLASH_BASE_IMAGE_NAME = $(VENDOR_NAME)$(PROFILE)
+FS_KERNEL_IMAGE_NAME = $(FLASH_BASE_IMAGE_NAME)_fs_kernel
+CFE_FS_KERNEL_IMAGE_NAME = $(FLASH_BASE_IMAGE_NAME)_cfe_fs_kernel
+FLASH_IMAGE_NAME = $(FLASH_BASE_IMAGE_NAME)_flash_image_$(BRCM_BOARD_ID)
+SMT_IMAGE_NAME = $(VENDOR_NAME)$(PROFILE)_SMT_$(BRCM_BOARD_ID)
+#start __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+#FLASH_NAND_CFEROM_FS_IMAGE_NAME_16 = $(FLASH_BASE_IMAGE_NAME)_nand_cferom_fs_image_16
+# Autumn
+FLASH_NAND_RAW_FS_IMAGE_NAME_16 = $(VENDOR_NAME)$(PROFILE)_nand_raw_fs_image_16
+#end __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+FLASH_NAND_FS_IMAGE_NAME_16 = $(FLASH_BASE_IMAGE_NAME)_nand_fs_image_16
+#start __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+#FLASH_NAND_CFEROM_FS_IMAGE_NAME_128 = $(FLASH_BASE_IMAGE_NAME)_nand_cferom_fs_image_128
+# Autumn
+FLASH_NAND_RAW_FS_IMAGE_NAME_128 = $(VENDOR_NAME)$(PROFILE)_nand_raw_fs_image_128
+#end __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+FLASH_NAND_FS_IMAGE_NAME_128 = $(FLASH_BASE_IMAGE_NAME)_nand_fs_image_128
+FLASH_NAND_CFEROM_FS_IMAGE_NAME_256 = $(FLASH_BASE_IMAGE_NAME)_nand_cferom_fs_image_256
+FLASH_NAND_FS_IMAGE_NAME_256 = $(FLASH_BASE_IMAGE_NAME)_nand_fs_image_256
+FLASH_NAND_CFEROM_FS_IMAGE_NAME_512 = $(FLASH_BASE_IMAGE_NAME)_nand_cferom_fs_image_512
+FLASH_NAND_FS_IMAGE_NAME_512 = $(FLASH_BASE_IMAGE_NAME)_nand_fs_image_512
+FLASH_NAND_CFEROM_FS_IMAGE_NAME_1024 = $(FLASH_BASE_IMAGE_NAME)_nand_cferom_fs_image_1024
+FLASH_NAND_FS_IMAGE_NAME_1024 = $(FLASH_BASE_IMAGE_NAME)_nand_fs_image_1024
+FLASH_NAND_CFEROM_FS_IMAGE_NAME_2048 = $(FLASH_BASE_IMAGE_NAME)_nand_cferom_fs_image_2048
+FLASH_NAND_FS_IMAGE_NAME_2048 = $(FLASH_BASE_IMAGE_NAME)_nand_fs_image_2048
+FLASH_NAND_BLOCK_16KB=16384
+FLASH_NAND_BLOCK_128KB=131072
+FLASH_NAND_BLOCK_256KB=262144
+FLASH_NAND_BLOCK_512KB=524288
+FLASH_NAND_BLOCK_1024KB=1048576
+FLASH_NAND_BLOCK_2048KB=2097152
+ifneq ($(findstring _$(strip $(BRCM_CHIP))_,_63138_63148_),)
+FLASH_BOOT_OFS=65536
+else
+FLASH_BOOT_OFS=0
+endif
+INC_BRCMDRIVER_PUB_PATH=$(BRCMDRIVERS_DIR)/opensource/include
+INC_BRCMDRIVER_PRIV_PATH=$(BRCMDRIVERS_DIR)/broadcom/include
+INC_ADSLDRV_PATH=$(BRCMDRIVERS_DIR)/broadcom/char/adsl/impl1
+INC_ATMAPI_DRV_PATH=$(BRCMDRIVERS_DIR)/broadcom/char/atmapi/impl1
+INC_MOCACFGDRV_PATH=$(BRCMDRIVERS_DIR)/opensource/char/moca/impl2
+
+ifeq ($(strip $(RDPA_PLATFORM)),)
+RDPA_PLATFORM :=
+endif		
+
+INC_BRCMSHARED_PUB_PATH=$(SHARED_DIR)/opensource/include
+INC_BRCMSHARED_PRIV_PATH=$(SHARED_DIR)/broadcom/include
+INC_BRCMBOARDPARMS_PATH=$(SHARED_DIR)/opensource/boardparms
+INC_FLASH_PATH=$(SHARED_DIR)/opensource/flash
+INC_UTILS_PATH=$(SHARED_DIR)/opensource/utils
+INC_SPI_PATH=$(SHARED_DIR)/opensource/spi
+INC_SPUDRV_PATH=$(BRCMDRIVERS_DIR)/broadcom/char/spudd/impl1
+INC_PWRMNGTDRV_PATH=$(BRCMDRIVERS_DIR)/broadcom/char/pwrmngt/impl1
+INC_ENETDRV_PATH=$(BRCMDRIVERS_DIR)/opensource/net/enet/impl5
+INC_EPONDRV_PATH=$(BRCMDRIVERS_DIR)/broadcom/char/epon/impl1
+INC_RDPA_PATH=$(BRCMDRIVERS_DIR)/opensource/char/rdpa_gpl/impl1/include
+INC_RDPA_MW_PATH=$(BRCMDRIVERS_DIR)/opensource/char/rdpa_mw/impl1
+INC_RDPA_DRV_PATH=$(BRCMDRIVERS_DIR)/opensource/char/rdpa_drv/impl1
+INC_RDPA_PATH_PLATFORM=$(INC_RDPA_PATH)/$(RDPA_PLATFORM)
+INC_BDMF_PATH=$(BRCMDRIVERS_DIR)/opensource/char/bdmf/impl1
+RDP_PATH=$(SHARED_DIR)/broadcom/rdp
+
+
+EXTRA_CFLAGS_BDMF=-I$(INC_BDMF_PATH)/framework -I$(INC_BDMF_PATH)/platform/$(RDPA_PLATFORM) -I$(INC_BDMF_PATH)/system -I$(INC_BDMF_PATH)/system/linux -I$(INC_BDMF_PATH)/shell
+EXTRA_CFLAGS_RDPA=$(EXTRA_CFLAGS_BDMF) -I$(INC_RDPA_PATH) -I$(INC_RDPA_PATH)/$(RDPA_PLATFORM) -I$(INC_RDPA_MW_PATH) -I$(INC_RDPA_DRV_PATH)
+
+ifneq ($(strip $(RDPA_PLATFORM)),)
+EXTRA_CFLAGS_RDPA += -DRDPA_PLATFORM
+endif
+
+#start__MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+export TARGET_FS TARGET_BOOTFS PROFILE_DIR INSTALL_DIR PROFILE_PATH \
+       BCM_FSBUILD_DIR \
+       VENDOR_NAME FLASH_BASE_IMAGE_NAME \
+       FS_KERNEL_IMAGE_NAME CFE_FS_KERNEL_IMAGE_NAME FLASH_IMAGE_NAME SMT_IMAGE_NAME\
+       FLASH_BOOT_OFS \
+       BUILD_NAND_IMG_BLKSIZE_16KB \
+       BUILD_NAND_IMG_BLKSIZE_128KB \
+       BUILD_NAND_IMG_BLKSIZE_256KB \
+       BUILD_NAND_IMG_BLKSIZE_512KB \
+       BUILD_NAND_IMG_BLKSIZE_1024KB \
+	   INC_BRCMDRIVER_PUB_PATH INC_BRCMDRIVER_PRIV_PATH \
+       INC_ADSLDRV_PATH INC_ATMAPI_DRV_PATH \
+       INC_BRCMSHARED_PUB_PATH INC_BRCMSHARED_PRIV_PATH \
+       INC_BRCMBOARDPARMS_PATH INC_FLASH_PATH \
+       INC_UTILS_PATH \
+       INC_PWRMNGTDRV_PATH INC_ENETDRV_PATH INC_SPI_PATH \
+       INC_RDPA_PATH INC_RDPA_MW_PATH INC_RDPA_DRV_PATH INC_RDPA_PATH_PLATFORM INC_BDMF_PATH \
+       EXTRA_CFLAGS_BDMF EXTRA_CFLAGS_RDPA RDP_PATH RDPA_PLATFORM
+#end __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+
+
+##################################################################
+#
+# Start CMS specific defines
+#
+##################################################################
+
+ifeq ($(strip $(DESKTOP_LINUX)),y)
+
+#Defines when are are building for Desktop Linux
+
+ifdef BRCM_CMS_COMPILER_OPTS
+CMS_COMPILER_OPTS := -Wall -W $(BRCM_CMS_COMPILER_OPTS) -DDESKTOP_LINUX	-fPIC
+else
+# The -O is needed to detect uninitialized variables, but sometimes prevents
+# gdb from printing out a variable value.  So if you need to do some serious
+# debugging, set BRCM_CMS_COMPILER_OPTS=-g in your shell.
+CMS_COMPILER_OPTS := -Wall -W -O -g -DDESKTOP_LINUX -fPIC
+endif
+
+# Force 32 bit compiles even if the build machine is a 64 bit system
+CMS_COMPILER_OPTS += -m32
+BCM_LD_FLAGS := -m32
+
+ifeq ($(strip $(TOOLCHAIN_VER)),4.6.2) 
+CMS_COMMON_LIBS   := -lcms_util -lcms_boardctl -lcrypt -lrt
+#CMS_COMMON_LIBS   := --lcrypt -lrt
+else
+CMS_COMMON_LIBS   := -lcms_util -lcms_boardctl -lcrypt -lutil -lrt
+#CMS_COMMON_LIBS   := -lcrypt -lrt
+endif
+
+CMS_LIB_RPATH = $(ALLOWED_LIB_DIRS):$(INSTALL_DIR)$(subst :,:$(INSTALL_DIR),$(ALLOWED_LIB_DIRS))
+
+else
+
+# Defines when we are building for real target system
+CMS_COMPILER_OPTS := $(BRCM_COMMON_CFLAGS) -Wall -D$(ARCH) -g -fPIC
+
+ifeq ($(strip $(TOOLCHAIN_VER)),4.6.2) 
+CMS_COMMON_LIBS   := -lcms_util -lcms_boardctl -lcrypt
+#CMS_COMMON_LIBS   := -lcrypt
+else
+CMS_COMMON_LIBS   := -lcms_util -lcms_boardctl -lcrypt -lutil
+#CMS_COMMON_LIBS   := -lcrypt
+endif
+
+CMS_LIB_RPATH =
+
+endif
+
+
+# This is the cms_core library plus all the libraries that libcms_core 
+# depend on.
+CMS_CORE_LIBS := -lcms_core -lcms_qdm -lnanoxml -ldl
+
+ifneq ($(strip $(BRCM_DRIVER_ADSL)),)
+CMS_CORE_LIBS +=  -lxdslctl
+ifneq ($(strip $(BUILD_DSL_SELT_TEST)),)
+CMS_CORE_LIBS +=  -lseltctl
+endif
+endif
+
+ifneq ($(strip $(BRCM_DRIVER_XTM)),)
+CMS_CORE_LIBS +=  -latmctl
+endif
+
+ifneq ($(strip $(BUILD_MoCACTL)),)
+CMS_CORE_LIBS +=  -lmocactl -lm
+endif
+
+ifneq ($(strip $(BUILD_MoCACTL2)),)
+CMS_CORE_LIBS +=  -lpthread
+endif
+
+ifneq ($(strip $(BUILD_HOMEPLUG)),)
+CMS_CORE_LIBS +=  -lhomeplugctl -lhomeplugctl_drv
+endif
+
+ifneq ($(strip $(BUILD_GPONCTL)),)
+CMS_CORE_LIBS +=  -lgponctl -lgponif
+endif
+
+ifneq ($(strip $(BUILD_OMCI)),)
+CMS_CORE_LIBS +=  -lomci -lomcipm_drv -lm
+endif
+
+ifneq ($(strip $(BUILD_VLANCTL)),)
+CMS_CORE_LIBS +=  -lvlanctl
+endif
+
+ifneq ($(strip $(BUILD_SPUCTL)),)
+CMS_CORE_LIBS +=  -lspuctl
+endif
+
+ifneq ($(strip $(BUILD_PWRCTL)),)
+CMS_CORE_LIBS +=  -lpwrctl
+endif
+
+ifneq ($(strip $(BUILD_ETHSWCTL)),)
+CMS_CORE_LIBS += -lethswctl
+endif
+
+ifneq ($(strip $(BUILD_EPONCTL)),)
+CMS_CORE_LIBS +=  -leponctl
+endif
+
+ifneq ($(strip $(BUILD_CMFAPI)),)
+CMS_CORE_LIBS += -lcmfapi
+endif
+
+ifneq ($(strip $(BUILD_FAPCTL)),)
+CMS_CORE_LIBS += -lfapctl
+endif
+
+ifneq ($(strip $(BUILD_CLI_CMD)),)
+CMS_CORE_LIBS += -lm
+endif
+
+CMS_LIB_PATH = $(patsubst %,-L$(INSTALL_DIR)%,$(subst :, ,$(ALLOWED_LIB_DIRS)))
+
+CMS_COMPILER_OPTS += -DMDM_SHARED_MEM
+CMS_COMPILER_OPTS += -DCMS_MEM_DEBUG
+
+export CMS_COMMON_LIBS CMS_CORE_LIBS CMS_COMPILER_OPTS CMS_COMPILE_FLAGS
+
+
+#
+# Several features will trigger the building of libpcap.
+export BUILD_LIBPCAP
+ifneq ($(strip $(BUILD_TCPDUMP)),)
+BUILD_LIBPCAP=y
+endif
+
+ifneq ($(strip $(BUILD_SENDPACKETS)),)
+BUILD_LIBPCAP=y
+endif
+
+ifneq ($(strip $(BUILD_RPCAPD)),)
+BUILD_LIBPCAP=y
+endif
+
+
+#
+# Many features will trigger the building of OpenSSL.
+# OpenSSL is both a library and an app.
+# We could distinguish betwen building OpenSSL lib and OpenSSL app,
+# but for now, we always build and install both.  I have a plan to
+# get rid of the app completely.
+#
+ifneq ($(strip $(BUILD_CERT)),)
+DO_BUILD_OPENSSL=y
+endif
+
+ifneq ($(strip $(BUILD_TR69C_SSL)),)
+DO_BUILD_OPENSSL=y
+endif
+
+ifneq ($(strip $(BUILD_HTTPD_SSL)),)
+DO_BUILD_OPENSSL=y
+endif
+
+ifneq ($(strip $(BUILD_IPSEC_TOOLS)),)
+DO_BUILD_OPENSSL=y
+endif
+
+export DO_BUILD_OPENSSL
+
+
+
+#
+# Top level decisions about which Data Model(s) we are going to use
+#
+CMS_DMP_FLAGS :=
+
+BUILD_TR98_PROFILES :=
+BUILD_HYBRID181_PROFILES :=
+BUILD_PURE181_PROFILES :=
+
+ifneq ($(strip $(BUILD_DM_LEGACY98)),)
+BUILD_TR98_PROFILES := y
+CMS_DMP_FLAGS += -DSUPPORT_DM_LEGACY98
+endif
+
+ifneq ($(strip $(BUILD_DM_HYBRID)),)
+BUILD_TR98_PROFILES := y
+BUILD_HYBRID181_PROFILES := y
+CMS_DMP_FLAGS += -DSUPPORT_DM_HYBRID
+endif
+
+ifneq ($(strip $(BUILD_DM_PURE181)),)
+BUILD_HYBRID181_PROFILES := y
+BUILD_PURE181_PROFILES := y
+CMS_DMP_FLAGS += -DSUPPORT_DM_PURE181
+endif
+
+ifneq ($(strip $(BUILD_DM_DETECT)),)
+BUILD_TR98_PROFILES := y
+BUILD_HYBRID181_PROFILES := y
+BUILD_PURE181_PROFILES := y
+CMS_DMP_FLAGS += -DSUPPORT_DM_DETECT
+endif
+
+
+#
+# ==> These TR98 profiles are always defined when the root
+#     of the data model is InternetGatewayDevice, i.e. when we are in
+#     Legacy TR98 and Hybrid98+181 modes.
+#
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_BASELINE_1 -DDMP_X_5067F0_BASELINE_1
+CMS_DMP_FLAGS += -DDMP_ETHERNETLAN_1
+CMS_DMP_FLAGS += -DDMP_DEVICEASSOCIATION_1
+CMS_DMP_FLAGS += -DDMP_IPPING_1
+CMS_DMP_FLAGS += -DDMP_X_5067F0_DEBUG_1
+CMS_DMP_FLAGS += -DDMP_X_5067F0_SECURITY_1
+endif
+ifneq ($(strip $(MSTC_VENDOR_NAME)),)
+ifneq ($(strip $(MSTC_VENDOR_NAME)), "")
+CMS_DMP_FLAGS += -DMSTC_VENDOR_NAME=\"${MSTC_VENDOR_NAME}\"
+endif
+export MSTC_VENDOR_NAME
+ifneq ($(strip $(MSTC_INTERNAL_MODEL_NAME)),)
+CMS_DMP_FLAGS +=   -DINTERNAL_MODEL_NAME=\"${MSTC_INTERNAL_MODEL_NAME}\"
+endif
+ifneq ($(strip $(MSTC_INTERNAL_EXT_MODEL_NAME)),)
+CMS_DMP_FLAGS +=   -DINTERNAL_EXT_MODEL_NAME=\"${MSTC_INTERNAL_EXT_MODEL_NAME}\"
+endif
+ifneq ($(strip $(MSTC_INTERNAL_OPT_MODEL_NAME)),)
+CMS_DMP_FLAGS +=   -DINTERNAL_OPT_MODEL_NAME=\"${MSTC_INTERNAL_OPT_MODEL_NAME}\"
+endif
+ifneq ($(strip $(MSTC_INTERNAL_EXT_OPT_MODEL_NAME)),)
+CMS_DMP_FLAGS +=   -DINTERNAL_EXT_OPT_MODEL_NAME=\"${MSTC_INTERNAL_EXT_OPT_MODEL_NAME}\"
+endif
+endif
+
+
+#
+# ==> This is a small subset of the TR181 profiles which are always
+#     defined in both Hybrid98+181 and Pure TR181 modes.
+#
+ifneq ($(strip $(BUILD_HYBRID181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_BASELINE_1 -DDMP_DEVICE2_X_5067F0_BASELINE_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_BASELINE_2
+CMS_DMP_FLAGS += -DDMP_DEVICE2_BASELINE_3
+CMS_DMP_FLAGS += -DDMP_DEVICE2_IPINTERFACE_1 -DDMP_DEVICE2_IPINTERFACE_2
+# In Hybrid, we don't use TR181 EthernetInterface, but we must define it
+# in order to get EthernetLink, which we need.
+CMS_DMP_FLAGS += -DDMP_DEVICE2_ETHERNETLINK_1 -DDMP_DEVICE2_ETHERNETINTERFACE_1 -DDMP_DEVICE2_VLANTERMINATION_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_PPPINTERFACE_1 -DDMP_DEVICE2_PPPINTERFACE_2
+CMS_DMP_FLAGS += -DDMP_DEVICE2_IPPING_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_ROUTING_1 -DDMP_DEVICE2_ROUTING_2
+endif
+
+
+#
+# ==> These TR181 profiles are always defined in Pure TR181 mode (but
+#     not in Hybrid98+181 mode)
+#
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_BRIDGE_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_ROUTING_1 -DDMP_DEVICE2_ROUTING_2
+CMS_DMP_FLAGS += -DDMP_DEVICE2_NAT_1 -DDMP_DEVICE2_PROCESSORS_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_HOSTS_1 -DDMP_DEVICE2_HOSTS_2
+CMS_DMP_FLAGS += -DDMP_DEVICE2_DEVICEASSOCIATION_1
+CMS_DMP_FLAGS += -DDMP_X_5067F0_DEBUG_1
+CMS_DMP_FLAGS += -DDMP_X_5067F0_SECURITY_1
+CMS_DMP_FLAGS += -DDMP_X_5067F0_BASELINE_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_SIMPLEFIREWALL_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_MEMORYSTATUS_1 -DDMP_DEVICE2_PROCESSSTATUS_1
+endif
+
+
+
+#
+# ADSLWAN_1 profile is used to mean presence of xDSL technology on 
+# the modem, the presence of ATM technology, and presence of ADSL.
+# BUILD_DSL is a pre-requisit for loop diag, atm loopback, bonding,
+# vdsl phy, and multi-mode phy.  ATM WAN and PTM WAN have their own
+# controls in make menuconfig, so users should be smart enough to
+# unselect that if DSL driver is not built.
+#
+ifneq ($(strip $(BUILD_DSL)),)
+# Compile flags module or application that use ADSL MIBS
+BUILD_DSL_FLAGS := -DNONE
+
+CMS_DMP_FLAGS += -DSUPPORT_DSL
+
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_DSL_1 
+CMS_DMP_FLAGS += -DDMP_X_5067F0_DSL_1 
+endif
+
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_ADSLWAN_1 -DDMP_X_5067F0_ADSLWAN_1 
+CMS_DMP_FLAGS += -DDMP_X_5067F0_XTMSTATS_1
+endif
+
+ifneq ($(strip $(BUILD_DSL_LOOP_DIAG)),)
+CMS_DMP_FLAGS += -DDMP_DSLDIAGNOSTICS_1
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS +=-DDMP_DEVICE2_DSLDIAGNOSTICS_1
+endif
+endif
+
+ifneq ($(strip $(BUILD_DSL_SELT_TEST)),)
+BUILD_DSL_FLAGS += -DSUPPORT_SELT
+CMS_DMP_FLAGS += -DDMP_X_5067F0_COM_SELT_1
+export BUILD_DSL_SELT_TEST=y
+endif
+
+#Setting the Tr69 Trace route naming in original X5067 or Standard
+ifeq ($(strip $(BUILD_STANDARD_TRACEROUTE_NAME)), y)
+CMS_DMP_FLAGS += -DDMP_STANDARD_TRACEROUTE_NAME_1
+else 
+CMS_DMP_FLAGS += -DDMP_X_5067F0_TRACEROUTE_NAME_1
+endif
+
+#Setting the Tr69 Nslookup naming in original X5067 or Standard
+ifeq ($(strip $(BUILD_STANDARD_NSLOOKUP_NAME)), y)
+CMS_DMP_FLAGS += -DDMP_STANDARD_NSLOOKUP_NAME_1
+else 
+CMS_DMP_FLAGS += -DDMP_X_5067F0_NSLOOKUP_NAME_1
+endif
+
+ifeq ($(strip $(BRCM_PHY_BONDING)),y)
+BUILD_DSL_FLAGS += -DSUPPORT_DSL_BONDING
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS +=  -DDMP_X_5067F0_COM_DSLBONDING_1
+endif
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_BONDEDDSL_1
+endif
+export BRCM_PHY_BONDING=y
+endif
+
+ifeq ($(strip $(BRCM_PHY_LOOPBACK)),y)
+CMS_DMP_FLAGS += -DSUPPORT_DSL_LOOPBACK
+export BRCM_PHY_LOOPBACK=y
+endif
+
+ifeq ($(strip $(BRCM_MULTI_PHY)),y)
+BUILD_DSL_FLAGS += -DSUPPORT_MULTI_PHY
+export BRCM_MULTI_PHY=y
+endif
+
+ifeq ($(strip $(BRCM_PHY_BONDING5B)),y)
+BUILD_DSL_FLAGS += -DSUPPORT_DSL_BONDING5B
+export BRCM_PHY_BONDING5B=y
+endif
+
+ifeq ($(strip $(BRCM_PHY_BONDING_C0)),y)
+export BRCM_PHY_BONDING_C0=y
+endif
+
+ifeq ($(strip $(BRCM_ANNEXAB_COMBO)),y)
+CMS_DMP_FLAGS += -DSUPPORT_ANNEXAB_COMBO
+export BRCM_ANNEXAB_COMBO=y
+endif
+
+DSL_GINP_RTX_DRIVER_DEFINES := -DNONE
+
+ifeq ($(strip $(BRCM_PHY_GINP_RTX)),y)
+ifeq ($(strip $(BRCM_CHIP)),63268)
+CMS_DMP_FLAGS += -DSUPPORT_DSL_GINP_RTX
+DSL_GINP_RTX_DRIVER_DEFINES += -DSUPPORT_DSL_GINP_RTX
+export BRCM_PHY_GINP_RTX=y
+endif
+endif
+export DSL_GINP_RTX_DRIVER_DEFINES
+
+DSL_EXT_BONDING_DRIVER_DEFINES := -DNONE
+
+ifeq ($(strip $(BRCM_EXT_PHY_BONDING)),y)
+CMS_DMP_FLAGS += -DSUPPORT_DSL_BONDING
+ifeq ($(strip $(BRCM_CHIP)),63268)
+CMS_DMP_FLAGS += -DSUPPORT_EXT_DSL_BONDING -DDMP_X_5067F0_COM_DSLBONDING_1
+endif
+ifeq ($(strip $(BRCM_CHIP)),6368)
+CMS_DMP_FLAGS += -DSUPPORT_EXT_DSL_BONDING
+endif
+DSL_EXT_BONDING_DRIVER_DEFINES += -DSUPPORT_EXT_DSL_BONDING
+export BRCM_EXT_PHY_BONDING=y
+endif
+
+export DSL_EXT_BONDING_DRIVER_DEFINES
+
+DSL_XTM_SAR_TX_RX_IUDMA_631XX_DEFINES := -DNONE
+
+ifeq ($(strip $(BRCM_DSL_TX_RX_IUDMA)),y)
+DSL_XTM_SAR_TX_RX_IUDMA_631XX_DEFINES += -DSUPPORT_631XX_TX_RX_IUDMA
+export SUPPORT_631XX_TX_RX_IUDMA=y
+export BRCM_DSL_TX_RX_IUDMA=y
+else
+# Following enables RDP mode but no runner acceleration, if the
+# SUPPORT_631XX_NO_FC_XDSL_ACCELERATION switch is enabled.
+#export SUPPORT_631XX_NO_FC_XDSL_ACCELERATION=y
+ifeq "$(SUPPORT_631XX_NO_FC_XDSL_ACCELERATION)" "y"
+DSL_XTM_SAR_TX_RX_IUDMA_631XX_DEFINES += -DSUPPORT_631XX_NO_FC_XDSL_ACCELERATION
+endif
+endif
+export DSL_XTM_SAR_TX_RX_IUDMA_631XX_DEFINES
+
+
+# VDSL flags have to be turned on for VDSL and Multimode phy
+ifneq ($(strip $(BUILD_PHY_VDSL)),)
+CMS_DMP_FLAGS += -DDMP_VDSL2WAN_1 -DDMP_X_5067F0_VDSL2WAN_1
+endif
+
+ifneq ($(strip $(BUILD_PHY_MULTIMODE)),)
+CMS_DMP_FLAGS += -DDMP_VDSL2WAN_1 -DDMP_X_5067F0_VDSL2WAN_1
+endif
+
+CMS_DMP_FLAGS += ${BUILD_DSL_FLAGS}
+
+export BUILD_PHY_ADSL BUILD_PHY_VDSL BUILD_PHY_MULTIMODE BUILD_DSL_FLAGS
+
+ifeq ($(strip $(BRCM_CHIP_VER_A0)),y)
+export BRCM_CHIP_VER_A0=y
+endif
+
+endif
+# ==== end of BUILD_DSL section ====
+
+
+
+# 
+# Various technologies as WAN interface selections
+#
+
+# this means the user wants to have a ATM WAN interface
+# We don't have a SUPPORT_ATM flag.  It is implied by SUPPORT_DSL.
+ifneq ($(strip $(BUILD_ATMWAN)),)
+
+export BUILD_WAN_HTML=y
+
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_ATMWAN_1
+endif
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_ATMLINK_1 -DDMP_DEVICE2_X_5067F0_ATMLINK_1
+endif
+
+endif
+
+
+# ATMLOOPBACK is automatically selected in config.in when ATM WAN is selected
+ifneq ($(strip $(BUILD_ATMLOOPBACK)),)
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_ATMLOOPBACK_1 -DDMP_X_5067F0_ATMLOOPBACK_1 
+endif
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_ATMLOOPBACK_1 -DDMP_DEVICE2_X_5067F0_ATMLOOPBACK_1 
+endif
+endif
+
+
+# this means the modem has PTM technology and user wants to have
+# a PTM WAN interface
+ifneq ($(strip $(BUILD_PTMWAN)),)
+
+export BUILD_WAN_HTML=y
+CMS_DMP_FLAGS += -DSUPPORT_PTM
+
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_PTMWAN_1 -DDMP_X_5067F0_PTMWAN_1
+endif
+
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_PTMLINK_1 -DDMP_DEVICE2_X_5067F0_PTMLINK_1 
+endif
+
+endif
+
+
+# this means the user wants to have a Moca WAN interface
+# Look for SUPPORT_MOCA below for main Moca defines
+ifneq ($(strip $(BUILD_MOCAWAN)),)
+
+export BUILD_WAN_HTML=y
+
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_COM_MOCAWAN_1
+endif
+# TR181 does not have a separate Data Model define for MocaWAN
+# So if you enable Moca, you automatically get MocaWAN
+
+endif
+
+
+# this means user wants to have a ethernet WAN interface
+ifneq ($(strip $(BUILD_ETHWAN)),)
+
+export BUILD_WAN_HTML=y
+CMS_DMP_FLAGS += -DSUPPORT_ETHWAN
+
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_ETHERNETWAN_1
+endif
+# TR181 does not have a separate Data Model define for ethwan
+
+endif
+
+
+# this means user wants to have FAP TM
+ifneq ($(strip $(BUILD_FAPCTL)),)
+CMS_DMP_FLAGS += -DSUPPORT_FAPCTL
+endif
+
+ifneq ($(strip $(BRCM_SPDSVC_SUPPORT)),)
+CMS_DMP_FLAGS += -DDMP_X_BROADCOM_COM_SPDSVC_1
+export BUILD_SPDSVC=y
+endif
+
+# this means user wants to have RDD related features as us such as TM
+ifeq ($(BUILD_RDPA),y)
+CMS_DMP_FLAGS += -DSUPPORT_RDPA
+export BUILD_RDPA_QOS=y
+CMS_CORE_LIBS += -lrdpactl
+CMS_CORE_LIBS += -ltmctl
+endif
+
+# this means the user wants to have a EPON WAN interface
+ifneq ($(strip $(BUILD_EPONWAN)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_PONWAN_1 -DDMP_X_5067F0_EPONWAN_1
+export BUILD_WAN_HTML=y
+endif
+
+# this means the user wants to have a  GponRG Full Omci build
+ifneq ($(strip $(BUILD_GPONRG_OMCI_FULL)),)
+CMS_DMP_FLAGS +=  -DDMP_X_5067F0_PONWAN_1 -DDMP_X_5067F0_GPONWAN_1 -DDMP_X_5067F0_GPONRG_OMCI_FULL_1
+endif
+
+# this means the user wants to have a GPON OMCI TR69 dual stack
+ifneq ($(strip $(BUILD_OMCI_TR69_DUAL_STACK)),)
+CMS_DMP_FLAGS += -DOMCI_TR69_DUAL_STACK
+endif
+
+ifneq ($(strip $(BUILD_OMCI)),)
+ifeq ($(strip $(BUILD_GPONRG_OMCI_FULL)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_GPONONT_1
+endif
+endif
+
+# this means user wants to have a L2TP AC (PPPoL2TPAC) WAN service
+ifneq ($(strip $(BUILD_L2TPAC)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_L2TPAC_1
+endif
+
+ifneq ($(strip $(BUILD_GRE_TUNNEL)),)
+CMS_DMP_FLAGS += -DSUPPORT_GRE_TUNNEL
+# Add data model specific flags later
+endif
+
+# Use MocaCTL as the main indicator of whether we will have Moca on our
+# system or not.
+ifneq ($(strip $(BUILD_MoCACTL)),)
+
+CMS_DMP_FLAGS += -DSUPPORT_MOCA
+
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_COM_MOCALAN_1
+endif
+
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_MOCA_1
+endif
+
+endif
+
+ifneq ($(strip $(BUILD_MoCACTL2)),)
+CMS_DMP_FLAGS += -DBRCM_MOCA_DAEMON
+endif
+
+ifneq ($(strip $(BUILD_SOAP)),)
+CMS_DMP_FLAGS += -DSUPPORT_SOAP
+endif
+
+ifneq ($(strip $(BUILD_IPSEC_TOOLS)),)
+CMS_DMP_FLAGS += -DSUPPORT_IPSEC -DDMP_X_5067F0_IPSEC_1
+endif
+ifneq ($(strip $(BUILD_SNMP)),)
+CMS_DMP_FLAGS += -DSUPPORT_SNMP -DDMP_X_5067F0_SNMP_1
+endif
+
+ifneq ($(strip $(BUILD_TR64)),)
+CMS_DMP_FLAGS += -DSUPPORT_TR64C -DDMP_X_5067F0_TR64_1
+endif
+
+ifneq ($(strip $(BUILD_IPV6)),)
+CMS_DMP_FLAGS += -DSUPPORT_IPV6
+ifneq ($(strip $(BUILD_DM_LEGACY98)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_IPV6_1
+else
+CMS_DMP_FLAGS += -DDMP_X_5067F0_DEV2_IPV6_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_DSLITE_1 -DDMP_DEVICE2_DSLITE_2
+CMS_DMP_FLAGS += -DDMP_DEVICE2_IPV6RD_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_IPV6INTERFACE_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_IPV6ROUTING_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_DHCPV6CLIENT_1 -DDMP_DEVICE2_DHCPV6CLIENTSERVERIDENTITY_1 
+CMS_DMP_FLAGS += -DDMP_DEVICE2_DHCPV6SERVER_1  -DDMP_DEVICE2_DHCPV6SERVERADV_1 -DDMP_DEVICE2_DHCPV6SERVERCLIENTINFO_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_NEIGHBORDISCOVERY_1 -DDMP_DEVICE2_ROUTERADVERTISEMENT_1
+endif
+endif
+
+ifneq ($(strip $(BUILD_TR69C)),)
+CMS_DMP_FLAGS += -DSUPPORT_TR69C
+endif
+
+ifneq ($(strip $(BUILD_TR69C_SSL)),)
+CMS_DMP_FLAGS += -DSUPPORT_TR69C
+endif
+
+ifneq ($(strip $(BUILD_TR69C_BCM_SSL)),)
+CMS_DMP_FLAGS += -DSUPPORT_TR69C
+endif
+
+
+# __MSTC__, __Telus__, Axel, support Multilingual
+ifneq ($(strip $(MSTC_MULTI_LANGUAGES)),)
+	export MSTC_MULTI_LANGUAGES
+	CMS_DMP_FLAGS += -DMSTC_MULTI_LANGUAGES
+	ifneq ($(strip $(MSTC_MULTI_LANGUAGES_ENG)),)
+		export  MSTC_MULTI_LANGUAGES_ENG
+	endif
+	ifneq ($(strip $(MSTC_MULTI_LANGUAGES_SPA)),)
+		export  MSTC_MULTI_LANGUAGES_SPA
+	endif
+endif
+# __MSTC__, __Telus__, Axel, support Multilingual end
+
+ifneq ($(strip $(BUILD_TR69_TR143)),)
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DOWNLOAD_1
+CMS_DMP_FLAGS += -DDMP_UPLOAD_1
+CMS_DMP_FLAGS += -DDMP_DOWNLOADTCP_1
+CMS_DMP_FLAGS += -DDMP_UPLOADTCP_1
+CMS_DMP_FLAGS += -DDMP_UDPECHO_1
+CMS_DMP_FLAGS += -DDMP_UDPECHOPLUS_1
+endif
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_DOWNLOAD_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_UPLOAD_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_DOWNLOADTCP_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_UPLOADTCP_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_UDPECHO_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_UDPECHOPLUS_1
+endif
+endif
+
+ifneq ($(strip $(BUILD_TR69_VENDOR_RPC)),)
+CMS_DMP_FLAGS += -DSUPPORT_TR69C_VENDOR_RPC
+endif
+
+ifneq ($(strip $(BUILD_EPON_SDK_VOICE_OAM)),)
+CMS_DMP_FLAGS +=   -DDMP_X_CT_ORG_EPON_1 -DDMP_EPON_VOICE_OAM -DDMP_X_5067F0_EPON_1
+endif
+
+ifneq ($(strip $(BUILD_GPON)),)
+
+CMS_DMP_FLAGS += -DDMP_X_ITU_ORG_GPON_1 -DDMP_X_5067F0_GPON_1
+export BUILD_WAN_HTML=y
+
+ifeq ($(strip $(BUILD_DM_LEGACY98)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_OPTICAL_1
+endif
+
+ifneq ($(filter y,$(BUILD_EPONWAN) $(BUILD_GPON)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_XPON_1
+endif
+
+ifeq ($(strip $(BRCM_APP_PHONE)),sip)
+CMS_DMP_FLAGS += -DDMP_X_ITU_ORG_VOICE_1 -DDMP_X_ITU_ORG_VOICE_SIP_1
+endif
+
+ifeq ($(strip $(BRCM_APP_PHONE)),mgcp)
+#CMS_DMP_FLAGS += -DDMP_X_ITU_ORG_VOICE_1 -DDMP_X_ITU_ORG_VOICE_MGC_1
+endif
+
+endif
+
+ifneq ($(strip $(BUILD_OMCI)),)
+CMS_DMP_FLAGS += -DBRCM_OMCI
+endif
+
+ifneq ($(strip $(BUILD_MSTC_MODIFY)),)
+CMS_DMP_FLAGS += -DMSTC_MODIFY
+CMS_DMP_FLAGS += -DCONFIG_MSTC_MODIFY
+endif
+
+ifeq ($(strip $(BUILD_INDEX_REMAPPING_FOR_43602)),y)
+CMS_DMP_FLAGS += -DINDEX_REMAPPING_FOR_43602
+export BUILD_INDEX_REMAPPING_FOR_43602
+endif
+
+ifneq ($(strip $(BUILD_HTTPD)),)
+CMS_DMP_FLAGS += -DSUPPORT_HTTPD
+endif
+
+ifneq ($(strip $(BUILD_QUICKSETUP)),)
+CMS_DMP_FLAGS += -DSUPPORT_QUICKSETUP -DDMP_X_5067F0_QUICKSETUP_1
+endif
+
+ifneq ($(strip $(BUILD_HTTPD_SSL)),)
+CMS_DMP_FLAGS += -DSUPPORT_HTTPD -DSUPPORT_HTTPD_SSL -DDMP_X_5067F0_MSTC_HTTPS_1
+endif
+
+ifneq ($(strip $(BUILD_CLI_MENU)),)
+CMS_DMP_FLAGS += -DSUPPORT_CLI_MENU
+endif
+
+ifneq ($(strip $(BUILD_CLI_CMD)),)
+CMS_DMP_FLAGS += -DSUPPORT_CLI_CMD -DCLI_CMD_EDIT
+endif
+
+ifneq ($(strip $(BUILD_CONSOLED)),)
+CMS_DMP_FLAGS += -DSUPPORT_CONSOLED
+endif
+
+
+ifneq ($(strip $(BUILD_TELNETD)),)
+CMS_DMP_FLAGS += -DSUPPORT_TELNETD
+endif
+
+ifneq ($(strip $(BUILD_SSHD)),)
+CMS_DMP_FLAGS += -DSUPPORT_SSHD
+endif
+
+ifneq ($(strip $(BUILD_SSHD_SCP)),)
+CMS_DMP_FLAGS += -DSUPPORT_SSHD_SCP
+endif
+
+ifneq ($(strip $(BUILD_FTPD)),)
+CMS_DMP_FLAGS += -DSUPPORT_FTPD
+endif
+
+ifneq ($(strip $(BUILD_EBTABLES)),)
+CMS_DMP_FLAGS += -DSUPPORT_EBTABLES
+endif
+
+ifneq ($(strip $(BUILD_TOD)),)
+CMS_DMP_FLAGS += -DSUPPORT_TOD -DDMP_X_5067F0_ACCESSTIMERESTRICTION_1
+endif
+
+ifneq ($(strip $(BUILD_URLFILTER)),)
+CMS_DMP_FLAGS += -DSUPPORT_URLFILTER
+endif
+
+ifneq ($(strip $(BUILD_IPROUTE2)),)
+CMS_DMP_FLAGS += -DSUPPORT_POLICYROUTING
+endif
+
+ifneq ($(strip $(BUILD_UPNP)),)
+CMS_DMP_FLAGS += -DSUPPORT_UPNP -DDMP_X_5067F0_UPNP_1
+endif
+
+ifneq ($(strip $(BUILD_HASHED_PASSWORDS)),)
+CMS_DMP_FLAGS += -DSUPPORT_HASHED_PASSWORDS
+endif
+
+ifneq ($(strip $(BUILD_IEEE1905_GOLDENNODE)),)
+CMS_DMP_FLAGS += -DSUPPORT_IEEE1905_GOLDENNODE
+endif
+
+ifneq ($(strip $(BUILD_IEEE1905_GOLDENNODE_REGISTRAR)),)
+CMS_DMP_FLAGS += -DSUPPORT_IEEE1905_GOLDENNODE_REGISTRAR
+endif
+
+ifneq ($(strip $(BUILD_DDNSD)),)
+CMS_DMP_FLAGS += -DSUPPORT_DDNSD -DDMP_X_5067F0_DYNAMICDNS_1
+endif
+
+ifneq ($(strip $(BUILD_DPROXY)),)
+CMS_DMP_FLAGS += -DSUPPORT_DNSPROXY -DDMP_X_5067F0_DNSPROXY_1
+endif
+
+ifneq ($(strip $(BUILD_DNSMASQ)),)
+CMS_DMP_FLAGS += -DSUPPORT_DNSMASQ -DDMP_X_5067F0_DNSMASQ_1
+endif
+ifneq ($(strip $(BUILD_DNSPROBE)),)
+CMS_DMP_FLAGS += -DSUPPORT_DNSPROBE
+endif
+
+ifneq ($(strip $(BUILD_DPROXYWITHPROBE)),)
+CMS_DMP_FLAGS += -DSUPPORT_DNSPROXYWITHPROBE -DDMP_X_5067F0_DNSPROXY_1
+endif
+
+ifneq ($(strip $(BUILD_SUPERDMZ)),)
+CMS_DMP_FLAGS += -DSUPPORT_ADVANCED_DMZ
+endif
+
+#__MSTC__, Delon Yu, Support Address Mapping
+ifneq ($(strip $(BUILD_MSTC_ADDRESS_MAPPING)),)
+CMS_DMP_FLAGS += -DMSTC_ADDRESS_MAPPING
+endif
+
+ifneq ($(strip $(BUILD_IPPD)),)
+CMS_DMP_FLAGS += -DSUPPORT_IPP -DDMP_X_5067F0_IPPRINTING_1
+endif
+
+ifneq ($(strip $(BUILD_DLNA)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_DLNA_1
+export BUILD_DLNA
+endif
+
+ifneq ($(strip $(BUILD_TWONKY)),)
+CMS_DMP_FLAGS += -DSUPPORT_TWONKY
+endif
+
+ifneq ($(strip $(BUILD_HOMEPLUG)),)
+CMS_DMP_FLAGS += -DSUPPORT_HOMEPLUG -DDMP_DEVICE2_HOMEPLUG_1 -DDMP_DEVICE2_GATEWAYINFO_1
+endif
+
+ifneq ($(strip $(BRCM_HOMEPLUG_EXT_CHIP_60321)),)
+CMS_DMP_FLAGS += -DHOMEPLUG_CHIP_60321
+export BRCM_HOMEPLUG_EXT_CHIP_60321=y
+endif
+
+ifneq ($(strip $(BUILD_FBCTL)),)
+CMS_DMP_FLAGS += -DSUPPORT_FBCTL
+export BUILD_FBCTL
+endif
+
+ifneq ($(strip $(BUILD_FCCTL)),)
+CMS_DMP_FLAGS += -DSUPPORT_FCCTL
+export BUILD_FCCTL
+endif
+
+ifneq ($(strip $(BUILD_DSLDIAGD)),)
+CMS_DMP_FLAGS += -DSUPPORT_DSLDIAGD
+endif
+
+ifneq ($(strip $(BUILD_SNTP)),)
+CMS_DMP_FLAGS += -DSUPPORT_SNTP
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_TIME_1
+endif
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_TIME_1
+endif
+endif
+
+ifneq ($(strip $(BUILD_UDHCP)),)
+CMS_DMP_FLAGS += -DSUPPORT_UDHCP
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_DHCPV4_1 -DDMP_DEVICE2_DHCPV4CLIENT_1 -DDMP_DEVICE2_DHCPV4SERVER_1
+endif
+
+ifneq ($(strip $(BRCM_DHCP_SERVER_DEFAULT)),)
+CMS_DMP_FLAGS += -DDHCP_SERVER_DEFAULT
+endif
+
+ifneq ($(strip $(BRCM_DHCP_CLIENT_DEFAULT)),)
+CMS_DMP_FLAGS += -DDHCP_CLIENT_DEFAULT
+endif
+
+endif
+
+ifneq ($(strip $(BUILD_UDHCP_RELAY)),)
+CMS_DMP_FLAGS += -DDHCP_RELAY
+endif
+
+ifneq ($(strip $(BRCM_DRIVER_P8021AG)),)
+CMS_DMP_FLAGS += -DSUPPORT_P8021AG -DDMP_X_5067F0_P8021AG_1
+endif
+
+ifneq ($(strip $(BUILD_TMS)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_ETHERNETOAM_1
+endif
+
+ifneq ($(strip $(BUILD_SPUCTL)),)
+CMS_DMP_FLAGS += -DSUPPORT_SPUCTL 
+endif
+
+ifneq ($(strip $(BUILD_ETHSWCTL)),)
+CMS_DMP_FLAGS += -DSUPPORT_ETHSWCTL
+export BUILD_ETHSWCTL
+endif
+
+ifneq ($(strip $(BUILD_PWRCTL)),)
+CMS_DMP_FLAGS += -DSUPPORT_PWRMNGT -DDMP_X_5067F0_PWRMNGT_1
+endif
+
+ifneq ($(strip $(BRCM_HOSTMIPS_PWRSAVE)),)
+CMS_DMP_FLAGS += -DSUPPORT_HOSTMIPS_PWRSAVE
+endif
+
+ifneq ($(strip $(BRCM_DDR_SELF_REFRESH_PWRSAVE)),)
+CMS_DMP_FLAGS += -DSUPPORT_DDR_SELF_REFRESH_PWRSAVE
+endif
+
+ifneq ($(strip $(BRCM_ETH_PWRSAVE)),)
+CMS_DMP_FLAGS += -DSUPPORT_ETH_PWRSAVE
+endif
+
+ifneq ($(strip $(BRCM_AVS_PWRSAVE)),)
+CMS_DMP_FLAGS += -DSUPPORT_AVS_PWRSAVE
+else
+  ifeq ($(strip $(BRCM_CHIP)),6318)
+  ifneq ($(strip $(BRCM_IKOS)),y)
+    $(error ERROR: AVS Must be enabled on 6318)
+  endif
+endif
+endif
+
+ifeq ($(strip $(MSTC_DDNS_INADYN)),y)
+CMS_DMP_FLAGS += -DMSTC_DDNS_INADYN -DDMP_X_5067F0_DYNAMICDNS_1
+endif
+
+ifeq ($(strip $(MSTC_DDNS_EZ_IPUPDATE)),y)
+CMS_DMP_FLAGS += -DMSTC_DDNS_EZ_IPUPDATE -DDMP_X_5067F0_DYNAMICDNS_1
+endif
+
+ifeq ($(strip $(BUILD_TMPC1_GUI_CUSTOMIZATION)),y)
+CMS_DMP_FLAGS += -DTMPC1_GUI_CUSTOMIZATION -DDMP_X_5067F0_TMPC1_GUI_1
+endif
+
+ifeq ($(strip $(BUILD_TMPC1_WLAN_ACS_LIMIT)),y)
+CMS_DMP_FLAGS += -DTMPC1_WLAN_ACS_LIMIT
+endif
+
+ifeq ($(strip $(BUILD_TMPC1_SUPPORT_WPSWIFI_BUTTOM)),y)
+CMS_DMP_FLAGS += -DTMPC1_SUPPORT_WPSWIFI_BUTTOM
+endif
+
+ifeq ($(strip $(BUILD_TMPC1_AUTOGEN_WPAPSK)),y)
+CMS_DMP_FLAGS += -DTMPC1_AUTOGEN_WPAPSK
+endif
+
+ifeq ($(strip $(BUILD_TMPC1_CUSTOMIZATION)),y)
+CMS_DMP_FLAGS += -DBUILD_TMPC1_CUSTOMIZATION
+endif
+
+ifeq ($(strip $(BUILD_TMPC1_RANDOM_SSID)),y)
+CMS_DMP_FLAGS += -DTMPC1_RANDOM_SSID
+endif
+
+ifeq ($(strip $(BUILD_TMPC1_PASSWORD_SECURITY_ENHANCEMENT)),y)
+CMS_DMP_FLAGS += -DTMPC1_PASSWORD_SECURITY_ENHANCEMENT -DDMP_X_5067F0_TMPC1_PASSWORD_SECURITY_1
+endif
+
+ifeq ($(strip $(BUILD_TMPC1_ENCAPSULATION_SENSING)),y)
+CMS_DMP_FLAGS += -DTMPC1_ENCAPSULATION_SENSING
+endif
+
+ifeq ($(strip $(BUILD_NORWAY_CUSTOMIZATION)),y)
+CMS_DMP_FLAGS += -DBUILD_NORWAY_CUSTOMIZATION -DDMP_X_5067F0_NORWAY_DUALBOOT_1 -DDMP_X_5067F0_NORWAY_CUSTOMIZATION_1
+export BUILD_NORWAY_CUSTOMIZATION
+endif
+
+ifeq ($(strip $(BUILD_MSTC_WLAN_CLIENT_MODE)),y)
+CMS_DMP_FLAGS += -DBUILD_MSTC_WLAN_CLIENT_MODE
+export BUILD_MSTC_WLAN_CLIENT_MODE
+endif
+
+ifeq ($(strip $(BUILD_MSTC_NUTTCP)),y)
+CMS_DMP_FLAGS += -DBUILD_MSTC_NUTTCP
+export BUILD_MSTC_NUTTCP
+endif
+
+ifeq ($(strip $(BUILD_NORWAY_WLAN_ACS_LIMIT)),y)
+CMS_DMP_FLAGS += -DNORWAY_WLAN_ACS_LIMIT
+endif
+
+ifeq ($(strip $(BUILD_NORWAY_WLAN_GUESTWLAN_CUSTOMIZATION)),y)
+CMS_DMP_FLAGS += -DNORWAY_WLAN_GUESTWLAN_CUSTOMIZATION
+endif
+
+ifeq ($(strip $(BUILD_KEEP_ALIVE_PERIODICARP)),y)
+CMS_DMP_FLAGS += -DKEEP_ALIVE_PERIODICARP
+endif
+
+ifeq ($(strip $(BUILD_SIK_FEATURE)),y)
+CMS_DMP_FLAGS += -DSIK_FEATURE
+endif
+
+ifeq ($(strip $(BUILD_NORWAY_VOIP_CUSTOMIZATION)),y)
+CMS_DMP_FLAGS += -DNORWAY_VOIP_CUSTOMIZATION -DDMP_X_5067F0_NORWAY_VOIP_CUSTOMIZATION_1
+export BUILD_NORWAY_VOIP_CUSTOMIZATION=y
+endif
+
+ifeq ($(strip $(BUILD_TMPC4_CUSTOMIZATION)),y)
+CMS_DMP_FLAGS += -DBUILD_TMPC4_CUSTOMIZATION -DDMP_X_5067F0_TMPC4_CUSTOMIZATION_1
+export BUILD_TMPC4_CUSTOMIZATION
+endif
+
+ifeq ($(strip $(BUILD_TMPC4_QOS_MULTI_WAN)),y)
+CMS_DMP_FLAGS += -DBUILD_TMPC4_QOS_MULTI_WAN
+export BUILD_TMPC4_QOS_MULTI_WAN
+endif
+
+ifeq ($(strip $(BUILD_TMPC4_DHCPC_OPT254)),y)
+CMS_DMP_FLAGS += -DBUILD_TMPC4_DHCPC_OPT254 -DDMP_X_5067F0_TMPC4_DHCPC_OPT254_1
+export BUILD_TMPC4_DHCPC_OPT254
+endif
+
+
+ifeq ($(strip $(BUILD_TMPC3_CUSTOMIZATION)),y)
+CMS_DMP_FLAGS += -DBUILD_TMPC3_CUSTOMIZATION -DDMP_X_5067F0_TMPC3_CUSTOMIZATION_1 
+IPTK_COMPILE_FLAG += -DBUILD_TMPC3_CUSTOMIZATION
+export BUILD_TMPC3_CUSTOMIZATION
+endif
+
+ifeq ($(strip $(BUILD_TMPC3_AUTOGEN_WPAPSK)),y)
+CMS_DMP_FLAGS += -DTMPC1_AUTOGEN_WPAPSK -DTMPC3_AUTOGEN_WPAPSK
+endif
+
+
+ifeq ($(strip $(BUILD_TMPC3_VOICE_REINJECTION)),y)
+CMS_DMP_FLAGS += -DBUILD_TMPC3_VOICE_REINJECTION
+IPTK_COMPILE_FLAG += -DBUILD_TMPC3_VOICE_REINJECTION
+export BUILD_TMPC3_VOICE_REINJECTION
+endif
+
+ifeq ($(strip $(BUILD_NONSUPERVISOR_DUMPCFG)),y)
+CMS_DMP_FLAGS += -DNONSUPERVISOR_DUMPCFG
+endif
+
+ifneq ($(strip $(BUILD_NORWAY_BTN_LED_OFF)),)
+CMS_DMP_FLAGS += -DNORWAY_BTN_LED_OFF
+export BUILD_NORWAY_BTN_LED_OFF
+endif
+
+ifneq ($(strip $(BUILD_WPS5GLED)),)
+CMS_DMP_FLAGS += -DWPS5GLED
+export BUILD_WPS5GLED
+endif
+
+ifneq ($(strip $(BUILD_MSTC_WLAN_QTN_BAND_5G)),)
+CMS_DMP_FLAGS += -DMSTC_WLAN_QTN_BAND_5G
+export BUILD_MSTC_WLAN_QTN_BAND_5G=y
+endif
+
+ifeq ($(strip $(BUILD_TMPC5_CUSTOMIZATION)),y)
+CMS_DMP_FLAGS += -DBUILD_TMPC5_CUSTOMIZATION
+endif
+
+ifneq ($(strip $(BUILD_IPERF)),)
+export BUILD_LIB_STLPORT=y
+endif
+
+ifneq ($(strip $(BUILD_BRCM_OMCI)),)
+CMS_DMP_FLAGS += -DSUPPORT_BRCM_OMCI
+endif
+
+ifneq ($(strip $(BUILD_BMU)),)
+CMS_DMP_FLAGS += -DSUPPORT_BMU -DDMP_X_5067F0_COM_BMU_1
+export BUILD_LIB_STLPORT=y
+export BUILD_BMU BUILD_BMU_0CELL BUILD_BMU_2CELL BUILD_BMU_3CELL
+endif
+
+ifneq ($(strip $(BRCM_STANDBY)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_STANDBY_1
+endif
+
+ifneq ($(strip $(BUILD_CMFD)),)
+CMS_DMP_FLAGS += -DSUPPORT_CMFD
+endif
+
+ifneq ($(strip $(BUILD_GPONCTL)),)
+CMS_DMP_FLAGS += -DSUPPORT_GPONCTL 
+endif
+
+ifneq ($(strip $(BUILD_RNGD)),)
+CMS_DMP_FLAGS += -DSUPPORT_HWRANDOM
+endif
+
+ifneq ($(strip $(BUILD_EPON_SDK)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_EPON_1
+endif
+ifneq ($(strip $(BUILD_MYPING)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_IPSEC_TRIGGER_1
+endif
+
+# Build 406 Voice start
+ifneq ($(strip $(BUILD_MSTC_VOICE_406)),)
+CMS_DMP_FLAGS += -DSUPPORT_NEW_OUI -DSUPPORT_406_VOICE
+export BUILD_ZYXEL_406_VOICE=y
+endif
+# Build 406 Voice end
+ifneq ($(strip $(BUILD_MSTC_VOICE_412)),)
+CMS_DMP_FLAGS += -DSUPPORT_412_VOICE
+export BUILD_MSTC_VOICE_412=y
+endif
+ifneq ($(strip $(BUILD_MSTC_VOICE_412_LO6)),)
+CMS_DMP_FLAGS += -DSUPPORT_412_VOICE_L06
+CMS_DMP_FLAGS += -DSUPPORT_412_VOICE
+endif
+
+ifneq ($(strip $(BUILD_MSTC_VOICE_416_L01)),)
+CMS_DMP_FLAGS += -DSUPPORT_416_VOICE_L01
+export BUILD_MSTC_VOICE_416_L01=y
+endif
+
+# Build ZyXEL IVR start
+ifneq ($(strip $(BUILD_MSTC_VOICE_IVR)),)
+CMS_DMP_FLAGS += -DZYXEL_IVR_PORTING
+export BUILD_MSTC_IVR=y
+endif
+
+ifneq ($(strip $(BUILD_MSTC_VOICE_SRTP)),)
+CMS_DMP_FLAGS += -DMSTC_VOICE_SUPPORT_SRTP
+export BUILD_MSTC_VOICE_SRTP=y
+endif
+
+ifneq ($(strip $(BUILD_MSTC_VOICE_RTCP_ENABLE_SUPPORT)),)
+CMS_DMP_FLAGS += -DMSTC_VOICE_RTCP_ENABLE_SUPPORT -DDMP_X_5067F0_MSTC_VOICE_RTCP_ENABLE_SUPPORT_1
+export BUILD_MSTC_VOICE_RTCP_ENABLE_SUPPORT=y
+endif
+
+ifneq ($(strip $(BUILD_MSTC_CUSTOM_PHONE_FEATURE_PREFIX)),)
+ifneq ($(strip $(BUILD_MSTC_CUSTOM_PHONE_FEATURE_PREFIX)), "")
+CMS_DMP_FLAGS += -DBUILD_MSTC_CUSTOM_PHONE_FEATURE_PREFIX=\"${BUILD_MSTC_CUSTOM_PHONE_FEATURE_PREFIX}\"
+endif
+endif
+
+export BUILD_MSTC_CUSTOM_PHONE_FEATURE_PREFIX
+
+ifneq ($(strip $(BUILD_MSTC_CUSTOM_VOIP_UA_TAG_PREFIX)),)
+IPTK_COMPILE_FLAG += -DBUILD_MSTC_CUSTOM_VOIP_UA_TAG_PREFIX=\"${BUILD_MSTC_CUSTOM_VOIP_UA_TAG_PREFIX}\"
+export IPTK_COMPILE_FLAG
+endif
+
+ifneq ($(strip $(BUILD_MSTC_VOICE_VLAN_ID_MARK)),)
+CMS_DMP_FLAGS += -DMSTC_VOICE_VLAN_ID_MARK
+endif
+
+ifneq ($(strip $(BUILD_MSTC_VOICE_KSOCKET_RTP)),)
+CMS_DMP_FLAGS += -DMSTC_VOICE_KSOCKET_RTP
+export BUILD_MSTC_VOICE_KSOCKET_RTP=y
+endif
+
+ifneq ($(strip $(BUILD_MSTC_VOICE_OPTION_SIPSERVER)),)
+CMS_DMP_FLAGS += -DBUILD_VOICE_OPTION_SIPSERVER
+export BUILD_MSTC_VOICE_OPTION_SIPSERVER=y
+endif
+
+ifneq ($(strip $(BUILD_RFC3611)),)
+CMS_DMP_FLAGS += -DBUILD_RFC3611
+export BUILD_RFC3611=y
+endif
+
+ifneq ($(strip $(BUILD_ZYIMSWATCHDOG)),)
+CMS_DMP_FLAGS += -DSUPPORT_ZYIMSWATCHDOG
+endif
+
+ifneq ($(strip $(BUILD_MSTC_VOICE_GR909)),)
+CMS_DMP_FLAGS += -DMSTC_VOICE_GR909
+export BUILD_MSTC_VOICE_GR909=y
+endif
+
+ifneq ($(strip $(BUILD_MSTC_UNREG_INTERNAL_CALL)),)
+CMS_DMP_FLAGS += -DMSTC_UNREG_INTERNAL_CALL
+export BUILD_MSTC_UNREG_INTERNAL_CALL=y
+endif
+
+ifneq ($(strip $(BUILD_MUSIC_ON_HOLD)),)
+CMS_DMP_FLAGS += -DBUILD_MUSIC_ON_HOLD
+export BUILD_MUSIC_ON_HOLD=y
+endif
+
+ifneq ($(strip $(BUILD_LE9662_ZSI_BB)),)
+CMS_DMP_FLAGS += -DBUILD_LE9662_ZSI_BB
+export BUILD_LE9662_ZSI_BB=y
+endif
+
+ifneq ($(strip $(BUILD_SUPPORT_SI32260_PMOS)),)
+CMS_DMP_FLAGS += -DBUILD_SUPPORT_SI32260_PMOS
+export BUILD_SUPPORT_SI32260_PMOS=y
+endif
+
+ifneq ($(strip $(BUILD_IGNORE_DIRECT_IP)),)
+CMS_DMP_FLAGS += -DBUILD_IGNORE_DIRECT_IP
+endif
+
+ifneq ($(strip $(BUILD_SUPPORT_BACKUP_SIP_PRXOY)),)
+CMS_DMP_FLAGS += -DBUILD_SUPPORT_BACKUP_SIP_PRXOY -DDMP_X_5067F0_BACKUP_SIP_PRXOY_1
+IPTK_COMPILE_FLAG += -DBUILD_SUPPORT_BACKUP_SIP_PRXOY=\"${BUILD_SUPPORT_BACKUP_SIP_PRXOY}\"
+export BUILD_SUPPORT_BACKUP_SIP_PRXOY=y
+endif
+
+# Build ZyXEL IVR end
+
+# TR140 Storage Service
+
+ifneq ($(strip $(BUILD_STORAGESERVICE)),)
+CMS_DMP_FLAGS += -DSUPPORT_STORAGESERVICE -DDMP_STORAGESERVICE_1
+endif
+
+ifneq ($(strip $(BUILD_NTFS_3G)),)
+CMS_DMP_FLAGS += -DSUPPORT_NTFS_3G
+endif
+
+ifneq ($(strip $(BUILD_SAMBA)),)
+CMS_DMP_FLAGS += -DSUPPORT_SAMBA
+endif
+
+# end Storage Service
+
+
+#
+# Multicast related defines
+#
+ifneq ($(strip $(BUILD_MCAST_SNOOP)),)
+   CMS_DMP_FLAGS += -DDMP_X_5067F0_MCAST_1
+   CMS_DMP_FLAGS += -DDMP_X_5067F0_IGMPSNOOP_1
+   ifneq ($(strip $(BUILD_IPV6)),)
+      CMS_DMP_FLAGS += -DDMP_X_5067F0_MLDSNOOP_1
+   endif
+endif
+
+ifneq ($(strip $(BUILD_MCAST_PROXY)),)
+   CMS_DMP_FLAGS += -DSUPPORT_IGMP -DDMP_X_5067F0_IGMP_1
+   ifneq ($(strip $(BUILD_IPV6)),)
+      CMS_DMP_FLAGS += -DSUPPORT_MLD -DDMP_X_5067F0_MLD_1
+   endif
+endif
+
+# end Multicast
+
+
+ifneq ($(strip $(BUILD_AUTODETECTION)),)
+CMS_DMP_FLAGS += -DSUPPORT_AUTODETECTION -DDMP_X_5067F0_AUTODETECTION_1
+endif
+
+
+#
+#  =============== Begin Modular Software Section ===========
+#
+
+# was BUILD_OSGI_JVM
+# Now all the various pieces are individually controlled for maximum flexibility
+#
+ifneq ($(strip $(BUILD_JVM_JAMVM)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_JAMVM_1
+CMS_DMP_FLAGS += -DJAMVM_MIN_HEAP=$(JAMVM_MIN_HEAP_SIZE)
+CMS_DMP_FLAGS += -DJAMVM_MAX_HEAP=$(JAMVM_MAX_HEAP_SIZE)
+CMS_DMP_FLAGS += -DJAMVM_STACK=$(JAMVM_STACK_SIZE_PER_THREAD)
+endif
+
+ifneq ($(strip $(BUILD_OSGI_FELIX)),)
+CMS_DMP_FLAGS += -DSUPPORT_OSGI_FELIX
+endif
+
+ifneq ($(strip $(BUILD_MODSW_EE)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_SM_BASELINE_1
+endif
+
+ifneq ($(strip $(BUILD_MODSW_OSGIEE)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_X_5067F0_MODSW_OSGIEE_1
+endif
+
+ifneq ($(strip $(BUILD_MODSW_LINUXEE)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_X_5067F0_MODSW_LINUXEE_1
+endif
+
+ifneq ($(strip $(BUILD_MODSW_LINUXPFP)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_X_5067F0_MODSW_LINUXPFP_1
+endif
+
+# If either LINUXEE or LINUXPFP is enabled, we need linmosd
+# linmosd is not directly controlled by the user via make menuconfig.
+# We set it based on the settings of LINUXEE or LINUXPFP.
+ifneq ($(strip $(BUILD_MODSW_LINUXEE)),)
+BUILD_LINMOSD := 1
+export BUILD_LINMOSD
+endif
+
+ifneq ($(strip $(BUILD_MODSW_LINUXPFP)),)
+BUILD_LINMOSD := 1
+export BUILD_LINMOSD
+endif
+
+ifneq ($(strip $(BUILD_LINMOSD)),)
+CMS_DMP_FLAGS += -DSUPPORT_LINMOSD
+endif
+
+# osgid and linmosd needs libmodsw, so if either of these two things
+# are defined, then build libmodsw. 
+ifneq ($(strip $(BUILD_OSGI_FELIX)),)
+BUILD_LIBMODSW := 1
+export BUILD_LIBMODSW
+endif
+
+ifneq ($(strip $(BUILD_LINMOSD)),)
+BUILD_LIBMODSW := 1
+export BUILD_LIBMODSW
+endif
+
+ifneq ($(strip $(BUILD_LIBMODSW)),)
+CMS_DMP_FLAGS += -DSUPPORT_LIBMODSW
+endif
+
+
+ifneq ($(strip $(BUILD_MODSW_CLI)),)
+CMS_DMP_FLAGS += -DSUPPORT_MODSW_CLI
+endif
+
+ifneq ($(strip $(BUILD_MODSW_WEBUI)),)
+CMS_DMP_FLAGS += -DSUPPORT_MODSW_WEBUI
+endif
+
+ifneq ($(strip $(BUILD_MODSW_WEBUI_ADMIN)),)
+CMS_DMP_FLAGS += -DSUPPORT_MODSW_WEBUI_ADMIN
+endif
+
+ifneq ($(strip $(BUILD_PCP)),)
+CMS_DMP_FLAGS += -DSUPPORT_PCP
+endif
+
+ifneq ($(strip $(BUILD_MODSW_WEBUI_SUPPORT)),)
+CMS_DMP_FLAGS += -DSUPPORT_MODSW_WEBUI_SUPPORT
+endif
+
+
+#
+#  =============== End Modular Software Section ===========
+#
+
+
+# Configuration Filter Features.
+ifneq ($(strip $(BUILD_MTSC_CONFIGURATION_FILTER)),)
+CMS_DMP_FLAGS += -DSUPPORT_CONFIGURATION_FILTER
+endif
+
+# CLI commands classification Features. __OBM__, ZyXEL Jason, 20101016
+ifneq ($(strip $(BUILD_MTSC_CLICMD_CLASSIFICATION)),)
+CMS_DMP_FLAGS += -DSUPPORT_CLICMD_CLASSIFICATION
+endif
+
+# Dual image selection
+ifneq ($(strip $(BUILD_MTSC_DUAL_IMAGE_SELECT)),)
+export BUILD_MTSC_DUAL_IMAGE_SELECT
+CMS_DMP_FLAGS += -DSUPPORT_DUAL_IMAGE_SELECT
+endif
+
+# RomFile Control
+ifneq ($(strip $(BUILD_MTSC_ROMFILE_CONTROL)),)
+CMS_DMP_FLAGS += -DSUPPORT_ROMFILE_CONTROL
+endif
+
+#
+# netfilter modules 
+#
+
+ifneq ($(strip $(BRCM_KERNEL_NF_NAT_ALG_IPSEC)),)
+	CMS_DMP_FLAGS += -DSUPPORT_IPSEC_PASSTHROUGH
+endif
+
+ifneq ($(strip $(BRCM_KERNEL_NF_NAT_ALG_PPTP)),)
+	CMS_DMP_FLAGS += -DSUPPORT_PPTP
+endif
+
+ifneq ($(strip $(BRCM_KERNEL_NF_NAT_ALG_SIP)),)
+	CMS_DMP_FLAGS += -DSUPPORT_SIP
+endif
+
+ifneq ($(strip $(BRCM_KERNEL_NF_LAYER7_FILTER)),)
+	CMS_DMP_FLAGS += -DSUPPORT_L7_FILTER
+endif
+
+ifneq ($(strip $(BUILD_CONNTRACK_TOOLS)),)
+CMS_DMP_FLAGS += -DSUPPORT_CONNTRACK_TOOLS
+endif
+
+ifneq ($(strip $(BUILD_DPI)),)
+CMS_DMP_FLAGS += -DSUPPORT_DPI
+endif
+
+#
+# netfilter modules end
+#
+
+
+# In the beginning, there was a config param called VCONFIG, which enabled
+# a Broadcom feature called "port mapping".  Starting in 4.x, we renamed this
+# feature "Interface Grouping".  But TR98 calls it "Layer 2 Bridging".
+# And in TR181, interface grouping is just part of the standard bridge
+# functionality, there is no specific define that controls interface grouping.
+#
+# Bottom line: SUPPORT_PORT_MAP is the data model independent way to indicate
+# support for interface grouping.  For Legacy98 and Hybrid, it is defined
+# when VCONFIG is enabled.  For Pure181, SUPPORT_PORT_MAP is always defined.
+#
+ifneq ($(strip $(BUILD_VCONFIG)),)
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DSUPPORT_PORT_MAP -DDMP_BRIDGING_1 
+endif
+endif
+
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DSUPPORT_PORT_MAP
+endif
+
+
+ifneq ($(strip $(BUILD_WANVLANMUX)),)
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DSUPPORT_WANVLANMUX
+endif
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+# Pure TR181 mode: always enable VLANMUX, so no defines needed?
+CMS_DMP_FLAGS += -DSUPPORT_WANVLANMUX -DDMP_DEVICE2_VLANTERMINATION_1
+endif
+endif
+
+ifneq ($(strip $(BUILD_LANVLAN)),)
+
+# Unfortunately, we don't have a TR98 specific LANVLAN define,
+# so SUPPORT_LANVLAN means both generic LANVLAN and TR98 LANVLAN support.
+# Wastes a little code space on PURE181 builds.
+CMS_DMP_FLAGS += -DSUPPORT_LANVLAN
+
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_VLANTERMINATION_1
+endif
+endif
+
+#ifneq ($(strip $(BUILD_BCM_ALLOW_REAL_HW_SWITCHING)),)
+#CMS_DMP_FLAGS += -DSUPPORT_CMS_ALLOW_REAL_HW_SWITCHING
+#endif
+
+# Temporarily blocking this configuration from menuconfig until Ethernet Driver is ready for this.
+ifneq ($(BUILD_RDPA),y)
+CMS_DMP_FLAGS += -DSUPPORT_CMS_ALLOW_REAL_HW_SWITCHING
+endif
+
+ifneq ($(findstring _$(strip $(BRCM_CHIP))_,_63138_63148_),)
+CMS_DMP_FLAGS += -DSUPPORT_CMS_ALLOW_REAL_HW_SWITCHING
+endif
+
+ifneq ($(strip $(BRCM_DRIVER_USB)),)
+CMS_DMP_FLAGS += -DSUPPORT_USB
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_USBLAN_1
+endif
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_USBHOSTSBASIC_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_USBINTERFACE_1
+endif
+endif
+
+
+
+# ==== Begin QoS, rate shaping, policing config section ====
+
+# Currently, all builds support QoS, but maybe in the future we could
+# disable QoS for some very simple devices?
+CMS_DMP_FLAGS += -DSUPPORT_QOS
+
+# Enable various Data Model related QoS defines based on what profiles
+# we are compiling
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_QOS_1 -DDMP_QOSDYNAMICFLOW_1
+CMS_DMP_FLAGS += -DDMP_X_5067F0_QOS_1
+endif
+
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_DEVICE2_QOS_1 -DDMP_DEVICE2_QOS_2
+CMS_DMP_FLAGS += -DDMP_X_5067F0_DEVICE2_QOS_1
+endif
+
+
+ifneq ($(strip $(BRCM_TC_RATE_LIMIT)),)
+CMS_DMP_FLAGS += -DSUPPORT_RATE_LIMIT
+endif
+
+ifneq ($(strip $(BRCM_TC_POLICING)),)
+CMS_DMP_FLAGS += -DSUPPORT_POLICING
+endif
+
+# ==== End QoS, rate shaping, policing config section ====
+
+
+
+ifneq ($(strip $(BRCM_KERNEL_FTRACE)),)
+CMS_DMP_FLAGS += -DSUPPORT_FTRACE
+endif
+
+ifneq ($(strip $(BUILD_VLAN_AGGR)),)
+CMS_DMP_FLAGS += -DCONFIG_BCM_VLAN_AGGREGATION -DCONFIG_BCM_KF_VLAN_AGGREGATION
+endif
+
+#
+# These variables come from the debug section of make menuconfig
+#
+ifeq ($(strip $(CMS_LOG_DEBUG)),)
+CMS_LOG_FLAGS := -DCMS_LOG0
+else
+ifneq ($(strip $(CMS_LOG_LEVEL_1)),)
+CMS_LOG_FLAGS := -DCMS_LOG2
+endif
+ifneq ($(strip $(CMS_LOG_LEVEL_2)),)
+CMS_LOG_FLAGS := -DCMS_LOG3
+endif
+ifneq ($(strip $(CMS_STARTUP_DEBUG)),)
+CMS_DMP_FLAGS += -DCMS_STARTUP_DEBUG
+endif
+endif
+
+ifneq ($(strip $(CMS_SECURITY_LOG)),)
+CMS_DMP_FLAGS += -DCMS_SECURITY_LOG
+endif
+
+ifneq ($(strip $(CMS_MEM_BOUNDARY_CHECK)),)
+CMS_DMP_FLAGS += -DCMS_MEM_BOUNDARY_CHECK
+endif
+
+ifneq ($(strip $(CMS_MEM_POISON_ALLOC_FREE)),)
+CMS_DMP_FLAGS += -DCMS_MEM_POISON_ALLOC_FREE
+endif
+
+ifneq ($(strip $(CMS_MEM_LEAK_TRACING)),)
+CMS_DMP_FLAGS += -DCMS_MEM_LEAK_TRACING
+endif
+
+ifneq ($(strip $(CMS_FATAL_ASSERT)),)
+CMS_DMP_FLAGS += -DCMS_FATAL_ASSERT
+endif
+
+ifneq ($(strip $(BUILD_DEBUG_TOOLS)),)
+CMS_DMP_FLAGS += -DSUPPORT_DEBUG_TOOLS
+endif
+
+ifneq ($(strip $(CMS_BYPASS_LOGIN)),)
+CMS_DMP_FLAGS += -DCMS_BYPASS_LOGIN
+endif
+
+ifneq ($(strip $(BRCM_GMAC)),)
+CMS_DMP_FLAGS += -DCMS_BRCM_GMAC
+endif
+
+ifneq ($(strip $(BUILD_MSTC_VCAUTOHUNT)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_VCAUTOHUNT_1 -DMSTC_VCAUTOHUNT
+endif
+
+#__MSTC__, Jeff, VLANAUTOHUNT
+ifneq ($(strip $(BUILD_MSTC_VLANAUTOHUNT)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_VLANAUTOHUNT_1 -DMSTC_VLANAUTOHUNT
+endif
+
+ifneq ($(strip $(BUILD_MSTC_SERVICE_ROUTE)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_MSTC_SERVICEROUTE_1 -DMSTC_SERVICE_ROUTE
+CUSTOM_FLAGS += -DDMP_X_5067F0_MSTC_SERVICEROUTE_1 -DMSTC_SERVICE_ROUTE
+endif
+
+ifneq ($(strip $(BUILD_MSTC_ROUTE_REPLY_BACK_TO_SAME_INTF)),)
+CMS_DMP_FLAGS += -DBUILD_MSTC_ROUTE_REPLY_BACK_TO_SAME_INTF
+CUSTOM_FLAGS += -DBUILD_MSTC_ROUTE_REPLY_BACK_TO_SAME_INTF
+endif
+
+ifneq ($(strip $(BUILD_MSTC_DNS_ROUND_ROBIN)),)
+CMS_DMP_FLAGS += -DMSTC_DNS_ROUND_ROBIN
+CUSTOM_FLAGS += -DMSTC_DNS_ROUND_ROBIN
+endif
+
+ifneq ($(strip $(BUILD_MSTC_MACFILTER)),)
+CMS_DMP_FLAGS += -DMSTC_MACFILTER
+endif
+
+ifneq ($(strip $(BUILD_RPCAPD)),)
+ifneq ($(strip $(BUILD_TCPDUMP)),)
+CMS_DMP_FLAGS += -DSUPPORT_REMOTE_CAPTURE -DDMP_X_5067F0_MSTC_SNIFFER_1
+endif
+endif
+
+#
+# This needs a little cleanup also.  Instead of explicitly checking for BUILD_CERT,
+# this check should be if (BUILD_HTTPD_SSL or BUILD_TR69_SSL or any other feature
+# that requires SSL).
+#
+ifneq ($(strip $(BUILD_CERT)),)
+CMS_DMP_FLAGS += -DSUPPORT_CERT -DDMP_X_5067F0_DIGITALCERTIFICATES_1
+endif
+
+ifneq ($(strip $(BUILD_ZEBRA)),)
+CMS_DMP_FLAGS += -DSUPPORT_RIP
+endif
+
+ifneq ($(strip $(COMPRESSED_CONFIG_FILE)),)
+CMS_DMP_FLAGS += -DCOMPRESSED_CONFIG_FILE
+endif
+
+ifneq ($(strip $(BUILD_BACKUP_PSI)),)
+CMS_DMP_FLAGS += -DSUPPORT_BACKUP_PSI
+endif
+
+ifneq ($(strip $(BUILD_BACKUP_PSI_MIRROR_MODE)),)
+CMS_DMP_FLAGS += -DSUPPORT_BACKUP_PSI_MIRROR_MODE
+endif
+
+ifneq ($(strip $(BUILD_BACKUP_PSI_DEVICE_DEFAULT)),)
+CMS_DMP_FLAGS += -DSUPPORT_BACKUP_PSI_DEVICE_DEFAULT
+endif
+
+ifneq ($(strip $(CMS_CONFIG_COMPAT)),)
+CMS_DMP_FLAGS += -DCMS_CONFIG_COMPAT
+endif
+
+#start __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+#Autumn for syslog
+ifneq ($(strip $(BRCM_KERNEL_AUXFS_JFFS2)),)
+CMS_DMP_FLAGS += -DCONFIG_AUXFS_JFFS2
+endif
+#end __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+
+#__MSTC__, TengChang, Log
+ifneq ($(strip $(BUILD_MSTC_SAVE_LOG_TO_FLASH)),)
+CMS_DMP_FLAGS += -DMSTC_SAVE_LOG_TO_FLASH
+CMS_DMP_FLAGS += -DFLASH_FS_SIZE=$(MSTC_FLASH_FS_SIZE)
+CMS_DMP_FLAGS += -DLOG_ROTATE_NUM=$(MSTC_LOG_ROTATE_NUM)
+else
+CMS_DMP_FLAGS += -DFLASH_FS_SIZE=$(MSTC_LOGRAM_SIZE)
+endif
+
+ifneq ($(strip $(MSTC_SYSLOG_CATEGORY)),)
+CMS_DMP_FLAGS += -DMSTC_SYSLOG_CATEGORY
+endif
+
+ifneq ($(strip $(MSTC_SYS_AND_SEC_LOG)),)
+CMS_DMP_FLAGS += -DMSTC_SYS_AND_SEC_LOG
+endif
+
+ifeq ($(strip $(BUILD_TMPC2_COMMON_CUSTOMIZATION)),y)
+CUSTOM_CFLAGS += -DBUILD_TMPC2_COMMON_CUSTOMIZATION -DDMP_BUILD_TMPC2_COMMON_CUSTOMIZATION_1
+endif
+
+
+ifneq ($(strip $(MSTC_HIDE_BRCM_LOG)),)
+CMS_DMP_FLAGS += -DMSTC_HIDE_BRCM_LOG
+endif
+
+ifneq ($(strip $(BUILD_MSTC_EMAIL_NOTIFICATION)),)
+CMS_DMP_FLAGS += -DMSTC_EMAIL_NOTIFICATION -DDMP_X_5067F0_MSTC_LOG_EMAILNOTIFICATION_1
+endif
+#__MSTC__, TengChang, Log, end
+
+ifneq ($(strip $(CMS_CONFIG_IGNORE_UNRECOGNIZED)),)
+CMS_DMP_FLAGS += -DCMS_CONFIG_IGNORE_UNRECOGNIZED
+endif
+
+
+
+# ==== Wifi (WLAN) config section ====
+# If Wireless driver is selected from menuconfig, that means we want to enable
+# the Wifi feature
+ifneq ($(strip $(BRCM_DRIVER_WIRELESS)), )
+
+ifeq ($(strip $(ARCH_ENDIAN)),big)
+CMS_WLAN_FLAGS += -DIL_BIGENDIAN
+endif
+
+CMS_WLAN_FLAGS += -DBRCM_WLAN -DWIRELESS
+export WIRELESS=1
+
+ifeq ($(BRCM_WAPI),y)
+CMS_WLAN_FLAGS += -DBCMWAPI_WPI -DBCMWAPI_WAI
+endif
+
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+# These flags enable TR98 based Wifi objects
+#__MSTC__, Justin
+CMS_DMP_FLAGS += -DDMP_WIFILAN_1 -DDMP_X_5067F0_WIFILAN_1 -DFOLLOW_TR098
+endif
+
+#__MSTC__, Peter
+ifeq ($(BUILD_MSTC_WLAN_ACS_POLICY),y)
+CMS_WLAN_FLAGS += -DMSTC_WLAN_ACS_POLICY
+endif
+
+#KeyYang@MSTC Quqntenna RMT_QCSAPI Porting, 20111215
+ifneq ($(strip $(BUILD_MTS_QCS_WAPI)),)
+CMS_WLAN_FLAGS += -DRMT_QCSAPI_SUPPORT 
+endif
+#End of KeyYang's Comment
+ifeq ($(BUILD_MTS_WPS2_SUPPORTED),y)
+CMS_WLAN_FLAGS += -DBUILD_MTS_WPS2_SUPPORTED
+endif
+
+
+ifneq ($(MSTC_CONCURRENT_WIFI_MAX_MBSS_NUM),)
+CMS_WLAN_FLAGS += -DMSTC_CONCURRENT_WIFI_MAX_MBSS_NUM=$(MSTC_CONCURRENT_WIFI_MAX_MBSS_NUM)
+endif
+
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+# In Pure TR181 mode, we use the standard TR181 wifi objects
+CMS_DMP_FLAGS += -DDMP_DEVICE2_WIFIRADIO_1 -DDMP_DEVICE2_WIFISSID_1
+# Do we have a define for AP mode?  Always assume it is enabled?
+CMS_DMP_FLAGS += -DDMP_DEVICE2_WIFIACCESSPOINT_1 
+endif
+
+# this means user wants to have a wifi WAN interface
+ifneq ($(strip $(BUILD_WIFIWAN)),)
+
+export BUILD_WAN_HTML=y
+CMS_DMP_FLAGS += -DSUPPORT_WIFIWAN
+
+ifneq ($(strip $(BUILD_TR98_PROFILES)),)
+# this flag enables TR98 specific Wifi WAN objects and code
+CMS_DMP_FLAGS += -DDMP_X_5067F0_WIFIWAN_1
+endif
+
+ifneq ($(strip $(BUILD_PURE181_PROFILES)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_DEV2_WIFIWAN_1
+CMS_DMP_FLAGS += -DDMP_DEVICE2_WIFIENDPOINT_1
+endif
+
+endif
+
+endif
+# ==== End Wifi (WLAN) config section
+
+export BRCM_DRIVER_DHD
+
+# __MSTC__, Richard, for MAX WAN entry
+CMS_DMP_FLAGS += -DCV_MAX_WAN_ENTRY=$(MSTC_MAX_WAN_ENTRY)
+
+# __MSTC__, TengChang, for MTS Log
+ifneq ($(strip $(BUILD_MSTC_LOG)),)
+CMS_DMP_FLAGS += -DMSTC_LOG -DDMP_X_5067F0_MSTC_LOG_1
+endif
+
+# __CBT__, TengChang, for CBT Firewall
+ifneq ($(strip $(BUILD_MSTC_CBT_FIREWALL)),)
+CMS_DMP_FLAGS += -DDMP_X_5067F0_MSTC_CBT_FIREWALL_1
+endif
+
+#__MSTC__, Marcus, add customer parttion to save SIK
+ifneq ($(strip $(BUILD_SIK_PARTITION_FEATURE)),)
+CMS_DMP_FLAGS += -DSIK_PARTITION_FEATURE
+CUSTOM_CFLAGS += -DSIK_PARTITION_FEATURE
+endif
+
+ifneq ($(strip $(BCM_CGROUPS)),)
+CMS_DMP_FLAGS += -DSUPPORT_CGROUPS
+endif
+
+ifneq ($(strip $(BCM_CGROUP_BCM)),)
+CMS_DMP_FLAGS += -DSUPPORT_CGROUP_BCM
+endif
+
+ifeq ($(BUILD_IEEE1905),y)
+export BUILD_IEEE1905
+CMS_DMP_FLAGS += -DSUPPORT_IEEE1905
+ifeq ($(BRCM_1905_FM),y)
+CMS_DMP_FLAGS += -DSUPPORT_IEEE1905_FM
+ifeq ($(BRCM_1905_AUTO_WDS),y)
+ifneq ($(strip $(BRCM_DRIVER_WIRELESS)),)
+CMS_DMP_FLAGS += -DSUPPORT_IEEE1905_AUTO_WDS
+endif
+endif
+endif
+endif
+
+ifeq ($(strip $(BRCM_DRIVER_WATCHDOG_TIMER)), y)
+CMS_DMP_FLAGS += -DBRCM_WATCHDOG_TIMER
+endif
+
+CMS_COMPILE_FLAGS := $(DBGFLAGS) $(CMS_LOG_FLAGS) $(PROFILERFLAGS) \
+                    -D$(TARGET_OS) $(CMS_COMPILER_OPTS) $(CMS_DMP_FLAGS) \
+                    -DCHIP_$(BRCM_CHIP)	-DCONFIG_BCM9$(BRCM_CHIP) -DMSTC_C_ATSE_KEY=\"$(MSTC_C_ATSE_KEY)\"
+
+ifneq ($(strip $(BUILD_BRCM_CMS)),)
+CMS_COMPILE_FLAGS += -DBRCM_CMS_BUILD
+endif
+
+###### Need to export kernel config to userspace as well
+ifeq ($(BRCM_GPON_DDRO), y)
+CMS_COMPILE_FLAGS += -DCONFIG_BCM_GPON_DDRO -DCONFIG_BCM_GPON_DDRO_SIZE=$(BRCM_GPON_DDRO_SIZE)
+endif
+ifeq ($(BCM_GPON_802_1Q_ENABLED),y)
+CMS_COMPILE_FLAGS += -DCONFIG_BCM_GPON_802_1Q_ENABLED
+endif
+ifeq ($(BRCM_PORTS_ON_INT_EXT_SW),y)
+CMS_COMPILE_FLAGS += -DBRCM_PORTS_ON_INT_EXT_SW
+endif
+ifeq ($(BCM_GPON_AE_AUTO_SWITCH),y)
+CMS_COMPILE_FLAGS += -DCONFIG_BCM_GPON_AE_AUTO_SWITCH
+endif
+
+#start __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+# __MSTC__, Autumn
+ifeq ($(strip $(INC_NAND_FLASH_DRIVER)),1)
+CMS_COMPILE_FLAGS += -DINC_NAND_FLASH_DRIVER=$(INC_NAND_FLASH_DRIVER)
+endif
+#end __MSTC__, RaynorChung: Support 963268 nand flash, patch form SVN#3597 on http://svn.zyxel.com.tw/svn/CPE_SW1/BCM96368/trunk/P-870HA/branches/cht/fttb8/4.11 
+
+ifeq ($(BCM_GPON_TODD),y)
+CMS_COMPILE_FLAGS += -DCONFIG_BCM_GPON_TODD
+endif
+ifeq ($(strip $(BRCM_CHIP)),6818)
+CMS_COMPILE_FLAGS += -DCONFIG_BCM_MAX_GEM_PORTS=$(BCM_MAX_GEM_PORTS)
+else
+ifeq ($(strip $(BRCM_CHIP)),68500)
+CMS_COMPILE_FLAGS += -DCONFIG_BCM_MAX_GEM_PORTS=$(BCM_MAX_GEM_PORTS)
+else
+ifeq ($(strip $(BRCM_CHIP)),6838)
+CMS_COMPILE_FLAGS += -DCONFIG_BCM_MAX_GEM_PORTS=$(BCM_MAX_GEM_PORTS)
+else
+# This is just to hide the error in rut_gponrg_light.c; this file should not compile for non-gpon
+CMS_COMPILE_FLAGS += -DCONFIG_BCM_MAX_GEM_PORTS=1
+endif
+endif
+endif
+
+ifneq ($(strip $(BRCM_MIPS_RATE_LIMIT)),)
+CMS_COMPILE_FLAGS += -DCONFIG_MIPS_RATE_LIMIT=$(BRCM_MIPS_RATE_LIMIT)
+endif
+
+ifneq ($(strip $(EPON_ONU_TYPE)),)
+CMS_COMPILE_FLAGS +=   -D$(EPON_ONU_TYPE)
+endif
+
+
+ifneq ($(strip $(GPON_ONU_TYPE)),)
+CMS_COMPILE_FLAGS +=   -D$(GPON_ONU_TYPE)
+endif
+
+ifneq ($(strip $(BCM_JUMBO_FRAME)),)
+export BCM_JUMBO_FRAME
+endif
+
+
+ifneq ($(strip $(BUILD_EPON_SDK)),)
+CMS_COMPILE_FLAGS +=   -DEPON_SDK_BUILD
+endif
+
+ifneq ($(strip $(BUILD_EPON_BCM_OAM)),)
+CMS_COMPILE_FLAGS +=   -DBCM_OAM_BUILD
+endif
+
+ifneq ($(strip $(BUILD_EPON_CTC_OAM)),)
+CMS_COMPILE_FLAGS +=   -DCTC_OAM_BUILD
+endif
+
+ifneq ($(strip $(BUILD_EPON_DPOE_OAM)),)
+CMS_COMPILE_FLAGS +=   -DDPOE_OAM_BUILD
+CMS_COMPILE_FLAGS +=   -DDPOE_OAM_IMPL1_BUILD
+#CMS_COMPILE_FLAGS +=   -DDPOE_OAM_STUB_BUILD
+endif
+
+# __MSTC__, Lynn, support 802.1ag.
+ifneq ($(strip $(BUILD_MSTC_P8021AG)),)
+CUSTOM_CFLAGS += -DMSTC_SUPPORT_P8021AG
+endif
+#__MSTC__, Justin, Support xDSLCTL
+ifneq ($(strip $(BUILD_XDSLCTL)),)
+CMS_COMPILE_FLAGS += -DSUPPORT_XDSLCTL
+endif
+
+ifeq ($(strip $(MSTC_WEBUI_STYLE_BRICK)),y)
+CUSTOM_CFLAGS +=   -DMSTC_WEBUI_BRICK
+endif
+
+# __MSTC__, __Telus__, Axel, support Multilingual
+ifneq ($(strip $(BUILD_MULTI_LANGUAGES)),)
+	export BUILD_MULTI_LANGUAGES
+	CMS_DMP_FLAGS += -DBUILD_MULTI_LANGUAGES
+	ifneq ($(strip $(BUILD_MULTI_LANGUAGES_ENG)),)
+		export  BUILD_MULTI_LANGUAGES_ENG
+	endif
+	ifneq ($(strip $(BUILD_MULTI_LANGUAGES_SPA)),)
+		export  BUILD_MULTI_LANGUAGES_SPA
+	endif
+endif
+# __MSTC__, __Telus__, Axel, support Multilingual end
+
+ifeq ($(strip $(MSTC_OUI_REPLACE)),y)
+CUSTOM_CFLAGS += -DMSTC_PARAM_ORIGINAL_PREFIX=\"$(MSTC_PARAM_ORIGINAL_PREFIX)\"
+export MSTC_PARAM_ORIGINAL_PREFIX
+CUSTOM_CFLAGS += -DMSTC_PARAM_REPLACE_WITH=\"$(MSTC_PARAM_REPLACE_WITH)\"
+export MSTC_PARAM_REPLACE_WITH
+export MSTC_OUI_REPLACE
+endif
+
+ifeq ($(strip $(BUILD_MSTC_DHCP_61)),y)
+CUSTOM_CFLAGS +=   -DMSTC_DHCP_61
+endif
+
+ifeq ($(strip $(BUILD_MSTC_DHCP_125)),y)
+CUSTOM_CFLAGS +=   -DMSTC_DHCP_125
+endif
+
+ifeq ($(strip $(BUILD_MSTC_STATIC_DHCP_AUTO)),y)
+CUSTOM_CFLAGS +=   -DMSTC_STATIC_DHCP_AUTO -DDMP_X_5067F0_STATIC_DHCP_AUTO_1
+endif
+
+# __MSTC__, Dennis, support xdsl advance setup.
+ifneq ($(strip $(BUILD_MSTC_DSLADVCFG)),)
+CUSTOM_CFLAGS += -DMSTC_DSLADVCFG
+endif
+
+# __MSTC__, DingRuei, MTS IPv6 setup
+ifneq ($(strip $(BUILD_MSTC_IPV6)),)
+CUSTOM_CFLAGS += -DMSTC_IPV6
+endif
+# __MSTC__, DingRuei, MTS IPv6 setup
+
+# MSTC support RFC 6204, merge from CHT P880phase3
+ifneq ($(strip $(BUILD_MSTC_RFC6204)),)
+CUSTOM_CFLAGS += -DMSTC_RFC6204
+endif
+
+#__MSTC__, Dennis merge from zongyue, OBM ImageDefault feature
+ifneq ($(strip $(MSTC_OBM_IMAGE_DEFAULT)),)
+CUSTOM_CFLAGS += -DMSTC_OBM_IMAGE_DEFAULT
+endif
+
+#__MSTC__, Dennis merge from zongyue, ZyXEL ROM-D feature
+ifneq ($(strip $(MSTC_ROM_D)),)
+CUSTOM_CFLAGS += -DMSTC_ROM_D
+endif
+
+#__MSTC__, Eason
+ifneq ($(strip $(BUILD_MSTC_DSL_2492GNAU_B1BC_MLD)),)
+export BUILD_MSTC_DSL_2492GNAU_B1BC_MLD
+CUSTOM_CFLAGS += -DBUILD_MSTC_DSL_2492GNAU_B1BC_MLD
+CMS_COMPILE_FLAGS += -DBUILD_MSTC_DSL_2492GNAU_B1BC_MLD
+endif
+
+#__MSTC__, Ado
+ifneq ($(strip $(BUILD_MSTC_DSL_2492GNAU_B3BC)),)
+export BUILD_MSTC_DSL_2492GNAU_B3BC
+CUSTOM_CFLAGS += -DBUILD_MSTC_DSL_2492GNAU_B3BC
+CMS_COMPILE_FLAGS += -DBUILD_MSTC_DSL_2492GNAU_B3BC
+endif
+
+#__MSTC__, Ado
+ifneq ($(strip $(BUILD_MSTC_DSL_2101HN_B1_SE)),)
+export BUILD_MSTC_DSL_2101HN_B1_SE
+CUSTOM_CFLAGS += -DBUILD_MSTC_DSL_2101HN_B1_SE
+CMS_COMPILE_FLAGS += -DBUILD_MSTC_DSL_2101HN_B1_SE
+endif
+
+#__MSTC__, Eason
+ifneq ($(strip $(BUILD_MSTC_DSL_2492HNAU_B1BC)),)
+export BUILD_MSTC_DSL_2492HNAU_B1BC
+CUSTOM_CFLAGS += -DBUILD_MSTC_DSL_2492HNAU_B1BC
+CMS_COMPILE_FLAGS += -DBUILD_MSTC_DSL_2492HNAU_B1BC
+endif
+
+
+#__MSTC__, Jennifer
+ifneq ($(strip $(BUILD_MSTC_DSL_2492GNUP_B1DC_TMPC4)),)
+export BUILD_MSTC_DSL_2492GNUP_B1DC_TMPC4
+CUSTOM_CFLAGS += -DBUILD_MSTC_DSL_2492GNUP_B1DC_TMPC4
+CMS_COMPILE_FLAGS += -DBUILD_MSTC_DSL_2492GNUP_B1DC_TMPC4
+endif
+
+#__MSTC__, Marcus 
+ifneq ($(strip $(BUILD_MSTC_VOIP_AUTO_TEST)),)
+CMS_COMPILE_FLAGS += -DMSTC_VOIP_AUTO_TEST
+endif
+
+#__MSTC__, Dennis, support connection request port configuration.
+ifneq ($(strip $(BUILD_MSTC_CONNREQ_PORT)),)
+CUSTOM_CFLAGS +=   -DMSTC_CONNREQ_PORT
+endif
+
+#__MSTC__, Dennis, cert select
+ifneq ($(strip $(BUILD_MSTC_CERTSELECT)),)
+CUSTOM_CFLAGS += -DMSTC_CERTSELECT
+endif
+
+#__MSTC__, Dennis, FTP upload method
+ifneq ($(strip $(BUILD_MSTC_WPUT)),)
+CUSTOM_CFLAGS += -DMSTC_WPUT_RPCMETHOD
+endif
+
+#__MSTC__, Dennis, FTP download method
+ifneq ($(strip $(BUILD_MSTC_WGET)),)
+CUSTOM_CFLAGS += -DMSTC_WGET_RPCMETHOD
+endif
+
+#__MSTC__, Dennis, SOAP fault log
+ifneq ($(strip $(BUILD_MSTC_SOAP_FAULT_LOG)),)
+CUSTOM_CFLAGS += -DMSTC_SOAP_FAULT_LOG
+endif
+
+#__MSTC__, Dennis, MTS firewall
+ifneq ($(strip $(BUILD_MSTC_FIREWALL)),)
+CUSTOM_CFLAGS += -DMSTC_FIREWALL -DDMP_X_5067F0_MSTC_FIREWALL_1
+endif
+
+#__MSTC__, Dennis, MTS Iptable rules grouping
+ifneq ($(strip $(BUILD_MSTC_IPTABLE_GROUP)),)
+CUSTOM_CFLAGS += -DMSTC_IPTABLE_GROUP
+endif
+
+#__MSTC__, kenny, DNS Entry
+ifneq ($(strip $(BUILD_MSTC_DNS_ROUTE)),)
+CUSTOM_CFLAGS += -DMSTC_SUPPORT_DNSROUTE -DDMP_X_5067F0_MSTC_DNSROUTE_1
+endif
+
+ifneq ($(strip $(BUILD_MSTC_AUTO_RESERVE_LAN_IP)),)
+CUSTOM_CFLAGS += -DMSTC_AUTO_RESERVE_LAN_IP 
+endif
+
+ifneq ($(strip $(BUILD_MSTC_DHCP_IP_BY_MAC_HASH)),)
+CUSTOM_CFLAGS += -DMSTC_DHCP_IP_BY_MAC_HASH
+endif
+
+#__MSTC__, Amy, 802.1x
+ifneq ($(strip $(BUILD_MSTC_WAN_8021X)),)
+CUSTOM_CFLAGS += -DMSTC_WAN_8021X_AUTH -DDMP_X_5067F0_WAN8021X_1
+endif
+
+#__MSTC__, Eason, Wake On Lan
+ifneq ($(strip $(BUILD_MSTC_WAKE_ON_LAN)),)
+CUSTOM_CFLAGS += -DMSTC_SUPPORT_WAKE_ON_LAN
+endif
+
+#__MSTC__, Chiayi, linkstatus history
+ifneq ($(strip $(BUILD_MSTC_LINKSTATUS_HISTORY)),)
+CUSTOM_CFLAGS += -DMSTC_SUPPORT_LINKSTATUS_HISTORY
+endif
+
+ifneq ($(strip $(BUILD_MSTC_QOS_WAN_DEFAULT_TAG)),)
+CUSTOM_CFLAGS += -DMSTC_QOS_WAN_DEFAULT_TAG
+endif
+
+# __MSTC__, Richard, LAN VLAN
+ifneq ($(strip $(BUILD_MSTC_LAN_VLAN)),)
+CUSTOM_CFLAGS += -DMSTC_LAN_VLAN
+endif
+
+# __MSTC__, Paul Ho, Wireless Auto-Generated SSID by Serial Number
+ifneq ($(strip $(BUILD_MSTC_WL_GEN_SSID_BASE_SERIAL)),)
+CUSTOM_CFLAGS += -DMSTC_WL_AUTO_GEN_SSID_BY_SERIAL
+endif
+
+# __MSTC__, Paul Ho, Wireless Auto-Generated SSID by Base MAC
+ifneq ($(strip $(BUILD_MSTC_WL_GEN_SSID_BASE_MAC)),)
+CUSTOM_CFLAGS  += -DMSTC_WL_AUTO_GEN_SSID_BY_MAC
+endif
+
+# __MSTC__, Paul Ho, Wireless Auto-Generated SSID by Only Serial Number
+ifneq ($(strip $(BUILD_MSTC_WL_GEN_SSID_BASE_ONLY_SERIAL)),)
+CUSTOM_CFLAGS += -DMSTC_WL_AUTO_GEN_SSID_BY_ONLY_SERIAL
+endif
+
+# __MSTC__, Paul Ho, Wireless Auto-Generated Key by Serial Number
+ifneq ($(strip $(BUILD_MSTC_WL_GEN_KEY_BASE_SERIAL)),)
+CUSTOM_CFLAGS += -DMSTC_WL_AUTO_GEN_KEY_BY_SERIAL
+endif
+
+# __MSTC__, Paul Ho, Wireless Auto-Generated Key by Base MAC
+ifneq ($(strip $(BUILD_MSTC_WL_GEN_KEY_BASE_MAC)),)
+CUSTOM_CFLAGS  += -DMSTC_WL_AUTO_GEN_KEY_BY_MAC
+endif
+
+# __MSTC__, Paul Ho, WPS Special Character Verification on SSID/PSK 
+ifneq ($(strip $(BUILD_MSTC_WPS_SPECIAL_CHAR_VERIFY)),)
+CUSTOM_CFLAGS  += -DMSTC_WPS_SPECIAL_CHAR_VERIFY
+endif
+
+# __MSTC__, Paul Ho, Wireless cli command wlan
+ifneq ($(strip $(BUILD_MSTC_WLAN_CLICMD)),)
+CUSTOM_CFLAGS  += -DMSTC_WLAN_CLICMD
+endif
+
+#__MSTC__, TengChang, for ProFTPD with SFTP
+ifneq ($(strip $(BUILD_MSTC_SFTP_SCP)),)
+CUSTOM_CFLAGS += -DMSTC_SFTP_SCP
+endif
+
+# __MSTC__, Paul Ho, Wireless Channel Scan
+ifneq ($(strip $(BUILD_MSTC_WLAN_CHSCAN)),)
+CUSTOM_CFLAGS  += -DMSTC_WLAN_CHSCAN
+endif
+
+# __MSTC__, Paul Ho, Hide Wireless Band 5GHz
+ifneq ($(strip $(BUILD_MSTC_WLAN_HIDE_BAND_5G)),)
+CUSTOM_CFLAGS  += -DMSTC_WLAN_HIDE_BAND_5G
+endif
+
+# SCP
+ifneq ($(strip $(BUILD_MSTC_SCP)),)
+CUSTOM_CFLAGS += -DBUILD_MSTC_SCP
+endif
+
+# __MSTC__, Paul Ho, Multi-WLAN Configuration for TR69
+ifneq ($(strip $(BUILD_MSTC_MULTI_WLAN_CONF_FOR_TR69)),)
+CUSTOM_CFLAGS  += -DMSTC_MULTI_WLAN_CONF_FOR_TR69 -DMSTC_WLAN_WMM_AC_PARAM_FOR_TR69 -DMSTC_WLAN_WPS_FOR_TR69 -DMSTC_WLAN_MAC_AUTH_EDIT_TR69
+endif
+
+# __MSTC__, Paul Ho, Wireless DHCP Conditional Serving Pool
+ifneq ($(strip $(BUILD_MSTC_WLAN_COND_POOL)),)
+CUSTOM_CFLAGS  += -DMSTC_WLAN_COND_POOL
+endif
+
+# __MSTC__, Kenny, Guest WLAN
+ifneq ($(strip $(BUILD_MSTC_GUEST_WLAN)),)
+CUSTOM_CFLAGS  += -DMSTC_GUEST_WLAN
+export BUILD_MSTC_GUEST_WLAN
+endif
+
+# __MSTC__, Kenny, Auto Power Off Scheduling
+ifneq ($(strip $(BUILD_MSTC_AUTO_SCHEDULING)),)
+CUSTOM_CFLAGS += -DMSTC_AUTO_SCHEDULING -DDMP_X_5067F0_AUTO_SCHEDULING_1
+export BUILD_MSTC_AUTO_SCHEDULING
+endif
+#__MSTC__, Dennis, MTS access control
+ifneq ($(strip $(BUILD_MSTC_ACL)),)
+CUSTOM_CFLAGS += -DMSTC_ACL -DDMP_X_5067F0_MSTC_ACL_1
+endif
+
+#__MSTC__, Dennis, MTS customer service
+ifneq ($(strip $(BUILD_MSTC_CUSTOM_SERVICE)),)
+CUSTOM_CFLAGS += -DMSTC_CUSTOM_SERVICE -DDMP_X_5067F0_MSTC_CUSTOM_SERVICE_1
+endif
+
+#__MSTC__, Dennis, MTS schedule
+ifneq ($(strip $(BUILD_MSTC_SCHEDULE_RULE)),)
+CUSTOM_CFLAGS += -DMSTC_SCHEDULE_RULE -DDMP_X_5067F0_MSTC_SCHEDULE_1
+export BUILD_MSTC_SCHEDULE_RULE
+endif
+
+#__MSTC__, Dennis, MTS remote mgmt
+ifneq ($(strip $(BUILD_MSTC_ACCESSSERVICE)),)
+CUSTOM_CFLAGS += -DMSTC_ACCESSSERVICE -DDMP_X_5067F0_MSTC_ACCESSSERVICE_1
+endif
+
+#__MSTC__, Dennis, MTS trust domain
+ifneq ($(strip $(BUILD_MSTC_TRUSTDOMAIN)),)
+CUSTOM_CFLAGS += -DMSTC_TRUSTDOMAIN -DDMP_X_5067F0_TRUSTDOMAIN_1
+endif
+
+#__MSTC__, Dennis, for throughtput
+ifneq ($(strip $(BUILD_MSTC_UPTIME_SSK)),)
+CUSTOM_CFLAGS += -DMSTC_UPTIME_SSK
+endif
+# __MSTC__, FuChia, QoS
+ifneq ($(strip $(BUILD_MSTC_QoS)),)
+CUSTOM_CFLAGS += -DMSTC_QoS
+endif
+
+# CLI commands zyswitch
+ifneq ($(strip $(BUILD_MTSC_ZYSWITCH)),)
+CUSTOM_CFLAGS += -DBUILD_MTSC_ZYSWITCH
+endif
+
+# CLI commands zywlan
+ifneq ($(strip $(BUILD_MSTC_ZYWLAN)),)
+CUSTOM_CFLAGS += -DBUILD_MSTC_ZYWLAN
+endif
+
+# CLI commands zycmd
+ifneq ($(strip $(BUILD_MSTC_ZYCMD)),)
+CUSTOM_CFLAGS += -DBUILD_MSTC_ZYCMD
+endif
+
+ifeq ($(strip $(BUILD_TMPC2_VOICE_REINJECTION)),y)
+CUSTOM_CFLAGS += -DBUILD_TMPC2_VOICE_REINJECTION -DDMP_X_5067F0_TMPC2_REINJECTION_1
+CMS_COMPILE_FLAGS += -DBUILD_TMPC2_VOICE_REINJECTION -DDMP_X_5067F0_TMPC2_REINJECTION_1 
+CMS_DMP_FLAGS += -DBUILD_TMPC2_VOICE_REINJECTION -DDMP_X_5067F0_TMPC2_REINJECTION_1
+IPTK_COMPILE_FLAG += -DBUILD_TMPC2_VOICE_REINJECTION
+export BUILD_TMPC2_VOICE_REINJECTION
+endif
+
+ifeq ($(strip $(BUILD_TMPC2_VOIP_CUSTOMIZATION)),y)
+CUSTOM_CFLAGS += -DBUILD_TMPC2_VOIP_CUSTOMIZATION
+CMS_COMPILE_FLAGS += -DBUILD_TMPC2_VOIP_CUSTOMIZATION
+IPTK_COMPILE_FLAG += -DBUILD_TMPC2_VOIP_CUSTOMIZATION
+endif
+
+
+#__MSTC__, Dennis for update Privilege from TR69
+ifneq ($(strip $(BUILD_MSTC_PRIVILEGE_FROMTR69)),)
+CUSTOM_CFLAGS += -DMSTC_PRIVILEGE_FROMTR69
+endif
+
+ifeq ($(strip $(BUILD_MSTC_CONNREQ_PATH_RANDOM)),y)
+CUSTOM_CFLAGS += -DMSTC_CONNREQ_PATH_RANDOM
+endif
+
+#__MSTC__, Nick Tseng, GUI Debug Mode with FTP
+ifneq ($(strip $(BUILD_GUI_DEBUG)),)
+CUSTOM_CFLAGS += -DSUPPORT_GUI_DEBUG_MODE
+export BUILD_GUI_DEBUG
+endif
+
+# __MSTC__, Kenny, MTS SNTP Service
+ifneq ($(strip $(BUILD_MSTC_SNTP)),)
+CUSTOM_CFLAGS += -DSUPPORT_MSTC_SNTP
+endif
+
+# __MSTC__, Richard Huang, for unnumbered mode
+ifneq ($(strip $(BUILD_MSTC_UNNUMBEREDMODE)),)
+CUSTOM_CFLAGS += -DSUPPORT_UNNUMBEREDMODE
+endif
+
+# __MSTC__, Richard Huang, for Ethernet WAN as LAN.
+ifneq ($(strip $(BUILD_MSTC_ETHWANASLAN)),)
+CUSTOM_CFLAGS += -DSUPPORT_ETHWANASLAN
+endif
+
+# __MSTC__, Richard Huang, for Auto power down Ethernet WAN.
+ifneq ($(strip $(BUILD_MSTC_ETHWAN_AUTO_DOWN)),)
+CUSTOM_CFLAGS += -DSUPPORT_MSTC_ETHWAN_DOWN
+endif
+
+#__MSTC__, Dennis for xdsl control
+ifneq ($(strip $(BUILD_XDSLCTL)),)
+CUSTOM_CFLAGS += -DSUPPORT_XDSLCTL
+endif
+
+# __MSTC__, Richard Huang, for Web redirect.
+ifneq ($(strip $(BUILD_MSTC_WEB_REDIRECT)),)
+CUSTOM_CFLAGS += -DSUPPORT_MSTC_WEB_REDIRECT
+endif
+
+# __MSTC__, Richard Huang, for network map host icon save.
+ifneq ($(strip $(BUILD_MSTC_SAVE_HOSTICON)),)
+CUSTOM_CFLAGS += -DSUPPORT_MSTC_SAVE_HOSTICON -DDMP_X_5067F0_HOSTSICONSTATE_1
+endif
+
+
+# __MSTC__, Paul Ho, for compressing config file
+ifneq ($(strip $(BUILD_MSTC_COMPRESS_CONF_FILE)),)
+CUSTOM_CFLAGS += -DSUPPORT_MSTC_COMPRESS_CONF_FILE
+endif
+
+# __MSTC__, Richard Huang, for Red Internet.
+ifneq ($(strip $(BUILD_MSTC_INTERNET_RED_LED)),)
+CUSTOM_CFLAGS += -DMSTC_INTERNET_RED_LED
+endif
+
+# __MSTC__, Richard Huang, for WWAN
+ifneq ($(strip $(BUILD_MSTC_WWAN)),)
+CUSTOM_CFLAGS += -DSUPPORT_MSTC_WWAN -DDMP_X_5067F0_MSTC_WWAN_1
+CUSTOM_CFLAGS += -DMSTC_ENABLE_LKUD_NOTIFY=$(BUILD_MSTC_ENABLE_LKUD_NOTIFY)
+ifneq ($(strip $(BUILD_MSTC_3G_BACKUP)),)
+CUSTOM_CFLAGS += -DSUPPORT_MSTC_3G_BACKUP
+endif
+endif
+# MSTC support hardware watchdog
+ifneq ($(strip $(MSTC_WDT)),)
+export MSTC_WDT=y
+endif
+
+#MSTC
+ifneq ($(strip $(BUILD_MSTC_RECORD_CALL_TRACE)),)
+export MSTC_RECORD_CALL_TRACE=y
+endif
+
+#MSTC
+ifneq ($(strip $(BUILD_MSTC_RECORD_CALL_TRACE_PATH_1)),)
+export MSTC_RECORD_CALL_TRACE_PATH_1=y
+endif
+
+#MSTC
+ifneq ($(strip $(BUILD_MSTC_RECORD_CALL_TRACE_PATH_2)),)
+export MSTC_RECORD_CALL_TRACE_PATH_2=y
+endif
+
+#MSTC
+ifneq ($(strip $(BUILD_MSTC_OOPS_FILE_NUM)),)
+export MSTC_OOPS_FILE_NUM=$(BUILD_MSTC_OOPS_FILE_NUM)
+endif
+
+#MSTC
+ifneq ($(strip $(BUILD_MSTC_DEC_AND_GZIP_CORE)),)
+export MSTC_DEC_AND_GZIP_CORE=y
+endif
+
+#MSTC
+ifneq ($(strip $(BUILD_MSTC_ZLIB)),)
+export MSTC_ZLIB=y
+endif
+
+#MSTC
+ifneq ($(strip $(BUILD_MSTC_COREDUMP_FOLDER_PATH_1)),)
+export MSTC_COREDUMP_FOLDER_PATH_1=y
+endif
+
+#MSTC
+ifneq ($(strip $(BUILD_MSTC_COREDUMP_FOLDER_PATH_2)),)
+export MSTC_COREDUMP_FOLDER_PATH_2=y
+endif
+
+#MSTC
+ifneq ($(strip $(BUILD_MSTC_CORE_SIZE_PRE_THRESHOLD)),)
+export MSTC_CORE_SIZE_PRE_THRESHOLD=$(BUILD_MSTC_CORE_SIZE_PRE_THRESHOLD)
+endif
+
+#MSTC
+ifneq ($(strip $(BUILD_MSTC_CORE_SIZE_POST_THRESHOLD)),)
+export MSTC_CORE_SIZE_POST_THRESHOLD=$(BUILD_MSTC_CORE_SIZE_POST_THRESHOLD)
+endif
+
+
+
+# __CBT__, TengChang, for CBT Firewall
+ifneq ($(strip $(BUILD_MSTC_CBT_FIREWALL)),)
+CUSTOM_CFLAGS += -DMSTC_CBT_FIREWALL
+endif
+
+# __CBT__, Paul Ho, Hide the last SSID
+ifneq ($(strip $(BUILD_MSTC_CBT_HIDE_LAST_SSID)),)
+CUSTOM_CFLAGS += -DMSTC_CBT_HIDE_LAST_SSID
+endif
+
+# __CBT__, Kenny, Local Login
+ifneq ($(strip $(BUILD_MSTC_CBT_LOCAL_LOGIN)),)
+CUSTOM_CFLAGS += -DMSTC_CBT_LOCAL_LOGIN
+endif
+
+# __CBT__, Kenny, CBT Remote Access
+ifneq ($(strip $(BUILD_MSTC_CBT_REMOTE_ACCESS)),)
+CUSTOM_CFLAGS += -DMSTC_CBT_REMOTE_ACCESS -DDMP_X_5067F0_MSTC_CBT_REMOTEACCESS_1
+endif
+
+# __MSTC__, Peter
+ifneq ($(strip $(BUILD_MSTC_WLAN_WPS_VER_SELECT)),)
+CUSTOM_CFLAGS += -DMSTC_WLAN_WPS_VERSION_SELECTION
+endif
+
+# __MSTC__, Peter,  Captive Portal feature
+ifneq ($(strip $(BUILD_DM_LEGACY98)),)
+ifneq ($(strip $(BUILD_MSTC_CAPTIVE_PORTAL)),)
+CUSTOM_CFLAGS += -DDMP_X_5067F0_MSTC_CAPTIVE_PORTAL_1 -DMTS_CAPTIVE_PORTAL 
+CMS_DMP_FLAGS += -DDMP_X_5067F0_MSTC_CAPTIVE_PORTAL_1 -DMTS_CAPTIVE_PORTAL
+endif
+endif
+
+#__MSTC__, JuWen, Set Mac range for icon through cli cmd 
+ifneq ($(strip $(BUILD_SUPPORT_SET_MAC_RANGE_FOR_ICON)),)
+CMS_COMPILE_FLAGS += -DSUPPORT_SET_MAC_RANGE_FOR_ICON
+endif
+
+# MSTC support hardware watchdog
+ifneq ($(strip $(MSTC_SW_WATCHDOG)),)
+CUSTOM_CFLAGS += -DMSTC_SW_WATCHDOG
+ifneq ($(strip $(MSTC_SW_WATCHDOG_CHECK_LOCK)),)
+CUSTOM_CFLAGS += -DMSTC_SW_WATCHDOG_CHECK_LOCK
+endif
+ifneq ($(strip $(MSTC_SW_WATCHDOG_MDM_MEMORY)),)
+CUSTOM_CFLAGS += -DMSTC_SW_WATCHDOG_MDM_MEMORY
+CUSTOM_CFLAGS += -DMSTC_MDM_MEMORY_THRESHOLD=$(MSTC_MDM_MEMORY_THRESHOLD)
+endif
+ifneq ($(strip $(MSTC_SW_WATCHDOG_SHARED_MEMORY)),)
+CUSTOM_CFLAGS += -DMSTC_SW_WATCHDOG_SHARED_MEMORY
+CUSTOM_CFLAGS += -DMSTC_SHARED_MEMORY_THRESHOLD=$(MSTC_SHARED_MEMORY_THRESHOLD)
+endif
+endif
+
+# MSTC random supervisor password
+ifneq ($(strip $(BUILD_MSTC_RANDOM_SUPERVISOR_PASSWORD)),)
+CUSTOM_CFLAGS += -DMSTC_RANDOM_SUPERVISOR_PASSWORD
+endif
+
+#__MSTC__, Anson, MLD PHASE2
+ifneq ($(strip $(MSTC_QoS_MLD_PHASE2)),)
+export MSTC_QoS_MLD_PHASE2
+endif
+
+#Support TR69 to update ROMD
+ifneq ($(strip $(BUILD_TR69_SUPPORT_UPDATE_ROMD)),)
+CUSTOM_CFLAGS += -DTR69_SUPPORT_UPDATE_ROMD
+endif
+
+#Reduce SSK lock time
+ifneq ($(strip $(BUILD_MSTC_REDUCE_SSK_LOCK_TIME)),)
+CUSTOM_CFLAGS += -DMSTC_REDUCE_SSK_LOCK_TIME
+endif
+
+#Reduce SSK lock time
+ifneq ($(strip $(BUILD_MSTC_REDUCE_SSK_LOCK_TIME)),)
+CUSTOM_CFLAGS += -DMSTC_REDUCE_SSK_LOCK_TIME
+endif
+
+#Reduce bootup time
+ifneq ($(strip $(BUILD_MSTC_REDUCE_BOOTUP_TIME)),)
+CUSTOM_CFLAGS += -DMSTC_REDUCE_BOOTUP_TIME
+endif
+
+ifeq ($(strip $(MSTC_TE_ATTE)),y)
+CFLAGS += -DMSTC_TE_ATTE
+endif
+
+ifeq ($(strip $(MSTC_TE_ATMC)),y)
+CFLAGS += -DMSTC_TE_ATMC
+endif
+
+export CMS_COMPILE_FLAGS CUSTOM_CFLAGS
+
+#__MSTC__, NaiYuan Liu, Support Twonky with Chinese
+ifeq ($(strip $(TWONKY_NLS_UTF8)),y)
+CFLAGS += -DTWONKY_NLS_UTF8
+endif
+
+ifneq ($(strip $(OVERRIDE_EPON_MAC_ADDR)),)
+CMS_COMPILE_FLAGS +=   -DOVERRIDE_EPON_MAC_ADDR
+endif
+
+ifneq ($(strip $(EPON_UNI_UNI_ENABLED)),)
+CMS_COMPILE_FLAGS +=   -DEPON_UNI_UNI_ENABLED
+endif
+
+ifneq ($(strip $(MLLID_SUPPORTED)),)
+CMS_COMPILE_FLAGS +=   -DMLLID_SUPPORTED
+endif
+
+ifeq ($(strip $(BRCM_CHIP)),6838)
+CMS_COMPILE_FLAGS += -DSUPPORT_SECURE_BOOT
+endif
+
+ifneq ($(strip $(EPON_CLOCK_TRANSPORT)),)
+CMS_COMPILE_FLAGS +=   -DCLOCK_TRANSPORT
+endif
+
+CFLAGS = $(CMS_COMPILE_FLAGS) $(CUSTOM_CFLAGS) $(ALLOWED_INCLUDE_PATHS) $(CMS_WLAN_FLAGS)
+CFLAGS += -I$(TOOLCHAIN)/include -L$(TOOLCHAIN)/lib
+CFLAGS += $(BRCM_WERROR_CFLAGS)
+
+export CMS_COMPILE_FLAGS
+
+
+#BUILD VIODSL
+ifneq ($(strip $(BUILD_VODSL)),)
+export BUILD_VODSL
+endif
+
+
+ifneq ($(strip $(BUILD_GPONRG_OMCI_FULL)),)
+export BUILD_GPONRG_OMCI_FULL
+endif
+
+###########################################
+#
+# Generic/common rules which are used by lower layer Makefiles
+#
+###########################################
+
+
+# Every target should have a dependency on this target to make sure
+# the user has specified a profile.
+profile_defined_check: 
+	@if [ "$(PROFILE)" = "" ]; then \
+          echo You need to specify build profile name from $(TARGETS_DIR) using 'make PROFILE=<profile name>...'; exit 1; \
+	fi
+
+# See LAST_PROFILE at the top of this file.
+profile_changed_check: profile_defined_check
+ifneq ($(strip $(IGNORE_LAST_PROFILE)),1)
+	@if [ "$(LAST_PROFILE)" = "" ]; then \
+		echo "$(PROFILE)" > $(LAST_PROFILE_COOKIE); \
+	else \
+		if [ "$(LAST_PROFILE)" != "$(PROFILE)" ]; then \
+			echo "The specified profile, $(PROFILE), differs from the last one built, $(LAST_PROFILE)."; \
+			echo "The entire image must be rebuilt from the top of CommEngine."; \
+			echo "To skip this check, build with IGNORE_LAST_PROFILE=1."; \
+			read -p "Press ENTER to rebuild the entire image or CTRL-C to abort. " resp; \
+			$(MAKE) PROFILE=$(LAST_PROFILE) clean; \
+			echo "$(PROFILE)" > $(LAST_PROFILE_COOKIE); \
+			$(MAKE) PROFILE=$(PROFILE); \
+			echo "Ignore the make exit error, Error 1"; \
+			exit 1; \
+		fi \
+	fi
+else
+	echo "$(PROFILE)" > $(LAST_PROFILE_COOKIE);
+endif
+
+
+REQUIRED_MAKE_VERSION := 3.81
+REQUIRED_HOST_KERNEL_VERSION := 2.6
+REQUIRED_AUTOMAKE_VERSION := 1.10.2
+ifeq ($(ARCH),arm)
+REQUIRED_AUTOCONF_VERSION := 2.65
+else
+REQUIRED_AUTOCONF_VERSION := 2.59
+endif
+REQUIRED_BCMTOOL_VERSION := Rel1.0
+
+HOST_KERNEL_VERSION := $(shell uname -r)
+BCMTOOL_VERSION := `echo "BCM_TOOLCHAIN_VERSION" | gcc -E -P -o- -include $${TOOLCHAIN_TOP}/usr/include/bcm_toolver.h -xc - | sed 's/^"\(.*\)"$$/\1/'`
+
+
+prebuild_checks:
+	@echo "shell is $(SHELL).  Bash version is $(shell echo $$BASH_VERSION)"
+	@if [ -z "$(shell echo $$BASH_VERSION)" ]; then \
+		echo "***************************************************"; \
+		echo "ERROR: $(SHELL) does not invoke bash shell"; \
+		echo "***************************************************"; \
+		exit 1; \
+	fi
+	@if [ ! -d $(TOOLCHAIN_TOP) ]; then \
+		echo "****************************************************"; \
+		echo "ERROR: could not find Toolchain"; \
+		echo "$(TOOLCHAIN_TOP)"; \
+		echo "****************************************************"; \
+		exit 1; \
+	fi
+	@if [ ! -d $(KERNEL_DIR) ]; then \
+		echo "****************************************************"; \
+		echo "ERROR: Could not find kernel directory:             "; \
+		echo "$(KERNEL_DIR) "; \
+		echo "****************************************************"; \
+		exit 1; \
+	fi
+	@if ! xxd -v 2>/dev/null; then \
+		echo "ERROR: xxd is required for build                   "; \
+		exit 1; \
+	fi
+ifeq ($(strip $(BUILD_SECURE_BOOT)),y)
+	@if ! openssl version 2>/dev/null; then \
+		echo "ERROR: openssl is required for secure boot builds  "; \
+		exit 1; \
+	else \
+		sslver=`openssl version | cut -d " " -f2 | sed 's/\.//g' | head --bytes=3`; \
+		if [[ sslver -lt 100 ]]; then \
+			echo "ERROR: openssl version must be 1.0.0a or greater for secure boot builds  "; \
+			exit 1; \
+		fi; \
+	fi
+endif	
+	@echo "make.common: checking for required host tools before building:"
+	@echo "Checking bcm tools version"
+	@$(HOSTTOOLS_DIR)/scripts/checkver.pl -s $(BCMTOOL_VERSION) -r $(REQUIRED_BCMTOOL_VERSION) --quiet; \
+	 if [ $$? != 0 ]; then \
+	 	echo "****************************************************"; \
+	 	echo "* WARNING:  "; \
+	 	echo "* A newer version of the bcm toolchain is available."; \
+	 	echo "* It is recommended you upgrade to $(REQUIRED_BCMTOOL_VERSION)."; \
+	 	echo "****************************************************"; \
+	 fi; \
+	 echo "$(BCMTOOL_VERSION)"; 
+	@echo "Checking make version"
+	@$(HOSTTOOLS_DIR)/scripts/checkver.pl -s $(MAKE_VERSION) -r $(REQUIRED_MAKE_VERSION) || $(COND_FAIL);
+	@echo "Checking host kernel version"
+	@$(HOSTTOOLS_DIR)/scripts/checkver.pl -s $(HOST_KERNEL_VERSION) -r $(REQUIRED_HOST_KERNEL_VERSION) || $(COND_FAIL);
+	@echo "Checking automake version:"
+	@$(HOSTTOOLS_DIR)/scripts/checkver.pl -e automake -r $(REQUIRED_AUTOMAKE_VERSION) || $(COND_FAIL);
+	@if [ "`which automake`" -ef "$TOOLCHAIN_TOP/usr/bin/automake" ]; then \
+		echo "----------------------------------------------------------------"; \
+		echo "| ERROR: automake is being run from the cross-compile directory."; \
+		echo "| Please install a local copy on your build machine."; \
+		echo "----------------------------------------------------------------"; \
+		if [ -z "$(FORCE)" ]; then exit 1; fi \
+	fi
+	@echo "Checking autoconf version:"
+	@$(HOSTTOOLS_DIR)/scripts/checkver.pl -e autoconf -r $(REQUIRED_AUTOCONF_VERSION) || $(COND_FAIL);
+	@if [ "`which autoconf`" -ef "$TOOLCHAIN_TOP/usr/bin/autoconf" ]; then \
+		echo "----------------------------------------------------------------"; \
+		echo "| ERROR: autoconf is being run from the cross-compile directory."; \
+		echo "| Please install a local copy on your build machine."; \
+		echo "----------------------------------------------------------------"; \
+		if [ -z "$(FORCE)" ]; then exit 1; fi \
+	fi
+	@echo "Checking tar version:"
+	@tarVer=`$(HOSTTOOLS_DIR)/scripts/checkver.pl -e tar`; \
+	echo "$$tarVer"; \
+	if [ $$tarVer == "1.23" ]; then \
+		echo "----------------------------------------------------------------"; \
+		echo "| There is a known bug in tar 1.23 which causes build failures."; \
+		echo "| 1.22 and 1.24 are known to be OK.  Please upgrade your tar to "; \
+		echo "| another version"; \
+		echo "----------------------------------------------------------------"; \
+		if [ -z "$(FORCE)" ]; then exit 1; fi \
+	fi
+	@if ! echo "#include <lzo/lzo1x.h>" | gcc -E - >/dev/null; then \
+		echo "ERROR: lzo/lzo1x.h development library is required for build"; \
+		echo "       usually, this is provided by the liblzo2-dev library"; \
+		if [ -z "$(FORCE)" ]; then exit 1; fi \
+	fi
+	@if ! echo "#include <uuid/uuid.h>" | gcc -E - >/dev/null; then \
+		echo "ERROR: libuuid development library is required for build"; \
+		if [ -z "$(FORCE)" ]; then exit 1; fi \
+	fi
+	@echo "Checking patch version:";
+	@$(HOSTTOOLS_DIR)/scripts/checkver.pl -e patch || $(COND_FAIL);
+
+$(PROFILE_DIR)/vmlinux: $(PROFILE_DIR)/$(PROFILE)
+ifneq ($(strip $(DONT_CLEAN)),1)
+	@if [ -e $(PROFILE_DIR)/vmlinux ]; then \
+	  echo "The specified profile, $(PROFILE), has been modified since the last build."; \
+	  echo "The entire image must be rebuilt from the top of CommEngine."; \
+	  echo "To skip this check, build with DONT_CLEAN=1."; \
+	  read -p "Press ENTER to rebuild the entire image or CTRL-C to abort. " resp; \
+	  rm $(PROFILE_DIR)/vmlinux; \
+	  $(MAKE) PROFILE=$(PROFILE) clean; \
+	  $(MAKE) PROFILE=$(PROFILE); \
+	  echo "Ignore the make exit error, Error 1"; \
+	  exit 1; \
+	fi
+endif
+
+
+sanity_check: profile_changed_check
+
+
+profile_saved_check: $(PROFILE_DIR)/vmlinux
+
+
+$(LAST_PROFILE_COOKIE): sanity_check
+
+
+# This next rule has a surprising but beneficial side effect.
+# I am transitioning to a single Makefile that supports full source
+# and binary only releases.  But in a binary only release, there are no
+# .o's and no .c's.  But the Makefile defines OBJS = file1.c file2.c etc,
+# and the OBJS are always prereq's to the EXE.  Normally, this would cause
+# make to fail because of no rule to make the .o's.  However, this next rule
+# fools make into thinking that the .o's depend on the
+# LAST_PROFILE_COOKIE and sanity_check, so it goes off evaluating them
+# and thinks it has satisified the prereqs for the .o's.  In reality, it
+# hasn't, but that's OK, because this is a binary only release and the
+# pre-built binary should be used anyways.
+# In a full source release, detection of changed .c's still work correctly
+# due to the dependency files (.d's) that are generated.
+
+$(OBJS) : $(LAST_PROFILE_COOKIE)
+
+
+generic_oaldir:
+	$(MAKE) -C $(OALDIR)
+
+oal.a: $(OBJS)
+	$(AR) -rcs $@ $(OBJS)
+
+generic_exe_install: $(EXE)
+	mkdir -p $(INSTALL_DIR)/bin
+	install -m 755 $(EXE) $(INSTALL_DIR)/bin
+
+generic_public_lib_install: $(LIB)
+	mkdir -p $(INSTALL_DIR)/lib/public
+	install -m 755 $(LIB) $(INSTALL_DIR)/lib/public
+
+generic_private_lib_install: $(LIB)
+	mkdir -p $(INSTALL_DIR)/lib/private
+	install -m 755 $(LIB) $(INSTALL_DIR)/lib/private
+	
+generic_eid_file_install:
+	@mkdir -p $(INSTALL_DIR)/etc/cms_entity_info.d
+	@if [ -e scripts/$(EID_FILE).custom ]; then \
+	  echo installing $(EID_FILE).custom to $(INSTALL_DIR)/etc/cms_entity_info.d/$(EID_FILE); \
+	  install -m 644 scripts/$(EID_FILE).custom $(INSTALL_DIR)/etc/cms_entity_info.d/$(EID_FILE); \
+	else \
+	  echo installing $(EID_FILE) to $(INSTALL_DIR)/etc/cms_entity_info.d/; \
+	  install -m 644 scripts/$(EID_FILE) $(INSTALL_DIR)/etc/cms_entity_info.d; \
+	fi
+	
+generic_eid_file_clean:
+	rm -f $(INSTALL_DIR)/etc/cms_entity_info.d/$(EID_FILE)
+
+generic_clean:
+	rm -f *.o *.d *.d.* core.* *.a output.txt $(EXE) $(LIB)
+	rm -rf output
+
+generic_oalclean:
+	$(MAKE) -C $(OALDIR) clean
+	
+generic_binaryonly_dist_clean:
+	rm -rf *.c *.h linux
+
+# See example in GNU Make, 4.6
+generic_subdir_clean:
+	for dir in $(SUBDIRS); do \
+		if [ -d $$dir ] ; then \
+			if [ -f $$dir/Makefile ] ; then \
+				$(MAKE) -C $$dir clean; \
+			fi \
+		fi \
+	done
+
+# this rule makes the individual makefiles cleaner, but at the cost
+# of single threading the makes to one directory at a time.
+generic_subdir_make_default:
+	for dir in $(SUBDIRS); do \
+		$(MAKE) -C $$dir; \
+	done
+
+
+
+
+#
+# Some debug targets, to dump out various variables
+#
+show_build_vars:
+	@echo "BUILD_DIR=$(BUILD_DIR)"
+	@echo "KERNEL_VER=$(PROFILE_KERNEL_VER)"
+	@echo "TARGETS_DIR=$(TARGETS_DIR)"
+	@echo "PROFILE=$(PROFILE)"
+
+

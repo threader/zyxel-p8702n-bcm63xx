@@ -1,0 +1,8 @@
+#
+# Add the object in cms-dm-bcm-ipsec.xml below the 
+# object InternetGatewayDevice.X_5067F0_DebugPortMirroringCfg.{i}.
+#
+# See 0000-README.txt for more details
+#
+
+addObjBelowObj cms-dm-bcm-ipsec.xml InternetGatewayDevice.X_5067F0_DebugPortMirroringCfg.{i}.

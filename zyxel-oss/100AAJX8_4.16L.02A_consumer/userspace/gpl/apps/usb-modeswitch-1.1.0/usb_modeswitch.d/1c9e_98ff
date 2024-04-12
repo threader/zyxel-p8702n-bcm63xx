@@ -1,0 +1,12 @@
+######################################################## 
+# VKOM 303USB 
+
+DefaultVendor= 0x1c9e
+DefaultProduct= 0x98ff
+
+TargetVendor= 0x1c9e
+TargetProductList= 0x9801
+
+CheckSuccess=20
+
+MessageContent="55534243123456788000000080000606f50402527000000000000000000000"

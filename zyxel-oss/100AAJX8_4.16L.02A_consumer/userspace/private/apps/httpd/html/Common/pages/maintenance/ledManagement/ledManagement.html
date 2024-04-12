@@ -1,0 +1,154 @@
+<script language="javascript"> 
+
+var lanHostList = '<%ejGetOther(lanHostEntry)%>';
+var ledmode = '<%ejGetOther(ledMode)%>';
+var ledminute = '<%ejGetOther(ledMinute)%>';
+
+function btnApply() 
+{
+	with( document.forms[0] ) 
+	{
+	
+		if ( $("input[name='mode']").get(0).checked == true ) {
+			ledManagement_mode.value = 0;
+	
+	
+	
+		} else if ( $("input[name='mode']").get(1).checked == true ) {
+			ledManagement_mode.value = 1;
+			if ( isNaN(parseInt(mod1second.value)) == true ) {
+				  msg = "Please input number";
+				  hciAlert(msg, {height: 180, type: 2, title: ''});
+				  frmLoad ();
+            	  return false;
+        	}
+			
+			ledManagement_minute.value = mod1second.value; 
+		}else if ( $("input[name='mode']").get(2).checked == true ) {
+			ledManagement_mode.value = 2;
+			if ( isNaN(parseInt(mod2second.value)) == true ) {
+				  msg = "Please input number";
+				  hciAlert(msg, {height: 180, type: 2, title: ''});
+				  frmLoad ();
+            	  return false;
+        	}
+			
+			ledManagement_minute.value = mod2second.value;
+		}else {
+			ledManagement_mode.value = 3;
+			if ( isNaN(parseInt(mod3second.value)) == true ) {
+				  msg = "Please input number";
+				  hciAlert(msg, {height: 180, type: 2, title: ''});
+				  frmLoad ();
+            	  return false;
+        	}
+			
+			ledManagement_minute.value = mod3second.value;
+		}
+		
+			
+		$('.ui-dialog-titlebar-close').trigger('click');
+		$.openLoadingMask(1);
+		submit();
+	}
+}
+
+function frmLoad () {
+	with( document.forms[0] ) 
+	{
+		if (ledmode == 0) {
+			$("input[name='mode']").get(0).checked = true;
+		}else if (ledmode == 1) {
+			$("input[name='mode']").get(1).checked = true;
+			 mod1second.value = ledminute;
+			 //mod2second.disabled = true;
+			 //mod3second.disabled = true;
+		}else if (ledmode == 2) {
+			$("input[name='mode']").get(2).checked = true;
+			 mod2second.value = ledminute;
+			 //mod1second.disabled = true;
+			 //mod3second.disabled = true;
+		}else if (ledmode == 3) {
+			$("input[name='mode']").get(3).checked = true;
+			 mod3second.value = ledminute;
+			// mod1second.disabled = true;
+			 //mod2second.disabled = true;
+		}
+	}
+
+}
+
+$(document).ready(function() {
+	frmLoad();
+	var errMsg = "<%ejGetOther(errMsg)%>";
+	if (errMsg != '') {
+		hciAlert(errMsg, 2);
+	}
+});
+</script>
+
+<div class="content_frame" >
+<!--Unit Explain start-->
+<div class="explain">
+<div><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div>
+<div class="explain_text">LED control allows you to decide how the LEDs on the device should behave.</div>
+<div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div></div>
+<!--Unit Explain End-->
+<!--Set area start-->
+<form action="/pages/tabFW/ledManagement-ledManagement.cgi" method="post" >
+<input type="hidden" name="sessionKey" id="sessionKey" value="<%ejGetOther(sessionKey)%>"/>
+<input type="hidden" name="ledManagement_minute" id="ledManagement_minute" />
+<input type="hidden" name="ledManagement_mode" id="ledManagement_mode" />
+<div class="data_frame">
+<ul><li class="set1">
+<div class="w_text">
+
+          <table width="100%" border="0" cellpadding="0" cellspacing="0" >
+                        <tr>
+                          <td width="26%" height="25" >Mode:</td>
+                          <td width="13%" ><input name="mode" type="radio" value="0" />All on</td>
+                          <td width="61%" ></td>
+                        </tr>
+                        <tr>
+                          <td height="25"></td>
+                          <td ><input name="mode" type="radio" value="1" />All off after</td>
+                          <td ><input name="mod1second" size="3" maxlength="3"  /> minutes (0 for immediately)</td>
+                        </tr>
+                        <tr>
+                          <td height="25"></td>
+                          <td ><input name="mode" type="radio" value="2" />All off after</td>
+                          <td ><input name="mod2second" size="3" maxlength="3" /> minutes except power</td>
+                        </tr>
+                        <tr>
+                          <td height="25"></td>
+                          <td ><input name="mode" type="radio" value="3" />All off after</td>
+                          <td ><input name="mod3second" size="3" maxlength="3"  /> minutes except power and WLAN</td>
+                        </tr>
+            </table>
+                        <ul>
+                           <li class="right_table">
+						  <li class="space"></li>
+							  <li class="buttonframe">
+								<div class="button_position">
+<input name="button" type="button" onclick='btnApply();' value="<%ejGetML(MLG_Common_Apply)%>"/>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+<input name="Cancel" value="<%ejGetML(MLG_Common_Cancel)%>" type="button" onClick="frmLoad();"/>
+								</div>
+							  </li>
+                        </ul>
+						
+						
+						 <ul></ul> <ul></ul>
+						<div class="w_text"><span class="i_note"><%ejGetML(MLG_Common_Note)%>:</span></div>
+								<div>If the LEDs have been automatically turned off, a quick press on the WLAN-Button on the front of the device will turn them on again for the configured amount of minutes.</div>			
+						
+						
+          </div></li>
+  <li class="set1"></li>
+</ul>
+</div>
+<!--Set area end-->
+</form>
+<br />
+<br />
+</ul>
+</div>

@@ -1,0 +1,435 @@
+#!/bin/bash
+
+source $KERNEL_DIR/.config
+
+TOP_DIR=`pwd`
+
+if [ "$MOD_DIR" == "" ] ; then
+    MOD_DIR=$PROFILE/modules
+fi
+
+if [ "$FSSRC_DIR" == "" ]; then
+    FSSRC_DIR=./fs.src
+fi
+
+if [ "$INSTALL_DIR" == "" ]; then
+    INSTALL_DIR=./$PROFILE/fs.install
+fi
+
+ROOTFS=$PROFILE/fs
+
+# Create file system dir
+if [ -L $ROOTFS ]; then
+  rm -rf $ROOTFS/*
+else
+  rm -rf $ROOTFS
+  mkdir $ROOTFS
+fi
+chmod 777 $ROOTFS
+# Copy files onto root file system
+echo "Creating target root file system..."
+cp -av $FSSRC_DIR/* $ROOTFS
+find $ROOTFS -name ".svn" -exec rm -rf '{}' \;
+
+# convert Snn*.symlink and Knn*.symlink files to real symlinks
+flist=`ls ${ROOTFS}/etc/rc3.d/S*.symlink ${ROOTFS}/etc/rc3.d/K*.symlink 2> /dev/null`
+for f in $flist
+do
+	f=$(basename $f)
+	numbase=${f%.*}
+	namebase=`echo $numbase | cut -c 4-`
+	(cd ${ROOTFS}/etc/rc3.d; rm -f ${numbase}.symlink; ln -s ../init.d/${namebase}.sh ${numbase})
+done
+
+cp -av $INSTALL_DIR/* $ROOTFS
+
+# NORWAY_CUSTOMIZATION
+echo "Creating user-define file"
+if [ "$BUILD_NORWAY_CUSTOMIZATION" == "y" ] ; then
+echo "" >> $ROOTFS/etc/init.d/rcS
+echo "if [ -e /data/Config/user_startup_parameters.sh ]; then" >> $ROOTFS/etc/init.d/rcS
+echo "(sh /data/Config/user_startup_parameters.sh)&" >> $ROOTFS/etc/init.d/rcS
+echo "fi" >> $ROOTFS/etc/init.d/rcS
+fi
+
+# check for custom inittab file
+if [ -f $ROOTFS/etc/inittab.custom ] ; then
+	echo -e "Using custom /etc/inittab file"
+	rm -f $ROOTFS/etc/inittab
+	mv $ROOTFS/etc/inittab.custom $ROOTFS/etc/inittab
+fi
+
+# check if there is SIK in customer partition. if no, copy default SIK to there
+
+# NORWAY_CUSTOMIZATION
+echo "Check if there is SIK in customer partition"
+if [ "$BUILD_SIK_PARTITION_FEATURE" == "y" ] ; then
+echo "" >> $ROOTFS/etc/init.d/rcS
+echo "ln -s /customer /mnt/customer" >> $ROOTFS/etc/init.d/rcS
+#echo "if ! [ -e /mnt/customer/SIK/userGuide.html ]; then" >> $ROOTFS/etc/init.d/rcS
+#echo "echo \"copy default SIK to customer partition\"" >> $ROOTFS/etc/init.d/rcS
+#echo "tar xf /webs/Brick/SIK.tar -C /mnt/customer/" >> $ROOTFS/etc/init.d/rcS
+#echo "fi" >> $ROOTFS/etc/init.d/rcS
+fi
+
+#__MSTC__, Nick Tseng, GUI Debug Mode with FTP
+if [ "$BUILD_GUI_DEBUG" == "y" ] ; then
+sed -i "s/# BUILD_GUI_DEBUG/ mkdir \/var\/webs;cp -rf \/webs\/* \/var\/webs\/;cp \/bin\/httpd \/var\/httpd;/g" $ROOTFS/etc/init.d/mstc-config.sh;cd $TOP_DIR
+fi
+
+#__MSTC__, JhenYang, SWMDK
+if [ "$BUILD_SWMDK" == "y" ] ; then
+sed -i "s/  #REPLACE_STRING_IF_SWMDK_BUILD/  \/bin\/swmdk \&/g" $ROOTFS/etc/init.d/smd.sh;cd $TOP_DIR
+fi
+
+#__MSTC__, TengChang Chen, Log, migrate from Common_406
+if [ "$BRCM_KERNEL_AUXFS_JFFS2" == "y" ] ; then
+#__MSTC__, TengChang, Let log be saved in file system for 963268
+echo "tmpfs		/log	tmpfs	size="$MSTC_LOGRAM_SIZE"k	0	0" >> $ROOTFS/etc/fstab
+echo "tmpfs		/home	tmpfs	size="$MSTC_LOGRAM_SIZE"k	0	0" >> $ROOTFS/etc/fstab
+#echo "/dev/mtdblock1	/home	jffs2	size="$MSTC_FLASH_FS_SIZE"M	0	0" >> $ROOTFS/etc/fstab
+#echo "tmpfs		/log	tmpfs	size="$((($MSTC_FLASH_FS_SIZE*1000/$MSTC_LOG_ROTATE_NUM)+100))"k	0	0" >> $ROOTFS/etc/fstab
+#end __MSTC__, TengChang, Let log be saved in file system for 963268
+else
+echo "tmpfs		/log	tmpfs	size="$MSTC_LOGRAM_SIZE"k	0	0" >> $ROOTFS/etc/fstab
+echo "tmpfs		/home	tmpfs	size="$MSTC_LOGRAM_SIZE"k	0	0" >> $ROOTFS/etc/fstab
+fi
+#__END__MSTC__, TengChang Chen, Log, migrate from Common_406
+
+# Create directories as needed
+mkdir $ROOTFS/dev
+mkdir $ROOTFS/mnt
+mkdir $ROOTFS/sys
+mkdir $ROOTFS/proc
+mkdir $ROOTFS/var
+mkdir $ROOTFS/etc/adsl
+mkdir $ROOTFS/data
+if [ "$BUILD_SIK_PARTITION_FEATURE" == "y" ] ; then
+mkdir $ROOTFS/customer
+fi
+#__MSTC__, TengChang Chen, Log, migrate from Common_406
+mkdir $ROOTFS/home
+mkdir $ROOTFS/log
+#__END__MSTC__, TengChang Chen, Log, migrate from Common_406
+#__MTS__, TengChang, for Dropbear public key
+if [ ! -d $(ROOTFS)/.ssh  ]; then 
+   mkdir $ROOTFS/.ssh
+   chmod 700 $ROOTFS/.ssh
+fi
+cp -av $BRCMDRIVERS_DIR/broadcom/char/adsl/bcm9$BRCM_CHIP/*.bin  $ROOTFS/etc/adsl
+
+# debugfs
+if [ "$BUILD_DEBUG_TOOLS" == "y" ] ; then
+    chmod +w $ROOTFS/etc/fstab
+    echo -e "debugfs\t/sys/kernel/debug\tdebugfs\tnofail\t0\t0\n" >> $ROOTFS/etc/fstab
+    chmod -w $ROOTFS/etc/fstab
+    rm -rf $ROOTFS/sys/kernel/debug
+    mkdir -p $ROOTFS/sys/kernel/debug
+    rm -f $ROOTFS/debug
+    ln -s sys/kernel/debug $ROOTFS/debug
+fi
+
+# Update kernel directory based on kernel:
+sed -i "s|^KERNELVER=_set_by_buildFS_$|KERNELVER=$LINUX_VER_STR|" $ROOTFS/etc/init.d/*.sh;
+
+if [ "$BRCM_CHIP" == "6816" ] ; then
+        mkdir $ROOTFS/etc/cmf
+        if [ "$CONFIG_BCM_GPON_160MHz_FFE" == "y" ] ; then
+             cp -av $BRCMDRIVERS_DIR/broadcom/char/pktcmf/bcm9$BRCM_CHIP/ffe/*160MHz*.h  $ROOTFS/etc/cmf
+             cp -av $BRCMDRIVERS_DIR/broadcom/char/pktcmf/bcm9$BRCM_CHIP/ffe/*160MHz*.obj  $ROOTFS/etc/cmf
+             cp -av $BRCMDRIVERS_DIR/broadcom/char/pktcmf/bcm9$BRCM_CHIP/ffe/cmfcfg_160MHz  $ROOTFS/etc/cmf/cmfcfg
+        else
+             cp -av $BRCMDRIVERS_DIR/broadcom/char/pktcmf/bcm9$BRCM_CHIP/ffe/*.h  $ROOTFS/etc/cmf
+             cp -av $BRCMDRIVERS_DIR/broadcom/char/pktcmf/bcm9$BRCM_CHIP/ffe/*.obj  $ROOTFS/etc/cmf
+             cp -av $BRCMDRIVERS_DIR/broadcom/char/pktcmf/bcm9$BRCM_CHIP/ffe/cmfcfg  $ROOTFS/etc/cmf
+             rm -f $ROOTFS/etc/cmf/*160MHz*
+             rm -f $ROOTFS/etc/cmf/*6818*
+        fi
+fi
+
+if [ "$BRCM_CHIP" == "6818" ] ; then
+        mkdir $ROOTFS/etc/cmf
+        cp -av $BRCMDRIVERS_DIR/broadcom/char/pktcmf/bcm9$BRCM_CHIP/ffe/*6818*.h  $ROOTFS/etc/cmf
+        cp -av $BRCMDRIVERS_DIR/broadcom/char/pktcmf/bcm9$BRCM_CHIP/ffe/*6818*.obj  $ROOTFS/etc/cmf
+        cp -av $BRCMDRIVERS_DIR/broadcom/char/pktcmf/bcm9$BRCM_CHIP/ffe/cmfcfg_6818cmf  $ROOTFS/etc/cmf/cmfcfg
+fi
+
+if [ "$BRCM_KERNEL_OPROFILE" == "y" ] ; then
+   mkdir -p $ROOTFS/dev/oprofile
+fi
+
+
+# this tells busybox to set the core rlimit to unlimited, thus allowing
+# apps to dump their core when they crash
+if [ "$CONFIG_ELF_CORE" == "y" ]; then
+   touch $ROOTFS/.init_enable_core
+fi
+
+# copy our top level PROFILE file to filesystem for debugging
+if [ "$BUILD_DEBUG_TOOLS" == "y" ]; then
+    echo "Include a copy of PROFILE file in system image"
+    rm -f $ROOTFS/etc/$PROFILE
+    cp $PROFILE_DIR/$PROFILE $ROOTFS/etc
+fi
+
+
+DEFAULTCFG=`echo $DEFAULTCFG_DIR/$BRCM_DEFAULTCFG|sed -e 's/\"//g'`
+VENDORNAME=`echo $MSTC_VENDOR_NAME|sed -e 's/\"//g'`
+if [ -f "$DEFAULTCFG" ]; then
+   if [ "$BUILD_MSTC_CUSTOM_PHONE_FEATURE_PREFIX" != '' ]; then
+   if [ "$BUILD_MSTC_CUSTOM_PHONE_FEATURE_PREFIX" != '""' ]; then
+      PHONE_FEATURE_PREFIX=`echo $BUILD_MSTC_CUSTOM_PHONE_FEATURE_PREFIX|sed -e 's/\"//g'`
+      sed -i "/FacilityAction>/s/[x,X]_[z,Z][y,Y][x,X][e,E][l,L]_/$PHONE_FEATURE_PREFIX/g" $DEFAULTCFG
+      sed -i "/FacilityAction>/s/[x,X]_[m,M][i,I][t,T][r,R][a,A][s,S][t,T][a,A][r,R]_/$PHONE_FEATURE_PREFIX/g" $DEFAULTCFG
+   fi
+   fi
+   if [ "$MSTC_VENDOR_NAME" != '' ]; then
+   if [ "$MSTC_VENDOR_NAME" != '""' ]; then
+      sed -i "s/<WlSsid>[z,Z][y,Y][x,X][e,E][l,L]/<WlSsid>$VENDORNAME/g" $DEFAULTCFG
+      sed -i "s/<WlSsid>[m,M][i,I][t,T][r,R][a,A][s,S][t,T][a,A][r,R]/<WlSsid>$VENDORNAME/g" $DEFAULTCFG
+      sed -i "s/SsidPrefix>[z,Z][y,Y][x,X][e,E][l,L]/SsidPrefix>$VENDORNAME/g" $DEFAULTCFG
+      sed -i "s/SsidPrefix>[m,M][i,I][t,T][r,R][a,A][s,S][t,T][a,A][r,R]/SsidPrefix>$VENDORNAME/g" $DEFAULTCFG
+      if [ $BUILD_MSTC_CUSTOM_PHONE_FEATURE_PREFIX == '' ]; then
+         PHONE_FEATURE_PREFIX=X_"$VENDORNAME"_
+         sed -i "/FacilityAction>/s/[x,X]_[z,Z][y,Y][x,X][e,E][l,L]_/$PHONE_FEATURE_PREFIX/g" $DEFAULTCFG
+         sed -i "/FacilityAction>/s/[x,X]_[m,M][i,I][t,T][r,R][a,A][s,S][t,T][a,A][r,R]_/$PHONE_FEATURE_PREFIX/g" $DEFAULTCFG
+      fi
+      if [ $BUILD_MSTC_CUSTOM_PHONE_FEATURE_PREFIX == '""' ]; then
+         PHONE_FEATURE_PREFIX=X_"$VENDORNAME"_
+         sed -i "/FacilityAction>/s/[x,X]_[z,Z][y,Y][x,X][e,E][l,L]_/$PHONE_FEATURE_PREFIX/g" $DEFAULTCFG
+         sed -i "/FacilityAction>/s/[x,X]_[m,M][i,I][t,T][r,R][a,A][s,S][t,T][a,A][r,R]_/$PHONE_FEATURE_PREFIX/g" $DEFAULTCFG
+      fi
+   fi
+   fi
+   if [ "$MSTC_VENDOR_NAME" != '' ]; then
+   if [ "$MSTC_VENDOR_NAME" != '""' ]; then   
+   sed = $DEFAULTCFG | sed -n 'N; s/\([ ]*\)\(<.*\)\([z,Z][y,Y][x,X][e,E][l,L]\)\(.*\)/\2\3\4/p'
+   sed = $DEFAULTCFG | sed -n 'N; s/\([ ]*\)\(<.*\)\([m,M][i,I][t,T][r,R][a,A][s,S][t,T][a,A][r,R]\)\(.*\)/\2\3\4/p'
+   echo "Finish Wording Check for Default Configuration: $BRCM_DEFAULTCFG"
+   read -p "Press ENTER to continue or CTRL-C to abort. " resp
+   fi
+   fi
+   cp -v $DEFAULTCFG $ROOTFS/etc/default.cfg; chmod a+r $ROOTFS/etc/default.cfg
+elif [ $BRCM_DEFAULTCFG != '""' ]; then
+   echo
+   echo "        No default run-time config file called $BRCM_DEFAULTCFG in $DEFAULTCFG_DIR"
+   echo "        Check your profile setting!"
+   exit 1
+else
+   echo
+fi
+
+if [ "$MSTC_TE_ATMC" != "" ] ; then
+#__MSTC__, merge the atmc AT command
+DEFAULTCFG=`echo $DEFAULTCFG_DIR/$SMT_DEFAULTCFG|sed -e 's/\"//g'`
+if [ -f "$DEFAULTCFG" ]; then
+   cp -v $DEFAULTCFG $ROOTFS/etc/smt.cfg; chmod a+r $ROOTFS/etc/smt.cfg
+elif [ $SMT_DEFAULTCFG != '""' ]; then
+   echo
+   echo "        No default SMT run-time config file called $SMT_DEFAULTCFG in $DEFAULTCFG_DIR"
+   echo "        Check your profile setting!"
+   exit 1
+else
+   echo
+fi
+fi
+#__MSTC__, end
+
+#
+# The logic to test BRCM_CERT_FILE must be different than the logic to test
+# BRCM_DEFAULTCFG (above) because BRCM_CERT_FILE can have 3 possible values:
+# 1. If user does not select TR69_BCM_SSL, then BRCM_CERT_FILE=
+# 2. If user selects TR69_BCM_SSL, but does not specify a cert file, then BRCM_CERT_FILE=""
+# 3. If user selects TR69_BMC_SSL, and specifies a cert file, then BRCM_CERT_FILE="somefilename"
+#
+# The elif line tests for case 1 first, so that if BRCM_CERT_FILE is blank,
+# the first condition will be false and the second condition [ $BRCM_CERT_FILE != '""' ]
+# will not be tested.  That second condition will cause bash to complain if BRCM_CERT_FILE is blank.
+#
+DEFAULT_CERT_FILE=`echo $DEFAULTCFG_DIR/$BRCM_CERT_FILE|sed -e 's/\"//g'`
+
+if [ -f "$DEFAULT_CERT_FILE" ]; then
+   cp -v $DEFAULT_CERT_FILE $ROOTFS/etc/acscert.cacert; chmod a+r $ROOTFS/etc/acscert.cacert
+elif [ "X$BRCM_CERT_FILE" != "X" ] && [ $BRCM_CERT_FILE != '""' ]; then
+   echo
+   echo "        No certificate file called $BRCM_CERT_FILE in $DEFAULTCFG_DIR"
+   echo "        Check your profile setting!"
+   exit 1
+else
+   echo
+fi
+
+# Create symbolic links
+mkdir $ROOTFS/dev/misc
+ln -s /var/fuse $ROOTFS/dev/misc/fuse
+ln -s /var/fuse $ROOTFS/dev/fuse
+ln -s /var/mtab $ROOTFS/etc/mtab
+ln -s /var/log/log $ROOTFS/dev/log
+ln -s /var/sysmsg $ROOTFS/etc/sysmsg
+ln -s /var/passwd $ROOTFS/etc/passwd
+ln -s /var/group $ROOTFS/etc/group
+ln -s /var/ppp/pppmsg $ROOTFS/etc/pppmsg
+ln -s /var/fyi/sys/dns $ROOTFS/etc/resolv.conf
+ln -s /var/fyi/sys/gateway $ROOTFS/etc/gateway.conf
+if [ "$BUILD_DNSMASQ" != "" ] ; then
+ln -s /var/dnsmasq/dnsmasq.conf $ROOTFS/etc/dnsmasq.conf
+ln -s /var/dnsmasq/dnsmasq.dns $ROOTFS/etc/resolv.dnsmasq.conf
+fi
+ln -s /var/udhcpd/udhcpd.conf $ROOTFS/etc/udhcpd.conf
+ln -s /var/udhcpd/udhcpd.leases $ROOTFS/etc/udhcpd.leases
+ln -s /var/dms.conf $ROOTFS/etc/dms.conf
+ln -s /var/ipsec/ipsec.conf $ROOTFS/etc/ipsec.conf
+ln -s /var/ipsec/racoon.conf $ROOTFS/etc/racoon.conf
+ln -s /var/ipsec/psk.txt $ROOTFS/etc/psk.txt
+ln -s /var/iproute2/rt_tables $ROOTFS/etc/iproute2/rt_tables
+ln -s /var/tmp $ROOTFS/tmp
+ln -s /var/samba $ROOTFS/etc/samba
+ln -s /data $ROOTFS/usr/local/data
+ln -s /data/authorized_keys $ROOTFS/.ssh/authorized_keys
+if [ "$BUILD_SIK_PARTITION_FEATURE" == "y" ] ; then
+ln -s /customer $ROOTFS/webs/Brick/customer
+fi
+if [ "$BUILD_NORWAY_CUSTOMIZATION" == "y" ] ; then
+ln -s /var/tmp/auto_config $ROOTFS/webs/Brick/auto_config
+fi
+# __MSTC__, Ailsa for gethostbyaddr fucntion
+ln -s /var/hosts $ROOTFS/etc/hosts
+if [ "$BUILD_MSTC_SFTP_SCP" != "" ] ; then
+ln -s /var/proftpd.conf $ROOTFS/etc/proftpd.conf
+fi
+if [ -x $PROFILE/special-buildFS ]; then
+   $PROFILE/special-buildFS
+fi
+
+# Copy proprietary binaries if any
+FSBIN=`ls $TOP_DIR/fs.bin|wc -l`
+if [ $FSBIN != 0 ]; then
+   echo "Copying proprietary binaries..."
+   cd $TOP_DIR
+   cp -avf fs.bin/* $ROOTFS
+fi
+
+# Copy 3rdParty supplied .ko onto dummy .ko
+if [ "$BRCM_DRIVER_ISDN" == "m" ] ; then
+   echo "Copying 3rdParty kernel objects (.ko) ..."
+   eval "find $TOP_DIR/$ROOTFS/../modules/lib/modules/. -name '*isdn.ko' | xargs cp -f $BRCMDRIVERS_DIR/broadcom/char/isdn/bcm9$BRCM_CHIP/3rdParty/*isdn.ko_3rdParty "
+fi
+
+#Copying gpon tools
+if [ "$BRCM_DRIVER_GPON" != "" ] ; then
+   if [ "$CONFIG_BCM_GPON_IMPL" == "2" ]; then
+     TGT_DIR=$ROOTFS/etc
+   else
+     TGT_DIR=$ROOTFS/opt
+   fi
+
+   echo "Copying gpon tools to $TGT_DIR"
+     if [ "$BRCM_GPON_FPGA" == "y" ]; then
+     cp -avrf $BRCMDRIVERS_DIR/broadcom/char/gpon/impl$CONFIG_BCM_GPON_IMPL/fs/fpga/gpon/* $TGT_DIR
+     else
+     cp -avrf $BRCMDRIVERS_DIR/broadcom/char/gpon/impl$CONFIG_BCM_GPON_IMPL/fs/6816/gpon/* $TGT_DIR
+	  rm -rf $TGT_DIR/scripts/rsmibclr*
+     if [ "$BRCM_CHIP" != "6816" ]; then
+     cp -avrf $BRCMDRIVERS_DIR/broadcom/char/gpon/impl$CONFIG_BCM_GPON_IMPL/fs/6816/gpon/scripts/rsmibclr_6818 $TGT_DIR/scripts/rsmibclr
+     else
+     cp -avrf $BRCMDRIVERS_DIR/broadcom/char/gpon/impl$CONFIG_BCM_GPON_IMPL/fs/6816/gpon/scripts/rsmibclr $TGT_DIR/scripts/
+     fi
+     fi
+
+   if [ -d $ROOTFS/opt/modules ]; then
+     pushd $ROOTFS/opt/modules && for f in *.ko.save; do mv "$f" "${f%.ko.save}.ko"; done
+     popd
+   fi
+fi
+
+#Copying i2c scripts to /opt/scripts
+if [ "$BRCM_DRIVER_I2C" != "" ] ; then
+   echo "Copying i2c scripts to /opt/"
+   cp -avrf $BRCMDRIVERS_DIR/broadcom/char/i2c/chips/impl1/fs/* $ROOTFS/opt
+fi
+
+#Copying bcmlog tools to /usr/local
+if [ "$BRCM_DRIVER_LOG" != "" ] ; then
+   echo "Copying proc/bcmlog tools to /opt/..."
+   cp -avrf $BUILD_DIR/userspace/public/scripts/procbcmlog/* $ROOTFS/opt/scripts
+   if [ "$BRCM_CHIP" != "6816" ] && [ "$BRCM_CHIP" != "6818" ] && [ "$BRCM_CHIP" != "63268" ]; then
+      rm -f $ROOTFS/opt/scripts/ssrw
+   fi
+   if [ -d $ROOTFS/opt/modules ]; then
+     pushd $ROOTFS/opt/modules && for f in *.ko.save; do mv "$f" "${f%.ko.save}.ko"; done
+     popd
+   fi
+fi
+
+cd $MOD_DIR
+cp -a lib $TOP_DIR/$ROOTFS/.
+
+if [ "$STRIP" != "/bin/touch" ]; then
+# Stripping unneeded module symbols only when strip is "enabled"
+echo "Stripping kernel modules..."
+find $TOP_DIR/$ROOTFS/lib/modules -name "*.ko"
+   if [ "$CONFIG_KALLSYMS" == "y" ]; then
+      #if KALLSYMS is enabled only strip debug symbols from all modules, this helps
+      #to retain symbols of static functions 
+      eval "find $TOP_DIR/$ROOTFS/lib/modules -name '*.ko' |xargs $STRIP --strip-debug"
+   else
+      #Modules that need parameters cannot be stripped
+      eval "find $TOP_DIR/$ROOTFS/lib/modules -name '*.ko' ! -name 'ip*.ko' |xargs $STRIP --strip-unneeded"
+      # However do strip debug symbols, in case debug symbols are included
+      eval "find $TOP_DIR/$ROOTFS/lib/modules -name 'ip*.ko' |xargs $STRIP --strip-debug"
+   fi
+fi
+
+
+#delete unwanted module
+echo "deleting intermediate wl modules"
+MODULE_CLEAN_UP="wldrv.ko wl_tmp_partial.ko wlpartial.ko"
+#remove unnecessary wlan driver
+if [ "${WLBUS}"  != "" ]; then
+    if [ `expr index $WLBUS pci` == 0 ]; then
+           MODULE_CLEAN_UP=${MODULE_CLEAN_UP}" wl.ko"
+    fi
+    if [ `expr index $WLBUS usb` == 0 ]; then
+           MODULE_CLEAN_UP=${MODULE_CLEAN_UP}" wl-usb.ko"
+    fi
+else
+   MODULE_CLEAN_UP=${MODULE_CLEAN_UP}" wl-usb.ko"
+fi
+for f in $MODULE_CLEAN_UP; do \
+   eval "find $TOP_DIR/$ROOTFS/lib/modules -name $f |xargs rm -f";\
+done
+eval "find $TOP_DIR/$ROOTFS/lib/modules -name wlobj-*.ko | xargs rm -f"
+
+# strip userspace binaries is sstrip is "enabled"
+# sstrip is set to /bin/touch if BUILD_GDBSERVER=y
+if [ "$SSTRIP" != "/bin/touch" ]; then
+    # Even though libcreduction did some stripping, we can make the
+    # libraries even smaller by doing sstrip here.  Also libcreduction
+    # does not process all libs, e.g. libmdm.so
+    echo "Stripping userspace binaries..."
+    $SSTRIP $TOP_DIR/$ROOTFS/bin/* $TOP_DIR/$ROOTFS/lib/*.so* $TOP_DIR/$ROOTFS/lib/*/*.so*
+fi
+
+# Symlink the CMS libraries needed by busybox, which is also /sbin/init (the
+# first userspace process).  Once busybox is able to load and start,
+# it will read /etc/profile to get the LD_LIBRARY_PATH which points to all
+# the CMS libraries in their non-standard places.  The LD_LIBRARY_PATH is 
+# inherited by all userspace processes.
+test -e $TOP_DIR/$ROOTFS/lib/public/libcms_msg.so && ln -s /lib/public/libcms_msg.so $TOP_DIR/$ROOTFS/lib/libcms_msg.so
+test -e $TOP_DIR/$ROOTFS/lib/public/libcms_boardctl.so && ln -s /lib/public/libcms_boardctl.so $TOP_DIR/$ROOTFS/lib/libcms_boardctl.so
+test -e $TOP_DIR/$ROOTFS/lib/public/libcms_util.so && ln -s /lib/public/libcms_util.so $TOP_DIR/$ROOTFS/lib/libcms_util.so
+####add mini fw version for calibration fwcheck
+echo $MSTC_MINIFW_VERSION > $TOP_DIR/$ROOTFS/etc/minifw_version
+sed -i 's/"//g' $TOP_DIR/$ROOTFS/etc/minifw_version
+
+# If a consumer release has created a filesystem tarball, fill in
+# any missing proprietary binaries using that tarball
+( cd $TOP_DIR/$ROOTFS ; tar xzkf ../filesystem.tgz 2>/dev/null ; true )
+
+#__MSTC__, Dennis merge from autumn, clear .svn folder
+cd $TOP_DIR/$PROFILE
+tar -zci --exclude .svn -f fs.tar.gz fs
+rm -rf fs
+tar -zxf fs.tar.gz
+chmod 777 fs
+rm fs.tar.gz

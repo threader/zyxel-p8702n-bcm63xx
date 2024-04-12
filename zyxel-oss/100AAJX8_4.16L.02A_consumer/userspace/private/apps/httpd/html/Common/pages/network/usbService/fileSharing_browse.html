@@ -1,0 +1,102 @@
+<script type="text/javascript">
+<!-- hide
+var AppluBtn = $('.ui-dialog-buttonpane:last').children("button:last");
+AppluBtn.click(function(){ applyClick_browse(); });
+
+function ShowBrowseDirTable()
+{
+
+	var AllLogicalVolumeFolder= '<%ejGetOtherBig(AllLogicalVolumeFolderInfo)%>';
+	//alert(AllLogicalVolumeFolder);
+	var SelectLogicalVolumme = document.getElementById("LogicalVolumeSelect").value;
+	var i = 0;	
+	var str = '';
+	var All_LogicalVolumeFolder = AllLogicalVolumeFolder.split('|');		
+	
+	
+		for (i=0; i<All_LogicalVolumeFolder.length; i++)
+		{
+		    
+			var every_LogicalVolumeFolder = All_LogicalVolumeFolder[i].split('/');
+			
+			if(every_LogicalVolumeFolder[0] == SelectLogicalVolumme)
+			{				
+
+				for(j=1; j<every_LogicalVolumeFolder.length;)
+				{
+					str += "<tr align=\"center\" >";
+					str += "<td class=\"table_font\"><input type=\"radio\" name=\"BrowseSelectShare\" value=\"" + every_LogicalVolumeFolder[j] + "\" ></td>";
+
+					if(every_LogicalVolumeFolder[j+1] == '1')
+					{
+						str +=" <td class=\"table_font\"><img src=\"../../../images/i_share_enable.gif\" /></td>" ;
+					}else{
+						str +=" <td class=\"table_font\"><img src=\"../../../images/i_share_diable.gif\" /></td>" ;
+
+					}
+					str += " <td class=\"table_font\"> " +every_LogicalVolumeFolder[j] + "</td>" ;
+					str += "</tr>";
+					j=j+2;
+				}
+			}
+
+		}
+		
+		$('#BrowseDirTable').append(str);
+		
+		
+		
+}
+
+function applyClick_browse() {
+	try {
+		var radioObj = document.forms['browselist'].elements['BrowseSelectShare'];
+	}catch(error){
+		$('.ui-dialog-titlebar-close:last').trigger('click');
+		return;
+	}
+	
+	var radioLength = radioObj.length;
+	if(radioLength == undefined){
+		document.getElementById("AddSharePath").value = ".";
+
+	}else{	
+	for(var i = 0; i < radioLength; i++) {
+		if(radioObj[i].checked) {
+			document.getElementById("AddSharePath").value = radioObj[i].value;
+		}
+	}
+	}
+
+	 $('.ui-dialog-titlebar-close:last').trigger('click');
+}
+// done hiding -->
+</script>
+<form name="browselist" id="browselist">
+<div class="data_frame2">
+	<ul>
+<li class="set1">
+<div class="title">Browse Directory</div>
+<div class="w_table">
+				<table width="100%" cellpadding="0" cellspacing="0" class="table_frame" style="table-layout:fixed;" id="BrowseDirTable">
+					<tr align="center">
+                  <td class="top_font" width="12%">Select</td>
+                  <td class="top_font" width="12%">Type</td>
+                  <td class="top_font" width="60%">Name</td>
+                </tr>
+                <tr align="center">
+                   <td class="table_font"><input type="radio" name="BrowseSelectShare" value="." checked ></td>
+                   <td class="table_font"><img src="../../../images/i_share_enable.gif" /></td>
+                   <td class="table_font">.</td>
+                </tr>
+					<script TYPE="text/javascript">
+						<!-- hide 
+							ShowBrowseDirTable();
+						// done hiding -->
+					</script>
+  </table>
+</div>
+</li>
+	</ul>
+</div>
+</form>

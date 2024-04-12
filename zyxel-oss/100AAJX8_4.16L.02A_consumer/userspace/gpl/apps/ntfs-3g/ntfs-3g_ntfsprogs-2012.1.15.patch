@@ -1,0 +1,19 @@
+diff -ur orig_ntfs-3g_ntfsprogs-2012.1.15/src/ntfs-3g.c ntfs-3g_ntfsprogs-2012.1.15/src/ntfs-3g.c
+--- orig_ntfs-3g_ntfsprogs-2012.1.15/src/ntfs-3g.c	2012-01-15 05:26:14.000000000 -0800
++++ ntfs-3g_ntfsprogs-2012.1.15/src/ntfs-3g.c	2013-01-08 17:44:49.000000000 -0800
+@@ -3554,6 +3554,7 @@
+ 	
+ 	if (fuse_opt_add_arg(&args, "") == -1)
+ 		goto err;
++#if 0 // brcm: no default option, all from command line. e.g. hotplug 
+ #if !CACHEING
+ 	if (fuse_opt_add_arg(&args, "-ouse_ino,kernel_cache,attr_timeout=0") == -1)
+ 		goto err;
+@@ -3561,6 +3562,7 @@
+ 	if (fuse_opt_add_arg(&args, "-ouse_ino,kernel_cache,attr_timeout=1") == -1)
+ 		goto err;
+ #endif
++#endif 
+ 	if (ctx->debug)
+ 		if (fuse_opt_add_arg(&args, "-odebug") == -1)
+ 			goto err;

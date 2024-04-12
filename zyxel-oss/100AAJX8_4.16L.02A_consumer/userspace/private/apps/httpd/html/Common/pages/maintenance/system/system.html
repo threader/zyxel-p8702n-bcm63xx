@@ -1,0 +1,47 @@
+<div class="content_frame" >
+<!--Unit Explain start-->
+<div class="explain">
+<div><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div>
+<div class="explain_text">You can assign a unique name to this device so it can be recognized easily on your network. Besides, you can decide when to automatically sign out the administrator account after he or she is idle for a period of time.</div>
+<div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div></div>
+<!--Unit Explain End-->
+<!--Set area start-->
+<div class="data_frame"><ul>
+<li class="set1">
+<div class="w_text">
+<ul>
+<li class="left_table"><%ejGetML(MLG_Security_MACFilter_HostName)%>   : </li>
+<li class="right_table">
+  <input onkeypress="return chkChar(event);" 
+                        maxlength="30" size="30" 
+                        name="sysSystemName" />
+</li></ul>
+<ul>
+<li class="left_table"><%ejGetML(MLG_Network_Domain_Name)%>    : </li>
+<li class="right_table">
+  <input onkeypress="return chkChar(event);" 
+                        maxlength="30" size="30"  
+                        name="sysSystemName2" />
+</li></ul>
+<ul>
+<li class="left_table">Administrator Inactivity Timer  : </li>
+<li class="right_table">
+  <input type="password" maxlength="30" 
+                        size="30" />
+</li></ul>
+<ul>
+<li class="left_table"><%ejGetML(MLG_Maintenance_LogsSetting_Pwd_Confirm)%>  : </li>
+<li class="right_table">
+  <input maxlength="4" size="4" value="0" name="StdioTimout" />
+(minutes, 0 means no timeout)</li></ul>
+</div>
+</li>
+<li class="space"></li>
+            <li class="buttonframe"><div class="button_position"><input name="sysSubmit" value="Apply" type="button" onClick="doSubmit();" />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+    <input name="Cancel" value="Cancel" type="button" onClick='frmLoad();' />
+               </div>
+            </li>
+</ul></div>
+<!--Set area end-->
+</div>
+<br/><br/>

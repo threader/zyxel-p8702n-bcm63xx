@@ -1,0 +1,128 @@
+<!-- #BEGINZONE javascript_speed_duplex_zone -->
+<script language="javascript">
+
+var lanSpeed_Duplex = "<%ejGetOther(lanSpeed_Duplex)%>";
+
+function showLanSpeed_DuplexInfo()
+{
+	var strA = lanSpeed_Duplex.split('@');
+	var newStr = '';
+
+	for (i=1; i<strA.length; i++) {
+		if (strA[i] == '' || strA[i] == undefined)
+			break;
+		var strB = strA[i].split('|');
+
+		newStr += '<tr>\n';
+		var strC = strB[0].split('eth');
+		var num = parseInt(strC[1])+1;
+		var lan = 'LAN'+num.toString();
+
+		var lanOption=document.createElement('option');
+		lanOption.text = lan;
+		lanOption.value = strC[1];
+		var lanSelect = document.getElementById("lanselect");
+		try
+		{
+			lanSelect.add(lanOption,null); // standards compliant
+		}
+		catch(ex)
+		{
+			lanSelect.add(lanOption); // IE only
+		}
+
+		newStr += '<td align=\'center\' class="table_font">'+lan+'</td>\n';
+		newStr += '<td align=\'center\' class="table_font">'+strB[1]+'</td>\n';
+		newStr += '<td align=\'center\' class="table_font">'+strB[2]+'</td>\n';	
+		newStr += '</tr>\n';
+	}
+	$('#lanSpeed_DuplexTable').append(newStr);
+	$(function()
+	{
+    	$('.textOverflow').each(function(){ $(this).attr('title', $(this).text());} );
+    	$('.textOverflow').ellipsis(true);
+	});
+}
+
+function btnSave() {
+  with ( document.forms[0] )  {
+	$('.ui-dialog-titlebar-close').trigger('click');
+	$.openLoadingMask(1);
+	submit();
+  }
+
+   return true;
+}
+</script>
+
+<div class="content_frame" >
+
+<!--Unit Explain start-->
+<div class="explain">
+<div><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b><b class="r4"></b></div>
+<div class="explain_text">Config speed and Duplex.</div>
+<div><b class="r4"></b><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></div></div>
+
+<!--Unit Explain End-->
+
+<form action="/pages/tabFW/homeNetworking-speed_duplex.cgi" method="post" name="speedduplexForm" id="speedduplexForm" >
+<input type=hidden name="sessionKey" id="sessionKey" value="<%ejGetOther(sessionKey)%>">
+<div class="data_frame">
+<li class="set1">
+<ul><div class="w_text">
+    <ul>
+    <li class="left_table" style="font-weight:bold;font-size:14px;">LAN Port</li>
+    <li class="right_table set1">
+     <select name="lanselect" id="lanselect" size="1">
+     </select></li>
+  </ul>
+</div>
+</ul>
+</li>
+<li class="set1">
+<ul><div class="w_text">
+    <ul>
+    <li class="left_table" style="font-weight:bold;font-size:14px;">Speed/Duplex</li>
+    <li class="right_table set1">
+     <select name="modeselect" id="modeselect" size="1">
+                <option value="0"> 10 Mb Full</option>
+				<option value="1"> 10 Mb Half</option>
+				<option value="2"> 100 Mb Full</option>
+				<option value="3"> 100 Mb Half</option>
+				<!--<option value="4"> 1000 Mb Full</option>-->
+				<!--<option value="5"> 1000 Mb Half</option>-->
+				<option value="6"> 1000 Mb (Auto)</option>
+     </select></li>
+  </ul>
+</div>
+</ul></li>
+<li class="set1">
+<ul><div class="w_table">
+	<ul>
+	<li class="left_table" style="font-weight:bold;font-size:14px;">Current Setting</li>
+	<li class="right_table set1">
+	<table width="100%" cellpadding="0" cellspacing="0" style="table-layout:fixed;" class="table_frame" id="lanSpeed_DuplexTable">
+		<tr align="center" valign="top">
+			<td width="10%" class="top_font">#</td>							
+			<td class="top_font textOverflow">Speed</td>
+			<td class="top_font textOverflow">Duplex</td>
+		</tr>
+<script>
+	showLanSpeed_DuplexInfo();
+</script>
+	</table>
+	</li></ul>
+</div>
+<li class="space"> </li>
+
+<!--Button define start-->
+<li class="buttonframe"><div class="button_position"><input name="Submit" value="<%ejGetML(MLG_Common_Apply)%>" type="button" onClick="btnSave();" /></div></li>
+<!--Button define end-->
+</ul>
+</li>
+<!--Set area end-->
+<br /><br />
+</div>
+</form>
+</div>
+<!-- #ENDZONE form_speed_duplex_zone -->

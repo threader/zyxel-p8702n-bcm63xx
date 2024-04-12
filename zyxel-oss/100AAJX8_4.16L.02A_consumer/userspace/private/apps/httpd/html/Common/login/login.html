@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<title>.::<%ejGetML(MLG_Common_Login_Str1)%><%ejGet(modelName)%>::.</title>
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="../js/jquery.validate.pack.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/common.js"></script>  
+<script type="text/javascript">
+var wpakeyLoginshow = '<%ejGet(wpakeyLoginMsg)%>';
+var forEircom  = '<%ejGetOther(sysInfo, forEircom)%>';
+
+function frmLoad () {
+	document.forms[0].AuthName.focus();
+	var status = '<%ejGet(loginStatus)%>';
+	
+	if ( status != '0' ) {
+		$("#Message").html("<font color='#DD0000'><%ejGetML(MLG_Common_Login_AlertMsg_Str3)%></font>");
+	} else if (status == '13') {
+		$("#Message").html("<font color='#DD0000'><%ejGetML(MLG_Common_Login_AlertMsg_Str14)%></font>");
+	}
+	
+   $("#login").validate(
+	{
+		rules:{
+			AuthName:{required:true},
+			AuthPassword:{required:true,maxlength:256}
+		},
+		messages: {
+			AuthName: {
+					required: "<%ejGetML(MLG_Common_Login_AlertMsg_Str1)%>"
+			},
+			AuthPassword: {
+				required: "<%ejGetML(MLG_Common_Login_AlertMsg_Str2)%>",
+				maxlength: "<%ejGetML(MLG_Common_Login_AlertMsg_Str4)%>"
+			}
+		}
+
+	});
+	
+	if (wpakeyLoginshow != '1'){
+		document.getElementById("WPAkeyLoginMsg").style.display='none';
+	}
+
+	if(forEircom==1)
+	{
+		document.forms[0].AuthName.value="admin";
+		document.getElementById("loginText").style.color="#736C66";
+	}
+	if(forEircom==0)
+	{
+         $('#loginText_Common').fadeIn(0);		
+         $('#loginText_Eircom').fadeOut(0);
+         $('#loginTitle_Common').fadeIn(0);		
+         $('#loginTitle_Eircom').fadeOut(0);
+	}
+	else
+	{
+         $('#loginText_Common').fadeOut(0);		
+         $('#loginText_Eircom').fadeIn(0);
+         $('#loginTitle_Common').fadeOut(0);		
+         $('#loginTitle_Eircom').fadeIn(0);
+	}
+	
+}
+$(document).ready(function() {
+	frmLoad();
+});
+</script>
+
+<link href="../css/brick.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="loginbg">   
+  <div class="TelenorNorway_wraplogin">
+  <div class="TelenorNorway_logincenter">
+  <div class="TelenorNorway_login_right">
+  <div>
+<ul>
+  <span class="title_index" style="color:#000000" ><%ejGetML(MLG_Common_Telenor_Login_Str1)%></span><br>
+  <li class="content_word" style="color:#000000"><%ejGetML(MLG_Common_Telenor_Login_Str2)%> <%ejGet(modelName)%> <%ejGetML(MLG_Common_Telenor_Login_Str3)%> 
+
+
+<div>
+    <label id="Message"></label>
+<form action="/login/login-page.cgi" method="post" id="login" >
+<fieldset><ul>
+	    <li style=" margin-top:10px;" >
+            <span ><label for="AuthName" style="width: 100px;" class="content_word_title"><span class="required"><%ejGetML(MLG_Common_Telenor_Username)%>:</label></span></span>
+		    <span style="position:absolute; left:120px;"><input name="AuthName" type="text" class="text required" id="AuthName" size="20" maxlength="30" /></span>
+	    </li>
+	    <li>
+        	<label for="AuthName" class="error"><%ejGetML(MLG_Common_Login_AlertMsg_Str3)%> </label>
+	    </li>
+        <br>
+	    <li style=" margin-top:10px; clear:both;">
+        	<span><label for="AuthPassword" style="width: 100px;" class="content_word_title"><span class="required"><%ejGetML(MLG_Common_Telenor_Password)%>:</span></label></span>
+			<span style="position:absolute; left:120px;"><input name="AuthPassword" type="password" class="text required" id="AuthPassword" size="20" maxlength="15" /></span>
+	    </li>
+	    <li>
+        	<label for="AuthPassword" class="error"><%ejGetML(MLG_Common_Login_AlertMsg_Str3)%> </label>
+	    </li>
+        <li class="login_button">
+        	<input type="submit" value="<%ejGetML(MLG_Common_Telenor_Login)%>" />
+        </li>
+				</ul>
+				</fieldset>
+  </form>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<TABLE>
+<TR>
+<TD height="300"></TD><TD></TD><TD></TD>
+</TR>  
+<TR>
+<TD height="13" width="35"></TD><TD></TD><TD><div class="title"><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayNoteHead3)%></FONT></div></TD>
+</TR>
+<TR>
+<TD height="13" width="35"></TD><TD></TD><TD><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayNote5)%></FONT></TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD height="13" width="35"></TD><FONT size=2><TD></TD><TD>Brukernavn:&nbsp;</TD><TD>admin</TD></FONT>
+</TR>
+<TR>
+<TD height="13" width="35"></TD><FONT size=2><TD></TD><TD valign="top">passord:&nbsp;</TD><TD><%ejGetML(MLG_Common_TelenorNorwayNote6)%></TD></FONT>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD height="13"></TD><TD></TD><TD></TD>
+</TR>
+<TR>
+<TD height="13" width="35"></TD><TD></TD><TD><div class="title"><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayNoteHead4)%></FONT></div></TD>
+</TR>
+<TR>
+<TD height="13" width="35"></TD><TD></TD><TD><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayNote5)%></FONT></TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD height="13" width="35"></TD><FONT size=2><TD></TD><TD>Brukernavn:&nbsp;</TD><TD>admin</TD></FONT>
+</TR>
+<TR>
+<TD height="13" width="35"></TD><FONT size=2><TD></TD><TD valign="top">passord:&nbsp;</TD><TD><%ejGetML(MLG_Common_TelenorNorwayNote8)%></TD></FONT>
+</TR>
+</TABLE>
+</div>
+
+<!-- #BEGINZONE TelenorNorwayNote_zone -->
+<br><br>
+<div class="login_text_box">
+<TABLE>
+<TR>
+<TD height="13"></TD><TD></TD><TD></TD>
+</TR>
+<TR>
+<TD height="13" width="25"></TD><TD valign="top" width="10"></TD><TD width="550"><div class="title"><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayNoteHead1)%></FONT></div></TD>
+</TR>
+<TR>
+<TD height="13"></TD><TD></TD><TD><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayStaticText)%><%ejGetOther(strCircuitID)%></FONT></TD>
+</TR>
+<TR>
+<TD height="13"></TD><TD></TD><TD></TD>
+</TR>
+<TR>
+<TD height="13"></TD><TD></TD><TD><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayNote1)%></FONT></TD>
+</TR>
+<TR>
+<TD height="13"></TD><TD></TD><TD></TD>
+</TR>
+<TR>
+<TD height="13"></TD><TD></TD><TD><div class="title"><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayNoteHead2)%></FONT></div></TD>
+</TR>
+<TR>
+<TD height="13"></TD><TD></TD><TD><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayNote2)%></FONT></TD>
+</TR>
+<TR>
+<TD height="13"></TD><TD></TD><TD></TD>
+</TR>
+<TR>
+<TD height="13"></TD><TD></TD><TD><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayNote3)%></FONT></TD>
+</TR>
+<TR>
+<TD height="13"></TD><TD></TD><TD></TD>
+</TR>
+<TR>
+<TD height="13"></TD><TD></TD><TD><FONT size=2><%ejGetML(MLG_Common_TelenorNorwayNote4)%></FONT></TD>
+</TR>
+</TABLE>
+</div>
+<br><br><br><br>
+<!-- #ENDZONE TelenorNorwayNote_zone -->
+</div>
+</body>
+</html>
+
